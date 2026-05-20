@@ -1,0 +1,111 @@
+.nothing-accordion {
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.nothing-accordion__item {
+  border-bottom: 1px solid var(--border);
+}
+
+.nothing-accordion__item:last-child {
+  border-bottom: none;
+}
+
+.nothing-accordion__heading {
+  margin: 0;
+}
+
+.nothing-accordion__trigger {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  padding-right: var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  cursor: pointer;
+  min-height: 44px;
+  transition: background var(--duration-micro) var(--easing),
+              color var(--duration-micro) var(--easing);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.nothing-accordion__trigger:hover {
+  background: var(--surface-raised);
+}
+
+.nothing-accordion__trigger:focus-visible {
+  outline: 2px solid var(--interactive);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.nothing-accordion__trigger-text {
+  flex: 1;
+  text-align: left;
+}
+
+.nothing-accordion__trigger-icon {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--text-secondary);
+  flex-shrink: 0;
+  transition: transform var(--duration-micro) var(--easing);
+}
+
+.nothing-accordion__item--open .nothing-accordion__trigger-icon {
+  transform: rotate(180deg);
+}
+
+.nothing-accordion__item--open .nothing-accordion__trigger {
+  color: var(--text-display);
+}
+
+.nothing-accordion__item--disabled .nothing-accordion__trigger {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.nothing-accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--duration-transition) var(--easing);
+}
+
+.nothing-accordion__item--open .nothing-accordion__content {
+  max-height: 500px;
+}
+
+.nothing-accordion__content-inner {
+  padding: 0 var(--space-lg) var(--space-md);
+  font-family: var(--font-body);
+  font-size: var(--body);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-accordion__content {
+    transition: none;
+  }
+
+  .nothing-accordion__trigger-icon {
+    transition: none;
+  }
+
+  .nothing-accordion__trigger {
+    transition: none;
+  }
+}

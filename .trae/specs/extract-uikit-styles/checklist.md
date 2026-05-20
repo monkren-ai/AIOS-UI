@@ -1,0 +1,17 @@
+- [x] Checkpoint 1: Date 组件矩形卡片变体视觉与 nothing-UI kit Date 2 一致
+- [x] Checkpoint 2: Date 组件圆形双圈变体视觉与 nothing-UI kit Date 3 一致
+- [x] Checkpoint 3: NextEvent 组件视觉与 nothing-UI kit Next Event 2 一致
+- [x] Checkpoint 4: Quotes 组件视觉与 nothing-UI kit Quotes 一致
+- [x] Checkpoint 5: Taskbar 组件视觉与 nothing-UI kit Taskbar 一致
+- [x] Checkpoint 6: Clock dual-ring 变体视觉与 nothing-UI kit Clock 3 一致
+- [x] Checkpoint 7: Clock overlay 变体视觉与 nothing-UI kit Clock 4 一致
+- [x] Checkpoint 8: Battery ring 变体视觉与 nothing-UI kit Battery 2 一致
+- [x] Checkpoint 9: 所有新组件在深色模式下视觉与 nothing-UI kit 深色版本一致
+- [x] Checkpoint 10: 所有新组件在浅色模式下视觉与 nothing-UI kit 浅色版本一致
+- [x] Checkpoint 11: 所有新组件 CSS 正确使用 widget theme 类或 data-theme
+- [x] Checkpoint 12: 新组件 CSS 中不存在硬编码颜色值（#hex, rgb, rgba 在 theme 类定义之外）
+- [x] Checkpoint 13: 新组件 CSS 中不存在 !important 声明
+- [x] Checkpoint 14: 所有新组件支持 prefers-reduced-motion
+- [x] Checkpoint 15: 所有新组件的同名 CSS 文件 vanilla 版本与 React 版本内容完全一致
+- [x] Checkpoint 16: 不存在一方有而另一方缺失的 CSS 文件
+- [x] Checkpoint 17: README.md 包含所有新组件的完整文档和 API 表格

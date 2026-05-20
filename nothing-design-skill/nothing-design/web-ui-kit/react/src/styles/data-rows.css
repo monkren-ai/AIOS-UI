@@ -1,0 +1,114 @@
+﻿.nothing-data-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.nothing-data-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm-plus) 0;
+  border-bottom: 1px solid var(--border);
+  min-height: 44px;
+}
+
+.nothing-data-row:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.nothing-data-row:last-child {
+  border-bottom: none;
+}
+
+.nothing-data-row__label {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.nothing-data-row__value {
+  font-family: var(--font-mono);
+  font-size: var(--body);
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.nothing-data-row__unit {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  color: var(--text-secondary);
+  margin-left: var(--space-xs);
+}
+
+.nothing-data-row__trend {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  margin-left: var(--space-xs);
+}
+
+.nothing-data-row--good .nothing-data-row__value,
+.nothing-data-row--good .nothing-data-row__trend {
+  color: var(--success);
+}
+
+.nothing-data-row--warning .nothing-data-row__value,
+.nothing-data-row--warning .nothing-data-row__trend {
+  color: var(--warning);
+}
+
+.nothing-data-row--error .nothing-data-row__value,
+.nothing-data-row--error .nothing-data-row__trend {
+  color: var(--accent);
+}
+
+.nothing-data-row--info .nothing-data-row__value,
+.nothing-data-row--info .nothing-data-row__trend {
+  color: var(--info);
+}
+
+.nothing-data-row--sub {
+  padding-left: var(--space-lg);
+}
+
+.nothing-data-row--sub .nothing-data-row__label {
+  font-size: var(--caption);
+}
+
+.nothing-data-row--sub .nothing-data-row__value {
+  font-size: var(--body-sm);
+}
+
+.nothing-data-row--interactive {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: background var(--duration-micro) var(--easing);
+}
+
+.nothing-data-row--interactive:hover {
+  background: var(--surface-raised);
+}
+
+.nothing-data-row--interactive:active {
+  opacity: 0.85;
+}
+
+.nothing-data-row--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.nothing-data-row__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.nothing-data-row__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}

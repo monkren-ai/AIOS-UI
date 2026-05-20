@@ -1,0 +1,38 @@
+.nothing-skeleton {
+  background: var(--muted-bg);
+  border-radius: var(--radius-sm);
+  height: var(--body);
+  transition: opacity var(--duration-transition) var(--easing);
+}
+
+.nothing-skeleton--text {
+  border-radius: var(--radius-sm);
+  height: var(--body);
+}
+
+.nothing-skeleton--circular {
+  border-radius: 50%;
+}
+
+.nothing-skeleton--rectangular {
+  border-radius: var(--radius-md);
+}
+
+.nothing-skeleton--animate {
+  animation: nothing-skeleton-pulse var(--duration-transition) var(--easing) infinite alternate;
+}
+
+@keyframes nothing-skeleton-pulse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-skeleton--animate {
+    animation: none;
+  }
+}

@@ -1,0 +1,94 @@
+.nothing-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.nothing-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  color: var(--text-primary);
+}
+
+.nothing-table__caption {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  text-align: left;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.nothing-table__head {
+  background: var(--muted-bg);
+}
+
+.nothing-table__header {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--caption);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  font-weight: var(--weight-medium);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.nothing-table__body {
+  background: var(--surface);
+}
+
+.nothing-table__row {
+  border-bottom: 1px solid var(--border);
+  transition: background var(--duration-micro) var(--easing);
+}
+
+.nothing-table__cell {
+  padding: var(--space-sm) var(--space-md);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+}
+
+.nothing-table__cell--left {
+  text-align: left;
+}
+
+.nothing-table__cell--center {
+  text-align: center;
+}
+
+.nothing-table__cell--right {
+  text-align: right;
+}
+
+.nothing-table--striped .nothing-table__row--even {
+  background: var(--surface-raised);
+}
+
+.nothing-table--hoverable .nothing-table__row:hover {
+  background: var(--muted-bg);
+}
+
+.nothing-table--compact .nothing-table__header,
+.nothing-table--compact .nothing-table__cell {
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.nothing-table--compact .nothing-table__caption {
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.nothing-table__row:focus-visible {
+  outline: 2px solid var(--interactive);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-table__row {
+    transition: none;
+  }
+}

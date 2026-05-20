@@ -1,0 +1,112 @@
+.nothing-slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nothing-slider__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nothing-slider__label {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.nothing-slider__value {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+}
+
+.nothing-slider__track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: var(--border-visible);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  touch-action: none;
+}
+
+.nothing-slider__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--interactive);
+  border-radius: var(--radius-pill);
+  transition: width var(--duration-micro) var(--easing);
+}
+
+.nothing-slider__thumb {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text-display);
+  border: 2px solid var(--interactive);
+  transform: translate(-50%, -50%);
+  transition: left var(--duration-micro) var(--easing), box-shadow var(--duration-micro) var(--easing);
+  cursor: grab;
+}
+
+.nothing-slider__thumb:active {
+  cursor: grabbing;
+}
+
+.nothing-slider__thumb:focus-visible {
+  outline: 2px solid var(--interactive);
+  outline-offset: 2px;
+}
+
+.nothing-slider--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nothing-slider--disabled .nothing-slider__track {
+  cursor: not-allowed;
+}
+
+.nothing-slider--disabled .nothing-slider__thumb {
+  cursor: not-allowed;
+  border-color: var(--text-disabled);
+  background: var(--text-disabled);
+}
+
+.nothing-slider--disabled .nothing-slider__fill {
+  background: var(--text-disabled);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-slider__fill {
+    transition: none;
+  }
+
+  .nothing-slider__thumb {
+    transition: box-shadow var(--duration-micro) var(--easing);
+  }
+}
+
+@media (pointer: coarse) {
+  .nothing-slider__track {
+    height: 6px;
+  }
+
+  .nothing-slider__thumb {
+    width: 22px;
+    height: 22px;
+  }
+}

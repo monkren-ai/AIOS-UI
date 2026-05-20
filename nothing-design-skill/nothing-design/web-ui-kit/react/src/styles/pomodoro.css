@@ -1,0 +1,139 @@
+﻿.nothing-pomodoro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-transition) var(--easing);
+  width: 100%;
+}
+
+.pomodoro-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  margin-bottom: var(--space-lg);
+}
+
+.pomodoro-title {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.pomodoro-count {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  color: var(--text-disabled);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.pomodoro-timer-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: var(--space-lg);
+}
+
+.pomodoro-timer {
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  line-height: 1;
+  font-weight: 600;
+  color: var(--text-display);
+  letter-spacing: -0.02em;
+  transition: color var(--duration-transition) var(--easing);
+  margin-bottom: var(--space-md);
+}
+
+.pomodoro-status {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  transition: color var(--duration-transition) var(--easing);
+  margin-bottom: var(--space-lg);
+}
+
+.pomodoro-progress {
+  display: flex;
+  gap: var(--space-2xs);
+  width: 100%;
+  height: 12px;
+  margin-bottom: var(--space-lg);
+}
+
+.pomodoro-segment {
+  flex: 1;
+  background: var(--border);
+  transition: background var(--duration-transition) var(--easing);
+}
+
+.pomodoro-segment.filled {
+  background: var(--accent);
+}
+
+.pomodoro-controls {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.pomodoro-btn {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--space-sm) var(--space-lg);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--duration-micro) var(--easing);
+}
+
+.pomodoro-btn:hover {
+  border-color: var(--text-secondary);
+  background: var(--surface-raised);
+}
+
+.pomodoro-btn:active {
+  border-color: var(--text-primary);
+}
+
+.pomodoro-btn.primary {
+  background: var(--surface-raised);
+  border-color: var(--border-visible);
+}
+
+.pomodoro-btn.primary:hover {
+  border-color: var(--text-primary);
+}
+
+.nothing-pomodoro.work .pomodoro-segment.filled {
+  background: var(--accent);
+}
+
+.nothing-pomodoro.work .pomodoro-status {
+  color: var(--accent);
+}
+
+.nothing-pomodoro.break .pomodoro-segment.filled {
+  background: var(--success);
+}
+
+.nothing-pomodoro.break .pomodoro-status {
+  color: var(--success);
+}
+
+.nothing-pomodoro.break .pomodoro-timer {
+  color: var(--success);
+}

@@ -1,0 +1,89 @@
+.nothing-textarea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  position: relative;
+}
+
+.nothing-textarea__label {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  transition: color var(--duration-micro) var(--easing);
+}
+
+.nothing-textarea__input {
+  font-family: var(--font-mono);
+  font-size: var(--body);
+  color: var(--text-primary);
+  background: transparent;
+  outline: none;
+  padding: var(--space-sm) 0;
+  width: 100%;
+  resize: vertical;
+  border: none;
+  border-bottom: 1px solid var(--border-visible);
+  border-radius: 0;
+  transition: border-color var(--duration-micro) var(--easing),
+              color var(--duration-micro) var(--easing);
+  line-height: 1.5;
+}
+
+.nothing-textarea__input::placeholder {
+  color: var(--text-disabled);
+}
+
+.nothing-textarea__input:focus {
+  border-bottom-color: var(--text-primary);
+}
+
+.nothing-textarea__input:focus-visible {
+  outline: 2px solid var(--interactive);
+  outline-offset: 2px;
+}
+
+.nothing-textarea--focused .nothing-textarea__label {
+  color: var(--text-primary);
+}
+
+.nothing-textarea--error .nothing-textarea__input {
+  border-color: var(--error);
+  border-bottom-color: var(--error);
+}
+
+.nothing-textarea--error .nothing-textarea__label {
+  color: var(--error);
+}
+
+.nothing-textarea__error {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  color: var(--error);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  min-height: 0;
+  overflow: hidden;
+  transition: all var(--duration-micro) var(--easing);
+}
+
+.nothing-textarea--disabled .nothing-textarea__label {
+  color: var(--text-disabled);
+}
+
+.nothing-textarea--disabled .nothing-textarea__input {
+  color: var(--text-disabled);
+  border-color: var(--border);
+  border-bottom-color: var(--border);
+  cursor: not-allowed;
+  resize: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-textarea__input,
+  .nothing-textarea__label,
+  .nothing-textarea__error {
+    transition: none;
+  }
+}

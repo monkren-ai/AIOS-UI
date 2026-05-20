@@ -1,0 +1,204 @@
+﻿.nothing-age-motion {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-transition) var(--easing);
+  width: 100%;
+}
+
+.age-input-area {
+  margin-bottom: var(--space-lg);
+}
+
+.age-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  position: relative;
+}
+
+.age-input__label {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.age-input__field {
+  font-family: var(--font-mono);
+  font-size: var(--body);
+  color: var(--text-primary);
+  background: transparent;
+  outline: none;
+  padding: var(--space-sm) 0;
+  min-height: 44px;
+  border: none;
+  border-bottom: 1px solid var(--border-visible);
+  transition: all var(--duration-micro) var(--easing);
+  width: 100%;
+}
+
+.age-input__field::placeholder {
+  color: var(--text-disabled);
+}
+
+.age-input__field:focus {
+  border-bottom-color: var(--text-primary);
+}
+
+.age-display {
+  margin-bottom: var(--space-lg);
+}
+
+.age-display__primary {
+  display: flex;
+  gap: var(--space-md);
+  align-items: baseline;
+  margin-bottom: var(--space-sm);
+}
+
+.age-display__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.age-display__value {
+  font-family: var(--font-display);
+  font-size: var(--display-lg);
+  line-height: 1;
+  font-weight: 600;
+  color: var(--text-display);
+  letter-spacing: -0.02em;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.age-display__label {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.age-display__secondary {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.age-progress {
+  margin-bottom: var(--space-lg);
+}
+
+.age-progress__label {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.age-progress__segments {
+  display: flex;
+  gap: var(--space-2xs);
+  width: 100%;
+  margin-bottom: var(--space-xs);
+}
+
+.age-progress__segment {
+  flex: 1;
+  height: 24px;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--duration-transition) var(--easing);
+}
+
+.age-progress__segment.completed {
+  background: var(--text-display);
+}
+
+.age-progress__segment.current {
+  background: var(--border);
+}
+
+.age-progress__segment-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--warning);
+  transition: width var(--duration-transition) var(--easing);
+}
+
+.age-progress__segment-label {
+  font-family: var(--font-mono);
+  font-size: var(--widget-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-disabled);
+  position: relative;
+  z-index: 1;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.age-progress__segment.completed .age-progress__segment-label {
+  color: var(--surface);
+}
+
+.age-progress__segment.current .age-progress__segment-label {
+  color: var(--text-primary);
+}
+
+.age-year-progress {
+  margin-bottom: var(--space-md);
+}
+
+.age-year-progress__label {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.age-year-progress__bar {
+  display: flex;
+  gap: var(--space-2xs);
+  width: 100%;
+  height: 8px;
+}
+
+.age-year-progress__segment {
+  flex: 1;
+  background: var(--border);
+  transition: background var(--duration-transition) var(--easing);
+}
+
+.age-year-progress__segment.filled {
+  background: var(--interactive);
+}
+
+.age-year-progress__percent {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+  transition: color var(--duration-transition) var(--easing);
+}

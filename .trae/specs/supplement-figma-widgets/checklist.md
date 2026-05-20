@@ -1,0 +1,26 @@
+- [x] Caffeinate Widget 正确显示咖啡因水平和衰减曲线
+- [x] Caffeinate Widget 支持添加饮品记录
+- [x] Clipboard Widget 显示最近剪贴板记录
+- [x] Clipboard Widget 点击复制功能正常
+- [x] Pomodoro Widget 工作/休息循环倒计时正常
+- [x] Pomodoro Widget 分段进度条正确显示
+- [x] Walkie-Talkie Widget PTT 按钮脉冲动画正常
+- [x] Walkie-Talkie Widget 录音状态指示正常
+- [x] Sun-Dial Widget 弧形日照轨迹 SVG 正确渲染
+- [x] Sun-Dial Widget 日出/日落时间和太阳位置正确
+- [x] Age in Motion Widget 输入出生日期后显示生命进度
+- [x] Age in Motion Widget 分段进度条展示各阶段比例
+- [x] Chrono Widget 秒表开始/暂停/重置功能正常
+- [x] Chrono Widget LAP 圈数记录和列表显示正常
+- [x] Sys Info Widget 扩展后显示 CPU/网络/电池信息
+- [x] Sys Info Widget 每个指标使用分段进度条
+- [x] Spinner Widget 旋转动画流畅
+- [x] Spinner Widget 减速停止后选中项高亮
+- [x] World Clock Widget 多时区时间正确显示
+- [x] World Clock Widget 日/夜状态指示正确
+- [x] 所有新组件支持深色/浅色模式切换
+- [x] 所有新组件样式符合 Nothing 设计风格
+- [x] Vanilla 演示页面展示所有新组件
+- [x] React 演示页面展示所有新组件
+- [x] README.md 包含新组件 API 文档
+- [x] SKILL.md Available Components 列表已更新

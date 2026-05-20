@@ -1,0 +1,62 @@
+.nothing-scroll-area {
+  position: relative;
+  overflow: hidden;
+}
+
+.nothing-scroll-area__viewport {
+  overflow: auto;
+  scroll-behavior: smooth;
+  height: 100%;
+  scrollbar-width: none;
+}
+
+.nothing-scroll-area__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.nothing-scroll-area__scrollbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--space-sm);
+  background: transparent;
+  opacity: 0;
+  transition: opacity var(--duration-micro) var(--easing);
+}
+
+.nothing-scroll-area:hover .nothing-scroll-area__scrollbar {
+  opacity: 1;
+}
+
+.nothing-scroll-area__thumb {
+  position: absolute;
+  right: var(--space-2xs);
+  width: var(--space-xs);
+  border-radius: var(--radius-pill);
+  background: var(--text-disabled);
+  cursor: pointer;
+  transition: background var(--duration-micro) var(--easing);
+}
+
+.nothing-scroll-area__thumb:hover {
+  background: var(--text-secondary);
+}
+
+.nothing-scroll-area__scrollbar:hover .nothing-scroll-area__thumb {
+  background: var(--text-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-scroll-area__viewport {
+    scroll-behavior: auto;
+  }
+
+  .nothing-scroll-area__scrollbar {
+    transition: none;
+  }
+
+  .nothing-scroll-area__thumb {
+    transition: none;
+  }
+}

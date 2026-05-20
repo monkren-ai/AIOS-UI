@@ -1,0 +1,206 @@
+﻿.nothing-system-monitor {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-transition) var(--easing);
+  width: 100%;
+}
+
+.monitor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  margin-bottom: var(--space-lg);
+}
+
+.monitor-title {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.monitor-item {
+  margin-bottom: var(--space-lg);
+}
+
+.monitor-item:last-child {
+  margin-bottom: 0;
+}
+
+.monitor-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-sm);
+}
+
+.monitor-item-label {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.monitor-item-value {
+  font-family: var(--font-display);
+  font-size: var(--heading);
+  font-weight: 600;
+  color: var(--text-display);
+  letter-spacing: -0.02em;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.monitor-item-details {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.monitor-progress {
+  display: flex;
+  gap: var(--space-2xs);
+  width: 100%;
+  height: 12px;
+}
+
+.monitor-segment {
+  flex: 1;
+  background: var(--border);
+  transition: background var(--duration-transition) var(--easing);
+}
+
+.monitor-segment.filled {
+  background: var(--text-display);
+}
+
+.monitor-item.ram .monitor-segment.filled {
+  background: var(--accent);
+}
+
+.monitor-item.storage .monitor-segment.filled {
+  background: var(--success);
+}
+
+.monitor-item.cpu .monitor-segment.filled {
+  background: var(--interactive);
+}
+
+.monitor-item.network .monitor-segment.filled {
+  background: var(--text-primary);
+}
+
+.monitor-item.battery .monitor-segment.filled {
+  background: var(--success);
+}
+
+.monitor-item.battery.charging .monitor-segment.filled {
+  background: var(--success);
+}
+
+.monitor-item.battery.low .monitor-segment.filled {
+  background: var(--warning);
+}
+
+.monitor-item.battery.critical .monitor-segment.filled {
+  background: var(--error);
+}
+
+.monitor-item.warning .monitor-item-value {
+  color: var(--warning);
+}
+
+.monitor-item.warning .monitor-segment.filled {
+  background: var(--warning);
+}
+
+.monitor-item.critical .monitor-item-value {
+  color: var(--error);
+}
+
+.monitor-item.critical .monitor-segment.filled {
+  background: var(--error);
+}
+
+.monitor-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.monitor-row .monitor-item-label {
+  min-width: 72px;
+  flex-shrink: 0;
+}
+
+.monitor-row .monitor-progress {
+  flex: 1;
+}
+
+.monitor-row .monitor-item-value {
+  font-size: var(--body);
+  min-width: 72px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.monitor-row .monitor-item-details {
+  display: none;
+}
+
+.monitor-item-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-xs);
+}
+
+.monitor-item-header-row .monitor-item-label {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.monitor-item-header-row .monitor-item-value {
+  font-family: var(--font-display);
+  font-size: var(--body);
+  font-weight: 600;
+  color: var(--text-display);
+  letter-spacing: -0.02em;
+}
+
+.monitor-item-status {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-left: var(--space-sm);
+}
+
+.monitor-item-status.connected {
+  color: var(--success);
+}
+
+.monitor-item-status.disconnected {
+  color: var(--error);
+}
+
+.monitor-item-status.charging {
+  color: var(--success);
+}
+
+.monitor-item-status.discharging {
+  color: var(--text-secondary);
+}

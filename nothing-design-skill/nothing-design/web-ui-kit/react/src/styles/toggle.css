@@ -1,0 +1,107 @@
+.nothing-toggle {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-micro) var(--easing);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.nothing-toggle:hover {
+  background: var(--surface-raised);
+}
+
+.nothing-toggle:focus-visible {
+  outline: 2px solid var(--interactive);
+  outline-offset: 2px;
+}
+
+.nothing-toggle--sm {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--caption);
+  min-height: 32px;
+}
+
+.nothing-toggle--md {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--body-sm);
+  min-height: 40px;
+}
+
+.nothing-toggle--lg {
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--body);
+  min-height: 48px;
+}
+
+.nothing-toggle--default {
+  background: var(--surface);
+  border-color: transparent;
+}
+
+.nothing-toggle--default.nothing-toggle--pressed {
+  background: var(--muted-bg);
+  color: var(--text-display);
+}
+
+.nothing-toggle--outline {
+  background: transparent;
+  border-color: var(--border-visible);
+}
+
+.nothing-toggle--outline:hover {
+  border-color: var(--text-secondary);
+}
+
+.nothing-toggle--outline.nothing-toggle--pressed {
+  border-color: var(--interactive);
+  color: var(--interactive);
+  background: var(--accent-subtle);
+}
+
+.nothing-toggle--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.nothing-toggle-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.nothing-toggle-group--outline .nothing-toggle {
+  border-radius: 0;
+}
+
+.nothing-toggle-group--outline .nothing-toggle:first-child {
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.nothing-toggle-group--outline .nothing-toggle:last-child {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.nothing-toggle-group--outline .nothing-toggle:not(:first-child) {
+  margin-left: -1px;
+}
+
+.nothing-toggle-group--outline .nothing-toggle--pressed {
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-toggle {
+    transition: none;
+  }
+}

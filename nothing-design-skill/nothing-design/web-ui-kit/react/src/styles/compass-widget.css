@@ -1,0 +1,57 @@
+﻿.nothing-compass-widget {
+  border-radius: 50%;
+  background: var(--widget-dark-bg);
+  width: var(--widget-size-md);
+  height: var(--widget-size-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 14px 9px 13px;
+  position: relative;
+  transition: transform var(--duration-transition) var(--easing);
+}
+
+.nothing-compass-widget__direction {
+  font-size: var(--widget-label);
+  text-transform: uppercase;
+  font-family: var(--font-widget);
+  letter-spacing: 0;
+  transition: transform var(--duration-transition) var(--easing),
+              color var(--duration-transition) var(--easing);
+}
+
+.nothing-compass-widget__direction--north {
+  color: var(--widget-primary);
+}
+
+.nothing-compass-widget__direction--default {
+  color: var(--widget-dark-4);
+}
+
+.nothing-compass-widget__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.nothing-compass-widget__dots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3xs);
+  margin-top: 31px;
+}
+
+.nothing-compass-widget__dots-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.nothing-compass-widget__dot {
+  border-radius: 50%;
+  background: var(--widget-card-bg);
+  width: var(--widget-dot-lg);
+  height: var(--widget-dot-lg);
+}

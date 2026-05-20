@@ -1,0 +1,87 @@
+﻿.nothing-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  position: relative;
+}
+
+.nothing-input__label {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  transition: color var(--duration-micro) var(--easing);
+}
+
+.nothing-input__field {
+  font-family: var(--font-mono);
+  font-size: var(--body);
+  color: var(--text-primary);
+  background: transparent;
+  outline: none;
+  padding: var(--space-sm) 0;
+  min-height: 44px;
+  transition: all var(--duration-micro) var(--easing);
+  width: 100%;
+}
+
+.nothing-input__field::placeholder {
+  color: var(--text-disabled);
+}
+
+.nothing-input--underline .nothing-input__field {
+  border: none;
+  border-bottom: 1px solid var(--border-visible);
+  border-radius: 0;
+  padding: var(--space-sm) 0;
+}
+
+.nothing-input--underline .nothing-input__field:focus {
+  border-bottom-color: var(--text-primary);
+}
+
+.nothing-input--bordered .nothing-input__field {
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) 12px;
+}
+
+.nothing-input--bordered .nothing-input__field:focus {
+  border-color: var(--text-primary);
+}
+
+.nothing-input--error .nothing-input__field {
+  border-color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.nothing-input--error .nothing-input__label {
+  color: var(--accent);
+}
+
+.nothing-input__error {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  min-height: 0;
+  overflow: hidden;
+  transition: all var(--duration-micro) var(--easing);
+}
+
+.nothing-input--disabled .nothing-input__label {
+  color: var(--text-disabled);
+}
+
+.nothing-input--disabled .nothing-input__field {
+  color: var(--text-disabled);
+  border-color: var(--border);
+  border-bottom-color: var(--border);
+  cursor: not-allowed;
+}
+
+.nothing-input__field:focus-visible {
+  outline: none;
+}

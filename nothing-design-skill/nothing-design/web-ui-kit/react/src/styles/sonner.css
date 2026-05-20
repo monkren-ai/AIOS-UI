@@ -1,0 +1,211 @@
+.nothing-sonner {
+  position: fixed;
+  z-index: var(--z-overlay);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  pointer-events: none;
+  padding: var(--space-md);
+  max-width: 380px;
+  width: 100%;
+}
+
+.nothing-sonner--top-right {
+  top: 0;
+  right: 0;
+}
+
+.nothing-sonner--top-left {
+  top: 0;
+  left: 0;
+}
+
+.nothing-sonner--bottom-right {
+  bottom: 0;
+  right: 0;
+  flex-direction: column-reverse;
+}
+
+.nothing-sonner--bottom-left {
+  bottom: 0;
+  left: 0;
+  flex-direction: column-reverse;
+}
+
+.nothing-sonner__toast {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 16px var(--shadow-drop);
+  padding: var(--space-md);
+  padding-bottom: var(--space-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.nothing-sonner__toast--enter {
+  animation: nothing-sonner-slide-in var(--duration-transition) var(--easing);
+}
+
+.nothing-sonner__toast--exit {
+  animation: nothing-sonner-slide-out var(--duration-micro) var(--easing) forwards;
+}
+
+@keyframes nothing-sonner-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes nothing-sonner-slide-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.nothing-sonner--top-left .nothing-sonner__toast--enter,
+.nothing-sonner--bottom-left .nothing-sonner__toast--enter {
+  animation-name: nothing-sonner-slide-in-left;
+}
+
+.nothing-sonner--top-left .nothing-sonner__toast--exit,
+.nothing-sonner--bottom-left .nothing-sonner__toast--exit {
+  animation-name: nothing-sonner-slide-out-left;
+}
+
+@keyframes nothing-sonner-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes nothing-sonner-slide-out-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+.nothing-sonner__toast--default {
+  border-left: 3px solid var(--border-visible);
+}
+
+.nothing-sonner__toast--success {
+  border-left: 3px solid var(--success);
+}
+
+.nothing-sonner__toast--error {
+  border-left: 3px solid var(--accent);
+}
+
+.nothing-sonner__toast--warning {
+  border-left: 3px solid var(--warning);
+}
+
+.nothing-sonner__toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.nothing-sonner__toast-title {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.nothing-sonner__toast-description {
+  font-family: var(--font-body);
+  font-size: var(--caption);
+  color: var(--text-secondary);
+  margin-top: var(--space-2xs);
+  line-height: 1.4;
+}
+
+.nothing-sonner__toast-close {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  min-width: 28px;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-micro) var(--easing);
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+.nothing-sonner__toast-close:hover {
+  color: var(--text-display);
+}
+
+.nothing-sonner__toast-close:focus-visible {
+  outline: 2px solid var(--interactive);
+  outline-offset: 2px;
+}
+
+.nothing-sonner__toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border);
+}
+
+.nothing-sonner__toast-progress-bar {
+  height: 100%;
+  background: var(--interactive);
+  transition: width 50ms linear;
+}
+
+.nothing-sonner__toast--success .nothing-sonner__toast-progress-bar {
+  background: var(--success);
+}
+
+.nothing-sonner__toast--error .nothing-sonner__toast-progress-bar {
+  background: var(--accent);
+}
+
+.nothing-sonner__toast--warning .nothing-sonner__toast-progress-bar {
+  background: var(--warning);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-sonner__toast--enter {
+    animation: none;
+  }
+
+  .nothing-sonner__toast--exit {
+    animation: none;
+    opacity: 0;
+  }
+}

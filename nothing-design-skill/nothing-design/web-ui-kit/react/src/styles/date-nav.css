@@ -1,0 +1,63 @@
+﻿.nothing-date-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.nothing-date-nav__arrow {
+  font-family: var(--font-mono);
+  font-size: var(--body);
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-micro) var(--easing);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  padding: 0;
+}
+
+.nothing-date-nav__arrow:hover {
+  color: var(--text-display);
+}
+
+.nothing-date-nav__arrow:active {
+  opacity: 0.7;
+}
+
+.nothing-date-nav__arrow:focus-visible {
+  outline: 2px solid var(--interactive);
+  outline-offset: 2px;
+}
+
+.nothing-date-nav__arrow--disabled {
+  color: var(--text-disabled);
+  pointer-events: none;
+}
+
+.nothing-date-nav__label {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  min-width: 120px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nothing-date-nav__label--grotesk {
+  font-family: var(--font-body);
+}
+
+.nothing-date-nav--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}

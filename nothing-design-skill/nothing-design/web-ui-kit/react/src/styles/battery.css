@@ -1,0 +1,220 @@
+.nothing-battery {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-transition) var(--easing);
+  width: 100%;
+}
+
+.battery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  margin-bottom: var(--space-md);
+}
+
+.battery-percent {
+  font-family: var(--font-display);
+  font-size: var(--display-lg);
+  line-height: 1;
+  font-weight: 600;
+  color: var(--text-display);
+  letter-spacing: -0.02em;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.battery-status {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.battery-status.charging {
+  color: var(--success);
+}
+
+.battery-status.discharging {
+  color: var(--text-secondary);
+}
+
+.battery-progress {
+  display: flex;
+  gap: var(--space-2xs);
+  width: 100%;
+  height: 16px;
+}
+
+.battery-segment {
+  flex: 1;
+  background: var(--border);
+  transition: background var(--duration-transition) var(--easing);
+}
+
+.battery-segment.filled {
+  background: var(--text-display);
+}
+
+.nothing-battery.high .battery-segment.filled,
+.nothing-battery.charging .battery-segment.filled {
+  background: var(--success);
+}
+
+.nothing-battery.medium .battery-segment.filled {
+  background: var(--text-display);
+}
+
+.nothing-battery.low .battery-segment.filled {
+  background: var(--warning);
+}
+
+.nothing-battery.critical .battery-segment.filled {
+  background: var(--error);
+}
+
+.nothing-battery-ring {
+  width: var(--widget-size-md);
+  height: var(--widget-size-md);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all var(--duration-transition) var(--easing);
+}
+
+.nothing-battery-ring__svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.nothing-battery-ring__outer {
+  transition: fill var(--duration-transition) var(--easing);
+}
+
+.nothing-battery-ring__inner {
+  transition: fill var(--duration-transition) var(--easing);
+}
+
+.nothing-battery-ring__progress {
+  fill: none;
+  stroke: var(--widget-primary);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--duration-transition) var(--easing), stroke var(--duration-transition) var(--easing);
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.nothing-battery-ring__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.nothing-battery-ring__icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nothing-battery-ring__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.nothing-battery-ring__percent {
+  font-family: var(--font-ndot);
+  font-size: var(--display-sm);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.nothing-battery-ring--light .nothing-battery-ring__outer {
+  fill: var(--widget-white);
+}
+
+.nothing-battery-ring--light .nothing-battery-ring__inner {
+  fill: var(--widget-card-bg);
+}
+
+.nothing-battery-ring--light .nothing-battery-ring__icon {
+  color: var(--widget-dark-2);
+}
+
+.nothing-battery-ring--light .nothing-battery-ring__percent {
+  color: var(--widget-dark-2);
+}
+
+.nothing-battery-ring--dark .nothing-battery-ring__outer {
+  fill: var(--widget-dark-2);
+}
+
+.nothing-battery-ring--dark .nothing-battery-ring__inner {
+  fill: var(--widget-dark-bg);
+}
+
+.nothing-battery-ring--dark .nothing-battery-ring__icon {
+  color: var(--widget-white);
+}
+
+.nothing-battery-ring--dark .nothing-battery-ring__percent {
+  color: var(--widget-white);
+}
+
+.nothing-battery-ring.low .nothing-battery-ring__progress {
+  stroke: var(--warning);
+}
+
+.nothing-battery-ring.mid .nothing-battery-ring__progress {
+  stroke: var(--widget-primary);
+}
+
+.nothing-battery-ring.full .nothing-battery-ring__progress {
+  stroke: var(--success);
+}
+
+.nothing-battery-ring.charging .nothing-battery-ring__progress {
+  stroke: var(--success);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-battery,
+  .battery-percent,
+  .battery-status,
+  .battery-segment {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-battery-ring,
+  .nothing-battery-ring__outer,
+  .nothing-battery-ring__inner,
+  .nothing-battery-ring__progress,
+  .nothing-battery-ring__icon,
+  .nothing-battery-ring__percent {
+    transition: none;
+  }
+}
