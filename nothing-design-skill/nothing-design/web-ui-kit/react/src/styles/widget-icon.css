@@ -19,8 +19,8 @@
 }
 
 .nothing-widget-icon--lg {
-  width: var(--widget-size-lg);
-  height: var(--widget-size-lg);
+  width: var(--widget-size-icon-lg, 96px);
+  height: var(--widget-size-icon-lg, 96px);
 }
 
 .nothing-widget-icon--light {
@@ -80,10 +80,7 @@
 }
 
 .nothing-widget-icon__label {
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: var(--space-xs);
   font-size: 10px;
   font-family: var(--font-widget);
   text-transform: uppercase;

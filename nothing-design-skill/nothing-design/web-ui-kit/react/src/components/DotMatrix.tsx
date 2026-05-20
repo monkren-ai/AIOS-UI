@@ -6,7 +6,7 @@ interface DotMatrixProps {
   cols: number
   dotSize?: 'sm' | 'md' | 'lg'
   theme?: 'light' | 'dark'
-  pattern?: 'grid' | 'glyph' | 'custom'
+  pattern?: 'grid' | 'glyph' | 'pulse' | 'custom'
   activeDots?: [number, number][]
   dimDots?: [number, number][]
   className?: string

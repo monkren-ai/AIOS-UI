@@ -1,96 +1,85 @@
-import { useState, useEffect } from 'react'
-import '../../styles/time-widget.css'
+import { useMemo } from 'react'
+import '../../styles/compass-widget.css'
 
-interface TimeWidgetProps {
-  variant?: 'over-limit' | 'over-limit-accent' | 'total-time' | 'recording' | 'date'
-  label?: string
-  value?: string
-  unit?: string
-  subtitle?: string
+interface CompassWidgetProps {
+  heading?: number
+  showDots?: boolean
   className?: string
 }
 
-const getShape = (variant: TimeWidgetProps['variant']) => {
-  if (variant === 'recording') return 'circle'
-  return 'square'
-}
+const DOT_ROWS = 7
+const DOT_COLS = 7
 
-const getTheme = (variant: TimeWidgetProps['variant']) => {
-  if (variant === 'over-limit' || variant === 'total-time') return 'dark'
-  if (variant === 'over-limit-accent') return 'accent'
-  return 'light'
-}
-
-const parseTimer = (timerStr: string) => {
-  const parts = timerStr.split(':').map(Number)
-  if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2]
-  if (parts.length === 2) return parts[0] * 60 + parts[1]
-  return parts[0] || 0
-}
-
-const formatTimer = (totalSeconds: number) => {
-  const h = Math.floor(totalSeconds / 3600)
-  const m = Math.floor((totalSeconds % 3600) / 60)
-  const s = totalSeconds % 60
-  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
-}
-
-const TimeWidget: React.FC<TimeWidgetProps> = ({
-  variant = 'over-limit',
-  label,
-  value,
-  unit,
-  subtitle,
+const CompassWidget: React.FC<CompassWidgetProps> = ({
+  heading = 0,
+  showDots = true,
   className
 }) => {
-  const [timerSeconds, setTimerSeconds] = useState(() => {
-    if (variant === 'recording' && value) return parseTimer(value)
-    return 5
-  })
+  const dotGrid = useMemo(() => {
+    if (!showDots) return null
+    const grid: string[][] = []
+    for (let r = 0; r < DOT_ROWS; r++) {
+      const row: string[] = []
+      for (let c = 0; c < DOT_COLS; c++) {
+        row.push(`${r}-${c}`)
+      }
+      grid.push(row)
+    }
+    return grid
+  }, [showDots])
 
-  useEffect(() => {
-    if (variant !== 'recording') return
+  const widgetStyle = {
+    transform: `rotate(${-heading}deg)`
+  }
 
-    const interval = setInterval(() => {
-      setTimerSeconds(prev => prev + 1)
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [variant])
-
-  const shape = getShape(variant)
-  const theme = getTheme(variant)
-
-  const classNames = [
-    'nothing-time-widget',
-    `nothing-time-widget--${shape}`,
-    `nothing-time-widget--${theme}`,
-    className || ''
-  ].filter(Boolean).join(' ')
-
-  if (variant === 'recording') {
-    return (
-      <div className={classNames}>
-        <div className="nothing-time-widget__recording-dot" />
-        <div className="nothing-time-widget__timer">{formatTimer(timerSeconds)}</div>
-      </div>
-    )
+  const labelStyle = {
+    transform: `rotate(${heading}deg)`
   }
 
   return (
-    <div className={classNames}>
-      {label && (
-        <div className="nothing-time-widget__label">{label}</div>
-      )}
-      <div className="nothing-time-widget__content">
-        <span className="nothing-time-widget__value">{value}</span>
-        {unit && <span className="nothing-time-widget__unit">{unit}</span>}
+    <div
+      className={['nothing-compass-widget', className].filter(Boolean).join(' ')}
+      style={widgetStyle}
+    >
+      <span
+        className="nothing-compass-widget__direction nothing-compass-widget__direction--default"
+        style={labelStyle}
+      >
+        W
+      </span>
+      <div className="nothing-compass-widget__center">
+        <span
+          className="nothing-compass-widget__direction nothing-compass-widget__direction--north"
+          style={labelStyle}
+        >
+          N
+        </span>
+        {dotGrid && (
+          <div className="nothing-compass-widget__dots">
+            {dotGrid.map((row, r) => (
+              <div key={r} className="nothing-compass-widget__dots-row">
+                {row.map((key) => (
+                  <div key={key} className="nothing-compass-widget__dot" />
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
+        <span
+          className="nothing-compass-widget__direction nothing-compass-widget__direction--default"
+          style={labelStyle}
+        >
+          S
+        </span>
       </div>
-      {subtitle && (
-        <div className="nothing-time-widget__subtitle">{subtitle}</div>
-      )}
+      <span
+        className="nothing-compass-widget__direction nothing-compass-widget__direction--default"
+        style={labelStyle}
+      >
+        E
+      </span>
     </div>
   )
 }
 
-export default TimeWidget
+export default CompassWidget

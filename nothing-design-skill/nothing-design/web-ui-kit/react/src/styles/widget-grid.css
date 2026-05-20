@@ -1,17 +1,18 @@
 .nothing-widget-grid {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--widget-gap);
-  grid-template-columns: repeat(auto-fill, minmax(152px, 1fr));
   background: var(--widget-bg);
   padding: var(--space-lg);
   border-radius: var(--radius-2xl);
   box-sizing: border-box;
+  align-items: flex-start;
 }
 
 .nothing-widget-grid--dense {
-  grid-auto-flow: dense;
+  gap: calc(var(--widget-gap) / 2);
 }
 
 .nothing-widget-grid--compact {
-  grid-template-columns: repeat(auto-fill, minmax(68px, 1fr));
+  gap: calc(var(--widget-gap) / 2);
 }

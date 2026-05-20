@@ -1,7 +1,8 @@
 import '../styles/widget-card.css'
 
 interface WidgetCardProps {
-  size?: 'square' | 'wide'
+  size?: 'square' | 'wide' | 'tall' | 'auto'
+  shape?: 'rounded' | 'pill' | 'circle'
   theme?: 'light' | 'dark' | 'accent'
   title?: string
   value?: string | number
@@ -16,6 +17,7 @@ interface WidgetCardProps {
 
 const WidgetCard: React.FC<WidgetCardProps> = ({
   size = 'square',
+  shape = 'rounded',
   theme = 'dark',
   title,
   value,
@@ -27,21 +29,27 @@ const WidgetCard: React.FC<WidgetCardProps> = ({
   children,
   onClick
 }) => {
+  const hasChildren = Boolean(children)
+  const hasOwnContent = title || value !== undefined || subtitle || icon
+
   const classNames = [
     'nothing-widget-card',
     `nothing-widget-card--${size}`,
+    `nothing-widget-card--${shape}`,
     `nothing-widget-card--${theme}`,
     `nothing-widget-card--align-${align}`,
     iconPosition !== 'top' && `nothing-widget-card--icon-${iconPosition}`,
+    hasChildren && 'nothing-widget-card--has-children',
     onClick && 'nothing-widget-card--clickable',
     className
   ].filter(Boolean).join(' ')
 
-  const renderContent = () => {
+  const renderOwnContent = () => {
+    if (!hasOwnContent) return null
+
     const content = (
       <>
         {value !== undefined && <div className="nothing-widget-card__value">{value}</div>}
-        {children}
       </>
     )
 
@@ -97,7 +105,8 @@ const WidgetCard: React.FC<WidgetCardProps> = ({
     >
       {title && <div className="nothing-widget-card__title">{title}</div>}
       <div className="nothing-widget-card__content">
-        {renderContent()}
+        {renderOwnContent()}
+        {children}
       </div>
       {subtitle && <div className="nothing-widget-card__subtitle">{subtitle}</div>}
     </div>

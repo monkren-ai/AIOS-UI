@@ -658,19 +658,54 @@ function App() {
         <CategorySection id="nothing-widgets-2" title="Nothing Widgets 2.0">
           <section style={sectionStyle}>
             <div style={{ background: 'var(--widget-bg)', padding: '24px', borderRadius: '24px' }}>
+
               <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Quick Toggles</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', marginBottom: 'var(--space-md)' }}>
+                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Quick Toggles</h3>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }}>
                   <QuickToggle variant="circle" theme="light" label="Active" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
                   <QuickToggle variant="circle" theme="light" label="Torch" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 6L17 7M6 18l1-1M6 6l1 1M18 18l-1-1" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" fill="none"/></svg>} />
                   <QuickToggle variant="circle" theme="accent" label="DND" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/><line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
                   <QuickToggle variant="circle" theme="light" label="Rotate" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 2v6h-6M3 12a9 9 0 0115-6.7L21 8M3 22v-6h6M21 12a9 9 0 01-15 6.7L3 16" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)' }}>
                   <QuickToggle variant="pill" theme="dark" label="Hotspot" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 12h.01M8.5 8.5a5 5 0 017 0M5 5a10 10 0 0114 0M19 5a10 10 0 010 14M5 5a10 10 0 000 14" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
                   <QuickToggle variant="pill" theme="dark" label="Bluetooth" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/></svg>} />
                   <QuickToggle variant="pill" theme="light" label="Mobile Data" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
                   <QuickToggle variant="pill" theme="dark" label="NFC" icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="6" y="2" width="12" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/><line x1="10" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
+                </div>
+              </div>
+
+              <div style={{ marginBottom: 'var(--space-xl)' }}>
+                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Widget Icons</h3>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', alignItems: 'center' }}>
+                  <WidgetIcon theme="dark" size="sm" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+                  <WidgetIcon theme="light" size="md" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} label="Favorite" />
+                  <WidgetIcon theme="accent" size="lg" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 1C8.13 1 5 4.13 5 8C5 12.17 8.87 16.24 12 23C15.13 16.24 19 12.17 19 8C19 4.13 15.87 1 12 1Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+                  <WidgetIcon theme="error" size="md" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" fill="none"/><path d="M15 9L9 15M9 9L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
+                </div>
+              </div>
+
+              <div style={{ marginBottom: 'var(--space-xl)' }}>
+                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Widget Pills</h3>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', alignItems: 'center' }}>
+                  <WidgetPill theme="light" label="Mobile Data" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+                  <WidgetPill theme="dark" label="Bluetooth" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>} />
+                  <WidgetPill theme="accent" label="Calculator" icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="10" x2="12" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="14" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="12" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="16" y1="18" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
+                  <WidgetPill theme="error" label="Battery Saver" icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="5" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="17" y1="10" x2="22" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="17" y1="14" x2="22" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
+                </div>
+              </div>
+
+              <div style={{ marginBottom: 'var(--space-xl)' }}>
+                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Glyph Icons (Dot Matrix)</h3>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', alignItems: 'center' }}>
+                  <Glyph type="check" theme="light" size="sm" />
+                  <Glyph type="heart" theme="dark" size="md" />
+                  <Glyph type="play" theme="accent" size="md" />
+                  <Glyph type="wifi" theme="light" size="lg" />
+                  <Glyph type="sun" theme="dark" size="md" />
+                  <Glyph type="moon" theme="light" size="md" />
+                  <Glyph type="volume-up" theme="dark" size="sm" />
+                  <Glyph type="lock" theme="accent" size="md" />
                 </div>
               </div>
 
@@ -699,8 +734,64 @@ function App() {
               </div>
 
               <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Wide Widgets</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Enhanced Widget Cards</h3>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', alignItems: 'flex-start' }}>
+                  <WidgetCard 
+                    theme="light" 
+                    title="Steps" 
+                    value="5,543" 
+                    subtitle="GOAL: 10,000"
+                    icon={<Glyph type="check" theme="light" size="sm" />}
+                  />
+                  <WidgetCard 
+                    theme="dark" 
+                    title="WEATHER" 
+                    value="30°" 
+                    subtitle="PARTLY CLOUDY"
+                    icon={<Glyph type="sun" theme="dark" size="sm" />}
+                    iconPosition="top"
+                  />
+                  <WidgetCard 
+                    theme="accent" 
+                    title="DND" 
+                    value="40" 
+                    subtitle="MIN"
+                    icon={<Glyph type="bell" theme="accent" size="sm" />}
+                    iconPosition="top"
+                  />
+                  <WidgetCard 
+                    theme="dark" 
+                    title="TIMER" 
+                    value="16:32" 
+                    icon={<Glyph type="clock" theme="dark" size="sm" />}
+                    iconPosition="bottom"
+                  />
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', marginTop: 'var(--widget-gap)', alignItems: 'flex-start' }}>
+                  <WidgetCard 
+                    size="wide"
+                    theme="dark" 
+                    title="WEATHER" 
+                    value="30°" 
+                    subtitle="PARTLY CLOUDY"
+                    icon={<Glyph type="sun" theme="dark" size="sm" />}
+                    iconPosition="left"
+                  />
+                  <WidgetCard 
+                    size="wide"
+                    theme="accent" 
+                    title="DND" 
+                    value="40" 
+                    subtitle="MIN"
+                    icon={<Glyph type="bell" theme="accent" size="sm" />}
+                    iconPosition="right"
+                  />
+                </div>
+              </div>
+
+              <div style={{ marginBottom: 'var(--space-xl)' }}>
+                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Wide Widgets</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--widget-gap)' }}>
                   <WidgetCard size="wide">
                     <ActivityWidget days={[
                       { label: 'SUN', value: '9H26', markers: [1, 0, 1] },
@@ -727,90 +818,20 @@ function App() {
                 </div>
               </div>
 
-              <div>
-                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Dot Matrix Showcase</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-lg)', alignItems: 'center' }}>
+              <div style={{ marginBottom: 'var(--space-xl)' }}>
+                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Dot Matrix Showcase</h3>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', alignItems: 'center' }}>
                   <DotMatrix rows={5} cols={5} dotSize="md" theme="light" />
                   <DotMatrix rows={8} cols={8} dotSize="sm" theme="dark" pattern="glyph" />
                   <DotMatrix rows={10} cols={10} dotSize="sm" theme="dark" activeDots={[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[0,9],[1,8],[2,7],[3,6],[4,5],[5,4],[6,3],[7,2],[8,1],[9,0]]} />
                 </div>
               </div>
 
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Widget Icons</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', alignItems: 'center' }}>
-                  <WidgetIcon theme="dark" size="sm" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-                  <WidgetIcon theme="light" size="md" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} label="Favorite" />
-                  <WidgetIcon theme="accent" size="lg" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 1C8.13 1 5 4.13 5 8C5 12.17 8.87 16.24 12 23C15.13 16.24 19 12.17 19 8C19 4.13 15.87 1 12 1Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-                  <WidgetIcon theme="error" size="md" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" fill="none"/><path d="M15 9L9 15M9 9L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
-                </div>
-              </div>
-
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Widget Pills</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', alignItems: 'center' }}>
-                  <WidgetPill theme="light" label="Mobile Data" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-                  <WidgetPill theme="dark" label="Bluetooth" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>} />
-                  <WidgetPill theme="accent" label="Calculator" icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="10" x2="12" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="14" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="12" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="16" y1="18" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
-                  <WidgetPill theme="error" label="Battery Saver" icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="5" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="17" y1="10" x2="22" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="17" y1="14" x2="22" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
-                </div>
-              </div>
-
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Glyph Icons (Dot Matrix)</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-lg)', alignItems: 'center' }}>
-                  <Glyph type="check" theme="light" size="sm" />
-                  <Glyph type="heart" theme="dark" size="md" />
-                  <Glyph type="play" theme="accent" size="md" />
-                  <Glyph type="wifi" theme="light" size="lg" />
-                  <Glyph type="sun" theme="dark" size="md" />
-                  <Glyph type="moon" theme="light" size="md" />
-                  <Glyph type="volume-up" theme="dark" size="sm" />
-                  <Glyph type="lock" theme="accent" size="md" />
-                </div>
-              </div>
-
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Enhanced Widget Cards</h3>
-                <WidgetGrid>
-                  <WidgetCard 
-                    theme="light" 
-                    title="Steps" 
-                    value="5,543" 
-                    subtitle="GOAL: 10,000"
-                    icon={<Glyph type="check" theme="light" size="sm" />}
-                  />
-                  <WidgetCard 
-                    theme="dark" 
-                    title="WEATHER" 
-                    value="30°" 
-                    subtitle="PARTLY CLOUDY"
-                    icon={<Glyph type="sun" theme="dark" size="sm" />}
-                    iconPosition="left"
-                  />
-                  <WidgetCard 
-                    theme="accent" 
-                    title="DND" 
-                    value="40" 
-                    subtitle="MIN"
-                    icon={<Glyph type="bell" theme="accent" size="sm" />}
-                    iconPosition="right"
-                  />
-                  <WidgetCard 
-                    theme="dark" 
-                    title="TIMER" 
-                    value="16:32" 
-                    icon={<Glyph type="clock" theme="dark" size="sm" />}
-                    iconPosition="bottom"
-                  />
-                </WidgetGrid>
-              </div>
-
-              <div style={{ marginTop: 'var(--space-xl)' }}>
+              <div>
                 <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-md)' }}>
                   Figma 2.0 完整展示
                 </h3>
-                <div style={{ background: 'var(--widget-bg)', padding: '24px', borderRadius: '24px' }}>
+                <div style={{ background: 'var(--widget-bg)', padding: '24px', borderRadius: '24px', overflow: 'auto' }}>
                   <NothingWidgets />
                 </div>
               </div>

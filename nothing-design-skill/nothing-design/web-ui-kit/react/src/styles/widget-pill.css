@@ -18,7 +18,7 @@
 }
 
 .nothing-widget-pill--light .nothing-widget-pill__icon {
-  color: var(--widget-dark-2);
+  color: var(--widget-dark-bg);
 }
 
 .nothing-widget-pill--light .nothing-widget-pill__label {
@@ -34,7 +34,7 @@
 }
 
 .nothing-widget-pill--dark .nothing-widget-pill__label {
-  color: var(--widget-white-70);
+  color: var(--widget-dark-4);
 }
 
 .nothing-widget-pill--accent {

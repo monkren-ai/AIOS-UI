@@ -1,3 +1,5 @@
+@tailwind utilities;
+
 :root {
   --display-xl: 72px;
   --display-lg: 48px;
@@ -66,11 +68,15 @@
   --widget-dark-4: #aeabb1;
   --widget-primary: #d71921;
   --widget-white: #ffffff;
+  --widget-white-70: rgba(255, 255, 255, 0.7);
   --widget-text-on-accent: rgba(255, 255, 255, 0.7);
+  --widget-error: #d71921;
   --widget-gap: 16px;
   --widget-size-sm: 68px;
   --widget-size-md: 152px;
   --widget-size-lg: 320px;
+  --widget-size-icon-md: 68px;
+  --widget-size-icon-lg: 96px;
   --widget-pill-height: 68px;
   --widget-dot-sm: 3px;
   --widget-dot-md: 6px;

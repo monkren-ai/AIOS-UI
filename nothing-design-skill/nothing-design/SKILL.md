@@ -1,8 +1,8 @@
 ---
 name: nothing-design
-description: This skill should be used when the user explicitly says "Nothing style", "Nothing design", "/nothing-design", or directly asks to use/apply the Nothing design system. NEVER trigger automatically for generic UI or design tasks.
-version: 3.0.0
-allowed-tools: [Read, Write, Edit, Glob, Grep]
+description: This skill should be used when the user explicitly says "Nothing style", "Nothing design", "/nothing-design", or directly asks to use/apply the Nothing design system to new or existing projects. Also triggers when user asks to migrate, convert, restyle, or apply Nothing design to existing project files/components. NEVER trigger automatically for generic UI or design tasks.
+version: 4.0.0
+allowed-tools: [Read, Write, Edit, Glob, Grep, SearchCodebase]
 ---
 
 # Nothing-Inspired UI/UX Design System
@@ -17,7 +17,7 @@ A senior product designer's toolkit trained in Swiss typography, industrial desi
 
 - **Subtract, don't add.** Every element must earn its pixel. Default to removal.
 - **Structure is ornament.** Expose the grid, the data, the hierarchy itself.
-- **Monochrome is the canvas.** Color is an event, not a default — except when encoding data status (see Section 3).
+- **Monochrome is the canvas.** Color is an event, not a default — except when encoding data status (see Section 2.5).
 - **Type does the heavy lifting.** Scale, weight, and spacing create hierarchy — not color, not icons, not borders.
 - **Both modes are first-class.** Dark mode: OLED black. Light mode: warm off-white. Neither is "derived" — both get full design attention. Ask the user which mode to start with.
 - **Industrial warmth.** Technical and precise, but never cold. A human hand should be felt.
@@ -160,6 +160,8 @@ Lead section → heaviest treatment. Secondary → different form. Tertiary → 
 
 ### Standard Design Workflow
 
+Use when building from scratch or creating new components:
+
 1. **Declare fonts** — tell the user which Google Fonts to load (see `references/tokens.md`)
 2. **Ask mode** — dark or light? Neither is default.
 3. **Sketch hierarchy** — identify the 3 layers before writing any code
@@ -167,6 +169,23 @@ Lead section → heaviest treatment. Secondary → different form. Tertiary → 
 5. **Check tokens** — consult `references/tokens.md` for exact values
 6. **Build components** — consult `references/components.md` for patterns
 7. **Adapt to platform** — consult `references/platform-mapping.md` for output conventions
+
+### Project Migration Workflow
+
+Use when applying Nothing design to an existing project:
+
+1. **Scan project** — use Glob/Grep/SearchCodebase to identify component files and styles (see Section 6.1)
+2. **Identify tech stack** — determine framework (React/Vue/Angular/HTML) and styling approach (CSS/Tailwind/CSS-in-JS)
+3. **Match components** — map project components to Nothing components using `references/component-matching.md` (see Section 6.2)
+4. **Confirm strategy** — ask user to choose application method: Token Injection / Style Migration / Component Replacement (see Section 6.3)
+5. **Apply styles** — execute migration per confirmed strategy, following migration conventions (Section 6.3)
+6. **Verify consistency** — check migrated components against Nothing design rules (Section 2 CRAFT RULES)
+
+### Workflow Selection Logic
+
+- User says "migrate" / "convert" / "restyle" / "apply to existing" → Project Migration Workflow
+- User says "create" / "build" / "design" / "new" → Standard Design Workflow
+- User has existing project files open without explicit intent → Ask which workflow to use
 
 ### Web UI Kit Workflow
 
@@ -268,3 +287,100 @@ For detailed token values, component specs, and platform-specific guidance:
 - **`references/tokens.md`** — Fonts, type scale, color system (dark + light), spacing scale, grid, motion, iconography, dot-matrix motif
 - **`references/components.md`** — Cards, buttons, inputs, lists, tables, nav, tags, segmented controls, progress bars, charts, widgets, overlays, state patterns
 - **`references/platform-mapping.md`** — HTML/CSS, SwiftUI, React/Tailwind, Paper output conventions
+- **`references/component-matching.md`** — Component type mapping tables, style feature identification rules (structural/visual/interaction), migration strategies (native CSS/Tailwind/CSS-in-JS/progressive), match report format
+
+---
+
+## 6. COMPONENT MATCHING & MIGRATION
+
+When the skill is invoked on an existing project, use this workflow to analyze, match, and apply Nothing design to project components. Consult `references/component-matching.md` for the full mapping tables, identification rules, and migration strategies.
+
+### 6.1 Project Scan
+
+Before matching, scan the project to understand its structure:
+
+1. **Identify tech stack**
+   - Use Glob to find `package.json`, `tsconfig.json`, `vite.config.*`, `next.config.*`
+   - Use Grep to search `import.*from 'react'`, `import.*from 'vue'`, `import.*from '@angular'`
+   - Use Grep to detect styling: `@tailwind`, `styled-components`, `*.module.css`
+
+2. **Extract component inventory**
+   - Use Glob to find `src/components/**/*.{tsx,jsx,vue,svelte}`
+   - Use Grep to search `export default`, `export function`, `export const`
+   - Use Read to inspect key component files, extract props interfaces and class names
+
+3. **Analyze style characteristics**
+   - Use Glob to find `src/**/*.css`, `src/**/*.scss`, `src/**/*.less`
+   - Use Grep to search `border-radius`, `text-transform`, `font-family`, `background`
+   - Identify existing design systems or UI libraries (Material UI, Ant Design, Chakra UI, etc.)
+
+### 6.2 Component Matching
+
+Match scanned project components against `references/component-matching.md` Section 1 mapping tables.
+
+**Match dimensions and priority:**
+
+1. **Exact match** (confidence: high) — Project component name/structure directly corresponds to a Nothing component
+   - Example: Project has `<Button>` → Nothing `Button`
+2. **Functional match** (confidence: medium) — Same purpose, different implementation
+   - Example: Project has custom popup → Nothing `Modal`
+3. **Visual match** (confidence: low) — Similar visual style, different function
+   - Example: Project has rounded card-style list → Nothing `Card` + `DataRows`
+
+**Match decision tree:**
+```
+Project component → Has clear semantic name? → Yes → Check mapping table → Exact/Functional match
+                                          → No  → Analyze CSS properties → Visual match
+                                          → No  → Analyze interaction behavior → Functional match
+```
+
+**Identification methods** (see `references/component-matching.md` Section 2):
+- Structural: HTML elements, ARIA roles, JSX tag names
+- Visual: CSS property patterns (border-radius, text-transform, font-family combinations)
+- Interaction: JS behavior patterns (onClick + overlay, onChange + segmented switch, etc.)
+
+### 6.3 Style Application
+
+Three application strategies, ordered by increasing invasiveness:
+
+**a. Token Injection (lowest disruption)**
+- Import `tokens.css` into project root
+- Replace hardcoded color/spacing/font values with `var(--xxx)` references
+- No changes to component structure, class names, or JS logic
+- Best for: unifying colors/spacing/typography without changing component implementation
+
+**b. Style Migration (moderate disruption)**
+- Import `tokens.css` + component-level CSS files
+- Replace project class names with Nothing BEM class names
+- May require JSX/HTML structure adjustments to match BEM Element naming
+- Best for: achieving Nothing visual style while keeping own component logic
+
+**c. Component Replacement (highest consistency)**
+- Import web-ui-kit pre-built React components to replace project components
+- Map project props to Nothing component props
+- Best for: React projects wanting the full Nothing design experience
+
+**Migration conventions (mandatory):**
+- Zero hardcoded values in component CSS — all via `var(--xxx)` token references
+- BEM naming: `nothing-{block}` / `nothing-{block}--{modifier}` / `nothing-{block}__{element}`
+- Class composition: `[...].filter(Boolean).join(' ')` array pattern
+- No `[data-theme]` selectors in component CSS — theme switching driven 100% by `tokens.css`
+- Unified interaction states: `:hover:not(:disabled)` / `:focus-visible` / `:disabled { opacity: 0.4 }`
+
+**Styling strategy specifics** (see `references/component-matching.md` Section 3):
+- Native CSS / CSS Modules → Copy tokens + component CSS, replace class names
+- Tailwind CSS → Map tokens to `tailwind.config.js` theme extensions, use `@apply` hybrid
+- CSS-in-JS → Extract tokens as JS constants, convert BEM to styled-components templates
+- Progressive → Phase 1 (tokens only) → Phase 2 (styles) → Phase 3 (full components)
+
+### 6.4 Match Report
+
+Every matching analysis must produce a standard report (see `references/component-matching.md` Section 4 for template):
+
+```
+Project Info: stack, styling approach, theme
+Match Results: table of project component → Nothing component with match type, confidence, suggested strategy
+Migration Recommendations: priority-ordered steps, decision points, risks
+```
+
+**Never auto-apply irreversible changes.** Always present the match report and get user confirmation before proceeding.
