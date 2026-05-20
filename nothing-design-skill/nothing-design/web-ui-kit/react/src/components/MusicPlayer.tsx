@@ -11,6 +11,7 @@ interface MusicPlayerProps {
   totalSegments?: number
   updateInterval?: number
   tracks?: Track[]
+  style?: React.CSSProperties
 }
 
 const defaultTracks: Track[] = [
@@ -22,7 +23,8 @@ const defaultTracks: Track[] = [
 const MusicPlayer: React.FC<MusicPlayerProps> = ({ 
   totalSegments = 20, 
   updateInterval = 1000,
-  tracks = defaultTracks
+  tracks = defaultTracks,
+  style
 }) => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -71,7 +73,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
   }
 
   return (
-    <div className="nothing-music-player">
+    <div className="nothing-music-player" style={style}>
       <div className="player-album-art">
         <svg viewBox="0 0 24 24" fill="none">
           <circle className="player-album-icon" cx="12" cy="12" r="10" strokeWidth="2"/>

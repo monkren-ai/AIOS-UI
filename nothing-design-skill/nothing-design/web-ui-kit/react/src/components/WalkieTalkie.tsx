@@ -7,6 +7,7 @@ interface WalkieTalkieProps {
   maxChannel?: number
   volumeSegments?: number
   volumeLevel?: number
+  style?: React.CSSProperties
 }
 
 const WalkieTalkie: React.FC<WalkieTalkieProps> = ({
@@ -14,7 +15,8 @@ const WalkieTalkie: React.FC<WalkieTalkieProps> = ({
   minChannel = 1,
   maxChannel = 22,
   volumeSegments = 5,
-  volumeLevel = 3
+  volumeLevel = 3,
+  style
 }) => {
   const [channel, setChannel] = useState(initialChannel)
   const [isTransmitting, setIsTransmitting] = useState(false)
@@ -102,7 +104,7 @@ const WalkieTalkie: React.FC<WalkieTalkieProps> = ({
   if (status === 'SENT') statusClass = 'sent'
 
   return (
-    <div className="nothing-walkie-talkie">
+    <div className="nothing-walkie-talkie" style={style}>
       <div className="walkie-channel">
         <button className="walkie-channel__btn" onClick={() => handleChannelChange(-1)}>
           <svg viewBox="0 0 24 24"><polyline className="walkie-channel__btn-icon" points="6 9 12 15 18 9"/></svg>

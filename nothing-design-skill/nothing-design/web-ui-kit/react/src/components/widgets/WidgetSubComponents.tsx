@@ -1,3 +1,4 @@
+import React from "react";
 import svgPaths from "./svg-qvv4ctcv53";
 import imgImage from "../../assets/images/069cf4a7d68229b16958df0e634b08f7e38a57a5.png";
 import imgImage1 from "../../assets/images/d4958924652b57d9264472fb648b23352acb5efe.png";
@@ -6,9 +7,9 @@ import imgImage5 from "../../assets/images/8fd879d735c082acd40888c7284af2fafd403
 import imgImage2 from "../../assets/images/7a8b290651784fe12426559d68090e7c46995862.png";
 import imgRectangle13 from "../../assets/images/fb6b3399e50e8d3dd4c4dc30de4861f4891a87e9.png";
 import imgImage3 from "../../assets/images/08fa5ab888d375f4821c4d4815b806ab537f90ed.png";
-export function Record2() {
+export function Record2({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-grid-auto" data-name="Record">
+    <div style={style} className="widget-grid-auto" data-name="Record">
       <div className="widget-col-1 ml-0 mt-0 widget-relative widget-row-1 size-[152px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 152 152">
           <circle cx="76" cy="76" fill="var(--fill-0, #D71921)" id="BG" r="76" style={{ fill: "color(display-p3 0.8431 0.0980 0.1294)", fillOpacity: "1" }} />
@@ -45,9 +46,9 @@ function Frame42() {
   );
 }
 
-export function LocationAccess() {
+export function LocationAccess({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-grid-auto" data-name="Location Access">
+    <div style={style} className="widget-grid-auto" data-name="Location Access">
       <div className="widget-col-1 ml-0 mt-0 widget-relative widget-row-1 size-[152px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 152 152">
           <circle cx="76" cy="76" fill="var(--fill-0, #D71921)" id="BG" r="76" style={{ fill: "color(display-p3 0.8431 0.0980 0.1294)", fillOpacity: "1" }} />
@@ -623,9 +624,9 @@ function Watchface() {
   );
 }
 
-export function WatchAnalog() {
+export function WatchAnalog({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-grid-auto" data-name="Watch - Analog">
+    <div style={style} className="widget-grid-auto" data-name="Watch - Analog">
       <div className="widget-col-1 ml-0 mt-0 widget-relative widget-row-1 size-[152px]">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 152 152">
           <circle cx="76" cy="76" fill="var(--fill-0, #FCFAFE)" id="Ellipse 188" r="76" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -721,9 +722,9 @@ function Frame5() {
   );
 }
 
-export function Compass() {
+export function Compass({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--pill widget-card--light content-stretch flex flex-col items-center justify-center p-[10px] widget-relative widget-shrink-0" data-name="Compass">
+    <div style={style} className="widget-card widget-card--152 widget-card--pill widget-card--light content-stretch flex flex-col items-center justify-center p-[10px] widget-relative widget-shrink-0" data-name="Compass">
       <Frame5 />
     </div>
   );
@@ -776,9 +777,9 @@ function Info2() {
   );
 }
 
-export function TempControl() {
+export function TempControl({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--pill widget-card--light content-stretch flex flex-col items-center justify-center widget-relative widget-shrink-0" data-name="Temp Control">
+    <div style={style} className="widget-card widget-card--152 widget-card--pill widget-card--light content-stretch flex flex-col items-center justify-center widget-relative widget-shrink-0" data-name="Temp Control">
       <Info2 />
     </div>
   );
@@ -796,9 +797,9 @@ function Icon26() {
   );
 }
 
-export function AutoRotate1() {
+export function AutoRotate1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--pill widget-card--dark content-stretch flex flex-col gap-[12px] items-center justify-center widget-relative widget-shrink-0" data-name="Auto Rotate">
+    <div style={style} className="widget-card widget-card--152 widget-card--pill widget-card--dark content-stretch flex flex-col gap-[12px] items-center justify-center widget-relative widget-shrink-0" data-name="Auto Rotate">
       <Icon26 />
       <p className=" widget-relative widget-shrink-0 widget-text widget-text--12 widget-text--grey widget-text--center widget-text--nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         Auto Rotate
@@ -819,9 +820,9 @@ function Icon27() {
   );
 }
 
-export function Active() {
+export function Active({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--pill widget-card--light content-stretch flex flex-col gap-[12px] items-center justify-center widget-relative widget-shrink-0" data-name="Active">
+    <div style={style} className="widget-card widget-card--152 widget-card--pill widget-card--light content-stretch flex flex-col gap-[12px] items-center justify-center widget-relative widget-shrink-0" data-name="Active">
       <Icon27 />
       <p className=" widget-relative widget-shrink-0 widget-text widget-text--12 widget-text--grey2 widget-text--center widget-text--nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         Active
@@ -830,9 +831,9 @@ export function Active() {
   );
 }
 
-export function Watch1() {
+export function Watch1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-relative widget-shrink-0 size-[152px]" data-name="Watch">
+    <div style={style} className="widget-relative widget-shrink-0 size-[152px]" data-name="Watch">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 152 152">
         <g id="Watch">
           <circle cx="76" cy="76" fill="var(--fill-0, #1A1D1C)" id="BG" r="76" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -859,9 +860,9 @@ function Icon28() {
   );
 }
 
-export function Active1() {
+export function Active1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--pill widget-card--light content-stretch flex flex-col gap-[12px] items-center justify-center widget-relative widget-shrink-0" data-name="Active">
+    <div style={style} className="widget-card widget-card--152 widget-card--pill widget-card--light content-stretch flex flex-col gap-[12px] items-center justify-center widget-relative widget-shrink-0" data-name="Active">
       <Icon28 />
       <div className=" widget-text widget-text--12 widget-text--grey2 widget-text--center widget-text--nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         <p className="widget-leading-normal mb-0">Aeroplane</p>
@@ -871,9 +872,9 @@ export function Active1() {
   );
 }
 
-export function Recording() {
+export function Recording({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--pill widget-card--light content-stretch flex gap-[6px] items-center justify-center widget-relative widget-shrink-0" data-name="Recording">
+    <div style={style} className="widget-card widget-card--152 widget-card--pill widget-card--light content-stretch flex gap-[6px] items-center justify-center widget-relative widget-shrink-0" data-name="Recording">
       <div className="widget-relative widget-shrink-0 size-[8px]" data-name="Dot">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
           <circle cx="4" cy="4" fill="var(--fill-0, #D71921)" id="Dot" r="4" style={{ fill: "color(display-p3 0.8431 0.0980 0.1294)", fillOpacity: "1" }} />
@@ -910,9 +911,9 @@ function Group28() {
   );
 }
 
-export function Glyphs1() {
+export function Glyphs1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--pill widget-card--dark content-stretch flex flex-col gap-[12px] items-center justify-center widget-relative widget-shrink-0" data-name="Glyphs">
+    <div style={style} className="widget-card widget-card--152 widget-card--pill widget-card--dark content-stretch flex flex-col gap-[12px] items-center justify-center widget-relative widget-shrink-0" data-name="Glyphs">
       <Group28 />
       <p className=" widget-relative widget-shrink-0 widget-text widget-text--12 widget-text--grey widget-text--center widget-text--nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         Glyphs
@@ -945,9 +946,9 @@ function Frame43() {
   );
 }
 
-export function LocationAccess1() {
+export function LocationAccess1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-grid-auto" data-name="Location Access">
+    <div style={style} className="widget-grid-auto" data-name="Location Access">
       <div className="widget-col-1 ml-0 mt-0 widget-relative widget-row-1 size-[152px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 152 152">
           <circle cx="76" cy="76" fill="var(--fill-0, #FCFAFE)" id="Ellipse 188" r="76" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -970,9 +971,9 @@ function Icon29() {
   );
 }
 
-export function Glyphs2() {
+export function Glyphs2({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--pill widget-card--dark content-stretch flex flex-col gap-[12px] items-center justify-center widget-relative widget-shrink-0" data-name="Glyphs">
+    <div style={style} className="widget-card widget-card--152 widget-card--pill widget-card--dark content-stretch flex flex-col gap-[12px] items-center justify-center widget-relative widget-shrink-0" data-name="Glyphs">
       <Icon29 />
       <div className=" widget-text widget-text--12 widget-text--grey widget-text--center widget-text--nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         <p className="widget-leading-normal mb-0">Screen</p>
@@ -1004,9 +1005,9 @@ function Dots2() {
   );
 }
 
-export function Campus() {
+export function Campus({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-grid-auto" data-name="Campus">
+    <div style={style} className="widget-grid-auto" data-name="Campus">
       <div className="widget-col-1 ml-0 mt-0 widget-relative widget-row-1 size-[152px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 152 152">
           <circle cx="76" cy="76" fill="var(--fill-0, #1A1D1C)" id="BG" r="76" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -1029,9 +1030,9 @@ export function Campus() {
   );
 }
 
-export function Location1() {
+export function Location1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-relative widget-shrink-0 size-[152px]" data-name="Location">
+    <div style={style} className="widget-relative widget-shrink-0 size-[152px]" data-name="Location">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 152 152">
         <g id="Location">
           <circle cx="76" cy="76" fill="var(--fill-0, #1A1D1C)" id="BG" r="76" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -1076,9 +1077,9 @@ export function Location1() {
   );
 }
 
-export function Flash() {
+export function Flash({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-relative widget-shrink-0 size-[152px]" data-name="Flash">
+    <div style={style} className="widget-relative widget-shrink-0 size-[152px]" data-name="Flash">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 152 152">
         <g id="Flash">
           <circle cx="76" cy="76" fill="var(--fill-0, #FCFAFE)" id="BG" r="76" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -1117,9 +1118,9 @@ export function Flash() {
   );
 }
 
-export function Weather1() {
+export function Weather1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-relative widget-shrink-0 size-[152px]" data-name="Weather">
+    <div style={style} className="widget-relative widget-shrink-0 size-[152px]" data-name="Weather">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 152 152">
         <g id="Weather">
           <circle cx="76" cy="76" fill="var(--fill-0, #FCFAFE)" id="BG" r="76" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -1218,9 +1219,9 @@ function Frame44() {
   );
 }
 
-export function MicAccess() {
+export function MicAccess({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-grid-auto" data-name="Mic Access">
+    <div style={style} className="widget-grid-auto" data-name="Mic Access">
       <div className="widget-col-1 ml-0 mt-0 widget-relative widget-row-1 size-[152px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 152 152">
           <circle cx="76" cy="76" fill="var(--fill-0, #D71921)" id="BG" r="76" style={{ fill: "color(display-p3 0.8431 0.0980 0.1294)", fillOpacity: "1" }} />
@@ -1231,9 +1232,9 @@ export function MicAccess() {
   );
 }
 
-export function PairNewDevice() {
+export function PairNewDevice({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Pair New Device">
+    <div style={style} className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Pair New Device">
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex items-center justify-center p-[10px] widget-relative size-full">
           <div className=" widget-text widget-text--ndot widget-text--16 widget-text--grey widget-text--center widget-text--uppercase widget-text--nowrap">
@@ -1246,9 +1247,9 @@ export function PairNewDevice() {
   );
 }
 
-export function OverLimit() {
+export function OverLimit({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="content-stretch flex flex-col gap-[2px] items-start widget-relative widget-shrink-0 widget-text widget-text--center widget-opacity-70" data-name="Over Limit">
+    <div style={style} className="content-stretch flex flex-col gap-[2px] items-start widget-relative widget-shrink-0 widget-text widget-text--center widget-opacity-70" data-name="Over Limit">
       <p className="widget-text widget-text--18" style={{ fontVariationSettings: "'wdth' 100" }}>
         30m
       </p>
@@ -1259,9 +1260,9 @@ export function OverLimit() {
   );
 }
 
-export function Overlimit() {
+export function Overlimit({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--rounded widget-card--accent" data-name="Overlimit">
+    <div style={style} className="widget-card widget-card--152 widget-card--rounded widget-card--accent" data-name="Overlimit">
       <div className="flex flex-col justify-center size-full">
         <div className=" content-stretch flex flex-col items-start justify-between p-[16px] widget-relative size-full text-white whitespace-nowrap">
           <OverLimit />
@@ -1331,9 +1332,9 @@ function Icon31() {
   );
 }
 
-export function Icons() {
+export function Icons({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="content-stretch flex items-start justify-between widget-relative widget-shrink-0 w-full" data-name="Icons">
+    <div style={style} className="content-stretch flex items-start justify-between widget-relative widget-shrink-0 w-full" data-name="Icons">
       <Icon31 />
       <div className="widget-relative widget-shrink-0 widget-card__svg--24" data-name="Spotify - Negative">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
@@ -1344,18 +1345,18 @@ export function Icons() {
   );
 }
 
-export function LoadingBar() {
+export function LoadingBar({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-grid-loading" data-name="Loading Bar">
+    <div style={style} className="widget-grid-loading" data-name="Loading Bar">
       <div className="widget-bg-grey widget-col-1 h-[2px] ml-0 mt-0 widget-relative widget-row-1 w-full" />
       <div className="widget-bg-light widget-col-1 h-[2px] ml-0 mt-0 widget-relative widget-row-1 w-[26.23%]" />
     </div>
   );
 }
 
-export function Info3() {
+export function Info3({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="content-stretch flex flex-col gap-[12px] items-start widget-relative widget-shrink-0 w-full" data-name="Info">
+    <div style={style} className="content-stretch flex flex-col gap-[12px] items-start widget-relative widget-shrink-0 w-full" data-name="Info">
       <p className=" widget-relative widget-shrink-0 widget-text widget-text--14 widget-text--grey widget-text--nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         Jim Hall - Concierto
       </p>
@@ -1364,9 +1365,9 @@ export function Info3() {
   );
 }
 
-export function Bullet() {
+export function Bullet({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="-translate-y-1/2 absolute h-[13px] right-[16px] top-[calc(50%-0.5px)] w-[4px]" data-name="Bullet">
+    <div style={style} className="-translate-y-1/2 absolute h-[13px] right-[16px] top-[calc(50%-0.5px)] w-[4px]" data-name="Bullet">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 4 13">
         <g id="Bullet">
           <circle cx="2" cy="2" fill="var(--fill-0, #3B393E)" id="Ellipse 158" r="2" style={{ fill: "color(display-p3 0.2314 0.2235 0.2431)", fillOpacity: "1" }} />
@@ -1377,9 +1378,9 @@ export function Bullet() {
   );
 }
 
-export function MusicPlayer() {
+export function MusicPlayer({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Music Player">
+    <div style={style} className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Music Player">
       <div className="flex flex-col justify-center size-full">
         <div className="content-stretch flex flex-col items-start justify-between p-[16px] widget-relative size-full">
           <Icons />
@@ -1391,9 +1392,9 @@ export function MusicPlayer() {
   );
 }
 
-export function Graphic() {
+export function Graphic({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="h-[20px] widget-relative widget-shrink-0 w-[118px]" data-name="Graphic">
+    <div style={style} className="h-[20px] widget-relative widget-shrink-0 w-[118px]" data-name="Graphic">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 118 20">
         <g id="Graphic">
           <circle cx="38" cy="3" fill="var(--fill-0, white)" id="Ellipse 90" r="3" style={{ fill: "white", fillOpacity: "1" }} />
@@ -1453,9 +1454,9 @@ export function Graphic() {
   );
 }
 
-export function Info4() {
+export function Info4({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className=" content-stretch flex flex-col gap-[2px] items-start widget-relative widget-shrink-0 whitespace-nowrap" data-name="Info">
+    <div style={style} className=" content-stretch flex flex-col gap-[2px] items-start widget-relative widget-shrink-0 whitespace-nowrap" data-name="Info">
       <p className="widget-text widget-text--light widget-text--sr widget-text--white widget-relative widget-shrink-0" style={{ fontVariationSettings: "'wdth' 100" }}>
         <span className="widget-leading-normal text-[32px]">6</span>
         <span className="widget-leading-normal text-[16px]">{`H `}</span>
@@ -1468,9 +1469,9 @@ export function Info4() {
   );
 }
 
-export function TotalTime() {
+export function TotalTime({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Total Time">
+    <div style={style} className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Total Time">
       <div className="content-stretch flex flex-col items-start justify-between p-[16px] widget-relative size-full">
         <Graphic />
         <Info4 />
@@ -1479,9 +1480,9 @@ export function TotalTime() {
   );
 }
 
-export function StepsCount() {
+export function StepsCount({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="content-stretch flex flex-col gap-[2px] items-start widget-relative widget-shrink-0" data-name="Steps Count">
+    <div style={style} className="content-stretch flex flex-col gap-[2px] items-start widget-relative widget-shrink-0" data-name="Steps Count">
       <p className="widget-text widget-text--10 widget-text--grey widget-text--uppercase" style={{ fontVariationSettings: "'wdth' 100" }}>
         Total Steps
       </p>
@@ -1490,9 +1491,9 @@ export function StepsCount() {
   );
 }
 
-export function Streak() {
+export function Streak({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="content-stretch flex flex-col gap-[2px] items-start widget-relative widget-shrink-0" data-name="Streak">
+    <div style={style} className="content-stretch flex flex-col gap-[2px] items-start widget-relative widget-shrink-0" data-name="Streak">
       <p className="widget-text widget-text--10 widget-text--grey widget-text--uppercase" style={{ fontVariationSettings: "'wdth' 100" }}>
         Streak
       </p>
@@ -1501,9 +1502,9 @@ export function Streak() {
   );
 }
 
-export function StepsCounter() {
+export function StepsCounter({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--rounded widget-card--light" data-name="Steps Counter">
+    <div style={style} className="widget-card widget-card--152 widget-card--rounded widget-card--light" data-name="Steps Counter">
       <div className="flex flex-col justify-center size-full">
         <div className=" content-stretch flex flex-col items-start justify-between p-[16px] widget-relative size-full whitespace-nowrap">
           <StepsCount />
@@ -1514,9 +1515,9 @@ export function StepsCounter() {
   );
 }
 
-export function Arrow() {
+export function Arrow({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[26.5px] left-1/2 top-[calc(50%+0.25px)] w-[26px]" data-name="Arrow">
+    <div style={style} className="-translate-x-1/2 -translate-y-1/2 absolute h-[26.5px] left-1/2 top-[calc(50%+0.25px)] w-[26px]" data-name="Arrow">
       <div className="absolute inset-[-3.77%_-3.85%]">
         <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 28 28.5">
           <g id="Arrow">
@@ -1529,17 +1530,17 @@ export function Arrow() {
   );
 }
 
-export function Icon32() {
+export function Icon32({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-relative widget-shrink-0 size-[32px]" data-name="Icon">
+    <div style={style} className="widget-relative widget-shrink-0 size-[32px]" data-name="Icon">
       <Arrow />
     </div>
   );
 }
 
-export function LimitCount() {
+export function LimitCount({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className=" content-stretch flex flex-col gap-[2px] items-start widget-relative widget-shrink-0 widget-text widget-text--nowrap" data-name="Limit Count">
+    <div style={style} className=" content-stretch flex flex-col gap-[2px] items-start widget-relative widget-shrink-0 widget-text widget-text--nowrap" data-name="Limit Count">
       <p className="widget-leading-0 widget-relative widget-shrink-0 widget-sr text-white" style={{ fontVariationSettings: "'wdth' 100" }}>
         <span className="widget-text widget-text--light widget-text--32" style={{ fontVariationSettings: "'wdth' 100" }}>
           40
@@ -1556,9 +1557,9 @@ export function LimitCount() {
   );
 }
 
-export function OverLimit1() {
+export function OverLimit1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Over Limit">
+    <div style={style} className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Over Limit">
       <div className="flex flex-col justify-center size-full">
         <div className="content-stretch flex flex-col items-start justify-between p-[16px] widget-relative size-full">
           <Icon32 />
@@ -1631,9 +1632,9 @@ function Human() {
   );
 }
 
-export function LoadingBar2() {
+export function LoadingBar2({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-grid-auto" data-name="Loading Bar">
+    <div style={style} className="widget-grid-auto" data-name="Loading Bar">
       <Frame7 />
       <Human />
     </div>
@@ -1654,9 +1655,9 @@ function Frame8() {
   );
 }
 
-export function LoadingBar1() {
+export function LoadingBar1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Loading Bar">
+    <div style={style} className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Loading Bar">
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex gap-[8px] items-center justify-center pl-[16px] pr-[6px] widget-relative size-full">
           <LoadingBar2 />
@@ -1667,9 +1668,9 @@ export function LoadingBar1() {
   );
 }
 
-export function Card() {
+export function Card({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card-wrapper" data-name="Card">
+    <div style={style} className="widget-card-wrapper" data-name="Card">
       <div className="widget-bg-light absolute inset-0 widget-card--rounded widget-size-152" data-name="BG" />
       <div className="absolute left-[8px] top-[8px] widget-rounded-16 size-[136px]" data-name="Image">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none widget-rounded-16 size-full" src={imgImage} />
@@ -1678,9 +1679,9 @@ export function Card() {
   );
 }
 
-export function Card1() {
+export function Card1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card-wrapper" data-name="Card">
+    <div style={style} className="widget-card-wrapper" data-name="Card">
       <div className="widget-bg-light absolute inset-0 widget-card--rounded widget-size-152" data-name="BG" />
       <div className="absolute left-[8px] top-[8px] widget-rounded-16 size-[136px]" data-name="Image">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none widget-rounded-16 size-full" src={imgImage1} />
@@ -1689,9 +1690,9 @@ export function Card1() {
   );
 }
 
-export function Dots4() {
+export function Dots4({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 widget-card__svg--64" data-name="Dots">
+    <div style={style} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 widget-card__svg--64" data-name="Dots">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 64 64">
         <g id="Dots">
           <circle cx="17.5484" cy="25.8064" fill="var(--fill-0, white)" id="Ellipse 188" r="3.09677" style={{ fill: "white", fillOpacity: "1" }} />
@@ -1729,9 +1730,9 @@ export function Dots4() {
   );
 }
 
-export function Dots3() {
+export function Dots3({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card-wrapper" data-name="Dots">
+    <div style={style} className="widget-card-wrapper" data-name="Dots">
       <div className="widget-bg-dark absolute inset-0 widget-card--rounded widget-size-152" data-name="BG" />
       <Dots4 />
     </div>
@@ -1798,9 +1799,9 @@ function Frame27() {
   );
 }
 
-export function Dots5() {
+export function Dots5({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="absolute bottom-[8px] left-1/2 -translate-x-1/2 content-stretch flex gap-px items-center w-[27px]" data-name="Dots">
+    <div style={style} className="absolute bottom-[8px] left-1/2 -translate-x-1/2 content-stretch flex gap-px items-center w-[27px]" data-name="Dots">
       <Frame24 />
       <Frame25 />
       <Frame26 />
@@ -1809,9 +1810,9 @@ export function Dots5() {
   );
 }
 
-export function Play() {
+export function Play({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card-wrapper" data-name="Play">
+    <div style={style} className="widget-card-wrapper" data-name="Play">
       <div className="absolute inset-0 widget-card--rounded widget-size-152">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none widget-card--rounded size-full" src={imgRectangle14} />
       </div>
@@ -1820,9 +1821,9 @@ export function Play() {
   );
 }
 
-export function Image() {
+export function Image({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-[12px] items-center" data-name="Image">
+    <div style={style} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-[12px] items-center" data-name="Image">
       <div className="h-[69px] widget-relative w-[50px]" data-name="image 5">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <img alt="" className="absolute h-[213.23%] left-[-58.7%] max-w-none top-[-57.55%] w-[217.39%]" src={imgImage5} />
@@ -1841,9 +1842,9 @@ export function Image() {
   );
 }
 
-export function NothingEar() {
+export function NothingEar({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card-wrapper" data-name="Nothing Ear 2">
+    <div style={style} className="widget-card-wrapper" data-name="Nothing Ear 2">
       <div className="widget-bg-light absolute inset-0 widget-card--rounded size-[152px]" data-name="BG" />
       <Image />
       <p className=" absolute bottom-[16px] left-1/2 -translate-x-1/2 widget-text widget-text--ndot widget-text--16 widget-text--grey2 widget-text--center widget-text--uppercase widget-text--nowrap widget-leading-19">CONNECT</p>
@@ -1851,9 +1852,9 @@ export function NothingEar() {
   );
 }
 
-export function Card2() {
+export function Card2({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card-wrapper" data-name="Card">
+    <div style={style} className="widget-card-wrapper" data-name="Card">
       <div className="widget-bg-light absolute inset-0 widget-card--rounded size-[152px]" data-name="BG" />
       <div className="absolute left-[8px] top-[8px] widget-rounded-16 size-[136px]" data-name="Image">
         <div className="absolute inset-0 overflow-hidden pointer-events-none widget-rounded-16">
@@ -1864,9 +1865,9 @@ export function Card2() {
   );
 }
 
-export function Date() {
+export function Date({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card-wrapper" data-name="Date">
+    <div style={style} className="widget-card-wrapper" data-name="Date">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 152 152">
         <g id="Date">
           <rect fill="var(--fill-0, #FCFAFE)" height="152" id="BG" rx="20" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} width="152" />
@@ -1880,9 +1881,9 @@ export function Date() {
   );
 }
 
-export function Date1() {
+export function Date1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--rounded widget-card--light" data-name="Date">
+    <div style={style} className="widget-card widget-card--152 widget-card--rounded widget-card--light" data-name="Date">
       <div className="flex flex-col justify-center size-full">
         <div className=" content-stretch flex flex-col items-start justify-between p-[16px] widget-relative size-full widget-text widget-text--ndot widget-text--nowrap widget-leading-27">
           <p className="widget-relative widget-shrink-0 widget-text widget-text--16 widget-text--grey2">TUESDAY</p>
@@ -1893,9 +1894,9 @@ export function Date1() {
   );
 }
 
-export function Dots6() {
+export function Dots6({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="h-[97px] widget-relative widget-shrink-0 w-[120px]" data-name="Dots">
+    <div style={style} className="h-[97px] widget-relative widget-shrink-0 w-[120px]" data-name="Dots">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 120 97">
         <g id="Dots">
           <circle cx="6" cy="24" fill="var(--fill-0, #FCFAFE)" id="Ellipse 205" r="6" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -1934,9 +1935,9 @@ export function Dots6() {
   );
 }
 
-export function Counter() {
+export function Counter({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Counter">
+    <div style={style} className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Counter">
       <div className="widget-overflow-clip rounded-[inherit] size-full">
         <div className="content-stretch flex flex-col items-start p-[16px] widget-relative size-full">
           <p className=" widget-text widget-text--ndot widget-text--20 widget-text--white widget-text--center widget-text--nowrap mb-[-4px]">43,465</p>
@@ -1947,9 +1948,9 @@ export function Counter() {
   );
 }
 
-export function Group1() {
+export function Group1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[47.511px] w-[48px]">
+    <div style={style} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[47.511px] w-[48px]">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 48 47.5107">
         <g id="Group 1">
           <circle cx="20.9857" cy="2.61418" fill="var(--fill-0, white)" id="Ellipse 84" r="2.61418" style={{ fill: "white", fillOpacity: "1" }} />
@@ -1992,18 +1993,18 @@ export function Group1() {
   );
 }
 
-export function Music() {
+export function Music({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card-wrapper" data-name="Music">
+    <div style={style} className="widget-card-wrapper" data-name="Music">
       <div className="widget-bg-dark absolute inset-0 widget-card--rounded size-[152px]" data-name="BG" />
       <Group1 />
     </div>
   );
 }
 
-export function Dots7() {
+export function Dots7({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[75px] w-[46px]" data-name="Dots">
+    <div style={style} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[75px] w-[46px]" data-name="Dots">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 46 75">
         <g id="Dots">
           <circle cx="19" cy="10" fill="var(--fill-0, #1A1D1C)" id="Ellipse 234" r="2" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -2083,18 +2084,18 @@ export function Dots7() {
   );
 }
 
-export function Device() {
+export function Device({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card-wrapper" data-name="Device">
+    <div style={style} className="widget-card-wrapper" data-name="Device">
       <div className="widget-bg-light absolute inset-0 widget-card--rounded size-[152px]" data-name="BG" />
       <Dots7 />
     </div>
   );
 }
 
-export function Group30() {
+export function Group30({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="absolute h-[24px] left-[1.4px] top-[4px] w-[29.192px]">
+    <div style={style} className="absolute h-[24px] left-[1.4px] top-[4px] w-[29.192px]">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 29.1922 24">
         <g id="Group 20">
           <path d={svgPaths.p205ee00} id="Ellipse 228" stroke="var(--stroke-0, white)" strokeWidth="3" style={{ stroke: "white", strokeOpacity: "1" }} />
@@ -2105,17 +2106,17 @@ export function Group30() {
   );
 }
 
-export function Icon33() {
+export function Icon33({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-overflow-clip widget-relative widget-shrink-0 size-[32px]" data-name="Icon">
+    <div style={style} className="widget-overflow-clip widget-relative widget-shrink-0 size-[32px]" data-name="Icon">
       <Group30 />
     </div>
   );
 }
 
-export function Mode() {
+export function Mode({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Mode">
+    <div style={style} className="widget-card widget-card--152 widget-card--rounded widget-card--dark" data-name="Mode">
       <div className="flex flex-col items-center justify-center size-full">
         <div className="content-stretch flex flex-col gap-[32px] items-center justify-center p-[16px] widget-relative size-full">
           <p className=" widget-text widget-text--16 widget-text--grey widget-text--center widget-text--nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
@@ -2128,9 +2129,9 @@ export function Mode() {
   );
 }
 
-export function DoubleDown() {
+export function DoubleDown({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card-wrapper" data-name="Double Down">
+    <div style={style} className="widget-card-wrapper" data-name="Double Down">
       <div className="absolute inset-0 widget-card--rounded size-[152px]">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none widget-card--rounded size-full" src={imgRectangle13} />
       </div>
@@ -2143,9 +2144,9 @@ export function DoubleDown() {
   );
 }
 
-export function Device1() {
+export function Device1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="h-[25.456px] widget-relative widget-shrink-0 w-[25.841px]" data-name="Device">
+    <div style={style} className="h-[25.456px] widget-relative widget-shrink-0 w-[25.841px]" data-name="Device">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 25.8406 25.4559">
         <g id="Device">
           <rect fill="var(--fill-0, #939196)" height="26" id="Rectangle 10" rx="5" style={{ fill: "color(display-p3 0.5765 0.5686 0.5882)", fillOpacity: "1" }} transform="rotate(45 18.3848 2.2769e-05)" width="10" x="18.3848" y="2.2769e-05" />
@@ -2157,9 +2158,9 @@ export function Device1() {
   );
 }
 
-export function SelectDevice() {
+export function SelectDevice({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-card widget-card--152 widget-card--rounded widget-card--light" data-name="Select Device">
+    <div style={style} className="widget-card widget-card--152 widget-card--rounded widget-card--light" data-name="Select Device">
       <div className="flex flex-col items-center justify-center size-full">
         <div className="content-stretch flex flex-col gap-[16px] items-center justify-center p-[16px] widget-relative size-full">
           <Device1 />
@@ -2173,9 +2174,9 @@ export function SelectDevice() {
   );
 }
 
-export function Card3() {
+export function Card3({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid widget-leading-0 place-items-start widget-relative widget-shrink-0" data-name="Card">
+    <div style={style} className="grid-cols-[max-content] grid-rows-[max-content] inline-grid widget-leading-0 place-items-start widget-relative widget-shrink-0" data-name="Card">
       <div className="widget-bg-light widget-col-1 h-[152px] ml-0 mt-0 widget-relative widget-rounded-pill widget-row-1 w-[320px]" data-name="BG" />
       <div className="widget-col-1 h-[136px] ml-[8.1px] mt-[8px] widget-relative widget-rounded-pill widget-row-1 w-[303.798px]" data-name="Image">
         <div className="absolute inset-0 overflow-hidden pointer-events-none widget-rounded-pill">
@@ -2284,9 +2285,9 @@ function Frame17() {
   );
 }
 
-export function Markers() {
+export function Markers({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid widget-leading-0 place-items-start widget-relative widget-shrink-0" data-name="Markers">
+    <div style={style} className="grid-cols-[max-content] grid-rows-[max-content] inline-grid widget-leading-0 place-items-start widget-relative widget-shrink-0" data-name="Markers">
       <Frame11 />
       <Frame12 />
       <Frame13 />
@@ -2389,9 +2390,9 @@ function Frame28() {
   );
 }
 
-export function Dates() {
+export function Dates({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className=" content-stretch flex items-start justify-between widget-relative widget-shrink-0 w-full widget-text widget-text--grey widget-text--center widget-text--nowrap" data-name="Dates">
+    <div style={style} className=" content-stretch flex items-start justify-between widget-relative widget-shrink-0 w-full widget-text widget-text--grey widget-text--center widget-text--nowrap" data-name="Dates">
       <Frame18 />
       <Frame19 />
       <Frame20 />
@@ -2403,18 +2404,18 @@ export function Dates() {
   );
 }
 
-export function ActivityTracker() {
+export function ActivityTracker({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-bg-light content-stretch flex flex-col h-[152px] items-center justify-between p-[16px] widget-relative widget-card--rounded widget-shrink-0 w-[303px]" data-name="Activity Tracker">
+    <div style={style} className="widget-bg-light content-stretch flex flex-col h-[152px] items-center justify-between p-[16px] widget-relative widget-card--rounded widget-shrink-0 w-[303px]" data-name="Activity Tracker">
       <Markers />
       <Dates />
     </div>
   );
 }
 
-export function Time() {
+export function Time({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid widget-leading-0 place-items-start widget-relative widget-shrink-0" data-name="Time">
+    <div style={style} className="grid-cols-[max-content] grid-rows-[max-content] inline-grid widget-leading-0 place-items-start widget-relative widget-shrink-0" data-name="Time">
       <div className="widget-bg-dark widget-col-1 h-[152px] ml-0 mt-0 widget-relative widget-rounded-pill widget-row-1 w-[68px]" />
       <div className=" widget-col-1 ml-[13px] mt-[40px] widget-relative widget-row-1 widget-text widget-text--ndot widget-text--32 widget-text--grey widget-text--center widget-text--nowrap">
         <p className="widget-leading-36 mb-0">22</p>
@@ -3016,9 +3017,9 @@ function Frame35() {
   );
 }
 
-export function Weather2() {
+export function Weather2({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-bg-dark content-stretch flex flex-col gap-[19px] h-[152px] items-end p-[16px] widget-relative widget-card--rounded widget-shrink-0 w-[226px]" data-name="Weather">
+    <div style={style} className="widget-bg-dark content-stretch flex flex-col gap-[19px] h-[152px] items-end p-[16px] widget-relative widget-card--rounded widget-shrink-0 w-[226px]" data-name="Weather">
       <Frame39 />
       <Frame35 />
     </div>
@@ -3080,9 +3081,9 @@ function Frame45() {
   );
 }
 
-export function Wedget() {
+export function Wedget({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-bg-dark content-stretch flex flex-col h-[152px] items-start justify-between p-[16px] widget-relative widget-card--rounded widget-shrink-0 w-[226px]" data-name="Wedget">
+    <div style={style} className="widget-bg-dark content-stretch flex flex-col h-[152px] items-start justify-between p-[16px] widget-relative widget-card--rounded widget-shrink-0 w-[226px]" data-name="Wedget">
       <div className=" widget-text widget-text--ndot widget-text--14 widget-text--grey widget-text--uppercase widget-text--nowrap widget-relative widget-shrink-0">
         <p className="widget-leading-18 mb-0">Stansted airport</p>
         <p className="widget-leading-18 mb-0">Ryanair flight</p>

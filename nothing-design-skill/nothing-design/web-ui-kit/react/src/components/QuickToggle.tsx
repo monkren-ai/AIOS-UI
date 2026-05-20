@@ -8,6 +8,7 @@ interface QuickToggleProps {
   active?: boolean
   onClick?: (e: React.MouseEvent<HTMLElement>) => void
   className?: string
+  style?: React.CSSProperties
 }
 
 const QuickToggle: React.FC<QuickToggleProps> = ({
@@ -17,7 +18,8 @@ const QuickToggle: React.FC<QuickToggleProps> = ({
   label,
   active = false,
   onClick,
-  className
+  className,
+  style
 }) => {
   const classNames = [
     'nothing-quick-toggle',
@@ -31,6 +33,7 @@ const QuickToggle: React.FC<QuickToggleProps> = ({
     <button
       className={classNames}
       onClick={onClick}
+      style={style}
       aria-pressed={active}
       type="button"
     >

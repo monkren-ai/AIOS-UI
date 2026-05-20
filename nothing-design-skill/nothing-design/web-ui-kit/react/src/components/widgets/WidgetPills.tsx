@@ -1,3 +1,4 @@
+import React from "react";
 import svgPaths from "./svg-qvv4ctcv53";
 
 function Sim() {
@@ -12,9 +13,9 @@ function Sim() {
   );
 }
 
-export function Dim() {
+export function Dim({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--light" data-name="Dim">
+    <div style={style} className="widget-pill widget-pill--light" data-name="Dim">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Sim />
@@ -39,9 +40,9 @@ function Icon9() {
   );
 }
 
-export function Dim1() {
+export function Dim1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--light" data-name="Dim">
+    <div style={style} className="widget-pill widget-pill--light" data-name="Dim">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon9 />
@@ -66,9 +67,9 @@ function Icon10() {
   );
 }
 
-export function Calculator() {
+export function Calculator({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--light" data-name="Calculator">
+    <div style={style} className="widget-pill widget-pill--light" data-name="Calculator">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon10 />
@@ -93,9 +94,9 @@ function Icon11() {
   );
 }
 
-export function BatterySaver() {
+export function BatterySaver({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--light" data-name="Battery Saver">
+    <div style={style} className="widget-pill widget-pill--light" data-name="Battery Saver">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon11 />
@@ -120,9 +121,9 @@ function Icon12() {
   );
 }
 
-export function HomeControls() {
+export function HomeControls({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--light" data-name="Home Controls">
+    <div style={style} className="widget-pill widget-pill--light" data-name="Home Controls">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon12 />
@@ -147,9 +148,9 @@ function Icon13() {
   );
 }
 
-export function Nfc() {
+export function Nfc({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--dark" data-name="NFC">
+    <div style={style} className="widget-pill widget-pill--dark" data-name="NFC">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon13 />
@@ -174,9 +175,9 @@ function Icon14() {
   );
 }
 
-export function Bedtime() {
+export function Bedtime({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--light" data-name="Bedtime">
+    <div style={style} className="widget-pill widget-pill--light" data-name="Bedtime">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon14 />
@@ -201,9 +202,9 @@ function Icon15() {
   );
 }
 
-export function DarkMode2() {
+export function DarkMode2({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--dark" data-name="Dark Mode">
+    <div style={style} className="widget-pill widget-pill--dark" data-name="Dark Mode">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon15 />
@@ -256,9 +257,9 @@ function Dots1() {
   );
 }
 
-export function Weather() {
+export function Weather({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--dark" data-name="Weather">
+    <div style={style} className="widget-pill widget-pill--dark" data-name="Weather">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Dots1 />
@@ -283,9 +284,9 @@ function Icon16() {
   );
 }
 
-export function Remote1() {
+export function Remote1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--dark" data-name="Remote">
+    <div style={style} className="widget-pill widget-pill--dark" data-name="Remote">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon16 />
@@ -310,9 +311,9 @@ function Icon17() {
   );
 }
 
-export function Share1() {
+export function Share1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--dark" data-name="Share">
+    <div style={style} className="widget-pill widget-pill--dark" data-name="Share">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon17 />
@@ -337,9 +338,9 @@ function Icon18() {
   );
 }
 
-export function Hotspot() {
+export function Hotspot({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--dark" data-name="Hotspot">
+    <div style={style} className="widget-pill widget-pill--dark" data-name="Hotspot">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon18 />
@@ -364,9 +365,9 @@ function Icon19() {
   );
 }
 
-export function Share2() {
+export function Share2({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--dark" data-name="Share">
+    <div style={style} className="widget-pill widget-pill--dark" data-name="Share">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon19 />
@@ -391,9 +392,9 @@ function Icon20() {
   );
 }
 
-export function Dim2() {
+export function Dim2({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--light" data-name="Dim">
+    <div style={style} className="widget-pill widget-pill--light" data-name="Dim">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon20 />
@@ -418,9 +419,9 @@ function IconChart() {
   );
 }
 
-export function DataSaver() {
+export function DataSaver({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--light" data-name="Data Saver">
+    <div style={style} className="widget-pill widget-pill--light" data-name="Data Saver">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[8px] items-center pl-[22px] pr-[48px] py-[24px] widget-relative size-full">
           <IconChart />
@@ -445,9 +446,9 @@ function Icon21() {
   );
 }
 
-export function Torch() {
+export function Torch({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--light" data-name="Torch">
+    <div style={style} className="widget-pill widget-pill--light" data-name="Torch">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon21 />
@@ -472,9 +473,9 @@ function Icon22() {
   );
 }
 
-export function Share3() {
+export function Share3({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-pill widget-pill--dark" data-name="Share">
+    <div style={style} className="widget-pill widget-pill--dark" data-name="Share">
       <div className="widget-row widget-row--center widget-size-full">
         <div className="content-stretch flex gap-[12px] items-center px-[20px] widget-relative size-full">
           <Icon22 />

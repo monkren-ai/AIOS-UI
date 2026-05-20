@@ -13,6 +13,7 @@ interface TabsProps {
   defaultValue?: string
   onValueChange?: (value: string) => void
   children: React.ReactNode
+  style?: React.CSSProperties
 }
 
 interface TabPanelProps {
@@ -29,7 +30,8 @@ const Tabs: React.FC<TabsProps> = ({
   value: controlledValue,
   defaultValue,
   onValueChange,
-  children
+  children,
+  style
 }) => {
   const [internalValue, setInternalValue] = useState(defaultValue ?? items[0]?.value ?? '')
   const selectedValue = controlledValue !== undefined ? controlledValue : internalValue
@@ -117,7 +119,7 @@ const Tabs: React.FC<TabsProps> = ({
   const activePanel = panels.find(panel => panel.props.value === selectedValue)
 
   return (
-    <div className="nothing-tabs">
+    <div className="nothing-tabs" style={style}>
       <div className="nothing-tabs__list" role="tablist">
         {items.map((item, index) => {
           const isActive = item.value === selectedValue

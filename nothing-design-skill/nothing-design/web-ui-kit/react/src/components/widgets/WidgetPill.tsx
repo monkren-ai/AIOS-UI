@@ -7,6 +7,7 @@ interface WidgetPillProps {
   label?: string
   onClick?: () => void
   className?: string
+  style?: React.CSSProperties
 }
 
 const WidgetPill: React.FC<WidgetPillProps> = ({
@@ -15,7 +16,8 @@ const WidgetPill: React.FC<WidgetPillProps> = ({
   icon,
   label,
   onClick,
-  className
+  className,
+  style
 }) => {
   const classNames = [
     'nothing-widget-pill',
@@ -24,7 +26,7 @@ const WidgetPill: React.FC<WidgetPillProps> = ({
   ].filter(Boolean).join(' ')
 
   return (
-    <div className={classNames} onClick={onClick}>
+    <div className={classNames} onClick={onClick} style={style}>
       {(icon || children) && (
         <div className="nothing-widget-pill__icon">
           {icon || children}

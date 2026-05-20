@@ -4,13 +4,15 @@ import '../styles/spinner.css'
 interface SpinnerProps {
   items?: string[]
   spinDuration?: number
+  style?: React.CSSProperties
 }
 
 const defaultItems: string[] = ['YES', 'NO', 'MAYBE', 'LATER', 'SKIP', 'TRY']
 
 const Spinner: React.FC<SpinnerProps> = ({
   items = defaultItems,
-  spinDuration = 3500
+  spinDuration = 3500,
+  style
 }) => {
   const [rotation, setRotation] = useState(0)
   const [isSpinning, setIsSpinning] = useState(false)
@@ -83,7 +85,7 @@ const Spinner: React.FC<SpinnerProps> = ({
   }
 
   return (
-    <div className="nothing-spinner">
+    <div className="nothing-spinner" style={style}>
       <div className="spinner-wheel-container">
         <div className="spinner-pointer" />
         <svg

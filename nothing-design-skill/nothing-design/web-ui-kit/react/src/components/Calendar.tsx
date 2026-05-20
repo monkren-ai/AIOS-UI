@@ -4,11 +4,13 @@ import '../styles/calendar.css'
 interface CalendarProps {
   type?: 'compact' | 'full'
   initialDate?: Date
+  style?: React.CSSProperties
 }
 
 const Calendar: React.FC<CalendarProps> = ({ 
   type = 'compact', 
-  initialDate = new Date() 
+  initialDate = new Date(),
+  style
 }) => {
   const [currentDate, setCurrentDate] = useState(initialDate)
 
@@ -72,7 +74,7 @@ const Calendar: React.FC<CalendarProps> = ({
   }
 
   return (
-    <div className="nothing-calendar-full">
+    <div className="nothing-calendar-full" style={style}>
       <div className="calendar-full-header">
         <div className="calendar-full-month-year">{monthYear}</div>
         <div className="calendar-full-nav">

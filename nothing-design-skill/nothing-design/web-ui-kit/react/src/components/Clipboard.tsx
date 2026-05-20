@@ -11,6 +11,7 @@ interface ClipboardProps {
   truncateLength?: number
   copiedDuration?: number
   demoItems?: ClipboardItem[]
+  style?: React.CSSProperties
 }
 
 const defaultDemoItems: ClipboardItem[] = [
@@ -23,7 +24,8 @@ const Clipboard: React.FC<ClipboardProps> = ({
   maxItems = 5,
   truncateLength = 40,
   copiedDuration = 2000,
-  demoItems = defaultDemoItems
+  demoItems = defaultDemoItems,
+  style
 }) => {
   const [items, setItems] = useState<ClipboardItem[]>([...demoItems])
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
@@ -96,7 +98,7 @@ const Clipboard: React.FC<ClipboardProps> = ({
   }, [maxItems])
 
   return (
-    <div className="nothing-clipboard">
+    <div className="nothing-clipboard" style={style}>
       <div className="clipboard-header">
         <div className="clipboard-title">Clipboard</div>
         <div className="clipboard-count">{items.length}/{maxItems}</div>

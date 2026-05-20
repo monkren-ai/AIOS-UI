@@ -6,13 +6,15 @@ interface SwitchProps {
   label?: string
   disabled?: boolean
   onChange?: (on: boolean) => void
+  style?: React.CSSProperties
 }
 
 const Switch: React.FC<SwitchProps> = ({
   on: controlledOn,
   label,
   disabled = false,
-  onChange
+  onChange,
+  style
 }) => {
   const [internalOn, setInternalOn] = useState(false)
   const isOn = controlledOn !== undefined ? controlledOn : internalOn
@@ -33,7 +35,7 @@ const Switch: React.FC<SwitchProps> = ({
   ].filter(Boolean).join(' ')
 
   return (
-    <label className={classNames}>
+    <label className={classNames} style={style}>
       <input
         className="nothing-switch__input"
         type="checkbox"

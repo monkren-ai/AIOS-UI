@@ -16,6 +16,7 @@ interface SidebarProps {
   onCollapsedChange?: (collapsed: boolean) => void
   header?: React.ReactNode
   footer?: React.ReactNode
+  style?: React.CSSProperties
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -23,7 +24,8 @@ const Sidebar: React.FC<SidebarProps> = ({
   collapsed: controlledCollapsed,
   onCollapsedChange,
   header,
-  footer
+  footer,
+  style
 }) => {
   const [internalCollapsed, setInternalCollapsed] = useState(false)
   const isCollapsed = controlledCollapsed !== undefined ? controlledCollapsed : internalCollapsed
@@ -46,6 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       className={containerClassNames}
       role="navigation"
       aria-label="Sidebar navigation"
+      style={style}
     >
       {header && (
         <div className="nothing-sidebar__header">

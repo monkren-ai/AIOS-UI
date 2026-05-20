@@ -3,11 +3,13 @@ import '../styles/badge.css'
 interface BadgeProps {
   variant?: 'default' | 'secondary' | 'destructive' | 'outline'
   children: React.ReactNode
+  style?: React.CSSProperties
 }
 
 const Badge: React.FC<BadgeProps> = ({
   variant = 'default',
-  children
+  children,
+  style
 }) => {
   const classNames = [
     'nothing-badge',
@@ -15,7 +17,7 @@ const Badge: React.FC<BadgeProps> = ({
   ].filter(Boolean).join(' ')
 
   return (
-    <span className={classNames}>
+    <span className={classNames} style={style}>
       {children}
     </span>
   )

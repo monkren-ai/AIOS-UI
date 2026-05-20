@@ -10,6 +10,7 @@ interface DotMatrixProps {
   activeDots?: [number, number][]
   dimDots?: [number, number][]
   className?: string
+  style?: React.CSSProperties
 }
 
 const DotMatrix: React.FC<DotMatrixProps> = ({
@@ -20,7 +21,8 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
   pattern = 'grid',
   activeDots = [],
   dimDots = [],
-  className
+  className,
+  style
 }) => {
   const activeSet = useMemo(() => {
     const set = new Set<string>()
@@ -62,7 +64,7 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
   }, [rows, cols, activeSet, dimSet])
 
   return (
-    <div className={matrixClassName}>
+    <div className={matrixClassName} style={style}>
       {grid.map((row, r) => (
         <div key={r} className="nothing-dot-matrix__row">
           {row.map((dot) => (

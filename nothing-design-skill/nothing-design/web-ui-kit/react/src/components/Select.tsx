@@ -18,6 +18,7 @@ interface SelectProps {
   label?: string
   error?: string
   searchable?: boolean
+  style?: React.CSSProperties
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -29,7 +30,8 @@ const Select: React.FC<SelectProps> = ({
   disabled = false,
   label,
   error,
-  searchable = false
+  searchable = false,
+  style
 }) => {
   const [internalValue, setInternalValue] = useState<string | undefined>(defaultValue)
   const [isOpen, setIsOpen] = useState(false)
@@ -144,7 +146,7 @@ const Select: React.FC<SelectProps> = ({
   ].filter(Boolean).join(' ')
 
   return (
-    <div className={containerClassNames} ref={containerRef} onKeyDown={handleKeyDown}>
+    <div className={containerClassNames} ref={containerRef} onKeyDown={handleKeyDown} style={style}>
       {label && (
         <label className="nothing-select__label">{label}</label>
       )}

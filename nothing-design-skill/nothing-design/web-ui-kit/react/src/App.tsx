@@ -29,14 +29,14 @@ import Spinner from './components/Spinner'
 import WorldClock from './components/WorldClock'
 import DotMatrix from './components/DotMatrix'
 import QuickToggle from './components/QuickToggle'
-import WidgetCard from './components/WidgetCard'
-import WidgetGrid from './components/WidgetGrid'
 import WeatherWidget from './components/widgets/WeatherWidget'
 import StepsWidget from './components/widgets/StepsWidget'
 import ActivityWidget from './components/widgets/ActivityWidget'
 import CompassWidget from './components/widgets/CompassWidget'
 import TimeWidget from './components/widgets/TimeWidget'
-import NothingWidgets from './components/widgets/NothingWidgets20'
+import { Home, DarkMode, Remote, Subtitle, Wallet, Location, DarkMode1, NoSignam, DownArrow, DoNotDisturb, QrCode, Storage, Share, NoConnection, Record, FullNetwork, Shield, Glyphs, Aeroplane, Chart, Video, Temp, AutoRotate, Info, MicOff, NoSim, Watch, Record1, AccessCamera, Dots, Filter, Home1, Cast, DoNotDisturb1, ArrowDown, QrCode1, Subtitle1, Scan, Cast1, BatteryPlus } from './components/widgets/WidgetIcons'
+import { Dim, Dim1, Calculator, BatterySaver, HomeControls, Nfc, Bedtime, DarkMode2, Weather as FigmaWeather, Remote1, Share1, Hotspot, Share2, Dim2, DataSaver, Torch, Share3 } from './components/widgets/WidgetPills'
+import { Record2, LocationAccess, WatchAnalog, Compass as FigmaCompass, TempControl, AutoRotate1, Active, Watch1, Active1, Recording, Glyphs1, LocationAccess1, Glyphs2, Campus, Location1, Flash, Weather1, MicAccess, PairNewDevice, Overlimit, MusicPlayer as FigmaMusicPlayer, TotalTime, StepsCounter, OverLimit1, LoadingBar1, Card as FigmaCard, Card1, Dots3, Play, NothingEar, Card2, Date as FigmaDate, Date1, Counter, Music, Device, Mode, DoubleDown, SelectDevice, Card3, ActivityTracker, Time as FigmaTime, Weather2, Wedget } from './components/widgets/WidgetSubComponents'
 import WidgetIcon from './components/widgets/WidgetIcon'
 import WidgetPill from './components/widgets/WidgetPill'
 import Glyph from './components/widgets/Glyph'
@@ -150,7 +150,8 @@ const demoTitleStyle: React.CSSProperties = {
   letterSpacing: '0.08em',
   textTransform: 'uppercase',
   color: 'var(--text-secondary)',
-  marginBottom: 'var(--space-md)'
+  marginBottom: 'var(--space-md)',
+  width: '100%'
 }
 
 const groupTitleStyle: React.CSSProperties = {
@@ -173,6 +174,21 @@ const pageHeaderStyle: React.CSSProperties = {
 
 const sectionStyle: React.CSSProperties = {
   marginBottom: 'var(--space-3xl)'
+}
+
+const flexWrapSectionStyle: React.CSSProperties = {
+  marginBottom: 'var(--space-3xl)',
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: 'var(--space-md)',
+  alignItems: 'center'
+}
+
+const gridSectionStyle: React.CSSProperties = {
+  marginBottom: 'var(--space-3xl)',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+  gap: 'var(--space-md)'
 }
 
 const categoryTitleStyle: React.CSSProperties = {
@@ -203,9 +219,7 @@ const categories = [
   { id: 'data-display', label: 'Data Display' },
   { id: 'overlays', label: 'Overlays' },
   { id: 'navigation-status', label: 'Navigation & Status' },
-  { id: 'functional-widgets', label: 'Functional Widgets' },
-  { id: 'utility-widgets', label: 'Utility Widgets' },
-  { id: 'nothing-widgets-2', label: 'Nothing Widgets 2.0' },
+  { id: 'widgets', label: 'Widgets' },
   { id: 'ui-primitives', label: 'UI Primitives' }
 ]
 
@@ -338,57 +352,45 @@ function App() {
         </section>
 
         <CategorySection id="core-interaction" title="Core Interaction">
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Buttons</h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', alignItems: 'center' }}>
-              <Button variant="primary">Primary</Button>
-              <Button variant="secondary">Secondary</Button>
-              <Button variant="ghost">Ghost</Button>
-              <Button variant="destructive">Destructive</Button>
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', alignItems: 'center', marginTop: 'var(--space-md)' }}>
-              <Button variant="primary" size="sm">Small</Button>
-              <Button variant="primary" size="lg">Large</Button>
-              <Button variant="primary" disabled>Disabled</Button>
-            </div>
+            <Button variant="primary">Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="ghost">Ghost</Button>
+            <Button variant="destructive">Destructive</Button>
+            <Button variant="primary" size="sm">Small</Button>
+            <Button variant="primary" size="lg">Large</Button>
+            <Button variant="primary" disabled>Disabled</Button>
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Inputs</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)', maxWidth: '400px' }}>
-              <Input variant="underline" label="Underline Input" placeholder="Type something..." />
-              <Input variant="bordered" label="Bordered Input" placeholder="Type something..." />
-              <Input variant="underline" label="With Error" placeholder="Invalid input" error="This field is required" />
-              <Input variant="bordered" label="Disabled" placeholder="Cannot edit" disabled />
-            </div>
+            <Input variant="underline" label="Underline Input" placeholder="Type something..." style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }} />
+            <Input variant="bordered" label="Bordered Input" placeholder="Type something..." style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }} />
+            <Input variant="underline" label="With Error" placeholder="Invalid input" error="This field is required" style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }} />
+            <Input variant="bordered" label="Disabled" placeholder="Cannot edit" disabled style={{ maxWidth: '400px' }} />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Switch</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-              <Switch label="Wi-Fi" />
-              <Switch label="Bluetooth" on={true} />
-              <Switch label="Disabled" disabled />
-            </div>
+            <Switch label="Wi-Fi" style={{ marginBottom: 'var(--space-md)' }} />
+            <Switch label="Bluetooth" on={true} style={{ marginBottom: 'var(--space-md)' }} />
+            <Switch label="Disabled" disabled />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Tags</h2>
-            <div style={{ marginBottom: 'var(--space-md)' }}>
-              <Tags>
-                <Tag variant="pill">Design</Tag>
-                <Tag variant="pill" active>Active</Tag>
-                <Tag variant="pill" removable>Removable</Tag>
-                <Tag variant="pill" disabled>Disabled</Tag>
-              </Tags>
-            </div>
-            <div>
-              <Tags>
-                <Tag variant="technical">v2.1.0</Tag>
-                <Tag variant="technical" active>stable</Tag>
-                <Tag variant="technical" removable>beta</Tag>
-              </Tags>
-            </div>
+            <Tags>
+              <Tag variant="pill">Design</Tag>
+              <Tag variant="pill" active>Active</Tag>
+              <Tag variant="pill" removable>Removable</Tag>
+              <Tag variant="pill" disabled>Disabled</Tag>
+            </Tags>
+            <Tags>
+              <Tag variant="technical">v2.1.0</Tag>
+              <Tag variant="technical" active>stable</Tag>
+              <Tag variant="technical" removable>beta</Tag>
+            </Tags>
           </section>
 
           <section style={sectionStyle}>
@@ -398,22 +400,20 @@ function App() {
         </CategorySection>
 
         <CategorySection id="data-display" title="Data Display">
-          <section style={sectionStyle}>
+          <section style={gridSectionStyle}>
             <h2 style={demoTitleStyle}>Cards</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 'var(--space-md)' }}>
-              <Card variant="default" title="Default Card" action="More">
-                <p style={{ fontSize: 'var(--body)', margin: 0 }}>Standard card with header and action.</p>
-              </Card>
-              <Card variant="raised" title="Raised Card">
-                <p style={{ fontSize: 'var(--body)', margin: 0 }}>Elevated surface with background distinction.</p>
-              </Card>
-              <Card variant="compact" title="Compact">
-                <p style={{ fontSize: 'var(--body)', margin: 0 }}>Reduced padding for dense layouts.</p>
-              </Card>
-              <Card variant="technical" title="[ Technical ]">
-                <p style={{ fontSize: 'var(--body)', margin: 0 }}>Monospace technical variant.</p>
-              </Card>
-            </div>
+            <Card variant="default" title="Default Card" action="More">
+              <p style={{ fontSize: 'var(--body)', margin: 0 }}>Standard card with header and action.</p>
+            </Card>
+            <Card variant="raised" title="Raised Card">
+              <p style={{ fontSize: 'var(--body)', margin: 0 }}>Elevated surface with background distinction.</p>
+            </Card>
+            <Card variant="compact" title="Compact">
+              <p style={{ fontSize: 'var(--body)', margin: 0 }}>Reduced padding for dense layouts.</p>
+            </Card>
+            <Card variant="technical" title="[ Technical ]">
+              <p style={{ fontSize: 'var(--body)', margin: 0 }}>Monospace technical variant.</p>
+            </Card>
           </section>
 
           <section style={sectionStyle}>
@@ -447,11 +447,9 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Progress Bar</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
-              <ProgressBar value={65} size="hero" label="Storage" unit="%" status="default" />
-              <ProgressBar value={78} size="standard" label="Memory" unit="%" status="warning" />
-              <ProgressBar value={95} size="compact" label="CPU" unit="%" status="overlimit" />
-            </div>
+            <ProgressBar value={65} size="hero" label="Storage" unit="%" status="default" style={{ marginBottom: 'var(--space-xl)' }} />
+            <ProgressBar value={78} size="standard" label="Memory" unit="%" status="warning" style={{ marginBottom: 'var(--space-xl)' }} />
+            <ProgressBar value={95} size="compact" label="CPU" unit="%" status="overlimit" />
           </section>
         </CategorySection>
 
@@ -471,9 +469,9 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Dropdown</h2>
-            <div style={{ maxWidth: '300px' }}>
-              <Select
-                options={[
+            <Select
+              style={{ maxWidth: '300px' }}
+              options={[
                   { label: 'Option A', value: 'a' },
                   { label: 'Option B', value: 'b' },
                   { label: 'Option C', value: 'c' },
@@ -482,8 +480,7 @@ function App() {
                 value={dropdownValue}
                 onValueChange={setDropdownValue}
                 placeholder="Choose one"
-              />
-            </div>
+            />
           </section>
 
           <section style={sectionStyle}>
@@ -525,28 +522,20 @@ function App() {
             />
           </section>
 
-          <section style={{ marginBottom: 0 }}>
+          <section style={{ ...gridSectionStyle, marginBottom: 0 }}>
             <h2 style={demoTitleStyle}>States</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 'var(--space-lg)' }}>
-              <LoadingState progress={65} label="Syncing" />
-              <ErrorState headline="Connection Lost" message="Unable to reach the server." onRetry={() => {}} />
-              <EmptyState headline="No Devices" description="Pair a device to get started." />
-              <DisabledState headline="Feature Locked" description="Requires premium plan." />
-            </div>
+            <LoadingState progress={65} label="Syncing" />
+            <ErrorState headline="Connection Lost" message="Unable to reach the server." onRetry={() => {}} />
+            <EmptyState headline="No Devices" description="Pair a device to get started." />
+            <DisabledState headline="Feature Locked" description="Requires premium plan." />
           </section>
         </CategorySection>
 
-        <CategorySection id="functional-widgets" title="Functional Widgets">
+        <CategorySection id="widgets" title="Widgets">
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Clocks</h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: 'var(--space-lg)'
-            }}>
-              <Clock type="digital" />
-              <Clock type="gauge" />
-            </div>
+            <Clock type="digital" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-lg)' }} />
+            <Clock type="gauge" />
           </section>
 
           <section style={sectionStyle}>
@@ -556,14 +545,8 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Calendar</h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: 'var(--space-lg)'
-            }}>
-              <Calendar type="compact" />
-              <Calendar type="full" />
-            </div>
+            <Calendar type="compact" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-lg)' }} />
+            <Calendar type="full" />
           </section>
 
           <section style={sectionStyle}>
@@ -573,79 +556,59 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Music Player</h2>
-            <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-              <MusicPlayer />
-            </div>
+            <MusicPlayer style={{ maxWidth: '400px', margin: '0 auto' }} />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Photo Carousel</h2>
             <PhotoCarousel />
           </section>
-        </CategorySection>
 
-        <CategorySection id="utility-widgets" title="Utility Widgets">
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Caffeinate</h2>
-            <div style={{ maxWidth: '400px' }}>
-              <Caffeinate />
-            </div>
+            <Caffeinate style={{ maxWidth: '400px' }} />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Clipboard</h2>
-            <div style={{ maxWidth: '400px' }}>
-              <Clipboard />
-            </div>
+            <Clipboard style={{ maxWidth: '400px' }} />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Pomodoro</h2>
-            <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-              <Pomodoro />
-            </div>
+            <Pomodoro style={{ maxWidth: '400px', margin: '0 auto' }} />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Walkie Talkie</h2>
-            <div style={{ maxWidth: '300px', margin: '0 auto' }}>
-              <WalkieTalkie />
-            </div>
+            <WalkieTalkie style={{ maxWidth: '300px', margin: '0 auto' }} />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Sun Dial</h2>
-            <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-              <SunDial />
-            </div>
+            <SunDial style={{ maxWidth: '400px', margin: '0 auto' }} />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Age Motion</h2>
-            <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-              <AgeMotion />
-            </div>
+            <AgeMotion style={{ maxWidth: '400px', margin: '0 auto' }} />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Chrono</h2>
-            <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-              <Chrono />
-            </div>
+            <Chrono style={{ maxWidth: '400px', margin: '0 auto' }} />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Spinner</h2>
-            <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-              <Spinner items={spinnerItems} />
-              <div style={{ marginTop: 'var(--space-md)', display: 'flex', gap: 'var(--space-sm)' }}>
-                <Button variant="secondary" size="sm" onClick={() => setSpinnerItems(prev => [...prev.slice(1), prev[0]])}>Rotate Items</Button>
-                <Button variant="ghost" size="sm" onClick={() => setSpinnerItems(['YES', 'NO', 'MAYBE', 'LATER', 'SKIP', 'TRY'])}>Reset</Button>
-              </div>
+            <Spinner items={spinnerItems} style={{ maxWidth: '400px', margin: '0 auto' }} />
+            <div style={{ marginTop: 'var(--space-md)', display: 'flex', gap: 'var(--space-sm)' }}>
+              <Button variant="secondary" size="sm" onClick={() => setSpinnerItems(prev => [...prev.slice(1), prev[0]])}>Rotate Items</Button>
+              <Button variant="ghost" size="sm" onClick={() => setSpinnerItems(['YES', 'NO', 'MAYBE', 'LATER', 'SKIP', 'TRY'])}>Reset</Button>
             </div>
           </section>
 
-          <section style={{ marginBottom: 0 }}>
+          <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>World Clock</h2>
             <WorldClock cities={worldClockCities} />
             <div style={{ marginTop: 'var(--space-md)', display: 'flex', gap: 'var(--space-sm)' }}>
@@ -653,189 +616,215 @@ function App() {
               <Button variant="ghost" size="sm" onClick={() => setWorldClockCities(prev => prev.length > 1 ? prev.slice(0, -1) : prev)}>Remove Last</Button>
             </div>
           </section>
-        </CategorySection>
 
-        <CategorySection id="nothing-widgets-2" title="Nothing Widgets 2.0">
           <section style={sectionStyle}>
-            <div style={{ background: 'var(--widget-bg)', padding: '24px', borderRadius: '24px' }}>
+            <h2 style={demoTitleStyle}>Quick Toggles</h2>
+            <QuickToggle variant="circle" theme="light" label="Active" active style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="circle" theme="light" label="Torch" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 6L17 7M6 18l1-1M6 6l1 1M18 18l-1-1" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" fill="none"/></svg>} />
+            <QuickToggle variant="circle" theme="accent" label="DND" active style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/><line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
+            <QuickToggle variant="circle" theme="light" label="Rotate" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 2v6h-6M3 12a9 9 0 0115-6.7L21 8M3 22v-6h6M21 12a9 9 0 01-15 6.7L3 16" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="pill" theme="dark" label="Hotspot" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 12h.01M8.5 8.5a5 5 0 017 0M5 5a10 10 0 0114 0M19 5a10 10 0 010 14M5 5a10 10 0 000 14" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="pill" theme="dark" label="Bluetooth" active style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/></svg>} />
+            <QuickToggle variant="pill" theme="light" label="Mobile Data" active style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="pill" theme="dark" label="NFC" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="6" y="2" width="12" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/><line x1="10" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
+          </section>
 
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Quick Toggles</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }}>
-                  <QuickToggle variant="circle" theme="light" label="Active" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-                  <QuickToggle variant="circle" theme="light" label="Torch" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 6L17 7M6 18l1-1M6 6l1 1M18 18l-1-1" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" fill="none"/></svg>} />
-                  <QuickToggle variant="circle" theme="accent" label="DND" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/><line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
-                  <QuickToggle variant="circle" theme="light" label="Rotate" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 2v6h-6M3 12a9 9 0 0115-6.7L21 8M3 22v-6h6M21 12a9 9 0 01-15 6.7L3 16" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)' }}>
-                  <QuickToggle variant="pill" theme="dark" label="Hotspot" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 12h.01M8.5 8.5a5 5 0 017 0M5 5a10 10 0 0114 0M19 5a10 10 0 010 14M5 5a10 10 0 000 14" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-                  <QuickToggle variant="pill" theme="dark" label="Bluetooth" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/></svg>} />
-                  <QuickToggle variant="pill" theme="light" label="Mobile Data" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-                  <QuickToggle variant="pill" theme="dark" label="NFC" icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="6" y="2" width="12" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/><line x1="10" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
-                </div>
-              </div>
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Widget Icons</h2>
+            <WidgetIcon theme="dark" size="sm" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <WidgetIcon theme="light" size="md" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} label="Favorite" />
+            <WidgetIcon theme="accent" size="lg" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 1C8.13 1 5 4.13 5 8C5 12.17 8.87 16.24 12 23C15.13 16.24 19 12.17 19 8C19 4.13 15.87 1 12 1Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <WidgetIcon theme="error" size="md" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" fill="none"/><path d="M15 9L9 15M9 9L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
+          </section>
 
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Widget Icons</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', alignItems: 'center' }}>
-                  <WidgetIcon theme="dark" size="sm" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-                  <WidgetIcon theme="light" size="md" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} label="Favorite" />
-                  <WidgetIcon theme="accent" size="lg" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 1C8.13 1 5 4.13 5 8C5 12.17 8.87 16.24 12 23C15.13 16.24 19 12.17 19 8C19 4.13 15.87 1 12 1Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-                  <WidgetIcon theme="error" size="md" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" fill="none"/><path d="M15 9L9 15M9 9L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
-                </div>
-              </div>
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Widget Pills</h2>
+            <WidgetPill theme="light" label="Mobile Data" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <WidgetPill theme="dark" label="Bluetooth" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>} />
+            <WidgetPill theme="accent" label="Calculator" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="10" x2="12" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="14" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="12" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="16" y1="18" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
+            <WidgetPill theme="error" label="Battery Saver" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="5" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="17" y1="10" x2="22" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="17" y1="14" x2="22" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
+          </section>
 
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Widget Pills</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', alignItems: 'center' }}>
-                  <WidgetPill theme="light" label="Mobile Data" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-                  <WidgetPill theme="dark" label="Bluetooth" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>} />
-                  <WidgetPill theme="accent" label="Calculator" icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="10" x2="12" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="14" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="12" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="16" y1="18" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
-                  <WidgetPill theme="error" label="Battery Saver" icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="5" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="17" y1="10" x2="22" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="17" y1="14" x2="22" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
-                </div>
-              </div>
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Glyph Icons</h2>
+            <Glyph type="check" theme="light" size="sm" style={{ display: 'inline-flex' }} />
+            <Glyph type="heart" theme="dark" size="md" style={{ display: 'inline-flex' }} />
+            <Glyph type="play" theme="accent" size="md" style={{ display: 'inline-flex' }} />
+            <Glyph type="wifi" theme="light" size="lg" style={{ display: 'inline-flex' }} />
+            <Glyph type="sun" theme="dark" size="md" style={{ display: 'inline-flex' }} />
+            <Glyph type="moon" theme="light" size="md" style={{ display: 'inline-flex' }} />
+            <Glyph type="volume-up" theme="dark" size="sm" style={{ display: 'inline-flex' }} />
+            <Glyph type="lock" theme="accent" size="md" style={{ display: 'inline-flex' }} />
+          </section>
 
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Glyph Icons (Dot Matrix)</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', alignItems: 'center' }}>
-                  <Glyph type="check" theme="light" size="sm" />
-                  <Glyph type="heart" theme="dark" size="md" />
-                  <Glyph type="play" theme="accent" size="md" />
-                  <Glyph type="wifi" theme="light" size="lg" />
-                  <Glyph type="sun" theme="dark" size="md" />
-                  <Glyph type="moon" theme="light" size="md" />
-                  <Glyph type="volume-up" theme="dark" size="sm" />
-                  <Glyph type="lock" theme="accent" size="md" />
-                </div>
-              </div>
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Steps Widget</h2>
+            <StepsWidget steps={5543} streak={3} streakUnit="DAYS" card style={{ display: 'inline-flex' }} />
+            <StepsWidget steps={5543} streak={3} streakUnit="DAYS" card={{ theme: 'light', title: 'Steps', value: '5,543', subtitle: 'GOAL: 10,000', icon: <Glyph type="check" theme="light" size="sm" /> }} style={{ display: 'inline-flex' }} />
+          </section>
 
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Widget Cards</h3>
-                <WidgetGrid>
-                  <WidgetCard>
-                    <StepsWidget steps={5543} streak={3} streakUnit="DAYS" />
-                  </WidgetCard>
-                  <WidgetCard>
-                    <TimeWidget variant="over-limit" label="Over Limit" value="40" unit="MIN" />
-                  </WidgetCard>
-                  <WidgetCard>
-                    <TimeWidget variant="date" label="TUESDAY" value="GMT+1" />
-                  </WidgetCard>
-                  <WidgetCard>
-                    <CompassWidget heading={45} />
-                  </WidgetCard>
-                  <WidgetCard>
-                    <WeatherWidget temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" />
-                  </WidgetCard>
-                  <WidgetCard>
-                    <DotMatrix rows={8} cols={8} dotSize="sm" theme="dark" />
-                  </WidgetCard>
-                </WidgetGrid>
-              </div>
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Time Widget</h2>
+            <TimeWidget variant="over-limit" label="Over Limit" value="40" unit="MIN" card style={{ display: 'inline-flex' }} />
+            <TimeWidget variant="date" label="TUESDAY" value="GMT+1" card style={{ display: 'inline-flex' }} />
+            <TimeWidget variant="over-limit" label="DND" value="40" unit="MIN" card={{ theme: 'accent', title: 'DND', value: '40', subtitle: 'MIN', icon: <Glyph type="bell" theme="accent" size="sm" />, iconPosition: 'top' }} style={{ display: 'inline-flex' }} />
+            <TimeWidget variant="date" label="TIMER" value="16:32" card={{ theme: 'dark', title: 'TIMER', value: '16:32', icon: <Glyph type="clock" theme="dark" size="sm" />, iconPosition: 'bottom' }} style={{ display: 'inline-flex' }} />
+            <TimeWidget variant="over-limit-accent" label="Over Limit" value="30m" subtitle="16H 32M" card={{ size: 'wide' }} style={{ display: 'inline-flex' }} />
+            <TimeWidget variant="over-limit" label="DND" value="40" unit="MIN" card={{ size: 'wide', theme: 'accent', title: 'DND', value: '40', subtitle: 'MIN', icon: <Glyph type="bell" theme="accent" size="sm" />, iconPosition: 'right' }} style={{ display: 'inline-flex' }} />
+          </section>
 
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Enhanced Widget Cards</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', alignItems: 'flex-start' }}>
-                  <WidgetCard 
-                    theme="light" 
-                    title="Steps" 
-                    value="5,543" 
-                    subtitle="GOAL: 10,000"
-                    icon={<Glyph type="check" theme="light" size="sm" />}
-                  />
-                  <WidgetCard 
-                    theme="dark" 
-                    title="WEATHER" 
-                    value="30°" 
-                    subtitle="PARTLY CLOUDY"
-                    icon={<Glyph type="sun" theme="dark" size="sm" />}
-                    iconPosition="top"
-                  />
-                  <WidgetCard 
-                    theme="accent" 
-                    title="DND" 
-                    value="40" 
-                    subtitle="MIN"
-                    icon={<Glyph type="bell" theme="accent" size="sm" />}
-                    iconPosition="top"
-                  />
-                  <WidgetCard 
-                    theme="dark" 
-                    title="TIMER" 
-                    value="16:32" 
-                    icon={<Glyph type="clock" theme="dark" size="sm" />}
-                    iconPosition="bottom"
-                  />
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', marginTop: 'var(--widget-gap)', alignItems: 'flex-start' }}>
-                  <WidgetCard 
-                    size="wide"
-                    theme="dark" 
-                    title="WEATHER" 
-                    value="30°" 
-                    subtitle="PARTLY CLOUDY"
-                    icon={<Glyph type="sun" theme="dark" size="sm" />}
-                    iconPosition="left"
-                  />
-                  <WidgetCard 
-                    size="wide"
-                    theme="accent" 
-                    title="DND" 
-                    value="40" 
-                    subtitle="MIN"
-                    icon={<Glyph type="bell" theme="accent" size="sm" />}
-                    iconPosition="right"
-                  />
-                </div>
-              </div>
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Compass Widget</h2>
+            <CompassWidget heading={45} card />
+          </section>
 
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Wide Widgets</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--widget-gap)' }}>
-                  <WidgetCard size="wide">
-                    <ActivityWidget days={[
-                      { label: 'SUN', value: '9H26', markers: [1, 0, 1] },
-                      { label: 'MON', value: '9H14', markers: [1, 1, 0] },
-                      { label: 'TUE', value: '8H52', markers: [0, 1, 1] },
-                      { label: 'WED', value: '7H30', markers: [1, 0, 0] },
-                      { label: 'THU', value: '10H05', markers: [1, 1, 1] },
-                      { label: 'FRI', value: '6H48', markers: [0, 0, 1] },
-                      { label: 'SAT', value: '5H15', markers: [0, 1, 0] }
-                    ]} />
-                  </WidgetCard>
-                  <WidgetCard size="wide">
-                    <WeatherWidget variant="wide" temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" forecast={[
-                      { day: 'MON', hi: '32°', lo: '18°' },
-                      { day: 'TUE', hi: '28°', lo: '15°' },
-                      { day: 'WED', hi: '33°', lo: '20°' },
-                      { day: 'THU', hi: '30°', lo: '17°' },
-                      { day: 'FRI', hi: '27°', lo: '14°' }
-                    ]} />
-                  </WidgetCard>
-                  <WidgetCard size="wide">
-                    <TimeWidget variant="over-limit-accent" label="Over Limit" value="30m" subtitle="16H 32M" />
-                  </WidgetCard>
-                </div>
-              </div>
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Weather Widget</h2>
+            <WeatherWidget temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" card style={{ display: 'inline-flex' }} />
+            <WeatherWidget temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" card={{ theme: 'dark', title: 'WEATHER', value: '30°', subtitle: 'PARTLY CLOUDY', icon: <Glyph type="sun" theme="dark" size="sm" />, iconPosition: 'top' }} style={{ display: 'inline-flex' }} />
+            <WeatherWidget variant="wide" temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" forecast={[
+              { day: 'MON', hi: '32°', lo: '18°' },
+              { day: 'TUE', hi: '28°', lo: '15°' },
+              { day: 'WED', hi: '33°', lo: '20°' },
+              { day: 'THU', hi: '30°', lo: '17°' },
+              { day: 'FRI', hi: '27°', lo: '14°' }
+            ]} card={{ size: 'wide' }} />
+            <WeatherWidget temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" card={{ size: 'wide', theme: 'dark', title: 'WEATHER', value: '30°', subtitle: 'PARTLY CLOUDY', icon: <Glyph type="sun" theme="dark" size="sm" />, iconPosition: 'left' }} />
+          </section>
 
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>Dot Matrix Showcase</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--widget-gap)', alignItems: 'center' }}>
-                  <DotMatrix rows={5} cols={5} dotSize="md" theme="light" />
-                  <DotMatrix rows={8} cols={8} dotSize="sm" theme="dark" pattern="glyph" />
-                  <DotMatrix rows={10} cols={10} dotSize="sm" theme="dark" activeDots={[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[0,9],[1,8],[2,7],[3,6],[4,5],[5,4],[6,3],[7,2],[8,1],[9,0]]} />
-                </div>
-              </div>
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Activity Widget</h2>
+            <ActivityWidget days={[
+              { label: 'SUN', value: '9H26', markers: [1, 0, 1] },
+              { label: 'MON', value: '9H14', markers: [1, 1, 0] },
+              { label: 'TUE', value: '8H52', markers: [0, 1, 1] },
+              { label: 'WED', value: '7H30', markers: [1, 0, 0] },
+              { label: 'THU', value: '10H05', markers: [1, 1, 1] },
+              { label: 'FRI', value: '6H48', markers: [0, 0, 1] },
+              { label: 'SAT', value: '5H15', markers: [0, 1, 0] }
+            ]} card={{ size: 'wide' }} />
+          </section>
 
-              <div>
-                <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-md)' }}>
-                  Figma 2.0 完整展示
-                </h3>
-                <div style={{ background: 'var(--widget-bg)', padding: '24px', borderRadius: '24px', overflow: 'auto' }}>
-                  <NothingWidgets />
-                </div>
-              </div>
-            </div>
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Dot Matrix</h2>
+            <DotMatrix rows={5} cols={5} dotSize="md" theme="light" style={{ display: 'inline-flex' }} />
+            <DotMatrix rows={8} cols={8} dotSize="sm" theme="dark" pattern="glyph" style={{ display: 'inline-flex' }} />
+            <DotMatrix rows={10} cols={10} dotSize="sm" theme="dark" style={{ display: 'inline-flex' }} activeDots={[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[0,9],[1,8],[2,7],[3,6],[4,5],[5,4],[6,3],[7,2],[8,1],[9,0]]} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Quick Settings Icons</h2>
+            <Home style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DarkMode style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Remote style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Subtitle style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Wallet style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Location style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DarkMode1 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Connectivity Icons</h2>
+            <NoSignam style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DownArrow style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DoNotDisturb style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><QrCode style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Storage style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Share style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><NoConnection style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — System Icons</h2>
+            <Record style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><FullNetwork style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Shield style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Glyphs style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Aeroplane style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Chart style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Video style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Media & Device Icons</h2>
+            <Temp style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><AutoRotate style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Info style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><MicOff style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><NoSim style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Watch style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Record1 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Utility Icons</h2>
+            <AccessCamera style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Dots style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Filter style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Home1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Cast style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DoNotDisturb1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><ArrowDown style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — More Icons</h2>
+            <QrCode1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Subtitle1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Scan style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Cast1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><BatteryPlus style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Light Pills</h2>
+            <Dim style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Dim1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Calculator style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><BatterySaver style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Dark Pills</h2>
+            <HomeControls style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Nfc style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Bedtime style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DarkMode2 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Accent Pills</h2>
+            <FigmaWeather style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Remote1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Share1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Hotspot style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — More Pills</h2>
+            <Share2 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Dim2 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DataSaver style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Torch style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Share3 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Circular Widgets</h2>
+            <Record2 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><LocationAccess style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><WatchAnalog style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><FigmaCompass style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><TempControl style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><AutoRotate1 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Active Widgets</h2>
+            <Active style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Watch1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Active1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Recording style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Glyphs1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><LocationAccess1 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Glyph Widgets</h2>
+            <Glyphs2 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Campus style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Location1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Flash style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Weather1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><MicAccess style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Pair & Limit Widgets</h2>
+            <PairNewDevice style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Overlimit style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><FigmaMusicPlayer style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><TotalTime style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Counter Widgets</h2>
+            <StepsCounter style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><OverLimit1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><LoadingBar1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><FigmaCard style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Card Widgets</h2>
+            <Card1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Dots3 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Play style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><NothingEar style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Date & Music Widgets</h2>
+            <Card2 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><FigmaDate style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Date1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Counter style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Device Widgets</h2>
+            <Music style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Device style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Mode style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DoubleDown style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><SelectDevice style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Wide Activity Widget</h2>
+            <Card3 style={{ background: 'var(--widget-bg)', padding: '24px', borderRadius: '24px', overflow: 'auto' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Wide Tracker Widget</h2>
+            <ActivityTracker style={{ background: 'var(--widget-bg)', padding: '24px', borderRadius: '24px', overflow: 'auto' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Wide Time Widget</h2>
+            <FigmaTime style={{ background: 'var(--widget-bg)', padding: '24px', borderRadius: '24px', overflow: 'auto' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Wide Weather Widget</h2>
+            <Weather2 style={{ background: 'var(--widget-bg)', padding: '24px', borderRadius: '24px', overflow: 'auto' }} />
+          </section>
+
+          <section style={{ marginBottom: 0 }}>
+            <h2 style={demoTitleStyle}>Figma 2.0 — Wide Wedget</h2>
+            <Wedget style={{ background: 'var(--widget-bg)', padding: '24px', borderRadius: '24px', overflow: 'auto' }} />
           </section>
         </CategorySection>
 
@@ -844,16 +833,15 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Accordion</h2>
-            <div style={{ maxWidth: '500px' }}>
-              <Accordion
-                type="single"
-                items={[
-                  { id: '1', title: 'What is Nothing UI?', content: 'A design system built with purposeful restraint and technical precision.' },
-                  { id: '2', title: 'How do I install it?', content: 'Install via npm: npm install nothing-ui-kit' },
-                  { id: '3', title: 'Is it accessible?', content: 'Yes, all components follow WAI-ARIA guidelines with full keyboard navigation.' }
-                ]}
-              />
-            </div>
+            <Accordion
+              type="single"
+              style={{ maxWidth: '500px' }}
+              items={[
+                { id: '1', title: 'What is Nothing UI?', content: 'A design system built with purposeful restraint and technical precision.' },
+                { id: '2', title: 'How do I install it?', content: 'Install via npm: npm install nothing-ui-kit' },
+                { id: '3', title: 'Is it accessible?', content: 'Yes, all components follow WAI-ARIA guidelines with full keyboard navigation.' }
+              ]}
+            />
           </section>
 
           <section style={sectionStyle}>
@@ -875,11 +863,9 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Checkbox</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-              <Checkbox label="Unchecked" />
-              <Checkbox label="Checked" defaultChecked />
-              <Checkbox label="Indeterminate" checked="indeterminate" />
-            </div>
+            <Checkbox label="Unchecked" style={{ display: 'block', marginBottom: 'var(--space-md)' }} />
+            <Checkbox label="Checked" defaultChecked style={{ display: 'block', marginBottom: 'var(--space-md)' }} />
+            <Checkbox label="Indeterminate" checked="indeterminate" style={{ display: 'block' }} />
           </section>
 
           <section style={sectionStyle}>
@@ -899,31 +885,29 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Slider</h2>
-            <div style={{ maxWidth: '400px' }}>
-              <Slider
-                value={sliderValue}
-                onValueChange={setSliderValue}
-                label="Volume"
-                showValue
-              />
-            </div>
+            <Slider
+              value={sliderValue}
+              onValueChange={setSliderValue}
+              label="Volume"
+              showValue
+              style={{ maxWidth: '400px' }}
+            />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Tabs</h2>
-            <div style={{ maxWidth: '500px' }}>
-              <Tabs
-                items={[
-                  { value: 'account', label: 'Account' },
-                  { value: 'password', label: 'Password' },
-                  { value: 'settings', label: 'Settings' }
-                ]}
-              >
-                <TabPanel value="account">Manage your account settings and preferences.</TabPanel>
-                <TabPanel value="password">Change your password and security options.</TabPanel>
-                <TabPanel value="settings">Configure application settings and notifications.</TabPanel>
-              </Tabs>
-            </div>
+            <Tabs
+              style={{ maxWidth: '500px' }}
+              items={[
+                { value: 'account', label: 'Account' },
+                { value: 'password', label: 'Password' },
+                { value: 'settings', label: 'Settings' }
+              ]}
+            >
+              <TabPanel value="account">Manage your account settings and preferences.</TabPanel>
+              <TabPanel value="password">Change your password and security options.</TabPanel>
+              <TabPanel value="settings">Configure application settings and notifications.</TabPanel>
+            </Tabs>
           </section>
 
           <section style={sectionStyle}>
@@ -935,18 +919,14 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Textarea</h2>
-            <div style={{ maxWidth: '400px' }}>
-              <Textarea label="Description" placeholder="Type your message..." autoResize minRows={3} />
-            </div>
+            <Textarea label="Description" placeholder="Type your message..." autoResize minRows={3} style={{ maxWidth: '400px' }} />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Label</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-              <Label>Normal Label</Label>
-              <Label required>Required Label</Label>
-              <Label disabled>Disabled Label</Label>
-            </div>
+            <Label style={{ display: 'block', marginBottom: 'var(--space-md)' }}>Normal Label</Label>
+            <Label required style={{ display: 'block', marginBottom: 'var(--space-md)' }}>Required Label</Label>
+            <Label disabled style={{ display: 'block' }}>Disabled Label</Label>
           </section>
 
           <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', color: 'var(--text-primary)' }}>Data Display</h3>
@@ -972,21 +952,17 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Badge</h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', alignItems: 'center' }}>
-              <Badge variant="default">Default</Badge>
-              <Badge variant="secondary">Secondary</Badge>
-              <Badge variant="destructive">Destructive</Badge>
-              <Badge variant="outline">Outline</Badge>
-            </div>
+            <Badge variant="default" style={{ display: 'inline-flex', marginRight: 'var(--space-md)' }}>Default</Badge>
+            <Badge variant="secondary" style={{ display: 'inline-flex', marginRight: 'var(--space-md)' }}>Secondary</Badge>
+            <Badge variant="destructive" style={{ display: 'inline-flex', marginRight: 'var(--space-md)' }}>Destructive</Badge>
+            <Badge variant="outline" style={{ display: 'inline-flex' }}>Outline</Badge>
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Avatar</h2>
-            <div style={{ display: 'flex', gap: 'var(--space-md)', alignItems: 'center' }}>
-              <Avatar size="sm" fallback="SM" />
-              <Avatar size="md" fallback="MD" />
-              <Avatar size="lg" fallback="LG" />
-            </div>
+            <Avatar size="sm" fallback="SM" style={{ display: 'inline-flex', marginRight: 'var(--space-md)' }} />
+            <Avatar size="md" fallback="MD" style={{ display: 'inline-flex', marginRight: 'var(--space-md)' }} />
+            <Avatar size="lg" fallback="LG" style={{ display: 'inline-flex' }} />
           </section>
 
           <section style={sectionStyle}>
@@ -996,18 +972,14 @@ function App() {
               <Separator orientation="vertical" decorative />
               <span style={{ fontSize: 'var(--body)' }}>Right</span>
             </div>
-            <div style={{ marginTop: 'var(--space-md)' }}>
-              <Separator orientation="horizontal" decorative />
-            </div>
+            <Separator orientation="horizontal" decorative style={{ marginTop: 'var(--space-md)' }} />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Skeleton</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-              <Skeleton variant="text" width="200px" height="16px" />
-              <Skeleton variant="circular" width="48px" height="48px" />
-              <Skeleton variant="rectangular" width="100%" height="80px" />
-            </div>
+            <Skeleton variant="text" width="200px" height="16px" style={{ display: 'block', marginBottom: 'var(--space-md)' }} />
+            <Skeleton variant="circular" width="48px" height="48px" style={{ display: 'block', marginBottom: 'var(--space-md)' }} />
+            <Skeleton variant="rectangular" width="100%" height="80px" style={{ display: 'block' }} />
           </section>
 
           <section style={sectionStyle}>
@@ -1033,14 +1005,12 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Alert</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', maxWidth: '500px' }}>
-              <Alert title="Heads up!" variant="default">
-                You can add components to your app using the CLI.
-              </Alert>
-              <Alert title="Error" variant="destructive">
-                Your session has expired. Please log in again.
-              </Alert>
-            </div>
+            <Alert title="Heads up!" variant="default" style={{ maxWidth: '500px', marginBottom: 'var(--space-md)' }}>
+              You can add components to your app using the CLI.
+            </Alert>
+            <Alert title="Error" variant="destructive" style={{ maxWidth: '500px' }}>
+              Your session has expired. Please log in again.
+            </Alert>
           </section>
 
           <section style={sectionStyle}>
@@ -1058,24 +1028,14 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>ProgressBar — Slim & Indeterminate</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
-              <div>
-                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Slim</div>
-                <ProgressBar value={65} variant="slim" />
-              </div>
-              <div>
-                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Slim — Good</div>
-                <ProgressBar value={80} variant="slim" status="good" />
-              </div>
-              <div>
-                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Indeterminate</div>
-                <ProgressBar value={0} indeterminate />
-              </div>
-              <div>
-                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Slim Indeterminate</div>
-                <ProgressBar value={0} variant="slim" indeterminate />
-              </div>
-            </div>
+            <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Slim</div>
+            <ProgressBar value={65} variant="slim" style={{ marginBottom: 'var(--space-xl)' }} />
+            <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Slim — Good</div>
+            <ProgressBar value={80} variant="slim" status="good" style={{ marginBottom: 'var(--space-xl)' }} />
+            <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Indeterminate</div>
+            <ProgressBar value={0} indeterminate style={{ marginBottom: 'var(--space-xl)' }} />
+            <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Slim Indeterminate</div>
+            <ProgressBar value={0} variant="slim" indeterminate />
           </section>
 
           <h3 style={{ ...demoTitleStyle, fontSize: 'var(--caption)', color: 'var(--text-primary)' }}>Advanced Interaction</h3>
@@ -1151,22 +1111,21 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Select</h2>
-            <div style={{ maxWidth: '300px' }}>
-              <Select
-                label="Choose a fruit"
-                placeholder="Select..."
-                searchable
-                value={selectValue}
-                onValueChange={setSelectValue}
-                options={[
-                  { value: 'apple', label: 'Apple' },
-                  { value: 'banana', label: 'Banana' },
-                  { value: 'cherry', label: 'Cherry' },
-                  { value: 'date', label: 'Date' },
-                  { value: 'elderberry', label: 'Elderberry' }
-                ]}
-              />
-            </div>
+            <Select
+              label="Choose a fruit"
+              placeholder="Select..."
+              searchable
+              value={selectValue}
+              onValueChange={setSelectValue}
+              style={{ maxWidth: '300px' }}
+              options={[
+                { value: 'apple', label: 'Apple' },
+                { value: 'banana', label: 'Banana' },
+                { value: 'cherry', label: 'Cherry' },
+                { value: 'date', label: 'Date' },
+                { value: 'elderberry', label: 'Elderberry' }
+              ]}
+            />
           </section>
 
           <section style={sectionStyle}>
@@ -1178,56 +1137,44 @@ function App() {
               side="right"
               title="Settings Panel"
             >
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
-                <Switch label="Dark Mode" on={theme === 'dark'} />
-                <Switch label="Notifications" on={true} />
-                <Switch label="Auto-update" />
-              </div>
+              <Switch label="Dark Mode" on={theme === 'dark'} style={{ display: 'block', marginBottom: 'var(--space-lg)' }} />
+              <Switch label="Notifications" on={true} style={{ display: 'block', marginBottom: 'var(--space-lg)' }} />
+              <Switch label="Auto-update" style={{ display: 'block' }} />
             </Sheet>
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Toggle / Toggle Group</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
-              <div>
-                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Single Toggle</div>
-                <Toggle>Toggle</Toggle>
-              </div>
-              <div>
-                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Toggle Group</div>
-                <ToggleGroup
-                  value={toggleGroupValue}
-                  onValueChange={setToggleGroupValue}
-                  variant="outline"
-                >
-                  <Toggle value="bold">Bold</Toggle>
-                  <Toggle value="italic">Italic</Toggle>
-                  <Toggle value="underline">Underline</Toggle>
-                </ToggleGroup>
-              </div>
-            </div>
+            <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Single Toggle</div>
+            <Toggle style={{ marginBottom: 'var(--space-lg)' }}>Toggle</Toggle>
+            <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>Toggle Group</div>
+            <ToggleGroup
+              value={toggleGroupValue}
+              onValueChange={setToggleGroupValue}
+              variant="outline"
+            >
+              <Toggle value="bold">Bold</Toggle>
+              <Toggle value="italic">Italic</Toggle>
+              <Toggle value="underline">Underline</Toggle>
+            </ToggleGroup>
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Sonner (Toast)</h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
-              <Button variant="secondary" size="sm" onClick={() => addToast('default')}>Default</Button>
-              <Button variant="secondary" size="sm" onClick={() => addToast('success')}>Success</Button>
-              <Button variant="secondary" size="sm" onClick={() => addToast('error')}>Error</Button>
-              <Button variant="secondary" size="sm" onClick={() => addToast('warning')}>Warning</Button>
-            </div>
+            <Button variant="secondary" size="sm" onClick={() => addToast('default')} style={{ display: 'inline-flex', marginRight: 'var(--space-sm)', marginBottom: 'var(--space-sm)' }}>Default</Button>
+            <Button variant="secondary" size="sm" onClick={() => addToast('success')} style={{ display: 'inline-flex', marginRight: 'var(--space-sm)', marginBottom: 'var(--space-sm)' }}>Success</Button>
+            <Button variant="secondary" size="sm" onClick={() => addToast('error')} style={{ display: 'inline-flex', marginRight: 'var(--space-sm)', marginBottom: 'var(--space-sm)' }}>Error</Button>
+            <Button variant="secondary" size="sm" onClick={() => addToast('warning')} style={{ display: 'inline-flex', marginBottom: 'var(--space-sm)' }}>Warning</Button>
             <Sonner toasts={toasts} onDismiss={dismissToast} position="top-right" />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Collapsible</h2>
-            <div style={{ maxWidth: '500px' }}>
-              <Collapsible trigger="Show Details">
-                <div style={{ padding: 'var(--space-md)', fontSize: 'var(--body)', color: 'var(--text-secondary)' }}>
-                  These are the hidden details that can be expanded or collapsed by clicking the trigger above.
-                </div>
-              </Collapsible>
-            </div>
+            <Collapsible trigger="Show Details" style={{ maxWidth: '500px' }}>
+              <div style={{ padding: 'var(--space-md)', fontSize: 'var(--body)', color: 'var(--text-secondary)' }}>
+                These are the hidden details that can be expanded or collapsed by clicking the trigger above.
+              </div>
+            </Collapsible>
           </section>
 
           <section style={sectionStyle}>
@@ -1248,11 +1195,11 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Command</h2>
-            <div style={{ maxWidth: '500px' }}>
-              <Command
-                open={commandOpen}
-                onOpenChange={setCommandOpen}
-                groups={[
+            <Command
+              open={commandOpen}
+              onOpenChange={setCommandOpen}
+              style={{ maxWidth: '500px' }}
+              groups={[
                   {
                     heading: 'Suggestions',
                     items: [
@@ -1270,14 +1217,12 @@ function App() {
                     ]
                   }
                 ]}
-              />
-            </div>
+            />
           </section>
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Form</h2>
-            <div style={{ maxWidth: '400px' }}>
-              <Form onSubmit={() => addToast('success')}>
+            <Form onSubmit={() => addToast('success')} style={{ maxWidth: '400px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
                   <Input variant="underline" label="Name" placeholder="Your name" />
                   <Input variant="underline" label="Email" placeholder="you@example.com" />
@@ -1294,7 +1239,6 @@ function App() {
                   }}>Submit</button>
                 </div>
               </Form>
-            </div>
           </section>
 
           <section style={sectionStyle}>
@@ -1363,9 +1307,9 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Sidebar</h2>
-            <div style={{ maxWidth: '240px' }}>
-              <Sidebar
-                items={[
+            <Sidebar
+              style={{ maxWidth: '240px' }}
+              items={[
                   { label: 'Dashboard', active: true, icon: <span>◉</span> },
                   { label: 'Analytics', icon: <span>◎</span>, badge: 3 },
                   { label: 'Reports', icon: <span>◈</span> },
@@ -1374,13 +1318,11 @@ function App() {
                 ]}
                 header={<span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--label)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Nothing UI</span>}
               />
-            </div>
           </section>
 
           <section style={{ marginBottom: 0 }}>
             <h2 style={demoTitleStyle}>Aspect Ratio</h2>
-            <div style={{ maxWidth: '500px' }}>
-              <AspectRatio ratio={16 / 9}>
+            <AspectRatio ratio={16 / 9} style={{ maxWidth: '500px' }}>
                 <div style={{
                   width: '100%',
                   height: '100%',
@@ -1396,7 +1338,6 @@ function App() {
                   16:9
                 </div>
               </AspectRatio>
-            </div>
           </section>
         </CategorySection>
       </div>

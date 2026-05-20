@@ -11,6 +11,7 @@ interface SliderProps {
   disabled?: boolean
   label?: string
   showValue?: boolean
+  style?: React.CSSProperties
 }
 
 const Slider: React.FC<SliderProps> = ({
@@ -22,7 +23,8 @@ const Slider: React.FC<SliderProps> = ({
   step = 1,
   disabled = false,
   label,
-  showValue = false
+  showValue = false,
+  style
 }) => {
   const [internalValue, setInternalValue] = useState(defaultValue ?? min)
   const currentValue = controlledValue !== undefined ? controlledValue : internalValue
@@ -105,7 +107,7 @@ const Slider: React.FC<SliderProps> = ({
   ].filter(Boolean).join(' ')
 
   return (
-    <div className={containerClassNames}>
+    <div className={containerClassNames} style={style}>
       {(label || showValue) && (
         <div className="nothing-slider__header">
           {label && <span className="nothing-slider__label">{label}</span>}

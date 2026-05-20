@@ -52,6 +52,7 @@ interface GlyphProps {
   size?: 'sm' | 'md' | 'lg'
   theme?: 'light' | 'dark' | 'accent'
   className?: string
+  style?: React.CSSProperties
 }
 
 const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots: [number, number][]; dimDots?: [number, number][] }> = {
@@ -633,12 +634,13 @@ const Glyph: React.FC<GlyphProps> = ({
   type,
   size = 'md',
   theme = 'dark',
-  className
+  className,
+  style
 }) => {
   const pattern = glyphPatterns[type] || glyphPatterns['circle']
   
   return (
-    <div className={`nothing-glyph nothing-glyph--${size} nothing-glyph--${theme} ${className || ''}`}>
+    <div className={`nothing-glyph nothing-glyph--${size} nothing-glyph--${theme} ${className || ''}`} style={style}>
       <DotMatrix
         rows={pattern.rows}
         cols={pattern.cols}

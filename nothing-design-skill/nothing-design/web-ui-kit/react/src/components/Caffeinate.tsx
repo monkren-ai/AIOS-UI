@@ -13,6 +13,7 @@ interface CaffeinateProps {
   maxCaffeine?: number
   halfLifeMinutes?: number
   thresholdMg?: number
+  style?: React.CSSProperties
 }
 
 const drinkOptions = [
@@ -27,7 +28,8 @@ const Caffeinate: React.FC<CaffeinateProps> = ({
   totalSegments = 10,
   maxCaffeine = 400,
   halfLifeMinutes = 300,
-  thresholdMg = 50
+  thresholdMg = 50,
+  style
 }) => {
   const [drinks, setDrinks] = useState<Drink[]>([])
   const [now, setNow] = useState(Date.now())
@@ -84,7 +86,7 @@ const Caffeinate: React.FC<CaffeinateProps> = ({
   }
 
   return (
-    <div className={`nothing-caffeinate ${statusClass}`}>
+    <div className={`nothing-caffeinate ${statusClass}`} style={style}>
       <div className="caffeinate-header">
         <div className="caffeinate-level">{caffeine}</div>
         <div className="caffeinate-unit">mg</div>

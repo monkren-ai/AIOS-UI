@@ -8,6 +8,7 @@ interface CheckboxProps {
   disabled?: boolean
   label?: string
   id?: string
+  style?: React.CSSProperties
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
@@ -16,7 +17,8 @@ const Checkbox: React.FC<CheckboxProps> = ({
   onCheckedChange,
   disabled = false,
   label,
-  id
+  id,
+  style
 }) => {
   const [internalChecked, setInternalChecked] = useState<boolean | 'indeterminate'>(defaultChecked)
   const isControlled = controlledChecked !== undefined
@@ -56,7 +58,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   const inputId = id ?? undefined
 
   return (
-    <label className={wrapperClassNames}>
+    <label className={wrapperClassNames} style={style}>
       <input
         ref={inputRef}
         className="nothing-checkbox__input"

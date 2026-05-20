@@ -10,6 +10,7 @@ interface CardProps {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void
   footer?: React.ReactNode
   children: React.ReactNode
+  style?: React.CSSProperties
 }
 
 const Card: React.FC<CardProps> = ({
@@ -21,7 +22,8 @@ const Card: React.FC<CardProps> = ({
   onAction,
   onClick,
   footer,
-  children
+  children,
+  style
 }) => {
   const classNames = [
     'nothing-card',
@@ -49,6 +51,7 @@ const Card: React.FC<CardProps> = ({
       tabIndex={interactive && !disabled ? 0 : undefined}
       onClick={interactive ? handleClick : undefined}
       onKeyDown={interactive ? handleKeyDown : undefined}
+      style={style}
     >
       {(title || action) && (
         <div className="nothing-card__header">

@@ -8,6 +8,7 @@ interface TagProps {
   children: React.ReactNode
   onClick?: () => void
   onRemove?: () => void
+  style?: React.CSSProperties
 }
 
 const Tag: React.FC<TagProps> = ({
@@ -17,7 +18,8 @@ const Tag: React.FC<TagProps> = ({
   disabled = false,
   children,
   onClick,
-  onRemove
+  onRemove,
+  style
 }) => {
   const classNames = [
     'nothing-tag',
@@ -60,6 +62,7 @@ const Tag: React.FC<TagProps> = ({
       tabIndex={disabled ? -1 : 0}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
+      style={style}
     >
       {children}
       {removable && (
@@ -79,11 +82,12 @@ const Tag: React.FC<TagProps> = ({
 
 interface TagsProps {
   children: React.ReactNode
+  style?: React.CSSProperties
 }
 
-const Tags: React.FC<TagsProps> = ({ children }) => {
+const Tags: React.FC<TagsProps> = ({ children, style }) => {
   return (
-    <div className="nothing-tags">
+    <div className="nothing-tags" style={style}>
       {children}
     </div>
   )

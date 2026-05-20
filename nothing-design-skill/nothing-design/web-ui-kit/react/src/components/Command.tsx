@@ -22,6 +22,7 @@ interface CommandProps {
   emptyMessage?: string
   open?: boolean
   onOpenChange?: (open: boolean) => void
+  style?: React.CSSProperties
 }
 
 const Command: React.FC<CommandProps> = ({
@@ -29,7 +30,8 @@ const Command: React.FC<CommandProps> = ({
   placeholder = 'Type a command...',
   emptyMessage = 'No results found.',
   open: controlledOpen,
-  onOpenChange
+  onOpenChange,
+  style
 }) => {
   const [internalOpen, setInternalOpen] = useState(false)
   const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen
@@ -121,6 +123,7 @@ const Command: React.FC<CommandProps> = ({
       role="dialog"
       aria-label="Command palette"
       onKeyDown={handleKeyDown}
+      style={style}
     >
       <input
         className="nothing-command__input"

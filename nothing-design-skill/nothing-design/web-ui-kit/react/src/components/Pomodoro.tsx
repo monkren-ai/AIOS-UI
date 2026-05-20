@@ -6,13 +6,15 @@ interface PomodoroProps {
   breakMinutes?: number
   totalSegments?: number
   updateInterval?: number
+  style?: React.CSSProperties
 }
 
 const Pomodoro: React.FC<PomodoroProps> = ({
   workMinutes = 25,
   breakMinutes = 5,
   totalSegments = 25,
-  updateInterval = 1000
+  updateInterval = 1000,
+  style
 }) => {
   const [isWorkPhase, setIsWorkPhase] = useState(true)
   const [isRunning, setIsRunning] = useState(false)
@@ -65,7 +67,7 @@ const Pomodoro: React.FC<PomodoroProps> = ({
   const phaseClass = isWorkPhase ? 'work' : 'break'
 
   return (
-    <div className={`nothing-pomodoro ${phaseClass}`}>
+    <div className={`nothing-pomodoro ${phaseClass}`} style={style}>
       <div className="pomodoro-header">
         <div className="pomodoro-title">Pomodoro</div>
         <div className="pomodoro-count">{completedCount} completed</div>

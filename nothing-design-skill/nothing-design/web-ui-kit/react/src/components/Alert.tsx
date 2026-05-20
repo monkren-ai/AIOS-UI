@@ -5,13 +5,15 @@ interface AlertProps {
   title?: string
   children: React.ReactNode
   icon?: React.ReactNode
+  style?: React.CSSProperties
 }
 
 const Alert: React.FC<AlertProps> = ({
   variant = 'default',
   title,
   children,
-  icon
+  icon,
+  style
 }) => {
   const classNames = [
     'nothing-alert',
@@ -22,6 +24,7 @@ const Alert: React.FC<AlertProps> = ({
     <div
       className={classNames}
       role={variant === 'destructive' ? 'alert' : 'status'}
+      style={style}
     >
       {icon && (
         <div className="nothing-alert__icon" aria-hidden="true">

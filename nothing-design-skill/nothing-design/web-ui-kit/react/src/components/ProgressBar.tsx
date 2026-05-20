@@ -15,6 +15,7 @@ interface ProgressBarProps {
   status?: ProgressStatus
   showReadout?: boolean
   disabled?: boolean
+  style?: React.CSSProperties
 }
 
 const ProgressBar: React.FC<ProgressBarProps> = ({
@@ -28,7 +29,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   unit,
   status = 'default',
   showReadout = true,
-  disabled = false
+  disabled = false,
+  style
 }) => {
   const [animatedSegments, setAnimatedSegments] = useState(0)
 
@@ -58,7 +60,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 
   if (variant === 'slim') {
     return (
-      <div className={classNames}>
+      <div className={classNames} style={style}>
         <div className="nothing-progress__track">
           {indeterminate ? (
             <div className="nothing-progress__indeterminate-bar" />
@@ -78,7 +80,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   }
 
   return (
-    <div className={classNames}>
+    <div className={classNames} style={style}>
       <div className="nothing-progress__track">
         {indeterminate ? (
           <div className="nothing-progress__indeterminate-bar" />

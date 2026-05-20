@@ -13,6 +13,7 @@ interface TextareaProps {
   minRows?: number
   maxRows?: number
   id?: string
+  style?: React.CSSProperties
 }
 
 const Textarea: React.FC<TextareaProps> = ({
@@ -26,7 +27,8 @@ const Textarea: React.FC<TextareaProps> = ({
   autoResize = false,
   minRows = 3,
   maxRows,
-  id
+  id,
+  style
 }) => {
   const [internalValue, setInternalValue] = useState(defaultValue ?? '')
   const [focused, setFocused] = useState(false)
@@ -82,7 +84,7 @@ const Textarea: React.FC<TextareaProps> = ({
   ].filter(Boolean).join(' ')
 
   return (
-    <div className={classNames}>
+    <div className={classNames} style={style}>
       {label && (
         <label className="nothing-textarea__label" htmlFor={inputId}>{label}</label>
       )}

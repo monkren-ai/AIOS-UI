@@ -4,12 +4,14 @@ interface SeparatorProps {
   orientation?: 'horizontal' | 'vertical'
   decorative?: boolean
   label?: string
+  style?: React.CSSProperties
 }
 
 const Separator: React.FC<SeparatorProps> = ({
   orientation = 'horizontal',
   decorative = false,
-  label
+  label,
+  style
 }) => {
   const classNames = [
     'nothing-separator',
@@ -24,7 +26,7 @@ const Separator: React.FC<SeparatorProps> = ({
       : { role: 'separator', 'aria-orientation': orientation }
 
   return (
-    <div className={classNames} {...ariaProps}>
+    <div className={classNames} {...ariaProps} style={style}>
       <div className="nothing-separator__line" />
       {label && <span className="nothing-separator__label">{label}</span>}
       <div className="nothing-separator__line" />

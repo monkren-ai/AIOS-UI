@@ -55,13 +55,13 @@ async function validateNothingUI() {
     const title = await page.title();
     console.log(`📄 页面标题: ${title}`);
 
-    console.log('\n🔍 检查 "Nothing Widgets 2.0" 区域...');
-    const nothingWidgets20 = await page.locator('#nothing-widgets-2').isVisible();
-    if (nothingWidgets20) {
-      console.log('✅ "Nothing Widgets 2.0" 区域正常显示');
-      componentStatus.nothingWidgets20 = true;
+    console.log('\n🔍 检查 "Widgets" 区域...');
+    const widgetsSection = await page.locator('#widgets').isVisible();
+    if (widgetsSection) {
+      console.log('✅ "Widgets" 区域正常显示');
+      componentStatus.widgets = true;
     } else {
-      console.log('❌ "Nothing Widgets 2.0" 区域未找到');
+      console.log('❌ "Widgets" 区域未找到');
     }
 
     console.log('\n🔍 检查组件渲染...');

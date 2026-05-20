@@ -12,12 +12,14 @@ interface AccordionProps {
   items: AccordionItem[]
   type?: 'single' | 'multiple'
   defaultOpen?: string[]
+  style?: React.CSSProperties
 }
 
 const Accordion: React.FC<AccordionProps> = ({
   items,
   type = 'single',
-  defaultOpen = []
+  defaultOpen = [],
+  style
 }) => {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set(defaultOpen))
   const triggerRefs = useRef<(HTMLButtonElement | null)[]>([])
@@ -69,7 +71,7 @@ const Accordion: React.FC<AccordionProps> = ({
   }, [])
 
   return (
-    <div className="nothing-accordion" role="presentation">
+    <div className="nothing-accordion" role="presentation" style={style}>
       {items.map((item, index) => {
         const itemClassNames = [
           'nothing-accordion__item',

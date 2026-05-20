@@ -7,6 +7,7 @@ interface CollapsibleProps {
   onOpenChange?: (open: boolean) => void
   trigger: React.ReactNode
   children: React.ReactNode
+  style?: React.CSSProperties
 }
 
 const Collapsible: React.FC<CollapsibleProps> = ({
@@ -14,7 +15,8 @@ const Collapsible: React.FC<CollapsibleProps> = ({
   defaultOpen = false,
   onOpenChange,
   trigger,
-  children
+  children,
+  style
 }) => {
   const [internalOpen, setInternalOpen] = useState(defaultOpen)
   const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen
@@ -33,7 +35,7 @@ const Collapsible: React.FC<CollapsibleProps> = ({
   ].filter(Boolean).join(' ')
 
   return (
-    <div className={classNames}>
+    <div className={classNames} style={style}>
       <button
         className="nothing-collapsible__trigger"
         aria-expanded={isOpen}

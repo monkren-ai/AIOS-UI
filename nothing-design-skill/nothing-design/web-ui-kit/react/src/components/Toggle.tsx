@@ -10,6 +10,7 @@ interface ToggleProps {
   size?: 'sm' | 'md' | 'lg'
   value?: string
   children: React.ReactNode
+  style?: React.CSSProperties
 }
 
 interface ToggleGroupContextValue {
@@ -29,7 +30,8 @@ const Toggle: React.FC<ToggleProps> = ({
   variant = 'default',
   size = 'md',
   value,
-  children
+  children,
+  style
 }) => {
   const [internalPressed, setInternalPressed] = useState(defaultPressed ?? false)
   const group = useContext(ToggleGroupContext)
@@ -78,6 +80,7 @@ const Toggle: React.FC<ToggleProps> = ({
       role="button"
       aria-pressed={isPressed}
       type="button"
+      style={style}
     >
       {children}
     </button>
@@ -91,6 +94,7 @@ interface ToggleGroupProps {
   variant?: 'default' | 'outline'
   size?: 'sm' | 'md' | 'lg'
   children: React.ReactNode
+  style?: React.CSSProperties
 }
 
 const ToggleGroup: React.FC<ToggleGroupProps> = ({
@@ -99,7 +103,8 @@ const ToggleGroup: React.FC<ToggleGroupProps> = ({
   onValueChange,
   variant = 'default',
   size = 'md',
-  children
+  children,
+  style
 }) => {
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue ?? [])
 
@@ -122,7 +127,7 @@ const ToggleGroup: React.FC<ToggleGroupProps> = ({
 
   return (
     <ToggleGroupContext.Provider value={{ value: activeValue, onToggle: handleToggle, variant, size }}>
-      <div className={groupClassNames} role="group">
+      <div className={groupClassNames} role="group" style={style}>
         {children}
       </div>
     </ToggleGroupContext.Provider>

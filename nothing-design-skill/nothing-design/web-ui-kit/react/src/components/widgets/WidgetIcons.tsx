@@ -1,8 +1,9 @@
+import React from "react";
 import svgPaths from "./svg-qvv4ctcv53";
 
-export function Home() {
+export function Home({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Home">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Home">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Home">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -15,9 +16,9 @@ export function Home() {
   );
 }
 
-export function DarkMode() {
+export function DarkMode({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Dark Mode">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Dark Mode">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Dark Mode">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -30,9 +31,9 @@ export function DarkMode() {
   );
 }
 
-export function Remote() {
+export function Remote({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Remote">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Remote">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Remote">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -45,9 +46,9 @@ export function Remote() {
   );
 }
 
-export function Subtitle() {
+export function Subtitle({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Subtitle">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Subtitle">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Subtitle">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -60,9 +61,9 @@ export function Subtitle() {
   );
 }
 
-export function Wallet() {
+export function Wallet({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="wallet">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="wallet">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="wallet">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -75,9 +76,9 @@ export function Wallet() {
   );
 }
 
-export function Location() {
+export function Location({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Location">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Location">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Location">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -90,9 +91,9 @@ export function Location() {
   );
 }
 
-export function DarkMode1() {
+export function DarkMode1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Dark Mode">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Dark Mode">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Dark Mode">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -105,9 +106,9 @@ export function DarkMode1() {
   );
 }
 
-export function NoSignam() {
+export function NoSignam({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="No Signam">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="No Signam">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="No Signam">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -125,9 +126,9 @@ export function NoSignam() {
   );
 }
 
-export function DownArrow() {
+export function DownArrow({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Down Arrow">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Down Arrow">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Down Arrow">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -152,9 +153,9 @@ function Icon() {
   );
 }
 
-export function DoNotDisturb() {
+export function DoNotDisturb({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Do not Disturb">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Do not Disturb">
       <div className="widget-absolute widget-size-68" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
           <circle cx="34" cy="34" fill="var(--fill-0, #D71921)" id="BG" r="34" style={{ fill: "color(display-p3 0.8431 0.0980 0.1294)", fillOpacity: "1" }} />
@@ -188,9 +189,9 @@ function Qr() {
   );
 }
 
-export function QrCode() {
+export function QrCode({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="QR Code">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="QR Code">
       <div className="absolute inset-0 size-[68px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -201,9 +202,9 @@ export function QrCode() {
   );
 }
 
-export function Storage() {
+export function Storage({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Storage">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Storage">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Storage">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -216,9 +217,9 @@ export function Storage() {
   );
 }
 
-export function Share() {
+export function Share({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Share">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Share">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Share">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -231,9 +232,9 @@ export function Share() {
   );
 }
 
-export function NoConnection() {
+export function NoConnection({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="No Connection">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="No Connection">
       <div className="absolute inset-0 size-[68px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
           <circle cx="34" cy="34" fill="var(--fill-0, #D71921)" id="BG" r="34" style={{ fill: "color(display-p3 0.8431 0.0980 0.1294)", fillOpacity: "1" }} />
@@ -246,9 +247,9 @@ export function NoConnection() {
   );
 }
 
-export function Record() {
+export function Record({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Record">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Record">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Record">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -261,9 +262,9 @@ export function Record() {
   );
 }
 
-export function FullNetwork() {
+export function FullNetwork({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Full Network">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Full Network">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Full Network">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -281,9 +282,9 @@ export function FullNetwork() {
   );
 }
 
-export function Shield() {
+export function Shield({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Shield">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Shield">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Shield">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -321,9 +322,9 @@ function Group18() {
   );
 }
 
-export function Glyphs() {
+export function Glyphs({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Glyphs">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Glyphs">
       <div className="absolute inset-0 size-[68px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -334,9 +335,9 @@ export function Glyphs() {
   );
 }
 
-export function Aeroplane() {
+export function Aeroplane({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Aeroplane">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Aeroplane">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Aeroplane">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -349,9 +350,9 @@ export function Aeroplane() {
   );
 }
 
-export function Chart() {
+export function Chart({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Chart">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Chart">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Chart">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -364,9 +365,9 @@ export function Chart() {
   );
 }
 
-export function Video() {
+export function Video({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Video">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Video">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Video">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -379,9 +380,9 @@ export function Video() {
   );
 }
 
-export function Temp() {
+export function Temp({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Temp">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Temp">
       <div className="absolute inset-0 size-[68px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
           <circle cx="34" cy="34" fill="var(--fill-0, #D71921)" id="BG" r="34" style={{ fill: "color(display-p3 0.8431 0.0980 0.1294)", fillOpacity: "1" }} />
@@ -417,9 +418,9 @@ function Icon2() {
   );
 }
 
-export function AutoRotate() {
+export function AutoRotate({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Auto Rotate">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Auto Rotate">
       <div className="absolute inset-0 size-[68px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -449,9 +450,9 @@ function Info1() {
   );
 }
 
-export function Info() {
+export function Info({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Info">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Info">
       <div className="absolute inset-0 size-[68px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -462,9 +463,9 @@ export function Info() {
   );
 }
 
-export function MicOff() {
+export function MicOff({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Mic Off">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Mic Off">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Mic Off">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -477,9 +478,9 @@ export function MicOff() {
   );
 }
 
-export function NoSim() {
+export function NoSim({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="No Sim">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="No Sim">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="No Sim">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -497,9 +498,9 @@ export function NoSim() {
   );
 }
 
-export function Watch() {
+export function Watch({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Watch">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Watch">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Watch">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -514,9 +515,9 @@ export function Watch() {
   );
 }
 
-export function Record1() {
+export function Record1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Record">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Record">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Record">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -553,9 +554,9 @@ function Icon4() {
   );
 }
 
-export function AccessCamera() {
+export function AccessCamera({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Access Camera">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Access Camera">
       <div className="absolute inset-0 size-[68px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
           <circle cx="34" cy="34" fill="var(--fill-0, #D71921)" id="BG" r="34" style={{ fill: "color(display-p3 0.8431 0.0980 0.1294)", fillOpacity: "1" }} />
@@ -566,9 +567,9 @@ export function AccessCamera() {
   );
 }
 
-export function Dots() {
+export function Dots({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Dots">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Dots">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Dots">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -605,9 +606,9 @@ export function Dots() {
   );
 }
 
-export function Filter() {
+export function Filter({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Filter">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Filter">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Filter">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -620,9 +621,9 @@ export function Filter() {
   );
 }
 
-export function Home1() {
+export function Home1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Home">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Home">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Home">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -635,9 +636,9 @@ export function Home1() {
   );
 }
 
-export function Cast() {
+export function Cast({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Cast">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Cast">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Cast">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -673,9 +674,9 @@ function Icon6() {
   );
 }
 
-export function DoNotDisturb1() {
+export function DoNotDisturb1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Do not Disturb">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Do not Disturb">
       <div className="absolute inset-0 size-[68px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
           <circle cx="34" cy="34" fill="var(--fill-0, #D71921)" id="BG" r="34" style={{ fill: "color(display-p3 0.8431 0.0980 0.1294)", fillOpacity: "1" }} />
@@ -686,9 +687,9 @@ export function DoNotDisturb1() {
   );
 }
 
-export function ArrowDown() {
+export function ArrowDown({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Arrow Down">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Arrow Down">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Arrow Down">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -721,9 +722,9 @@ function Qr1() {
   );
 }
 
-export function QrCode1() {
+export function QrCode1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-grid-auto" data-name="QR Code">
+    <div style={style} className="widget-grid-auto" data-name="QR Code">
       <div className="widget-col-1 ml-0 mt-[540px] widget-relative widget-row-1 size-[68px]" data-name="BG">
         <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -734,9 +735,9 @@ export function QrCode1() {
   );
 }
 
-export function Subtitle1() {
+export function Subtitle1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Subtitle">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Subtitle">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Subtitle">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -749,9 +750,9 @@ export function Subtitle1() {
   );
 }
 
-export function Scan() {
+export function Scan({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Scan">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Scan">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Scan">
           <circle cx="34" cy="34" fill="var(--fill-0, #FCFAFE)" id="BG" r="34" style={{ fill: "color(display-p3 0.9882 0.9804 0.9961)", fillOpacity: "1" }} />
@@ -765,9 +766,9 @@ export function Scan() {
   );
 }
 
-export function Cast1() {
+export function Cast1({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Cast">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Cast">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Cast">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="BG" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />
@@ -780,9 +781,9 @@ export function Cast1() {
   );
 }
 
-export function BatteryPlus() {
+export function BatteryPlus({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Battery Plus">
+    <div style={style} className="widget-icon-wrapper widget-icon-wrapper--68" data-name="Battery Plus">
       <svg className="widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 68 68">
         <g id="Battery Plus">
           <circle cx="34" cy="34" fill="var(--fill-0, #1A1D1C)" id="Ellipse 1" r="34" style={{ fill: "color(display-p3 0.1020 0.1137 0.1098)", fillOpacity: "1" }} />

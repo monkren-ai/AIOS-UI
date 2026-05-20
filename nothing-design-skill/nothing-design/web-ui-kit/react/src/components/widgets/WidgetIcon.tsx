@@ -7,6 +7,7 @@ interface WidgetIconProps {
   icon?: React.ReactNode
   label?: string
   className?: string
+  style?: React.CSSProperties
 }
 
 const WidgetIcon: React.FC<WidgetIconProps> = ({
@@ -15,7 +16,8 @@ const WidgetIcon: React.FC<WidgetIconProps> = ({
   children,
   icon,
   label,
-  className
+  className,
+  style
 }) => {
   const classNames = [
     'nothing-widget-icon',
@@ -25,7 +27,7 @@ const WidgetIcon: React.FC<WidgetIconProps> = ({
   ].filter(Boolean).join(' ')
 
   return (
-    <div className={classNames}>
+    <div className={classNames} style={style}>
       {(icon || children) && (
         <div className="nothing-widget-icon__icon">
           {icon || children}

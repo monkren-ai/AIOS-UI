@@ -5,13 +5,15 @@ interface SkeletonProps {
   height?: string
   variant?: 'text' | 'circular' | 'rectangular'
   animate?: boolean
+  style?: React.CSSProperties
 }
 
 const Skeleton: React.FC<SkeletonProps> = ({
   width,
   height,
   variant = 'text',
-  animate = true
+  animate = true,
+  style: styleProp
 }) => {
   const classNames = [
     'nothing-skeleton',
@@ -19,7 +21,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
     animate ? 'nothing-skeleton--animate' : ''
   ].filter(Boolean).join(' ')
 
-  const style: React.CSSProperties = {
+  const sizeStyle: React.CSSProperties = {
     width: width ?? undefined,
     height: height ?? undefined
   }
@@ -27,7 +29,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
   return (
     <div
       className={classNames}
-      style={style}
+      style={{...sizeStyle, ...styleProp}}
       aria-hidden="true"
     />
   )

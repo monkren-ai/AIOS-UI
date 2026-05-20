@@ -10,6 +10,7 @@ interface InputProps {
   disabled?: boolean
   id?: string
   onChange?: (value: string) => void
+  style?: React.CSSProperties
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,7 +21,8 @@ const Input: React.FC<InputProps> = ({
   error,
   disabled = false,
   id,
-  onChange
+  onChange,
+  style
 }) => {
   const [internalValue, setInternalValue] = useState('')
   const generatedId = useId()
@@ -43,7 +45,7 @@ const Input: React.FC<InputProps> = ({
   ].filter(Boolean).join(' ')
 
   return (
-    <div className={classNames}>
+    <div className={classNames} style={style}>
       {label && (
         <label className="nothing-input__label" htmlFor={inputId}>{label}</label>
       )}

@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import DotMatrix from '../DotMatrix'
+import WidgetCard from '../WidgetCard'
 import '../../styles/dot-matrix.css'
 import '../../styles/weather-widget.css'
 
@@ -18,7 +19,9 @@ interface WeatherWidgetProps {
   condition?: string;
   forecast?: WeatherForecast[];
   variant?: 'square' | 'wide';
+  card?: boolean | Omit<React.ComponentProps<typeof WidgetCard>, 'children'>;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const WEATHER_ICONS: Record<string, {
@@ -78,7 +81,9 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({
   condition = 'Partly cloudy',
   forecast = [],
   variant = 'square',
-  className
+  card,
+  className,
+  style
 }) => {
   const conditionType = useMemo(() => getConditionType(condition), [condition]);
   const iconPattern = WEATHER_ICONS[conditionType] || WEATHER_ICONS.sunny;
@@ -89,8 +94,8 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({
     className || ''
   ].filter(Boolean).join(' ');
 
-  return (
-    <div className={widgetClassName}>
+  const content = (
+    <div className={widgetClassName} style={style}>
       <div className="nothing-weather-widget__dots">
         <DotMatrix
           rows={iconPattern.rows}
@@ -133,6 +138,13 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({
       )}
     </div>
   );
+
+  if (card) {
+    const cardProps = typeof card === 'object' ? card : {}
+    return <WidgetCard {...cardProps}>{content}</WidgetCard>
+  }
+
+  return content
 };
 
 export default WeatherWidget;

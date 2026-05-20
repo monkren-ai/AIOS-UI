@@ -9,6 +9,7 @@ interface LapData {
 
 interface ChronoProps {
   maxLaps?: number
+  style?: React.CSSProperties
 }
 
 const formatTime = (ms: number): string => {
@@ -20,7 +21,7 @@ const formatTime = (ms: number): string => {
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(centiseconds).padStart(2, '0')}`
 }
 
-const Chrono: React.FC<ChronoProps> = ({ maxLaps = 10 }) => {
+const Chrono: React.FC<ChronoProps> = ({ maxLaps = 10, style }) => {
   const [elapsed, setElapsed] = useState(0)
   const [running, setRunning] = useState(false)
   const [laps, setLaps] = useState<LapData[]>([])
@@ -112,7 +113,7 @@ const Chrono: React.FC<ChronoProps> = ({ maxLaps = 10 }) => {
   }, [laps.length, maxLaps])
 
   return (
-    <div className="nothing-chrono">
+    <div className="nothing-chrono" style={style}>
       <div className="chrono-header">
         <div className="chrono-title">Chrono</div>
       </div>

@@ -2,9 +2,9 @@ import { Home, DarkMode, Remote, Subtitle, Wallet, Location, DarkMode1, NoSignam
 import { Dim, Dim1, Calculator, BatterySaver, HomeControls, Nfc, Bedtime, DarkMode2, Weather, Remote1, Share1, Hotspot, Share2, Dim2, DataSaver, Torch, Share3 } from "./WidgetPills";
 import { Record2, LocationAccess, WatchAnalog, Compass, TempControl, AutoRotate1, Active, Watch1, Active1, Recording, Glyphs1, LocationAccess1, Glyphs2, Campus, Location1, Flash, Weather1, MicAccess, PairNewDevice, Overlimit, MusicPlayer, TotalTime, StepsCounter, OverLimit1, LoadingBar1, Card, Card1, Dots3, Play, NothingEar, Card2, Date, Date1, Counter, Music, Device, Mode, DoubleDown, SelectDevice, Card3, ActivityTracker, Time, Weather2, Wedget } from "./WidgetSubComponents";
 
-function Frame49() {
+export function WidgetIconsGrid({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-grid-7x6">
+    <div className="widget-grid-7x6" style={style}>
       <Home />
       <DarkMode />
       <Remote />
@@ -49,9 +49,9 @@ function Frame49() {
   );
 }
 
-function Frame50() {
+export function WidgetPillsGrid({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-grid-4x5">
+    <div className="widget-grid-4x5" style={style}>
       <Dim />
       <Dim1 />
       <Calculator />
@@ -73,9 +73,9 @@ function Frame50() {
   );
 }
 
-function Frame46() {
+export function WidgetSubComponentsFlex({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-flex-wrap">
+    <div className="widget-flex-wrap" style={style}>
       <Record2 />
       <LocationAccess />
       <WatchAnalog />
@@ -98,9 +98,9 @@ function Frame46() {
   );
 }
 
-function Frame48() {
+export function WidgetCardsGrid({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="gap-x-[40px] gap-y-[40px] grid grid-cols-[repeat(4,minmax(0,1fr))] grid-rows-[repeat(6,minmax(0,1fr))] h-[1112px] widget-relative widget-shrink-0 w-[728px]">
+    <div className="gap-x-[40px] gap-y-[40px] grid grid-cols-[repeat(4,minmax(0,1fr))] grid-rows-[repeat(6,minmax(0,1fr))] h-[1112px] widget-relative widget-shrink-0 w-[728px]" style={style}>
       <PairNewDevice />
       <Overlimit />
       <MusicPlayer />
@@ -126,9 +126,9 @@ function Frame48() {
   );
 }
 
-function Frame47() {
+export function WideWidgetsFlex({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="widget-flex-wrap">
+    <div className="widget-flex-wrap" style={style}>
       <Card3 />
       <ActivityTracker />
       <Time />
@@ -138,22 +138,16 @@ function Frame47() {
   );
 }
 
-function Frame10() {
+export default function NothingWidgets({ style }: { style?: React.CSSProperties }) {
   return (
-    <div className="absolute widget-flex-wrap">
-      <Frame49 />
-      <Frame50 />
-      <Frame46 />
-      <Frame48 />
-      <Frame47 />
-    </div>
-  );
-}
-
-export default function NothingWidgets() {
-  return (
-    <div className="widget-bg" data-name="Nothing Widgets - 2.0">
-      <Frame10 />
+    <div className="widget-bg" data-name="Nothing Widgets - 2.0" style={style}>
+      <div className="absolute widget-flex-wrap">
+        <WidgetIconsGrid />
+        <WidgetPillsGrid />
+        <WidgetSubComponentsFlex />
+        <WidgetCardsGrid />
+        <WideWidgetsFlex />
+      </div>
     </div>
   );
 }

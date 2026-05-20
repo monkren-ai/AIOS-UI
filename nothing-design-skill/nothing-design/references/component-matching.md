@@ -78,7 +78,7 @@ This reference enables the Nothing Design Skill to analyze existing project file
 | Aspect Ratio | AspectRatio | — | aspect-ratio.css | — |
 | Error Boundary | ErrorBoundary | — | — (no CSS file) | `--accent` |
 
-### 1.6 Functional Widget Components
+### 1.6 Widget Components
 
 | Project Component Type | Nothing Component | Variants | CSS File | Key Tokens |
 |---|---|---|---|---|
@@ -102,13 +102,6 @@ This reference enables the Nothing Design Skill to analyze existing project file
 | Quotes | Quotes | — | quotes.css | `--text-secondary`, `--text-disabled` |
 | Next Event | NextEvent | — | next-event.css | `--text-display`, `--text-secondary` |
 | Date Display | Date | — | date.css | `--text-display`, `--text-primary` |
-
-### 1.7 Widget 2.0 Subsystem Components
-
-Base styles: `widgets.css` (provides `.widget-bg`, `.widget-card`, `.widget-icon-wrapper` — import before individual widget CSS files)
-
-| Project Component Type | Nothing Component | Variants | CSS File | Key Tokens |
-|---|---|---|---|---|
 | Widget Card | WidgetCard | square/wide/tall × light/dark/accent | widget-card.css | `--widget-card-bg`, `--widget-dark-bg`, `--widget-primary` |
 | Widget Grid | WidgetGrid | — | widget-grid.css | `--widget-bg`, `--widget-dark-bg` |
 | Quick Toggle | QuickToggle | circle/pill × light/dark/accent | quick-toggle.css | `--widget-primary`, `--widget-card-bg` |
@@ -120,6 +113,8 @@ Base styles: `widgets.css` (provides `.widget-bg`, `.widget-card`, `.widget-icon
 | Activity Widget | ActivityWidget | — | activity-widget.css | `--widget-card-bg`, `--widget-primary` |
 | Compass Widget | CompassWidget | — | compass-widget.css | `--widget-dark-bg`, `--text-display` |
 | Time Widget | TimeWidget | — | time-widget.css | `--widget-dark-bg`, `--font-ndot` |
+
+Base styles for Widget 2.0 subsystem: `widgets.css` (provides `.widget-bg`, `.widget-card`, `.widget-icon-wrapper` — import before individual widget CSS files)
 
 ---
 

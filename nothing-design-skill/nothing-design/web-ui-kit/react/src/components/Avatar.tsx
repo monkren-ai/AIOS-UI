@@ -6,13 +6,15 @@ interface AvatarProps {
   alt?: string
   fallback?: string
   size?: 'sm' | 'md' | 'lg'
+  style?: React.CSSProperties
 }
 
 const Avatar: React.FC<AvatarProps> = ({
   src,
   alt = '',
   fallback,
-  size = 'md'
+  size = 'md',
+  style
 }) => {
   const [imageError, setImageError] = useState(false)
 
@@ -24,7 +26,7 @@ const Avatar: React.FC<AvatarProps> = ({
   const showImage = src && !imageError
 
   return (
-    <div className={classNames}>
+    <div className={classNames} style={style}>
       {showImage ? (
         <img
           className="nothing-avatar__image"

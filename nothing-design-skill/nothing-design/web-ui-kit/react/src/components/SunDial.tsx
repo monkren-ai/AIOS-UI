@@ -5,6 +5,7 @@ interface SunDialProps {
   latitude?: number
   longitude?: number
   updateInterval?: number
+  style?: React.CSSProperties
 }
 
 interface SunTimes {
@@ -67,7 +68,8 @@ function describeArc(cx: number, cy: number, r: number, startAngle: number, endA
 const SunDial: React.FC<SunDialProps> = ({
   latitude: propLat,
   longitude: propLng,
-  updateInterval = 60000
+  updateInterval = 60000,
+  style
 }) => {
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null)
   const [now, setNow] = useState(new Date())
@@ -140,7 +142,7 @@ const SunDial: React.FC<SunDialProps> = ({
   const nightArc = describeArc(150, 150, 130, 0, Math.PI)
 
   return (
-    <div className="nothing-sun-dial">
+    <div className="nothing-sun-dial" style={style}>
       <div className="sundial-header">
         <div className={`sundial-status ${isDay ? 'day' : 'night'}`}>
           {sunTimes ? (isDay ? '[DAY]' : '[NIGHT]') : '[--]'}

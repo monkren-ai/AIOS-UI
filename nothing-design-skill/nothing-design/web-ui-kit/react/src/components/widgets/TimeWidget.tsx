@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import WidgetCard from '../WidgetCard'
 import '../../styles/time-widget.css'
 
 interface TimeWidgetProps {
@@ -7,7 +8,9 @@ interface TimeWidgetProps {
   value?: string
   unit?: string
   subtitle?: string
+  card?: boolean | Omit<React.ComponentProps<typeof WidgetCard>, 'children'>
   className?: string
+  style?: React.CSSProperties
 }
 
 const getShape = (variant: TimeWidgetProps['variant']) => {
@@ -41,7 +44,9 @@ const TimeWidget: React.FC<TimeWidgetProps> = ({
   value,
   unit,
   subtitle,
-  className
+  card,
+  className,
+  style
 }) => {
   const [timerSeconds, setTimerSeconds] = useState(() => {
     if (variant === 'recording' && value) return parseTimer(value)
@@ -68,17 +73,13 @@ const TimeWidget: React.FC<TimeWidgetProps> = ({
     className || ''
   ].filter(Boolean).join(' ')
 
-  if (variant === 'recording') {
-    return (
-      <div className={classNames}>
-        <div className="nothing-time-widget__recording-dot" />
-        <div className="nothing-time-widget__timer">{formatTimer(timerSeconds)}</div>
-      </div>
-    )
-  }
-
-  return (
-    <div className={classNames}>
+  const content = variant === 'recording' ? (
+    <div className={classNames} style={style}>
+      <div className="nothing-time-widget__recording-dot" />
+      <div className="nothing-time-widget__timer">{formatTimer(timerSeconds)}</div>
+    </div>
+  ) : (
+    <div className={classNames} style={style}>
       {label && (
         <div className="nothing-time-widget__label">{label}</div>
       )}
@@ -91,6 +92,13 @@ const TimeWidget: React.FC<TimeWidgetProps> = ({
       )}
     </div>
   )
+
+  if (card) {
+    const cardProps = typeof card === 'object' ? card : {}
+    return <WidgetCard {...cardProps}>{content}</WidgetCard>
+  }
+
+  return content
 }
 
 export default TimeWidget

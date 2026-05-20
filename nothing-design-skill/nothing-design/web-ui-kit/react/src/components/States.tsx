@@ -4,19 +4,21 @@ interface LoadingStateProps {
   progress?: number
   totalSegments?: number
   label?: string
+  style?: React.CSSProperties
 }
 
 const LoadingState: React.FC<LoadingStateProps> = ({
   progress,
   totalSegments = 20,
-  label
+  label,
+  style
 }) => {
   const filledSegments = progress !== undefined
     ? Math.round((progress / 100) * totalSegments)
     : 0
 
   return (
-    <div className="nothing-state nothing-state--loading">
+    <div className="nothing-state nothing-state--loading" style={style}>
       <div className="nothing-state__spinner">
         {Array.from({ length: 7 }).map((_, i) => (
           <div key={i} className="nothing-state__spinner-segment" />
@@ -48,16 +50,18 @@ interface ErrorStateProps {
   message?: string
   prefix?: string
   onRetry?: () => void
+  style?: React.CSSProperties
 }
 
 const ErrorState: React.FC<ErrorStateProps> = ({
   headline,
   message,
   prefix,
-  onRetry
+  onRetry,
+  style
 }) => {
   return (
-    <div className="nothing-state nothing-state--error">
+    <div className="nothing-state nothing-state--error" style={style}>
       <div className="nothing-state__headline">
         {prefix && <span className="nothing-state__prefix">{prefix}</span>}
         {headline}
@@ -78,15 +82,17 @@ interface EmptyStateProps {
   headline?: string
   description?: string
   action?: React.ReactNode
+  style?: React.CSSProperties
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({
   headline = 'Nothing here',
   description,
-  action
+  action,
+  style
 }) => {
   return (
-    <div className="nothing-state nothing-state--empty">
+    <div className="nothing-state nothing-state--empty" style={style}>
       <div className="nothing-state__dot-matrix" />
       <div className="nothing-state__headline">{headline}</div>
       {description && <div className="nothing-state__description">{description}</div>}
@@ -98,14 +104,16 @@ const EmptyState: React.FC<EmptyStateProps> = ({
 interface DisabledStateProps {
   headline?: string
   description?: string
+  style?: React.CSSProperties
 }
 
 const DisabledState: React.FC<DisabledStateProps> = ({
   headline = 'Unavailable',
-  description
+  description,
+  style
 }) => {
   return (
-    <div className="nothing-state nothing-state--disabled">
+    <div className="nothing-state nothing-state--disabled" style={style}>
       <h3 className="nothing-state__headline">{headline}</h3>
       {description && <div className="nothing-state__description">{description}</div>}
     </div>

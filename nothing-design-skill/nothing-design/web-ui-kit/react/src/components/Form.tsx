@@ -4,12 +4,14 @@ interface FormProps {
   onSubmit?: (e: React.FormEvent) => void
   children: React.ReactNode
   className?: string
+  style?: React.CSSProperties
 }
 
 const Form: React.FC<FormProps> = ({
   onSubmit,
   children,
-  className
+  className,
+  style
 }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -25,6 +27,7 @@ const Form: React.FC<FormProps> = ({
     <form
       className={classNames}
       onSubmit={handleSubmit}
+      style={style}
     >
       {children}
     </form>

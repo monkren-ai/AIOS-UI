@@ -5,12 +5,14 @@ interface ClockProps {
   type?: 'digital' | 'gauge' | 'dual-ring' | 'overlay'
   theme?: 'light' | 'dark'
   updateInterval?: number
+  style?: React.CSSProperties
 }
 
 const Clock: React.FC<ClockProps> = ({ 
   type = 'digital',
   theme = 'dark',
-  updateInterval = 1000 
+  updateInterval = 1000,
+  style
 }) => {
   const [time, setTime] = useState(new Date())
 
@@ -44,7 +46,7 @@ const Clock: React.FC<ClockProps> = ({
 
   if (type === 'digital') {
     return (
-      <div className="nothing-clock-digital">
+      <div className="nothing-clock-digital" style={style}>
         <div className="digital-time">{hours}:{minutes}</div>
         <div className="digital-date">{dayName}</div>
       </div>
@@ -53,7 +55,7 @@ const Clock: React.FC<ClockProps> = ({
 
   if (type === 'dual-ring') {
     return (
-      <div className={`nothing-clock-dual-ring nothing-clock-dual-ring--${theme}`}>
+      <div className={`nothing-clock-dual-ring nothing-clock-dual-ring--${theme}`} style={style}>
         <svg className="dual-ring-svg" viewBox="0 0 200 200">
           <circle className="dual-ring-outer" cx="100" cy="100" r="95" />
           <circle className="dual-ring-inner" cx="100" cy="100" r="85" />
@@ -77,7 +79,7 @@ const Clock: React.FC<ClockProps> = ({
   }
 
   return (
-    <div className="nothing-clock-gauge">
+    <div className="nothing-clock-gauge" style={style}>
       <svg className="gauge-svg" viewBox="0 0 200 200">
         <circle className="gauge-bg" cx="100" cy="100" r="90" />
         <circle className="gauge-track" cx="100" cy="100" r="90" />

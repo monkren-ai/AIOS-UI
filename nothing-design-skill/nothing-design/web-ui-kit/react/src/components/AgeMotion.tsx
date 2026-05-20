@@ -6,6 +6,7 @@ interface AgeMotionProps {
   lifespan?: number
   updateInterval?: number
   yearSegments?: number
+  style?: React.CSSProperties
 }
 
 interface AgeData {
@@ -66,7 +67,8 @@ const AgeMotion: React.FC<AgeMotionProps> = ({
   birthDate: initialBirthDate,
   lifespan = 80,
   updateInterval = 1000,
-  yearSegments = 20
+  yearSegments = 20,
+  style
 }) => {
   const [birthDateStr, setBirthDateStr] = useState(initialBirthDate ?? '')
   const [now, setNow] = useState(new Date())
@@ -89,7 +91,7 @@ const AgeMotion: React.FC<AgeMotionProps> = ({
   const filledYearSegments = ageData ? Math.round(ageData.yearProgress * yearSegments) : 0
 
   return (
-    <div className="nothing-age-motion">
+    <div className="nothing-age-motion" style={style}>
       <div className="age-input-area">
         <div className="age-input">
           <label className="age-input__label" htmlFor="birthDateInput">Date of Birth</label>
