@@ -617,60 +617,60 @@ function App() {
             </div>
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Quick Toggles</h2>
-            <QuickToggle variant="circle" theme="light" label="Active" active style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-            <QuickToggle variant="circle" theme="light" label="Torch" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 6L17 7M6 18l1-1M6 6l1 1M18 18l-1-1" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" fill="none"/></svg>} />
-            <QuickToggle variant="circle" theme="accent" label="DND" active style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/><line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
-            <QuickToggle variant="circle" theme="light" label="Rotate" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 2v6h-6M3 12a9 9 0 0115-6.7L21 8M3 22v-6h6M21 12a9 9 0 01-15 6.7L3 16" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-            <QuickToggle variant="pill" theme="dark" label="Hotspot" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 12h.01M8.5 8.5a5 5 0 017 0M5 5a10 10 0 0114 0M19 5a10 10 0 010 14M5 5a10 10 0 000 14" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-            <QuickToggle variant="pill" theme="dark" label="Bluetooth" active style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/></svg>} />
-            <QuickToggle variant="pill" theme="light" label="Mobile Data" active style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-            <QuickToggle variant="pill" theme="dark" label="NFC" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="6" y="2" width="12" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/><line x1="10" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
+            <QuickToggle variant="circle" theme="light" label="Active" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="circle" theme="light" label="Torch" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 6L17 7M6 18l1-1M6 6l1 1M18 18l-1-1" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" fill="none"/></svg>} />
+            <QuickToggle variant="circle" theme="accent" label="DND" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/><line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
+            <QuickToggle variant="circle" theme="light" label="Rotate" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 2v6h-6M3 12a9 9 0 0115-6.7L21 8M3 22v-6h6M21 12a9 9 0 01-15 6.7L3 16" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="pill" theme="dark" label="Hotspot" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 12h.01M8.5 8.5a5 5 0 017 0M5 5a10 10 0 0114 0M19 5a10 10 0 010 14M5 5a10 10 0 000 14" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="pill" theme="dark" label="Bluetooth" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/></svg>} />
+            <QuickToggle variant="pill" theme="light" label="Mobile Data" active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="pill" theme="dark" label="NFC" icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="6" y="2" width="12" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/><line x1="10" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Widget Icons</h2>
-            <WidgetIcon theme="dark" size="sm" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-            <WidgetIcon theme="light" size="md" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} label="Favorite" />
-            <WidgetIcon theme="accent" size="lg" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 1C8.13 1 5 4.13 5 8C5 12.17 8.87 16.24 12 23C15.13 16.24 19 12.17 19 8C19 4.13 15.87 1 12 1Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-            <WidgetIcon theme="error" size="md" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" fill="none"/><path d="M15 9L9 15M9 9L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
+            <WidgetIcon theme="dark" size="sm" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <WidgetIcon theme="light" size="md" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} label="Favorite" />
+            <WidgetIcon theme="accent" size="lg" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 1C8.13 1 5 4.13 5 8C5 12.17 8.87 16.24 12 23C15.13 16.24 19 12.17 19 8C19 4.13 15.87 1 12 1Z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <WidgetIcon theme="error" size="md" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" fill="none"/><path d="M15 9L9 15M9 9L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Widget Pills</h2>
-            <WidgetPill theme="light" label="Mobile Data" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-            <WidgetPill theme="dark" label="Bluetooth" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>} />
-            <WidgetPill theme="accent" label="Calculator" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="10" x2="12" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="14" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="12" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="16" y1="18" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
-            <WidgetPill theme="error" label="Battery Saver" style={{ display: 'inline-flex' }} icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="5" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="17" y1="10" x2="22" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="17" y1="14" x2="22" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
+            <WidgetPill theme="light" label="Mobile Data" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <WidgetPill theme="dark" label="Bluetooth" icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>} />
+            <WidgetPill theme="accent" label="Calculator" icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="10" x2="12" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="14" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="12" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="16" y1="18" x2="16" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
+            <WidgetPill theme="error" label="Battery Saver" icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="5" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="17" y1="10" x2="22" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><line x1="17" y1="14" x2="22" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Glyph Icons</h2>
-            <Glyph type="check" theme="light" size="sm" style={{ display: 'inline-flex' }} />
-            <Glyph type="heart" theme="dark" size="md" style={{ display: 'inline-flex' }} />
-            <Glyph type="play" theme="accent" size="md" style={{ display: 'inline-flex' }} />
-            <Glyph type="wifi" theme="light" size="lg" style={{ display: 'inline-flex' }} />
-            <Glyph type="sun" theme="dark" size="md" style={{ display: 'inline-flex' }} />
-            <Glyph type="moon" theme="light" size="md" style={{ display: 'inline-flex' }} />
-            <Glyph type="volume-up" theme="dark" size="sm" style={{ display: 'inline-flex' }} />
-            <Glyph type="lock" theme="accent" size="md" style={{ display: 'inline-flex' }} />
+            <Glyph type="check" theme="light" size="sm" />
+            <Glyph type="heart" theme="dark" size="md" />
+            <Glyph type="play" theme="accent" size="md" />
+            <Glyph type="wifi" theme="light" size="lg" />
+            <Glyph type="sun" theme="dark" size="md" />
+            <Glyph type="moon" theme="light" size="md" />
+            <Glyph type="volume-up" theme="dark" size="sm" />
+            <Glyph type="lock" theme="accent" size="md" />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Steps Widget</h2>
-            <StepsWidget steps={5543} streak={3} streakUnit="DAYS" card style={{ display: 'inline-flex' }} />
-            <StepsWidget steps={5543} streak={3} streakUnit="DAYS" card={{ theme: 'light', title: 'Steps', value: '5,543', subtitle: 'GOAL: 10,000', icon: <Glyph type="check" theme="light" size="sm" /> }} style={{ display: 'inline-flex' }} />
+            <StepsWidget steps={5543} streak={3} streakUnit="DAYS" card />
+            <StepsWidget steps={5543} streak={3} streakUnit="DAYS" card={{ theme: 'light', title: 'Steps', value: '5,543', subtitle: 'GOAL: 10,000', icon: <Glyph type="check" theme="light" size="sm" /> }} />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Time Widget</h2>
-            <TimeWidget variant="over-limit" label="Over Limit" value="40" unit="MIN" card style={{ display: 'inline-flex' }} />
-            <TimeWidget variant="date" label="TUESDAY" value="GMT+1" card style={{ display: 'inline-flex' }} />
-            <TimeWidget variant="over-limit" label="DND" value="40" unit="MIN" card={{ theme: 'accent', title: 'DND', value: '40', subtitle: 'MIN', icon: <Glyph type="bell" theme="accent" size="sm" />, iconPosition: 'top' }} style={{ display: 'inline-flex' }} />
-            <TimeWidget variant="date" label="TIMER" value="16:32" card={{ theme: 'dark', title: 'TIMER', value: '16:32', icon: <Glyph type="clock" theme="dark" size="sm" />, iconPosition: 'bottom' }} style={{ display: 'inline-flex' }} />
-            <TimeWidget variant="over-limit-accent" label="Over Limit" value="30m" subtitle="16H 32M" card={{ size: 'wide' }} style={{ display: 'inline-flex' }} />
-            <TimeWidget variant="over-limit" label="DND" value="40" unit="MIN" card={{ size: 'wide', theme: 'accent', title: 'DND', value: '40', subtitle: 'MIN', icon: <Glyph type="bell" theme="accent" size="sm" />, iconPosition: 'right' }} style={{ display: 'inline-flex' }} />
+            <TimeWidget variant="over-limit" label="Over Limit" value="40" unit="MIN" card />
+            <TimeWidget variant="date" label="TUESDAY" value="GMT+1" card />
+            <TimeWidget variant="over-limit" label="DND" value="40" unit="MIN" card={{ theme: 'accent', title: 'DND', value: '40', subtitle: 'MIN', icon: <Glyph type="bell" theme="accent" size="sm" />, iconPosition: 'top' }} />
+            <TimeWidget variant="date" label="TIMER" value="16:32" card={{ theme: 'dark', title: 'TIMER', value: '16:32', icon: <Glyph type="clock" theme="dark" size="sm" />, iconPosition: 'bottom' }} />
+            <TimeWidget variant="over-limit-accent" label="Over Limit" value="30m" subtitle="16H 32M" card={{ size: 'wide' }} />
+            <TimeWidget variant="over-limit" label="DND" value="40" unit="MIN" card={{ size: 'wide', theme: 'accent', title: 'DND', value: '40', subtitle: 'MIN', icon: <Glyph type="bell" theme="accent" size="sm" />, iconPosition: 'right' }} />
           </section>
 
           <section style={sectionStyle}>
@@ -680,8 +680,8 @@ function App() {
 
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>Weather Widget</h2>
-            <WeatherWidget temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" card style={{ display: 'inline-flex' }} />
-            <WeatherWidget temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" card={{ theme: 'dark', title: 'WEATHER', value: '30°', subtitle: 'PARTLY CLOUDY', icon: <Glyph type="sun" theme="dark" size="sm" />, iconPosition: 'top' }} style={{ display: 'inline-flex' }} />
+            <WeatherWidget temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" card />
+            <WeatherWidget temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" card={{ theme: 'dark', title: 'WEATHER', value: '30°', subtitle: 'PARTLY CLOUDY', icon: <Glyph type="sun" theme="dark" size="sm" />, iconPosition: 'top' }} />
             <WeatherWidget variant="wide" temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" forecast={[
               { day: 'MON', hi: '32°', lo: '18°' },
               { day: 'TUE', hi: '28°', lo: '15°' },
@@ -705,101 +705,101 @@ function App() {
             ]} card={{ size: 'wide' }} />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Dot Matrix</h2>
-            <DotMatrix rows={5} cols={5} dotSize="md" theme="light" style={{ display: 'inline-flex' }} />
-            <DotMatrix rows={8} cols={8} dotSize="sm" theme="dark" pattern="glyph" style={{ display: 'inline-flex' }} />
-            <DotMatrix rows={10} cols={10} dotSize="sm" theme="dark" style={{ display: 'inline-flex' }} activeDots={[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[0,9],[1,8],[2,7],[3,6],[4,5],[5,4],[6,3],[7,2],[8,1],[9,0]]} />
+            <DotMatrix rows={5} cols={5} dotSize="md" theme="light" />
+            <DotMatrix rows={8} cols={8} dotSize="sm" theme="dark" pattern="glyph" />
+            <DotMatrix rows={10} cols={10} dotSize="sm" theme="dark" activeDots={[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[0,9],[1,8],[2,7],[3,6],[4,5],[5,4],[6,3],[7,2],[8,1],[9,0]]} />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Quick Settings Icons</h2>
-            <Home style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DarkMode style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Remote style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Subtitle style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Wallet style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Location style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DarkMode1 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <Home /><DarkMode /><Remote /><Subtitle /><Wallet /><Location /><DarkMode1 />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Connectivity Icons</h2>
-            <NoSignam style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DownArrow style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DoNotDisturb style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><QrCode style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Storage style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Share style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><NoConnection style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <NoSignam /><DownArrow /><DoNotDisturb /><QrCode /><Storage /><Share /><NoConnection />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — System Icons</h2>
-            <Record style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><FullNetwork style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Shield style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Glyphs style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Aeroplane style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Chart style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Video style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <Record /><FullNetwork /><Shield /><Glyphs /><Aeroplane /><Chart /><Video />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Media & Device Icons</h2>
-            <Temp style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><AutoRotate style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Info style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><MicOff style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><NoSim style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Watch style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Record1 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <Temp /><AutoRotate /><Info /><MicOff /><NoSim /><Watch /><Record1 />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Utility Icons</h2>
-            <AccessCamera style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Dots style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Filter style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Home1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Cast style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DoNotDisturb1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><ArrowDown style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <AccessCamera /><Dots /><Filter /><Home1 /><Cast /><DoNotDisturb1 /><ArrowDown />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — More Icons</h2>
-            <QrCode1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Subtitle1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Scan style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Cast1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><BatteryPlus style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <QrCode1 /><Subtitle1 /><Scan /><Cast1 /><BatteryPlus />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Light Pills</h2>
-            <Dim style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Dim1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Calculator style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><BatterySaver style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <Dim /><Dim1 /><Calculator /><BatterySaver />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Dark Pills</h2>
-            <HomeControls style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Nfc style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Bedtime style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DarkMode2 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <HomeControls /><Nfc /><Bedtime /><DarkMode2 />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Accent Pills</h2>
-            <FigmaWeather style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Remote1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Share1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Hotspot style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <FigmaWeather /><Remote1 /><Share1 /><Hotspot />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — More Pills</h2>
-            <Share2 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Dim2 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DataSaver style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Torch style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Share3 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <Share2 /><Dim2 /><DataSaver /><Torch /><Share3 />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Circular Widgets</h2>
-            <Record2 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><LocationAccess style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><WatchAnalog style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><FigmaCompass style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><TempControl style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><AutoRotate1 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <Record2 /><LocationAccess /><WatchAnalog /><FigmaCompass /><TempControl /><AutoRotate1 />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Active Widgets</h2>
-            <Active style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Watch1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Active1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Recording style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Glyphs1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><LocationAccess1 style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <Active /><Watch1 /><Active1 /><Recording /><Glyphs1 /><LocationAccess1 />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Glyph Widgets</h2>
-            <Glyphs2 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Campus style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Location1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Flash style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Weather1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><MicAccess style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <Glyphs2 /><Campus /><Location1 /><Flash /><Weather1 /><MicAccess />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Pair & Limit Widgets</h2>
-            <PairNewDevice style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Overlimit style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><FigmaMusicPlayer style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><TotalTime style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <PairNewDevice /><Overlimit /><FigmaMusicPlayer /><TotalTime />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Counter Widgets</h2>
-            <StepsCounter style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><OverLimit1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><LoadingBar1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><FigmaCard style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <StepsCounter /><OverLimit1 /><LoadingBar1 /><FigmaCard />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Card Widgets</h2>
-            <Card1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Dots3 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Play style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><NothingEar style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <Card1 /><Dots3 /><Play /><NothingEar />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Date & Music Widgets</h2>
-            <Card2 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><FigmaDate style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Date1 style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Counter style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <Card2 /><FigmaDate /><Date1 /><Counter />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Figma 2.0 — Device Widgets</h2>
-            <Music style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Device style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><Mode style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><DoubleDown style={{ display: 'inline-flex', marginRight: 'var(--widget-gap)', marginBottom: 'var(--widget-gap)' }} /><SelectDevice style={{ display: 'inline-flex', marginBottom: 'var(--widget-gap)' }} />
+            <Music /><Device /><Mode /><DoubleDown /><SelectDevice />
           </section>
 
           <section style={sectionStyle}>
@@ -950,19 +950,19 @@ function App() {
             />
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Badge</h2>
-            <Badge variant="default" style={{ display: 'inline-flex', marginRight: 'var(--space-md)' }}>Default</Badge>
-            <Badge variant="secondary" style={{ display: 'inline-flex', marginRight: 'var(--space-md)' }}>Secondary</Badge>
-            <Badge variant="destructive" style={{ display: 'inline-flex', marginRight: 'var(--space-md)' }}>Destructive</Badge>
-            <Badge variant="outline" style={{ display: 'inline-flex' }}>Outline</Badge>
+            <Badge variant="default">Default</Badge>
+            <Badge variant="secondary">Secondary</Badge>
+            <Badge variant="destructive">Destructive</Badge>
+            <Badge variant="outline">Outline</Badge>
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Avatar</h2>
-            <Avatar size="sm" fallback="SM" style={{ display: 'inline-flex', marginRight: 'var(--space-md)' }} />
-            <Avatar size="md" fallback="MD" style={{ display: 'inline-flex', marginRight: 'var(--space-md)' }} />
-            <Avatar size="lg" fallback="LG" style={{ display: 'inline-flex' }} />
+            <Avatar size="sm" fallback="SM" />
+            <Avatar size="md" fallback="MD" />
+            <Avatar size="lg" fallback="LG" />
           </section>
 
           <section style={sectionStyle}>
@@ -1159,12 +1159,12 @@ function App() {
             </ToggleGroup>
           </section>
 
-          <section style={sectionStyle}>
+          <section style={flexWrapSectionStyle}>
             <h2 style={demoTitleStyle}>Sonner (Toast)</h2>
-            <Button variant="secondary" size="sm" onClick={() => addToast('default')} style={{ display: 'inline-flex', marginRight: 'var(--space-sm)', marginBottom: 'var(--space-sm)' }}>Default</Button>
-            <Button variant="secondary" size="sm" onClick={() => addToast('success')} style={{ display: 'inline-flex', marginRight: 'var(--space-sm)', marginBottom: 'var(--space-sm)' }}>Success</Button>
-            <Button variant="secondary" size="sm" onClick={() => addToast('error')} style={{ display: 'inline-flex', marginRight: 'var(--space-sm)', marginBottom: 'var(--space-sm)' }}>Error</Button>
-            <Button variant="secondary" size="sm" onClick={() => addToast('warning')} style={{ display: 'inline-flex', marginBottom: 'var(--space-sm)' }}>Warning</Button>
+            <Button variant="secondary" size="sm" onClick={() => addToast('default')}>Default</Button>
+            <Button variant="secondary" size="sm" onClick={() => addToast('success')}>Success</Button>
+            <Button variant="secondary" size="sm" onClick={() => addToast('error')}>Error</Button>
+            <Button variant="secondary" size="sm" onClick={() => addToast('warning')}>Warning</Button>
             <Sonner toasts={toasts} onDismiss={dismissToast} position="top-right" />
           </section>
 
