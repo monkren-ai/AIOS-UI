@@ -191,70 +191,92 @@ Use when applying Nothing design to an existing project:
 
 Use the pre-built Web UI Kit for faster implementation when building web applications:
 
-1. **Select framework** — choose between Vanilla JavaScript or React
-2. **Load fonts** — include required Google Fonts (Doto, Space Grotesk, Space Mono)
-3. **Set theme** — initialize with `data-theme="dark"` or `data-theme="light"` on the `<html>` element
-4. **Import tokens** — always import `tokens.css` first before any other component styles
-5. **Import components** — add CSS and JS/TS files for the components you need
-6. **Initialize components** — create component instances with appropriate options
-7. **Customize** — modify component properties and styles as needed
+1. **Load fonts** — include required Google Fonts (Doto, Space Grotesk, Space Mono)
+2. **Set theme** — initialize with `data-theme="dark"` or `data-theme="light"` on the `<html>` element
+3. **Import tokens** — always import `tokens.css` first before any other component styles
+4. **Import components** — add React components for the ones you need (each component imports its own CSS internally)
+5. **Customize** — modify component properties and styles as needed
 
 #### Quick Start
 
-**Vanilla JavaScript:**
-```html
-<!-- Load fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-<!-- Set theme -->
-<html data-theme="dark">
-
-<!-- Import tokens and components -->
-<link rel="stylesheet" href="web-ui-kit/css/tokens.css">
-<link rel="stylesheet" href="web-ui-kit/css/clock.css">
-<script src="web-ui-kit/js/clock.js"></script>
-
-<!-- Use component -->
-<div id="clock"></div>
-<script>
-  new NothingClock(document.getElementById('clock'), { type: 'digital' });
-</script>
-```
-
 **React:**
 ```tsx
-import Clock from 'web-ui-kit/react/src/components/Clock'
-import 'web-ui-kit/react/src/styles/tokens.css'
-import 'web-ui-kit/react/src/styles/clock.css'
+import Clock from './components/Clock'
+import './styles/tokens.css'
 
 function App() {
   return <Clock type="digital" />
 }
 ```
 
+> **Note:** Set `data-theme="dark"` or `data-theme="light"` on the `<html>` element to control the theme. Each component imports its own CSS internally, so you only need to manually import `tokens.css`.
+
 #### Available Components
 
+**Layout & Structure**
+- **Accordion** — collapsible content sections with expand/collapse
+- **AspectRatio** — maintain consistent width-to-height ratios
+- **Collapsible** — simple show/hide content wrapper
+- **ErrorBoundary** — React error boundary with fallback UI
+- **Resizable** — user-resizable panels and layouts
+- **ScrollArea** — custom-styled scrollable container
+- **Separator** — horizontal/vertical divider line
+- **Sidebar** — side navigation panel
+
+**Form Controls**
+- **Buttons** — primary, secondary, ghost, destructive variants
+- **Inputs** — underline and bordered text inputs with validation
+- **Checkbox** — binary selection control
+- **Form** — form wrapper with validation and field management
+- **InputOTP** — one-time password input with separate character fields
+- **Label** — accessible form label component
+- **RadioGroup** — single-selection radio button group
+- **Slider** — range slider control
+- **Switch** — on/off toggle switch
+- **Textarea** — multi-line text input
+- **Toggle** — on/off switch controls (includes ToggleGroup)
+
+**Data Display**
+- **Avatar** — user profile image or initials fallback
+- **Badge** — small status indicator or counter
 - **Clock** — digital and gauge style time display
 - **Battery** — battery level and charging status indicator
 - **Calendar** — compact and full calendar views
+- **DataGrid** — data tables with active row indicator
+- **DataRows** — label-value data rows with status colors
+- **DotMatrix** — dot-matrix display for numeric/text data
+- **NextEvent** — upcoming event preview widget
+- **Pagination** — page navigation for data lists
+- **ProgressBar** — segmented progress bars in three sizes
+- **Quotes** — inspirational or informational quote display
+- **Skeleton** — content placeholder loading state
+- **Table** — structured data table with sorting and selection
 - **SystemMonitor** — comprehensive system dashboard with CPU, RAM, storage, network speed, and battery level indicators
+
+**Navigation**
+- **Breadcrumb** — hierarchical navigation trail
+- **DateNav** — date/period navigation with arrows
+- **Navigation** — desktop horizontal bar and mobile bottom bar
+- **NavigationMenu** — multi-level navigation with dropdown menus
+- **SegmentedControl** — multi-option selector with sliding indicator
+- **Tabs** — tabbed content switching
+
+**Overlay**
+- **Alert** — inline alert message with severity levels
+- **Command** — keyboard-accessible command palette
+- **ContextMenu** — right-click context menu
+- **DropdownMenu** — dropdown menu (for searchable select, use Select)
+- **HoverCard** — hover-triggered informational card
+- **Modal** — centered dialog overlay
+- **Popover** — click/hover-triggered floating panel
+- **Select** — searchable dropdown select
+- **Sheet** — slide-up panel (supports top/bottom/left/right sides)
+- **Sonner** — toast notification system
+- **Tooltip** — hover-triggered informational tooltip
+
+**Widgets**
 - **MusicPlayer** — music playback widget with progress
 - **PhotoCarousel** — image slideshow with autoplay
-- **Buttons** — primary, secondary, ghost, destructive variants
-- **Inputs** — underline and bordered text inputs with validation
-- **Toggles** — on/off switch controls
-- **Tags** — pill and technical style chips
-- **SegmentedControl** — multi-option selector with sliding indicator
-- **Navigation** — desktop horizontal bar and mobile bottom bar
-- **Cards** — surface containers in multiple variants
-- **DataRows** — label-value data rows with status colors
-- **DataGrid** — data tables with active row indicator
-- **ProgressBar** — segmented progress bars in three sizes
-- **Modal** — centered dialog overlay
-- **Dropdown** — dropdown selector
-- **BottomSheet** — bottom slide-up panel
-- **DateNav** — date/period navigation with arrows
-- **States** — loading, error, empty, disabled state patterns
 - **Caffeinate** — caffeine intake tracker with half-life decay visualization
 - **Clipboard** — clipboard manager with recent entries and copy support
 - **Pomodoro** — pomodoro timer with work/break cycles and segmented progress
@@ -264,12 +286,19 @@ function App() {
 - **Chrono** — stopwatch with lap tracking
 - **Spinner** — decision wheel with spin animation
 - **WorldClock** — multi-timezone world clock with day/night indicator
+- **Date** — date display widget
+- **Taskbar** — quick-access task bar widget
+- **WidgetGrid** — grid layout for arranging multiple widgets
+
+**Other**
+- **Tags** — pill and technical style chips
+- **States** — loading, error, empty, disabled state patterns
 
 All components support dark/light theme switching and follow the Nothing design system tokens. See `web-ui-kit/README.md` for complete documentation and API reference.
 
 ### Widget Subsystem
 
-The Widget components (QuickToggle, WidgetCard, WeatherWidget, StepsWidget, ActivityWidget, CompassWidget, TimeWidget) follow Nothing Phone's home screen widget aesthetic, which differs intentionally from the main UI system:
+The Widget components (QuickToggle, WidgetCard, WidgetPill, WidgetGrid, WeatherWidget, StepsWidget, ActivityWidget, CompassWidget, TimeWidget, SvgIcon, Glyph) follow Nothing Phone's home screen widget aesthetic, which differs intentionally from the main UI system:
 
 - **Background**: Uses `--widget-bg` (#e1e5ea) / `--widget-dark-bg` (#1a1d1c) instead of `--surface` / `--black` — mimicking the phone's widget panel
 - **Typography**: Uses `--font-widget` (Space Grotesk, same as `--font-body`) for body text and `--font-ndot` (NDOT 47) for large numeric displays

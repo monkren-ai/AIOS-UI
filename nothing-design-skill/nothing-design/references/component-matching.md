@@ -28,7 +28,7 @@ This reference enables the Nothing Design Skill to analyze existing project file
 
 | Project Component Type | Nothing Component | Variants | CSS File | Key Tokens |
 |---|---|---|---|---|
-| Card / Surface | Card | default/raised/compact/technical × interactive/disabled | cards.css | `--surface`, `--surface-raised`, `--border` |
+| Card / Surface | Card | default/raised/compact/technical × interactive/disabled | card.css | `--surface`, `--surface-raised`, `--border` |
 | Data Row / List Item | DataRows | status colors | data-rows.css | `--text-secondary`, `--success`, `--warning`, `--accent` |
 | Data Grid | DataGrid | active row indicator | data-grid.css | `--surface-raised`, `--accent` |
 | Table | Table | striped/hoverable | table.css | `--border`, `--border-visible` |
@@ -102,10 +102,10 @@ This reference enables the Nothing Design Skill to analyze existing project file
 | Quotes | Quotes | — | quotes.css | `--text-secondary`, `--text-disabled` |
 | Next Event | NextEvent | — | next-event.css | `--text-display`, `--text-secondary` |
 | Date Display | Date | — | date.css | `--text-display`, `--text-primary` |
-| Widget Card | WidgetCard | square/wide/tall × light/dark/accent | widget-card.css | `--widget-card-bg`, `--widget-dark-bg`, `--widget-primary` |
+| Widget Card | WidgetCard | square/wide/tall × light/dark/accent | card.css (WidgetCard styles included in Card) | `--widget-card-bg`, `--widget-dark-bg`, `--widget-primary` |
 | Widget Grid | WidgetGrid | — | widget-grid.css | `--widget-bg`, `--widget-dark-bg` |
 | Quick Toggle | QuickToggle | circle/pill × light/dark/accent | quick-toggle.css | `--widget-primary`, `--widget-card-bg` |
-| Widget Icon | WidgetIcon | sm/md/lg | widget-icon.css | `--widget-primary` |
+| Widget Icon | SvgIcon | sm/md/lg | svg-icon.css | `--widget-primary` |
 | Widget Pill | WidgetPill | — | widget-pill.css | `--widget-card-bg`, `--widget-primary` |
 | Glyph Icon | Glyph | check/heart/play/wifi/sun/moon... | glyph.css | `--text-display` |
 | Weather Widget | WeatherWidget | — | weather-widget.css | `--widget-card-bg`, `--widget-dark-bg` |

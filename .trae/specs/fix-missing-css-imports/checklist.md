@@ -1,6 +1,0 @@
-- [x] App.tsx 导入了 widgets.css、carousel.css、chart.css
-- [x] widgets.css 包含 widget-card-wrapper 类
-- [x] NothingWidgets20.tsx 中 grep `bg-\[#` 返回 0 个匹配
-- [x] NothingWidgets20.tsx 中 grep `rounded-\[2` 返回 0 个匹配
-- [x] pnpm dev 无编译错误
-- [x] TypeScript 诊断无错误

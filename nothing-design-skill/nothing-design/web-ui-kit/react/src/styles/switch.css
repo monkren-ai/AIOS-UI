@@ -9,8 +9,8 @@
 
 .nothing-switch__track {
   position: relative;
-  width: 48px;
-  height: 28px;
+  width: var(--switch-width);
+  height: var(--switch-height);
   border-radius: var(--radius-pill);
   background: var(--border-visible);
   transition: background var(--duration-micro) var(--easing);
@@ -19,10 +19,10 @@
 
 .nothing-switch__thumb {
   position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 22px;
-  height: 22px;
+  top: var(--switch-thumb-offset);
+  left: var(--switch-thumb-offset);
+  width: var(--switch-thumb-size);
+  height: var(--switch-thumb-size);
   border-radius: 50%;
   background: var(--text-disabled);
   transition: all var(--duration-micro) var(--easing);
@@ -33,7 +33,7 @@
 }
 
 .nothing-switch--on .nothing-switch__thumb {
-  left: 23px;
+  left: var(--switch-thumb-active-offset);
   background: var(--black);
 }
 
@@ -79,20 +79,20 @@
 
 @media (pointer: coarse) {
   .nothing-switch__track {
-    width: 52px;
-    height: 32px;
-    min-height: 44px;
-    min-width: 44px;
+    width: var(--switch-coarse-width);
+    height: var(--switch-coarse-height);
+    min-height: var(--switch-coarse-min-target);
+    min-width: var(--switch-coarse-min-target);
   }
 
   .nothing-switch__thumb {
-    top: 4px;
-    left: 4px;
-    width: 24px;
-    height: 24px;
+    top: var(--switch-coarse-thumb-offset);
+    left: var(--switch-coarse-thumb-offset);
+    width: var(--switch-coarse-thumb-size);
+    height: var(--switch-coarse-thumb-size);
   }
 
   .nothing-switch--on .nothing-switch__thumb {
-    left: 24px;
+    left: var(--switch-coarse-thumb-active-offset);
   }
 }

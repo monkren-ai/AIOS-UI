@@ -11,7 +11,7 @@
   width: 100%;
 }
 
-.battery-header {
+.nothing-battery__header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -19,7 +19,7 @@
   margin-bottom: var(--space-md);
 }
 
-.battery-percent {
+.nothing-battery__percent {
   font-family: var(--font-display);
   font-size: var(--display-lg);
   line-height: 1;
@@ -29,7 +29,7 @@
   transition: color var(--duration-transition) var(--easing);
 }
 
-.battery-status {
+.nothing-battery__status {
   font-family: var(--font-mono);
   font-size: var(--body-sm);
   text-transform: uppercase;
@@ -38,45 +38,45 @@
   transition: color var(--duration-transition) var(--easing);
 }
 
-.battery-status.charging {
+.nothing-battery__status.charging {
   color: var(--success);
 }
 
-.battery-status.discharging {
+.nothing-battery__status.discharging {
   color: var(--text-secondary);
 }
 
-.battery-progress {
+.nothing-battery__progress {
   display: flex;
   gap: var(--space-2xs);
   width: 100%;
   height: 16px;
 }
 
-.battery-segment {
+.nothing-battery__segment {
   flex: 1;
   background: var(--border);
   transition: background var(--duration-transition) var(--easing);
 }
 
-.battery-segment.filled {
+.nothing-battery__segment--filled {
   background: var(--text-display);
 }
 
-.nothing-battery.high .battery-segment.filled,
-.nothing-battery.charging .battery-segment.filled {
+.nothing-battery.high .nothing-battery__segment--filled,
+.nothing-battery.charging .nothing-battery__segment--filled {
   background: var(--success);
 }
 
-.nothing-battery.medium .battery-segment.filled {
+.nothing-battery.medium .nothing-battery__segment--filled {
   background: var(--text-display);
 }
 
-.nothing-battery.low .battery-segment.filled {
+.nothing-battery.low .nothing-battery__segment--filled {
   background: var(--warning);
 }
 
-.nothing-battery.critical .battery-segment.filled {
+.nothing-battery.critical .nothing-battery__segment--filled {
   background: var(--error);
 }
 
@@ -199,11 +199,166 @@
   stroke: var(--success);
 }
 
+/* ===== Widget Card Mode (Segmented) ===== */
+.nothing-battery--widget-card {
+  background: var(--widget-dark-bg);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: var(--space-md);
+  gap: var(--space-xs);
+}
+
+.nothing-battery__widget-percent {
+  font-family: var(--font-ndot);
+  font-size: var(--display-lg);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--widget-white);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.nothing-battery__widget-status {
+  font-family: var(--font-mono);
+  font-size: var(--widget-label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--widget-dark-3);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.nothing-battery__widget-status.charging {
+  color: var(--success);
+}
+
+.nothing-battery--widget-card .nothing-battery__progress {
+  height: 8px;
+  margin-top: var(--space-xs);
+}
+
+.nothing-battery--widget-card .nothing-battery__segment {
+  border-radius: 1px;
+}
+
+/* ===== Widget Card Mode (Ring) ===== */
+.nothing-battery-ring--widget-card {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-xl);
+  flex-direction: column;
+  overflow: visible;
+  gap: var(--space-sm);
+}
+
+.nothing-battery-ring--widget-card .nothing-battery-ring__svg {
+  position: relative;
+  width: var(--widget-size-md);
+  height: var(--widget-size-md);
+  align-self: center;
+}
+
+.nothing-battery-ring--widget-card .nothing-battery-ring__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ===== Bluetooth Device List ===== */
+.nothing-battery__devices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin-top: var(--space-sm);
+  width: 100%;
+}
+
+.nothing-battery__device {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-2xs) var(--space-xs);
+  border-radius: var(--radius-sm);
+  transition: background var(--duration-transition) var(--easing);
+}
+
+.nothing-battery__device--clickable {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.nothing-battery__device--clickable:hover {
+  background: var(--widget-dark-2);
+}
+
+.nothing-battery__device--clickable:active {
+  opacity: 0.85;
+}
+
+.nothing-battery__device-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--widget-dark-4);
+  flex-shrink: 0;
+}
+
+.nothing-battery__device-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+}
+
+.nothing-battery__device-name {
+  flex: 1;
+  font-family: var(--font-widget);
+  font-size: var(--widget-label);
+  color: var(--widget-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.nothing-battery__device-level {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.nothing-battery__device-percent {
+  font-family: var(--font-mono);
+  font-size: var(--widget-label);
+  color: var(--widget-dark-4);
+}
+
+.nothing-battery__device-battery-icon {
+  width: 16px;
+  height: 10px;
+  color: var(--widget-dark-4);
+}
+
+.nothing-battery__device-charging-icon {
+  width: 10px;
+  height: 10px;
+  color: var(--success);
+}
+
+/* ===== Ring widget-card device list overrides ===== */
+.nothing-battery-ring--widget-card .nothing-battery__devices {
+  margin-top: var(--space-xs);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nothing-battery,
-  .battery-percent,
-  .battery-status,
-  .battery-segment {
+  .nothing-battery__percent,
+  .nothing-battery__status,
+  .nothing-battery__segment {
     transition: none;
   }
 }

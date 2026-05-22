@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
+import { withWidgetCard } from './widgets/withWidgetCard'
 import '../styles/date.css'
 
 interface DateWidgetProps {
-  type?: 'rect' | 'dual-ring'
+  type?: 'rect' | 'dual-ring' | 'serif'
   theme?: 'light' | 'dark'
   updateInterval?: number
   className?: string
+  showPeel?: boolean
+  onPeelClick?: () => void
 }
 
 const RING_RADIUS = 25
@@ -18,7 +21,9 @@ const DateWidget: React.FC<DateWidgetProps> = ({
   type = 'rect',
   theme = 'light',
   updateInterval = 60000,
-  className
+  className,
+  showPeel = false,
+  onPeelClick
 }) => {
   const [now, setNow] = useState(new Date())
 
@@ -38,6 +43,30 @@ const DateWidget: React.FC<DateWidgetProps> = ({
   const minutes = now.getMinutes()
   const progress = hours + minutes / 60
   const offset = RING_CIRCUMFERENCE - (progress / 24) * RING_CIRCUMFERENCE
+
+  if (type === 'serif') {
+    const classNames = [
+      'nothing-date--serif',
+      `nothing-date--serif-${theme}`,
+      className || ''
+    ].filter(Boolean).join(' ')
+
+    return (
+      <div className={classNames}>
+        <span className="nothing-date__serif-day">{weekday}</span>
+        <span className="nothing-date__serif-number">{day}</span>
+        {showPeel && (
+          <div
+            className="nothing-date__peel"
+            onClick={onPeelClick}
+            role={onPeelClick ? 'button' : undefined}
+            tabIndex={onPeelClick ? 0 : undefined}
+            onKeyDown={onPeelClick ? (e) => { if (e.key === 'Enter' || e.key === ' ') onPeelClick() } : undefined}
+          />
+        )}
+      </div>
+    )
+  }
 
   if (type === 'rect') {
     const classNames = [
@@ -92,4 +121,4 @@ const DateWidget: React.FC<DateWidgetProps> = ({
   )
 }
 
-export default DateWidget
+export default withWidgetCard(DateWidget)

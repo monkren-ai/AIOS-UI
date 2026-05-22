@@ -1,0 +1,18 @@
+- [x] SKILL.md 中 Vanilla JavaScript 相关描述和代码示例已完全移除
+- [x] SKILL.md React Quick Start 示例路径和导入语句与实际项目一致
+- [x] SKILL.md 组件命名与实际文件名一致（Toggle, Card, DropdownMenu, Sheet）
+- [x] SKILL.md Available Components 列表包含所有已实现的组件（68+）
+- [x] SKILL.md Widget Subsystem 列表包含 SvgIcon, Glyph, WidgetPill, WidgetGrid
+- [x] component-matching.md 中所有 CSS 文件引用与实际文件一一对应
+- [x] platform-mapping.md 包含 React/Tailwind 输出约定部分
+- [x] references/tokens.md 包含 Widget 子系统 token 文档
+- [x] Spinner.tsx 和 SvgIcon.tsx 的 CSS 类名使用 `nothing-` BEM 前缀
+- [x] tokens.css 中补充了所有缺失的 token 定义（--widget-grey 等 5 个 + switch coarse-pointer 6 个）
+- [x] tokens.css 的 [data-theme="light"] 包含 Widget token 的亮色覆盖值（13 个）
+- [x] switch.css 中硬编码尺寸已替换为 token 引用（含 coarse-pointer 媒体查询）
+- [x] card.css 中 box-shadow 已移除，改用边框/背景对比
+- [x] sub/index.ts 仅导出语义化的公共组件（指定的内部组件已移除）
+- [x] WidgetPills.tsx 导出名使用语义化名称（保留向后兼容别名）
+- [x] App.tsx 中对旧导出名和内部组件的引用已更新
+- [x] TypeScript 编译通过
+- [x] 页面正常渲染，无视觉回归

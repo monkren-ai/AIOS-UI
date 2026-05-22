@@ -1,11 +1,10 @@
-import WidgetCard from '../WidgetCard'
+import { withWidgetCard } from './withWidgetCard'
 import '../../styles/steps-widget.css'
 
 interface StepsWidgetProps {
   steps?: number
   streak?: number
   streakUnit?: string
-  card?: boolean | Omit<React.ComponentProps<typeof WidgetCard>, 'children'>
   className?: string
   style?: React.CSSProperties
 }
@@ -14,7 +13,6 @@ const StepsWidget: React.FC<StepsWidgetProps> = ({
   steps = 0,
   streak = 0,
   streakUnit = 'DAYS',
-  card,
   className,
   style
 }) => {
@@ -28,24 +26,19 @@ const StepsWidget: React.FC<StepsWidgetProps> = ({
   ].filter(Boolean).join(' ')
 
   const content = (
-    <div className={classNames} style={style}>
+    <div className={classNames} style={style} role="group" aria-label={`Total steps: ${formatNumber(steps)}, Streak: ${streak} ${streakUnit}`}>
       <div className="nothing-steps-widget__group">
         <span className="nothing-steps-widget__label">Total Steps</span>
-        <span className="nothing-steps-widget__value">{formatNumber(steps)}</span>
+        <span className="nothing-steps-widget__value" aria-label={`${formatNumber(steps)} steps`}>{formatNumber(steps)}</span>
       </div>
       <div className="nothing-steps-widget__group">
         <span className="nothing-steps-widget__label">Streak</span>
-        <span className="nothing-steps-widget__value">{streak} {streakUnit}</span>
+        <span className="nothing-steps-widget__value" aria-label={`${streak} ${streakUnit} streak`}>{streak} {streakUnit}</span>
       </div>
     </div>
   )
 
-  if (card) {
-    const cardProps = typeof card === 'object' ? card : {}
-    return <WidgetCard {...cardProps}>{content}</WidgetCard>
-  }
-
   return content
 }
 
-export default StepsWidget
+export default withWidgetCard(StepsWidget)

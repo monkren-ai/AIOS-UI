@@ -1,0 +1,83 @@
+@import './tokens.css';
+
+/* ===== Base ===== */
+.nothing-digital-clock-large {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-md);
+  box-sizing: border-box;
+  font-family: var(--font-body);
+  gap: var(--space-sm);
+}
+
+/* ===== Time Display ===== */
+.nothing-digital-clock-large__time {
+  font-size: clamp(48px, 10vw, 96px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--widget-white);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+/* ===== Day Name ===== */
+.nothing-digital-clock-large__day {
+  font-size: var(--caption);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  font-family: var(--font-body);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+/* ===== Serif Variant ===== */
+.nothing-digital-clock-large--serif .nothing-digital-clock-large__time {
+  font-family: var(--font-body);
+  font-weight: var(--weight-light);
+  letter-spacing: -0.01em;
+}
+
+.nothing-digital-clock-large--serif .nothing-digital-clock-large__day {
+  color: var(--widget-primary);
+  font-variant: small-caps;
+}
+
+/* ===== Sharp Variant ===== */
+.nothing-digital-clock-large--sharp .nothing-digital-clock-large__time {
+  font-family: var(--font-ndot);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.03em;
+}
+
+.nothing-digital-clock-large--sharp .nothing-digital-clock-large__day {
+  color: var(--widget-grey);
+  font-variant: small-caps;
+}
+
+/* ===== Theme: Dark ===== */
+.nothing-digital-clock-large--dark .nothing-digital-clock-large__time {
+  color: var(--widget-white);
+}
+
+/* ===== Theme: Light ===== */
+.nothing-digital-clock-large--light .nothing-digital-clock-large__time {
+  color: var(--widget-dark-2);
+}
+
+.nothing-digital-clock-large--light.nothing-digital-clock-large--serif .nothing-digital-clock-large__day {
+  color: var(--widget-primary);
+}
+
+.nothing-digital-clock-large--light.nothing-digital-clock-large--sharp .nothing-digital-clock-large__day {
+  color: var(--widget-dark-3);
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .nothing-digital-clock-large,
+  .nothing-digital-clock-large__time,
+  .nothing-digital-clock-large__day {
+    transition: none;
+  }
+}

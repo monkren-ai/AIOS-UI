@@ -1,15 +1,14 @@
-import WidgetCard from '../WidgetCard'
+import { withWidgetCard } from './withWidgetCard'
 import '../../styles/activity-widget.css'
 
 interface ActivityDay {
   label: string;
   value: string;
-  markers: number[];
+  markers: (0 | 1)[];
 }
 
 interface ActivityWidgetProps {
   days?: ActivityDay[];
-  card?: boolean | Omit<React.ComponentProps<typeof WidgetCard>, 'children'>;
   className?: string;
   style?: React.CSSProperties;
 }
@@ -24,18 +23,19 @@ const ActivityWidget: React.FC<ActivityWidgetProps> = ({
     { label: 'FRI', value: '6H48', markers: [0, 0, 1] },
     { label: 'SAT', value: '5H15', markers: [0, 1, 0] }
   ],
-  card,
   className,
   style
 }) => {
   const content = (
     <div className={['nothing-activity-widget', className].filter(Boolean).join(' ')} style={style}>
-      <div className="nothing-activity-widget__markers">
+      <div className="nothing-activity-widget__markers" role="list">
         {days.map((day, idx) => (
           <div key={idx} className="nothing-activity-widget__marker-col">
             {day.markers.map((marker, markerIdx) => (
               <div
                 key={markerIdx}
+                role="listitem"
+                aria-label={marker ? 'Active' : 'Inactive'}
                 className={[
                   'nothing-activity-widget__marker',
                   marker ? 'nothing-activity-widget__marker--active' : 'nothing-activity-widget__marker--inactive'
@@ -56,12 +56,7 @@ const ActivityWidget: React.FC<ActivityWidgetProps> = ({
     </div>
   );
 
-  if (card) {
-    const cardProps = typeof card === 'object' ? card : {}
-    return <WidgetCard {...cardProps}>{content}</WidgetCard>
-  }
-
   return content
 };
 
-export default ActivityWidget;
+export default withWidgetCard(ActivityWidget);

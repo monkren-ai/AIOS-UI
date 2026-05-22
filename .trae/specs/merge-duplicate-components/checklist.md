@@ -1,0 +1,10 @@
+- [x] App.tsx 中所有 deprecated 别名已替换为推荐名称
+- [x] WidgetIcons.tsx 中 deprecated 别名导出已移除
+- [x] SvgIcon 支持 label prop，渲染效果与原 WidgetIcon 一致
+- [x] App.tsx 中 WidgetIcon 已替换为 SvgIcon
+- [x] WidgetIcon.tsx 和 widget-icon.css 已删除
+- [x] 新 Card 组件同时支持 content 模式和 widget 模式
+- [x] App.tsx 中 Cards 和 WidgetCard 导入来源已统一为 ./components/Card
+- [x] Cards.tsx、WidgetCard.tsx、cards.css、widget-card.css 已删除
+- [x] TypeScript 编译通过
+- [x] 页面正常渲染，无视觉回归

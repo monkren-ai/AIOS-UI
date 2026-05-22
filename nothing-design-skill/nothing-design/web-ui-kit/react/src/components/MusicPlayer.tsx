@@ -7,10 +7,37 @@ interface Track {
   duration: number
 }
 
+interface BlinkingSeparatorProps {
+  active?: boolean
+  speed?: number
+  className?: string
+}
+
+export const BlinkingSeparator: React.FC<BlinkingSeparatorProps> = ({
+  active = true,
+  speed = 1000,
+  className
+}) => {
+  return (
+    <span
+      className={[
+        'nothing-blinking-separator',
+        active ? 'nothing-blinking-separator--active' : '',
+        className || ''
+      ].filter(Boolean).join(' ')}
+      style={active ? { animationDuration: `${speed}ms` } : undefined}
+      aria-hidden="true"
+    />
+  )
+}
+
 interface MusicPlayerProps {
   totalSegments?: number
   updateInterval?: number
   tracks?: Track[]
+  variant?: 'default' | 'compact'
+  showRecordingIndicator?: boolean
+  sourceIcon?: React.ReactNode
   style?: React.CSSProperties
 }
 
@@ -20,17 +47,21 @@ const defaultTracks: Track[] = [
   { title: 'Binary Dreams', artist: 'Pixel Noise', duration: 312 }
 ]
 
-const MusicPlayer: React.FC<MusicPlayerProps> = ({ 
-  totalSegments = 20, 
+const MusicPlayer: React.FC<MusicPlayerProps> = ({
+  totalSegments = 20,
   updateInterval = 1000,
-  tracks = defaultTracks,
+  tracks: tracksProp,
+  variant = 'default',
+  showRecordingIndicator = false,
+  sourceIcon,
   style
 }) => {
+  const safeTracks = tracksProp && tracksProp.length > 0 ? tracksProp : defaultTracks
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
 
-  const currentTrack = tracks[currentTrackIndex]
+  const currentTrack = safeTracks[currentTrackIndex]
   const percent = (currentTime / currentTrack.duration) * 100
   const filledSegments = Math.round((percent / 100) * totalSegments)
 
@@ -47,7 +78,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
       timer = setInterval(() => {
         setCurrentTime(prev => {
           if (prev >= currentTrack.duration) {
-            handleNext()
+            setCurrentTrackIndex(p => (p + 1) % safeTracks.length)
             return 0
           }
           return prev + 1
@@ -56,20 +87,74 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
     }
 
     return () => clearInterval(timer)
-  }, [isPlaying, currentTrackIndex, updateInterval, currentTrack.duration])
+  }, [isPlaying, currentTrackIndex, updateInterval, currentTrack.duration, safeTracks.length])
 
   const handleTogglePlay = () => {
     setIsPlaying(!isPlaying)
   }
 
   const handlePrev = () => {
-    setCurrentTrackIndex(prev => (prev - 1 + tracks.length) % tracks.length)
+    setCurrentTrackIndex(prev => (prev - 1 + safeTracks.length) % safeTracks.length)
     setCurrentTime(0)
   }
 
   const handleNext = () => {
-    setCurrentTrackIndex(prev => (prev + 1) % tracks.length)
+    setCurrentTrackIndex(prev => (prev + 1) % safeTracks.length)
     setCurrentTime(0)
+  }
+
+  if (variant === 'compact') {
+    return (
+      <div
+        className={[
+          'nothing-music-player',
+          'nothing-music-player--compact'
+        ].join(' ')}
+        style={style}
+      >
+        <div className="nothing-music-player__compact-top">
+          <div className="nothing-music-player__compact-album">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                className="nothing-music-player__compact-album-icon"
+                d="M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          {sourceIcon && (
+            <div className="nothing-music-player__compact-source">
+              {sourceIcon}
+            </div>
+          )}
+        </div>
+
+        <div className="nothing-music-player__compact-info">
+          <span className="nothing-music-player__compact-info-text">
+            {currentTrack.artist} - {currentTrack.title}
+          </span>
+          {showRecordingIndicator && (
+            <BlinkingSeparator active={isPlaying} />
+          )}
+        </div>
+
+        <div
+          className="nothing-music-player__compact-progress"
+          role="progressbar"
+          aria-valuenow={Math.round(percent)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={`Playback progress: ${formatTime(currentTime)} of ${formatTime(currentTrack.duration)}`}
+        >
+          <div
+            className="nothing-music-player__compact-progress-fill"
+            style={{ width: `${percent}%` }}
+          />
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -80,18 +165,23 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
           <circle className="player-album-icon" cx="12" cy="12" r="3" strokeWidth="2"/>
         </svg>
       </div>
-      
+
       <div className="player-info">
         <div className="player-title">{currentTrack.title}</div>
         <div className="player-artist">{currentTrack.artist}</div>
+        {showRecordingIndicator && (
+          <div className="player-recording-indicator">
+            <BlinkingSeparator active={isPlaying} />
+          </div>
+        )}
       </div>
-      
+
       <div className="player-progress">
         <div className="player-progress-bar">
           {Array.from({ length: totalSegments }).map((_, index) => (
-            <div 
-              key={index} 
-              className={`player-progress-segment ${index < filledSegments ? 'filled' : ''}`} 
+            <div
+              key={index}
+              className={`player-progress-segment ${index < filledSegments ? 'filled' : ''}`}
             />
           ))}
         </div>
@@ -100,7 +190,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
           <span>{formatTime(currentTrack.duration)}</span>
         </div>
       </div>
-      
+
       <div className="player-controls">
         <button className="player-btn" onClick={handlePrev} aria-label="Previous track">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">

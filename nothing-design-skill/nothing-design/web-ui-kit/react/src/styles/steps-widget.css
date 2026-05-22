@@ -1,4 +1,4 @@
-﻿.nothing-steps-widget {
+.nothing-steps-widget {
   border-radius: var(--radius-xl);
   background: var(--widget-card-bg);
   padding: var(--space-md);
@@ -31,6 +31,6 @@
   font-weight: 400;
   color: var(--widget-dark-2);
   font-family: var(--font-ndot);
-  line-height: 27px;
+  line-height: var(--widget-leading-27, 27px);
   letter-spacing: 0;
 }

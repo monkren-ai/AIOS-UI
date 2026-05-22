@@ -1,4 +1,4 @@
-﻿.nothing-time-widget {
+.nothing-time-widget {
   display: flex;
   flex-direction: column;
   padding: var(--space-md);
@@ -55,7 +55,7 @@
   font-size: var(--display-sm);
   font-weight: 300;
   font-family: var(--font-mono);
-  line-height: 38px;
+  line-height: var(--widget-leading-38, 38px);
   letter-spacing: -0.02em;
 }
 

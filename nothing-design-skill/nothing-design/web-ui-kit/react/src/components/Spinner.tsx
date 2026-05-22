@@ -86,10 +86,10 @@ const Spinner: React.FC<SpinnerProps> = ({
 
   return (
     <div className="nothing-spinner" style={style}>
-      <div className="spinner-wheel-container">
-        <div className="spinner-pointer" />
+      <div className="nothing-spinner-wheel-container">
+        <div className="nothing-spinner-pointer" />
         <svg
-          className="spinner-svg"
+          className="nothing-spinner-svg"
           viewBox="0 0 300 300"
           style={{ transform: `rotate(${rotation}deg)` }}
           onTransitionEnd={handleSpinEnd}
@@ -97,11 +97,11 @@ const Spinner: React.FC<SpinnerProps> = ({
           {sectors.map(({ d, isEven, item, tx, ty, textRotation, index }) => (
             <g key={index}>
               <path
-                className={`spinner-sector ${isEven ? 'spinner-sector-even' : 'spinner-sector-odd'} ${selectedIndex === index ? 'selected' : ''}`}
+                className={`nothing-spinner-sector ${isEven ? 'nothing-spinner-sector-even' : 'nothing-spinner-sector-odd'} ${selectedIndex === index ? 'selected' : ''}`}
                 d={d}
               />
               <text
-                className={`spinner-sector-text ${isEven ? 'spinner-sector-text-even' : 'spinner-sector-text-odd'} ${selectedIndex === index ? 'selected' : ''}`}
+                className={`nothing-spinner-sector-text ${isEven ? 'nothing-spinner-sector-text-even' : 'nothing-spinner-sector-text-odd'} ${selectedIndex === index ? 'selected' : ''}`}
                 x={tx}
                 y={ty}
                 transform={`rotate(${textRotation} ${tx} ${ty})`}
@@ -110,18 +110,18 @@ const Spinner: React.FC<SpinnerProps> = ({
               </text>
             </g>
           ))}
-          <circle className="spinner-center" cx={cx} cy={cy} r={24} />
-          <circle className="spinner-center-dot" cx={cx} cy={cy} r={6} />
+          <circle className="nothing-spinner-center" cx={cx} cy={cy} r={24} />
+          <circle className="nothing-spinner-center-dot" cx={cx} cy={cy} r={6} />
         </svg>
       </div>
       <button
-        className="spinner-btn"
+        className="nothing-spinner-btn"
         onClick={handleSpin}
         disabled={isSpinning}
       >
         SPIN
       </button>
-      <div className="spinner-result">{result}</div>
+      <div className="nothing-spinner-result">{result}</div>
     </div>
   )
 }

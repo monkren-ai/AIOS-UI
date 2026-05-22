@@ -1,11 +1,10 @@
 import { useMemo } from 'react'
-import WidgetCard from '../WidgetCard'
+import { withWidgetCard } from './withWidgetCard'
 import '../../styles/compass-widget.css'
 
 interface CompassWidgetProps {
   heading?: number
   showDots?: boolean
-  card?: boolean | Omit<React.ComponentProps<typeof WidgetCard>, 'children'>
   className?: string
   style?: React.CSSProperties
 }
@@ -13,13 +12,21 @@ interface CompassWidgetProps {
 const DOT_ROWS = 7
 const DOT_COLS = 7
 
+function getDirectionLabel(degrees: number): string {
+  const normalized = ((degrees % 360) + 360) % 360
+  const directions = ['North', 'Northeast', 'East', 'Southeast', 'South', 'Southwest', 'West', 'Northwest']
+  const index = Math.round(normalized / 45) % 8
+  return directions[index]
+}
+
 const CompassWidget: React.FC<CompassWidgetProps> = ({
   heading = 0,
   showDots = true,
-  card,
   className,
   style
 }) => {
+  const normalizedHeading = ((heading % 360) + 360) % 360
+
   const dotGrid = useMemo(() => {
     if (!showDots) return null
     const grid: string[][] = []
@@ -34,17 +41,22 @@ const CompassWidget: React.FC<CompassWidgetProps> = ({
   }, [showDots])
 
   const widgetStyle = {
-    transform: `rotate(${-heading}deg)`
-  }
+    '--compass-heading': `${-normalizedHeading}deg`,
+    ...style
+  } as React.CSSProperties
 
   const labelStyle = {
-    transform: `rotate(${heading}deg)`
+    transform: `rotate(${normalizedHeading}deg)`
   }
+
+  const directionLabel = getDirectionLabel(normalizedHeading)
 
   const content = (
     <div
       className={['nothing-compass-widget', className].filter(Boolean).join(' ')}
-      style={{ ...widgetStyle, ...style }}
+      style={widgetStyle}
+      role="img"
+      aria-label={`Compass pointing ${normalizedHeading} degrees, ${directionLabel}`}
     >
       <span
         className="nothing-compass-widget__direction nothing-compass-widget__direction--default"
@@ -86,12 +98,7 @@ const CompassWidget: React.FC<CompassWidgetProps> = ({
     </div>
   )
 
-  if (card) {
-    const cardProps = typeof card === 'object' ? card : {}
-    return <WidgetCard {...cardProps}>{content}</WidgetCard>
-  }
-
   return content
 }
 
-export default CompassWidget
+export default withWidgetCard(CompassWidget)

@@ -2,7 +2,7 @@
   background: var(--widget-bg);
   position: relative;
   width: 100%;
-  height: 1110px;
+  height: var(--widget-bg-height, 1110px);
 }
 
 .widget-icon-wrapper {
@@ -17,18 +17,19 @@
 .widget-card {
   justify-self: stretch;
   position: relative;
+  overflow: hidden;
   flex-shrink: 0;
 }
 
 .widget-icon-wrapper--68 {
-  width: 68px;
-  height: 68px;
-  min-width: 68px;
-  min-height: 68px;
+  width: var(--widget-size-sm, 68px);
+  height: var(--widget-size-sm, 68px);
+  min-width: var(--widget-size-sm, 68px);
+  min-height: var(--widget-size-sm, 68px);
   flex-shrink: 0;
 }
 
-.widget-icon-svg {
+.nothing-widget-icon-svg {
   position: absolute;
   display: block;
   inset: 0;
@@ -40,7 +41,7 @@
 }
 
 /* 强制覆盖所有 widget-icon-wrapper 中的 svg 元素的内联样式 */
-.widget-icon-wrapper svg[class*="widget-icon-svg"] {
+.widget-icon-wrapper svg[class*="nothing-widget-icon-svg"] {
   width: 100% !important;
   height: 100% !important;
   max-width: 100% !important;
@@ -48,18 +49,18 @@
 }
 
 /* 针对特定选择器的更强制覆盖 */
-div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
+div[class*="widget-icon-wrapper"] svg.nothing-widget-icon-svg {
   width: 100% !important;
   height: 100% !important;
 }
 
 /* 强制约束所有 SVG 的尺寸 */
-.widget-grid-7x6 svg.widget-icon-svg,
-.widget-icon-wrapper--68 svg.widget-icon-svg {
+.widget-grid-7x6 svg.nothing-widget-icon-svg,
+.widget-icon-wrapper--68 svg.nothing-widget-icon-svg {
   width: 100% !important;
   height: 100% !important;
-  max-width: 68px !important;
-  max-height: 68px !important;
+  max-width: var(--widget-size-sm, 68px) !important;
+  max-height: var(--widget-size-sm, 68px) !important;
 }
 
 .widget-pill {
@@ -71,12 +72,12 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 
 .widget-pill--light {
   background: var(--widget-card-bg);
-  border-radius: 250px;
+  border-radius: var(--radius-pill, 250px);
 }
 
 .widget-pill--dark {
   background: var(--widget-dark-bg);
-  border-radius: 250px;
+  border-radius: var(--radius-pill, 250px);
 }
 
 .widget-pill__bg {
@@ -119,15 +120,15 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 }
 
 .widget-flex-gap-4 {
-  gap: 4px;
+  gap: var(--space-xs, 4px);
 }
 
 .widget-flex-gap-12 {
-  gap: 12px;
+  gap: var(--space-sm-plus, 12px);
 }
 
 .widget-flex-gap-19 {
-  gap: 19px;
+  gap: var(--space-lg-plus, 19px);
 }
 
 .widget-content-stretch {
@@ -140,42 +141,42 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 }
 
 .widget-size-68 {
-  width: 68px;
-  height: 68px;
+  width: var(--widget-size-sm, 68px);
+  height: var(--widget-size-sm, 68px);
 }
 
 .widget-size-152 {
-  width: 152px;
-  height: 152px;
+  width: var(--widget-size-md, 152px);
+  height: var(--widget-size-md, 152px);
 }
 
 .widget-px-20 {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: var(--space-md-plus, 20px);
+  padding-right: var(--space-md-plus, 20px);
 }
 
 .widget-pos-bottom-4 {
-  bottom: -4px;
+  bottom: var(--widget-pos-bottom-4, -4px);
 }
 
 .widget-pos-bottom-8 {
-  bottom: -8px;
+  bottom: var(--widget-pos-bottom-8, -8px);
 }
 
 .widget-pos-bottom-10 {
-  bottom: -10px;
+  bottom: var(--widget-pos-bottom-10, -10px);
 }
 
 .widget-pos-bottom-12 {
-  bottom: -12px;
+  bottom: var(--widget-pos-bottom-12, -12px);
 }
 
 .widget-pos-left-100 {
-  left: 100px;
+  left: var(--widget-pos-left-100, 100px);
 }
 
 .widget-pos-top-100 {
-  top: 100px;
+  top: var(--widget-pos-top-100, 100px);
 }
 
 .widget-col-1 {
@@ -184,10 +185,6 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 
 .widget-row-1 {
   grid-row: 1;
-}
-
-.widget-col-1 {
-  grid-column: 1;
 }
 
 .widget-place-start {
@@ -233,15 +230,12 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 .widget-bg-accent {
   background: var(--widget-primary);
 }
-  .widget-card {
-  justify-self: stretch;
-  position: relative;
-  flex-shrink: 0;
-}
 
 .widget-card--152 {
-  width: 152px;
-  height: 152px;
+  width: var(--widget-size-md, 152px);
+  height: var(--widget-size-md, 152px);
+  min-width: var(--widget-size-md, 152px);
+  min-height: var(--widget-size-md, 152px);
 }
 
 .widget-card--rounded {
@@ -249,7 +243,7 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 }
 
 .widget-card--pill {
-  border-radius: 250px;
+  border-radius: var(--radius-pill, 250px);
 }
 
 .widget-card--light {
@@ -283,26 +277,26 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 }
 
 .widget-card__svg--64 {
-  width: 64px !important;
-  height: 64px !important;
+  width: var(--widget-icon-64, 64px) !important;
+  height: var(--widget-icon-64, 64px) !important;
 }
 
 .widget-card__svg--24 {
-  width: 24px !important;
-  height: 24px !important;
+  width: var(--space-lg, 24px) !important;
+  height: var(--space-lg, 24px) !important;
 }
 
 .widget-card__svg--16 {
-  width: 16px !important;
-  height: 16px !important;
+  width: var(--space-md, 16px) !important;
+  height: var(--space-md, 16px) !important;
 }
 
 .widget-grid-7x6 {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   grid-template-rows: repeat(6, minmax(0, 1fr));
-  width: 716px;
-  height: 700px;
+  width: var(--widget-grid-width, 716px);
+  height: var(--widget-grid-height, 700px);
   gap: var(--widget-gap);
   align-content: stretch;
 }
@@ -311,7 +305,7 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(5, minmax(0, 1fr));
-  width: 716px;
+  width: var(--widget-grid-width, 716px);
   gap: var(--widget-gap);
   align-content: stretch;
 }
@@ -320,7 +314,7 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(4, minmax(0, 1fr));
-  width: 716px;
+  width: var(--widget-grid-width, 716px);
   gap: var(--widget-gap);
   align-content: stretch;
 }
@@ -328,7 +322,7 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 .widget-flex-wrap {
   display: flex;
   flex-wrap: wrap;
-  width: 728px;
+  width: var(--widget-flex-width, 728px);
   gap: var(--widget-gap);
   align-content: flex-start;
 }
@@ -340,8 +334,11 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 }
 
 .widget-card-wrapper {
+  width: var(--widget-size-md, 152px);
+  height: var(--widget-size-md, 152px);
   justify-self: stretch;
   position: relative;
+  overflow: hidden;
   flex-shrink: 0;
 }
 
@@ -363,15 +360,15 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 }
 
 .widget-row--gap-8 {
-  gap: 8px;
+  gap: var(--space-sm, 8px);
 }
 
 .widget-row--gap-4 {
-  gap: 4px;
+  gap: var(--space-xs, 4px);
 }
 
 .widget-row--gap-12 {
-  gap: 12px;
+  gap: var(--space-sm-plus, 12px);
 }
 
 .widget-row--center {
@@ -390,7 +387,7 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 }
 
 .widget-text {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-widget, 'Space Grotesk');
   font-weight: 400;
   line-height: normal;
 }
@@ -405,47 +402,47 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 }
 
 .widget-text--7 {
-  font-size: 7px;
+  font-size: var(--widget-text-7, 7px);
 }
 
 .widget-text--8 {
-  font-size: 8px;
+  font-size: var(--widget-micro, 8px);
 }
 
 .widget-text--10 {
-  font-size: 10px;
+  font-size: var(--widget-label, 10px);
 }
 
 .widget-text--12 {
-  font-size: 12px;
+  font-size: var(--caption, 12px);
 }
 
 .widget-text--14 {
-  font-size: 14px;
+  font-size: var(--body-sm, 14px);
 }
 
 .widget-text--16 {
-  font-size: 16px;
+  font-size: var(--body, 16px);
 }
 
 .widget-text--18 {
-  font-size: 18px;
+  font-size: var(--subheading, 18px);
 }
 
 .widget-text--24 {
-  font-size: 24px;
+  font-size: var(--heading, 24px);
 }
 
 .widget-text--28 {
-  font-size: 28px;
+  font-size: var(--widget-text-28, 28px);
 }
 
 .widget-text--30 {
-  font-size: 30px;
+  font-size: var(--widget-text-30, 30px);
 }
 
 .widget-text--32 {
-  font-size: 32px;
+  font-size: var(--display-sm, 32px);
 }
 
 .widget-text--center {
@@ -465,7 +462,7 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 }
 
 .widget-text--white-70 {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--widget-white-70, rgba(255, 255, 255, 0.7));
 }
 
 .widget-text--grey {
@@ -544,23 +541,23 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 }
 
 .widget-leading-18 {
-  line-height: 18px;
+  line-height: var(--widget-leading-18, 18px);
 }
 
 .widget-leading-27 {
-  line-height: 27px;
+  line-height: var(--widget-leading-27, 27px);
 }
 
 .widget-leading-20 {
-  line-height: 20px;
+  line-height: var(--widget-leading-20, 20px);
 }
 
 .widget-leading-29 {
-  line-height: 29px;
+  line-height: var(--widget-leading-29, 29px);
 }
 
 .widget-leading-36 {
-  line-height: 36px;
+  line-height: var(--widget-leading-36, 36px);
 }
 
 .widget-rotate {
@@ -612,13 +609,13 @@ div[class*="widget-icon-wrapper"] svg.widget-icon-svg {
 }
 
 .widget-rounded-6 {
-  border-radius: 6px;
+  border-radius: var(--radius-sm, 6px);
 }
 
 .widget-rounded-16 {
-  border-radius: 16px;
+  border-radius: var(--radius-2xl, 16px);
 }
 
 .widget-rounded-pill {
-  border-radius: 250px;
+  border-radius: var(--radius-pill, 250px);
 }
