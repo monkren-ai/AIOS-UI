@@ -40,7 +40,7 @@ export function WidgetShowcase() {
               { day: 'WED', hi: '33°', lo: '20°' },
               { day: 'THU', hi: '30°', lo: '17°' },
               { day: 'FRI', hi: '27°', lo: '14°' }
-            ]} card={{ size: 'wide' }} />
+            ]} card={{ size: 'auto' }} />
           } />
           <NfCard index={3} label="Weather · Wide Dark" tag="LIVE" className="card-wide" body={
             <WeatherWidget variant="wide" temp="30°" hi="35°" lo="16°" city="Toronto" condition="Partly cloudy" forecast={[
@@ -49,7 +49,7 @@ export function WidgetShowcase() {
               { day: 'WED', hi: '33°', lo: '20°' },
               { day: 'THU', hi: '30°', lo: '17°' },
               { day: 'FRI', hi: '27°', lo: '14°' }
-            ]} card={{ size: 'wide', theme: 'dark', title: 'WEATHER', value: '30°', subtitle: 'PARTLY CLOUDY', icon: <Glyph type="sun" theme="dark" size="sm" />, iconPosition: 'left' }} />
+            ]} card={{ size: 'auto', theme: 'dark', title: 'WEATHER', value: '30°', subtitle: 'PARTLY CLOUDY', icon: <Glyph type="sun" theme="dark" size="sm" />, iconPosition: 'left' }} />
           } />
 
           {/* Analog Clock */}
@@ -84,7 +84,7 @@ export function WidgetShowcase() {
           <NfCard index={12} label="Weather · Snow" tag="LIVE" body={
             <WeatherWidget temp="30°" hi="35°" lo="16°" city="Toronto" condition="snowy" variant="circular" card />
           } />
-          <NfCard index={13} label="Weather · Grid" tag="LIVE" body={
+          <NfCard index={13} label="Weather · Grid" tag="LIVE" className="card-wide" body={
             <WeatherWidget temp="30°" hi="35°" lo="16°" city="Toronto" condition="sunny" variant="grid" forecast={[
               { day: 'MON', hi: '32°', lo: '18°', condition: 'sunny' },
               { day: 'TUE', hi: '28°', lo: '15°', condition: 'cloudy' },

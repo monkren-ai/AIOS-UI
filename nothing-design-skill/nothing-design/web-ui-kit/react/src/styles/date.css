@@ -20,8 +20,8 @@
 }
 
 .nothing-date-rect__ring {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
 }
 
@@ -60,7 +60,7 @@
 
 .nothing-date-rect__day {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1;
 }
 
@@ -155,7 +155,7 @@
 
 .nothing-date-dual-ring__day {
   font-family: var(--font-ndot);
-  font-size: 30px;
+  font-size: 32px;
   line-height: 1;
 }
 

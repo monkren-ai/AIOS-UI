@@ -21,8 +21,8 @@
 }
 
 .nothing-photo-frame--square .nothing-photo-frame__image-wrapper {
-  width: 136px;
-  height: 136px;
+  width: calc(var(--widget-size-md) - 2 * var(--space-sm));
+  height: calc(var(--widget-size-md) - 2 * var(--space-sm));
   border-radius: var(--radius-md);
   overflow: hidden;
   position: relative;
@@ -38,8 +38,8 @@
 }
 
 .nothing-photo-frame--pill .nothing-photo-frame__image-wrapper {
-  width: 52px;
-  height: 136px;
+  width: calc(var(--widget-size-sm) - 2 * var(--space-sm));
+  height: calc(var(--widget-size-md) - 2 * var(--space-sm));
   border-radius: 12px;
   overflow: hidden;
   position: relative;

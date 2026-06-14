@@ -99,12 +99,12 @@ const DateWidgetImpl: React.FC<DateWidgetProps> = ({
     return (
       <div className={cn(dateRectVariants({ theme }), className)} data-state={dataAttr('rect')}>
         <div className="nothing-date-rect__ring">
-          <svg className="nothing-date-rect__ring-svg" viewBox="0 0 60 60">
-            <circle className="nothing-date-rect__ring-bg" cx="30" cy="30" r={RING_RADIUS} />
+          <svg className="nothing-date-rect__ring-svg" viewBox="0 0 64 64">
+            <circle className="nothing-date-rect__ring-bg" cx="32" cy="32" r={RING_RADIUS} />
             <circle
               className="nothing-date-rect__ring-progress"
-              cx="30"
-              cy="30"
+              cx="32"
+              cy="32"
               r={RING_RADIUS}
               style={{
                 strokeDasharray: `${RING_CIRCUMFERENCE} ${RING_CIRCUMFERENCE}`,
