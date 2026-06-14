@@ -1,15 +1,28 @@
 import React from 'react';
 
-export function Dots4({ theme: _theme, size: _size, className, 'aria-label': ariaLabel, style }: {
-  theme?: 'light' | 'dark';
-  size?: 'small' | 'medium' | 'large';
-  className?: string;
-  'aria-label'?: string;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <div style={style} className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 widget-card__svg--64 ${className || ''}`.trim()} data-name="Dots" aria-label={ariaLabel || "Dots"}>
-      <svg className="nothing-widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 64 64">
+import { cn, dataAttr } from '../../../lib/utils';
+import { cva } from 'class-variance-authority';
+const widgetSubVariants = cva('', {
+  variants: {
+    theme: { light: 'widget-theme--light', dark: 'widget-theme--dark' },
+    size: { small: 'widget-size--small', medium: 'widget-size--medium', large: 'widget-size--large' },
+  },
+  defaultVariants: { theme: 'dark', size: 'medium' },
+})
+
+export interface WidgetSubProps {
+  theme?: 'light' | 'dark'
+  size?: 'small' | 'medium' | 'large'
+  className?: string
+  'aria-label'?: string
+  style?: React.CSSProperties
+}
+
+export const Dots4 = React.forwardRef<HTMLDivElement, WidgetSubProps>(
+  ({ theme, size, className, 'aria-label': ariaLabel, style, ...props }, ref) => {
+    return (
+      <div ref={ref} style={style} className={cn(widgetSubVariants({ theme, size }), `widget-card__icon absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 widget-card__svg--64 ${className || ''}`.trim())} data-theme={dataAttr(theme)} data-size={dataAttr(size)} {...props} data-name="Dots" aria-label={ariaLabel || "Dots"}>
+      <svg className="nothing-widget-icon-svg" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 64 64">
         <g id="Dots">
           <circle cx="17.5484" cy="25.8064" fill="var(--fill-0, var(--widget-white))" id="Ellipse 188" r="3.09677" style={{ fill: "var(--widget-white)", fillOpacity: "1" }} />
           <circle cx="17.5484" cy="32" fill="var(--fill-0, var(--widget-white))" id="Ellipse 189" r="3.09677" style={{ fill: "var(--widget-white)", fillOpacity: "1" }} />
@@ -43,20 +56,21 @@ export function Dots4({ theme: _theme, size: _size, className, 'aria-label': ari
         </g>
       </svg>
     </div>
-  );
-}
+    )
+  }
+)
+Dots4.displayName = 'Dots4'
 
-export function Dots3({ theme: _theme, size: _size, className, 'aria-label': ariaLabel, style }: {
-  theme?: 'light' | 'dark';
-  size?: 'small' | 'medium' | 'large';
-  className?: string;
-  'aria-label'?: string;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <div style={style} className={`widget-card-wrapper ${className || ''}`.trim()} data-name="Dots" aria-label={ariaLabel || "Dots"}>
+
+export const Dots3 = React.forwardRef<HTMLDivElement, WidgetSubProps>(
+  ({ theme, size, className, 'aria-label': ariaLabel, style, ...props }, ref) => {
+    return (
+      <div ref={ref} style={style} className={cn(widgetSubVariants({ theme, size }), `widget-card-wrapper ${className || ''}`.trim())} data-theme={dataAttr(theme)} data-size={dataAttr(size)} {...props} data-name="Dots" aria-label={ariaLabel || "Dots"}>
       <div className="widget-bg-dark absolute inset-0 widget-card--rounded widget-size-152" data-name="BG" />
       <Dots4 />
     </div>
-  );
-}
+    )
+  }
+)
+Dots3.displayName = 'Dots3'
+

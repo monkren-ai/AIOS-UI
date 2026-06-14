@@ -1,12 +1,49 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
+import {
+  OverlayPortal,
+  useEscapeKey,
+  useOverlayState,
+  useScrollLock,
+  useTabCycle,
+} from '../ui/OverlayPortal'
 import '../styles/sheet.css'
 
-interface SheetSection {
+const sheetBackdropVariants = cva('nothing-sheet-backdrop', {
+  variants: {
+    visible: { true: 'nothing-sheet-backdrop--visible', false: '' },
+  },
+  defaultVariants: { visible: false },
+})
+
+const sheetVariants = cva('nothing-sheet', {
+  variants: {
+    side: {
+      left: 'nothing-sheet--left',
+      right: 'nothing-sheet--right',
+      top: 'nothing-sheet--top',
+      bottom: 'nothing-sheet--bottom',
+    },
+    visible: {
+      left: 'nothing-sheet--visible-left',
+      right: 'nothing-sheet--visible-right',
+      top: 'nothing-sheet--visible-top',
+      bottom: 'nothing-sheet--visible-bottom',
+    },
+    full: { true: 'nothing-sheet--full', false: '' },
+  },
+  defaultVariants: { side: 'right', full: false },
+})
+
+export interface SheetSection {
   title?: string
   content: React.ReactNode
 }
 
-interface SheetProps {
+export interface SheetProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+    VariantProps<typeof sheetVariants> {
   open?: boolean
   onOpenChange?: (open: boolean) => void
   side?: 'left' | 'right' | 'top' | 'bottom'
@@ -17,138 +54,110 @@ interface SheetProps {
   children?: React.ReactNode
 }
 
-const Sheet: React.FC<SheetProps> = ({
-  open: controlledOpen,
-  onOpenChange,
-  side = 'right',
-  title,
-  full = false,
-  sections,
-  footer,
-  children
-}) => {
-  const [internalOpen, setInternalOpen] = useState(false)
-  const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen
-  const sheetRef = useRef<HTMLDivElement>(null)
-  const previousFocusRef = useRef<HTMLElement | null>(null)
+export const Sheet = React.forwardRef<HTMLDivElement, SheetProps>(
+  (
+    {
+      className,
+      open: controlledOpen,
+      onOpenChange,
+      side = 'right',
+      title,
+      full = false,
+      sections,
+      footer,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const { isOpen, close } = useOverlayState(controlledOpen, onOpenChange)
+    const { ref: sheetRef, onKeyDown: tabCycle } = useTabCycle<HTMLDivElement>(isOpen)
+    useScrollLock(isOpen)
+    useEscapeKey(isOpen, close)
 
-  useEffect(() => {
-    if (isOpen) {
-      previousFocusRef.current = document.activeElement as HTMLElement
-      document.body.style.overflow = 'hidden'
-      requestAnimationFrame(() => {
-        const firstFocusable = sheetRef.current?.querySelector<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        )
-        firstFocusable?.focus()
-      })
-    } else {
-      document.body.style.overflow = ''
-      previousFocusRef.current?.focus()
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isOpen])
-
-  const handleClose = () => {
-    if (controlledOpen === undefined) {
-      setInternalOpen(false)
-    }
-    onOpenChange?.(false)
-  }
-
-  const handleBackdropClick = () => {
-    handleClose()
-  }
-
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      handleClose()
-      return
-    }
-    if (e.key !== 'Tab' || !sheetRef.current) return
-    const focusable = sheetRef.current.querySelectorAll<HTMLElement>(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    const setSheetRefs = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        sheetRef.current = node
+        if (typeof ref === 'function') ref(node)
+        else if (ref && 'current' in ref) {
+          ;(ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+        }
+      },
+      [ref, sheetRef]
     )
-    if (focusable.length === 0) return
-    const first = focusable[0]
-    const last = focusable[focusable.length - 1]
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault()
-      last.focus()
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault()
-      first.focus()
+
+    const handleBackdropClick = () => {
+      close()
     }
-  }, [onOpenChange, controlledOpen])
 
-  const isBottomSheetMode = side === 'bottom' && sections
+    const isBottomSheetMode = side === 'bottom' && sections
 
-  const backdropClassNames = [
-    'nothing-sheet-backdrop',
-    isOpen ? 'nothing-sheet-backdrop--visible' : ''
-  ].filter(Boolean).join(' ')
+    const titleId = title ? 'nothing-sheet-title' : undefined
 
-  const sheetClassNames = [
-    'nothing-sheet',
-    `nothing-sheet--${side}`,
-    isOpen ? `nothing-sheet--visible-${side}` : '',
-    full ? 'nothing-sheet--full' : ''
-  ].filter(Boolean).join(' ')
-
-  const titleId = title ? 'nothing-sheet-title' : undefined
-
-  return (
-    <>
-      <div className={backdropClassNames} onClick={handleBackdropClick} aria-hidden="true" />
-      <div
-        className={sheetClassNames}
-        ref={sheetRef}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-        onKeyDown={handleKeyDown}
-      >
-        {isBottomSheetMode && (
-          <div className="nothing-sheet__handle" aria-hidden="true">
-            <div className="nothing-sheet__handle-bar" />
-          </div>
-        )}
-        <div className="nothing-sheet__header">
-          {title && (
-            <div className="nothing-sheet__title" id={titleId}>{title}</div>
+    return (
+      <OverlayPortal open={isOpen}>
+        <div
+          className={cn(sheetBackdropVariants({ visible: isOpen }))}
+          onClick={handleBackdropClick}
+          aria-hidden="true"
+          data-state={dataAttr(isOpen ? 'visible' : 'hidden')}
+        />
+        <div
+          ref={setSheetRefs}
+          className={cn(
+            sheetVariants({
+              side,
+              visible: isOpen ? side : undefined,
+              full,
+            }),
+            className
           )}
-          <button
-            className={isBottomSheetMode ? 'nothing-sheet__dismiss' : 'nothing-sheet__close'}
-            onClick={handleClose}
-            aria-label="Close"
-          >
-            {isBottomSheetMode ? 'Done' : '×'}
-          </button>
-        </div>
-        {sections ? (
-          sections.map((section, index) => (
-            <div key={index} className="nothing-sheet__section">
-              {section.title && (
-                <div className="nothing-sheet__section-title">{section.title}</div>
-              )}
-              {section.content}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={titleId}
+          onKeyDown={tabCycle}
+          data-state={dataAttr(isOpen ? 'open' : 'closed')}
+          data-side={dataAttr(side)}
+          {...props}
+        >
+          {isBottomSheetMode && (
+            <div className="nothing-sheet__handle" aria-hidden="true">
+              <div className="nothing-sheet__handle-bar" />
             </div>
-          ))
-        ) : (
-          <div className="nothing-sheet__body">
-            {children}
+          )}
+          <div className="nothing-sheet__header">
+            {title && (
+              <div className="nothing-sheet__title" id={titleId}>
+                {title}
+              </div>
+            )}
+            <button
+              className={isBottomSheetMode ? 'nothing-sheet__dismiss' : 'nothing-sheet__close'}
+              onClick={close}
+              aria-label="Close"
+            >
+              {isBottomSheetMode ? 'Done' : '×'}
+            </button>
           </div>
-        )}
-        {footer && (
-          <div className="nothing-sheet__footer">
-            {footer}
-          </div>
-        )}
-      </div>
-    </>
-  )
-}
+          {sections ? (
+            sections.map((section, index) => (
+              <div key={index} className="nothing-sheet__section">
+                {section.title && (
+                  <div className="nothing-sheet__section-title">{section.title}</div>
+                )}
+                {section.content}
+              </div>
+            ))
+          ) : (
+            <div className="nothing-sheet__body">{children}</div>
+          )}
+          {footer && <div className="nothing-sheet__footer">{footer}</div>}
+        </div>
+      </OverlayPortal>
+    )
+  }
+)
+Sheet.displayName = 'Sheet'
 
+export { sheetVariants, sheetBackdropVariants }
 export default Sheet

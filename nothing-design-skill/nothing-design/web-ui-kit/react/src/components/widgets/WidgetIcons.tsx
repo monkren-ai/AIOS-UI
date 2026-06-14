@@ -140,7 +140,7 @@ export function BatteryPlus({ theme = 'dark', size = 'md', className, 'aria-labe
    Simple icons: light bg + dark icon
    ────────────────────────────────────────────── */
 
-export function DarkMode({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function DarkMode({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -149,7 +149,7 @@ export function DarkMode({ theme = 'light', size = 'md', className, 'aria-label'
   );
 }
 
-export function Subtitle({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function Subtitle({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -158,7 +158,7 @@ export function Subtitle({ theme = 'light', size = 'md', className, 'aria-label'
   );
 }
 
-export function Wallet({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function Wallet({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -167,7 +167,7 @@ export function Wallet({ theme = 'light', size = 'md', className, 'aria-label': 
   );
 }
 
-export function DownArrow({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function DownArrow({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -176,7 +176,7 @@ export function DownArrow({ theme = 'light', size = 'md', className, 'aria-label
   );
 }
 
-export function Storage({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function Storage({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -185,7 +185,7 @@ export function Storage({ theme = 'light', size = 'md', className, 'aria-label':
   );
 }
 
-export function Record({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function Record({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -194,7 +194,7 @@ export function Record({ theme = 'light', size = 'md', className, 'aria-label': 
   );
 }
 
-export function Video({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function Video({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -203,7 +203,7 @@ export function Video({ theme = 'light', size = 'md', className, 'aria-label': a
   );
 }
 
-export function Filter({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function Filter({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -216,8 +216,8 @@ export function Filter({ theme = 'light', size = 'md', className, 'aria-label': 
    Icons with clipPath (light bg + dark icon)
    ────────────────────────────────────────────── */
 
-export function NoSignam({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
-  const iconFill = theme === 'light' ? 'var(--widget-dark-bg, #1A1D1C)' : 'var(--widget-white, #FCFAFE)';
+export function NoSignal({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+  const iconFill = theme === 'dark' ? 'var(--widget-white, #FCFAFE)' : 'var(--widget-dark-bg, #1A1D1C)';
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -235,8 +235,8 @@ export function NoSignam({ theme = 'light', size = 'md', className, 'aria-label'
   );
 }
 
-export function FullNetwork({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
-  const iconFill = theme === 'light' ? 'var(--widget-dark-bg, #1A1D1C)' : 'var(--widget-white, #FCFAFE)';
+export function FullNetwork({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+  const iconFill = theme === 'dark' ? 'var(--widget-white, #FCFAFE)' : 'var(--widget-dark-bg, #1A1D1C)';
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -254,8 +254,8 @@ export function FullNetwork({ theme = 'light', size = 'md', className, 'aria-lab
   );
 }
 
-export function NoSim({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
-  const iconFill = theme === 'light' ? 'var(--widget-dark-bg, #1A1D1C)' : 'var(--widget-white, #FCFAFE)';
+export function NoSim({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+  const iconFill = theme === 'dark' ? 'var(--widget-white, #FCFAFE)' : 'var(--widget-dark-bg, #1A1D1C)';
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -277,7 +277,7 @@ export function NoSim({ theme = 'light', size = 'md', className, 'aria-label': a
    Accent / error themed icons
    ────────────────────────────────────────────── */
 
-export function DoNotDisturb({ theme = 'accent', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function DoNotDisturb({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   const iconFill = 'var(--widget-white, #FCFAFE)';
   return (
     <SvgIcon
@@ -289,7 +289,7 @@ export function DoNotDisturb({ theme = 'accent', size = 'md', className, 'aria-l
   );
 }
 
-export function NoConnection({ theme = 'error', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function NoConnection({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -298,7 +298,7 @@ export function NoConnection({ theme = 'error', size = 'md', className, 'aria-la
   );
 }
 
-export function Temp({ theme = 'error', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function Temp({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -307,7 +307,7 @@ export function Temp({ theme = 'error', size = 'md', className, 'aria-label': ar
   );
 }
 
-export function AccessCamera({ theme = 'error', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function AccessCamera({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   const iconFill = 'var(--widget-white, #FCFAFE)';
   return (
     <SvgIcon
@@ -323,8 +323,8 @@ export function AccessCamera({ theme = 'error', size = 'md', className, 'aria-la
    Complex icons with inner SVGs
    ────────────────────────────────────────────── */
 
-export function QrCode({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
-  const iconFill = theme === 'light' ? 'var(--widget-dark-bg, #1A1D1C)' : 'var(--widget-white, #FCFAFE)';
+export function QrCode({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+  const iconFill = theme === 'dark' ? 'var(--widget-white, #FCFAFE)' : 'var(--widget-dark-bg, #1A1D1C)';
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -337,8 +337,8 @@ export function QrCode({ theme = 'light', size = 'md', className, 'aria-label': 
   );
 }
 
-export function Glyphs({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
-  const iconFill = theme === 'light' ? 'var(--widget-dark-bg, #1A1D1C)' : 'var(--widget-white, #FCFAFE)';
+export function Glyphs({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+  const iconFill = theme === 'dark' ? 'var(--widget-white, #FCFAFE)' : 'var(--widget-dark-bg, #1A1D1C)';
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -356,8 +356,8 @@ export function Glyphs({ theme = 'light', size = 'md', className, 'aria-label': 
   );
 }
 
-export function AutoRotate({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
-  const iconFill = theme === 'light' ? 'var(--widget-dark-bg, #1A1D1C)' : 'var(--widget-white, #FCFAFE)';
+export function AutoRotate({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+  const iconFill = theme === 'dark' ? 'var(--widget-white, #FCFAFE)' : 'var(--widget-dark-bg, #1A1D1C)';
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -368,7 +368,7 @@ export function AutoRotate({ theme = 'light', size = 'md', className, 'aria-labe
   );
 }
 
-export function Info({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function Info({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -377,8 +377,8 @@ export function Info({ theme = 'light', size = 'md', className, 'aria-label': ar
   );
 }
 
-export function Watch({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
-  const iconFill = theme === 'light' ? 'var(--widget-dark-bg, #1A1D1C)' : 'var(--widget-white, #FCFAFE)';
+export function Watch({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+  const iconFill = theme === 'dark' ? 'var(--widget-white, #FCFAFE)' : 'var(--widget-dark-bg, #1A1D1C)';
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -393,8 +393,8 @@ export function Watch({ theme = 'light', size = 'md', className, 'aria-label': a
   );
 }
 
-export function Scan({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
-  const iconFill = theme === 'light' ? 'var(--widget-dark-bg, #1A1D1C)' : 'var(--widget-white, #FCFAFE)';
+export function Scan({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+  const iconFill = theme === 'dark' ? 'var(--widget-white, #FCFAFE)' : 'var(--widget-dark-bg, #1A1D1C)';
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -408,7 +408,7 @@ export function Scan({ theme = 'light', size = 'md', className, 'aria-label': ar
   );
 }
 
-export function Cast({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function Cast({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -422,8 +422,8 @@ export function Cast({ theme = 'light', size = 'md', className, 'aria-label': ar
    These are the NEW preferred names.
    ────────────────────────────────────────────── */
 
-/** Home1 → HomeLight (light bg variant of Home) */
-export function HomeLight({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+/** Home1 → HomeLight (dark bg variant of Home) */
+export function HomeLight({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -443,7 +443,7 @@ export function DarkModeLight({ theme = 'dark', size = 'md', className, 'aria-la
 }
 
 /** DoNotDisturb1 → DoNotDisturbLight (accent bg variant) */
-export function DoNotDisturbLight({ theme = 'accent', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+export function DoNotDisturbLight({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   const iconFill = 'var(--widget-white, #FCFAFE)';
   return (
     <SvgIcon
@@ -503,8 +503,8 @@ export function CastAlt({ theme = 'dark', size = 'md', className, 'aria-label': 
   );
 }
 
-/** ArrowDown → ArrowDownAlt (light bg variant) */
-export function ArrowDownAlt({ theme = 'light', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
+/** ArrowDown → ArrowDownAlt (dark bg variant) */
+export function ArrowDownAlt({ theme = 'dark', size = 'md', className, 'aria-label': ariaLabel, style }: WidgetIconProps) {
   return (
     <SvgIcon
       theme={theme} size={size} className={className} aria-label={ariaLabel} style={style}
@@ -518,7 +518,7 @@ export function ArrowDownAlt({ theme = 'light', size = 'md', className, 'aria-la
    ────────────────────────────────────────────── */
 
 export const WidgetIconList = [
-  Home, DarkMode, Remote, Subtitle, Wallet, Location, DarkModeLight, NoSignam,
+  Home, DarkMode, Remote, Subtitle, Wallet, Location, DarkModeLight, NoSignal,
   DownArrow, DoNotDisturb, QrCode, Storage, Share, NoConnection, Record,
   FullNetwork, Shield, Glyphs, Aeroplane, Chart, Video, Temp, AutoRotate,
   Info, MicOff, NoSim, Watch, RecordAlt, AccessCamera, Dots, Filter, HomeLight,

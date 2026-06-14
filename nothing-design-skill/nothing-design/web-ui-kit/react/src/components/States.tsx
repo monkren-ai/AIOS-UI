@@ -1,123 +1,173 @@
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import '../styles/states.css'
 
-interface LoadingStateProps {
+const stateVariants = cva('nothing-state', {
+  variants: {
+    variant: {
+      loading: 'nothing-state--loading',
+      error: 'nothing-state--error',
+      empty: 'nothing-state--empty',
+      disabled: 'nothing-state--disabled',
+    },
+    size: {
+      sm: 'nothing-state--sm',
+      md: 'nothing-state--md',
+      lg: 'nothing-state--lg',
+    },
+  },
+  defaultVariants: { variant: 'loading', size: 'md' },
+})
+
+const loadingSegmentVariants = cva('nothing-state__loading-segment', {
+  variants: {
+    filled: { true: 'nothing-state__loading-segment--filled', false: '' },
+  },
+  defaultVariants: { filled: false },
+})
+
+export interface LoadingStateProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+    Omit<VariantProps<typeof stateVariants>, 'variant'> {
   progress?: number
   totalSegments?: number
   label?: string
-  style?: React.CSSProperties
 }
 
-const LoadingState: React.FC<LoadingStateProps> = ({
-  progress,
-  totalSegments = 20,
-  label,
-  style
-}) => {
-  const filledSegments = progress !== undefined
-    ? Math.round((progress / 100) * totalSegments)
-    : 0
+export const LoadingState = React.forwardRef<HTMLDivElement, LoadingStateProps>(
+  ({ className, progress, totalSegments = 20, label, size = 'md', style, ...props }, ref) => {
+    const filledSegments = progress !== undefined
+      ? Math.round((progress / 100) * totalSegments)
+      : 0
 
-  return (
-    <div className="nothing-state nothing-state--loading" style={style}>
-      <div className="nothing-state__spinner">
-        {Array.from({ length: 7 }).map((_, i) => (
-          <div key={i} className="nothing-state__spinner-segment" />
-        ))}
+    return (
+      <div
+        ref={ref}
+        className={cn(stateVariants({ variant: 'loading', size }), className)}
+        style={style}
+        role="status"
+        aria-live="polite"
+        data-state={dataAttr('loading')}
+        {...props}
+      >
+        <div className="nothing-state__spinner">
+          {Array.from({ length: 7 }).map((_, i) => (
+            <div key={i} className="nothing-state__spinner-segment" />
+          ))}
+        </div>
+        {progress !== undefined && (
+          <>
+            <div className="nothing-state__loading-bar">
+              {Array.from({ length: totalSegments }).map((_, i) => (
+                <div
+                  key={i}
+                  className={cn(loadingSegmentVariants({ filled: i < filledSegments }))}
+                />
+              ))}
+            </div>
+            <div className="nothing-state__percentage">{progress}%</div>
+          </>
+        )}
+        {label && <div className="nothing-state__bracket-text">[ {label} ]</div>}
       </div>
-      {progress !== undefined && (
-        <>
-          <div className="nothing-state__loading-bar">
-            {Array.from({ length: totalSegments }).map((_, i) => (
-              <div
-                key={i}
-                className={[
-                  'nothing-state__loading-segment',
-                  i < filledSegments ? 'nothing-state__loading-segment--filled' : ''
-                ].filter(Boolean).join(' ')}
-              />
-            ))}
-          </div>
-          <div className="nothing-state__percentage">{progress}%</div>
-        </>
-      )}
-      {label && <div className="nothing-state__bracket-text">[ {label} ]</div>}
-    </div>
-  )
-}
+    )
+  }
+)
+LoadingState.displayName = 'LoadingState'
 
-interface ErrorStateProps {
+export interface ErrorStateProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'onClick'>,
+    Omit<VariantProps<typeof stateVariants>, 'variant'> {
   headline: string
   message?: string
   prefix?: string
   onRetry?: () => void
-  style?: React.CSSProperties
 }
 
-const ErrorState: React.FC<ErrorStateProps> = ({
-  headline,
-  message,
-  prefix,
-  onRetry,
-  style
-}) => {
-  return (
-    <div className="nothing-state nothing-state--error" style={style}>
-      <div className="nothing-state__headline">
-        {prefix && <span className="nothing-state__prefix">{prefix}</span>}
-        {headline}
-      </div>
-      {message && <div className="nothing-state__message">{message}</div>}
-      {onRetry && (
-        <div className="nothing-state__action">
-          <button className="nothing-btn nothing-btn--secondary" onClick={onRetry}>
-            Retry
-          </button>
+export const ErrorState = React.forwardRef<HTMLDivElement, ErrorStateProps>(
+  ({ className, headline, message, prefix, onRetry, size = 'md', style, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(stateVariants({ variant: 'error', size }), className)}
+        style={style}
+        role="alert"
+        data-state={dataAttr('error')}
+        {...props}
+      >
+        <div className="nothing-state__headline">
+          {prefix && <span className="nothing-state__prefix">{prefix}</span>}
+          {headline}
         </div>
-      )}
-    </div>
-  )
-}
+        {message && <div className="nothing-state__message">{message}</div>}
+        {onRetry && (
+          <div className="nothing-state__action">
+            <button className="nothing-btn nothing-btn--secondary" onClick={onRetry}>
+              Retry
+            </button>
+          </div>
+        )}
+      </div>
+    )
+  }
+)
+ErrorState.displayName = 'ErrorState'
 
-interface EmptyStateProps {
+export interface EmptyStateProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+    Omit<VariantProps<typeof stateVariants>, 'variant'> {
   headline?: string
   description?: string
   action?: React.ReactNode
-  style?: React.CSSProperties
 }
 
-const EmptyState: React.FC<EmptyStateProps> = ({
-  headline = 'Nothing here',
-  description,
-  action,
-  style
-}) => {
-  return (
-    <div className="nothing-state nothing-state--empty" style={style}>
-      <div className="nothing-state__dot-matrix" />
-      <div className="nothing-state__headline">{headline}</div>
-      {description && <div className="nothing-state__description">{description}</div>}
-      {action && <div className="nothing-state__action">{action}</div>}
-    </div>
-  )
-}
+export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
+  ({ className, headline = 'Nothing here', description, action, size = 'md', style, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(stateVariants({ variant: 'empty', size }), className)}
+        style={style}
+        role="status"
+        data-state={dataAttr('empty')}
+        {...props}
+      >
+        <div className="nothing-state__dot-matrix" />
+        <div className="nothing-state__headline">{headline}</div>
+        {description && <div className="nothing-state__description">{description}</div>}
+        {action && <div className="nothing-state__action">{action}</div>}
+      </div>
+    )
+  }
+)
+EmptyState.displayName = 'EmptyState'
 
-interface DisabledStateProps {
+export interface DisabledStateProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+    Omit<VariantProps<typeof stateVariants>, 'variant'> {
   headline?: string
   description?: string
-  style?: React.CSSProperties
 }
 
-const DisabledState: React.FC<DisabledStateProps> = ({
-  headline = 'Unavailable',
-  description,
-  style
-}) => {
-  return (
-    <div className="nothing-state nothing-state--disabled" style={style}>
-      <h3 className="nothing-state__headline">{headline}</h3>
-      {description && <div className="nothing-state__description">{description}</div>}
-    </div>
-  )
-}
+export const DisabledState = React.forwardRef<HTMLDivElement, DisabledStateProps>(
+  ({ className, headline = 'Unavailable', description, size = 'md', style, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(stateVariants({ variant: 'disabled', size }), className)}
+        style={style}
+        role="status"
+        data-state={dataAttr('disabled')}
+        aria-disabled="true"
+        {...props}
+      >
+        <h3 className="nothing-state__headline">{headline}</h3>
+        {description && <div className="nothing-state__description">{description}</div>}
+      </div>
+    )
+  }
+)
+DisabledState.displayName = 'DisabledState'
 
-export { LoadingState, ErrorState, EmptyState, DisabledState }
+export { stateVariants, loadingSegmentVariants }

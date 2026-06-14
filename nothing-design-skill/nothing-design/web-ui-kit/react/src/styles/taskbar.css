@@ -245,11 +245,30 @@
 .nothing-taskbar__battery {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
+  gap: 4px;
   cursor: default;
   -webkit-tap-highlight-color: transparent;
+}
+
+.nothing-taskbar__battery-svg {
+  width: 22px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.nothing-taskbar__battery-svg rect[data-charging="true"] {
+  fill: var(--widget-primary, #ff5b1f);
+}
+
+.nothing-taskbar__battery-percent {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.nothing-taskbar[data-battery="false"] .nothing-taskbar__battery-svg {
+  opacity: 0.4;
 }
 
 .nothing-taskbar--light .nothing-taskbar__battery {
@@ -258,16 +277,6 @@
 
 .nothing-taskbar--dark .nothing-taskbar__battery {
   color: var(--widget-white);
-}
-
-.nothing-taskbar__battery svg {
-  width: 100%;
-  height: 100%;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
 .nothing-taskbar__time {

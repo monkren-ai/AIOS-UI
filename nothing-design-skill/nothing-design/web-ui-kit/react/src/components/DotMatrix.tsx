@@ -1,79 +1,100 @@
-import { useMemo } from 'react'
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import '../styles/dot-matrix.css'
 
-interface DotMatrixProps {
+const dotMatrixVariants = cva('nothing-dot-matrix', {
+  variants: {
+    dotSize: {
+      sm: 'nothing-dot-matrix--sm',
+      md: 'nothing-dot-matrix--md',
+      lg: 'nothing-dot-matrix--lg',
+    },
+    theme: {
+      light: 'nothing-dot-matrix--light',
+      dark: 'nothing-dot-matrix--dark',
+    },
+    pattern: {
+      grid: 'nothing-dot-matrix--grid',
+      glyph: 'nothing-dot-matrix--glyph',
+      pulse: 'nothing-dot-matrix--pulse',
+      custom: '',
+    },
+  },
+  defaultVariants: { dotSize: 'md', theme: 'light', pattern: 'grid' },
+})
+
+const dotVariants = cva('nothing-dot-matrix__dot', {
+  variants: {
+    state: {
+      idle: '',
+      active: 'nothing-dot-matrix__dot--active',
+      dim: 'nothing-dot-matrix__dot--dim',
+    },
+  },
+  defaultVariants: { state: 'idle' },
+})
+
+export interface DotMatrixProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+    Omit<VariantProps<typeof dotMatrixVariants>, 'pattern'> {
   rows: number
   cols: number
-  dotSize?: 'sm' | 'md' | 'lg'
-  theme?: 'light' | 'dark'
   pattern?: 'grid' | 'glyph' | 'pulse' | 'custom'
   activeDots?: [number, number][]
   dimDots?: [number, number][]
-  className?: string
-  style?: React.CSSProperties
 }
 
-const DotMatrix: React.FC<DotMatrixProps> = ({
-  rows,
-  cols,
-  dotSize = 'md',
-  theme = 'light',
-  pattern = 'grid',
-  activeDots = [],
-  dimDots = [],
-  className,
-  style
-}) => {
-  const activeSet = useMemo(() => {
-    const set = new Set<string>()
-    activeDots.forEach(([r, c]) => set.add(`${r}-${c}`))
-    return set
-  }, [activeDots])
+export const DotMatrix = React.forwardRef<HTMLDivElement, DotMatrixProps>(
+  ({ className, rows, cols, dotSize = 'md', theme = 'light', pattern = 'grid', activeDots = [], dimDots = [], style, ...props }, ref) => {
+    const activeSet = React.useMemo(() => {
+      const set = new Set<string>()
+      activeDots.forEach(([r, c]) => set.add(`${r}-${c}`))
+      return set
+    }, [activeDots])
 
-  const dimSet = useMemo(() => {
-    const set = new Set<string>()
-    dimDots.forEach(([r, c]) => set.add(`${r}-${c}`))
-    return set
-  }, [dimDots])
+    const dimSet = React.useMemo(() => {
+      const set = new Set<string>()
+      dimDots.forEach(([r, c]) => set.add(`${r}-${c}`))
+      return set
+    }, [dimDots])
 
-  const matrixClassName = [
-    'nothing-dot-matrix',
-    `nothing-dot-matrix--${dotSize}`,
-    `nothing-dot-matrix--${theme}`,
-    pattern !== 'custom' ? `nothing-dot-matrix--${pattern}` : '',
-    className || ''
-  ].filter(Boolean).join(' ')
-
-  const grid = useMemo(() => {
-    const result = []
-    for (let r = 0; r < rows; r++) {
-      const row = []
-      for (let c = 0; c < cols; c++) {
-        const key = `${r}-${c}`
-        let dotClassName = 'nothing-dot-matrix__dot'
-        if (activeSet.has(key)) {
-          dotClassName += ' nothing-dot-matrix__dot--active'
-        } else if (dimSet.has(key)) {
-          dotClassName += ' nothing-dot-matrix__dot--dim'
+    const grid = React.useMemo(() => {
+      const result = []
+      for (let r = 0; r < rows; r++) {
+        const row = []
+        for (let c = 0; c < cols; c++) {
+          const key = `${r}-${c}`
+          let state: 'idle' | 'active' | 'dim' = 'idle'
+          if (activeSet.has(key)) state = 'active'
+          else if (dimSet.has(key)) state = 'dim'
+          row.push({ key, className: dotVariants({ state }) })
         }
-        row.push({ key, className: dotClassName })
+        result.push(row)
       }
-      result.push(row)
-    }
-    return result
-  }, [rows, cols, activeSet, dimSet])
+      return result
+    }, [rows, cols, activeSet, dimSet])
 
-  return (
-    <div className={matrixClassName} style={style}>
-      {grid.map((row, r) => (
-        <div key={r} className="nothing-dot-matrix__row">
-          {row.map((dot) => (
-            <div key={dot.key} className={dot.className} />
-          ))}
-        </div>
-      ))}
-    </div>
-  )
-}
+    return (
+      <div
+        ref={ref}
+        className={cn(dotMatrixVariants({ dotSize, theme, pattern: pattern === 'custom' ? 'custom' : pattern }), className)}
+        style={style}
+        data-state={dataAttr(pattern)}
+        {...props}
+      >
+        {grid.map((row, r) => (
+          <div key={r} className="nothing-dot-matrix__row">
+            {row.map((dot) => (
+              <div key={dot.key} className={dot.className} />
+            ))}
+          </div>
+        ))}
+      </div>
+    )
+  }
+)
+DotMatrix.displayName = 'DotMatrix'
 
+export { dotMatrixVariants, dotVariants }
 export default DotMatrix

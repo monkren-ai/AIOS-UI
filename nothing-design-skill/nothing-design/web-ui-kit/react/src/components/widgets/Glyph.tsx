@@ -1,4 +1,7 @@
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
 import DotMatrix from '../DotMatrix'
+import { cn, dataAttr } from '../../lib/utils'
 import '../../styles/glyph.css'
 
 export type GlyphType =
@@ -47,15 +50,26 @@ export type GlyphType =
   | 'lock'
   | 'unlock'
 
-interface GlyphProps {
-  type: GlyphType
-  size?: 'sm' | 'md' | 'lg'
-  theme?: 'light' | 'dark' | 'accent'
-  className?: string
-  style?: React.CSSProperties
-}
+const glyphVariants = cva('nothing-glyph', {
+  variants: {
+    size: {
+      sm: 'nothing-glyph--sm',
+      md: 'nothing-glyph--md',
+      lg: 'nothing-glyph--lg',
+    },
+    theme: {
+      light: 'nothing-glyph--light',
+      dark: 'nothing-glyph--dark',
+      accent: 'nothing-glyph--accent',
+    },
+  },
+  defaultVariants: { size: 'md', theme: 'dark' },
+})
 
-const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots: [number, number][]; dimDots?: [number, number][] }> = {
+const glyphPatterns: Record<
+  GlyphType,
+  { rows: number; cols: number; activeDots: [number, number][]; dimDots?: [number, number][] }
+> = {
   'arrow-up': {
     rows: 7,
     cols: 7,
@@ -66,8 +80,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 3],
       [4, 3],
       [5, 3],
-      [6, 3]
-    ]
+      [6, 3],
+    ],
   },
   'arrow-down': {
     rows: 7,
@@ -79,8 +93,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 3],
       [4, 1], [4, 2], [4, 3], [4, 4], [4, 5],
       [5, 2], [5, 3], [5, 4],
-      [6, 3]
-    ]
+      [6, 3],
+    ],
   },
   'arrow-left': {
     rows: 7,
@@ -92,8 +106,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 3],
       [3, 4],
       [3, 5],
-      [3, 6]
-    ]
+      [3, 6],
+    ],
   },
   'arrow-right': {
     rows: 7,
@@ -105,10 +119,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 3],
       [1, 4], [2, 4], [3, 4], [4, 4], [5, 4],
       [2, 5], [3, 5], [4, 5],
-      [3, 6]
-    ]
+      [3, 6],
+    ],
   },
-  'check': {
+  check: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -118,10 +132,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 1], [3, 2], [3, 3],
       [4, 0], [4, 1],
       [5, 0],
-      [6, 0]
-    ]
+      [6, 0],
+    ],
   },
-  'cross': {
+  cross: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -131,10 +145,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 3],
       [4, 2], [4, 4],
       [5, 1], [5, 5],
-      [6, 0], [6, 6]
-    ]
+      [6, 0], [6, 6],
+    ],
   },
-  'plus': {
+  plus: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -144,17 +158,15 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
       [4, 3],
       [5, 3],
-      [6, 3]
-    ]
+      [6, 3],
+    ],
   },
-  'minus': {
+  minus: {
     rows: 7,
     cols: 7,
-    activeDots: [
-      [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6]
-    ]
+    activeDots: [[3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6]],
   },
-  'heart': {
+  heart: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -163,10 +175,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6],
       [3, 1], [3, 2], [3, 3], [3, 4], [3, 5],
       [4, 2], [4, 3], [4, 4],
-      [5, 3]
-    ]
+      [5, 3],
+    ],
   },
-  'star': {
+  star: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -176,10 +188,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
       [4, 1], [4, 5],
       [5, 0], [5, 2], [5, 3], [5, 4], [5, 6],
-      [6, 0], [6, 6]
-    ]
+      [6, 0], [6, 6],
+    ],
   },
-  'play': {
+  play: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -189,10 +201,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 1], [3, 2], [3, 3], [3, 4],
       [4, 1], [4, 2], [4, 3],
       [5, 1], [5, 2],
-      [6, 1]
-    ]
+      [6, 1],
+    ],
   },
-  'pause': {
+  pause: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -202,10 +214,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 1], [3, 4],
       [4, 1], [4, 4],
       [5, 1], [5, 4],
-      [6, 1], [6, 4]
-    ]
+      [6, 1], [6, 4],
+    ],
   },
-  'wifi': {
+  wifi: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -214,13 +226,13 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [2, 2], [2, 4],
       [4, 1], [4, 5],
       [5, 2], [5, 4],
-      [6, 3]
+      [6, 3],
     ],
     dimDots: [
-      [3, 0], [3, 6]
-    ]
+      [3, 0], [3, 6],
+    ],
   },
-  'bluetooth': {
+  bluetooth: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -230,10 +242,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 3],
       [4, 1], [4, 3], [4, 5],
       [5, 2], [5, 4],
-      [6, 3]
-    ]
+      [6, 3],
+    ],
   },
-  'battery': {
+  battery: {
     rows: 7,
     cols: 8,
     activeDots: [
@@ -243,13 +255,13 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 1], [3, 5], [3, 6],
       [4, 0], [4, 1], [4, 5], [4, 6],
       [5, 0], [5, 1], [5, 5], [5, 6],
-      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5]
+      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5],
     ],
     dimDots: [
       [2, 2], [2, 3], [2, 4],
       [3, 2], [3, 3], [3, 4],
-      [4, 2], [4, 3], [4, 4]
-    ]
+      [4, 2], [4, 3], [4, 4],
+    ],
   },
   'battery-charging': {
     rows: 7,
@@ -261,14 +273,14 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 1], [3, 2], [3, 3], [3, 6],
       [4, 0], [4, 3], [4, 4], [4, 5], [4, 6],
       [5, 0], [5, 4], [5, 5], [5, 6],
-      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5]
+      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5],
     ],
     dimDots: [
       [2, 2],
-      [4, 2]
-    ]
+      [4, 2],
+    ],
   },
-  'phone': {
+  phone: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -278,10 +290,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 6],
       [4, 0], [4, 6],
       [5, 0], [5, 6],
-      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5]
-    ]
+      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5],
+    ],
   },
-  'message': {
+  message: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -291,10 +303,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 6],
       [4, 0], [4, 4], [4, 6],
       [5, 0], [5, 3], [5, 5],
-      [6, 1], [6, 2]
-    ]
+      [6, 1], [6, 2],
+    ],
   },
-  'clock': {
+  clock: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -304,10 +316,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 3], [3, 6],
       [4, 0], [4, 3], [4, 6],
       [5, 1], [5, 5],
-      [6, 2], [6, 3], [6, 4]
-    ]
+      [6, 2], [6, 3], [6, 4],
+    ],
   },
-  'camera': {
+  camera: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -317,10 +329,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 2], [3, 3], [3, 4], [3, 6],
       [4, 0], [4, 2], [4, 3], [4, 4], [4, 6],
       [5, 1], [5, 2], [5, 3], [5, 4], [5, 5],
-      [6, 2], [6, 3], [6, 4]
-    ]
+      [6, 2], [6, 3], [6, 4],
+    ],
   },
-  'music': {
+  music: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -330,10 +342,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 1], [3, 2], [3, 3],
       [4, 0], [4, 1], [4, 2], [4, 3],
       [5, 0], [5, 1],
-      [6, 0], [6, 1]
-    ]
+      [6, 0], [6, 1],
+    ],
   },
-  'location': {
+  location: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -343,10 +355,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 1], [3, 2], [3, 3], [3, 4], [3, 5],
       [4, 2], [4, 3], [4, 4],
       [5, 3],
-      [6, 3]
-    ]
+      [6, 3],
+    ],
   },
-  'bell': {
+  bell: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -356,10 +368,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 1], [3, 2], [3, 3], [3, 4], [3, 5],
       [4, 1], [4, 2], [4, 3], [4, 4], [4, 5],
       [5, 2], [5, 3], [5, 4],
-      [6, 1], [6, 2], [6, 4], [6, 5]
-    ]
+      [6, 1], [6, 2], [6, 4], [6, 5],
+    ],
   },
-  'settings': {
+  settings: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -369,10 +381,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 2], [3, 3], [3, 4],
       [4, 1], [4, 3], [4, 5],
       [5, 2], [5, 3], [5, 4],
-      [6, 3]
-    ]
+      [6, 3],
+    ],
   },
-  'home': {
+  home: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -382,10 +394,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
       [4, 0], [4, 3], [4, 6],
       [5, 0], [5, 3], [5, 6],
-      [6, 0], [6, 1], [6, 2], [6, 4], [6, 5], [6, 6]
-    ]
+      [6, 0], [6, 1], [6, 2], [6, 4], [6, 5], [6, 6],
+    ],
   },
-  'backspace': {
+  backspace: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -395,10 +407,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 1], [3, 4],
       [4, 0], [4, 5],
       [5, 0], [5, 1], [5, 6],
-      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6]
-    ]
+      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6],
+    ],
   },
-  'search': {
+  search: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -408,10 +420,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 1], [3, 2], [3, 5],
       [4, 3], [4, 6],
       [5, 4], [5, 5], [5, 6],
-      [6, 6]
-    ]
+      [6, 6],
+    ],
   },
-  'cloud': {
+  cloud: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -420,10 +432,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [2, 0], [2, 1], [2, 5],
       [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
       [4, 0], [4, 1], [4, 2], [4, 3], [4, 4], [4, 5], [4, 6],
-      [5, 1], [5, 2], [5, 3], [5, 4], [5, 5]
-    ]
+      [5, 1], [5, 2], [5, 3], [5, 4], [5, 5],
+    ],
   },
-  'moon': {
+  moon: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -433,10 +445,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 1], [3, 4],
       [4, 1], [4, 5],
       [5, 2], [5, 5],
-      [6, 3], [6, 4]
-    ]
+      [6, 3], [6, 4],
+    ],
   },
-  'sun': {
+  sun: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -446,10 +458,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
       [4, 1], [4, 3], [4, 5],
       [5, 2], [5, 3], [5, 4],
-      [6, 3]
-    ]
+      [6, 3],
+    ],
   },
-  'circle': {
+  circle: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -459,10 +471,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 6],
       [4, 0], [4, 6],
       [5, 1], [5, 5],
-      [6, 2], [6, 3], [6, 4]
-    ]
+      [6, 2], [6, 3], [6, 4],
+    ],
   },
-  'square': {
+  square: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -472,10 +484,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 6],
       [4, 0], [4, 6],
       [5, 0], [5, 6],
-      [6, 0], [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6]
-    ]
+      [6, 0], [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6],
+    ],
   },
-  'triangle': {
+  triangle: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -485,8 +497,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 6],
       [4, 0], [4, 6],
       [5, 0], [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6],
-      [6, 0], [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6]
-    ]
+      [6, 0], [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6],
+    ],
   },
   'triangle-up': {
     rows: 7,
@@ -498,8 +510,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
       [4, 0], [4, 1], [4, 2], [4, 3], [4, 4], [4, 5], [4, 6],
       [5, 0], [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6],
-      [6, 0], [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6]
-    ]
+      [6, 0], [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6],
+    ],
   },
   'triangle-down': {
     rows: 7,
@@ -511,8 +523,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
       [4, 1], [4, 2], [4, 3], [4, 4], [4, 5],
       [5, 2], [5, 3], [5, 4],
-      [6, 3]
-    ]
+      [6, 3],
+    ],
   },
   'chevron-up': {
     rows: 7,
@@ -524,8 +536,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 6],
       [4, 0], [4, 6],
       [5, 0], [5, 6],
-      [6, 0], [6, 6]
-    ]
+      [6, 0], [6, 6],
+    ],
   },
   'chevron-down': {
     rows: 7,
@@ -537,8 +549,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 6],
       [4, 1], [4, 5],
       [5, 2], [5, 4],
-      [6, 3]
-    ]
+      [6, 3],
+    ],
   },
   'chevron-left': {
     rows: 7,
@@ -550,8 +562,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 6],
       [4, 0], [4, 5],
       [5, 0], [5, 4],
-      [6, 0], [6, 3]
-    ]
+      [6, 0], [6, 3],
+    ],
   },
   'chevron-right': {
     rows: 7,
@@ -563,8 +575,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 6],
       [4, 1], [4, 6],
       [5, 2], [5, 6],
-      [6, 3], [6, 6]
-    ]
+      [6, 3], [6, 6],
+    ],
   },
   'volume-up': {
     rows: 7,
@@ -576,8 +588,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 1], [3, 2], [3, 3],
       [4, 1], [4, 4],
       [5, 2], [5, 4],
-      [6, 3]
-    ]
+      [6, 3],
+    ],
   },
   'volume-down': {
     rows: 7,
@@ -586,8 +598,8 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 1], [3, 2], [3, 3],
       [4, 1], [4, 4],
       [5, 2], [5, 4],
-      [6, 3]
-    ]
+      [6, 3],
+    ],
   },
   'volume-mute': {
     rows: 7,
@@ -599,10 +611,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 3],
       [4, 2], [4, 4],
       [5, 1], [5, 5],
-      [6, 0], [6, 6]
-    ]
+      [6, 0], [6, 6],
+    ],
   },
-  'lock': {
+  lock: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -612,10 +624,10 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 0], [3, 2], [3, 3], [3, 4], [3, 6],
       [4, 0], [4, 2], [4, 3], [4, 4], [4, 6],
       [5, 0], [5, 2], [5, 3], [5, 4], [5, 6],
-      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5]
-    ]
+      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5],
+    ],
   },
-  'unlock': {
+  unlock: {
     rows: 7,
     cols: 7,
     activeDots: [
@@ -625,33 +637,46 @@ const glyphPatterns: Record<GlyphType, { rows: number; cols: number; activeDots:
       [3, 2], [3, 3], [3, 4], [3, 6],
       [4, 2], [4, 3], [4, 4], [4, 6],
       [5, 2], [5, 3], [5, 4], [5, 6],
-      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5]
-    ]
+      [6, 1], [6, 2], [6, 3], [6, 4], [6, 5],
+    ],
+  },
+}
+
+export interface GlyphProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+    Omit<VariantProps<typeof glyphVariants>, 'size' | 'theme'> {
+  type: GlyphType
+  size?: 'sm' | 'md' | 'lg'
+  theme?: 'light' | 'dark' | 'accent'
+}
+
+export const Glyph = React.forwardRef<HTMLDivElement, GlyphProps>(
+  ({ className, type, size = 'md', theme = 'dark', style, ...props }, ref) => {
+    const pattern = glyphPatterns[type] || glyphPatterns['circle']
+    return (
+      <div
+        ref={ref}
+        className={cn(glyphVariants({ size, theme }), className)}
+        style={style}
+        data-type={dataAttr(type)}
+        data-size={dataAttr(size)}
+        data-theme={dataAttr(theme)}
+        {...props}
+      >
+        <DotMatrix
+          rows={pattern.rows}
+          cols={pattern.cols}
+          dotSize={size}
+          theme={theme === 'accent' ? 'dark' : theme}
+          pattern="glyph"
+          activeDots={pattern.activeDots}
+          dimDots={pattern.dimDots}
+        />
+      </div>
+    )
   }
-}
+)
+Glyph.displayName = 'Glyph'
 
-const Glyph: React.FC<GlyphProps> = ({
-  type,
-  size = 'md',
-  theme = 'dark',
-  className,
-  style
-}) => {
-  const pattern = glyphPatterns[type] || glyphPatterns['circle']
-  
-  return (
-    <div className={`nothing-glyph nothing-glyph--${size} nothing-glyph--${theme} ${className || ''}`} style={style}>
-      <DotMatrix
-        rows={pattern.rows}
-        cols={pattern.cols}
-        dotSize={size}
-        theme={theme === 'accent' ? 'dark' : theme}
-        pattern="glyph"
-        activeDots={pattern.activeDots}
-        dimDots={pattern.dimDots}
-      />
-    </div>
-  )
-}
-
+export { glyphVariants }
 export default Glyph

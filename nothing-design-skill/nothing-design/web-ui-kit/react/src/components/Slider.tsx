@@ -1,7 +1,19 @@
-import { useState, useRef, useCallback } from 'react'
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import '../styles/slider.css'
 
-interface SliderProps {
+const sliderVariants = cva('nothing-slider', {
+  variants: {
+    disabled: {
+      true: 'nothing-slider--disabled',
+      false: '',
+    },
+  },
+  defaultVariants: { disabled: false },
+})
+
+export type SliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue' | 'value'> & {
   value?: number
   defaultValue?: number
   onValueChange?: (value: number) => void
@@ -11,134 +23,155 @@ interface SliderProps {
   disabled?: boolean
   label?: string
   showValue?: boolean
-  style?: React.CSSProperties
-}
+} & VariantProps<typeof sliderVariants>
 
-const Slider: React.FC<SliderProps> = ({
-  value: controlledValue,
-  defaultValue,
-  onValueChange,
-  min = 0,
-  max = 100,
-  step = 1,
-  disabled = false,
-  label,
-  showValue = false,
-  style
-}) => {
-  const [internalValue, setInternalValue] = useState(defaultValue ?? min)
-  const currentValue = controlledValue !== undefined ? controlledValue : internalValue
-  const trackRef = useRef<HTMLDivElement>(null)
-  const isDragging = useRef(false)
+export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
+  (
+    {
+      className,
+      value: controlledValue,
+      defaultValue,
+      onValueChange,
+      min = 0,
+      max = 100,
+      step = 1,
+      disabled,
+      label,
+      showValue = false,
+      ...props
+    },
+    ref
+  ) => {
+    const [internalValue, setInternalValue] = React.useState(defaultValue ?? min)
+    const currentValue = controlledValue !== undefined ? controlledValue : internalValue
+    const trackRef = React.useRef<HTMLDivElement>(null)
+    const isDragging = React.useRef(false)
+    const isDisabled = !!disabled
 
-  const clampValue = useCallback((val: number): number => {
-    const clamped = Math.max(min, Math.min(max, val))
-    const stepped = Math.round(clamped / step) * step
-    const precision = String(step).includes('.') ? String(step).split('.')[1].length : 0
-    return Number(stepped.toFixed(precision))
-  }, [min, max, step])
+    const clampValue = React.useCallback(
+      (val: number): number => {
+        const clamped = Math.max(min, Math.min(max, val))
+        const stepped = Math.round(clamped / step) * step
+        const precision = String(step).includes('.')
+          ? String(step).split('.')[1].length
+          : 0
+        return Number(stepped.toFixed(precision))
+      },
+      [min, max, step]
+    )
 
-  const updateValue = useCallback((clientX: number) => {
-    const track = trackRef.current
-    if (!track) return
-    const rect = track.getBoundingClientRect()
-    const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width))
-    const newValue = clampValue(min + ratio * (max - min))
-    if (controlledValue === undefined) {
-      setInternalValue(newValue)
-    }
-    onValueChange?.(newValue)
-  }, [min, max, controlledValue, onValueChange, clampValue])
+    const updateValue = React.useCallback(
+      (clientX: number) => {
+        const track = trackRef.current
+        if (!track) return
+        const rect = track.getBoundingClientRect()
+        const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width))
+        const newValue = clampValue(min + ratio * (max - min))
+        if (controlledValue === undefined) {
+          setInternalValue(newValue)
+        }
+        onValueChange?.(newValue)
+      },
+      [min, max, controlledValue, onValueChange, clampValue]
+    )
 
-  const handlePointerDown = useCallback((e: React.PointerEvent) => {
-    if (disabled) return
-    isDragging.current = true
-    e.currentTarget.setPointerCapture(e.pointerId)
-    updateValue(e.clientX)
-  }, [disabled, updateValue])
+    const handlePointerDown = React.useCallback(
+      (e: React.PointerEvent) => {
+        if (isDisabled) return
+        isDragging.current = true
+        e.currentTarget.setPointerCapture(e.pointerId)
+        updateValue(e.clientX)
+      },
+      [isDisabled, updateValue]
+    )
 
-  const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (!isDragging.current || disabled) return
-    updateValue(e.clientX)
-  }, [disabled, updateValue])
+    const handlePointerMove = React.useCallback(
+      (e: React.PointerEvent) => {
+        if (!isDragging.current || isDisabled) return
+        updateValue(e.clientX)
+      },
+      [isDisabled, updateValue]
+    )
 
-  const handlePointerUp = useCallback(() => {
-    isDragging.current = false
-  }, [])
+    const handlePointerUp = React.useCallback(() => {
+      isDragging.current = false
+    }, [])
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (disabled) return
-    let newValue = currentValue
+    const handleKeyDown = React.useCallback(
+      (e: React.KeyboardEvent) => {
+        if (isDisabled) return
+        let newValue = currentValue
+        switch (e.key) {
+          case 'ArrowRight':
+          case 'ArrowUp':
+            e.preventDefault()
+            newValue = clampValue(currentValue + step)
+            break
+          case 'ArrowLeft':
+          case 'ArrowDown':
+            e.preventDefault()
+            newValue = clampValue(currentValue - step)
+            break
+          case 'Home':
+            e.preventDefault()
+            newValue = min
+            break
+          case 'End':
+            e.preventDefault()
+            newValue = max
+            break
+          default:
+            return
+        }
+        if (controlledValue === undefined) {
+          setInternalValue(newValue)
+        }
+        onValueChange?.(newValue)
+      },
+      [isDisabled, currentValue, step, min, max, controlledValue, onValueChange, clampValue]
+    )
 
-    switch (e.key) {
-      case 'ArrowRight':
-      case 'ArrowUp':
-        e.preventDefault()
-        newValue = clampValue(currentValue + step)
-        break
-      case 'ArrowLeft':
-      case 'ArrowDown':
-        e.preventDefault()
-        newValue = clampValue(currentValue - step)
-        break
-      case 'Home':
-        e.preventDefault()
-        newValue = min
-        break
-      case 'End':
-        e.preventDefault()
-        newValue = max
-        break
-      default:
-        return
-    }
+    const percentage = ((currentValue - min) / (max - min)) * 100
 
-    if (controlledValue === undefined) {
-      setInternalValue(newValue)
-    }
-    onValueChange?.(newValue)
-  }, [disabled, currentValue, step, min, max, controlledValue, onValueChange, clampValue])
-
-  const percentage = ((currentValue - min) / (max - min)) * 100
-
-  const containerClassNames = [
-    'nothing-slider',
-    disabled ? 'nothing-slider--disabled' : ''
-  ].filter(Boolean).join(' ')
-
-  return (
-    <div className={containerClassNames} style={style}>
-      {(label || showValue) && (
-        <div className="nothing-slider__header">
-          {label && <span className="nothing-slider__label">{label}</span>}
-          {showValue && <span className="nothing-slider__value">{currentValue}</span>}
-        </div>
-      )}
+    return (
       <div
-        className="nothing-slider__track"
-        ref={trackRef}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
+        ref={ref}
+        className={cn(sliderVariants({ disabled: isDisabled }), className)}
+        data-disabled={dataAttr(isDisabled)}
+        data-value={currentValue}
+        {...props}
       >
+        {(label || showValue) && (
+          <div className="nothing-slider__header">
+            {label && <span className="nothing-slider__label">{label}</span>}
+            {showValue && <span className="nothing-slider__value">{currentValue}</span>}
+          </div>
+        )}
         <div
-          className="nothing-slider__fill"
-          style={{ width: `${percentage}%` }}
-        />
-        <div
-          className="nothing-slider__thumb"
-          style={{ left: `${percentage}%` }}
-          role="slider"
-          tabIndex={disabled ? -1 : 0}
-          aria-valuemin={min}
-          aria-valuemax={max}
-          aria-valuenow={currentValue}
-          aria-label={label}
-          onKeyDown={handleKeyDown}
-        />
+          className="nothing-slider__track"
+          ref={trackRef}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+        >
+          <div className="nothing-slider__fill" style={{ width: `${percentage}%` }} />
+          <div
+            className="nothing-slider__thumb"
+            style={{ left: `${percentage}%` }}
+            role="slider"
+            tabIndex={isDisabled ? -1 : 0}
+            aria-valuemin={min}
+            aria-valuemax={max}
+            aria-valuenow={currentValue}
+            aria-label={label}
+            onKeyDown={handleKeyDown}
+          />
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+)
+Slider.displayName = 'Slider'
 
+export { sliderVariants }
 export default Slider

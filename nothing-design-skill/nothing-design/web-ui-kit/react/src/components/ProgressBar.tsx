@@ -1,111 +1,166 @@
-import { useState, useEffect } from 'react'
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import '../styles/progress-bar.css'
 
-type ProgressStatus = 'default' | 'good' | 'warning' | 'overlimit'
+const progressBarVariants = cva('nothing-progress', {
+  variants: {
+    size: {
+      hero: 'nothing-progress--hero',
+      standard: 'nothing-progress--standard',
+      compact: 'nothing-progress--compact',
+    },
+    variant: {
+      default: '',
+      slim: 'nothing-progress--slim',
+    },
+    status: {
+      default: '',
+      good: 'nothing-progress__value--good',
+      warning: 'nothing-progress__value--warning',
+      overlimit: 'nothing-progress__value--overlimit',
+      error: 'nothing-progress__value--error',
+    },
+    indeterminate: {
+      true: 'nothing-progress--indeterminate',
+      false: '',
+    },
+    disabled: {
+      true: 'nothing-progress--disabled',
+      false: '',
+    },
+  },
+  defaultVariants: {
+    size: 'standard',
+    variant: 'default',
+    status: 'default',
+    indeterminate: false,
+    disabled: false,
+  },
+})
 
-interface ProgressBarProps {
+const progressBarValueVariants = cva('nothing-progress__value', {
+  variants: {
+    status: {
+      default: '',
+      good: 'nothing-progress__value--good',
+      warning: 'nothing-progress__value--warning',
+      overlimit: 'nothing-progress__value--overlimit',
+      error: 'nothing-progress__value--error',
+    },
+  },
+  defaultVariants: { status: 'default' },
+})
+
+export type ProgressStatus = 'default' | 'good' | 'warning' | 'overlimit' | 'error'
+
+export interface ProgressBarProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+    Omit<VariantProps<typeof progressBarVariants>, 'indeterminate' | 'disabled'> {
   value: number
   total?: number
   segments?: number
-  size?: 'hero' | 'standard' | 'compact'
-  variant?: 'default' | 'slim'
   indeterminate?: boolean
   label?: string
   unit?: string
   status?: ProgressStatus
   showReadout?: boolean
   disabled?: boolean
-  style?: React.CSSProperties
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({
-  value,
-  total = 100,
-  segments = 20,
-  size = 'standard',
-  variant = 'default',
-  indeterminate = false,
-  label,
-  unit,
-  status = 'default',
-  showReadout = true,
-  disabled = false,
-  style
-}) => {
-  const [animatedSegments, setAnimatedSegments] = useState(0)
+export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
+  (
+    {
+      className,
+      value,
+      total = 100,
+      segments = 20,
+      size = 'standard',
+      variant = 'default',
+      indeterminate = false,
+      label,
+      unit,
+      status = 'default',
+      showReadout = true,
+      disabled = false,
+      style,
+      ...props
+    },
+    ref
+  ) => {
+    const [animatedSegments, setAnimatedSegments] = React.useState(0)
 
-  useEffect(() => {
-    const filled = Math.round((value / total) * segments)
-    const timer = setTimeout(() => setAnimatedSegments(filled), 50)
-    return () => clearTimeout(timer)
-  }, [value, total, segments])
+    React.useEffect(() => {
+      const filled = Math.round((value / total) * segments)
+      const timer = setTimeout(() => setAnimatedSegments(filled), 50)
+      return () => clearTimeout(timer)
+    }, [value, total, segments])
 
-  const getSegmentStatus = (index: number): string => {
-    if (index >= animatedSegments) return 'empty'
-    return status === 'default' ? 'filled' : status
-  }
+    const getSegmentStatus = (index: number): string => {
+      if (index >= animatedSegments) return 'empty'
+      return status === 'default' ? 'filled' : status
+    }
 
-  const classNames = [
-    'nothing-progress',
-    variant === 'slim' ? '' : `nothing-progress--${size}`,
-    variant === 'slim' ? 'nothing-progress--slim' : '',
-    indeterminate ? 'nothing-progress--indeterminate' : '',
-    disabled ? 'nothing-progress--disabled' : ''
-  ].filter(Boolean).join(' ')
-
-  const valueClassNames = [
-    'nothing-progress__value',
-    status !== 'default' ? `nothing-progress__value--${status}` : ''
-  ].filter(Boolean).join(' ')
-
-  if (variant === 'slim') {
-    return (
-      <div className={classNames} style={style}>
-        <div className="nothing-progress__track">
-          {indeterminate ? (
-            <div className="nothing-progress__indeterminate-bar" />
-          ) : (
-            <>
-              {Array.from({ length: segments }).map((_, index) => (
-                <div
-                  key={index}
-                  className={`nothing-progress__segment nothing-progress__segment--${getSegmentStatus(index)}`}
-                />
-              ))}
-            </>
-          )}
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className={classNames} style={style}>
+    const track = (
       <div className="nothing-progress__track">
         {indeterminate ? (
           <div className="nothing-progress__indeterminate-bar" />
         ) : (
-          <>
-            {Array.from({ length: segments }).map((_, index) => (
-              <div
-                key={index}
-                className={`nothing-progress__segment nothing-progress__segment--${getSegmentStatus(index)}`}
-              />
-            ))}
-          </>
+          Array.from({ length: segments }).map((_, index) => (
+            <div
+              key={index}
+              className={`nothing-progress__segment nothing-progress__segment--${getSegmentStatus(index)}`}
+            />
+          ))
         )}
       </div>
-      {showReadout && !indeterminate && (
-        <div className="nothing-progress__readout">
-          <div className={valueClassNames}>
-            {value}
-            {unit && <span className="nothing-progress__unit">{unit}</span>}
-          </div>
-          {label && <div className="nothing-progress__label">{label}</div>}
-        </div>
-      )}
-    </div>
-  )
-}
+    )
 
+    if (variant === 'slim') {
+      return (
+        <div
+          ref={ref}
+          className={cn(progressBarVariants({ variant: 'slim', indeterminate, disabled }), className)}
+          style={style}
+          role="progressbar"
+          aria-valuenow={indeterminate ? undefined : value}
+          aria-valuemin={0}
+          aria-valuemax={total}
+          data-state={dataAttr(indeterminate ? 'indeterminate' : disabled ? 'disabled' : 'normal')}
+          {...props}
+        >
+          {track}
+        </div>
+      )
+    }
+
+    return (
+      <div
+        ref={ref}
+        className={cn(progressBarVariants({ size, variant, indeterminate, disabled }), className)}
+        style={style}
+        role="progressbar"
+        aria-valuenow={indeterminate ? undefined : value}
+        aria-valuemin={0}
+        aria-valuemax={total}
+        data-state={dataAttr(indeterminate ? 'indeterminate' : disabled ? 'disabled' : 'normal')}
+        {...props}
+      >
+        {track}
+        {showReadout && !indeterminate && (
+          <div className="nothing-progress__readout">
+            <div className={cn(progressBarValueVariants({ status }))}>
+              {value}
+              {unit && <span className="nothing-progress__unit">{unit}</span>}
+            </div>
+            {label && <div className="nothing-progress__label">{label}</div>}
+          </div>
+        )}
+      </div>
+    )
+  }
+)
+ProgressBar.displayName = 'ProgressBar'
+
+export { progressBarVariants, progressBarValueVariants }
 export default ProgressBar

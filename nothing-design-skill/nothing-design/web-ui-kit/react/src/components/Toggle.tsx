@@ -1,17 +1,40 @@
-import { useState, useCallback, createContext, useContext } from 'react'
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import '../styles/toggle.css'
 
-interface ToggleProps {
-  pressed?: boolean
-  defaultPressed?: boolean
-  onPressedChange?: (pressed: boolean) => void
-  disabled?: boolean
-  variant?: 'default' | 'outline'
-  size?: 'sm' | 'md' | 'lg'
-  value?: string
-  children: React.ReactNode
-  style?: React.CSSProperties
-}
+const toggleVariants = cva('nothing-toggle', {
+  variants: {
+    variant: {
+      default: 'nothing-toggle--default',
+      outline: 'nothing-toggle--outline',
+    },
+    size: {
+      sm: 'nothing-toggle--sm',
+      md: 'nothing-toggle--md',
+      lg: 'nothing-toggle--lg',
+    },
+    pressed: {
+      true: 'nothing-toggle--pressed',
+      false: '',
+    },
+    disabled: {
+      true: 'nothing-toggle--disabled',
+      false: '',
+    },
+  },
+  defaultVariants: { variant: 'default', size: 'md', pressed: false, disabled: false },
+})
+
+const toggleGroupVariants = cva('nothing-toggle-group', {
+  variants: {
+    variant: {
+      default: 'nothing-toggle-group--default',
+      outline: 'nothing-toggle-group--outline',
+    },
+  },
+  defaultVariants: { variant: 'default' },
+})
 
 interface ToggleGroupContextValue {
   value: string[]
@@ -20,119 +43,146 @@ interface ToggleGroupContextValue {
   size: 'sm' | 'md' | 'lg'
 }
 
-const ToggleGroupContext = createContext<ToggleGroupContextValue | null>(null)
+const ToggleGroupContext = React.createContext<ToggleGroupContextValue | null>(null)
 
-const Toggle: React.FC<ToggleProps> = ({
-  pressed: controlledPressed,
-  defaultPressed,
-  onPressedChange,
-  disabled = false,
-  variant = 'default',
-  size = 'md',
-  value,
-  children,
-  style
-}) => {
-  const [internalPressed, setInternalPressed] = useState(defaultPressed ?? false)
-  const group = useContext(ToggleGroupContext)
-
-  const isPressed = group
-    ? group.value.includes(value ?? '')
-    : (controlledPressed !== undefined ? controlledPressed : internalPressed)
-
-  const activeVariant = group?.variant ?? variant
-  const activeSize = group?.size ?? size
-
-  const handleClick = () => {
-    if (disabled) return
-    if (group && value !== undefined) {
-      group.onToggle(value)
-      return
-    }
-    const newValue = !isPressed
-    if (controlledPressed === undefined) {
-      setInternalPressed(newValue)
-    }
-    onPressedChange?.(newValue)
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault()
-      handleClick()
-    }
-  }
-
-  const classNames = [
-    'nothing-toggle',
-    `nothing-toggle--${activeVariant}`,
-    `nothing-toggle--${activeSize}`,
-    isPressed ? 'nothing-toggle--pressed' : '',
-    disabled ? 'nothing-toggle--disabled' : ''
-  ].filter(Boolean).join(' ')
-
-  return (
-    <button
-      className={classNames}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
-      disabled={disabled}
-      role="button"
-      aria-pressed={isPressed}
-      type="button"
-      style={style}
-    >
-      {children}
-    </button>
-  )
+export interface ToggleProps
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'value' | 'onClick' | 'disabled'>,
+    Omit<VariantProps<typeof toggleVariants>, 'pressed' | 'disabled'> {
+  pressed?: boolean
+  defaultPressed?: boolean
+  disabled?: boolean
+  onPressedChange?: (pressed: boolean) => void
+  value?: string
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-interface ToggleGroupProps {
+export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
+  (
+    {
+      className,
+      pressed: controlledPressed,
+      defaultPressed,
+      onPressedChange,
+      disabled = false,
+      variant = 'default',
+      size = 'md',
+      value,
+      children,
+      onClick,
+      ...props
+    },
+    ref
+  ) => {
+    const [internalPressed, setInternalPressed] = React.useState(defaultPressed ?? false)
+    const group = React.useContext(ToggleGroupContext)
+
+    const isPressed = group
+      ? group.value.includes(value ?? '')
+      : (controlledPressed !== undefined ? controlledPressed : internalPressed)
+
+    const activeVariant = group?.variant ?? variant
+    const activeSize = group?.size ?? size
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (disabled) return
+      if (group && value !== undefined) {
+        group.onToggle(value)
+      } else {
+        const newValue = !isPressed
+        if (controlledPressed === undefined) {
+          setInternalPressed(newValue)
+        }
+        onPressedChange?.(newValue)
+      }
+      onClick?.(e)
+    }
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault()
+        handleClick(e as unknown as React.MouseEvent<HTMLButtonElement>)
+      }
+    }
+
+    return (
+      <button
+        ref={ref}
+        className={cn(toggleVariants({ variant: activeVariant, size: activeSize, pressed: isPressed, disabled }), className)}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        disabled={disabled}
+        role="button"
+        aria-pressed={isPressed}
+        type="button"
+        data-state={dataAttr(isPressed ? 'pressed' : 'unpressed')}
+        data-disabled={dataAttr(disabled)}
+        {...props}
+      >
+        {children}
+      </button>
+    )
+  }
+)
+Toggle.displayName = 'Toggle'
+
+export interface ToggleGroupProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'value' | 'defaultValue'>,
+    VariantProps<typeof toggleGroupVariants> {
   value?: string[]
   defaultValue?: string[]
   onValueChange?: (value: string[]) => void
-  variant?: 'default' | 'outline'
   size?: 'sm' | 'md' | 'lg'
-  children: React.ReactNode
-  style?: React.CSSProperties
 }
 
-const ToggleGroup: React.FC<ToggleGroupProps> = ({
-  value: controlledValue,
-  defaultValue,
-  onValueChange,
-  variant = 'default',
-  size = 'md',
-  children,
-  style
-}) => {
-  const [internalValue, setInternalValue] = useState<string[]>(defaultValue ?? [])
+export const ToggleGroup = React.forwardRef<HTMLDivElement, ToggleGroupProps>(
+  (
+    {
+      className,
+      value: controlledValue,
+      defaultValue,
+      onValueChange,
+      variant = 'default',
+      size = 'md',
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const [internalValue, setInternalValue] = React.useState<string[]>(defaultValue ?? [])
 
-  const activeValue = controlledValue !== undefined ? controlledValue : internalValue
+    const activeValue = controlledValue !== undefined ? controlledValue : internalValue
 
-  const handleToggle = useCallback((itemValue: string) => {
-    const newValue = activeValue.includes(itemValue)
-      ? activeValue.filter(v => v !== itemValue)
-      : [...activeValue, itemValue]
-    if (controlledValue === undefined) {
-      setInternalValue(newValue)
-    }
-    onValueChange?.(newValue)
-  }, [activeValue, controlledValue, onValueChange])
+    const handleToggle = React.useCallback(
+      (itemValue: string) => {
+        const newValue = activeValue.includes(itemValue)
+          ? activeValue.filter((v) => v !== itemValue)
+          : [...activeValue, itemValue]
+        if (controlledValue === undefined) {
+          setInternalValue(newValue)
+        }
+        onValueChange?.(newValue)
+      },
+      [activeValue, controlledValue, onValueChange]
+    )
 
-  const groupClassNames = [
-    'nothing-toggle-group',
-    `nothing-toggle-group--${variant}`
-  ].filter(Boolean).join(' ')
+    return (
+      <ToggleGroupContext.Provider
+        value={{ value: activeValue, onToggle: handleToggle, variant: variant ?? 'default', size: size ?? 'md' }}
+      >
+        <div
+          ref={ref}
+          className={cn(toggleGroupVariants({ variant }), className)}
+          role="group"
+          data-variant={dataAttr(variant)}
+          {...props}
+        >
+          {children}
+        </div>
+      </ToggleGroupContext.Provider>
+    )
+  }
+)
+ToggleGroup.displayName = 'ToggleGroup'
 
-  return (
-    <ToggleGroupContext.Provider value={{ value: activeValue, onToggle: handleToggle, variant, size }}>
-      <div className={groupClassNames} role="group" style={style}>
-        {children}
-      </div>
-    </ToggleGroupContext.Provider>
-  )
-}
-
-export { Toggle, ToggleGroup }
+export { toggleVariants, toggleGroupVariants }
 export default Toggle

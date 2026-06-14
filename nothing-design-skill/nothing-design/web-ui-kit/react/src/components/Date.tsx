@@ -1,12 +1,45 @@
-import { useState, useEffect } from 'react'
-import { withWidgetCard } from './widgets/withWidgetCard'
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import '../styles/date.css'
 
-interface DateWidgetProps {
-  type?: 'rect' | 'dual-ring' | 'serif'
-  theme?: 'light' | 'dark'
+const dateSerifVariants = cva('nothing-date--serif', {
+  variants: {
+    theme: {
+      light: 'nothing-date--serif-light',
+      dark: 'nothing-date--serif-dark',
+    },
+  },
+  defaultVariants: { theme: 'light' },
+})
+
+const dateRectVariants = cva('nothing-date-rect', {
+  variants: {
+    theme: {
+      light: 'nothing-date-rect--light',
+      dark: 'nothing-date-rect--dark',
+    },
+  },
+  defaultVariants: { theme: 'light' },
+})
+
+const dateDualRingVariants = cva('nothing-date-dual-ring', {
+  variants: {
+    theme: {
+      light: 'nothing-date-dual-ring--light',
+      dark: 'nothing-date-dual-ring--dark',
+    },
+  },
+  defaultVariants: { theme: 'light' },
+})
+
+export type DateType = 'rect' | 'dual-ring' | 'serif'
+
+export interface DateWidgetProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'onClick'>,
+    Omit<VariantProps<typeof dateRectVariants>, 'type'> {
+  type?: DateType
   updateInterval?: number
-  className?: string
   showPeel?: boolean
   onPeelClick?: () => void
 }
@@ -17,21 +50,20 @@ const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 const WEEKDAYS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 
-const DateWidget: React.FC<DateWidgetProps> = ({
+const DateWidgetImpl: React.FC<DateWidgetProps> = ({
   type = 'rect',
   theme = 'light',
   updateInterval = 60000,
   className,
   showPeel = false,
-  onPeelClick
+  onPeelClick,
 }) => {
-  const [now, setNow] = useState(new Date())
+  const [now, setNow] = React.useState(new Date())
 
-  useEffect(() => {
+  React.useEffect(() => {
     const timer = setInterval(() => {
       setNow(new Date())
     }, updateInterval)
-
     return () => clearInterval(timer)
   }, [updateInterval])
 
@@ -45,14 +77,8 @@ const DateWidget: React.FC<DateWidgetProps> = ({
   const offset = RING_CIRCUMFERENCE - (progress / 24) * RING_CIRCUMFERENCE
 
   if (type === 'serif') {
-    const classNames = [
-      'nothing-date--serif',
-      `nothing-date--serif-${theme}`,
-      className || ''
-    ].filter(Boolean).join(' ')
-
     return (
-      <div className={classNames}>
+      <div className={cn(dateSerifVariants({ theme }), className)} data-state={dataAttr('serif')}>
         <span className="nothing-date__serif-day">{weekday}</span>
         <span className="nothing-date__serif-number">{day}</span>
         {showPeel && (
@@ -62,6 +88,7 @@ const DateWidget: React.FC<DateWidgetProps> = ({
             role={onPeelClick ? 'button' : undefined}
             tabIndex={onPeelClick ? 0 : undefined}
             onKeyDown={onPeelClick ? (e) => { if (e.key === 'Enter' || e.key === ' ') onPeelClick() } : undefined}
+            data-state={dataAttr('peel')}
           />
         )}
       </div>
@@ -69,14 +96,8 @@ const DateWidget: React.FC<DateWidgetProps> = ({
   }
 
   if (type === 'rect') {
-    const classNames = [
-      'nothing-date-rect',
-      `nothing-date-rect--${theme}`,
-      className || ''
-    ].filter(Boolean).join(' ')
-
     return (
-      <div className={classNames}>
+      <div className={cn(dateRectVariants({ theme }), className)} data-state={dataAttr('rect')}>
         <div className="nothing-date-rect__ring">
           <svg className="nothing-date-rect__ring-svg" viewBox="0 0 60 60">
             <circle className="nothing-date-rect__ring-bg" cx="30" cy="30" r={RING_RADIUS} />
@@ -101,14 +122,8 @@ const DateWidget: React.FC<DateWidgetProps> = ({
     )
   }
 
-  const classNames = [
-    'nothing-date-dual-ring',
-    `nothing-date-dual-ring--${theme}`,
-    className || ''
-  ].filter(Boolean).join(' ')
-
   return (
-    <div className={classNames}>
+    <div className={cn(dateDualRingVariants({ theme }), className)} data-state={dataAttr('dual-ring')}>
       <svg className="nothing-date-dual-ring__svg" viewBox="0 0 200 200">
         <circle className="nothing-date-dual-ring__outer" cx="100" cy="100" r="95" />
         <circle className="nothing-date-dual-ring__inner" cx="100" cy="100" r="85" />
@@ -121,4 +136,10 @@ const DateWidget: React.FC<DateWidgetProps> = ({
   )
 }
 
-export default withWidgetCard(DateWidget)
+export const DateWidget = React.forwardRef<HTMLDivElement, DateWidgetProps>((props, ref) => {
+  return <div ref={ref} style={{ display: 'contents' }}><DateWidgetImpl {...props} /></div>
+})
+DateWidget.displayName = 'DateWidget'
+
+export { dateSerifVariants, dateRectVariants, dateDualRingVariants }
+export default DateWidget

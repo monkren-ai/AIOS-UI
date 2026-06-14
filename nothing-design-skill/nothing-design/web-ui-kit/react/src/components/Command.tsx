@@ -1,8 +1,18 @@
-import { useState, useRef, useCallback, useEffect } from 'react'
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import { useClickOutside } from '../hooks/useClickOutside'
 import '../styles/command.css'
 
-interface CommandItem {
+const commandItemVariants = cva('nothing-command__item', {
+  variants: {
+    selected: { true: 'nothing-command__item--selected', false: '' },
+    disabled: { true: 'nothing-command__item--disabled', false: '' },
+  },
+  defaultVariants: { selected: false, disabled: false },
+})
+
+export interface CommandItem {
   id: string
   label: string
   shortcut?: string
@@ -11,179 +21,200 @@ interface CommandItem {
   disabled?: boolean
 }
 
-interface CommandGroup {
+export interface CommandGroup {
   heading?: string
   items: CommandItem[]
 }
 
-interface CommandProps {
+export interface CommandProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>,
+    VariantProps<typeof commandItemVariants> {
   groups: CommandGroup[]
   placeholder?: string
   emptyMessage?: string
   open?: boolean
   onOpenChange?: (open: boolean) => void
-  style?: React.CSSProperties
 }
 
-const Command: React.FC<CommandProps> = ({
-  groups,
-  placeholder = 'Type a command...',
-  emptyMessage = 'No results found.',
-  open: controlledOpen,
-  onOpenChange,
-  style
-}) => {
-  const [internalOpen, setInternalOpen] = useState(false)
-  const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen
+export const Command = React.forwardRef<HTMLDivElement, CommandProps>(
+  (
+    {
+      className,
+      groups,
+      placeholder = 'Type a command...',
+      emptyMessage = 'No results found.',
+      open: controlledOpen,
+      onOpenChange,
+      ...props
+    },
+    ref
+  ) => {
+    const [internalOpen, setInternalOpen] = React.useState(false)
+    const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen
 
-  const [query, setQuery] = useState('')
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const listRef = useRef<HTMLDivElement>(null)
+    const [query, setQuery] = React.useState('')
+    const [selectedIndex, setSelectedIndex] = React.useState(0)
+    const containerRef = React.useRef<HTMLDivElement | null>(null)
+    const inputRef = React.useRef<HTMLInputElement | null>(null)
+    const listRef = React.useRef<HTMLDivElement | null>(null)
 
-  const filteredGroups = groups
-    .map(g => ({
-      ...g,
-      items: g.items.filter(item =>
-        item.label.toLowerCase().includes(query.toLowerCase())
-      )
-    }))
-    .filter(g => g.items.length > 0)
+    const setContainerRefs = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        containerRef.current = node
+        if (typeof ref === 'function') ref(node)
+        else if (ref && 'current' in ref) {
+          ;(ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+        }
+      },
+      [ref]
+    )
 
-  const flatFilteredItems = filteredGroups.flatMap(g => g.items)
+    const filteredGroups = groups
+      .map((g) => ({
+        ...g,
+        items: g.items.filter((item) =>
+          item.label.toLowerCase().includes(query.toLowerCase())
+        ),
+      }))
+      .filter((g) => g.items.length > 0)
 
-  const handleClose = useCallback(() => {
-    if (controlledOpen === undefined) {
-      setInternalOpen(false)
-    }
-    onOpenChange?.(false)
-    setQuery('')
-    setSelectedIndex(0)
-  }, [controlledOpen, onOpenChange])
+    const flatFilteredItems = filteredGroups.flatMap((g) => g.items)
 
-  useClickOutside(containerRef, () => {
-    if (isOpen) handleClose()
-  })
-
-  useEffect(() => {
-    if (isOpen) {
-      requestAnimationFrame(() => {
-        inputRef.current?.focus()
-      })
-    }
-  }, [isOpen])
-
-  useEffect(() => {
-    setSelectedIndex(0)
-  }, [query])
-
-  const handleSelect = useCallback((item: CommandItem) => {
-    if (item.disabled) return
-    item.onSelect?.()
-    handleClose()
-  }, [handleClose])
-
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    switch (e.key) {
-      case 'ArrowDown': {
-        e.preventDefault()
-        setSelectedIndex(prev =>
-          Math.min(prev + 1, flatFilteredItems.length - 1)
-        )
-        break
+    const handleClose = React.useCallback(() => {
+      if (controlledOpen === undefined) {
+        setInternalOpen(false)
       }
-      case 'ArrowUp': {
-        e.preventDefault()
-        setSelectedIndex(prev =>
-          Math.max(prev - 1, 0)
-        )
-        break
+      onOpenChange?.(false)
+      setQuery('')
+      setSelectedIndex(0)
+    }, [controlledOpen, onOpenChange])
+
+    useClickOutside(containerRef, () => {
+      if (isOpen) handleClose()
+    })
+
+    React.useEffect(() => {
+      if (isOpen) {
+        requestAnimationFrame(() => {
+          inputRef.current?.focus()
+        })
       }
-      case 'Enter': {
-        e.preventDefault()
-        const item = flatFilteredItems[selectedIndex]
-        if (item) handleSelect(item)
-        break
-      }
-      case 'Escape': {
-        e.preventDefault()
+    }, [isOpen])
+
+    React.useEffect(() => {
+      setSelectedIndex(0)
+    }, [query])
+
+    const handleSelect = React.useCallback(
+      (item: CommandItem) => {
+        if (item.disabled) return
+        item.onSelect?.()
         handleClose()
-        break
-      }
-    }
-  }, [flatFilteredItems, selectedIndex, handleSelect, handleClose])
+      },
+      [handleClose]
+    )
 
-  let itemIndex = -1
+    const handleKeyDown = React.useCallback(
+      (e: React.KeyboardEvent<HTMLDivElement>) => {
+        switch (e.key) {
+          case 'ArrowDown': {
+            e.preventDefault()
+            setSelectedIndex((prev) => Math.min(prev + 1, flatFilteredItems.length - 1))
+            break
+          }
+          case 'ArrowUp': {
+            e.preventDefault()
+            setSelectedIndex((prev) => Math.max(prev - 1, 0))
+            break
+          }
+          case 'Enter': {
+            e.preventDefault()
+            const item = flatFilteredItems[selectedIndex]
+            if (item) handleSelect(item)
+            break
+          }
+          case 'Escape': {
+            e.preventDefault()
+            handleClose()
+            break
+          }
+        }
+      },
+      [flatFilteredItems, selectedIndex, handleSelect, handleClose]
+    )
 
-  return (
-    <div
-      className="nothing-command"
-      ref={containerRef}
-      role="dialog"
-      aria-label="Command palette"
-      onKeyDown={handleKeyDown}
-      style={style}
-    >
-      <input
-        className="nothing-command__input"
-        ref={inputRef}
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder={placeholder}
-        aria-autocomplete="list"
-        aria-controls="nothing-command-list"
-      />
+    let itemIndex = -1
+
+    return (
       <div
-        className="nothing-command__list"
-        id="nothing-command-list"
-        ref={listRef}
-        role="listbox"
+        ref={setContainerRefs}
+        className={cn('nothing-command', className)}
+        role="dialog"
+        aria-label="Command palette"
+        onKeyDown={handleKeyDown}
+        data-state={dataAttr(isOpen ? 'open' : 'closed')}
+        {...props}
       >
-        {filteredGroups.length === 0 && (
-          <div className="nothing-command__empty">{emptyMessage}</div>
-        )}
-        {filteredGroups.map((group) => (
-          <div key={group.heading ?? 'default'} className="nothing-command__group">
-            {group.heading && (
-              <div className="nothing-command__group-heading">{group.heading}</div>
-            )}
-            {group.items.map((item) => {
-              itemIndex++
-              const currentIndex = itemIndex
-              const isSelected = currentIndex === selectedIndex
+        <input
+          className="nothing-command__input"
+          ref={inputRef}
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={placeholder}
+          aria-autocomplete="list"
+          aria-controls="nothing-command-list"
+        />
+        <div
+          className="nothing-command__list"
+          id="nothing-command-list"
+          ref={listRef}
+          role="listbox"
+        >
+          {filteredGroups.length === 0 && (
+            <div className="nothing-command__empty">{emptyMessage}</div>
+          )}
+          {filteredGroups.map((group) => (
+            <div key={group.heading ?? 'default'} className="nothing-command__group">
+              {group.heading && (
+                <div className="nothing-command__group-heading">{group.heading}</div>
+              )}
+              {group.items.map((item) => {
+                itemIndex++
+                const currentIndex = itemIndex
+                const isSelected = currentIndex === selectedIndex
 
-              const itemClassNames = [
-                'nothing-command__item',
-                isSelected ? 'nothing-command__item--selected' : '',
-                item.disabled ? 'nothing-command__item--disabled' : ''
-              ].filter(Boolean).join(' ')
-
-              return (
-                <div
-                  key={item.id}
-                  className={itemClassNames}
-                  role="option"
-                  aria-selected={isSelected}
-                  onClick={() => handleSelect(item)}
-                  onMouseEnter={() => setSelectedIndex(currentIndex)}
-                >
-                  {item.icon && (
-                    <span className="nothing-command__item-icon">{item.icon}</span>
-                  )}
-                  <span className="nothing-command__item-label">{item.label}</span>
-                  {item.shortcut && (
-                    <span className="nothing-command__item-shortcut">{item.shortcut}</span>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        ))}
+                return (
+                  <div
+                    key={item.id}
+                    className={cn(
+                      commandItemVariants({ selected: isSelected, disabled: !!item.disabled })
+                    )}
+                    role="option"
+                    aria-selected={isSelected}
+                    onClick={() => handleSelect(item)}
+                    onMouseEnter={() => setSelectedIndex(currentIndex)}
+                    data-state={dataAttr(isSelected ? 'selected' : 'idle')}
+                    data-disabled={dataAttr(item.disabled)}
+                  >
+                    {item.icon && (
+                      <span className="nothing-command__item-icon">{item.icon}</span>
+                    )}
+                    <span className="nothing-command__item-label">{item.label}</span>
+                    {item.shortcut && (
+                      <span className="nothing-command__item-shortcut">{item.shortcut}</span>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+)
+Command.displayName = 'Command'
 
+export { commandItemVariants }
 export default Command

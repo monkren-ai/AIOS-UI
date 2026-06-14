@@ -1,26 +1,38 @@
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import '../styles/badge.css'
 
-interface BadgeProps {
-  variant?: 'default' | 'secondary' | 'destructive' | 'outline'
-  children: React.ReactNode
-  style?: React.CSSProperties
-}
+const badgeVariants = cva('nothing-badge', {
+  variants: {
+    variant: {
+      default: '',
+      secondary: 'nothing-badge--secondary',
+      destructive: 'nothing-badge--destructive',
+      outline: 'nothing-badge--outline',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+})
 
-const Badge: React.FC<BadgeProps> = ({
-  variant = 'default',
-  children,
-  style
-}) => {
-  const classNames = [
-    'nothing-badge',
-    variant !== 'default' ? `nothing-badge--${variant}` : ''
-  ].filter(Boolean).join(' ')
+export type BadgeProps = React.HTMLAttributes<HTMLSpanElement> &
+  VariantProps<typeof badgeVariants>
 
-  return (
-    <span className={classNames} style={style}>
-      {children}
-    </span>
-  )
-}
+const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
+  ({ variant, className, ...props }, ref) => {
+    return (
+      <span
+        ref={ref}
+        className={cn(badgeVariants({ variant }), className)}
+        data-variant={dataAttr(variant)}
+        {...props}
+      />
+    )
+  }
+)
+Badge.displayName = 'Badge'
 
+export { Badge, badgeVariants }
 export default Badge

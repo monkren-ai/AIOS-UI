@@ -1,10 +1,12 @@
 import React from 'react';
+import { cn, dataAttr } from '../../../lib/utils';
+import { cva } from 'class-variance-authority';
 import svgPaths from '../widget-svg-paths';
 
 function Icon34() {
   return (
     <div className="widget-relative widget-shrink-0 widget-card__svg--16" data-name="Icon" aria-hidden="true">
-      <svg className="nothing-widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+      <svg className="nothing-widget-icon-svg" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
         <g id="Icon">
           <path d={svgPaths.p37c4be00} fill="var(--fill-0, var(--widget-dark-4))" id="Vector" style={{ fill: "color(display-p3 0.6824 0.6706 0.6941)", fillOpacity: "1" }} />
         </g>
@@ -27,7 +29,7 @@ function Frame6() {
 function Icon35() {
   return (
     <div className="widget-relative widget-shrink-0 widget-card__svg--16" data-name="Icon" aria-hidden="true">
-      <svg className="nothing-widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+      <svg className="nothing-widget-icon-svg" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
         <g id="Icon">
           <path d={svgPaths.p37c4be00} fill="var(--fill-0, var(--widget-dark-4))" id="Vector" style={{ fill: "color(display-p3 0.6824 0.6706 0.6941)", fillOpacity: "1" }} />
         </g>
@@ -56,15 +58,26 @@ function Frame45() {
   );
 }
 
-export function Wedget({ theme: _theme, size: _size, className, 'aria-label': ariaLabel, style }: {
-  theme?: 'light' | 'dark';
-  size?: 'small' | 'medium' | 'large';
-  className?: string;
-  'aria-label'?: string;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <div style={style} className={`widget-bg-dark content-stretch flex flex-col h-[152px] items-start justify-between p-[16px] widget-relative widget-card--rounded widget-shrink-0 w-[226px] ${className || ''}`.trim()} data-name="Wedget" aria-label={ariaLabel || "Wedget"}>
+const widgetSubVariants = cva('', {
+  variants: {
+    theme: { light: 'widget-theme--light', dark: 'widget-theme--dark' },
+    size: { small: 'widget-size--small', medium: 'widget-size--medium', large: 'widget-size--large' },
+  },
+  defaultVariants: { theme: 'dark', size: 'medium' },
+})
+
+export interface WidgetSubProps {
+  theme?: 'light' | 'dark'
+  size?: 'small' | 'medium' | 'large'
+  className?: string
+  'aria-label'?: string
+  style?: React.CSSProperties
+}
+
+export const Wedget = React.forwardRef<HTMLDivElement, WidgetSubProps>(
+  ({ theme, size, className, 'aria-label': ariaLabel, style, ...props }, ref) => {
+    return (
+      <div ref={ref} style={style} className={cn(widgetSubVariants({ theme, size }), `widget-bg-dark content-stretch flex flex-col h-[152px] items-start justify-between p-[16px] widget-relative widget-card--rounded widget-shrink-0 w-[226px] ${className || ''}`.trim())} data-theme={dataAttr(theme)} data-size={dataAttr(size)} {...props} data-name="Wedget" aria-label={ariaLabel || "Wedget"}>
       <div className=" widget-text widget-text--ndot widget-text--14 widget-text--grey widget-text--uppercase widget-text--nowrap widget-relative widget-shrink-0">
         <p className="widget-leading-18 mb-0">Stansted airport</p>
         <p className="widget-leading-18 mb-0">Ryanair flight</p>
@@ -73,5 +86,8 @@ export function Wedget({ theme: _theme, size: _size, className, 'aria-label': ar
       </div>
       <Frame45 />
     </div>
-  );
-}
+    )
+  }
+)
+Wedget.displayName = 'Wedget'
+

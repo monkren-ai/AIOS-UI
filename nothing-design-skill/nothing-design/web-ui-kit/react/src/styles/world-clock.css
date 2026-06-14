@@ -1,4 +1,4 @@
-﻿.nothing-world-clock {
+.nothing-world-clock {
   display: flex;
   flex-direction: column;
   padding: var(--space-xl);
@@ -19,6 +19,18 @@
   padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--border);
   transition: all var(--duration-transition) var(--easing);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.world-clock-header-badge {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  border: 1px solid var(--border);
+  padding: 1px 4px;
 }
 
 .world-clock-grid {

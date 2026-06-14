@@ -1,88 +1,114 @@
-import React, { useState, useRef, useEffect, useCallback, useId } from 'react'
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import { useFloating } from '../hooks'
 import '../styles/tooltip.css'
 
-interface TooltipProps {
+const tooltipPopupVariants = cva('nothing-tooltip__popup', {
+  variants: {
+    visible: { true: 'nothing-tooltip__popup--visible', false: '' },
+    side: {
+      top: 'nothing-tooltip__popup--top',
+      bottom: 'nothing-tooltip__popup--bottom',
+      left: 'nothing-tooltip__popup--left',
+      right: 'nothing-tooltip__popup--right',
+    },
+  },
+  defaultVariants: { visible: false, side: 'top' },
+})
+
+export interface TooltipProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+    VariantProps<typeof tooltipPopupVariants> {
   content: string
   side?: 'top' | 'bottom' | 'left' | 'right'
   delay?: number
   children: React.ReactElement
 }
 
-const Tooltip: React.FC<TooltipProps> = ({
-  content,
-  side = 'top',
-  delay = 300,
-  children
-}) => {
-  const [visible, setVisible] = useState(false)
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const triggerRef = useRef<HTMLElement | null>(null)
-  const popupRef = useRef<HTMLDivElement | null>(null)
-  const tooltipId = useId()
-  const { style, update } = useFloating(side)
+export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
+  ({ className, content, side = 'top', delay = 300, children, ...props }, ref) => {
+    const [visible, setVisible] = React.useState(false)
+    const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+    const triggerRef = React.useRef<HTMLElement | null>(null)
+    const internalPopupRef = React.useRef<HTMLDivElement | null>(null)
+    const tooltipId = React.useId()
+    const { style, update } = useFloating(side)
 
-  const show = useCallback(() => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    timeoutRef.current = setTimeout(() => {
-      setVisible(true)
-    }, delay)
-  }, [delay])
+    const setRefs = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        internalPopupRef.current = node
+        if (typeof ref === 'function') ref(node)
+        else if (ref && 'current' in ref) {
+          ;(ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+        }
+      },
+      [ref]
+    )
 
-  const hide = useCallback(() => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    setVisible(false)
-  }, [])
-
-  useEffect(() => {
-    if (visible && triggerRef.current && popupRef.current) {
-      update(triggerRef.current, popupRef.current)
-    }
-  }, [visible, update])
-
-  useEffect(() => {
-    return () => {
+    const show = React.useCallback(() => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    }
-  }, [])
+      timeoutRef.current = setTimeout(() => {
+        setVisible(true)
+      }, delay)
+    }, [delay])
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      hide()
-    }
-  }, [hide])
+    const hide = React.useCallback(() => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+      setVisible(false)
+    }, [])
 
-  const popupClassNames = [
-    'nothing-tooltip__popup',
-    visible ? 'nothing-tooltip__popup--visible' : '',
-    `nothing-tooltip__popup--${side}`
-  ].filter(Boolean).join(' ')
+    React.useEffect(() => {
+      if (visible && triggerRef.current && internalPopupRef.current) {
+        update(triggerRef.current, internalPopupRef.current)
+      }
+    }, [visible, update])
 
-  return (
-    <div className="nothing-tooltip">
-      <span
-        className="nothing-tooltip__trigger"
-        ref={triggerRef}
-        onMouseEnter={show}
-        onMouseLeave={hide}
-        onFocus={show}
-        onBlur={hide}
-        onKeyDown={handleKeyDown}
-        aria-describedby={tooltipId}
-      >
-        {children}
-      </span>
-      <div
-        ref={popupRef}
-        className={popupClassNames}
-        role="tooltip"
-        id={tooltipId}
-        style={style}
-      >
-        {content}
+    React.useEffect(() => {
+      return () => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current)
+      }
+    }, [])
+
+    const handleKeyDown = React.useCallback(
+      (e: React.KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          hide()
+        }
+      },
+      [hide]
+    )
+
+    return (
+      <div className="nothing-tooltip" {...props}>
+        <span
+          className="nothing-tooltip__trigger"
+          ref={triggerRef}
+          onMouseEnter={show}
+          onMouseLeave={hide}
+          onFocus={show}
+          onBlur={hide}
+          onKeyDown={handleKeyDown}
+          aria-describedby={tooltipId}
+        >
+          {children}
+        </span>
+        <div
+          ref={setRefs}
+          className={cn(tooltipPopupVariants({ visible, side }), className)}
+          role="tooltip"
+          id={tooltipId}
+          style={style}
+          data-state={dataAttr(visible ? 'visible' : 'hidden')}
+          data-side={dataAttr(side)}
+        >
+          {content}
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+)
+Tooltip.displayName = 'Tooltip'
 
+export { tooltipPopupVariants }
 export default Tooltip

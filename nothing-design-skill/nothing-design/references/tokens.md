@@ -187,3 +187,94 @@ The Widget subsystem uses a separate set of tokens that intentionally differ fro
 | `--widget-bg-height` | `312px` | Widget background height |
 
 **Note:** Widget tokens are intentionally different from main UI tokens. This is a deliberate design choice to match Nothing Phone's widget panel aesthetic, not an inconsistency.
+
+---
+
+## 8. PATH ALIASES & UTILITIES (React UI Kit)
+
+The React UI Kit configures a set of `@/` path aliases (in `tsconfig.json` + `vite.config.ts`) to avoid deep relative imports like `../../../lib/utils`.
+
+### Available Aliases
+
+| Alias | Resolves To | Use |
+|-------|-------------|-----|
+| `@/components` | `src/components/*` | All component modules |
+| `@/lib` | `src/lib/*` | Utility libraries (cn, variants, hooks) |
+| `@/lib/utils` | `src/lib/utils.ts` | `cn()`, `mergeRefs()`, `dataAttr()` |
+| `@/lib/variants` | `src/lib/variants.ts` | `themeVariants`, `sizeVariants`, `stateVariants` |
+| `@/hooks` | `src/hooks/*` | Reusable React hooks |
+| `@/styles` | `src/styles/*` | Global CSS files |
+| `@/system` | `src/system/*` | Telemetry / boot / fake data |
+
+### `cn()` — Class Name Merger
+
+`cn()` (from `@/lib/utils`) wraps `clsx` to support conditional, object, and array class names. It's the single source of truth for className composition:
+
+```tsx
+import { cn, dataAttr } from '@/lib/utils'
+
+// Conditional
+cn('base', isActive && 'is-active')
+
+// Object syntax
+cn('base', { 'is-active': isActive, 'is-disabled': isDisabled })
+
+// Arrays
+cn(['base', isLarge ? 'text-lg' : 'text-sm'])
+
+// Mixed (most common)
+cn(buttonVariants({ variant, size }), isActive && 'is-active', className)
+```
+
+**Why not `tailwind-merge`?** Nothing UI uses pure CSS files (not Tailwind), so there's no Tailwind class conflict to resolve. Plain `clsx` is enough.
+
+### `dataAttr()` — data-* Attribute Helper
+
+Convert arbitrary prop values to safe HTML data-* values:
+
+```tsx
+import { dataAttr } from '@/lib/utils'
+
+<button
+  data-variant={dataAttr(variant)}     // → "primary" or undefined (omitted)
+  data-size={dataAttr(size)}           // → "lg" or undefined (omitted)
+  data-state={active ? 'on' : 'off'}   // → always present
+/>
+```
+
+`dataAttr` returns:
+- `undefined` for `undefined` / `null` / `false` → React omits the attribute
+- `''` (empty string) for `true` → attribute present, empty value
+- the value itself for strings and numbers
+
+### Shared CVA Variants (`@/lib/variants.ts`)
+
+```tsx
+import { themeVariants, sizeVariants, stateVariants } from '@/lib/variants'
+
+// Theme switching
+className={cn(themeVariants({ theme: 'dark' }))}
+
+// Size selection
+className={cn(sizeVariants({ size: 'md' }))}
+
+// State (on/off/loading/etc)
+className={cn(stateVariants({ state: 'on' }))}
+```
+
+These exist to prevent every component from redefining the same `light/dark/accent` enum. When building a new variant-aware component, **prefer** using these shared factories.
+
+#### v4 additions (2026-06)
+
+Three more shared factories are now exported alongside the originals:
+
+| Factory | Variants | Use case |
+|---------|----------|----------|
+| `stateOnOffVariants` | `on`, `off` | Binary on/off surfaces (toggles, switches) |
+| `orientationVariants` | `horizontal`, `vertical` | Direction-sensitive layouts (separator, slider) |
+| `emphasisVariants` | `primary`, `secondary` | Strength/weight dimension (CTA hierarchy) |
+| `statusVariants` | `good`, `warning`, `overlimit`, `info` | Data-value encoding (battery, progress, gauge) |
+
+### Component Metadata (`components.json`)
+
+The `web-ui-kit/react/components.json` file documents the project structure, alias mappings, and engine requirements. It's a shadcn-style metadata file that documents the design system for tooling and future CLI integration.

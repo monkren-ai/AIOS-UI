@@ -1,30 +1,38 @@
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import '../styles/widget-grid.css'
 
-interface WidgetGridProps {
-  dense?: boolean
-  compact?: boolean
-  className?: string
+const widgetGridVariants = cva('nothing-widget-grid', {
+  variants: {
+    dense: { true: 'nothing-widget-grid--dense', false: '' },
+    compact: { true: 'nothing-widget-grid--compact', false: '' },
+  },
+  defaultVariants: { dense: false, compact: false },
+})
+
+export interface WidgetGridProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+    VariantProps<typeof widgetGridVariants> {
   children?: React.ReactNode
 }
 
-const WidgetGrid: React.FC<WidgetGridProps> = ({
-  dense = false,
-  compact = false,
-  className,
-  children
-}) => {
-  const classNames = [
-    'nothing-widget-grid',
-    dense ? 'nothing-widget-grid--dense' : '',
-    compact ? 'nothing-widget-grid--compact' : '',
-    className
-  ].filter(Boolean).join(' ')
+export const WidgetGrid = React.forwardRef<HTMLDivElement, WidgetGridProps>(
+  ({ className, dense, compact, children, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(widgetGridVariants({ dense, compact }), className)}
+        data-dense={dataAttr(dense)}
+        data-compact={dataAttr(compact)}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  }
+)
+WidgetGrid.displayName = 'WidgetGrid'
 
-  return (
-    <div className={classNames}>
-      {children}
-    </div>
-  )
-}
-
+export { widgetGridVariants }
 export default WidgetGrid

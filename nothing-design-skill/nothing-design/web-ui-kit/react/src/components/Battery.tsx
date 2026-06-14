@@ -1,22 +1,71 @@
-import { useState, useEffect, useMemo } from 'react'
-import { withWidgetCard } from './widgets/withWidgetCard'
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import '../styles/battery.css'
 
+const batteryVariants = cva('nothing-battery', {
+  variants: {
+    variant: {
+      segmented: 'nothing-battery--segmented',
+      ring: 'nothing-battery-ring',
+    },
+    theme: {
+      light: 'nothing-battery--light',
+      dark: 'nothing-battery--dark',
+    },
+    level: {
+      critical: 'critical',
+      low: 'low',
+      medium: 'medium',
+      high: 'high',
+    },
+    widgetMode: {
+      none: '',
+      card: 'nothing-battery--widget-card',
+      ring: 'nothing-battery-ring--widget-card',
+    },
+  },
+  defaultVariants: { variant: 'segmented', theme: 'dark', level: 'high', widgetMode: 'none' },
+})
+
+const batteryRingVariants = cva('nothing-battery-ring', {
+  variants: {
+    theme: {
+      light: 'nothing-battery-ring--light',
+      dark: 'nothing-battery-ring--dark',
+    },
+    status: {
+      charging: 'charging',
+      low: 'low',
+      mid: 'mid',
+      full: 'full',
+    },
+  },
+  defaultVariants: { theme: 'dark', status: 'full' },
+})
+
+const batteryDeviceVariants = cva('nothing-battery__device', {
+  variants: {
+    clickable: { true: 'nothing-battery__device--clickable', false: '' },
+  },
+  defaultVariants: { clickable: false },
+})
+
 export interface BatteryDevice {
-  name: string;
-  type: 'mouse' | 'keyboard' | 'earbuds' | 'phone' | 'watch';
-  percent: number;
-  isCharging?: boolean;
+  name: string
+  type: 'mouse' | 'keyboard' | 'earbuds' | 'phone' | 'watch'
+  percent: number
+  isCharging?: boolean
 }
 
-interface BatteryProps {
+export interface BatteryProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'onClick'>,
+    Omit<VariantProps<typeof batteryVariants>, 'level' | 'widgetMode'> {
   updateInterval?: number
   totalSegments?: number
   percent?: number
   isCharging?: boolean
-  variant?: 'segmented' | 'ring'
-  theme?: 'light' | 'dark'
-  widgetMode?: 'card' | 'ring'
+  widgetMode?: 'none' | 'card' | 'ring'
   devices?: BatteryDevice[]
   onDeviceClick?: (device: BatteryDevice) => void
 }
@@ -123,10 +172,7 @@ const DeviceList: React.FC<{
     {devices.map((device, idx) => (
       <div
         key={idx}
-        className={[
-          'nothing-battery__device',
-          onDeviceClick ? 'nothing-battery__device--clickable' : ''
-        ].filter(Boolean).join(' ')}
+        className={cn(batteryDeviceVariants({ clickable: !!onDeviceClick }))}
         onClick={onDeviceClick ? () => onDeviceClick(device) : undefined}
         role={onDeviceClick ? 'button' : undefined}
         tabIndex={onDeviceClick ? 0 : undefined}
@@ -136,6 +182,7 @@ const DeviceList: React.FC<{
             onDeviceClick(device)
           }
         } : undefined}
+        data-state={dataAttr(device.isCharging ? 'charging' : device.percent <= 20 ? 'low' : 'normal')}
       >
         <div className="nothing-battery__device-icon">
           <DeviceTypeIcon type={device.type} />
@@ -151,24 +198,24 @@ const DeviceList: React.FC<{
   </div>
 )
 
-const Battery: React.FC<BatteryProps> = ({
+const BatteryImpl: React.FC<BatteryProps> = ({
   updateInterval = 5000,
   totalSegments = 10,
   percent: initialPercent,
   isCharging: initialIsCharging,
   variant = 'segmented',
   theme = 'dark',
-  widgetMode,
+  widgetMode = 'none',
   devices,
   onDeviceClick
 }) => {
-  const [internalPercent, setInternalPercent] = useState(initialPercent ?? 75)
-  const [internalIsCharging, setInternalIsCharging] = useState(initialIsCharging ?? false)
+  const [internalPercent, setInternalPercent] = React.useState(initialPercent ?? 75)
+  const [internalIsCharging, setInternalIsCharging] = React.useState(initialIsCharging ?? false)
 
   const percent = initialPercent ?? internalPercent
   const isCharging = initialIsCharging ?? internalIsCharging
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (initialPercent !== undefined || initialIsCharging !== undefined) {
       return
     }
@@ -194,40 +241,43 @@ const Battery: React.FC<BatteryProps> = ({
     return () => clearInterval(timer)
   }, [updateInterval, initialPercent, initialIsCharging])
 
-  const ringStatusClass = useMemo(() => {
-    if (isCharging) return 'charging'
-    if (percent <= 30) return 'low'
-    if (percent <= 80) return 'mid'
-    return 'full'
-  }, [percent, isCharging])
-
-  const ringDashOffset = useMemo(() => {
+  const ringDashOffset = React.useMemo(() => {
     return CIRCUMFERENCE - (percent / 100) * CIRCUMFERENCE
   }, [percent])
 
   const filledSegments = Math.round((percent / 100) * totalSegments)
 
-  let batteryClass = 'high'
+  let batteryLevel: 'critical' | 'low' | 'medium' | 'high' = 'high'
   if (isCharging) {
-    batteryClass = 'charging'
+    batteryLevel = 'high'
   } else if (percent <= 10) {
-    batteryClass = 'critical'
+    batteryLevel = 'critical'
   } else if (percent <= 20) {
-    batteryClass = 'low'
+    batteryLevel = 'low'
   } else if (percent <= 50) {
-    batteryClass = 'medium'
+    batteryLevel = 'medium'
   }
+
+  const ringStatus: 'charging' | 'low' | 'mid' | 'full' = isCharging
+    ? 'charging'
+    : percent <= 30
+    ? 'low'
+    : percent <= 80
+    ? 'mid'
+    : 'full'
 
   // --- Widget Card mode (segmented) ---
   if (widgetMode === 'card') {
     return (
       <div
-        className={`nothing-battery nothing-battery--widget-card ${batteryClass}`}
+        ref={undefined}
+        className={cn(batteryVariants({ variant: 'segmented', theme, level: batteryLevel, widgetMode: 'card' }))}
         role="meter"
         aria-valuenow={percent}
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label={`Battery at ${percent}%, ${isCharging ? 'charging' : 'discharging'}`}
+        data-state={dataAttr(isCharging ? 'charging' : batteryLevel)}
       >
         <div className="nothing-battery__widget-percent">{percent}%</div>
         <div className={`nothing-battery__widget-status ${isCharging ? 'charging' : 'discharging'}`}>
@@ -252,12 +302,14 @@ const Battery: React.FC<BatteryProps> = ({
   if (widgetMode === 'ring') {
     return (
       <div
-        className={`nothing-battery-ring nothing-battery-ring--${theme} nothing-battery-ring--widget-card ${ringStatusClass}`}
+        ref={undefined}
+        className={cn(batteryRingVariants({ theme, status: ringStatus }), batteryVariants({ widgetMode: 'ring' }))}
         role="meter"
         aria-valuenow={percent}
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label={`Battery at ${percent}%, ${isCharging ? 'charging' : 'discharging'}`}
+        data-state={dataAttr(ringStatus)}
       >
         <svg className="nothing-battery-ring__svg" viewBox="0 0 200 200">
           <circle className="nothing-battery-ring__outer" cx="100" cy="100" r="95" />
@@ -287,7 +339,11 @@ const Battery: React.FC<BatteryProps> = ({
   // --- Original ring variant (no widgetMode) ---
   if (variant === 'ring') {
     return (
-      <div className={`nothing-battery-ring nothing-battery-ring--${theme} ${ringStatusClass}`}>
+      <div
+        ref={undefined}
+        className={cn(batteryRingVariants({ theme, status: ringStatus }))}
+        data-state={dataAttr(ringStatus)}
+      >
         <svg className="nothing-battery-ring__svg" viewBox="0 0 200 200">
           <circle className="nothing-battery-ring__outer" cx="100" cy="100" r="95" />
           <circle className="nothing-battery-ring__inner" cx="100" cy="100" r="85" />
@@ -313,12 +369,14 @@ const Battery: React.FC<BatteryProps> = ({
   // --- Original segmented variant (no widgetMode) ---
   return (
     <div
-      className={`nothing-battery ${batteryClass}`}
+      ref={undefined}
+      className={cn(batteryVariants({ variant: 'segmented', theme, level: batteryLevel }))}
       role="meter"
       aria-valuenow={percent}
       aria-valuemin={0}
       aria-valuemax={100}
       aria-label={`Battery at ${percent}%, ${isCharging ? 'charging' : 'discharging'}`}
+      data-state={dataAttr(batteryLevel)}
     >
       <div className="nothing-battery__header">
         <div className="nothing-battery__percent">{percent}%</div>
@@ -338,4 +396,11 @@ const Battery: React.FC<BatteryProps> = ({
   )
 }
 
-export default withWidgetCard(Battery)
+export const Battery = React.forwardRef<HTMLDivElement, BatteryProps>((props, ref) => {
+  // Wrap with a forwardRef-friendly outer div
+  return <div ref={ref} style={{ display: 'contents' }}><BatteryImpl {...props} /></div>
+})
+Battery.displayName = 'Battery'
+
+export { batteryVariants, batteryRingVariants, batteryDeviceVariants }
+export default Battery

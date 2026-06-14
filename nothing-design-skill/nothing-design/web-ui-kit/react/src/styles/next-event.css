@@ -81,6 +81,31 @@
   flex-shrink: 0;
 }
 
+.nothing-next-event__countdown {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--widget-grey);
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+  margin-left: auto;
+  text-transform: uppercase;
+}
+
+.nothing-next-event[data-priority="high"] .nothing-next-event__countdown {
+  color: var(--widget-primary);
+  font-weight: 600;
+}
+
+.nothing-next-event[data-real="false"]::after {
+  content: 'SIM';
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--widget-grey);
+  opacity: 0.5;
+  align-self: flex-end;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nothing-next-event {
     transition: none;

@@ -136,3 +136,25 @@
   object-fit: cover;
   display: block;
 }
+
+/* ===== Fallback DotMatrix wrapper ===== */
+.nothing-photo-frame[data-state="fallback"] .nothing-photo-frame__image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--widget-card-bg);
+}
+
+/* ===== SIM label when no real content ===== */
+.nothing-photo-frame[data-real="false"]::after {
+  content: 'SIM';
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  pointer-events: none;
+}

@@ -1,37 +1,30 @@
+import * as React from 'react'
+import { cn } from '../lib/utils'
 import '../styles/form.css'
 
-interface FormProps {
-  onSubmit?: (e: React.FormEvent) => void
-  children: React.ReactNode
-  className?: string
-  style?: React.CSSProperties
+export type FormProps = Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> & {
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void
+  children?: React.ReactNode
 }
 
-const Form: React.FC<FormProps> = ({
-  onSubmit,
-  children,
-  className,
-  style
-}) => {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSubmit?.(e)
+export const Form = React.forwardRef<HTMLFormElement, FormProps>(
+  ({ className, onSubmit, children, ...props }, ref) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+      onSubmit?.(e)
+    }
+    return (
+      <form
+        ref={ref}
+        className={cn('nothing-form', className)}
+        onSubmit={handleSubmit}
+        {...props}
+      >
+        {children}
+      </form>
+    )
   }
-
-  const classNames = [
-    'nothing-form',
-    className
-  ].filter(Boolean).join(' ')
-
-  return (
-    <form
-      className={classNames}
-      onSubmit={handleSubmit}
-      style={style}
-    >
-      {children}
-    </form>
-  )
-}
+)
+Form.displayName = 'Form'
 
 export default Form

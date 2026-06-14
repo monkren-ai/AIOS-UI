@@ -296,6 +296,148 @@ function App() {
 
 All components support dark/light theme switching and follow the Nothing design system tokens. See `web-ui-kit/README.md` for complete documentation and API reference.
 
+### Component Architecture Conventions (since 2026)
+
+The React UI Kit follows a **shadcn-inspired** architecture for type safety and maintainability. All new components MUST follow these patterns:
+
+#### 1. Path Aliases (`@/*`)
+
+Use the `@/` alias (configured in `tsconfig.json` + `vite.config.ts`) instead of deep relative imports:
+
+```tsx
+// ✅ Preferred
+import { cn, dataAttr } from '@/lib/utils'
+import { cva, type VariantProps } from 'class-variance-authority'
+import type { ButtonProps } from '@/components/Buttons'
+
+// ❌ Avoid
+import { cn } from '../../../lib/utils'
+```
+
+Aliases: `@/components`, `@/lib`, `@/lib/utils`, `@/hooks`, `@/styles`.
+
+#### 2. The `cn()` Utility — Single Source of Truth
+
+`cn()` (from `@/lib/utils`) replaces the legacy `[...].filter(Boolean).join(' ')` pattern. It wraps `clsx` to support conditional classes, objects, and arrays:
+
+```tsx
+import { cn, dataAttr } from '@/lib/utils'
+
+// ✅ Preferred
+<button className={cn(buttonVariants({ variant, size }), isActive && 'is-active', className)} />
+
+// ❌ Avoid
+const classNames = ['nothing-btn', `nothing-btn--${variant}`, isActive ? 'is-active' : '']
+  .filter(Boolean).join(' ')
+```
+
+#### 3. CVA (class-variance-authority) for Type-Safe Variants
+
+Every component with more than 2 enum-valued props (e.g. `variant`, `size`, `theme`) MUST define its variants via `cva()`:
+
+```tsx
+import { cva, type VariantProps } from 'class-variance-authority'
+
+const buttonVariants = cva('nothing-btn', {
+  variants: {
+    variant: {
+      primary: 'nothing-btn--primary',
+      secondary: 'nothing-btn--secondary',
+      ghost: 'nothing-btn--ghost',
+      destructive: 'nothing-btn--destructive',
+    },
+    size: {
+      default: '',
+      sm: 'nothing-btn--sm',
+      lg: 'nothing-btn--lg',
+    },
+  },
+  defaultVariants: { variant: 'primary', size: 'default' },
+})
+
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants>
+```
+
+Export both the component and the `xxxVariants` factory (so consumers can compose variants in their own components).
+
+#### 4. `data-*` Attributes for CSS Hooks
+
+In addition to BEM classes, every variant component SHOULD render `data-variant`, `data-size`, `data-theme`, `data-state` attributes. Use the `dataAttr()` helper from `@/lib/utils` to filter out `undefined`/`false`:
+
+```tsx
+import { dataAttr } from '@/lib/utils'
+
+<button
+  data-variant={dataAttr(variant)}    // → "primary" or undefined
+  data-size={dataAttr(size)}          // → "lg" or undefined
+  data-state={active ? 'on' : 'off'}  // → always present
+/>
+```
+
+This enables DevTools inspection, end-to-end testing, and future CSS attribute selectors (`[data-variant="primary"]`).
+
+#### 5. `forwardRef` + Named Display
+
+All leaf components (Button, Badge, Alert, Input, QuickToggle) MUST use `React.forwardRef` and set a `displayName` for React DevTools:
+
+```tsx
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ variant, size, className, ...props }, ref) => (
+    <button ref={ref} className={cn(buttonVariants({ variant, size }), className)} {...props} />
+  )
+)
+Button.displayName = 'Button'
+```
+
+#### 6. Shared Variants (`@/lib/variants.ts`)
+
+Cross-component variant dimensions are centralized to avoid duplication:
+
+| Factory | Use case | Variants |
+|---------|----------|----------|
+| `themeVariants` | light/dark/accent theme switching | `light`, `dark`, `accent`, `error` |
+| `sizeVariants` | sm/md/lg sizing | `sm`, `md`, `lg` |
+| `stateVariants` | interactive state (on/off/disabled/etc) | `on`, `off`, `disabled`, `loading`, `error` |
+
+```tsx
+import { themeVariants, sizeVariants } from '@/lib/variants'
+```
+
+#### 7. BEM + `data-*` Coexistence
+
+The legacy BEM classes (`nothing-btn--primary`) are NOT removed. They coexist with `data-variant`:
+- **BEM classes** = the visual styling (in `*.css` files)
+- **`data-*` attrs** = semantic hooks for testing, inspection, and future CSS
+
+This is **backward compatible** — every existing call site continues to work without modification.
+
+#### 8. v4 Refactor Summary (2026-06)
+
+All 113 React components were refactored in a single sweep to fully conform to the rules above. Quick reference for what changed in the React UI Kit:
+
+| Area | Before | After |
+|------|--------|-------|
+| Class string composition | `[...].filter(Boolean).join(' ')` | `cn(...)` from `@/lib/utils` |
+| Variant enum mapping | Inline ternaries / `if/else` | `cva(...)` factory with `xxxVariants` export |
+| Ref forwarding | `useImperativeHandle` or none | `React.forwardRef` + `displayName` on every leaf component |
+| Semantic hooks | BEM classes only | BEM **plus** `data-variant` / `data-size` / `data-theme` / `data-state` |
+| Polymorphic `asChild` | Not supported | Components opt-in via a `Slot` primitive (no `@radix-ui/react-slot` dep) |
+| Internal imports | Long relative paths (`../../../lib/...`) | `@/*` path alias |
+| `withWidgetCard` HOC | 5 `any` types, hand-rolled ref cast | Clean overloads, `unknown` instead of `any` |
+| App entry | Relative imports | `@/*` path alias throughout |
+
+**Breaking changes** (intentional, approved by the user for this refactor):
+
+- `Caffeinate` prop `status` enum values renamed for consistency — see `MIGRATION.md` for the full table.
+- `Checkbox` prop `checked` no longer accepts a raw boolean for indeterminate state; pass the string `"indeterminate"` (or use `defaultChecked`).
+- `Slider` controlled/uncontrolled detection now reads `value` vs `defaultValue` — supplying both throws at runtime (was previously silently uncontrolled).
+- `RadioGroup` `orientation` is now required to be one of `'horizontal' | 'vertical'`; legacy `'row'` / `'col'` no longer accepted.
+- `Tag` removed deprecated `color` prop; use `variant="accent" | "warning" | "success"`.
+- `withWidgetCard` overload signature tightened; calling with a non-forwardRef FC no longer infers `unknown` — explicit ref type required at call site.
+
+See `MIGRATION.md` for a per-component migration table and the exact diff of the `cn()` signature.
+
 ### Widget Subsystem
 
 The Widget components (QuickToggle, WidgetCard, WidgetPill, WidgetGrid, WeatherWidget, StepsWidget, ActivityWidget, CompassWidget, TimeWidget, SvgIcon, Glyph) follow Nothing Phone's home screen widget aesthetic, which differs intentionally from the main UI system:

@@ -1,7 +1,23 @@
-import { useState, useCallback } from 'react'
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import '../styles/sidebar.css'
 
-interface SidebarItem {
+const sidebarVariants = cva('nothing-sidebar', {
+  variants: {
+    collapsed: { true: 'nothing-sidebar--collapsed', false: '' },
+  },
+  defaultVariants: { collapsed: false },
+})
+
+const sidebarItemVariants = cva('nothing-sidebar__item', {
+  variants: {
+    active: { true: 'nothing-sidebar__item--active', false: '' },
+  },
+  defaultVariants: { active: false },
+})
+
+export interface SidebarItem {
   icon?: React.ReactNode
   label: string
   href?: string
@@ -10,67 +26,56 @@ interface SidebarItem {
   badge?: string | number
 }
 
-interface SidebarProps {
+export interface SidebarProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'>,
+    VariantProps<typeof sidebarVariants> {
   items: SidebarItem[]
   collapsed?: boolean
   onCollapsedChange?: (collapsed: boolean) => void
   header?: React.ReactNode
   footer?: React.ReactNode
-  style?: React.CSSProperties
 }
 
-const Sidebar: React.FC<SidebarProps> = ({
-  items,
-  collapsed: controlledCollapsed,
-  onCollapsedChange,
-  header,
-  footer,
-  style
-}) => {
-  const [internalCollapsed, setInternalCollapsed] = useState(false)
-  const isCollapsed = controlledCollapsed !== undefined ? controlledCollapsed : internalCollapsed
+export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
+  (
+    { className, items, collapsed: controlledCollapsed, onCollapsedChange, header, footer, ...props },
+    ref
+  ) => {
+    const [internalCollapsed, setInternalCollapsed] = React.useState(false)
+    const isCollapsed = controlledCollapsed !== undefined ? controlledCollapsed : internalCollapsed
 
-  const handleToggle = useCallback(() => {
-    const next = !isCollapsed
-    if (controlledCollapsed === undefined) {
-      setInternalCollapsed(next)
-    }
-    onCollapsedChange?.(next)
-  }, [isCollapsed, controlledCollapsed, onCollapsedChange])
+    const handleToggle = React.useCallback(() => {
+      const next = !isCollapsed
+      if (controlledCollapsed === undefined) {
+        setInternalCollapsed(next)
+      }
+      onCollapsedChange?.(next)
+    }, [isCollapsed, controlledCollapsed, onCollapsedChange])
 
-  const containerClassNames = [
-    'nothing-sidebar',
-    isCollapsed ? 'nothing-sidebar--collapsed' : ''
-  ].filter(Boolean).join(' ')
-
-  return (
-    <aside
-      className={containerClassNames}
-      role="navigation"
-      aria-label="Sidebar navigation"
-      style={style}
-    >
-      {header && (
-        <div className="nothing-sidebar__header">
-          {header}
-        </div>
-      )}
-      <button
-        className="nothing-sidebar__toggle"
-        onClick={handleToggle}
-        aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+    return (
+      <aside
+        ref={ref}
+        className={cn(sidebarVariants({ collapsed: isCollapsed }), className)}
+        role="navigation"
+        aria-label="Sidebar navigation"
+        data-state={dataAttr(isCollapsed ? 'collapsed' : 'expanded')}
+        {...props}
       >
-        {isCollapsed ? '→' : '←'}
-      </button>
-      <ul className="nothing-sidebar__list">
-        {items.map((item, index) => {
-          const itemClassNames = [
-            'nothing-sidebar__item',
-            item.active ? 'nothing-sidebar__item--active' : ''
-          ].filter(Boolean).join(' ')
-
-          return (
-            <li key={index} className={itemClassNames}>
+        {header && <div className="nothing-sidebar__header">{header}</div>}
+        <button
+          className="nothing-sidebar__toggle"
+          onClick={handleToggle}
+          aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          {isCollapsed ? '→' : '←'}
+        </button>
+        <ul className="nothing-sidebar__list">
+          {items.map((item, index) => (
+            <li
+              key={index}
+              className={cn(sidebarItemVariants({ active: !!item.active }))}
+              data-state={dataAttr(item.active ? 'active' : 'inactive')}
+            >
               <a
                 className="nothing-sidebar__item-link"
                 href={item.href ?? undefined}
@@ -80,9 +85,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 }}
                 title={isCollapsed ? item.label : undefined}
               >
-                {item.icon && (
-                  <span className="nothing-sidebar__item-icon">{item.icon}</span>
-                )}
+                {item.icon && <span className="nothing-sidebar__item-icon">{item.icon}</span>}
                 {!isCollapsed && (
                   <span className="nothing-sidebar__item-label">{item.label}</span>
                 )}
@@ -91,16 +94,14 @@ const Sidebar: React.FC<SidebarProps> = ({
                 )}
               </a>
             </li>
-          )
-        })}
-      </ul>
-      {footer && (
-        <div className="nothing-sidebar__footer">
-          {footer}
-        </div>
-      )}
-    </aside>
-  )
-}
+          ))}
+        </ul>
+        {footer && <div className="nothing-sidebar__footer">{footer}</div>}
+      </aside>
+    )
+  }
+)
+Sidebar.displayName = 'Sidebar'
 
+export { sidebarVariants, sidebarItemVariants }
 export default Sidebar

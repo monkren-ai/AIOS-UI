@@ -291,6 +291,44 @@ div[class*="widget-icon-wrapper"] svg.nothing-widget-icon-svg {
   height: var(--space-md, 16px) !important;
 }
 
+/* 统一的图标容器: 让子 SVG 继承 color → fill: currentColor */
+.widget-card__icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.widget-card__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* 让内部路径继承 color 属性 */
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* 根据外层主题切换内部 SVG 颜色 */
+.widget-card[data-theme="light"] .widget-card__icon {
+  color: var(--widget-dark-bg);
+}
+
+.widget-card[data-theme="dark"] .widget-card__icon {
+  color: var(--widget-white);
+}
+
+.widget-card[data-theme="accent"] .widget-card__icon {
+  color: var(--widget-white);
+}
+
+.widget-card[data-theme="grey"] .widget-card__icon {
+  color: var(--widget-white);
+}
+
+.widget-card[data-theme="grey2"] .widget-card__icon {
+  color: var(--widget-white);
+}
+
 .widget-grid-7x6 {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));

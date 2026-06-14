@@ -1,37 +1,59 @@
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn, dataAttr } from '../lib/utils'
 import '../styles/separator.css'
 
-interface SeparatorProps {
-  orientation?: 'horizontal' | 'vertical'
-  decorative?: boolean
-  label?: string
-  style?: React.CSSProperties
-}
+const separatorVariants = cva('nothing-separator', {
+  variants: {
+    orientation: {
+      horizontal: 'nothing-separator--horizontal',
+      vertical: 'nothing-separator--vertical',
+    },
+    labeled: {
+      true: 'nothing-separator--labeled',
+      false: '',
+    },
+  },
+  defaultVariants: { orientation: 'horizontal', labeled: false },
+})
 
-const Separator: React.FC<SeparatorProps> = ({
-  orientation = 'horizontal',
-  decorative = false,
-  label,
-  style
-}) => {
-  const classNames = [
-    'nothing-separator',
-    `nothing-separator--${orientation}`,
-    label ? 'nothing-separator--labeled' : ''
-  ].filter(Boolean).join(' ')
+export type SeparatorProps = React.HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof separatorVariants> & {
+    decorative?: boolean
+    label?: string
+  }
 
-  const ariaProps = decorative
-    ? { 'aria-hidden': true }
-    : label
-      ? {}
-      : { role: 'separator', 'aria-orientation': orientation }
+export const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(
+  (
+    { className, orientation = 'horizontal', decorative = false, labeled, label, ...props },
+    ref
+  ) => {
+    const isLabeled = labeled ?? Boolean(label)
+    const safeOrientation: 'horizontal' | 'vertical' = orientation ?? 'horizontal'
 
-  return (
-    <div className={classNames} {...ariaProps} style={style}>
-      <div className="nothing-separator__line" />
-      {label && <span className="nothing-separator__label">{label}</span>}
-      <div className="nothing-separator__line" />
-    </div>
-  )
-}
+    const ariaProps = decorative
+      ? { 'aria-hidden': true as const }
+      : label
+        ? {}
+        : { role: 'separator' as const, 'aria-orientation': safeOrientation }
 
+    return (
+      <div
+        ref={ref}
+        className={cn(separatorVariants({ orientation, labeled: isLabeled }), className)}
+        data-orientation={dataAttr(orientation)}
+        data-labeled={dataAttr(isLabeled)}
+        {...ariaProps}
+        {...props}
+      >
+        <div className="nothing-separator__line" />
+        {label && <span className="nothing-separator__label">{label}</span>}
+        <div className="nothing-separator__line" />
+      </div>
+    )
+  }
+)
+Separator.displayName = 'Separator'
+
+export { separatorVariants }
 export default Separator
