@@ -1,0 +1,211 @@
+.nothing-chrono {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-transition) var(--easing);
+  width: 100%;
+}
+
+.chrono-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  margin-bottom: var(--space-lg);
+}
+
+.chrono-title {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.chrono-display {
+  font-family: var(--font-mono);
+  font-size: var(--display-lg);
+  line-height: 1;
+  font-weight: 700;
+  color: var(--text-display);
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  transition: color var(--duration-transition) var(--easing);
+  font-variant-numeric: tabular-nums;
+}
+
+.chrono-controls {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.chrono-controls-main {
+  display: flex;
+  gap: var(--space-sm);
+  flex: 1;
+}
+
+.chrono-btn {
+  font-family: var(--font-mono);
+  font-size: var(--body-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: var(--space-sm-plus) var(--space-lg);
+  min-height: 44px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  transition: all var(--duration-micro) var(--easing);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  line-height: 1;
+  border-radius: var(--radius-pill);
+}
+
+.chrono-btn:focus-visible {
+  outline: 2px solid var(--interactive);
+  outline-offset: 2px;
+}
+
+.chrono-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.chrono-btn--start {
+  background: var(--text-display);
+  color: var(--black);
+  flex: 1;
+}
+
+.chrono-btn--start:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.chrono-btn--start:active:not(:disabled) {
+  opacity: 0.7;
+}
+
+.chrono-btn--pause {
+  background: var(--accent);
+  color: var(--text-display);
+  flex: 1;
+}
+
+.chrono-btn--pause:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.chrono-btn--pause:active:not(:disabled) {
+  opacity: 0.7;
+}
+
+.chrono-btn--lap {
+  background: transparent;
+  border: 1px solid var(--border-visible);
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.chrono-btn--lap:hover:not(:disabled) {
+  border-color: var(--text-secondary);
+  color: var(--text-display);
+}
+
+.chrono-btn--lap:active:not(:disabled) {
+  border-color: var(--text-primary);
+}
+
+.chrono-btn--reset {
+  background: transparent;
+  border: 1px solid var(--border-visible);
+  color: var(--text-secondary);
+  width: 100%;
+}
+
+.chrono-btn--reset:hover:not(:disabled) {
+  border-color: var(--text-secondary);
+  color: var(--text-display);
+}
+
+.chrono-btn--reset:active:not(:disabled) {
+  border-color: var(--text-primary);
+}
+
+.chrono-laps {
+  margin-top: var(--space-md);
+  max-height: 320px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-visible) transparent;
+}
+
+.chrono-laps::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chrono-laps::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chrono-laps::-webkit-scrollbar-thumb {
+  background: var(--border-visible);
+  border-radius: var(--radius-2xs);
+}
+
+.chrono-lap-item {
+  display: flex;
+  align-items: baseline;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--border);
+  transition: border-color var(--duration-transition) var(--easing);
+}
+
+.chrono-lap-item:last-child {
+  border-bottom: none;
+}
+
+.chrono-lap-number {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  min-width: 48px;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.chrono-lap-delta {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  color: var(--text-primary);
+  flex: 1;
+  font-variant-numeric: tabular-nums;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.chrono-lap-total {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.chrono-lap-item.fastest .chrono-lap-delta {
+  color: var(--success);
+}
+
+.chrono-lap-item.slowest .chrono-lap-delta {
+  color: var(--warning);
+}

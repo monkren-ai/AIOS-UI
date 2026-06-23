@@ -1,0 +1,333 @@
+/**
+ * Nothing UI — Showcase page styles
+ *
+ * 从 src/App.tsx 内联样式提取而来。
+ * 所有颜色、字体、间距、圆角、动画均引用 tokens.css 中的 CSS 变量。
+ */
+
+/* ===== 页面主容器 ===== */
+.showcase-page {
+  font-family: var(--font-body);
+  background-color: var(--black);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  transition: background-color var(--duration-transition) var(--easing),
+    color var(--duration-transition) var(--easing);
+}
+
+/* ===== 侧边栏导航 ===== */
+.showcase-aside {
+  position: sticky;
+  top: 0;
+  flex: 0 0 220px;
+  height: 100vh;
+  padding: var(--space-lg) var(--space-md);
+  border-right: 1px solid var(--border-visible);
+  background-color: var(--black);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.showcase-aside-label {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.showcase-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.showcase-nav-link {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--border);
+  transition: all var(--duration-micro) var(--easing);
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.showcase-nav-link:hover {
+  color: var(--text-primary);
+  border-color: var(--border-visible);
+}
+
+.showcase-nav-link--active {
+  color: var(--text-display);
+  border-color: var(--text-display);
+}
+
+/* ===== 浮动控制按钮 ===== */
+.showcase-floating-btn {
+  position: fixed;
+  top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface);
+  border: 1px solid var(--border-visible);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--duration-micro) var(--easing);
+}
+
+.showcase-floating-btn:hover {
+  border-color: var(--text-display);
+}
+
+.showcase-floating-btn--theme {
+  right: var(--space-md);
+}
+
+.showcase-floating-btn--lang {
+  right: calc(var(--space-md) + 150px);
+}
+
+.showcase-floating-btn--sim {
+  right: calc(var(--space-md) + 220px);
+}
+
+.showcase-floating-btn--sim[data-active='true'] {
+  background: var(--text-display);
+  color: var(--black);
+}
+
+/* ===== 主内容区 ===== */
+.showcase-main {
+  flex: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-xl);
+}
+
+/* ===== 区段（section）布局变体 ===== */
+.showcase-section {
+  margin-bottom: var(--space-3xl);
+}
+
+.showcase-section--flex-wrap {
+  margin-bottom: var(--space-3xl);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.showcase-section--grid {
+  margin-bottom: var(--space-3xl);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-md);
+}
+
+/* 区段末尾元素去除底部间距 */
+.showcase-section--last {
+  margin-bottom: 0;
+}
+
+/* ===== 排版与标题 ===== */
+.showcase-demo-title {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  width: 100%;
+}
+
+/* 区段内子分组标签（比 demo title 更小） */
+.showcase-sub-label {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+  width: 100%;
+}
+
+.showcase-group-title {
+  font-family: var(--font-body);
+  font-size: var(--subheading);
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+
+/* 排版介绍区段的副标题（更紧凑的底部间距） */
+.showcase-group-title--tight {
+  margin-bottom: var(--space-md);
+}
+
+.showcase-page-header {
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--text-display);
+  margin-bottom: var(--space-lg);
+}
+
+.showcase-intro-text {
+  font-size: var(--body);
+  margin-bottom: var(--space-2xl);
+}
+
+/* ===== 分类容器 ===== */
+.showcase-category {
+  margin-bottom: var(--space-4xl);
+  scroll-margin-top: var(--space-3xl);
+}
+
+.showcase-category-title {
+  font-family: var(--font-display);
+  font-size: var(--heading);
+  letter-spacing: -0.02em;
+  color: var(--text-display);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-visible);
+  margin-bottom: var(--space-2xl);
+  margin-top: 0;
+}
+
+/* ===== 演示内容辅助类 ===== */
+/* 行内水平排列（按钮组等） */
+.showcase-row {
+  margin-top: var(--space-md);
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* 居中行内水平排列 */
+.showcase-row--centered {
+  margin-top: var(--space-md);
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+/* 右键菜单占位区域 */
+.showcase-context-area {
+  padding: var(--space-xl);
+  border: 1px dashed var(--border-visible);
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-size: var(--body);
+  color: var(--text-secondary);
+}
+
+/* Resizable 面板占位 */
+.showcase-resizable-panel {
+  padding: var(--space-md);
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-sm);
+  font-size: var(--body);
+}
+
+/* Aspect Ratio 内部占位 */
+.showcase-aspect-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-md);
+  font-size: var(--body);
+  color: var(--text-secondary);
+}
+
+/* ScrollArea 列表项 */
+.showcase-scroll-item {
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--body);
+}
+
+/* Collapsible 展开内容 */
+.showcase-collapsible-content {
+  padding: var(--space-md);
+  font-size: var(--body);
+  color: var(--text-secondary);
+}
+
+/* Popover / HoverCard 内容 */
+.showcase-popover-content {
+  padding: var(--space-md);
+  font-size: var(--body);
+}
+
+.showcase-popover-title {
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+/* 内联链接（HoverCard 触发器） */
+.showcase-inline-link {
+  color: var(--text-primary);
+  text-decoration: underline;
+  font-size: var(--body);
+}
+
+/* Sidebar 头部标签 */
+.showcase-sidebar-header {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Separator 演示行 */
+.showcase-separator-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  height: 40px;
+}
+
+/* 表单提交按钮 */
+.showcase-form-submit {
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--text-display);
+  color: var(--black);
+  border: none;
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Suspense 加载占位 */
+.showcase-suspense-fallback {
+  color: var(--text-secondary);
+  padding: var(--space-lg);
+}
+
+/* 未实现提示 */
+.showcase-not-implemented {
+  color: var(--text-secondary);
+  font-size: var(--caption);
+}

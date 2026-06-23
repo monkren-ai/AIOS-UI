@@ -1,13 +1,13 @@
 import './styles/tokens.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import ErrorBoundary from './components/ErrorBoundary.tsx'
+import Showcase from '@/showcase'
+import ErrorBoundary from '@/ErrorBoundary'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
-      <App />
+      <Showcase />
     </ErrorBoundary>
   </StrictMode>,
 )

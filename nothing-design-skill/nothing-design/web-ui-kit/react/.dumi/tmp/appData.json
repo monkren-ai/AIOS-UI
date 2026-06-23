@@ -1,0 +1,5017 @@
+{
+  "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+  "pkg": {
+    "name": "nothing-ui-kit-react",
+    "version": "1.0.0",
+    "description": "Nothing UI Kit Web - A web component library based on Nothing design system",
+    "author": "Nothing UI",
+    "license": "MIT",
+    "type": "module",
+    "sideEffects": [
+      "**/*.css"
+    ],
+    "exports": {
+      ".": {
+        "types": "./es/index.d.mts",
+        "import": "./es/index.mjs",
+        "default": "./es/index.mjs"
+      },
+      "./styles": {
+        "types": "./es/styles/index.d.mts",
+        "import": "./es/styles/index.mjs"
+      },
+      "./es/*": {
+        "types": "./es/*.d.mts",
+        "import": "./es/*.mjs"
+      }
+    },
+    "main": "es/index.mjs",
+    "module": "es/index.mjs",
+    "types": "es/index.d.mts",
+    "files": [
+      "es"
+    ],
+    "scripts": {
+      "dev": "vite",
+      "dev:docs": "dumi dev",
+      "build": "tsdown",
+      "build:packages": "tsx ./scripts/build.ts",
+      "build:watch": "tsdown --watch",
+      "docs:build": "dumi build",
+      "docs:dev": "dumi dev",
+      "preview": "vite preview",
+      "lint": "eslint src --ext ts,tsx",
+      "lint:circular": "dpdm src/**/*.{ts,tsx} --warning false --tree false --exit-code circular:1 -T true",
+      "type-check": "tsc --noEmit",
+      "test": "vitest --passWithNoTests",
+      "test:coverage": "vitest run --coverage --passWithNoTests",
+      "test:update": "vitest -u",
+      "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+      "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
+      "prepare": "husky"
+    },
+    "dependencies": {
+      "@base-ui/react": "^1.6.0",
+      "class-variance-authority": "^0.7.1",
+      "clsx": "^2.1.1",
+      "motion": "^12.40.0",
+      "react": "^19.2.7",
+      "react-dom": "^19.2.7"
+    },
+    "devDependencies": {
+      "@commitlint/cli": "^21.0.2",
+      "@commitlint/config-conventional": "^21.0.2",
+      "@eslint/js": "^9.0.0",
+      "@testing-library/jest-dom": "^6.9.1",
+      "@testing-library/react": "^16.3.2",
+      "@testing-library/user-event": "^14.6.1",
+      "@types/react": "^19.2.17",
+      "@types/react-dom": "^19.2.3",
+      "@vitejs/plugin-react": "^6.0.2",
+      "@vitest/coverage-v8": "^4.1.9",
+      "autoprefixer": "^10.5.0",
+      "dpdm": "^4.2.0",
+      "dumi": "^2.4.34",
+      "dumi-theme-lobehub": "^5.0.0",
+      "eslint": "^9.0.0",
+      "eslint-plugin-react-hooks": "^5.0.0",
+      "eslint-plugin-react-refresh": "^0.4.0",
+      "husky": "^9.1.7",
+      "jsdom": "^29.1.1",
+      "lint-staged": "^17.0.8",
+      "postcss": "^8.5.15",
+      "prettier": "^3.0.0",
+      "tsdown": "^0.22.3",
+      "tsx": "^4.22.4",
+      "typescript": "^6.0.3",
+      "typescript-eslint": "^8.0.0",
+      "vite": "^8.0.16",
+      "vitest": "^4.1.9"
+    }
+  },
+  "pkgPath": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/package.json",
+  "plugins": {
+    "./node_modules/@umijs/core/dist/service/servicePlugin": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "preset",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/core/dist/service/servicePlugin.js",
+      "id": "./node_modules/@umijs/core/dist/service/servicePlugin",
+      "key": "servicePlugin",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "@umijs/preset-umi": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "preset",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/index.js",
+      "id": "@umijs/preset-umi",
+      "key": "umi",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi/dist/preset": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "preset",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/preset.js",
+      "id": "./node_modules/dumi/dist/preset",
+      "key": "dumi-preset",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/registerMethods": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/registerMethods.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/registerMethods",
+      "key": "registerMethods",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onStart": [
+            1
+          ]
+        },
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/404/404": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/404/404.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/404/404",
+      "key": "404",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyRoutes": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev",
+      "key": "aiDev",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onDevCompileDone": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/appData/appData": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/appData/appData.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/appData/appData",
+      "key": "appData",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyAppData": [
+            8
+          ],
+          "onGenerateFiles": [
+            1,
+            2,
+            6,
+            34
+          ]
+        },
+        "register": 8
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/appData/umiInfo": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/appData/umiInfo.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/appData/umiInfo",
+      "key": "umiInfo",
+      "config": {},
+      "time": {
+        "hooks": {
+          "addEntryCode": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/check/check": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/check/check.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/check/check",
+      "key": "check",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onCheckConfig": [
+            0
+          ],
+          "onCheck": [
+            0
+          ],
+          "onCheckCode": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/check/babel722": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/check/babel722.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/check/babel722",
+      "key": "babel722",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onCheck": [
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting",
+      "key": "codeSplitting",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins",
+      "key": "configPlugins",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyConfig": [
+            0
+          ]
+        },
+        "register": 2
+      },
+      "enableBy": "register"
+    },
+    "virtual: config-title": {
+      "id": "virtual: config-title",
+      "key": "title",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-styles": {
+      "id": "virtual: config-styles",
+      "key": "styles",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-scripts": {
+      "id": "virtual: config-scripts",
+      "key": "scripts",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-routes": {
+      "id": "virtual: config-routes",
+      "key": "routes",
+      "config": {
+        "onChange": "regenerateTmpFiles"
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-routeLoader": {
+      "id": "virtual: config-routeLoader",
+      "key": "routeLoader",
+      "config": {
+        "default": {
+          "moduleType": "esm"
+        }
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-reactRouter5Compat": {
+      "id": "virtual: config-reactRouter5Compat",
+      "key": "reactRouter5Compat",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-presets": {
+      "id": "virtual: config-presets",
+      "key": "presets",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-plugins": {
+      "id": "virtual: config-plugins",
+      "key": "plugins",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-npmClient": {
+      "id": "virtual: config-npmClient",
+      "key": "npmClient",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-mountElementId": {
+      "id": "virtual: config-mountElementId",
+      "key": "mountElementId",
+      "config": {
+        "default": "root"
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-metas": {
+      "id": "virtual: config-metas",
+      "key": "metas",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-links": {
+      "id": "virtual: config-links",
+      "key": "links",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-historyWithQuery": {
+      "id": "virtual: config-historyWithQuery",
+      "key": "historyWithQuery",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-history": {
+      "id": "virtual: config-history",
+      "key": "history",
+      "config": {
+        "default": {
+          "type": "browser"
+        }
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-headScripts": {
+      "id": "virtual: config-headScripts",
+      "key": "headScripts",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-esbuildMinifyIIFE": {
+      "id": "virtual: config-esbuildMinifyIIFE",
+      "key": "esbuildMinifyIIFE",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-conventionRoutes": {
+      "id": "virtual: config-conventionRoutes",
+      "key": "conventionRoutes",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-conventionLayout": {
+      "id": "virtual: config-conventionLayout",
+      "key": "conventionLayout",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-base": {
+      "id": "virtual: config-base",
+      "key": "base",
+      "config": {
+        "default": "/"
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-analyze": {
+      "id": "virtual: config-analyze",
+      "key": "analyze",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-writeToDisk": {
+      "id": "virtual: config-writeToDisk",
+      "key": "writeToDisk",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-transformRuntime": {
+      "id": "virtual: config-transformRuntime",
+      "key": "transformRuntime",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-theme": {
+      "id": "virtual: config-theme",
+      "key": "theme",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-targets": {
+      "id": "virtual: config-targets",
+      "key": "targets",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-svgr": {
+      "id": "virtual: config-svgr",
+      "key": "svgr",
+      "config": {
+        "default": {}
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-svgo": {
+      "id": "virtual: config-svgo",
+      "key": "svgo",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-stylusLoader": {
+      "id": "virtual: config-stylusLoader",
+      "key": "stylusLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-styleLoader": {
+      "id": "virtual: config-styleLoader",
+      "key": "styleLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-srcTranspilerOptions": {
+      "id": "virtual: config-srcTranspilerOptions",
+      "key": "srcTranspilerOptions",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-srcTranspiler": {
+      "id": "virtual: config-srcTranspiler",
+      "key": "srcTranspiler",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-sassLoader": {
+      "id": "virtual: config-sassLoader",
+      "key": "sassLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-runtimePublicPath": {
+      "id": "virtual: config-runtimePublicPath",
+      "key": "runtimePublicPath",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-purgeCSS": {
+      "id": "virtual: config-purgeCSS",
+      "key": "purgeCSS",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-publicPath": {
+      "id": "virtual: config-publicPath",
+      "key": "publicPath",
+      "config": {
+        "default": "/"
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-proxy": {
+      "id": "virtual: config-proxy",
+      "key": "proxy",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-postcssLoader": {
+      "id": "virtual: config-postcssLoader",
+      "key": "postcssLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-outputPath": {
+      "id": "virtual: config-outputPath",
+      "key": "outputPath",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-normalCSSLoaderModules": {
+      "id": "virtual: config-normalCSSLoaderModules",
+      "key": "normalCSSLoaderModules",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-mfsu": {
+      "id": "virtual: config-mfsu",
+      "key": "mfsu",
+      "config": {
+        "default": {
+          "strategy": "eager"
+        }
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-mdx": {
+      "id": "virtual: config-mdx",
+      "key": "mdx",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-manifest": {
+      "id": "virtual: config-manifest",
+      "key": "manifest",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-lessLoader": {
+      "id": "virtual: config-lessLoader",
+      "key": "lessLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-jsMinifierOptions": {
+      "id": "virtual: config-jsMinifierOptions",
+      "key": "jsMinifierOptions",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-jsMinifier": {
+      "id": "virtual: config-jsMinifier",
+      "key": "jsMinifier",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-inlineLimit": {
+      "id": "virtual: config-inlineLimit",
+      "key": "inlineLimit",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-ignoreMomentLocale": {
+      "id": "virtual: config-ignoreMomentLocale",
+      "key": "ignoreMomentLocale",
+      "config": {
+        "default": true
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-https": {
+      "id": "virtual: config-https",
+      "key": "https",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-hash": {
+      "id": "virtual: config-hash",
+      "key": "hash",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-forkTSChecker": {
+      "id": "virtual: config-forkTSChecker",
+      "key": "forkTSChecker",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-fastRefresh": {
+      "id": "virtual: config-fastRefresh",
+      "key": "fastRefresh",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-extraPostCSSPlugins": {
+      "id": "virtual: config-extraPostCSSPlugins",
+      "key": "extraPostCSSPlugins",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-extraBabelPresets": {
+      "id": "virtual: config-extraBabelPresets",
+      "key": "extraBabelPresets",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-extraBabelPlugins": {
+      "id": "virtual: config-extraBabelPlugins",
+      "key": "extraBabelPlugins",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-extraBabelIncludes": {
+      "id": "virtual: config-extraBabelIncludes",
+      "key": "extraBabelIncludes",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-externals": {
+      "id": "virtual: config-externals",
+      "key": "externals",
+      "config": {
+        "default": {}
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-esm": {
+      "id": "virtual: config-esm",
+      "key": "esm",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-devtool": {
+      "id": "virtual: config-devtool",
+      "key": "devtool",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-depTranspiler": {
+      "id": "virtual: config-depTranspiler",
+      "key": "depTranspiler",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-define": {
+      "id": "virtual: config-define",
+      "key": "define",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-deadCode": {
+      "id": "virtual: config-deadCode",
+      "key": "deadCode",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cssPublicPath": {
+      "id": "virtual: config-cssPublicPath",
+      "key": "cssPublicPath",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cssMinifierOptions": {
+      "id": "virtual: config-cssMinifierOptions",
+      "key": "cssMinifierOptions",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cssMinifier": {
+      "id": "virtual: config-cssMinifier",
+      "key": "cssMinifier",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cssLoaderModules": {
+      "id": "virtual: config-cssLoaderModules",
+      "key": "cssLoaderModules",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cssLoader": {
+      "id": "virtual: config-cssLoader",
+      "key": "cssLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-copy": {
+      "id": "virtual: config-copy",
+      "key": "copy",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-checkDepCssModules": {
+      "id": "virtual: config-checkDepCssModules",
+      "key": "checkDepCssModules",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-chainWebpack": {
+      "id": "virtual: config-chainWebpack",
+      "key": "chainWebpack",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cacheDirectoryPath": {
+      "id": "virtual: config-cacheDirectoryPath",
+      "key": "cacheDirectoryPath",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-babelLoaderCustomize": {
+      "id": "virtual: config-babelLoaderCustomize",
+      "key": "babelLoaderCustomize",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-autoprefixer": {
+      "id": "virtual: config-autoprefixer",
+      "key": "autoprefixer",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-autoCSSModules": {
+      "id": "virtual: config-autoCSSModules",
+      "key": "autoCSSModules",
+      "config": {
+        "default": true
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-alias": {
+      "id": "virtual: config-alias",
+      "key": "alias",
+      "config": {
+        "default": {
+          "umi": "@@/exports",
+          "react": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/react",
+          "react-dom": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/react-dom",
+          "react-router": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/react-router",
+          "react-router-dom": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/react-router-dom"
+        }
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin",
+      "key": "crossorigin",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand",
+      "key": "depsOnDemand",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onStart": [
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/devTool/devTool": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/devTool/devTool.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/devTool/devTool",
+      "key": "devTool",
+      "config": {},
+      "time": {
+        "hooks": {
+          "addBeforeMiddlewares": [
+            5
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker",
+      "key": "esbuildHelperChecker",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 34
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/esmi/esmi": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/esmi/esmi.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/esmi/esmi",
+      "key": "esmi",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 8
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic",
+      "key": "exportStatic",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onCheck": [
+            0
+          ],
+          "onGenerateFiles": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/favicons/favicons": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/favicons/favicons.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/favicons/favicons",
+      "key": "favicons",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyAppData": [
+            0
+          ],
+          "addBeforeMiddlewares": [
+            0
+          ],
+          "modifyHTMLFavicon": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/helmet/helmet": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/helmet/helmet.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/helmet/helmet",
+      "key": "helmet",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onGenerateFiles": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/icons/icons": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/icons/icons.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/icons/icons",
+      "key": "icons",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/mock/mock": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/mock/mock.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/mock/mock",
+      "key": "mock",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onStart": [
+            0
+          ],
+          "addBeforeMiddlewares": [
+            0
+          ]
+        },
+        "register": 13
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/mpa/mpa": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/mpa/mpa.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/mpa/mpa",
+      "key": "mpa",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/okam/okam": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/okam/okam.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/okam/okam",
+      "key": "okam",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/overrides/overrides": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/overrides/overrides.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/overrides/overrides",
+      "key": "overrides",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onGenerateFiles": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "addEntryImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency",
+      "key": "phantomDependency",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill",
+      "key": "polyfill",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyConfig": [
+            0
+          ],
+          "onGenerateFiles": [
+            38,
+            10,
+            24,
+            20
+          ],
+          "addPolyfillImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 1
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill",
+      "key": "publicPathPolyfill",
+      "config": {},
+      "time": {
+        "hooks": {
+          "addPolyfillImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/prepare/prepare": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/prepare/prepare.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/prepare/prepare",
+      "key": "prepare",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch",
+      "key": "routePrefetch",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise",
+      "key": "stagewise",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/terminal/terminal": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/terminal/terminal.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/terminal/terminal",
+      "key": "terminal",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onGenerateFiles": [
+            0,
+            1,
+            1,
+            0
+          ],
+          "addBeforeMiddlewares": [
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles",
+      "key": "tmpFiles",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onGenerateFiles": [
+            9,
+            1,
+            17,
+            1,
+            19,
+            2,
+            17,
+            1
+          ]
+        },
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader",
+      "key": "clientLoader",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps",
+      "key": "routeProps",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/ssr/ssr": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/ssr/ssr.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/ssr/ssr",
+      "key": "ssr",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 2
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes",
+      "key": "configTypes",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onGenerateFiles": [
+            179,
+            7,
+            12,
+            11
+          ]
+        },
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/transform/transform": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/transform/transform.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/transform/transform",
+      "key": "transform",
+      "config": {},
+      "time": {
+        "hooks": {
+          "addBeforeBabelPresets": [
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport",
+      "key": "lowImport",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/vite/vite": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/vite/vite.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/vite/vite",
+      "key": "vite",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute",
+      "key": "apiRoute",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/monorepo/redirect": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/monorepo/redirect.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/monorepo/redirect",
+      "key": "monorepoRedirect",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 7
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/test/test": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/test/test.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/test/test",
+      "key": "test",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onGenerateFiles": [
+            1,
+            0,
+            1,
+            5
+          ]
+        },
+        "register": 1
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent",
+      "key": "clickToComponent",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/legacy/legacy": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/legacy/legacy.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/legacy/legacy",
+      "key": "legacy",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose",
+      "key": "classPropertiesLoose",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/webpack/webpack": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/webpack/webpack.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/webpack/webpack",
+      "key": "preset-umi:webpack",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/swc/swc": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/swc/swc.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/swc/swc",
+      "key": "swc",
+      "config": {},
+      "time": {
+        "hooks": {
+          "addOnDemandDeps": [
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/ui/ui": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/ui/ui.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/ui/ui",
+      "key": "ui",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/mako/mako": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/mako/mako.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/mako/mako",
+      "key": "mako",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/reactCompiler/forget": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/reactCompiler/forget.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/reactCompiler/forget",
+      "key": "forget",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/reactCompiler/reactCompiler": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/reactCompiler/reactCompiler.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/reactCompiler/reactCompiler",
+      "key": "reactCompiler",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack",
+      "key": "utoopack",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian",
+      "key": "hmrGuardian",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad",
+      "key": "routePreloadOnLoad",
+      "config": {},
+      "time": {
+        "hooks": {
+          "addHTMLHeadScripts": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 11
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/bundler/bundler": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/features/bundler/bundler.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/bundler/bundler",
+      "key": "preset-umi:bundler",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyUniBundler": [
+            180
+          ]
+        },
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/build": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/build.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/build",
+      "key": "build",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/config/config": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/config/config.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/config/config",
+      "key": "config",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 14
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/dev/dev": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/dev/dev.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/dev/dev",
+      "key": "dev",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyAppData": [
+            6
+          ]
+        },
+        "register": 7
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/help": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/help.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/help",
+      "key": "help",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/lint": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/lint.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/lint",
+      "key": "lint",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/setup": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/setup.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/setup",
+      "key": "setup",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/deadcode": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/deadcode.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/deadcode",
+      "key": "deadcode",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/version": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/version.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/version",
+      "key": "version",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/generators/page": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/generators/page.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/page",
+      "key": "generator:page",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/generators/prettier": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/generators/prettier.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/prettier",
+      "key": "generator:prettier",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig",
+      "key": "generator:tsconfig",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/generators/jest": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/generators/jest.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/jest",
+      "key": "generator:jest",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss",
+      "key": "generator:tailwindcss",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/generators/dva": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/generators/dva.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/dva",
+      "key": "generator:dva",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/generators/component": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/generators/component.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/component",
+      "key": "generator:component",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/generators/mock": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/generators/mock.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/mock",
+      "key": "generator:mock",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/generators/cypress": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/generators/cypress.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/cypress",
+      "key": "generator:cypress",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/generators/api": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/generators/api.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/api",
+      "key": "generator:api",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/generators/precommit": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/generators/precommit.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/precommit",
+      "key": "generator:precommit",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/plugin": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/plugin.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/plugin",
+      "key": "command:plugin",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/verify-commit": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/verify-commit.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/verify-commit",
+      "key": "verifyCommit",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/preview": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/preview.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/preview",
+      "key": "preview",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu",
+      "key": "mfsu-cli",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "@umijs/plugin-run": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/plugin-run/dist/index.js",
+      "id": "@umijs/plugin-run",
+      "key": "run",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi/dist/registerMethods": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/registerMethods.js",
+      "id": "./node_modules/dumi/dist/registerMethods",
+      "key": "dumi:registerMethods",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi/dist/features/configPlugins/index": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/configPlugins/index.js",
+      "id": "./node_modules/dumi/dist/features/configPlugins/index",
+      "key": "index",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "virtual: config-live": {
+      "id": "virtual: config-live",
+      "key": "live",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-logo": {
+      "id": "virtual: config-logo",
+      "key": "logo",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-themeConfig": {
+      "id": "virtual: config-themeConfig",
+      "key": "themeConfig",
+      "config": {
+        "default": {
+          "footer": "Copyright © 2026 | Powered by <a href=\"https://d.umijs.org\" target=\"_blank\" rel=\"noreferrer\">dumi</a>",
+          "prefersColor": {
+            "default": "light",
+            "switch": true
+          },
+          "nprogress": true,
+          "lastUpdated": true
+        }
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-extraRehypePlugins": {
+      "id": "virtual: config-extraRehypePlugins",
+      "key": "extraRehypePlugins",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-extraRemarkPlugins": {
+      "id": "virtual: config-extraRemarkPlugins",
+      "key": "extraRemarkPlugins",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-resolve": {
+      "id": "virtual: config-resolve",
+      "key": "resolve",
+      "config": {
+        "default": {
+          "docDirs": [
+            "docs"
+          ],
+          "atomDirs": [
+            {
+              "type": "component",
+              "dir": "src"
+            }
+          ],
+          "codeBlockMode": "active",
+          "forceKebabCaseRouting": true
+        }
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "./node_modules/dumi/dist/features/autoAlias": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/autoAlias.js",
+      "id": "./node_modules/dumi/dist/features/autoAlias",
+      "key": "autoAlias",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyConfig": [
+            1
+          ]
+        },
+        "register": 1
+      }
+    },
+    "./node_modules/dumi/dist/features/derivative": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/derivative.js",
+      "id": "./node_modules/dumi/dist/features/derivative",
+      "key": "dumi:derivative",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyConfig": [
+            0
+          ],
+          "modifyDefaultConfig": [
+            0
+          ],
+          "onCheck": [
+            1
+          ],
+          "onGenerateFiles": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "modifyBabelPresetOpts": [
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "@umijs/plugins": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/compiled/@umijs/plugins/index.js",
+      "id": "@umijs/plugins",
+      "key": "analytics",
+      "config": {
+        "onChange": "reload"
+      },
+      "time": {
+        "hooks": {},
+        "register": 1
+      }
+    },
+    "./node_modules/dumi/dist/features/sideEffects/index": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/sideEffects/index.js",
+      "id": "./node_modules/dumi/dist/features/sideEffects/index",
+      "key": "dumi:sideEffects",
+      "config": {},
+      "time": {
+        "hooks": {
+          "chainWebpack": [
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi/dist/features/exports": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/exports.js",
+      "id": "./node_modules/dumi/dist/features/exports",
+      "key": "dumi:exports",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyConfig": [
+            0
+          ],
+          "onGenerateFiles": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi/dist/features/compile/index": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/compile/index.js",
+      "id": "./node_modules/dumi/dist/features/compile/index",
+      "key": "dumi:compile",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyConfig": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "registerTechStack": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "onGenerateFiles": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "chainWebpack": [
+            0
+          ]
+        },
+        "register": 4
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi/dist/features/routes": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/routes.js",
+      "id": "./node_modules/dumi/dist/features/routes",
+      "key": "dumi:routes",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyDefaultConfig": [
+            0
+          ],
+          "addLayouts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "modifyRoutes": [
+            6,
+            6,
+            8,
+            6
+          ],
+          "addEntryCodeAhead": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "addTmpGenerateWatcherPaths": [
+            0
+          ]
+        },
+        "register": 1
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi/dist/features/meta": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/meta.js",
+      "id": "./node_modules/dumi/dist/features/meta",
+      "key": "meta",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyRoutes": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "onGenerateFiles": [
+            2,
+            2,
+            5,
+            3
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi/dist/features/tabs": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/tabs.js",
+      "id": "./node_modules/dumi/dist/features/tabs",
+      "key": "tabs",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyConfig": [
+            0
+          ],
+          "modifyRoutes": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "dumi.modifyMetaFiles": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "onGenerateFiles": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi/dist/features/theme/index": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/theme/index.js",
+      "id": "./node_modules/dumi/dist/features/theme/index",
+      "key": "dumi:theme",
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyConfig": [
+            0
+          ],
+          "modifyAppData": [
+            0,
+            2
+          ],
+          "onGenerateFiles": [
+            0,
+            8,
+            1,
+            12,
+            0,
+            13,
+            1,
+            14
+          ],
+          "addEntryCode": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "addEntryCodeAhead": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "addEntryImportsAhead": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "addRuntimePluginKey": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 12
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi-theme-lobehub/dist/plugin/index": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/plugin/index.js",
+      "id": "./node_modules/dumi-theme-lobehub/dist/plugin/index",
+      "key": "dumi-theme-lobehub",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 385
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi/dist/features/locales": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/locales.js",
+      "id": "./node_modules/dumi/dist/features/locales",
+      "key": "locales",
+      "config": {
+        "default": [
+          {
+            "id": "zh-CN",
+            "name": "中文",
+            "base": "/"
+          }
+        ]
+      },
+      "time": {
+        "hooks": {
+          "modifyConfig": [
+            0
+          ],
+          "onCheck": [
+            0
+          ],
+          "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "onGenerateFiles": [
+            1,
+            0,
+            1,
+            1
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/dumi/dist/features/parser": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/parser.js",
+      "id": "./node_modules/dumi/dist/features/parser",
+      "key": "apiParser",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/dumi/dist/features/assets": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/assets.js",
+      "id": "./node_modules/dumi/dist/features/assets",
+      "key": "assets",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onDevCompileDone": [
+            242,
+            52,
+            66,
+            92,
+            58,
+            96
+          ]
+        },
+        "register": 0
+      }
+    },
+    "./node_modules/dumi/dist/features/exportStatic": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/exportStatic.js",
+      "id": "./node_modules/dumi/dist/features/exportStatic",
+      "key": "dumi:exportStatic",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "./node_modules/dumi/dist/features/sitemap": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/sitemap.js",
+      "id": "./node_modules/dumi/dist/features/sitemap",
+      "key": "sitemap",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 2
+      }
+    },
+    "./node_modules/dumi/dist/features/html2sketch": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/html2sketch.js",
+      "id": "./node_modules/dumi/dist/features/html2sketch",
+      "key": "html2sketch",
+      "config": {},
+      "time": {
+        "hooks": {
+          "addEntryImports": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "addRuntimePluginKey": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "onGenerateFiles": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "addHTMLHeadScripts": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/core/dist/service/generatePlugin": {
+      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+      "type": "plugin",
+      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/@umijs/core/dist/service/generatePlugin.js",
+      "id": "./node_modules/@umijs/core/dist/service/generatePlugin",
+      "key": "generatePlugin",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "register"
+    }
+  },
+  "presets": [],
+  "name": "dev",
+  "args": {
+    "_": []
+  },
+  "userConfig": {
+    "alias": {
+      "@": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src"
+    },
+    "apiParser": false,
+    "base": "/",
+    "define": {
+      "process.env": {
+        "TRAE_AI_SHELL_ID": "6",
+        "SAFE_RM_AUTO_ADD_TEMP": "1",
+        "TERM_PROGRAM": "vscode",
+        "NODE": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin/node",
+        "TRAE_SANDBOX_STORAGE_PATH": "/Users/ruishengzhang/Library/Application Support/Trae CN/ModularData/ai-agent/sandbox",
+        "INIT_CWD": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+        "TERM": "xterm-256color",
+        "SAFE_RM_ALLOWED_PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI:/Users/ruishengzhang/.trae-cn/memory:/Users/ruishengzhang/.trae-cn/builtin/work:/Users/ruishengzhang/Library/Application Support/Trae CN/ModularData/ai-agent/hooks_env:/Users/ruishengzhang/Library/Application Support/Trae CN/ModularData/ai-agent/vm/tools:/private/tmp:/private/var/folders:/private/var/folders/2p/rkmk652x5ps1w6pwqpp1pdqm0000gn/T:/Users/ruishengzhang/Library/Caches:/Users/ruishengzhang/.cache:/Users/ruishengzhang/.local/lib:/Users/ruishengzhang/.local/bin:/Users/ruishengzhang/.local/share:/Users/ruishengzhang/go:/Users/ruishengzhang/.gvm:/Users/ruishengzhang/Library/Application Support/go:/Users/ruishengzhang/.local/share/go:/Users/ruishengzhang/.m2:/Users/ruishengzhang/.gradle:/Users/ruishengzhang/.sdkman:/Users/ruishengzhang/miniconda3:/Users/ruishengzhang/.conda:/Users/ruishengzhang/.pyenv:/Users/ruishengzhang/Library/Python:/Users/ruishengzhang/.npm:/Users/ruishengzhang/Library/pnpm:/Users/ruishengzhang/.fnm:/Users/ruishengzhang/.nvm:/Users/ruishengzhang/.rustup:/Users/ruishengzhang/.cargo:/Users/ruishengzhang/.cmake:/Users/ruishengzhang/.llvm:/Users/ruishengzhang/.bazel:/Users/ruishengzhang/.gitlog:/Users/ruishengzhang/.docker:/Users/ruishengzhang/Library/Logs:/private/var/tmp:/Users/ruishengzhang/fvm:/Users/ruishengzhang/.swiftpm:/Users/ruishengzhang/.android:/Users/ruishengzhang/.oracle_jre_usage:/Users/ruishengzhang/.dart-tool:/Users/ruishengzhang/.pub-cache:/Users/ruishengzhang/Library/flutter:/Users/ruishengzhang/Library/Developer/Xcode:/Users/ruishengzhang/.yarn:/Users/ruishengzhang/.foundry:/Users/ruishengzhang/.asdf:/Users/ruishengzhang/.jenv:/Users/ruishengzhang/.gem:/Users/ruishengzhang/.rvm:/Users/ruishengzhang/.rbenv:/Users/ruishengzhang/.bundle:/Users/ruishengzhang/.dotnet:/Users/ruishengzhang/.nuget:/Users/ruishengzhang/.sbt:/Users/ruishengzhang/.ivy2:/Users/ruishengzhang/.coursier:/Users/ruishengzhang/.hawtjni:/Users/ruishengzhang/.local/state/pnpm:/Users/ruishengzhang/.local/state/fnm_multishells:/Users/ruishengzhang/.webx:/Users/ruishengzhang/.bun:/Users/ruishengzhang/.bash_history:/Users/ruishengzhang/Library/Caches/go-build:/Users/ruishengzhang/miniforge3:/Users/ruishengzhang/.templateengine:/Users/ruishengzhang/.matplotlib:/opt/homebrew:/Users/ruishengzhang/.Trash:/Users/ruishengzhang/.lark-cli:/Users/ruishengzhang/Library/Application Support/lark-cli:/Users/ruishengzhang/.devflow-cli:/Users/ruishengzhang/.agentbuddy:/Users/ruishengzhang/.bits-ut",
+        "SHELL": "/bin/zsh",
+        "isArchMatched": "1",
+        "TMPDIR": "/var/folders/2p/rkmk652x5ps1w6pwqpp1pdqm0000gn/T/",
+        "npm_config_global_prefix": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64",
+        "VSCODE_PYTHON_AUTOACTIVATE_GUARD": "1",
+        "TERM_PROGRAM_VERSION": "1.107.1",
+        "ZDOTDIR": "/Users/ruishengzhang",
+        "MallocNanoZone": "0",
+        "COLOR": "1",
+        "npm_config_noproxy": "",
+        "npm_config_local_prefix": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+        "TRAE_SANDBOX_TRACE_FILE": "/tmp/trae_sandbox_trace_c4938043-0849-4cc8-bffb-e4175ea2e3e3.jsonl",
+        "AI_AGENT": "TRAE",
+        "USER": "ruishengzhang",
+        "COMMAND_MODE": "unix2003",
+        "npm_config_globalconfig": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/etc/npmrc",
+        "SSH_AUTH_SOCK": "/var/run/com.apple.launchd.SfPj3nfaYF/Listeners",
+        "VSCODE_PROFILE_INITIALIZED": "1",
+        "__CF_USER_TEXT_ENCODING": "0x1F5:0x19:0x34",
+        "npm_execpath": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/bin/npm-cli.js",
+        "FILESYSTEM_CASE_SENSITIVE": "false",
+        "PAGER": "",
+        "TRAE_SANDBOX_CLI_PATH": "/Applications/Trae CN.app/Contents/Resources/app/modules/sandbox/trae-sandbox",
+        "SAFE_RM_DENIED_PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.vscode:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.trae/mcp.json:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.git",
+        "PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/node_modules/.bin:/Users/ruishengzhang/Documents/node_modules/.bin:/Users/ruishengzhang/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/homebrew/bin:/Applications/Trae CN.app/Contents/Resources/app/bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.local/bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/Applications/Trae CN.app/Contents/Resources/app/node_modules/@vscode/ripgrep/bin",
+        "TRAE_JWT_TOKEN_PATH": "/Users/ruishengzhang/.trae-cn/trae-jwt-token",
+        "npm_package_json": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/package.json",
+        "_": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin/dumi",
+        "npm_config_userconfig": "/Users/ruishengzhang/.npmrc",
+        "npm_config_init_module": "/Users/ruishengzhang/.npm-init.js",
+        "USER_ZDOTDIR": "/Users/ruishengzhang",
+        "__CFBundleIdentifier": "cn.trae.app",
+        "npm_command": "exec",
+        "PWD": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+        "TERM_PRODUCT": "Trae",
+        "npm_lifecycle_event": "npx",
+        "EDITOR": "vi",
+        "npm_package_name": "nothing-ui-kit-react",
+        "LANG": "C.UTF-8",
+        "TRAE_SANDBOX_DUMP_DIR": "/Users/ruishengzhang/Library/Application Support/Trae CN/Crashpad/sandbox-pending",
+        "npm_config_npm_version": "10.9.2",
+        "VSCODE_GIT_ASKPASS_EXTRA_ARGS": "",
+        "XPC_FLAGS": "0x0",
+        "TRAE_SANDBOX_CONFIG_NAME": "6a0e7c9512ae5b435bd04c9c",
+        "npm_config_node_gyp": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js",
+        "npm_package_version": "1.0.0",
+        "TRAE_SANDBOX_LOG_DIR": "/Users/ruishengzhang/Library/Application Support/Trae CN/logs/20260618T115044/Modular",
+        "XPC_SERVICE_NAME": "0",
+        "VSCODE_INJECTION": "1",
+        "SAFE_RM_SOURCE_FLAG": "/tmp/safe-rm-source-flag-68be8578-d4cd-4dda-9cec-0b8a63bec5b2",
+        "SHLVL": "2",
+        "HOME": "/Users/ruishengzhang",
+        "VSCODE_GIT_ASKPASS_MAIN": "/Applications/Trae CN.app/Contents/Resources/app/extensions/git/dist/askpass-main.js",
+        "npm_config_cache": "/Users/ruishengzhang/.npm",
+        "LOGNAME": "ruishengzhang",
+        "npm_lifecycle_script": "dumi",
+        "VSCODE_GIT_IPC_HANDLE": "/var/folders/2p/rkmk652x5ps1w6pwqpp1pdqm0000gn/T/vscode-git-725ebfa432.sock",
+        "TRAE_SANDBOX_SOURCE_FLAG_PATH": "/tmp/sandbox-source-flag-8541da80-d50e-4714-bc4a-84781df60614",
+        "SAFE_RM_PROTECTION_FLAG": "/tmp/safe-rm-protection-flag-2fd2911d-2f0d-400c-93e9-bff9ef8e3cf2",
+        "npm_config_user_agent": "npm/10.9.2 node/v23.9.0 darwin arm64 workspaces/false",
+        "VSCODE_GIT_ASKPASS_NODE": "/Applications/Trae CN.app/Contents/Frameworks/Trae CN Helper (Plugin).app/Contents/MacOS/Trae CN Helper (Plugin)",
+        "GIT_ASKPASS": "/Applications/Trae CN.app/Contents/Resources/app/extensions/git/dist/askpass.sh",
+        "OSLogRateLimit": "64",
+        "GIT_PAGER": "",
+        "TRAE_BRAND_NAME": "Trae CN",
+        "npm_node_execpath": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin/node",
+        "npm_config_prefix": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64",
+        "COLORTERM": "truecolor",
+        "NODE_ENV": "development",
+        "DUMI_PRESETS": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/preset.js",
+        "DID_YOU_KNOW": "none",
+        "UMI_DIR": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/umi",
+        "APP_ROOT": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react"
+      }
+    },
+    "favicons": [
+      "/favicon.ico"
+    ],
+    "locales": [
+      {
+        "id": "en-US",
+        "name": "English"
+      }
+    ],
+    "mfsu": {},
+    "npmClient": "npm",
+    "publicPath": "/",
+    "resolve": {
+      "atomDirs": [
+        {
+          "dir": "src",
+          "type": "component"
+        }
+      ]
+    },
+    "styles": [
+      "html, body { background: transparent; }\n    @media (prefers-color-scheme: dark) {\n      html, body { background: #000; }\n    }"
+    ],
+    "themeConfig": {
+      "actions": [
+        {
+          "github": true,
+          "link": "https://github.com/nothing-ui/nothing-ui",
+          "openExternal": true,
+          "text": "GitHub"
+        },
+        {
+          "link": "/components/button",
+          "text": "Get Started",
+          "type": "primary"
+        }
+      ],
+      "apiHeader": {
+        "docUrl": "{github}/tree/master/src/{atomId}/index.md",
+        "match": [
+          "/components"
+        ],
+        "pkg": "nothing-ui-kit-react",
+        "sourceUrl": "{github}/tree/master/src/{atomId}/index.tsx"
+      },
+      "description": "Nothing UI Kit Web - A web component library based on Nothing design system",
+      "lastUpdated": true,
+      "name": "Nothing UI",
+      "nav": [
+        {
+          "link": "/components/button",
+          "title": "Components"
+        },
+        {
+          "link": "/changelog",
+          "title": "Changelog"
+        }
+      ],
+      "prefersColor": {
+        "default": "dark",
+        "switch": true
+      },
+      "socialLinks": {
+        "github": "https://github.com/nothing-ui/nothing-ui"
+      },
+      "title": "Nothing UI"
+    },
+    "title": "Nothing UI"
+  },
+  "mainConfigFile": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/.dumirc.ts",
+  "config": {
+    "routeLoader": {
+      "moduleType": "esm"
+    },
+    "mountElementId": "root",
+    "history": {
+      "type": "browser"
+    },
+    "base": "/",
+    "svgr": {},
+    "publicPath": "/",
+    "mfsu": false,
+    "ignoreMomentLocale": true,
+    "externals": {},
+    "autoCSSModules": true,
+    "alias": {
+      "umi": "@@/exports",
+      "react": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/react",
+      "react-dom": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/react-dom",
+      "react-router": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/react-router",
+      "react-router-dom": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/react-router-dom",
+      "@": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src",
+      "@@": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/.dumi/tmp",
+      "regenerator-runtime": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/regenerator-runtime",
+      "nothing-ui-kit-react": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src",
+      "dumi$": "@@/dumi/exports",
+      "dumi/theme/layouts/DocLayout": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/layouts/DocLayout/index.js",
+      "dumi/theme/layouts/DemoLayout": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/layouts/DemoLayout/index.js",
+      "dumi/theme/builtins/API": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/API/index.js",
+      "dumi/theme/builtins/Badge": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/Badge/index.js",
+      "dumi/theme/builtins/CodeGroup": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/CodeGroup/index.js",
+      "dumi/theme/builtins/Container": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/builtins/Container/index.js",
+      "dumi/theme/builtins/Previewer": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/builtins/Previewer/index.js",
+      "dumi/theme/builtins/SourceCode": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/builtins/SourceCode/index.js",
+      "dumi/theme/builtins/Table": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/Table/index.js",
+      "dumi/theme/builtins/Tree": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/Tree/index.js",
+      "dumi/theme/builtins/Features": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/builtins/Features/index.js",
+      "dumi/theme/slots/ColorSwitch": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/ColorSwitch/index.js",
+      "dumi/theme/slots/Content": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Content/index.js",
+      "dumi/theme/slots/ContentFooter": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/ContentFooter/index.js",
+      "dumi/theme/slots/ContentTabs": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/ContentTabs/index.js",
+      "dumi/theme/slots/Features": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Features/index.js",
+      "dumi/theme/slots/Footer": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Footer/index.js",
+      "dumi/theme/slots/Header": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Header/index.js",
+      "dumi/theme/slots/HeaderExtra": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/HeaderExtra/index.js",
+      "dumi/theme/slots/Hero": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Hero/index.js",
+      "dumi/theme/slots/HeroTitle": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/HeroTitle/index.js",
+      "dumi/theme/slots/LangSwitch": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/LangSwitch/index.js",
+      "dumi/theme/slots/Loading": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Loading/index.js",
+      "dumi/theme/slots/Logo": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Logo/index.js",
+      "dumi/theme/slots/Navbar": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Navbar/index.js",
+      "dumi/theme/slots/NavbarExtra": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/NavbarExtra/index.js",
+      "dumi/theme/slots/NotFound": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/NotFound/index.js",
+      "dumi/theme/slots/PreviewerActions": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/PreviewerActions/index.js",
+      "dumi/theme/slots/PreviewerActionsExtra": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/PreviewerActionsExtra/index.js",
+      "dumi/theme/slots/RtlSwitch": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/RtlSwitch/index.js",
+      "dumi/theme/slots/SearchBar": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/SearchBar/index.js",
+      "dumi/theme/slots/SearchResult": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/SearchResult/index.js",
+      "dumi/theme/slots/Sidebar": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Sidebar/index.js",
+      "dumi/theme/slots/SocialIcon": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/SocialIcon/index.js",
+      "dumi/theme/slots/SourceCodeEditor": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/SourceCodeEditor/index.js",
+      "dumi/theme/slots/Tabs": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Tabs/index.js",
+      "dumi/theme/slots/Toc": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Toc/index.js",
+      "dumi/theme/slots/ApiHeader": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/ApiHeader/index.js",
+      "dumi/theme": "dumi/theme-original",
+      "dumi/theme-original": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/.dumi/tmp/dumi/theme",
+      "dumi/theme-default": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default"
+    },
+    "themeConfig": {
+      "footer": "Copyright © 2026 | Powered by <a href=\"https://d.umijs.org\" target=\"_blank\" rel=\"noreferrer\">dumi</a>",
+      "prefersColor": {
+        "default": "dark",
+        "switch": true
+      },
+      "nprogress": true,
+      "lastUpdated": true,
+      "actions": [
+        {
+          "github": true,
+          "link": "https://github.com/nothing-ui/nothing-ui",
+          "openExternal": true,
+          "text": "GitHub"
+        },
+        {
+          "link": "/components/button",
+          "text": "Get Started",
+          "type": "primary"
+        }
+      ],
+      "apiHeader": {
+        "docUrl": "{github}/tree/master/src/{atomId}/index.md",
+        "match": [
+          "/components"
+        ],
+        "pkg": "nothing-ui-kit-react",
+        "sourceUrl": "{github}/tree/master/src/{atomId}/index.tsx"
+      },
+      "description": "Nothing UI Kit Web - A web component library based on Nothing design system",
+      "name": "Nothing UI",
+      "nav": [
+        {
+          "link": "/components/button",
+          "title": "Components"
+        },
+        {
+          "link": "/changelog",
+          "title": "Changelog"
+        }
+      ],
+      "socialLinks": {
+        "github": "https://github.com/nothing-ui/nothing-ui"
+      },
+      "title": "Nothing UI"
+    },
+    "resolve": {
+      "docDirs": [
+        "docs"
+      ],
+      "atomDirs": [
+        {
+          "type": "component",
+          "dir": "src"
+        }
+      ],
+      "codeBlockMode": "active",
+      "forceKebabCaseRouting": true
+    },
+    "locales": [
+      {
+        "id": "en-US",
+        "name": "English",
+        "base": "/"
+      }
+    ],
+    "conventionRoutes": {
+      "base": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/.dumi/pages",
+      "exclude": [
+        {}
+      ]
+    },
+    "hash": true,
+    "exportStatic": {},
+    "esbuildMinifyIIFE": true,
+    "apiParser": false,
+    "define": {
+      "process.env": {
+        "TRAE_AI_SHELL_ID": "6",
+        "SAFE_RM_AUTO_ADD_TEMP": "1",
+        "TERM_PROGRAM": "vscode",
+        "NODE": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin/node",
+        "TRAE_SANDBOX_STORAGE_PATH": "/Users/ruishengzhang/Library/Application Support/Trae CN/ModularData/ai-agent/sandbox",
+        "INIT_CWD": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+        "TERM": "xterm-256color",
+        "SAFE_RM_ALLOWED_PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI:/Users/ruishengzhang/.trae-cn/memory:/Users/ruishengzhang/.trae-cn/builtin/work:/Users/ruishengzhang/Library/Application Support/Trae CN/ModularData/ai-agent/hooks_env:/Users/ruishengzhang/Library/Application Support/Trae CN/ModularData/ai-agent/vm/tools:/private/tmp:/private/var/folders:/private/var/folders/2p/rkmk652x5ps1w6pwqpp1pdqm0000gn/T:/Users/ruishengzhang/Library/Caches:/Users/ruishengzhang/.cache:/Users/ruishengzhang/.local/lib:/Users/ruishengzhang/.local/bin:/Users/ruishengzhang/.local/share:/Users/ruishengzhang/go:/Users/ruishengzhang/.gvm:/Users/ruishengzhang/Library/Application Support/go:/Users/ruishengzhang/.local/share/go:/Users/ruishengzhang/.m2:/Users/ruishengzhang/.gradle:/Users/ruishengzhang/.sdkman:/Users/ruishengzhang/miniconda3:/Users/ruishengzhang/.conda:/Users/ruishengzhang/.pyenv:/Users/ruishengzhang/Library/Python:/Users/ruishengzhang/.npm:/Users/ruishengzhang/Library/pnpm:/Users/ruishengzhang/.fnm:/Users/ruishengzhang/.nvm:/Users/ruishengzhang/.rustup:/Users/ruishengzhang/.cargo:/Users/ruishengzhang/.cmake:/Users/ruishengzhang/.llvm:/Users/ruishengzhang/.bazel:/Users/ruishengzhang/.gitlog:/Users/ruishengzhang/.docker:/Users/ruishengzhang/Library/Logs:/private/var/tmp:/Users/ruishengzhang/fvm:/Users/ruishengzhang/.swiftpm:/Users/ruishengzhang/.android:/Users/ruishengzhang/.oracle_jre_usage:/Users/ruishengzhang/.dart-tool:/Users/ruishengzhang/.pub-cache:/Users/ruishengzhang/Library/flutter:/Users/ruishengzhang/Library/Developer/Xcode:/Users/ruishengzhang/.yarn:/Users/ruishengzhang/.foundry:/Users/ruishengzhang/.asdf:/Users/ruishengzhang/.jenv:/Users/ruishengzhang/.gem:/Users/ruishengzhang/.rvm:/Users/ruishengzhang/.rbenv:/Users/ruishengzhang/.bundle:/Users/ruishengzhang/.dotnet:/Users/ruishengzhang/.nuget:/Users/ruishengzhang/.sbt:/Users/ruishengzhang/.ivy2:/Users/ruishengzhang/.coursier:/Users/ruishengzhang/.hawtjni:/Users/ruishengzhang/.local/state/pnpm:/Users/ruishengzhang/.local/state/fnm_multishells:/Users/ruishengzhang/.webx:/Users/ruishengzhang/.bun:/Users/ruishengzhang/.bash_history:/Users/ruishengzhang/Library/Caches/go-build:/Users/ruishengzhang/miniforge3:/Users/ruishengzhang/.templateengine:/Users/ruishengzhang/.matplotlib:/opt/homebrew:/Users/ruishengzhang/.Trash:/Users/ruishengzhang/.lark-cli:/Users/ruishengzhang/Library/Application Support/lark-cli:/Users/ruishengzhang/.devflow-cli:/Users/ruishengzhang/.agentbuddy:/Users/ruishengzhang/.bits-ut",
+        "SHELL": "/bin/zsh",
+        "isArchMatched": "1",
+        "TMPDIR": "/var/folders/2p/rkmk652x5ps1w6pwqpp1pdqm0000gn/T/",
+        "npm_config_global_prefix": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64",
+        "VSCODE_PYTHON_AUTOACTIVATE_GUARD": "1",
+        "TERM_PROGRAM_VERSION": "1.107.1",
+        "ZDOTDIR": "/Users/ruishengzhang",
+        "MallocNanoZone": "0",
+        "COLOR": "1",
+        "npm_config_noproxy": "",
+        "npm_config_local_prefix": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+        "TRAE_SANDBOX_TRACE_FILE": "/tmp/trae_sandbox_trace_c4938043-0849-4cc8-bffb-e4175ea2e3e3.jsonl",
+        "AI_AGENT": "TRAE",
+        "USER": "ruishengzhang",
+        "COMMAND_MODE": "unix2003",
+        "npm_config_globalconfig": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/etc/npmrc",
+        "SSH_AUTH_SOCK": "/var/run/com.apple.launchd.SfPj3nfaYF/Listeners",
+        "VSCODE_PROFILE_INITIALIZED": "1",
+        "__CF_USER_TEXT_ENCODING": "0x1F5:0x19:0x34",
+        "npm_execpath": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/bin/npm-cli.js",
+        "FILESYSTEM_CASE_SENSITIVE": "false",
+        "PAGER": "",
+        "TRAE_SANDBOX_CLI_PATH": "/Applications/Trae CN.app/Contents/Resources/app/modules/sandbox/trae-sandbox",
+        "SAFE_RM_DENIED_PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.vscode:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.trae/mcp.json:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.git",
+        "PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/node_modules/.bin:/Users/ruishengzhang/Documents/node_modules/.bin:/Users/ruishengzhang/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/homebrew/bin:/Applications/Trae CN.app/Contents/Resources/app/bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.local/bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/Applications/Trae CN.app/Contents/Resources/app/node_modules/@vscode/ripgrep/bin",
+        "TRAE_JWT_TOKEN_PATH": "/Users/ruishengzhang/.trae-cn/trae-jwt-token",
+        "npm_package_json": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/package.json",
+        "_": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin/dumi",
+        "npm_config_userconfig": "/Users/ruishengzhang/.npmrc",
+        "npm_config_init_module": "/Users/ruishengzhang/.npm-init.js",
+        "USER_ZDOTDIR": "/Users/ruishengzhang",
+        "__CFBundleIdentifier": "cn.trae.app",
+        "npm_command": "exec",
+        "PWD": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
+        "TERM_PRODUCT": "Trae",
+        "npm_lifecycle_event": "npx",
+        "EDITOR": "vi",
+        "npm_package_name": "nothing-ui-kit-react",
+        "LANG": "C.UTF-8",
+        "TRAE_SANDBOX_DUMP_DIR": "/Users/ruishengzhang/Library/Application Support/Trae CN/Crashpad/sandbox-pending",
+        "npm_config_npm_version": "10.9.2",
+        "VSCODE_GIT_ASKPASS_EXTRA_ARGS": "",
+        "XPC_FLAGS": "0x0",
+        "TRAE_SANDBOX_CONFIG_NAME": "6a0e7c9512ae5b435bd04c9c",
+        "npm_config_node_gyp": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js",
+        "npm_package_version": "1.0.0",
+        "TRAE_SANDBOX_LOG_DIR": "/Users/ruishengzhang/Library/Application Support/Trae CN/logs/20260618T115044/Modular",
+        "XPC_SERVICE_NAME": "0",
+        "VSCODE_INJECTION": "1",
+        "SAFE_RM_SOURCE_FLAG": "/tmp/safe-rm-source-flag-68be8578-d4cd-4dda-9cec-0b8a63bec5b2",
+        "SHLVL": "2",
+        "HOME": "/Users/ruishengzhang",
+        "VSCODE_GIT_ASKPASS_MAIN": "/Applications/Trae CN.app/Contents/Resources/app/extensions/git/dist/askpass-main.js",
+        "npm_config_cache": "/Users/ruishengzhang/.npm",
+        "LOGNAME": "ruishengzhang",
+        "npm_lifecycle_script": "dumi",
+        "VSCODE_GIT_IPC_HANDLE": "/var/folders/2p/rkmk652x5ps1w6pwqpp1pdqm0000gn/T/vscode-git-725ebfa432.sock",
+        "TRAE_SANDBOX_SOURCE_FLAG_PATH": "/tmp/sandbox-source-flag-8541da80-d50e-4714-bc4a-84781df60614",
+        "SAFE_RM_PROTECTION_FLAG": "/tmp/safe-rm-protection-flag-2fd2911d-2f0d-400c-93e9-bff9ef8e3cf2",
+        "npm_config_user_agent": "npm/10.9.2 node/v23.9.0 darwin arm64 workspaces/false",
+        "VSCODE_GIT_ASKPASS_NODE": "/Applications/Trae CN.app/Contents/Frameworks/Trae CN Helper (Plugin).app/Contents/MacOS/Trae CN Helper (Plugin)",
+        "GIT_ASKPASS": "/Applications/Trae CN.app/Contents/Resources/app/extensions/git/dist/askpass.sh",
+        "OSLogRateLimit": "64",
+        "GIT_PAGER": "",
+        "TRAE_BRAND_NAME": "Trae CN",
+        "npm_node_execpath": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin/node",
+        "npm_config_prefix": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64",
+        "COLORTERM": "truecolor",
+        "NODE_ENV": "development",
+        "DUMI_PRESETS": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/preset.js",
+        "DID_YOU_KNOW": "none",
+        "UMI_DIR": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/umi"
+      },
+      "SEARCH_WORKER_CODE": "\"use strict\";(()=>{var P=Object.create;var I=Object.defineProperty;var z=Object.getOwnPropertyDescriptor;var D=Object.getOwnPropertyNames,R=Object.getOwnPropertySymbols,B=Object.getPrototypeOf,E=Object.prototype.hasOwnProperty,L=Object.prototype.propertyIsEnumerable;var O=(e,t,i)=>t in e?I(e,t,{enumerable:!0,configurable:!0,writable:!0,value:i}):e[t]=i,M=(e,t)=>{for(var i in t||(t={}))E.call(t,i)&&O(e,i,t[i]);if(R)for(var i of R(t))L.call(t,i)&&O(e,i,t[i]);return e};var F=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports);var N=(e,t,i,h)=>{if(t&&typeof t==\"object\"||typeof t==\"function\")for(let a of D(t))!E.call(e,a)&&a!==i&&I(e,a,{get:()=>t[a],enumerable:!(h=z(t,a))||h.enumerable});return e};var W=(e,t,i)=>(i=e!=null?P(B(e)):{},N(t||!e||!e.__esModule?I(i,\"default\",{value:e,enumerable:!0}):i,e));var j=F((K,w)=>{w.exports=function(e){var t={};function i(h){if(t[h])return t[h].exports;var a=t[h]={exports:{},id:h,loaded:!1};return e[h].call(a.exports,a,a.exports,i),a.loaded=!0,a.exports}return i.m=e,i.c=t,i.p=\"\",i(0)}([function(e,t,i){e.exports=i(1)},function(e,t,i){\"use strict\";Object.defineProperty(t,\"__esModule\",{value:!0});var h=i(2);Object.defineProperty(t,\"combineChunks\",{enumerable:!0,get:function(){return h.combineChunks}}),Object.defineProperty(t,\"fillInChunks\",{enumerable:!0,get:function(){return h.fillInChunks}}),Object.defineProperty(t,\"findAll\",{enumerable:!0,get:function(){return h.findAll}}),Object.defineProperty(t,\"findChunks\",{enumerable:!0,get:function(){return h.findChunks}})},function(e,t){\"use strict\";Object.defineProperty(t,\"__esModule\",{value:!0});var i=t.findAll=function(s){var n=s.autoEscape,g=s.caseSensitive,f=g===void 0?!1:g,p=s.findChunks,u=p===void 0?a:p,c=s.sanitize,v=s.searchWords,T=s.textToHighlight;return l({chunksToHighlight:h({chunks:u({autoEscape:n,caseSensitive:f,sanitize:c,searchWords:v,textToHighlight:T})}),totalLength:T?T.length:0})},h=t.combineChunks=function(s){var n=s.chunks;return n=n.sort(function(g,f){return g.start-f.start}).reduce(function(g,f){if(g.length===0)return[f];var p=g.pop();if(f.start<=p.end){var u=Math.max(p.end,f.end);g.push({highlight:!1,start:p.start,end:u})}else g.push(p,f);return g},[]),n},a=function(s){var n=s.autoEscape,g=s.caseSensitive,f=s.sanitize,p=f===void 0?d:f,u=s.searchWords,c=s.textToHighlight;return c=p(c),u.filter(function(v){return v}).reduce(function(v,T){T=p(T),n&&(T=r(T));for(var m=new RegExp(T,g?\"g\":\"gi\"),x=void 0;x=m.exec(c);){var S=x.index,$=m.lastIndex;$>S&&v.push({highlight:!1,start:S,end:$}),x.index===m.lastIndex&&m.lastIndex++}return v},[])};t.findChunks=a;var l=t.fillInChunks=function(s){var n=s.chunksToHighlight,g=s.totalLength,f=[],p=function(v,T,m){T-v>0&&f.push({start:v,end:T,highlight:m})};if(n.length===0)p(0,g,!1);else{var u=0;n.forEach(function(c){p(u,c.start,!1),p(c.start,c.end,!0),u=c.end}),p(u,g,!1)}return f};function d(o){return o}function r(o){return o.replace(/[\\-\\[\\]\\/\\{\\}\\(\\)\\*\\+\\?\\.\\\\\\^\\$\\|]/g,\"\\\\$&\")}}])});var C=W(j());var H=\"tab\";function k(e,t,i,h,a){let l=a!==void 0;return h.reduce((r,o)=>(o.tocIndex===a&&(r[o.paraId]=(r[o.paraId]||\"\").concat(o.value)),r),[]).filter(Boolean).length||l?{rawTitle:e,title:t,link:i,paragraphs:h.reduce((r,o)=>{var s,n;return o.tocIndex===a&&((n=r[s=o.paraId])!=null||(r[s]=\"\"),r[o.paraId]+=o.value),r},[]).filter(Boolean)}:null}function y(e){return[e.title,e.subtitle].filter(Boolean).join(\" \")}function _(e,t,i){let h=[],a=Object.values(t).reduce((l,d)=>{var r,o;return d.asset&&((o=l[r=d.routeId])!=null||(l[r]=[]),l[d.routeId].push(d)),l},{});return Object.values(e).forEach(l=>{var d;if(\"meta\"in l&&!(\"isLayout\"in l)){let r=l.meta,o=l.path.replace(/^([^/])/,\"/$1\")||\"/\",s=i.find(u=>o===u.link||o.startsWith(`${u.activePath}/`)),n=(a[l.id]||[]).map(u=>{var c;return(c=u.asset)==null?void 0:c.id}),g=k(\"\",y(r.frontmatter),o,r.texts),f=r.toc.reduce((u,c,v)=>{if(!n.includes(c.id)&&c.depth>=1){let T=y(r.frontmatter);c.depth!==1&&(T=`${T} - ${c.title}`),u.push(k(c.title,T,`${o}#${c.id}`,r.texts,v))}return u},[]),p=(r.tabs||[]).reduce((u,{key:c,meta:v})=>{let T=k(\"\",`${y(r.frontmatter)} - ${v.frontmatter.title}`,`${o}?${H}=${c}`,v.texts);return T&&u.push(T),u.push(...v.toc.map((m,x)=>k(m.title,`${y(r.frontmatter)} - ${v.frontmatter.title} - ${m.title}`,`${o}?${H}=${c}#${m.id}`,v.texts,x))),u},[]);h.push({navTitle:s==null?void 0:s.title,navOrder:s?i.indexOf(s):1/0,title:y(r.frontmatter),link:o,sections:[...g?[g]:[],...f,...p],demos:((d=a[l.id])==null?void 0:d.map(u=>({link:`${o}#${u.asset.id}`,rawTitle:u.asset.title||\"\",title:u.asset.title||y(r.frontmatter),description:u.asset.description||\"\",keywords:u.asset.keywords||[]})))||[]})}}),h}function b(e=\"\",t,i=1){let h=(0,C.findAll)({textToHighlight:e,searchWords:t,autoEscape:!0}),a={};return[h.map(({start:l,end:d,highlight:r},o)=>{let s={text:e.slice(l,d)};return o===0&&!r&&h.length>1&&s.text.length>20&&(s.text=`...${s.text.slice(-20)}`),r&&(s.highlighted=!0,a[t.find(n=>s.text.includes(n))]=i),s}),a]}function Y(e,t){let i=t.split(\" \"),h=new RegExp(t.replace(/[.*+?^${}()|[\\]\\\\]/g,\"\\\\$&\").replace(/\\s+/g,\"|\"),\"i\"),a={};return e.forEach(l=>{var o,s;let d=l.title,r=[];if(l.sections.forEach(n=>{for(let g of n.paragraphs)if(h.test(g)){let[f,p]=b(n.title,i,10),[u,c]=b(g,i);r.push({type:\"content\",link:n.link,priority:Object.values(M(M({},c),p)).reduce((v,T)=>v+T,0),highlightTitleTexts:f,highlightTexts:u,pageTitle:d});return}if(h.test(n.rawTitle)&&!h.test(l.title)){let[g,f]=b(n.title,i,10);r.push({type:\"title\",link:n.link,priority:Object.values(f).reduce((p,u)=>p+u,0),highlightTitleTexts:g,highlightTexts:b(n.paragraphs[0]||\"\",i)[0],pageTitle:d})}}),l.demos.forEach(n=>{if(h.test(n.rawTitle)||h.test(n.description)){let[g,f]=b(n.title,i,10),[p,u]=b(n.description,i);r.push({type:\"demo\",link:n.link,priority:Object.values(M(M({},u),f)).reduce((c,v)=>c+v,0),highlightTitleTexts:g,highlightTexts:p,pageTitle:d})}}),h.test(l.title)){let[n,g]=b(l.title,i,100);r.push({type:\"page\",link:l.link,priority:Object.values(g).reduce((f,p)=>f+p,0),highlightTitleTexts:n,highlightTexts:b(((o=l.sections[0])==null?void 0:o.paragraphs[0])||\"\",i)[0],pageTitle:d})}if(r.length){let n=l.navTitle||\"$ROOT\";(s=a[n])!=null||(a[n]={title:l.navTitle,priority:l.navOrder*1e3,hints:[]}),a[n].hints.push(...r)}}),Object.values(a).forEach(({hints:l})=>{l.sort((d,r)=>r.priority-d.priority)}),Object.values(a).sort((l,d)=>d.priority-l.priority)}var A;self.onmessage=({data:e})=>{switch(e.action){case\"generate-metadata\":A=_(e.args.routes,e.args.demos,e.args.nav);break;case\"get-search-result\":self.postMessage(Y(A,e.args.keywords));break;default:}};})();\n"
+    },
+    "favicons": [
+      "/favicon.ico"
+    ],
+    "npmClient": "npm",
+    "styles": [
+      "html, body { background: transparent; }\n    @media (prefers-color-scheme: dark) {\n      html, body { background: #000; }\n    }"
+    ],
+    "title": "Nothing UI",
+    "targets": {
+      "chrome": 80
+    },
+    "extraBabelIncludes": [
+      "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/client/theme-api"
+    ],
+    "theme": {
+      "dark-selector": "~'[data-prefers-color=\"dark\"]'"
+    },
+    "babelLoaderCustomize": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/features/compile/babelLoaderCustomize.js"
+  },
+  "routes": {
+    "404": {
+      "id": "404",
+      "path": "*",
+      "absPath": "/*",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/client/pages/404.js"
+    },
+    "dumi-context-layout": {
+      "id": "dumi-context-layout",
+      "path": "/",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/.dumi/tmp/dumi/theme/ContextWrapper",
+      "absPath": "/",
+      "isLayout": true,
+      "__absFile": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/.dumi/tmp/dumi/theme/ContextWrapper"
+    },
+    "DocLayout": {
+      "id": "DocLayout",
+      "path": "/",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/layouts/DocLayout/index.js",
+      "parentId": "dumi-context-layout",
+      "absPath": "/",
+      "isLayout": true
+    },
+    "DemoLayout": {
+      "id": "DemoLayout",
+      "path": "/",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/layouts/DemoLayout/index.js",
+      "parentId": "dumi-context-layout",
+      "absPath": "/",
+      "isLayout": true
+    },
+    "docs/index": {
+      "path": "",
+      "id": "docs/index",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/docs/index.md",
+      "absPath": "/"
+    },
+    "components/Accordion/index": {
+      "id": "components/Accordion/index",
+      "path": "components/accordion",
+      "absPath": "/components/accordion",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Accordion/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/AgeMotion/index": {
+      "id": "components/AgeMotion/index",
+      "path": "components/age-motion",
+      "absPath": "/components/age-motion",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/AgeMotion/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Alert/index": {
+      "id": "components/Alert/index",
+      "path": "components/alert",
+      "absPath": "/components/alert",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Alert/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/AspectRatio/index": {
+      "id": "components/AspectRatio/index",
+      "path": "components/aspect-ratio",
+      "absPath": "/components/aspect-ratio",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/AspectRatio/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Avatar/index": {
+      "id": "components/Avatar/index",
+      "path": "components/avatar",
+      "absPath": "/components/avatar",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Avatar/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Badge/index": {
+      "id": "components/Badge/index",
+      "path": "components/badge",
+      "absPath": "/components/badge",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Badge/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Battery/index": {
+      "id": "components/Battery/index",
+      "path": "components/battery",
+      "absPath": "/components/battery",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Battery/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Breadcrumb/index": {
+      "id": "components/Breadcrumb/index",
+      "path": "components/breadcrumb",
+      "absPath": "/components/breadcrumb",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Breadcrumb/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Button/index": {
+      "id": "components/Button/index",
+      "path": "components/button",
+      "absPath": "/components/button",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Button/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Caffeinate/index": {
+      "id": "components/Caffeinate/index",
+      "path": "components/caffeinate",
+      "absPath": "/components/caffeinate",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Caffeinate/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Calendar/index": {
+      "id": "components/Calendar/index",
+      "path": "components/calendar",
+      "absPath": "/components/calendar",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Calendar/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Card/index": {
+      "id": "components/Card/index",
+      "path": "components/card",
+      "absPath": "/components/card",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Card/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Checkbox/index": {
+      "id": "components/Checkbox/index",
+      "path": "components/checkbox",
+      "absPath": "/components/checkbox",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Checkbox/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Chrono/index": {
+      "id": "components/Chrono/index",
+      "path": "components/chrono",
+      "absPath": "/components/chrono",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Chrono/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Clipboard/index": {
+      "id": "components/Clipboard/index",
+      "path": "components/clipboard",
+      "absPath": "/components/clipboard",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Clipboard/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Collapsible/index": {
+      "id": "components/Collapsible/index",
+      "path": "components/collapsible",
+      "absPath": "/components/collapsible",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Collapsible/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Command/index": {
+      "id": "components/Command/index",
+      "path": "components/command",
+      "absPath": "/components/command",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Command/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/ConfigProvider/index": {
+      "id": "components/ConfigProvider/index",
+      "path": "components/config-provider",
+      "absPath": "/components/config-provider",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/ConfigProvider/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/ContextMenu/index": {
+      "id": "components/ContextMenu/index",
+      "path": "components/context-menu",
+      "absPath": "/components/context-menu",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/ContextMenu/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/DataTable/index": {
+      "id": "components/DataTable/index",
+      "path": "components/data-table",
+      "absPath": "/components/data-table",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/DataTable/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Date/index": {
+      "id": "components/Date/index",
+      "path": "components/date",
+      "absPath": "/components/date",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Date/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/DateNav/index": {
+      "id": "components/DateNav/index",
+      "path": "components/date-nav",
+      "absPath": "/components/date-nav",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/DateNav/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/DotMatrix/index": {
+      "id": "components/DotMatrix/index",
+      "path": "components/dot-matrix",
+      "absPath": "/components/dot-matrix",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/DotMatrix/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/DropdownMenu/index": {
+      "id": "components/DropdownMenu/index",
+      "path": "components/dropdown-menu",
+      "absPath": "/components/dropdown-menu",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/DropdownMenu/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/ErrorBoundary/index": {
+      "id": "components/ErrorBoundary/index",
+      "path": "components/error-boundary",
+      "absPath": "/components/error-boundary",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/ErrorBoundary/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Form/index": {
+      "id": "components/Form/index",
+      "path": "components/form",
+      "absPath": "/components/form",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Form/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/HoverCard/index": {
+      "id": "components/HoverCard/index",
+      "path": "components/hover-card",
+      "absPath": "/components/hover-card",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/HoverCard/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Input/index": {
+      "id": "components/Input/index",
+      "path": "components/input",
+      "absPath": "/components/input",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Input/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/InputOTP/index": {
+      "id": "components/InputOTP/index",
+      "path": "components/input-otp",
+      "absPath": "/components/input-otp",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/InputOTP/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Label/index": {
+      "id": "components/Label/index",
+      "path": "components/label",
+      "absPath": "/components/label",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Label/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Modal/index": {
+      "id": "components/Modal/index",
+      "path": "components/modal",
+      "absPath": "/components/modal",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Modal/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/MusicPlayer/index": {
+      "id": "components/MusicPlayer/index",
+      "path": "components/music-player",
+      "absPath": "/components/music-player",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/MusicPlayer/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Navigation/index": {
+      "id": "components/Navigation/index",
+      "path": "components/navigation",
+      "absPath": "/components/navigation",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Navigation/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/NavigationMenu/index": {
+      "id": "components/NavigationMenu/index",
+      "path": "components/navigation-menu",
+      "absPath": "/components/navigation-menu",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/NavigationMenu/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/NextEvent/index": {
+      "id": "components/NextEvent/index",
+      "path": "components/next-event",
+      "absPath": "/components/next-event",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/NextEvent/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/OverlayPortal/index": {
+      "id": "components/OverlayPortal/index",
+      "path": "components/overlay-portal",
+      "absPath": "/components/overlay-portal",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/OverlayPortal/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Pagination/index": {
+      "id": "components/Pagination/index",
+      "path": "components/pagination",
+      "absPath": "/components/pagination",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Pagination/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/PhotoCarousel/index": {
+      "id": "components/PhotoCarousel/index",
+      "path": "components/photo-carousel",
+      "absPath": "/components/photo-carousel",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/PhotoCarousel/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Pomodoro/index": {
+      "id": "components/Pomodoro/index",
+      "path": "components/pomodoro",
+      "absPath": "/components/pomodoro",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Pomodoro/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Popover/index": {
+      "id": "components/Popover/index",
+      "path": "components/popover",
+      "absPath": "/components/popover",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Popover/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/ProgressBar/index": {
+      "id": "components/ProgressBar/index",
+      "path": "components/progress-bar",
+      "absPath": "/components/progress-bar",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/ProgressBar/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/QuickToggle/index": {
+      "id": "components/QuickToggle/index",
+      "path": "components/quick-toggle",
+      "absPath": "/components/quick-toggle",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/QuickToggle/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Quotes/index": {
+      "id": "components/Quotes/index",
+      "path": "components/quotes",
+      "absPath": "/components/quotes",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Quotes/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/RadioGroup/index": {
+      "id": "components/RadioGroup/index",
+      "path": "components/radio-group",
+      "absPath": "/components/radio-group",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/RadioGroup/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Resizable/index": {
+      "id": "components/Resizable/index",
+      "path": "components/resizable",
+      "absPath": "/components/resizable",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Resizable/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/ScrollArea/index": {
+      "id": "components/ScrollArea/index",
+      "path": "components/scroll-area",
+      "absPath": "/components/scroll-area",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/ScrollArea/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/SegmentedControl/index": {
+      "id": "components/SegmentedControl/index",
+      "path": "components/segmented-control",
+      "absPath": "/components/segmented-control",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/SegmentedControl/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Select/index": {
+      "id": "components/Select/index",
+      "path": "components/select",
+      "absPath": "/components/select",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Select/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Separator/index": {
+      "id": "components/Separator/index",
+      "path": "components/separator",
+      "absPath": "/components/separator",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Separator/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Sheet/index": {
+      "id": "components/Sheet/index",
+      "path": "components/sheet",
+      "absPath": "/components/sheet",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Sheet/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Sidebar/index": {
+      "id": "components/Sidebar/index",
+      "path": "components/sidebar",
+      "absPath": "/components/sidebar",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Sidebar/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Slider/index": {
+      "id": "components/Slider/index",
+      "path": "components/slider",
+      "absPath": "/components/slider",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Slider/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Spinner/index": {
+      "id": "components/Spinner/index",
+      "path": "components/spinner",
+      "absPath": "/components/spinner",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Spinner/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/States/index": {
+      "id": "components/States/index",
+      "path": "components/states",
+      "absPath": "/components/states",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/States/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/SunDial/index": {
+      "id": "components/SunDial/index",
+      "path": "components/sun-dial",
+      "absPath": "/components/sun-dial",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/SunDial/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Switch/index": {
+      "id": "components/Switch/index",
+      "path": "components/switch",
+      "absPath": "/components/switch",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Switch/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/SystemMonitor/index": {
+      "id": "components/SystemMonitor/index",
+      "path": "components/system-monitor",
+      "absPath": "/components/system-monitor",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/SystemMonitor/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Tabs/index": {
+      "id": "components/Tabs/index",
+      "path": "components/tabs",
+      "absPath": "/components/tabs",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Tabs/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Tag/index": {
+      "id": "components/Tag/index",
+      "path": "components/tag",
+      "absPath": "/components/tag",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Tag/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Taskbar/index": {
+      "id": "components/Taskbar/index",
+      "path": "components/taskbar",
+      "absPath": "/components/taskbar",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Taskbar/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Textarea/index": {
+      "id": "components/Textarea/index",
+      "path": "components/textarea",
+      "absPath": "/components/textarea",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Textarea/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/ThemeProvider/index": {
+      "id": "components/ThemeProvider/index",
+      "path": "components/theme-provider",
+      "absPath": "/components/theme-provider",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/ThemeProvider/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Toggle/index": {
+      "id": "components/Toggle/index",
+      "path": "components/toggle",
+      "absPath": "/components/toggle",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Toggle/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/Tooltip/index": {
+      "id": "components/Tooltip/index",
+      "path": "components/tooltip",
+      "absPath": "/components/tooltip",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Tooltip/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/WalkieTalkie/index": {
+      "id": "components/WalkieTalkie/index",
+      "path": "components/walkie-talkie",
+      "absPath": "/components/walkie-talkie",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/WalkieTalkie/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "demo-render": {
+      "id": "demo-render",
+      "path": "~demos/:id",
+      "absPath": "/~demos/:id",
+      "parentId": "DemoLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/client/pages/Demo/index.js"
+    }
+  },
+  "apiRoutes": {},
+  "hasSrcDir": false,
+  "npmClient": "npm",
+  "umi": {
+    "version": "4.6.66",
+    "name": "Umi",
+    "importSource": "umi",
+    "cliName": "umi"
+  },
+  "bundleStatus": {
+    "done": true,
+    "progresses": [
+      {
+        "percent": 1,
+        "status": "",
+        "details": []
+      }
+    ]
+  },
+  "react": {
+    "version": "19.2.7",
+    "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/react"
+  },
+  "react-dom": {
+    "version": "19.2.7",
+    "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/react-dom"
+  },
+  "appJS": null,
+  "locale": "C",
+  "globalCSS": [],
+  "globalJS": [],
+  "overridesCSS": [],
+  "bundler": "webpack",
+  "git": {
+    "originUrl": "https://github.com/monkren-ai/Nothing-UI.git"
+  },
+  "framework": "react",
+  "typescript": {
+    "tsVersion": "6.0.3",
+    "tslibVersion": "2.8.1"
+  },
+  "port": 8001,
+  "host": "0.0.0.0",
+  "ip": "10.192.91.90",
+  "_2LevelNavAvailable": true,
+  "exportHtmlData": [
+    {
+      "route": {
+        "path": "/404"
+      },
+      "prerender": true,
+      "file": "404.html"
+    },
+    {
+      "route": {
+        "path": "/"
+      },
+      "prerender": true,
+      "file": "index.html"
+    },
+    {
+      "route": {
+        "path": "/components/accordion"
+      },
+      "prerender": true,
+      "file": "components/accordion/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/age-motion"
+      },
+      "prerender": true,
+      "file": "components/age-motion/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/alert"
+      },
+      "prerender": true,
+      "file": "components/alert/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/aspect-ratio"
+      },
+      "prerender": true,
+      "file": "components/aspect-ratio/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/avatar"
+      },
+      "prerender": true,
+      "file": "components/avatar/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/badge"
+      },
+      "prerender": true,
+      "file": "components/badge/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/battery"
+      },
+      "prerender": true,
+      "file": "components/battery/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/breadcrumb"
+      },
+      "prerender": true,
+      "file": "components/breadcrumb/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/button"
+      },
+      "prerender": true,
+      "file": "components/button/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/caffeinate"
+      },
+      "prerender": true,
+      "file": "components/caffeinate/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/calendar"
+      },
+      "prerender": true,
+      "file": "components/calendar/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/card"
+      },
+      "prerender": true,
+      "file": "components/card/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/checkbox"
+      },
+      "prerender": true,
+      "file": "components/checkbox/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/chrono"
+      },
+      "prerender": true,
+      "file": "components/chrono/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/clipboard"
+      },
+      "prerender": true,
+      "file": "components/clipboard/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/collapsible"
+      },
+      "prerender": true,
+      "file": "components/collapsible/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/command"
+      },
+      "prerender": true,
+      "file": "components/command/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/config-provider"
+      },
+      "prerender": true,
+      "file": "components/config-provider/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/context-menu"
+      },
+      "prerender": true,
+      "file": "components/context-menu/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/data-table"
+      },
+      "prerender": true,
+      "file": "components/data-table/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/date"
+      },
+      "prerender": true,
+      "file": "components/date/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/date-nav"
+      },
+      "prerender": true,
+      "file": "components/date-nav/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/dot-matrix"
+      },
+      "prerender": true,
+      "file": "components/dot-matrix/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/dropdown-menu"
+      },
+      "prerender": true,
+      "file": "components/dropdown-menu/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/error-boundary"
+      },
+      "prerender": true,
+      "file": "components/error-boundary/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/form"
+      },
+      "prerender": true,
+      "file": "components/form/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/hover-card"
+      },
+      "prerender": true,
+      "file": "components/hover-card/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/input"
+      },
+      "prerender": true,
+      "file": "components/input/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/input-otp"
+      },
+      "prerender": true,
+      "file": "components/input-otp/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/label"
+      },
+      "prerender": true,
+      "file": "components/label/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/modal"
+      },
+      "prerender": true,
+      "file": "components/modal/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/music-player"
+      },
+      "prerender": true,
+      "file": "components/music-player/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/navigation"
+      },
+      "prerender": true,
+      "file": "components/navigation/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/navigation-menu"
+      },
+      "prerender": true,
+      "file": "components/navigation-menu/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/next-event"
+      },
+      "prerender": true,
+      "file": "components/next-event/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/overlay-portal"
+      },
+      "prerender": true,
+      "file": "components/overlay-portal/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/pagination"
+      },
+      "prerender": true,
+      "file": "components/pagination/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/photo-carousel"
+      },
+      "prerender": true,
+      "file": "components/photo-carousel/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/pomodoro"
+      },
+      "prerender": true,
+      "file": "components/pomodoro/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/popover"
+      },
+      "prerender": true,
+      "file": "components/popover/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/progress-bar"
+      },
+      "prerender": true,
+      "file": "components/progress-bar/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/quick-toggle"
+      },
+      "prerender": true,
+      "file": "components/quick-toggle/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/quotes"
+      },
+      "prerender": true,
+      "file": "components/quotes/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/radio-group"
+      },
+      "prerender": true,
+      "file": "components/radio-group/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/resizable"
+      },
+      "prerender": true,
+      "file": "components/resizable/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/scroll-area"
+      },
+      "prerender": true,
+      "file": "components/scroll-area/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/segmented-control"
+      },
+      "prerender": true,
+      "file": "components/segmented-control/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/select"
+      },
+      "prerender": true,
+      "file": "components/select/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/separator"
+      },
+      "prerender": true,
+      "file": "components/separator/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/sheet"
+      },
+      "prerender": true,
+      "file": "components/sheet/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/sidebar"
+      },
+      "prerender": true,
+      "file": "components/sidebar/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/slider"
+      },
+      "prerender": true,
+      "file": "components/slider/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/spinner"
+      },
+      "prerender": true,
+      "file": "components/spinner/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/states"
+      },
+      "prerender": true,
+      "file": "components/states/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/sun-dial"
+      },
+      "prerender": true,
+      "file": "components/sun-dial/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/switch"
+      },
+      "prerender": true,
+      "file": "components/switch/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/system-monitor"
+      },
+      "prerender": true,
+      "file": "components/system-monitor/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/tabs"
+      },
+      "prerender": true,
+      "file": "components/tabs/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/tag"
+      },
+      "prerender": true,
+      "file": "components/tag/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/taskbar"
+      },
+      "prerender": true,
+      "file": "components/taskbar/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/textarea"
+      },
+      "prerender": true,
+      "file": "components/textarea/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/toggle"
+      },
+      "prerender": true,
+      "file": "components/toggle/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/tooltip"
+      },
+      "prerender": true,
+      "file": "components/tooltip/index.html"
+    },
+    {
+      "route": {
+        "path": "/components/walkie-talkie"
+      },
+      "prerender": true,
+      "file": "components/walkie-talkie/index.html"
+    },
+    {
+      "route": {
+        "path": "/~demos/:id"
+      },
+      "prerender": true,
+      "file": "~demos/:id/index.html"
+    }
+  ]
+}

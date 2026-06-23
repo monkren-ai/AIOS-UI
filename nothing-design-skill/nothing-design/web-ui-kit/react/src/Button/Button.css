@@ -1,0 +1,106 @@
+.nothing-btn {
+  font-family: var(--font-mono);
+  font-size: var(--body-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: var(--space-sm-plus) var(--space-lg);
+  min-height: 44px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  transition: all var(--duration-micro) var(--easing);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  line-height: 1;
+}
+
+.nothing-btn:focus-visible {
+  outline: 2px solid var(--interactive);
+  outline-offset: 2px;
+}
+
+.nothing-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nothing-btn--primary {
+  background: var(--text-display);
+  color: var(--black);
+  border-radius: var(--radius-pill);
+}
+
+.nothing-btn--primary:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.nothing-btn--primary:active:not(:disabled) {
+  opacity: 0.7;
+}
+
+.nothing-btn--secondary {
+  background: transparent;
+  border: 1px solid var(--border-visible);
+  color: var(--text-primary);
+  border-radius: var(--radius-pill);
+}
+
+.nothing-btn--secondary:hover:not(:disabled) {
+  border-color: var(--text-secondary);
+  color: var(--text-display);
+}
+
+.nothing-btn--secondary:active:not(:disabled) {
+  border-color: var(--text-primary);
+}
+
+.nothing-btn--ghost {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  border-radius: 0;
+}
+
+.nothing-btn--ghost:hover:not(:disabled) {
+  color: var(--text-display);
+}
+
+.nothing-btn--ghost:active:not(:disabled) {
+  color: var(--text-primary);
+}
+
+.nothing-btn--destructive {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: var(--radius-pill);
+}
+
+.nothing-btn--destructive:hover:not(:disabled) {
+  background: var(--accent-subtle);
+}
+
+.nothing-btn--destructive:active:not(:disabled) {
+  background: var(--accent);
+  color: var(--black);
+}
+
+.nothing-btn--sm {
+  padding: var(--space-sm) var(--space-md);
+  min-height: 36px;
+  font-size: var(--label);
+}
+
+.nothing-btn--lg {
+  padding: var(--space-lg-minus) var(--space-xl);
+  min-height: 52px;
+  font-size: var(--body-sm);
+}
+
+.nothing-btn--full {
+  width: 100%;
+}
