@@ -72,7 +72,6 @@
       "autoprefixer": "^10.5.0",
       "dpdm": "^4.2.0",
       "dumi": "^2.4.34",
-      "dumi-theme-lobehub": "^5.0.0",
       "eslint": "^9.0.0",
       "eslint-plugin-react-hooks": "^5.0.0",
       "eslint-plugin-react-refresh": "^0.4.0",
@@ -113,7 +112,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -157,9 +156,6 @@
       "time": {
         "hooks": {
           "modifyRoutes": [
-            0,
-            0,
-            0,
             0
           ]
         },
@@ -175,17 +171,8 @@
       "key": "aiDev",
       "config": {},
       "time": {
-        "hooks": {
-          "onDevCompileDone": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ]
-        },
-        "register": 0
+        "hooks": {},
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -199,16 +186,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            8
-          ],
-          "onGenerateFiles": [
-            1,
-            2,
-            6,
-            34
+            9
           ]
         },
-        "register": 8
+        "register": 11
       },
       "enableBy": "register"
     },
@@ -220,15 +201,8 @@
       "key": "umiInfo",
       "config": {},
       "time": {
-        "hooks": {
-          "addEntryCode": [
-            0,
-            0,
-            0,
-            0
-          ]
-        },
-        "register": 1
+        "hooks": {},
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -246,444 +220,9 @@
           ],
           "onCheck": [
             0
-          ],
-          "onCheckCode": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -713,7 +252,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -730,7 +269,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -1582,7 +1121,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config"
     },
@@ -1611,12 +1150,8 @@
       "key": "devTool",
       "config": {},
       "time": {
-        "hooks": {
-          "addBeforeMiddlewares": [
-            5
-          ]
-        },
-        "register": 0
+        "hooks": {},
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1629,7 +1164,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 34
+        "register": 42
       },
       "enableBy": "register"
     },
@@ -1642,7 +1177,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 8
+        "register": 17
       },
       "enableBy": "config"
     },
@@ -1657,21 +1192,9 @@
         "hooks": {
           "onCheck": [
             0
-          ],
-          "onGenerateFiles": [
-            1,
-            0,
-            1,
-            0
-          ],
-          "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -1685,77 +1208,6 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            0
-          ],
-          "addBeforeMiddlewares": [
-            0
-          ],
-          "modifyHTMLFavicon": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
@@ -1771,20 +1223,7 @@
       "key": "helmet",
       "config": {},
       "time": {
-        "hooks": {
-          "onGenerateFiles": [
-            0,
-            0,
-            0,
-            1
-          ],
-          "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0
-          ]
-        },
+        "hooks": {},
         "register": 1
       },
       "enableBy": "register"
@@ -1798,7 +1237,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -1812,13 +1251,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            0
-          ],
-          "addBeforeMiddlewares": [
-            0
+            1
           ]
         },
-        "register": 13
+        "register": 17
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/mpa/mpa": {
@@ -1843,7 +1279,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/overrides/overrides": {
@@ -1854,24 +1290,7 @@
       "key": "overrides",
       "config": {},
       "time": {
-        "hooks": {
-          "onGenerateFiles": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "addEntryImports": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ]
-        },
+        "hooks": {},
         "register": 0
       },
       "enableBy": "register"
@@ -1900,22 +1319,6 @@
         "hooks": {
           "modifyConfig": [
             0
-          ],
-          "onGenerateFiles": [
-            38,
-            10,
-            24,
-            20
-          ],
-          "addPolyfillImports": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
           ]
         },
         "register": 1
@@ -1929,18 +1332,7 @@
       "key": "publicPathPolyfill",
       "config": {},
       "time": {
-        "hooks": {
-          "addPolyfillImports": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ]
-        },
+        "hooks": {},
         "register": 0
       },
       "enableBy": "register"
@@ -1967,7 +1359,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -1992,17 +1384,7 @@
       "key": "terminal",
       "config": {},
       "time": {
-        "hooks": {
-          "onGenerateFiles": [
-            0,
-            1,
-            1,
-            0
-          ],
-          "addBeforeMiddlewares": [
-            0
-          ]
-        },
+        "hooks": {},
         "register": 0
       },
       "enableBy": "register"
@@ -2015,19 +1397,8 @@
       "key": "tmpFiles",
       "config": {},
       "time": {
-        "hooks": {
-          "onGenerateFiles": [
-            9,
-            1,
-            17,
-            1,
-            19,
-            2,
-            17,
-            1
-          ]
-        },
-        "register": 1
+        "hooks": {},
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2040,7 +1411,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -2065,7 +1436,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -2077,15 +1448,8 @@
       "key": "configTypes",
       "config": {},
       "time": {
-        "hooks": {
-          "onGenerateFiles": [
-            179,
-            7,
-            12,
-            11
-          ]
-        },
-        "register": 1
+        "hooks": {},
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2097,12 +1461,8 @@
       "key": "transform",
       "config": {},
       "time": {
-        "hooks": {
-          "addBeforeBabelPresets": [
-            0
-          ]
-        },
-        "register": 0
+        "hooks": {},
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2141,7 +1501,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 3
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/monorepo/redirect": {
@@ -2153,7 +1513,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 7
+        "register": 10
       },
       "enableBy": "config"
     },
@@ -2165,15 +1525,8 @@
       "key": "test",
       "config": {},
       "time": {
-        "hooks": {
-          "onGenerateFiles": [
-            1,
-            0,
-            1,
-            5
-          ]
-        },
-        "register": 1
+        "hooks": {},
+        "register": 0
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent": {
@@ -2185,7 +1538,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -2211,7 +1564,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -2253,7 +1606,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 2
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/mako/mako": {
@@ -2265,7 +1618,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config"
     },
@@ -2303,7 +1656,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian": {
@@ -2326,77 +1679,8 @@
       "key": "routePreloadOnLoad",
       "config": {},
       "time": {
-        "hooks": {
-          "addHTMLHeadScripts": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ]
-        },
-        "register": 11
+        "hooks": {},
+        "register": 15
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/bundler/bundler": {
@@ -2407,11 +1691,7 @@
       "key": "preset-umi:bundler",
       "config": {},
       "time": {
-        "hooks": {
-          "modifyUniBundler": [
-            180
-          ]
-        },
+        "hooks": {},
         "register": 1
       },
       "enableBy": "register"
@@ -2425,7 +1705,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -2438,7 +1718,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 14
+        "register": 44
       },
       "enableBy": "register"
     },
@@ -2452,10 +1732,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            6
+            7
           ]
         },
-        "register": 7
+        "register": 21
       }
     },
     "./node_modules/@umijs/preset-umi/dist/commands/help": {
@@ -2506,7 +1786,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2519,7 +1799,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -2532,7 +1812,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2545,7 +1825,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2558,7 +1838,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -2584,7 +1864,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2649,7 +1929,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -2662,7 +1942,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2701,7 +1981,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2714,7 +1994,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2727,7 +2007,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -2753,7 +2033,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2880,18 +2160,9 @@
           ],
           "onCheck": [
             1
-          ],
-          "onGenerateFiles": [
-            0,
-            1,
-            0,
-            0
-          ],
-          "modifyBabelPresetOpts": [
-            0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2906,7 +2177,7 @@
       },
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       }
     },
     "./node_modules/dumi/dist/features/sideEffects/index": {
@@ -2917,12 +2188,8 @@
       "key": "dumi:sideEffects",
       "config": {},
       "time": {
-        "hooks": {
-          "chainWebpack": [
-            0
-          ]
-        },
-        "register": 0
+        "hooks": {},
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2936,12 +2203,6 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            0
-          ],
-          "onGenerateFiles": [
-            0,
-            0,
-            0,
             0
           ]
         },
@@ -2963,34 +2224,9 @@
             0,
             0,
             0
-          ],
-          "registerTechStack": [
-            0,
-            0,
-            1,
-            1
-          ],
-          "onGenerateFiles": [
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            1,
-            0
-          ],
-          "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "chainWebpack": [
-            0
           ]
         },
-        "register": 4
+        "register": 16
       },
       "enableBy": "register"
     },
@@ -3007,28 +2243,13 @@
             0
           ],
           "addLayouts": [
-            0,
-            0,
-            0,
             0
           ],
           "modifyRoutes": [
-            6,
-            6,
-            8,
             6
-          ],
-          "addEntryCodeAhead": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "addTmpGenerateWatcherPaths": [
-            0
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -3042,25 +2263,10 @@
       "time": {
         "hooks": {
           "modifyRoutes": [
-            0,
-            0,
-            1,
             0
-          ],
-          "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "onGenerateFiles": [
-            2,
-            2,
-            5,
-            3
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -3077,21 +2283,6 @@
             0
           ],
           "modifyRoutes": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "dumi.modifyMetaFiles": [
-            0,
-            0,
-            0,
-            1
-          ],
-          "onGenerateFiles": [
-            0,
-            0,
-            0,
             0
           ]
         },
@@ -3114,60 +2305,9 @@
           "modifyAppData": [
             0,
             2
-          ],
-          "onGenerateFiles": [
-            0,
-            8,
-            1,
-            12,
-            0,
-            13,
-            1,
-            14
-          ],
-          "addEntryCode": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "addEntryCodeAhead": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "addEntryImportsAhead": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "addRuntimePluginKey": [
-            0,
-            0,
-            0,
-            0
           ]
         },
-        "register": 12
-      },
-      "enableBy": "register"
-    },
-    "./node_modules/dumi-theme-lobehub/dist/plugin/index": {
-      "cwd": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
-      "type": "plugin",
-      "path": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/plugin/index.js",
-      "id": "./node_modules/dumi-theme-lobehub/dist/plugin/index",
-      "key": "dumi-theme-lobehub",
-      "config": {},
-      "time": {
-        "hooks": {},
-        "register": 385
+        "register": 14
       },
       "enableBy": "register"
     },
@@ -3193,18 +2333,6 @@
           ],
           "onCheck": [
             0
-          ],
-          "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "onGenerateFiles": [
-            1,
-            0,
-            1,
-            1
           ]
         },
         "register": 0
@@ -3232,17 +2360,8 @@
       "key": "assets",
       "config": {},
       "time": {
-        "hooks": {
-          "onDevCompileDone": [
-            242,
-            52,
-            66,
-            92,
-            58,
-            96
-          ]
-        },
-        "register": 0
+        "hooks": {},
+        "register": 1
       }
     },
     "./node_modules/dumi/dist/features/exportStatic": {
@@ -3266,7 +2385,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 5
       }
     },
     "./node_modules/dumi/dist/features/html2sketch": {
@@ -3277,99 +2396,8 @@
       "key": "html2sketch",
       "config": {},
       "time": {
-        "hooks": {
-          "addEntryImports": [
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0
-          ],
-          "addRuntimePluginKey": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "onGenerateFiles": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "addHTMLHeadScripts": [
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ]
-        },
-        "register": 0
+        "hooks": {},
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -3382,7 +2410,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register"
     }
@@ -3400,7 +2428,7 @@
     "base": "/",
     "define": {
       "process.env": {
-        "TRAE_AI_SHELL_ID": "6",
+        "TRAE_AI_SHELL_ID": "3",
         "SAFE_RM_AUTO_ADD_TEMP": "1",
         "TERM_PROGRAM": "vscode",
         "NODE": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin/node",
@@ -3419,7 +2447,7 @@
         "COLOR": "1",
         "npm_config_noproxy": "",
         "npm_config_local_prefix": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
-        "TRAE_SANDBOX_TRACE_FILE": "/tmp/trae_sandbox_trace_c4938043-0849-4cc8-bffb-e4175ea2e3e3.jsonl",
+        "TRAE_SANDBOX_TRACE_FILE": "/tmp/trae_sandbox_trace_efbe6702-1d19-4f8f-abb9-0f1ae3e080ce.jsonl",
         "AI_AGENT": "TRAE",
         "USER": "ruishengzhang",
         "COMMAND_MODE": "unix2003",
@@ -3432,7 +2460,7 @@
         "PAGER": "",
         "TRAE_SANDBOX_CLI_PATH": "/Applications/Trae CN.app/Contents/Resources/app/modules/sandbox/trae-sandbox",
         "SAFE_RM_DENIED_PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.vscode:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.trae/mcp.json:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.git",
-        "PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/node_modules/.bin:/Users/ruishengzhang/Documents/node_modules/.bin:/Users/ruishengzhang/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/homebrew/bin:/Applications/Trae CN.app/Contents/Resources/app/bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.local/bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/Applications/Trae CN.app/Contents/Resources/app/node_modules/@vscode/ripgrep/bin",
+        "PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/node_modules/.bin:/Users/ruishengzhang/Documents/node_modules/.bin:/Users/ruishengzhang/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/homebrew/bin:/Applications/Trae CN.app/Contents/Resources/app/bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.local/bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/Applications/Trae CN.app/Contents/Resources/app/node_modules/@vscode/ripgrep/bin",
         "TRAE_JWT_TOKEN_PATH": "/Users/ruishengzhang/.trae-cn/trae-jwt-token",
         "npm_package_json": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/package.json",
         "_": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin/dumi",
@@ -3440,10 +2468,10 @@
         "npm_config_init_module": "/Users/ruishengzhang/.npm-init.js",
         "USER_ZDOTDIR": "/Users/ruishengzhang",
         "__CFBundleIdentifier": "cn.trae.app",
-        "npm_command": "exec",
+        "npm_command": "run-script",
         "PWD": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
         "TERM_PRODUCT": "Trae",
-        "npm_lifecycle_event": "npx",
+        "npm_lifecycle_event": "docs:dev",
         "EDITOR": "vi",
         "npm_package_name": "nothing-ui-kit-react",
         "LANG": "C.UTF-8",
@@ -3454,19 +2482,19 @@
         "TRAE_SANDBOX_CONFIG_NAME": "6a0e7c9512ae5b435bd04c9c",
         "npm_config_node_gyp": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js",
         "npm_package_version": "1.0.0",
-        "TRAE_SANDBOX_LOG_DIR": "/Users/ruishengzhang/Library/Application Support/Trae CN/logs/20260618T115044/Modular",
+        "TRAE_SANDBOX_LOG_DIR": "/Users/ruishengzhang/Library/Application Support/Trae CN/logs/20260624T111230/Modular",
         "XPC_SERVICE_NAME": "0",
         "VSCODE_INJECTION": "1",
-        "SAFE_RM_SOURCE_FLAG": "/tmp/safe-rm-source-flag-68be8578-d4cd-4dda-9cec-0b8a63bec5b2",
+        "SAFE_RM_SOURCE_FLAG": "/tmp/safe-rm-source-flag-ebb6a1a8-807a-4540-8a17-f6ee40888997",
         "SHLVL": "2",
         "HOME": "/Users/ruishengzhang",
         "VSCODE_GIT_ASKPASS_MAIN": "/Applications/Trae CN.app/Contents/Resources/app/extensions/git/dist/askpass-main.js",
         "npm_config_cache": "/Users/ruishengzhang/.npm",
         "LOGNAME": "ruishengzhang",
-        "npm_lifecycle_script": "dumi",
+        "npm_lifecycle_script": "dumi dev",
         "VSCODE_GIT_IPC_HANDLE": "/var/folders/2p/rkmk652x5ps1w6pwqpp1pdqm0000gn/T/vscode-git-725ebfa432.sock",
-        "TRAE_SANDBOX_SOURCE_FLAG_PATH": "/tmp/sandbox-source-flag-8541da80-d50e-4714-bc4a-84781df60614",
-        "SAFE_RM_PROTECTION_FLAG": "/tmp/safe-rm-protection-flag-2fd2911d-2f0d-400c-93e9-bff9ef8e3cf2",
+        "TRAE_SANDBOX_SOURCE_FLAG_PATH": "/tmp/sandbox-source-flag-3b2be268-bf18-4232-badb-0ccff213e340",
+        "SAFE_RM_PROTECTION_FLAG": "/tmp/safe-rm-protection-flag-5508bfd2-9ac7-4762-96fd-d121c1a93476",
         "npm_config_user_agent": "npm/10.9.2 node/v23.9.0 darwin arm64 workspaces/false",
         "VSCODE_GIT_ASKPASS_NODE": "/Applications/Trae CN.app/Contents/Frameworks/Trae CN Helper (Plugin).app/Contents/MacOS/Trae CN Helper (Plugin)",
         "GIT_ASKPASS": "/Applications/Trae CN.app/Contents/Resources/app/extensions/git/dist/askpass.sh",
@@ -3501,10 +2529,11 @@
           "dir": "src",
           "type": "component"
         }
-      ]
+      ],
+      "entryFile": "./src/index.ts"
     },
     "styles": [
-      "html, body { background: transparent; }\n    @media (prefers-color-scheme: dark) {\n      html, body { background: #000; }\n    }"
+      "html, body { background: #000; }\n    html[data-prefers-color=\"light\"],\n    html[data-prefers-color=\"light\"] body { background: #fff; }\n    .dumi-default-previewer-demo {\n      background: var(--surface, #111);\n      color: var(--text-primary, #E8E8E8);\n      padding: 24px;\n      border-radius: 8px;\n    }\n    html[data-prefers-color=\"light\"] .dumi-default-previewer-demo {\n      background: var(--surface, #FFFFFF);\n      color: var(--text-primary, #1A1A1A);\n    }"
     ],
     "themeConfig": {
       "actions": [
@@ -3535,6 +2564,10 @@
         {
           "link": "/components/button",
           "title": "Components"
+        },
+        {
+          "link": "/showcase",
+          "title": "Showcase"
         },
         {
           "link": "/changelog",
@@ -3577,46 +2610,43 @@
       "@": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src",
       "@@": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/.dumi/tmp",
       "regenerator-runtime": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/regenerator-runtime",
-      "nothing-ui-kit-react": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src",
+      "nothing-ui-kit-react": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/index.ts",
       "dumi$": "@@/dumi/exports",
-      "dumi/theme/layouts/DocLayout": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/layouts/DocLayout/index.js",
-      "dumi/theme/layouts/DemoLayout": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/layouts/DemoLayout/index.js",
+      "dumi/theme/layouts/DocLayout": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/layouts/DocLayout/index.js",
       "dumi/theme/builtins/API": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/API/index.js",
       "dumi/theme/builtins/Badge": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/Badge/index.js",
       "dumi/theme/builtins/CodeGroup": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/CodeGroup/index.js",
-      "dumi/theme/builtins/Container": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/builtins/Container/index.js",
-      "dumi/theme/builtins/Previewer": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/builtins/Previewer/index.js",
-      "dumi/theme/builtins/SourceCode": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/builtins/SourceCode/index.js",
+      "dumi/theme/builtins/Container": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/Container/index.js",
+      "dumi/theme/builtins/Previewer": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/Previewer/index.js",
+      "dumi/theme/builtins/SourceCode": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/SourceCode/index.js",
       "dumi/theme/builtins/Table": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/Table/index.js",
       "dumi/theme/builtins/Tree": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/builtins/Tree/index.js",
-      "dumi/theme/builtins/Features": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/builtins/Features/index.js",
       "dumi/theme/slots/ColorSwitch": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/ColorSwitch/index.js",
-      "dumi/theme/slots/Content": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Content/index.js",
-      "dumi/theme/slots/ContentFooter": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/ContentFooter/index.js",
-      "dumi/theme/slots/ContentTabs": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/ContentTabs/index.js",
-      "dumi/theme/slots/Features": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Features/index.js",
-      "dumi/theme/slots/Footer": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Footer/index.js",
-      "dumi/theme/slots/Header": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Header/index.js",
+      "dumi/theme/slots/Content": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Content/index.js",
+      "dumi/theme/slots/ContentFooter": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/ContentFooter/index.js",
+      "dumi/theme/slots/ContentTabs": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/ContentTabs/index.js",
+      "dumi/theme/slots/Features": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Features/index.js",
+      "dumi/theme/slots/Footer": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Footer/index.js",
+      "dumi/theme/slots/Header": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Header/index.js",
       "dumi/theme/slots/HeaderExtra": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/HeaderExtra/index.js",
-      "dumi/theme/slots/Hero": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Hero/index.js",
+      "dumi/theme/slots/Hero": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Hero/index.js",
       "dumi/theme/slots/HeroTitle": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/HeroTitle/index.js",
       "dumi/theme/slots/LangSwitch": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/LangSwitch/index.js",
-      "dumi/theme/slots/Loading": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Loading/index.js",
-      "dumi/theme/slots/Logo": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Logo/index.js",
-      "dumi/theme/slots/Navbar": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Navbar/index.js",
+      "dumi/theme/slots/Loading": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Loading/index.js",
+      "dumi/theme/slots/Logo": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Logo/index.js",
+      "dumi/theme/slots/Navbar": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Navbar/index.js",
       "dumi/theme/slots/NavbarExtra": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/NavbarExtra/index.js",
-      "dumi/theme/slots/NotFound": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/NotFound/index.js",
-      "dumi/theme/slots/PreviewerActions": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/PreviewerActions/index.js",
+      "dumi/theme/slots/NotFound": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/NotFound/index.js",
+      "dumi/theme/slots/PreviewerActions": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/PreviewerActions/index.js",
       "dumi/theme/slots/PreviewerActionsExtra": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/PreviewerActionsExtra/index.js",
       "dumi/theme/slots/RtlSwitch": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/RtlSwitch/index.js",
-      "dumi/theme/slots/SearchBar": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/SearchBar/index.js",
-      "dumi/theme/slots/SearchResult": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/SearchResult/index.js",
-      "dumi/theme/slots/Sidebar": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Sidebar/index.js",
+      "dumi/theme/slots/SearchBar": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/SearchBar/index.js",
+      "dumi/theme/slots/SearchResult": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/SearchResult/index.js",
+      "dumi/theme/slots/Sidebar": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Sidebar/index.js",
       "dumi/theme/slots/SocialIcon": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/SocialIcon/index.js",
       "dumi/theme/slots/SourceCodeEditor": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/SourceCodeEditor/index.js",
       "dumi/theme/slots/Tabs": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Tabs/index.js",
-      "dumi/theme/slots/Toc": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/Toc/index.js",
-      "dumi/theme/slots/ApiHeader": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/slots/ApiHeader/index.js",
+      "dumi/theme/slots/Toc": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/slots/Toc/index.js",
       "dumi/theme": "dumi/theme-original",
       "dumi/theme-original": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/.dumi/tmp/dumi/theme",
       "dumi/theme-default": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default"
@@ -3658,6 +2688,10 @@
           "title": "Components"
         },
         {
+          "link": "/showcase",
+          "title": "Showcase"
+        },
+        {
           "link": "/changelog",
           "title": "Changelog"
         }
@@ -3678,7 +2712,8 @@
         }
       ],
       "codeBlockMode": "active",
-      "forceKebabCaseRouting": true
+      "forceKebabCaseRouting": true,
+      "entryFile": "./src/index.ts"
     },
     "locales": [
       {
@@ -3699,7 +2734,7 @@
     "apiParser": false,
     "define": {
       "process.env": {
-        "TRAE_AI_SHELL_ID": "6",
+        "TRAE_AI_SHELL_ID": "3",
         "SAFE_RM_AUTO_ADD_TEMP": "1",
         "TERM_PROGRAM": "vscode",
         "NODE": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin/node",
@@ -3718,7 +2753,7 @@
         "COLOR": "1",
         "npm_config_noproxy": "",
         "npm_config_local_prefix": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
-        "TRAE_SANDBOX_TRACE_FILE": "/tmp/trae_sandbox_trace_c4938043-0849-4cc8-bffb-e4175ea2e3e3.jsonl",
+        "TRAE_SANDBOX_TRACE_FILE": "/tmp/trae_sandbox_trace_efbe6702-1d19-4f8f-abb9-0f1ae3e080ce.jsonl",
         "AI_AGENT": "TRAE",
         "USER": "ruishengzhang",
         "COMMAND_MODE": "unix2003",
@@ -3731,7 +2766,7 @@
         "PAGER": "",
         "TRAE_SANDBOX_CLI_PATH": "/Applications/Trae CN.app/Contents/Resources/app/modules/sandbox/trae-sandbox",
         "SAFE_RM_DENIED_PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.vscode:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.trae/mcp.json:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/.git",
-        "PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/node_modules/.bin:/Users/ruishengzhang/Documents/node_modules/.bin:/Users/ruishengzhang/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/homebrew/bin:/Applications/Trae CN.app/Contents/Resources/app/bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.local/bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/Applications/Trae CN.app/Contents/Resources/app/node_modules/@vscode/ripgrep/bin",
+        "PATH": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/Nothing-UI/node_modules/.bin:/Users/ruishengzhang/Documents/GitHub/node_modules/.bin:/Users/ruishengzhang/Documents/node_modules/.bin:/Users/ruishengzhang/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/homebrew/bin:/Applications/Trae CN.app/Contents/Resources/app/bin:/Users/ruishengzhang/.trae-cn/tools/trae-gopls/current:/Users/ruishengzhang/.trae-cn/sdks/workspaces/696fa557/versions/node/current:/Users/ruishengzhang/.trae-cn/sdks/versions/node/current:/Users/ruishengzhang/.codebuddy/bin:/Users/ruishengzhang/.local/bin:/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/bin:/Users/ruishengzhang/Tools/dotnet:/Applications/Trae CN.app/Contents/Resources/app/node_modules/@vscode/ripgrep/bin",
         "TRAE_JWT_TOKEN_PATH": "/Users/ruishengzhang/.trae-cn/trae-jwt-token",
         "npm_package_json": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/package.json",
         "_": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/.bin/dumi",
@@ -3739,10 +2774,10 @@
         "npm_config_init_module": "/Users/ruishengzhang/.npm-init.js",
         "USER_ZDOTDIR": "/Users/ruishengzhang",
         "__CFBundleIdentifier": "cn.trae.app",
-        "npm_command": "exec",
+        "npm_command": "run-script",
         "PWD": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react",
         "TERM_PRODUCT": "Trae",
-        "npm_lifecycle_event": "npx",
+        "npm_lifecycle_event": "docs:dev",
         "EDITOR": "vi",
         "npm_package_name": "nothing-ui-kit-react",
         "LANG": "C.UTF-8",
@@ -3753,19 +2788,19 @@
         "TRAE_SANDBOX_CONFIG_NAME": "6a0e7c9512ae5b435bd04c9c",
         "npm_config_node_gyp": "/Users/ruishengzhang/Tools/node/node-v23.9.0-darwin-arm64/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js",
         "npm_package_version": "1.0.0",
-        "TRAE_SANDBOX_LOG_DIR": "/Users/ruishengzhang/Library/Application Support/Trae CN/logs/20260618T115044/Modular",
+        "TRAE_SANDBOX_LOG_DIR": "/Users/ruishengzhang/Library/Application Support/Trae CN/logs/20260624T111230/Modular",
         "XPC_SERVICE_NAME": "0",
         "VSCODE_INJECTION": "1",
-        "SAFE_RM_SOURCE_FLAG": "/tmp/safe-rm-source-flag-68be8578-d4cd-4dda-9cec-0b8a63bec5b2",
+        "SAFE_RM_SOURCE_FLAG": "/tmp/safe-rm-source-flag-ebb6a1a8-807a-4540-8a17-f6ee40888997",
         "SHLVL": "2",
         "HOME": "/Users/ruishengzhang",
         "VSCODE_GIT_ASKPASS_MAIN": "/Applications/Trae CN.app/Contents/Resources/app/extensions/git/dist/askpass-main.js",
         "npm_config_cache": "/Users/ruishengzhang/.npm",
         "LOGNAME": "ruishengzhang",
-        "npm_lifecycle_script": "dumi",
+        "npm_lifecycle_script": "dumi dev",
         "VSCODE_GIT_IPC_HANDLE": "/var/folders/2p/rkmk652x5ps1w6pwqpp1pdqm0000gn/T/vscode-git-725ebfa432.sock",
-        "TRAE_SANDBOX_SOURCE_FLAG_PATH": "/tmp/sandbox-source-flag-8541da80-d50e-4714-bc4a-84781df60614",
-        "SAFE_RM_PROTECTION_FLAG": "/tmp/safe-rm-protection-flag-2fd2911d-2f0d-400c-93e9-bff9ef8e3cf2",
+        "TRAE_SANDBOX_SOURCE_FLAG_PATH": "/tmp/sandbox-source-flag-3b2be268-bf18-4232-badb-0ccff213e340",
+        "SAFE_RM_PROTECTION_FLAG": "/tmp/safe-rm-protection-flag-5508bfd2-9ac7-4762-96fd-d121c1a93476",
         "npm_config_user_agent": "npm/10.9.2 node/v23.9.0 darwin arm64 workspaces/false",
         "VSCODE_GIT_ASKPASS_NODE": "/Applications/Trae CN.app/Contents/Frameworks/Trae CN Helper (Plugin).app/Contents/MacOS/Trae CN Helper (Plugin)",
         "GIT_ASKPASS": "/Applications/Trae CN.app/Contents/Resources/app/extensions/git/dist/askpass.sh",
@@ -3787,7 +2822,7 @@
     ],
     "npmClient": "npm",
     "styles": [
-      "html, body { background: transparent; }\n    @media (prefers-color-scheme: dark) {\n      html, body { background: #000; }\n    }"
+      "html, body { background: #000; }\n    html[data-prefers-color=\"light\"],\n    html[data-prefers-color=\"light\"] body { background: #fff; }\n    .dumi-default-previewer-demo {\n      background: var(--surface, #111);\n      color: var(--text-primary, #E8E8E8);\n      padding: 24px;\n      border-radius: 8px;\n    }\n    html[data-prefers-color=\"light\"] .dumi-default-previewer-demo {\n      background: var(--surface, #FFFFFF);\n      color: var(--text-primary, #1A1A1A);\n    }"
     ],
     "title": "Nothing UI",
     "targets": {
@@ -3820,18 +2855,17 @@
     "DocLayout": {
       "id": "DocLayout",
       "path": "/",
-      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/layouts/DocLayout/index.js",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/theme-default/layouts/DocLayout/index.js",
       "parentId": "dumi-context-layout",
       "absPath": "/",
       "isLayout": true
     },
-    "DemoLayout": {
-      "id": "DemoLayout",
-      "path": "/",
-      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi-theme-lobehub/dist/layouts/DemoLayout/index.js",
-      "parentId": "dumi-context-layout",
-      "absPath": "/",
-      "isLayout": true
+    "docs/showcase": {
+      "path": "showcase",
+      "id": "docs/showcase",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/docs/showcase.md",
+      "absPath": "/showcase"
     },
     "docs/index": {
       "path": "",
@@ -4146,6 +3180,16 @@
       "absPath": "/components/modal",
       "parentId": "DocLayout",
       "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/Modal/index.md",
+      "meta": {
+        "_atom_route": true
+      }
+    },
+    "components/MotionProvider/index": {
+      "id": "components/MotionProvider/index",
+      "path": "components/motion-provider",
+      "absPath": "/components/motion-provider",
+      "parentId": "DocLayout",
+      "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/src/MotionProvider/index.md",
       "meta": {
         "_atom_route": true
       }
@@ -4494,7 +3538,7 @@
       "id": "demo-render",
       "path": "~demos/:id",
       "absPath": "/~demos/:id",
-      "parentId": "DemoLayout",
+      "parentId": "dumi-context-layout",
       "file": "/Users/ruishengzhang/Documents/GitHub/Nothing-UI/nothing-design-skill/nothing-design/web-ui-kit/react/node_modules/dumi/dist/client/pages/Demo/index.js"
     }
   },
@@ -4508,14 +3552,7 @@
     "cliName": "umi"
   },
   "bundleStatus": {
-    "done": true,
-    "progresses": [
-      {
-        "percent": 1,
-        "status": "",
-        "details": []
-      }
-    ]
+    "done": false
   },
   "react": {
     "version": "19.2.7",
@@ -4542,476 +3579,5 @@
   "port": 8001,
   "host": "0.0.0.0",
   "ip": "10.192.91.90",
-  "_2LevelNavAvailable": true,
-  "exportHtmlData": [
-    {
-      "route": {
-        "path": "/404"
-      },
-      "prerender": true,
-      "file": "404.html"
-    },
-    {
-      "route": {
-        "path": "/"
-      },
-      "prerender": true,
-      "file": "index.html"
-    },
-    {
-      "route": {
-        "path": "/components/accordion"
-      },
-      "prerender": true,
-      "file": "components/accordion/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/age-motion"
-      },
-      "prerender": true,
-      "file": "components/age-motion/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/alert"
-      },
-      "prerender": true,
-      "file": "components/alert/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/aspect-ratio"
-      },
-      "prerender": true,
-      "file": "components/aspect-ratio/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/avatar"
-      },
-      "prerender": true,
-      "file": "components/avatar/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/badge"
-      },
-      "prerender": true,
-      "file": "components/badge/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/battery"
-      },
-      "prerender": true,
-      "file": "components/battery/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/breadcrumb"
-      },
-      "prerender": true,
-      "file": "components/breadcrumb/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/button"
-      },
-      "prerender": true,
-      "file": "components/button/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/caffeinate"
-      },
-      "prerender": true,
-      "file": "components/caffeinate/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/calendar"
-      },
-      "prerender": true,
-      "file": "components/calendar/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/card"
-      },
-      "prerender": true,
-      "file": "components/card/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/checkbox"
-      },
-      "prerender": true,
-      "file": "components/checkbox/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/chrono"
-      },
-      "prerender": true,
-      "file": "components/chrono/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/clipboard"
-      },
-      "prerender": true,
-      "file": "components/clipboard/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/collapsible"
-      },
-      "prerender": true,
-      "file": "components/collapsible/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/command"
-      },
-      "prerender": true,
-      "file": "components/command/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/config-provider"
-      },
-      "prerender": true,
-      "file": "components/config-provider/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/context-menu"
-      },
-      "prerender": true,
-      "file": "components/context-menu/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/data-table"
-      },
-      "prerender": true,
-      "file": "components/data-table/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/date"
-      },
-      "prerender": true,
-      "file": "components/date/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/date-nav"
-      },
-      "prerender": true,
-      "file": "components/date-nav/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/dot-matrix"
-      },
-      "prerender": true,
-      "file": "components/dot-matrix/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/dropdown-menu"
-      },
-      "prerender": true,
-      "file": "components/dropdown-menu/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/error-boundary"
-      },
-      "prerender": true,
-      "file": "components/error-boundary/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/form"
-      },
-      "prerender": true,
-      "file": "components/form/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/hover-card"
-      },
-      "prerender": true,
-      "file": "components/hover-card/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/input"
-      },
-      "prerender": true,
-      "file": "components/input/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/input-otp"
-      },
-      "prerender": true,
-      "file": "components/input-otp/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/label"
-      },
-      "prerender": true,
-      "file": "components/label/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/modal"
-      },
-      "prerender": true,
-      "file": "components/modal/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/music-player"
-      },
-      "prerender": true,
-      "file": "components/music-player/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/navigation"
-      },
-      "prerender": true,
-      "file": "components/navigation/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/navigation-menu"
-      },
-      "prerender": true,
-      "file": "components/navigation-menu/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/next-event"
-      },
-      "prerender": true,
-      "file": "components/next-event/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/overlay-portal"
-      },
-      "prerender": true,
-      "file": "components/overlay-portal/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/pagination"
-      },
-      "prerender": true,
-      "file": "components/pagination/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/photo-carousel"
-      },
-      "prerender": true,
-      "file": "components/photo-carousel/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/pomodoro"
-      },
-      "prerender": true,
-      "file": "components/pomodoro/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/popover"
-      },
-      "prerender": true,
-      "file": "components/popover/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/progress-bar"
-      },
-      "prerender": true,
-      "file": "components/progress-bar/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/quick-toggle"
-      },
-      "prerender": true,
-      "file": "components/quick-toggle/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/quotes"
-      },
-      "prerender": true,
-      "file": "components/quotes/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/radio-group"
-      },
-      "prerender": true,
-      "file": "components/radio-group/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/resizable"
-      },
-      "prerender": true,
-      "file": "components/resizable/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/scroll-area"
-      },
-      "prerender": true,
-      "file": "components/scroll-area/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/segmented-control"
-      },
-      "prerender": true,
-      "file": "components/segmented-control/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/select"
-      },
-      "prerender": true,
-      "file": "components/select/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/separator"
-      },
-      "prerender": true,
-      "file": "components/separator/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/sheet"
-      },
-      "prerender": true,
-      "file": "components/sheet/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/sidebar"
-      },
-      "prerender": true,
-      "file": "components/sidebar/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/slider"
-      },
-      "prerender": true,
-      "file": "components/slider/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/spinner"
-      },
-      "prerender": true,
-      "file": "components/spinner/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/states"
-      },
-      "prerender": true,
-      "file": "components/states/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/sun-dial"
-      },
-      "prerender": true,
-      "file": "components/sun-dial/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/switch"
-      },
-      "prerender": true,
-      "file": "components/switch/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/system-monitor"
-      },
-      "prerender": true,
-      "file": "components/system-monitor/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/tabs"
-      },
-      "prerender": true,
-      "file": "components/tabs/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/tag"
-      },
-      "prerender": true,
-      "file": "components/tag/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/taskbar"
-      },
-      "prerender": true,
-      "file": "components/taskbar/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/textarea"
-      },
-      "prerender": true,
-      "file": "components/textarea/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/toggle"
-      },
-      "prerender": true,
-      "file": "components/toggle/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/tooltip"
-      },
-      "prerender": true,
-      "file": "components/tooltip/index.html"
-    },
-    {
-      "route": {
-        "path": "/components/walkie-talkie"
-      },
-      "prerender": true,
-      "file": "components/walkie-talkie/index.html"
-    },
-    {
-      "route": {
-        "path": "/~demos/:id"
-      },
-      "prerender": true,
-      "file": "~demos/:id/index.html"
-    }
-  ]
+  "_2LevelNavAvailable": true
 }

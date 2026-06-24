@@ -12,6 +12,9 @@
  * ```
  */
 
+// ===== 全局样式（设计令牌）=====
+import './styles/tokens.css'
+
 // ===== Providers =====
 export { default as ConfigProvider, useConfig, useCdnFn } from './ConfigProvider'
 export type { Config, CDNProxy, CdnApi, CdnFn, ConfigProviderProps } from './ConfigProvider'

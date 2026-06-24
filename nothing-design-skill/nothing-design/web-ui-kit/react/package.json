@@ -70,7 +70,6 @@
     "autoprefixer": "^10.5.0",
     "dpdm": "^4.2.0",
     "dumi": "^2.4.34",
-    "dumi-theme-lobehub": "^5.0.0",
     "eslint": "^9.0.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.0",

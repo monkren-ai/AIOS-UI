@@ -29,7 +29,7 @@ function ConfigInfo() {
   const config = useConfig()
   const cdnUrl = useCdnFn()
   const { theme, isDarkMode, toggleTheme } = useTheme()
-  const url = cdnUrl({ pkg: '@lobehub/icons', version: '1.0.0', path: '/svg/openai.svg' })
+  const url = cdnUrl({ pkg: '@nothing-ui/icons', version: '1.0.0', path: '/svg/logo.svg' })
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>

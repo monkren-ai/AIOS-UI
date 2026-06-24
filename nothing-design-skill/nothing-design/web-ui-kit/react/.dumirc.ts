@@ -1,12 +1,11 @@
 import { resolve } from 'node:path';
 import { defineConfig } from 'dumi';
-import type { SiteThemeConfig } from 'dumi-theme-lobehub';
 import { description, name } from './package.json';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const homepage = 'https://github.com/nothing-ui/nothing-ui';
 
-const themeConfig: SiteThemeConfig = {
+const themeConfig = {
   actions: [
     {
       github: true,
@@ -31,6 +30,7 @@ const themeConfig: SiteThemeConfig = {
   name: 'Nothing UI',
   nav: [
     { link: '/components/button', title: 'Components' },
+    { link: '/showcase', title: 'Showcase' },
     { link: '/changelog', title: 'Changelog' },
   ],
   prefersColor: {
@@ -59,12 +59,21 @@ export default defineConfig({
   publicPath: '/',
   resolve: {
     atomDirs: [{ dir: 'src', type: 'component' }],
-    entryFile: isProduction ? './src/index.ts' : undefined,
+    entryFile: './src/index.ts',
   },
   styles: [
-    `html, body { background: transparent; }
-    @media (prefers-color-scheme: dark) {
-      html, body { background: #000; }
+    `html, body { background: #000; }
+    html[data-prefers-color="light"],
+    html[data-prefers-color="light"] body { background: #fff; }
+    .dumi-default-previewer-demo {
+      background: var(--surface, #111);
+      color: var(--text-primary, #E8E8E8);
+      padding: 24px;
+      border-radius: 8px;
+    }
+    html[data-prefers-color="light"] .dumi-default-previewer-demo {
+      background: var(--surface, #FFFFFF);
+      color: var(--text-primary, #1A1A1A);
     }`,
   ],
   themeConfig,

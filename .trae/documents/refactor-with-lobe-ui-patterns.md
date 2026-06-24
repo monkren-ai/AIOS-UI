@@ -1,6 +1,6 @@
-# Nothing-UI 重构计划：借鉴 lobehub/lobe-ui 架构模式
+# Nothing-UI 重构计划：借鉴 lobe-ui 架构模式
 
-> 参考项目：https://github.com/lobehub/lobe-ui
+> 参考项目：lobe-ui（社区组件库工程化架构范例）
 > 设计原则：保持 Nothing 设计语言风格不变，借鉴 lobe-ui 的工程化架构
 
 ## 摘要
@@ -33,11 +33,11 @@
 11. 缺少组件 JSDoc 文档
 12. 缺少测试与文档系统
 
-### lobehub/lobe-ui 借鉴点
+### lobe-ui 借鉴点
 - **一组件一目录**：`src/Button/{Button.tsx, style.ts, type.ts, index.ts, index.md, demos/}`
 - **ConfigProvider**：统一配置（theme、motion、locale）
 - **MotionProvider**：动画组件注入
-- **多入口导出**：`@lobehub/ui/chat`、`@lobehub/ui/mobile` 等
+- **多入口导出**：`nothing-ui/<subpath>` 等
 - **tsdown 构建**：unbundle 模式，多入口
 - **dumi 文档**：每个组件 index.md + demos/
 - **vitest 测试**：核心组件单测
@@ -63,7 +63,7 @@
 
 #### 1.1 安装新依赖
 - `@base-ui/react` - 无头组件库
-- `dumi` + `dumi-theme-lobehub` - 文档系统
+- `dumi` - 文档系统
 - `vitest` + `@testing-library/react` + `jsdom` - 测试
 - `tsdown` - 构建工具
 - `husky` + `commitlint` + `lint-staged` - 工程化
@@ -100,7 +100,7 @@
 
 #### 1.7 配置 dumi 文档
 - 新建 `.dumirc.ts`
-- 配置 `dumi-theme-lobehub` 主题
+- 配置 dumi 内置主题
 - 配置导航与分组
 
 #### 1.8 配置 vitest

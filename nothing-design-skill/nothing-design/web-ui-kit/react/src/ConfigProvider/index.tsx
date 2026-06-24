@@ -83,7 +83,7 @@ export function useConfig(): Config | null {
  * @example
  * ```tsx
  * const cdnUrl = useCdnFn()
- * const url = cdnUrl({ pkg: '@lobehub/icons', version: '1.0.0', path: '/svg/openai.svg' })
+ * const url = cdnUrl({ pkg: '@nothing-ui/icons', version: '1.0.0', path: '/svg/logo.svg' })
  * ```
  */
 export function useCdnFn(): CdnFn {

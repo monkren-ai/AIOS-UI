@@ -134,9 +134,12 @@
   --switch-coarse-thumb-active-offset: 24px;
 }
 
-/* ===== 暗色主题（默认）===== */
+/* ===== 暗色主题（默认）=====
+ * 同时响应 [data-theme]（ThemeProvider）和 [data-prefers-color]（dumi）。
+ */
 :root,
-[data-theme="dark"] {
+[data-theme="dark"],
+[data-prefers-color="dark"] {
   --black: #000000;
   --surface: #111111;
   --surface-raised: #1A1A1A;
@@ -164,7 +167,8 @@
 }
 
 /* ===== 亮色主题 ===== */
-[data-theme="light"] {
+[data-theme="light"],
+[data-prefers-color="light"] {
   --black: #FFFFFF;
   --surface: #FFFFFF;
   --surface-raised: #F0F0F0;
