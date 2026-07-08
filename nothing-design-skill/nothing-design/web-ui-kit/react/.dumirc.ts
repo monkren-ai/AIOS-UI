@@ -3,7 +3,9 @@ import { defineConfig } from 'dumi';
 import { description, name } from './package.json';
 
 const isProduction = process.env.NODE_ENV === 'production';
-const homepage = 'https://github.com/nothing-ui/nothing-ui';
+const repoName = 'Nothing-UI';
+const basePath = `/${repoName}/`;
+const homepage = `https://github.com/monkren-ai/${repoName}`;
 
 const themeConfig = {
   actions: [
@@ -48,7 +50,7 @@ export default defineConfig({
     '@': resolve(__dirname, './src'),
   },
   apiParser: isProduction ? {} : false,
-  base: '/',
+  base: basePath,
   define: {
     'process.env': process.env,
   },
@@ -56,7 +58,7 @@ export default defineConfig({
   locales: [{ id: 'en-US', name: 'English' }],
   mfsu: {},
   npmClient: 'npm',
-  publicPath: '/',
+  publicPath: basePath,
   resolve: {
     atomDirs: [{ dir: 'src', type: 'component' }],
     entryFile: './src/index.ts',
