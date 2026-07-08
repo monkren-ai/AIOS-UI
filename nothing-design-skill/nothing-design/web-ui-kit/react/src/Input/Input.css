@@ -83,5 +83,6 @@
 }
 
 .nothing-input__field:focus-visible {
-  outline: none;
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
 }

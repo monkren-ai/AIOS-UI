@@ -21,12 +21,15 @@
   --widget-label: 10px;
   --widget-micro: 8px;
 
-  /* ===== 字体族 ===== */
-  --font-display: 'Doto', 'Space Mono', 'JetBrains Mono', monospace;
-  --font-body: 'Space Grotesk', 'DM Sans', system-ui, sans-serif;
-  --font-mono: 'Space Mono', 'JetBrains Mono', monospace;
-  --font-ndot: 'NDOT 47', 'Space Mono', 'JetBrains Mono', monospace;
-  --font-widget: 'Space Grotesk', 'DM Sans', system-ui, sans-serif;
+  /* ===== 字体族 =====
+   * 全部使用 monospace fallback 链，避免 Doto/Space Mono 未加载时掉到 sans-serif
+   * 破坏 "工业控制台" 视觉一致性。
+   */
+  --font-display: 'Doto', 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
+  --font-body: 'Space Grotesk', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
+  --font-ndot: 'NDOT 47', 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
+  --font-widget: 'Space Grotesk', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
 
   /* ===== 字重 ===== */
   --weight-light: 300;
@@ -53,14 +56,16 @@
   --space-3xl: 64px;
   --space-4xl: 96px;
 
-  /* ===== 圆角 ===== */
+  /* ===== 圆角 =====
+   * 缩小到 2-6px 工业风区间。lg/xl 主要给 widget 容器，组件本体用 xs/sm 保持几何诚实。
+   */
   --radius-2xs: 2px;
-  --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 20px;
-  --radius-xl: 24px;
-  --radius-2xl: 24px;
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
   --radius-pill: 999px;
 
   /* ===== 主题色 =====
@@ -111,7 +116,6 @@
   --ease-back: cubic-bezier(.34, 1.56, .64, 1);
 
   /* ===== 工具色 ===== */
-  --utility-orange: #f26522;
   --accent-red: var(--accent);
 
   /* ===== Z-index 层级 ===== */
@@ -135,7 +139,7 @@
 }
 
 /* ===== 暗色主题（默认）=====
- * 同时响应 [data-theme]（ThemeProvider）和 [data-prefers-color]（dumi）。
+ * 通过 [data-theme]（ThemeProvider）切换；保留 [data-prefers-color] 选择器以便外部文档站（如 Storybook）复用。
  */
 :root,
 [data-theme="dark"],
@@ -145,7 +149,7 @@
   --surface-raised: #1A1A1A;
   --border: #222222;
   --border-visible: #333333;
-  --text-disabled: #666666;
+  --text-disabled: #7A7A7A;
   --text-secondary: #999999;
   --text-primary: #E8E8E8;
   --text-display: #FFFFFF;

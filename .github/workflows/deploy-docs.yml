@@ -1,4 +1,4 @@
-name: Deploy Docs to GitHub Pages
+name: Deploy Showcase to GitHub Pages
 
 on:
   push:
@@ -32,11 +32,11 @@ jobs:
         working-directory: nothing-design-skill/nothing-design/web-ui-kit/react
         run: npm ci
 
-      - name: Build docs site
+      - name: Build showcase
         working-directory: nothing-design-skill/nothing-design/web-ui-kit/react
         env:
           NODE_ENV: production
-        run: npm run docs:build
+        run: npm run build:showcase
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

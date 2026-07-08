@@ -13,7 +13,6 @@
   color: var(--popover-fg);
   border: 1px solid var(--border-visible);
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-drop);
   padding: var(--space-xs) 0;
   min-width: 180px;
   opacity: 0;

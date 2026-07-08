@@ -12,7 +12,7 @@ import './Modal.css'
 
 const modalBackdropVariants = cva('nothing-modal-backdrop', {
   variants: {
-    alert: { true: 'nothing-modal-backdrop--blur', false: '' },
+    alert: { true: '', false: '' },
     visible: { true: 'nothing-modal-backdrop--visible', false: '' },
   },
   defaultVariants: { alert: false, visible: false },
@@ -82,6 +82,26 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       }
     })
 
+    const generatedId = React.useId()
+    const titleId = title ? `${generatedId}-title` : undefined
+    const descriptionId = description ? `${generatedId}-description` : undefined
+
+    const previouslyFocused = React.useRef<HTMLElement | null>(null)
+    React.useEffect(() => {
+      if (isOpen) {
+        previouslyFocused.current = document.activeElement as HTMLElement | null
+        const node = trapRef.current
+        if (node) {
+          const focusable = node.querySelector<HTMLElement>(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          )
+          ;(focusable ?? node).focus()
+        }
+      } else {
+        previouslyFocused.current?.focus()
+      }
+    }, [isOpen, trapRef])
+
     const setDialogRefs = React.useCallback(
       (node: HTMLDivElement | null) => {
         trapRef.current = node
@@ -115,9 +135,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
     const isAlert = variant === 'alert'
     const noHeader = !title && !isAlert
-
-    const titleId = title ? 'nothing-modal-title' : undefined
-    const descriptionId = description ? 'nothing-modal-description' : undefined
 
     return (
       <OverlayPortal open={isOpen}>

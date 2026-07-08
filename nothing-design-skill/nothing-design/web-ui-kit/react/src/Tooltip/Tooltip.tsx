@@ -46,6 +46,17 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       [ref]
     )
 
+    const FOCUSABLE_TAGS = new Set(['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'])
+    const childIsFocusable =
+      React.isValidElement(children) &&
+      FOCUSABLE_TAGS.has((children.type as { displayName?: string; name?: string })?.displayName ||
+        (children.type as { displayName?: string; name?: string })?.name ||
+        '') === false
+        ? false
+        : React.isValidElement(children) &&
+          (FOCUSABLE_TAGS.has((children.type as unknown) as never) ||
+            (children.props as { tabIndex?: number })?.tabIndex !== undefined)
+
     const show = React.useCallback(() => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
       timeoutRef.current = setTimeout(() => {
@@ -89,9 +100,9 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           onFocus={show}
           onBlur={hide}
           onKeyDown={handleKeyDown}
-          aria-describedby={tooltipId}
+          aria-describedby={visible ? tooltipId : undefined}
         >
-          {children}
+          {triggerChild}
         </span>
         <div
           ref={setRefs}

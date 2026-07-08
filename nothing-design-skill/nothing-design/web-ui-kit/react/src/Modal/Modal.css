@@ -12,10 +12,6 @@
               visibility var(--duration-transition) var(--easing);
 }
 
-.nothing-modal-backdrop--blur {
-  backdrop-filter: blur(4px);
-}
-
 .nothing-modal-backdrop--visible {
   opacity: 1;
   visibility: visible;

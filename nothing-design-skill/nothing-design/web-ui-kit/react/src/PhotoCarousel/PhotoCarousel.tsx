@@ -7,7 +7,7 @@ import './PhotoCarousel.css'
 interface Slide {
   title: string
   subtitle?: string
-  /** CSS background (gradient / color). 默认 4 色循环. */
+  /** CSS background (gradient / color). 默认回退到 var(--surface-raised)。 */
   gradient?: string
   /** 可选图片 URL (优先于 gradient). */
   image?: string
@@ -40,10 +40,10 @@ export interface PhotoCarouselProps
 }
 
 const defaultSlides: Slide[] = [
-  { title: 'Solar Flare', subtitle: 'Chromosphere · H-alpha', gradient: 'linear-gradient(135deg, #ff5b1f 0%, #ffb627 100%)' },
-  { title: 'Verdant', subtitle: 'Coastal pine · 04:21', gradient: 'linear-gradient(135deg, #0a3d2c 0%, #1ec27e 100%)' },
-  { title: 'Glacial', subtitle: 'Polar · -12°C', gradient: 'linear-gradient(135deg, #0a1d3a 0%, #4a8bff 100%)' },
-  { title: 'Ember', subtitle: 'Magma flow', gradient: 'linear-gradient(135deg, #6a0e2a 0%, #ff3066 100%)' },
+  { title: 'Solar Flare', subtitle: 'Chromosphere · H-alpha' },
+  { title: 'Verdant', subtitle: 'Coastal pine · 04:21' },
+  { title: 'Glacial', subtitle: 'Polar · -12°C' },
+  { title: 'Ember', subtitle: 'Magma flow' },
 ]
 
 export const PhotoCarousel = React.forwardRef<HTMLDivElement, PhotoCarouselProps>(

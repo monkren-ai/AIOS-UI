@@ -2,8 +2,9 @@
   display: flex;
   gap: var(--space-md);
   padding: var(--space-md);
+  padding-top: calc(var(--space-md) + 2px);
   border: 1px solid var(--border-visible);
-  border-left: 3px solid var(--border-visible);
+  border-top: 3px solid var(--border-visible);
   border-radius: var(--radius-md);
   background: var(--surface);
   color: var(--text-primary);
@@ -13,11 +14,11 @@
 }
 
 .nothing-alert--default {
-  border-left-color: var(--border-visible);
+  border-top-color: var(--border-visible);
 }
 
 .nothing-alert--destructive {
-  border-left-color: var(--accent);
+  border-top-color: var(--accent);
   background: var(--accent-subtle);
 }
 

@@ -73,7 +73,6 @@
   background: var(--popover-bg);
   border: 1px solid var(--border-visible);
   border-radius: var(--radius-sm);
-  box-shadow: 0 4px 12px var(--shadow-drop);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-4px);

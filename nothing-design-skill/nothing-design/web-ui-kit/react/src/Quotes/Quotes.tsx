@@ -25,14 +25,14 @@ export interface QuoteData {
 }
 
 const defaultQuotes: QuoteData[] = [
-  { text: 'Simplicity is the ultimate sophistication.', author: 'Leonardo da Vinci' },
-  { text: 'Design is not just what it looks like. Design is how it works.', author: 'Steve Jobs' },
-  { text: 'Innovation distinguishes between a leader and a follower.', author: 'Steve Jobs' },
-  { text: 'Stay hungry, stay foolish.', author: 'Stewart Brand' },
-  { text: 'The best way to predict the future is to invent it.', author: 'Alan Kay' },
   { text: 'Less, but better.', author: 'Dieter Rams' },
-  { text: 'Technology is best when it brings people together.', author: 'Matt Mullenweg' },
+  { text: 'We remove everything that is unnecessary.', author: 'Nothing Design Principles' },
+  { text: 'Weniger, aber besser.', author: 'Dieter Rams' },
+  { text: 'Form follows function.', author: 'Louis Sullivan' },
+  { text: 'Good design is as little design as possible.', author: 'Dieter Rams' },
+  { text: 'The details are not the details. They make the design.', author: 'Charles Eames' },
   { text: 'Make it work, make it right, make it fast.', author: 'Kent Beck' },
+  { text: 'Innovation distinguishes between a leader and a follower.', author: 'Steve Jobs' },
 ]
 
 export interface QuotesProps
@@ -74,9 +74,28 @@ export const Quotes = React.forwardRef<HTMLDivElement, QuotesProps>(
         data-real={dataAttr(real)}
         {...props}
       >
-        <svg className="nothing-quotes__svg" viewBox="0 0 200 200">
-          <circle className="nothing-quotes__outer" cx="100" cy="100" r="95" />
-          <circle className="nothing-quotes__inner" cx="100" cy="100" r="85" />
+        <svg
+          className="nothing-quotes__svg"
+          viewBox="0 0 200 200"
+          aria-hidden="true"
+        >
+          <circle
+            className="nothing-quotes__ring nothing-quotes__ring--bg"
+            cx="100"
+            cy="100"
+            r="95"
+            fill="none"
+          />
+          <circle
+            className="nothing-quotes__ring nothing-quotes__ring--progress"
+            cx="100"
+            cy="100"
+            r="95"
+            fill="none"
+            pathLength="100"
+            strokeDasharray="100"
+            strokeDashoffset={100 - ((currentIndex + 1) / quotes.length) * 100}
+          />
         </svg>
         <div className="nothing-quotes__content">
           <div className="nothing-quotes__text">{quote.text}</div>

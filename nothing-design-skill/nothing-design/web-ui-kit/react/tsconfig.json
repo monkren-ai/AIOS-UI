@@ -16,8 +16,7 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@@/*": ["./.dumi/tmp/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]

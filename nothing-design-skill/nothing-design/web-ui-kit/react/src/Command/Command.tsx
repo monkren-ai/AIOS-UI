@@ -58,6 +58,10 @@ export const Command = React.forwardRef<HTMLDivElement, CommandProps>(
     const inputRef = React.useRef<HTMLInputElement | null>(null)
     const listRef = React.useRef<HTMLDivElement | null>(null)
 
+    const generatedId = React.useId()
+    const labelId = `${generatedId}-label`
+    const listId = `${generatedId}-list`
+
     const setContainerRefs = React.useCallback(
       (node: HTMLDivElement | null) => {
         containerRef.current = node
@@ -187,11 +191,13 @@ export const Command = React.forwardRef<HTMLDivElement, CommandProps>(
                 return (
                   <div
                     key={item.id}
+                    id={`${generatedId}-item-${item.id}`}
                     className={cn(
                       commandItemVariants({ selected: isSelected, disabled: !!item.disabled })
                     )}
                     role="option"
                     aria-selected={isSelected}
+                    aria-disabled={item.disabled || undefined}
                     onClick={() => handleSelect(item)}
                     onMouseEnter={() => setSelectedIndex(currentIndex)}
                     data-state={dataAttr(isSelected ? 'selected' : 'idle')}

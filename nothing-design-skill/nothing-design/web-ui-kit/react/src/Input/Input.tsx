@@ -49,13 +49,19 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       id,
       onChange,
       className,
-      style
+      style,
+      type = 'text',
+      autoComplete,
+      inputMode,
+      name,
+      ...rest
     },
     ref
   ) => {
     const [internalValue, setInternalValue] = React.useState('')
     const generatedId = React.useId()
     const inputId = id || generatedId
+    const errorId = `${inputId}-error`
     const value = controlledValue !== undefined ? controlledValue : internalValue
     const hasError = Boolean(error)
 
@@ -82,14 +88,24 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           className="nothing-input__field"
-          type="text"
+          type={type}
           id={inputId}
+          name={name}
           placeholder={placeholder}
           value={value}
           disabled={disabled}
           onChange={handleChange}
+          autoComplete={autoComplete}
+          inputMode={inputMode}
+          aria-invalid={hasError || undefined}
+          aria-describedby={hasError ? errorId : undefined}
+          {...rest}
         />
-        {hasError && <div className="nothing-input__error">{error}</div>}
+        {hasError && (
+          <div id={errorId} className="nothing-input__error" role="alert">
+            {error}
+          </div>
+        )}
       </div>
     )
   }

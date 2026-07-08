@@ -2,7 +2,6 @@
   background: var(--surface-raised);
   border: 1px solid var(--border-visible);
   border-radius: var(--radius-lg);
-  box-shadow: 0 4px 16px var(--shadow-drop);
   overflow: hidden;
   width: 100%;
   max-width: 480px;

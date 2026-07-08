@@ -15,7 +15,6 @@
   color: var(--popover-fg);
   border: 1px solid var(--border-visible);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-drop);
   padding: var(--space-md);
   opacity: 0;
   visibility: hidden;

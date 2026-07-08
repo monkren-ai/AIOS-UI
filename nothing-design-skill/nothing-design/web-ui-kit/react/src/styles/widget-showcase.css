@@ -1,30 +1,30 @@
 /* Widget showcase dashboard — namespaced under .widget-showcase */
 /* Reference: NullframeDashboard Bento grid pattern */
+/* Asymmetric layout: max-width removed; left edge anchored, right edge flows to viewport */
 
 .widget-showcase {
-  --radius-card: 16px;
-  --radius-card-sm: 14px;
-  --shine-glow: rgb(255 255 255 / 0.04);
-  --shine-peak: rgb(255 255 255 / 0.10);
+  --radius-card: var(--radius-lg);
+  --radius-card-sm: var(--radius-md);
   margin-bottom: 0;
 }
 
 .widget-showcase .bento {
   width: 100%;
-  max-width: 1120px;
+  max-width: 1240px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
-  gap: var(--space-sm);
+  gap: var(--space-md);
+  margin-left: 0;
+  margin-right: auto;
 }
 
-/* Shared card base — mirrors .nullframe-dashboard .card core layout */
 .widget-showcase .card {
   position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
-  padding: 24px;
+  padding: var(--space-lg);
   display: flex;
   flex-direction: column;
   transition: border-color 0.2s ease-out, opacity 0.45s var(--ease);
@@ -34,39 +34,11 @@
   border-color: var(--border-visible);
 }
 
-.widget-showcase .shine {
-  position: absolute;
-  top: -30%;
-  bottom: -30%;
-  left: -140px;
-  width: 110px;
-  background: linear-gradient(100deg, transparent, var(--shine-glow) 35%, var(--shine-peak) 50%, var(--shine-glow) 65%, transparent);
-  transform: skewX(-14deg);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.widget-showcase .card:hover .shine {
-  animation: showcase-shimmer 0.35s var(--ease) forwards;
-}
-
-@keyframes showcase-shimmer {
-  0% {
-    left: -140px;
-    opacity: 1;
-  }
-  100% {
-    left: 110%;
-    opacity: 0;
-  }
-}
-
 .widget-showcase .tag {
   position: absolute;
   top: 21px;
   right: 18px;
-  font: 700 11px/1 'Space Mono', monospace;
+  font: 700 11px/1 var(--font-mono);
   letter-spacing: 0.10em;
   color: var(--text-disabled);
   opacity: 0;
@@ -83,13 +55,13 @@
   justify-content: space-between;
   align-items: baseline;
   gap: var(--space-sm);
-  font: 400 11px/1.5 'Space Mono', monospace;
+  font: 400 11px/1.5 var(--font-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-secondary);
 }
 
-/* Card size variants for grid placement */
+/* Asymmetric card spans — first row visually weighted left, right column breathes */
 .widget-showcase .card-wide {
   grid-column: span 2;
 }
@@ -98,22 +70,37 @@
   grid-row: span 2;
 }
 
-/* Responsive */
+.widget-showcase .card-3 {
+  grid-column: span 3;
+}
+
+.widget-showcase .card-1 {
+  grid-column: span 1;
+}
+
 @media (max-width: 940px) {
   .widget-showcase .bento {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-flow: dense;
+    gap: var(--space-sm);
+  }
+  .widget-showcase .card-3 {
+    grid-column: span 2;
   }
 }
 
 @media (max-width: 520px) {
   .widget-showcase .bento {
-    gap: 8px;
+    gap: var(--space-xs);
   }
 
   .widget-showcase .card {
     padding: var(--space-md);
     border-radius: var(--radius-card-sm);
+  }
+  .widget-showcase .card-3,
+  .widget-showcase .card-wide {
+    grid-column: span 2;
   }
 }
 

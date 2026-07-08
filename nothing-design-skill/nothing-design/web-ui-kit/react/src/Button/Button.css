@@ -104,3 +104,30 @@
 .nothing-btn--full {
   width: 100%;
 }
+
+.nothing-btn--loading {
+  cursor: wait;
+  opacity: 0.85;
+}
+
+.nothing-btn--loading .nothing-btn__content {
+  opacity: 0.6;
+}
+
+.nothing-btn__spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--space-xs);
+  animation: nothing-btn-spin 0.9s linear infinite;
+}
+
+@keyframes nothing-btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-btn__spinner {
+    animation-duration: 3s;
+  }
+}

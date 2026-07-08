@@ -33,7 +33,6 @@
   max-width: 90vw;
   border-left: 1px solid var(--border-visible);
   border-radius: var(--radius-lg) 0 0 var(--radius-lg);
-  box-shadow: -4px 0 16px var(--shadow-drop);
   transform: translateX(100%);
 }
 
@@ -45,7 +44,6 @@
   max-width: 90vw;
   border-right: 1px solid var(--border-visible);
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-  box-shadow: 4px 0 16px var(--shadow-drop);
   transform: translateX(-100%);
 }
 
@@ -57,7 +55,6 @@
   max-height: 90vh;
   border-bottom: 1px solid var(--border-visible);
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  box-shadow: 0 4px 16px var(--shadow-drop);
   transform: translateY(-100%);
 }
 
@@ -69,7 +66,6 @@
   max-height: 90vh;
   border-top: 1px solid var(--border-visible);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  box-shadow: 0 -4px 16px var(--shadow-drop);
   transform: translateY(100%);
 }
 

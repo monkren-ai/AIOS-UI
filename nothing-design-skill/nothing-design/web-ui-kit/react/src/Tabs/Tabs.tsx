@@ -151,8 +151,10 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       [items, findNextEnabled, handleSelect]
     )
 
-    const panels = children as React.ReactElement<TabPanelProps>[]
-    const activePanel = panels.find((panel) => panel.props.value === selectedValue)
+    const panels = (children ? (Array.isArray(children) ? children : [children]) : []) as React.ReactElement<TabPanelProps>[]
+    const matchedPanels = panels.filter(
+      (panel): panel is React.ReactElement<TabPanelProps> => React.isValidElement(panel) && panel.props.value !== undefined
+    )
 
     return (
       <div
@@ -191,17 +193,25 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
           })}
           <div className="nothing-tabs__indicator" style={indicatorStyle} />
         </div>
-        {activePanel && (
-          <div
-            id={`${baseId}-panel-${selectedValue}`}
-            className="nothing-tabs__panel"
-            role="tabpanel"
-            aria-labelledby={`${baseId}-tab-${selectedValue}`}
-            data-state={dataAttr('active')}
-          >
-            {activePanel.props.children}
-          </div>
-        )}
+        {matchedPanels.map((panel) => {
+          const panelValue = panel.props.value
+          const isActive = panelValue === selectedValue
+          const panelId = `${baseId}-panel-${panelValue}`
+          return (
+            <div
+              key={panelValue}
+              id={panelId}
+              className="nothing-tabs__panel"
+              role="tabpanel"
+              aria-labelledby={`${baseId}-tab-${panelValue}`}
+              hidden={!isActive}
+              tabIndex={0}
+              data-state={dataAttr(isActive ? 'active' : 'inactive')}
+            >
+              {panel.props.children}
+            </div>
+          )
+        })}
       </div>
     )
   }

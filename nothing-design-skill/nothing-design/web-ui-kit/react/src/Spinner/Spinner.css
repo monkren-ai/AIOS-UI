@@ -27,7 +27,6 @@
   border-right: 12px solid transparent;
   border-top: 20px solid var(--accent);
   z-index: 2;
-  filter: drop-shadow(0 2px 4px var(--shadow-drop));
   transition: border-top-color var(--duration-transition) var(--easing);
 }
 

@@ -82,7 +82,6 @@
   background: var(--popover-bg);
   border: 1px solid var(--border-visible);
   border-radius: var(--radius-sm);
-  box-shadow: 0 4px 16px var(--shadow-drop);
   z-index: var(--z-overlay);
   overflow: hidden;
   animation: nothing-select-enter var(--duration-micro) var(--easing);
