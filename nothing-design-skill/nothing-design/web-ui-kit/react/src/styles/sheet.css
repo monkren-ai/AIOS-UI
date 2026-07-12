@@ -128,8 +128,8 @@
 }
 
 .nothing-sheet__close:focus-visible {
-  outline: 2px solid var(--interactive);
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .nothing-sheet__body {
@@ -183,8 +183,8 @@
 }
 
 .nothing-sheet__dismiss:focus-visible {
-  outline: 2px solid var(--interactive);
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .nothing-sheet__section {

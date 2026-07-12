@@ -135,7 +135,7 @@ export const ContextMenu = React.forwardRef<HTMLDivElement, ContextMenuProps>(
               position: 'fixed',
               top: position.top,
               left: position.left,
-              zIndex: 'var(--z-overlay)',
+              zIndex: 'var(--z-dropdown)',
             }}
             onKeyDown={(e) => {
               if (activeIndex >= 0) {

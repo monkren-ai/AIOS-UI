@@ -5,7 +5,7 @@
   box-shadow: 0 4px 16px var(--shadow-drop);
   overflow: hidden;
   width: 100%;
-  max-width: 480px;
+  max-width: var(--modal-max-width);
 }
 
 .nothing-command__input {
@@ -68,7 +68,7 @@
 }
 
 .nothing-command__item:focus-visible {
-  outline: 2px solid var(--interactive);
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: -2px;
   z-index: 1;
 }

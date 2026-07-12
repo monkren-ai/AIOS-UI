@@ -35,7 +35,7 @@
 }
 
 .nothing-segmented__segment:focus-visible {
-  outline: 2px solid var(--interactive);
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: -2px;
   z-index: 2;
 }

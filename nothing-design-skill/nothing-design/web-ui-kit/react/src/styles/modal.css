@@ -26,7 +26,7 @@
   border: 1px solid var(--border-visible);
   border-radius: var(--radius-lg);
   width: 100%;
-  max-width: 480px;
+  max-width: var(--modal-max-width);
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
@@ -79,8 +79,8 @@
 }
 
 .nothing-modal__close:focus-visible {
-  outline: 2px solid var(--interactive);
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .nothing-modal__header {
@@ -155,8 +155,8 @@
 }
 
 .nothing-modal__cancel:focus-visible {
-  outline: 2px solid var(--interactive);
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .nothing-modal__confirm {
@@ -185,8 +185,8 @@
 }
 
 .nothing-modal__confirm:focus-visible {
-  outline: 2px solid var(--interactive);
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .nothing-modal__confirm--destructive {

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { withWidgetCard } from './withWidgetCard'
 import { useNow } from '../../system/hooks'
-import DotMatrix from '../DotMatrix'
+import StaticDotMatrix from '../StaticDotMatrix'
 import { cn, dataAttr } from '../../lib/utils'
 import '../../styles/photo-frame-widget.css'
 
@@ -147,7 +147,7 @@ const PhotoFrameWidgetInner = React.forwardRef<HTMLDivElement, PhotoFrameWidgetP
       >
         <div className="nothing-photo-frame__image-wrapper">
           {showFallback ? (
-            <DotMatrix
+            <StaticDotMatrix
               rows={4}
               cols={4}
               dotSize="md"

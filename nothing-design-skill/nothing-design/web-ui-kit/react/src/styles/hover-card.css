@@ -9,7 +9,7 @@
 
 .nothing-hover-card__content {
   position: absolute;
-  z-index: var(--z-overlay);
+  z-index: var(--z-popover);
   background: var(--popover-bg);
   color: var(--popover-fg);
   border-radius: var(--radius-md);

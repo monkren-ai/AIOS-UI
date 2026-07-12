@@ -10,7 +10,7 @@
 
 .nothing-popover__content {
   position: absolute;
-  z-index: var(--z-overlay);
+  z-index: var(--z-popover);
   background: var(--popover-bg);
   color: var(--popover-fg);
   border: 1px solid var(--border-visible);

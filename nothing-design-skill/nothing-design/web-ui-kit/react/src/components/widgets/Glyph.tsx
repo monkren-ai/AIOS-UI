@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import DotMatrix from '../DotMatrix'
+import StaticDotMatrix from '../StaticDotMatrix'
 import { cn, dataAttr } from '../../lib/utils'
 import '../../styles/glyph.css'
 
@@ -663,7 +663,7 @@ export const Glyph = React.forwardRef<HTMLDivElement, GlyphProps>(
         data-theme={dataAttr(theme)}
         {...props}
       >
-        <DotMatrix
+        <StaticDotMatrix
           rows={pattern.rows}
           cols={pattern.cols}
           dotSize={size}

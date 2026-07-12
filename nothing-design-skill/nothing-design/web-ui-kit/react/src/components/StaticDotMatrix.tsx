@@ -35,7 +35,7 @@ const dotVariants = cva('nothing-dot-matrix__dot', {
   defaultVariants: { state: 'idle' },
 })
 
-export interface DotMatrixProps
+export interface StaticDotMatrixProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     Omit<VariantProps<typeof dotMatrixVariants>, 'pattern'> {
   rows: number
@@ -45,7 +45,7 @@ export interface DotMatrixProps
   dimDots?: [number, number][]
 }
 
-export const DotMatrix = React.forwardRef<HTMLDivElement, DotMatrixProps>(
+export const StaticDotMatrix = React.forwardRef<HTMLDivElement, StaticDotMatrixProps>(
   ({ className, rows, cols, dotSize = 'md', theme = 'light', pattern = 'grid', activeDots = [], dimDots = [], style, ...props }, ref) => {
     const activeSet = React.useMemo(() => {
       const set = new Set<string>()
@@ -94,7 +94,7 @@ export const DotMatrix = React.forwardRef<HTMLDivElement, DotMatrixProps>(
     )
   }
 )
-DotMatrix.displayName = 'DotMatrix'
+StaticDotMatrix.displayName = 'StaticDotMatrix'
 
 export { dotMatrixVariants, dotVariants }
-export default DotMatrix
+export default StaticDotMatrix

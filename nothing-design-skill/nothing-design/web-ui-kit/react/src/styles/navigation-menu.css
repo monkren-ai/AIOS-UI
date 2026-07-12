@@ -46,8 +46,8 @@
 }
 
 .nothing-nav-menu__link:focus-visible {
-  outline: 2px solid var(--interactive);
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .nothing-nav-menu__item--active > .nothing-nav-menu__link {
@@ -80,7 +80,7 @@
   transition: opacity var(--duration-micro) var(--easing),
               visibility var(--duration-micro) var(--easing),
               transform var(--duration-micro) var(--easing);
-  z-index: var(--z-overlay);
+  z-index: var(--z-sticky);
   padding: var(--space-xs) 0;
 }
 
@@ -116,7 +116,7 @@
 }
 
 .nothing-nav-menu__submenu-link:focus-visible {
-  outline: 2px solid var(--interactive);
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: -2px;
   z-index: 1;
 }

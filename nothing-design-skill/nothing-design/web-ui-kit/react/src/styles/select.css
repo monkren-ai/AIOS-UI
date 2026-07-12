@@ -42,8 +42,8 @@
 }
 
 .nothing-select__trigger:focus-visible {
-  outline: 2px solid var(--interactive);
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .nothing-select__trigger--open {
@@ -83,7 +83,7 @@
   border: 1px solid var(--border-visible);
   border-radius: var(--radius-sm);
   box-shadow: 0 4px 16px var(--shadow-drop);
-  z-index: var(--z-overlay);
+  z-index: var(--z-dropdown);
   overflow: hidden;
   animation: nothing-select-enter var(--duration-micro) var(--easing);
 }
@@ -175,7 +175,7 @@
 }
 
 .nothing-select__item:focus-visible {
-  outline: 2px solid var(--interactive);
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: -2px;
   z-index: 1;
 }

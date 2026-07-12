@@ -1,4 +1,4 @@
-﻿.nothing-chrono {
+.nothing-chrono {
   display: flex;
   flex-direction: column;
   padding: var(--space-xl);
@@ -73,8 +73,8 @@
 }
 
 .chrono-btn:focus-visible {
-  outline: 2px solid var(--interactive);
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .chrono-btn:disabled {

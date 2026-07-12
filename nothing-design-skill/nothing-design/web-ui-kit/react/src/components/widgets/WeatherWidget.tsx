@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useMemo } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import DotMatrix from '../DotMatrix'
+import StaticDotMatrix from '../StaticDotMatrix'
 import { withWidgetCard } from './withWidgetCard'
 import { useWeather } from '../../hooks'
 import { cn, dataAttr } from '../../lib/utils'
@@ -237,7 +237,7 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
             role="img"
             aria-label={`${displayCondition} weather icon`}
           >
-            <DotMatrix
+            <StaticDotMatrix
               rows={iconPattern.rows}
               cols={iconPattern.cols}
               dotSize="sm"
@@ -301,7 +301,7 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
                   role="img"
                   aria-label={`${cell.conditionType} weather icon`}
                 >
-                  <DotMatrix
+                  <StaticDotMatrix
                     rows={cellIcon.rows}
                     cols={cellIcon.cols}
                     dotSize={cell.isCurrent ? 'md' : 'sm'}
@@ -332,7 +332,7 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
         {...props}
       >
         <div className="nothing-weather-widget__dots" role="img" aria-label={`${displayCondition} weather icon`}>
-          <DotMatrix
+          <StaticDotMatrix
             rows={iconPattern.rows}
             cols={iconPattern.cols}
             dotSize="sm"
@@ -361,7 +361,7 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
                   aria-label={`${day.day} forecast, ${day.condition || 'sunny'}`}
                 >
                   <div className="nothing-weather-widget__forecast-label">{day.day}</div>
-                  <DotMatrix
+                  <StaticDotMatrix
                     rows={dayIcon.rows}
                     cols={dayIcon.cols}
                     dotSize="sm"
@@ -389,7 +389,7 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
                   aria-label={`${hour.time}: ${formatTemp(hour.temp, unit)}`}
                 >
                   <div className="nothing-weather-widget__hourly-time">{hour.time}</div>
-                  <DotMatrix
+                  <StaticDotMatrix
                     rows={hourIcon.rows}
                     cols={hourIcon.cols}
                     dotSize="sm"

@@ -1,0 +1,30 @@
+export type { DotMatrixCommonProps, DotMatrixPhase, DotShape, MatrixPattern } from "./types";
+export type { DotMatrixColorPreset } from "./core/color-presets";
+
+export { DotMatrixIcon } from "./loaders/dot-matrix-icon";
+export type { DotMatrixIconProps } from "./loaders/dot-matrix-icon";
+
+export { DotmSquare1 } from "./loaders/dotm-square-1";
+export type { DotmSquare1Props } from "./loaders/dotm-square-1";
+export { DotmSquare3 } from "./loaders/dotm-square-3";
+export type { DotmSquare3Props } from "./loaders/dotm-square-3";
+export { DotmSquare7 } from "./loaders/dotm-square-7";
+export type { DotmSquare7Props } from "./loaders/dotm-square-7";
+export { DotmSquare11 } from "./loaders/dotm-square-11";
+export type { DotmSquare11Props } from "./loaders/dotm-square-11";
+export { DotmSquare13 } from "./loaders/dotm-square-13";
+export type { DotmSquare13Props } from "./loaders/dotm-square-13";
+export { DotmSquare18 } from "./loaders/dotm-square-18";
+export type { DotmSquare18Props } from "./loaders/dotm-square-18";
+
+export { DotmCircular1 } from "./loaders/dotm-circular-1";
+export type { DotmCircular1Props } from "./loaders/dotm-circular-1";
+export { DotmCircular5 } from "./loaders/dotm-circular-5";
+export type { DotmCircular5Props } from "./loaders/dotm-circular-5";
+export { DotmCircular8 } from "./loaders/dotm-circular-8";
+export type { DotmCircular8Props } from "./loaders/dotm-circular-8";
+
+export { DotmTriangle1 } from "./loaders/dotm-triangle-1";
+export type { DotmTriangle1Props } from "./loaders/dotm-triangle-1";
+export { DotmTriangle4 } from "./loaders/dotm-triangle-4";
+export type { DotmTriangle4Props } from "./loaders/dotm-triangle-4";

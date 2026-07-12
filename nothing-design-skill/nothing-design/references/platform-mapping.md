@@ -28,6 +28,31 @@ Load fonts via Google Fonts `<link>` or `@import`. Use CSS custom properties, `r
   --space-2xl: 48px;
   --space-3xl: 64px;
   --space-4xl: 96px;
+
+  /* Layout */
+  --page-max-width: 1120px;
+  --modal-max-width: 480px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+
+  /* Named Radius */
+  --radius-button: 999px;
+  --radius-card: 16px;
+  --radius-input: 8px;
+
+  /* Focus Ring */
+  --focus-ring-width: 2px;
+  --focus-ring-color: var(--interactive);
+  --focus-ring-offset: 2px;
+
+  /* Touch Target */
+  --touch-target-min: 44px;
+
+  /* Z-Index (granular) */
+  --z-dropdown: 50;
+  --z-sticky: 80;
+  --z-popover: 200;
+  --z-tooltip: 300;
 }
 ```
 
@@ -52,6 +77,23 @@ extension Color {
     static let ndSuccess = Color(hex: "4A9E5C")
     static let ndWarning = Color(hex: "D4A843")
     static let ndInteractive = Color(hex: "5B9BF6")
+}
+
+extension CGFloat {
+    static let ndFocusRingWidth: CGFloat = 2
+    static let ndFocusRingOffset: CGFloat = 2
+    static let ndTouchTargetMin: CGFloat = 44
+    static let ndRadiusCard: CGFloat = 16
+    static let ndRadiusInput: CGFloat = 8
+    static let ndRadiusButton: CGFloat = 999
+    static let ndPageMaxWidth: CGFloat = 1120
+    static let ndModalMaxWidth: CGFloat = 480
+    static let ndSectionGap: CGFloat = 80
+    static let ndCardPadding: CGFloat = 24
+    static let ndZDropdown: CGFloat = 50
+    static let ndZSticky: CGFloat = 80
+    static let ndZPopover: CGFloat = 200
+    static let ndZTooltip: CGFloat = 300
 }
 ```
 
@@ -109,6 +151,23 @@ theme: {
       'nothing-lg': 'var(--radius-lg)',
       'nothing-md': 'var(--radius-md)',
       'nothing-xs': 'var(--radius-xs)',
+      'button': 'var(--radius-button)',
+      'card': 'var(--radius-card)',
+      'input': 'var(--radius-input)',
+      'tag': 'var(--radius-tag)',
+    },
+    maxWidth: {
+      'page': 'var(--page-max-width)',
+      'modal': 'var(--modal-max-width)',
+      'content-narrow': 'var(--content-width-narrow)',
+      'content-wide': 'var(--content-width-wide)',
+    },
+    zIndex: {
+      'dropdown': 'var(--z-dropdown)',
+      'sticky': 'var(--z-sticky)',
+      'popover': 'var(--z-popover)',
+      'tooltip': 'var(--z-tooltip)',
+      'modal': 'var(--z-modal)',
     }
   }
 }

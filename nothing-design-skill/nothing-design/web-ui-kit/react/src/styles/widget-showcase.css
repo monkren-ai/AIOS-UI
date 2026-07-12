@@ -11,7 +11,7 @@
 
 .widget-showcase .bento {
   width: 100%;
-  max-width: 1120px;
+  max-width: var(--page-max-width);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;

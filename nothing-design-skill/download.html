@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nothing Design Skill — Download</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Doto:wght@400..700&family=Space+Grotesk:wght@300..700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --black: #000000;
+      --surface: #111111;
+      --surface-raised: #1a1a1a;
+      --border: #222222;
+      --border-visible: #333333;
+      --text-disabled: #666666;
+      --text-secondary: #999999;
+      --text-primary: #e8e8e8;
+      --text-display: #ffffff;
+      --accent: #d71921;
+      --accent-subtle: rgba(215, 25, 33, 0.15);
+
+      --font-display: 'Doto', 'Space Mono', monospace;
+      --font-body: 'Space Grotesk', system-ui, sans-serif;
+      --font-mono: 'Space Mono', monospace;
+
+      --display-xl: 72px;
+      --display-lg: 48px;
+      --heading: 24px;
+      --subheading: 18px;
+      --body: 16px;
+      --body-sm: 14px;
+      --caption: 12px;
+      --label: 11px;
+
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+      --space-4xl: 96px;
+
+      --radius-pill: 999px;
+      --radius-card: 16px;
+      --radius-md: 8px;
+
+      --duration-micro: 200ms;
+      --easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: var(--space-4xl) var(--space-xl) var(--space-3xl);
+    }
+
+    /* --- Hero ---------------------------------------------------------- */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--label);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-md);
+    }
+
+    .title {
+      font-family: var(--font-display);
+      font-size: var(--display-xl);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--text-display);
+      margin-bottom: var(--space-lg);
+    }
+
+    .lede {
+      font-size: var(--body);
+      color: var(--text-primary);
+      max-width: 640px;
+      margin-bottom: var(--space-3xl);
+    }
+
+    /* --- Section header ------------------------------------------------ */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: var(--label);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--border-visible);
+      margin-bottom: var(--space-2xl);
+    }
+
+    /* --- Download card ------------------------------------------------- */
+    .download-card {
+      background: var(--surface);
+      border: 1px solid var(--border-visible);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-md);
+      transition: border-color var(--duration-micro) var(--easing);
+    }
+
+    .download-card:hover {
+      border-color: var(--text-secondary);
+    }
+
+    .download-card__info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      min-width: 0;
+    }
+
+    .download-card__name {
+      font-family: var(--font-body);
+      font-size: var(--subheading);
+      letter-spacing: -0.01em;
+      color: var(--text-display);
+    }
+
+    .download-card__desc {
+      font-family: var(--font-mono);
+      font-size: var(--caption);
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+    }
+
+    .download-card__path {
+      font-family: var(--font-mono);
+      font-size: var(--label);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+    }
+
+    /* --- Buttons ------------------------------------------------------- */
+    .btn {
+      font-family: var(--font-mono);
+      font-size: var(--body-sm);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: var(--space-sm) var(--space-lg);
+      min-height: 44px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      outline: none;
+      text-decoration: none;
+      transition: all var(--duration-micro) var(--easing);
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      line-height: 1;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--text-display);
+      outline-offset: 2px;
+    }
+
+    .btn--primary {
+      background: var(--text-display);
+      color: var(--black);
+      border-radius: var(--radius-pill);
+    }
+
+    .btn--primary:hover {
+      opacity: 0.85;
+    }
+
+    .btn--secondary {
+      background: transparent;
+      border: 1px solid var(--border-visible);
+      color: var(--text-primary);
+      border-radius: var(--radius-pill);
+    }
+
+    .btn--secondary:hover {
+      border-color: var(--text-secondary);
+      color: var(--text-display);
+    }
+
+    .btn--destructive {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: var(--radius-pill);
+    }
+
+    .btn--destructive:hover {
+      background: var(--accent-subtle);
+    }
+
+    /* --- Archive block ------------------------------------------------- */
+    .archive-block {
+      background: var(--surface);
+      border: 1px solid var(--border-visible);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .archive-block__title {
+      font-family: var(--font-display);
+      font-size: var(--heading);
+      letter-spacing: -0.02em;
+      color: var(--text-display);
+    }
+
+    .archive-block__desc {
+      font-size: var(--body);
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+
+    .archive-block__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    .archive-hint {
+      font-family: var(--font-mono);
+      font-size: var(--label);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+    }
+
+    /* --- Dot-matrix divider ------------------------------------------- */
+    .dot-divider {
+      height: 1px;
+      background-image: radial-gradient(circle, var(--border-visible) 1px, transparent 1px);
+      background-size: 12px 1px;
+      margin: var(--space-2xl) 0;
+    }
+
+    /* --- Footer -------------------------------------------------------- */
+    .footer {
+      margin-top: var(--space-4xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: var(--caption);
+      letter-spacing: 0.04em;
+      color: var(--text-disabled);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color var(--duration-micro) var(--easing);
+    }
+
+    .footer a:hover {
+      color: var(--text-display);
+    }
+
+    /* --- Responsive ---------------------------------------------------- */
+    @media (max-width: 600px) {
+      .page {
+        padding: var(--space-2xl) var(--space-md);
+      }
+
+      .title {
+        font-size: var(--display-lg);
+      }
+
+      .download-card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="eyebrow">Nothing Design Skill</div>
+    <h1 class="title">Download</h1>
+    <p class="lede">
+      A monochrome, typographically driven design system skill for Claude Code.
+      Fetch individual files or the full archive below.
+    </p>
+
+    <!-- Full archive -->
+    <div class="section-label">Full Archive</div>
+    <div class="archive-block">
+      <div>
+        <div class="archive-block__title">nothing-design-skill</div>
+        <p class="archive-block__desc">
+          The complete skill package — SKILL.md, design.md, all references, and the
+          full web-ui-kit (React + CSS). Clone the repository or run the download
+          script to package a .tar.gz locally.
+        </p>
+      </div>
+      <div class="archive-block__actions">
+        <a
+          class="btn btn--primary"
+          href="https://github.com/dominikmartn/nothing-design-skill"
+          target="_blank"
+          rel="noopener"
+        >
+          View on GitHub
+        </a>
+        <a
+          class="btn btn--secondary"
+          href="https://github.com/dominikmartn/nothing-design-skill/archive/refs/heads/main.zip"
+        >
+          Download .zip
+        </a>
+        <span class="archive-hint">or run: node scripts/download-skill.mjs</span>
+      </div>
+    </div>
+
+    <div class="dot-divider"></div>
+
+    <!-- Individual files -->
+    <div class="section-label">Individual Files</div>
+
+    <div class="download-card">
+      <div class="download-card__info">
+        <span class="download-card__name">design.md</span>
+        <span class="download-card__desc">Structured design spec — Overview, Typography, Colors, Spacing, Elevation, Shapes, Do's &amp; Don'ts, Motion, WebGL + reference examples</span>
+        <span class="download-card__path">nothing-design/design.md</span>
+      </div>
+      <a
+        class="btn btn--primary"
+        href="https://raw.githubusercontent.com/dominikmartn/nothing-design-skill/main/nothing-design/design.md"
+        download
+      >Download</a>
+    </div>
+
+    <div class="download-card">
+      <div class="download-card__info">
+        <span class="download-card__name">SKILL.md</span>
+        <span class="download-card__desc">Design philosophy, craft rules, workflow — the LLM-facing skill definition (v4.0.0)</span>
+        <span class="download-card__path">nothing-design/SKILL.md</span>
+      </div>
+      <a
+        class="btn btn--primary"
+        href="https://raw.githubusercontent.com/dominikmartn/nothing-design-skill/main/nothing-design/SKILL.md"
+        download
+      >Download</a>
+    </div>
+
+    <div class="download-card">
+      <div class="download-card__info">
+        <span class="download-card__name">tokens.md</span>
+        <span class="download-card__desc">Colors, fonts, spacing, motion, iconography, dot-matrix motif, widget subsystem tokens</span>
+        <span class="download-card__path">nothing-design/references/tokens.md</span>
+      </div>
+      <a
+        class="btn btn--secondary"
+        href="https://raw.githubusercontent.com/dominikmartn/nothing-design-skill/main/nothing-design/references/tokens.md"
+        download
+      >Download</a>
+    </div>
+
+    <div class="download-card">
+      <div class="download-card__info">
+        <span class="download-card__name">components.md</span>
+        <span class="download-card__desc">Buttons, cards, lists, tables, nav, tags, segmented controls, progress bars, overlays</span>
+        <span class="download-card__path">nothing-design/references/components.md</span>
+      </div>
+      <a
+        class="btn btn--secondary"
+        href="https://raw.githubusercontent.com/dominikmartn/nothing-design-skill/main/nothing-design/references/components.md"
+        download
+      >Download</a>
+    </div>
+
+    <div class="download-card">
+      <div class="download-card__info">
+        <span class="download-card__name">platform-mapping.md</span>
+        <span class="download-card__desc">HTML/CSS, SwiftUI, React/Tailwind output conventions</span>
+        <span class="download-card__path">nothing-design/references/platform-mapping.md</span>
+      </div>
+      <a
+        class="btn btn--secondary"
+        href="https://raw.githubusercontent.com/dominikmartn/nothing-design-skill/main/nothing-design/references/platform-mapping.md"
+        download
+      >Download</a>
+    </div>
+
+    <div class="download-card">
+      <div class="download-card__info">
+        <span class="download-card__name">component-matching.md</span>
+        <span class="download-card__desc">Component type mapping tables, migration strategies, match report format</span>
+        <span class="download-card__path">nothing-design/references/component-matching.md</span>
+      </div>
+      <a
+        class="btn btn--secondary"
+        href="https://raw.githubusercontent.com/dominikmartn/nothing-design-skill/main/nothing-design/references/component-matching.md"
+        download
+      >Download</a>
+    </div>
+
+    <footer class="footer">
+      <span>NOTHING DESIGN SKILL · v4.0.0</span>
+      <span><a href="https://github.com/dominikmartn/nothing-design-skill">GitHub</a> · MIT License</span>
+    </footer>
+  </main>
+</body>
+</html>

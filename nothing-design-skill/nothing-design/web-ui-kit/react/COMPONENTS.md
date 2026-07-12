@@ -8,11 +8,13 @@
 - [3. 覆盖层组件](#3-覆盖层组件-overlays)
 - [4. 导航组件](#4-导航组件-navigation)
 - [5. 菜单与选择组件](#5-菜单与选择组件-menus--selection)
-- [6. 状态组件](#6-状态组件-states)
-- [7. 工具组件](#7-工具组件-utility)
-- [8. 时钟与日历](#8-时钟与日历-clock--calendar)
-- [9. 系统与状态监控](#9-系统与状态监控-system--monitoring)
-- [10. Widgets & 实用小部件](#10-widgets--实用小部件-widgets--utilities)
+- [6. 状态与反馈组件](#6-状态与反馈组件-states--feedback)
+- [7. 时间与日历组件](#7-时间与日历组件-time--calendar)
+- [8. 系统与媒体组件](#8-系统与媒体组件-system--media)
+- [9. Widgets 组件](#9-widgets-组件-widgets)
+- [10. 点阵加载器](#10-点阵加载器-dotmatrix-loaders)
+- [11. Nullframe 仪表盘](#11-nullframe-仪表盘-nullframe-dashboard)
+- [12. 设计系统](#12-设计系统-design-system)
 
 ---
 
@@ -128,6 +130,21 @@
 **描述**: 分隔线组件  
 **方向**: horizontal, vertical  
 **Props**: orientation, decorative
+
+### DotMatrix
+**文件**: [DotMatrix.tsx](src/components/DotMatrix.tsx)  
+**描述**: 点阵显示组件  
+**主题**: light, dark, accent  
+**Props**: rows, cols, dotSize, theme, pattern, activeDots
+
+### DotMatrixIcon
+**文件**: [DotMatrixIcon.tsx](src/components/DotMatrixIcon.tsx)  
+**描述**: 将粘贴的 `<svg>...</svg>` 标记栅格化为可配置的 rows × cols 点阵。对 SVG 进行栅格化并按 alpha 阈值绘制圆点，支持自定义点大小、基色/激活色、背景与圆角，以及随机脉冲动画（按百分比周期性高亮部分点）。  
+**Props**: svg, rows, cols, alphaThreshold, dotSize, gap, baseColor, activeColor, backgroundColor, radius, anim, activePercent, speedMs
+
+### Quotes
+**文件**: [Quotes.tsx](src/components/Quotes.tsx)  
+**描述**: 引用组件
 
 ---
 
@@ -250,7 +267,7 @@
 
 ---
 
-## 6. 状态组件 (States)
+## 6. 状态与反馈组件 (States & Feedback)
 
 ### LoadingState
 **文件**: [States.tsx](src/components/States.tsx)  
@@ -284,7 +301,95 @@
 
 ---
 
-## 7. 工具组件 (Utility)
+## 7. 时间与日历组件 (Time & Calendar)
+**描述**: 与时间、日期、日历相关的组件
+
+### Clock
+**文件**: [Time.tsx](src/components/widgets/Time.tsx)  
+**描述**: 时钟组件,支持数字和表盘显示  
+**变体**: digital-compact, dial, digital-large, world, analog  
+**Props**: variant, cities, dial, smoothSeconds, showSeconds, font, card
+
+### Calendar
+**文件**: [Calendar.tsx](src/components/Calendar.tsx)  
+**描述**: 日历组件  
+**类型**: compact, full  
+**Props**: type
+
+### Date
+**文件**: [Date.tsx](src/components/Date.tsx)  
+**描述**: 日期小组件,矩形 / 双环等样式  
+**类型**: rect, dual-ring  
+**主题**: light, dark
+
+### SunDial
+**文件**: [SunDial.tsx](src/components/SunDial.tsx)  
+**描述**: 日晷组件
+
+### AgeMotion
+**文件**: [AgeMotion.tsx](src/components/AgeMotion.tsx)  
+**描述**: 年龄动态组件
+
+### Chrono
+**文件**: [Chrono.tsx](src/components/Chrono.tsx)  
+**描述**: 计时组件
+
+### Spinner
+**文件**: [Spinner.tsx](src/components/Spinner.tsx)  
+**描述**: 旋转选择器组件  
+**Props**: items
+
+### NextEvent
+**文件**: [NextEvent.tsx](src/components/NextEvent.tsx)  
+**描述**: 下一个事件组件
+
+### Pomodoro
+**文件**: [Pomodoro.tsx](src/components/Pomodoro.tsx)  
+**描述**: 番茄钟组件
+
+---
+
+## 8. 系统与媒体组件 (System & Media)
+**描述**: 系统级、设备状态、媒体播放与表单/布局工具组件
+
+### Battery
+**文件**: [Battery.tsx](src/components/Battery.tsx)  
+**描述**: 电池状态组件
+
+### SystemMonitor
+**文件**: [SystemMonitor.tsx](src/components/SystemMonitor.tsx)  
+**描述**: 系统监控组件,显示系统资源使用情况
+
+### QuickToggle
+**文件**: [QuickToggle.tsx](src/components/QuickToggle.tsx)  
+**描述**: 快速切换组件  
+**变体**: circle, pill  
+**主题**: light, dark, accent, error  
+**Props**: variant, theme, label, active, icon
+
+### Taskbar
+**文件**: [Taskbar.tsx](src/components/Taskbar.tsx)  
+**描述**: 任务栏组件
+
+### MusicPlayer
+**文件**: [MusicPlayer.tsx](src/components/MusicPlayer.tsx)  
+**描述**: 音乐播放器组件
+
+### PhotoCarousel
+**文件**: [PhotoCarousel.tsx](src/components/PhotoCarousel.tsx)  
+**描述**: 图片轮播组件
+
+### Caffeinate
+**文件**: [Caffeinate.tsx](src/components/Caffeinate.tsx)  
+**描述**: 保持唤醒组件
+
+### Clipboard
+**文件**: [Clipboard.tsx](src/components/Clipboard.tsx)  
+**描述**: 剪贴板组件
+
+### WalkieTalkie
+**文件**: [WalkieTalkie.tsx](src/components/WalkieTalkie.tsx)  
+**描述**: 对讲机组件
 
 ### ScrollArea
 **文件**: [ScrollArea.tsx](src/components/ScrollArea.tsx)  
@@ -314,211 +419,116 @@
 
 ---
 
-## 8. 时钟与日历 (Clock & Calendar)
+## 9. Widgets 组件 (Widgets)
+**描述**: Widget 展示、布局基础与 Figma 2.0 组件库(统一归类)
 
-### Clock
-**文件**: [Clock.tsx](src/components/Clock.tsx)  
-**描述**: 时钟组件，支持数字和表盘显示  
-**类型**: digital, gauge  
-**Props**: type
-
-### Calendar
-**文件**: [Calendar.tsx](src/components/Calendar.tsx)  
-**描述**: 日历组件  
-**类型**: compact, full  
-**Props**: type
-
-### WorldClock
-**文件**: [WorldClock.tsx](src/components/WorldClock.tsx)  
-**描述**: 世界时钟组件  
-**Props**: cities
-
-### Date
-**文件**: [Date.tsx](src/components/Date.tsx)  
-**描述**: 日期组件
-
----
-
-## 9. 系统与状态监控 (System & Monitoring)
-
-### Battery
-**文件**: [Battery.tsx](src/components/Battery.tsx)  
-**描述**: 电池状态组件
-
-### SystemMonitor
-**文件**: [SystemMonitor.tsx](src/components/SystemMonitor.tsx)  
-**描述**: 系统监控组件，显示系统资源使用情况
-
-### QuickToggle
-**文件**: [QuickToggle.tsx](src/components/QuickToggle.tsx)  
-**描述**: 快速切换组件  
-**变体**: circle, pill  
-**主题**: light, dark, accent, error  
-**Props**: variant, theme, label, active, icon
-
----
-
-## 10. 实用工具组件 (Utility Tools)
-**描述**: 提供实用功能的工具组件
-
-#### MusicPlayer
-**文件**: [MusicPlayer.tsx](src/components/MusicPlayer.tsx)  
-**描述**: 音乐播放器组件
-
-#### PhotoCarousel
-**文件**: [PhotoCarousel.tsx](src/components/PhotoCarousel.tsx)  
-**描述**: 图片轮播组件
-
-#### Caffeinate
-**文件**: [Caffeinate.tsx](src/components/Caffeinate.tsx)  
-**描述**: 保持唤醒组件
-
-#### Clipboard
-**文件**: [Clipboard.tsx](src/components/Clipboard.tsx)  
-**描述**: 剪贴板组件
-
-#### Pomodoro
-**文件**: [Pomodoro.tsx](src/components/Pomodoro.tsx)  
-**描述**: 番茄钟组件
-
-#### WalkieTalkie
-**文件**: [WalkieTalkie.tsx](src/components/WalkieTalkie.tsx)  
-**描述**: 对讲机组件
-
-#### Taskbar
-**文件**: [Taskbar.tsx](src/components/Taskbar.tsx)  
-**描述**: 任务栏组件
-
----
-
-## 11. 时间与进度组件 (Time & Progress)
-**描述**: 与时间和进度相关的组件
-
-#### SunDial
-**文件**: [SunDial.tsx](src/components/SunDial.tsx)  
-**描述**: 日晷组件
-
-#### AgeMotion
-**文件**: [AgeMotion.tsx](src/components/AgeMotion.tsx)  
-**描述**: 年龄动态组件
-
-#### Chrono
-**文件**: [Chrono.tsx](src/components/Chrono.tsx)  
-**描述**: 计时组件
-
-#### Spinner
-**文件**: [Spinner.tsx](src/components/Spinner.tsx)  
-**描述**: 旋转选择器组件  
-**Props**: items
-
-#### NextEvent
-**文件**: [NextEvent.tsx](src/components/NextEvent.tsx)  
-**描述**: 下一个事件组件
-
----
-
-## 12. 视觉展示组件 (Visual Display)
-**描述**: 用于展示数据和信息的视觉组件
-
-#### DotMatrix
-**文件**: [DotMatrix.tsx](src/components/DotMatrix.tsx)  
-**描述**: 点阵显示组件  
-**主题**: light, dark, accent  
-**Props**: rows, cols, dotSize, theme, pattern, activeDots
-
-#### Quotes
-**文件**: [Quotes.tsx](src/components/Quotes.tsx)  
-**描述**: 引用组件
-
----
-
-## 13. 功能 Widgets (Feature Widgets)
-**描述**: 具有特定功能的 Widget 组件
+### 9.1 Widget 展示
+**描述**: 高层级 Widget 卡片组件
 
 #### WeatherWidget
-**文件**: [widgets/WeatherWidget.tsx](src/components/widgets/WeatherWidget.tsx)  
+**文件**: [WeatherWidget.tsx](src/components/widgets/WeatherWidget.tsx)  
 **描述**: 天气组件  
 **Props**: temp, hi, lo, city, condition, forecast, card
 
 #### StepsWidget
-**文件**: [widgets/StepsWidget.tsx](src/components/widgets/StepsWidget.tsx)  
+**文件**: [StepsWidget.tsx](src/components/widgets/StepsWidget.tsx)  
 **描述**: 步数组件  
 **Props**: steps, streak, streakUnit, card
 
 #### ActivityWidget
-**文件**: [widgets/ActivityWidget.tsx](src/components/widgets/ActivityWidget.tsx)  
+**文件**: [ActivityWidget.tsx](src/components/widgets/ActivityWidget.tsx)  
 **描述**: 活动组件  
 **Props**: days, card
 
 #### CompassWidget
-**文件**: [widgets/CompassWidget.tsx](src/components/widgets/CompassWidget.tsx)  
+**文件**: [CompassWidget.tsx](src/components/widgets/CompassWidget.tsx)  
 **描述**: 指南针组件  
 **Props**: heading, card
 
 #### TimeWidget
-**文件**: [widgets/TimeWidget.tsx](src/components/widgets/TimeWidget.tsx)  
+**文件**: [Time.tsx](src/components/widgets/Time.tsx)  
 **描述**: 时间组件  
 **变体**: over-limit, date, over-limit-accent  
 **Props**: variant, label, value, unit, card
 
----
+#### PhotoFrameWidget
+**文件**: [PhotoFrameWidget.tsx](src/components/widgets/PhotoFrameWidget.tsx)  
+**描述**: 照片框 Widget 组件
 
-## 14. Widget 布局组件 (Widget Layout)
-**描述**: Widget 的布局和容器组件
+### 9.2 Widget 布局基础
+**描述**: Widget 容器与网格
 
 #### WidgetCard
-**文件**: [WidgetCard.tsx](src/components/WidgetCard.tsx)  
+**文件**: [Card.tsx](src/components/Card.tsx)  
 **描述**: Widget 卡片容器
 
 #### WidgetGrid
 **文件**: [WidgetGrid.tsx](src/components/WidgetGrid.tsx)  
 **描述**: Widget 网格布局
 
----
-
-## 15. Widget UI 组件 (Widget UI Components)
+### 9.3 Widget UI 元素
 **描述**: Widget 专用的 UI 元素
 
 #### WidgetIcon
-**文件**: [widgets/WidgetIcon.tsx](src/components/widgets/WidgetIcon.tsx)  
+**文件**: [WidgetIcons.tsx](src/components/widgets/WidgetIcons.tsx)  
 **描述**: Widget 图标组件  
 **主题**: light, dark, accent, error  
 **尺寸**: sm, md, lg  
 **Props**: theme, size, icon, label
 
 #### WidgetPill
-**文件**: [widgets/WidgetPill.tsx](src/components/widgets/WidgetPill.tsx)  
+**文件**: [WidgetPill.tsx](src/components/widgets/WidgetPill.tsx)  
 **描述**: Widget 胶囊按钮组件  
 **主题**: light, dark, accent, error  
 **Props**: theme, label, icon
 
 #### Glyph
-**文件**: [widgets/Glyph.tsx](src/components/widgets/Glyph.tsx)  
+**文件**: [Glyph.tsx](src/components/widgets/Glyph.tsx)  
 **描述**: Glyph 图标组件  
 **主题**: light, dark, accent, error  
 **类型**: check, heart, play, wifi, sun, moon, volume-up, lock, bell, clock  
 **尺寸**: sm, md, lg  
 **Props**: type, theme, size
 
----
-
-## 16. Figma 2.0 组件库 (Figma 2.0 Library)
+### 9.4 Figma 2.0 组件库
 **描述**: Figma 设计文件中的组件集合
 
-#### WidgetIcons
-**文件**: [widgets/WidgetIcons.tsx](src/components/widgets/WidgetIcons.tsx)  
+#### WidgetIcons (Figma 2.0)
+**文件**: [WidgetIcons.tsx](src/components/widgets/WidgetIcons.tsx)  
 **描述**: Figma 2.0 图标组件集合  
 **包含**: Home, DarkMode, Remote, Subtitle, Wallet, Location, DarkMode1, NoSignam, DownArrow, DoNotDisturb, QrCode, Storage, Share, NoConnection, Record, FullNetwork, Shield, Glyphs, Aeroplane, Chart, Video, Temp, AutoRotate, Info, MicOff, NoSim, Watch, Record1, AccessCamera, Dots, Filter, Home1, Cast, DoNotDisturb1, ArrowDown, QrCode1, Subtitle1, Scan, Cast1, BatteryPlus
 
-#### WidgetPills
-**文件**: [widgets/WidgetPills.tsx](src/components/widgets/WidgetPills.tsx)  
+#### WidgetPills (Figma 2.0)
+**文件**: [WidgetPills.tsx](src/components/widgets/WidgetPills.tsx)  
 **描述**: Figma 2.0 Pill 组件集合  
 **包含**: Dim, Dim1, Calculator, BatterySaver, HomeControls, Nfc, Bedtime, DarkMode2, Weather, Remote1, Share1, Hotspot, Share2, Dim2, DataSaver, Torch, Share3
 
-#### WidgetSubComponents
-**文件**: [widgets/WidgetSubComponents.tsx](src/components/widgets/WidgetSubComponents.tsx)  
+#### WidgetSubComponents (Figma 2.0)
+**文件**: [WidgetSubComponents.tsx](src/components/widgets/WidgetSubComponents.tsx)  
 **描述**: Figma 2.0 子组件集合  
 **包含**: Record2, LocationAccess, WatchAnalog, Compass, TempControl, AutoRotate1, Active, Watch1, Active1, Recording, Glyphs1, LocationAccess1, Glyphs2, Campus, Location1, Flash, Weather1, MicAccess, PairNewDevice, Overlimit, MusicPlayer, TotalTime, StepsCounter, OverLimit1, LoadingBar1, Card, Card1, Dots3, Play, NothingEar, Card2, Date, Date1, Counter, Music, Device, Mode, DoubleDown, SelectDevice, Card3, ActivityTracker, Time, Weather2, Wedget
+
+---
+
+## 10. 点阵加载器 (Dotmatrix Loaders)
+**描述**: 独立动画系统组件库,详见 `src/components/dotmatrix-loaders/`
+
+---
+
+## 11. Nullframe 仪表盘 (Nullframe Dashboard)
+**描述**: Nullframe 仪表盘演示,详见 `src/components/nullframe/`
+
+---
+
+## 12. 设计系统 (Design System)
+**描述**: 设计系统文档、下载文件与 Figma 2.0 引用
+
+- `design.md` — 结构化设计规范
+- `SKILL.md` — 设计哲学与工作流
+- `tokens.md` — 颜色/字体/间距/动效 token
+- `components.md` — 组件类型映射
+- `platform-mapping.md` — 平台输出约定
+- `component-matching.md` — 组件匹配策略
 
 ---
 

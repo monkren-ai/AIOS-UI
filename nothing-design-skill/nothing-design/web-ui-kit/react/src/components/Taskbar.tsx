@@ -2,6 +2,8 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { useNow, useTelemetry } from '../system/hooks'
 import { cn, dataAttr } from '../lib/utils'
+import DotMatrixIcon from './DotMatrixIcon'
+import { componentIconSvg } from './widgets/icon-svg-registry'
 import '../styles/taskbar.css'
 
 const taskbarVariants = cva('nothing-taskbar', {
@@ -37,29 +39,77 @@ const formatTime = (date: Date): string => {
   return `${hours}:${minutes}`
 }
 
-const StartIcon = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <rect x="3" y="3" width="8" height="8" rx="1" />
-    <rect x="13" y="3" width="8" height="8" rx="1" />
-    <rect x="3" y="13" width="8" height="8" rx="1" />
-    <rect x="13" y="13" width="8" height="8" rx="1" />
-  </svg>
-)
+const StartIcon = ({ variant }: { variant?: 'solid' | 'dot' }) => {
+  if (variant === 'dot') {
+    return (
+      <DotMatrixIcon
+        svg={componentIconSvg.startIcon}
+        rows={16}
+        cols={16}
+        dotSize={2}
+        gap={1}
+        alphaThreshold={100}
+        baseColor="var(--widget-white, #FCFAFE)"
+        backgroundColor="transparent"
+      />
+    )
+  }
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3" y="3" width="8" height="8" rx="1" />
+      <rect x="13" y="3" width="8" height="8" rx="1" />
+      <rect x="3" y="13" width="8" height="8" rx="1" />
+      <rect x="13" y="13" width="8" height="8" rx="1" />
+    </svg>
+  )
+}
 
-const SearchIcon = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <circle cx="11" cy="11" r="8" />
-    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-  </svg>
-)
+const SearchIcon = ({ variant }: { variant?: 'solid' | 'dot' }) => {
+  if (variant === 'dot') {
+    return (
+      <DotMatrixIcon
+        svg={componentIconSvg.searchIcon}
+        rows={16}
+        cols={16}
+        dotSize={2}
+        gap={1}
+        alphaThreshold={100}
+        baseColor="var(--widget-white, #FCFAFE)"
+        backgroundColor="transparent"
+      />
+    )
+  }
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+  )
+}
 
-const VolumeIcon = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-  </svg>
-)
+const VolumeIcon = ({ variant }: { variant?: 'solid' | 'dot' }) => {
+  if (variant === 'dot') {
+    return (
+      <DotMatrixIcon
+        svg={componentIconSvg.volumeIcon}
+        rows={16}
+        cols={16}
+        dotSize={2}
+        gap={1}
+        alphaThreshold={100}
+        baseColor="var(--widget-white, #FCFAFE)"
+        backgroundColor="transparent"
+      />
+    )
+  }
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+    </svg>
+  )
+}
 
 const TaskbarBatteryIcon = ({ percent, charging }: { percent?: number; charging?: boolean }) => {
   // percent 0-100, fill 比例

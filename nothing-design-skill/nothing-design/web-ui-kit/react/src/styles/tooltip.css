@@ -10,7 +10,7 @@
 
 .nothing-tooltip__popup {
   position: absolute;
-  z-index: var(--z-overlay);
+  z-index: var(--z-tooltip);
   font-family: var(--font-mono);
   font-size: var(--caption);
   line-height: 1.4;

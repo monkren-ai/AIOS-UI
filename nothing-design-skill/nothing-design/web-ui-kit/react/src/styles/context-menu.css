@@ -8,7 +8,7 @@
 
 .nothing-context-menu__content {
   position: fixed;
-  z-index: var(--z-overlay);
+  z-index: var(--z-dropdown);
   background: var(--popover-bg);
   color: var(--popover-fg);
   border: 1px solid var(--border-visible);
@@ -50,7 +50,7 @@
 }
 
 .nothing-context-menu__item:focus-visible {
-  outline: 2px solid var(--interactive);
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: -2px;
   z-index: 1;
 }

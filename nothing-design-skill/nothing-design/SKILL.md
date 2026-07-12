@@ -138,6 +138,54 @@ When 3+ data sections appear on one screen, vary the visual form:
 
 Lead section → heaviest treatment. Secondary → different form. Tertiary → lightest. The FORM varies, the VOICE stays the same.
 
+### 2.10 Layout & Page Structure
+
+- **Max width:** `var(--page-max-width)` (1120px) centered. Content beyond this is rare and intentional.
+- **Section rhythm:** `var(--section-gap)` (80px) between sections; `var(--section-gap-lg)` (120px) between major page divisions. Generous vertical breathing room is a signature.
+- **Columns:** Single-column or 2-column max. No 3-column layouts unless it's a card grid (which is a different pattern — uniform tiles, not asymmetric content).
+- **Content width:** Match width to content type — `--content-width-narrow` (640px) for reading, `--content-width-normal` (768px) for articles, `--content-width-wide` (1024px) for data tables.
+- **Grid:** CSS Grid for multi-column, Flexbox for single-row. No framework grids.
+- **Card spacing:** `var(--space-md)` (16px) gap in dense grids, `var(--space-lg)` (24px) in spacious layouts.
+
+### 2.11 Surface & Elevation (No-Shadow)
+
+Nothing UI is **flat by design.** Depth is communicated through surface contrast and borders — never shadows or blur.
+
+**4-Level Surface Hierarchy:**
+
+| Level | Token | Role |
+|-------|-------|------|
+| Canvas | `--black` | Page background (OLED black / white) |
+| Surface | `--surface` | Cards, panels — one step above canvas |
+| Raised | `--surface-raised` | Dropdowns, popovers, active rows — two steps above |
+| Border | `--border-visible` | Structural edges, wireframe lines |
+
+**Elevation methods (in order of preference):**
+1. **Surface contrast** — `--surface-raised` on `--surface` background (dropdowns, active rows)
+2. **Border separation** — `1px solid var(--border-visible)` around a card (standard cards)
+3. **Active indicator** — `var(--border-width-accent) solid var(--accent)` left bar (data table active row)
+4. **Backdrop dimming** — `var(--overlay-heavy)` behind modal (dialogs)
+
+**Never:** `box-shadow`, `filter: blur()`, `drop-shadow()`. The system has zero shadow tokens. If something needs to feel "lifted," use a lighter surface or a border.
+
+### 2.12 Focus & Accessibility
+
+- **Focus indicator:** Always `:focus-visible` (not `:focus`) — shows outline on keyboard nav, hides on mouse click.
+- **Unified pattern:** `outline: var(--focus-ring-width) solid var(--focus-ring-color); outline-offset: var(--focus-ring-offset);` — never define custom focus outlines per component.
+- **Focus color:** Always `--interactive` (blue). Never `--accent` (red) — red is for errors/urgent states only.
+- **Inset focus:** For dropdown items and list items, use `outline-offset: var(--focus-ring-offset-inset)` (-2px) so the outline stays within the item bounds.
+- **Never remove focus:** `outline: none` without a replacement is an accessibility violation. If you must remove the default outline, replace with the token-based pattern above.
+- **Touch targets:** Minimum `var(--touch-target-min)` (44px) for all interactive elements (WCAG 2.5.5).
+- **Disabled state:** `opacity: var(--opacity-40)` (0.4) or `--text-disabled` color. Borders fade to `--border`.
+
+### 2.13 Imagery
+
+- **No photography.** Nothing UI is typographically driven. No stock photos, no lifestyle imagery, no hero images.
+- **Dot-matrix is the illustration system.** Hero typography (Doto font), `.dot-grid` backgrounds, loading indicators, empty-state patterns — all dot-matrix. No mascots, no character illustrations, no isometric scenes.
+- **Icons:** Monoline, 1.5px stroke, no fill, `currentColor`. 24×24 base. Max 5–6 strokes. Preferred: Lucide thin, Phosphor thin.
+- **Product screenshots** (if absolutely needed): Inside `--surface` cards with `1px solid var(--border-visible)` border, contained (not full-bleed).
+- **Data visualization:** Line 1.5–2px, no area fill. Differentiate by opacity → pattern → line style → color (last resort). Always pair visual with numeric readout.
+
 ---
 
 ## 3. ANTI-PATTERNS — WHAT TO NEVER DO
@@ -153,6 +201,8 @@ Lead section → heaviest treatment. Secondary → different form. Tertiary → 
 - No spring/bounce easing. Use subtle ease-out only.
 - No border-radius > 16px on cards. Buttons are pill (999px) or technical (4–8px).
 - Data visualization: differentiate with **opacity** (100%/60%/30%) or **pattern** (solid/striped/dotted) before introducing color.
+- No hardcoded `max-width` / `outline` / `z-index` / `border-width` — must reference tokens (`var(--page-max-width)`, `var(--focus-ring-*)`, `var(--z-dropdown)`, `var(--border-width-*)`). Hardcoded values break theme consistency and block future token updates.
+- No shadow-based elevation — Nothing UI is flat. Create hierarchy with **surface contrast** (`--canvas` → `--surface` → `--surface-raised`) + **border separation** (`1px solid var(--border-subtle)`). Never use `box-shadow` or `filter: blur()` to simulate depth.
 
 ---
 
@@ -555,3 +605,93 @@ Migration Recommendations: priority-ordered steps, decision points, risks
 ```
 
 **Never auto-apply irreversible changes.** Always present the match report and get user confirmation before proceeding.
+
+---
+
+## 7. DO'S & DON'TS
+
+### Color
+**Do**
+- Use `--canvas` / `--surface` / `--surface-raised` for surface hierarchy
+- Use `--accent` (red) sparingly for destructive actions or active indicators only
+- Differentiate data series with opacity (100%/60%/30%) before introducing hue
+
+**Don't**
+- Don't introduce new accent colors — monochrome + single red accent is the system
+- Don't use `--text` color for borders; use `--border-subtle` / `--border-strong`
+
+### Typography
+**Do**
+- Pair line-height + letter-spacing tokens (`--leading-*` + `--tracking-*`) with type scale
+- Use uppercase + `--tracking-label` for labels/eyebrows
+- Set display sizes with negative tracking (`--tracking-display-*`)
+
+**Don't**
+- Don't hardcode `line-height` or `letter-spacing` — use tokens
+- Don't use serif fonts — Nothing UI is Inter (UI) + JetBrains Mono (data)
+
+### Layout
+**Do**
+- Constrain pages with `var(--page-max-width)` (1120px)
+- Use `var(--section-gap)` (80px) between major sections
+- Select content width by purpose: narrow (640) for prose, wide (1024) for dashboards
+
+**Don't**
+- Don't hardcode `max-width` pixel values
+- Don't exceed `--page-max-width` without explicit full-bleed intent
+
+### Component
+**Do**
+- Apply `var(--focus-ring-width) solid var(--focus-ring-color)` with `outline-offset: var(--focus-ring-offset)` on `:focus-visible`
+- Ensure interactive elements meet `var(--touch-target-min)` (44px)
+- Use named radius by element: `--radius-button`, `--radius-card`, `--radius-input`, `--radius-tag`
+
+**Don't**
+- Don't remove focus outlines — accessibility is non-negotiable
+- Don't mix radius scales within a component group (all cards use `--radius-card`)
+
+### Motion
+**Do**
+- Use named transitions: `var(--transition-fade)`, `var(--transition-color)`, `var(--transition-transform)`
+- Keep durations in `--duration-micro` (100ms) to `--duration-transition` (200ms) range
+
+**Don't**
+- Don't use `box-shadow` animations or `filter: blur()` transitions
+- Don't exceed 200ms for UI feedback transitions
+
+---
+
+## 8. AGENT PROMPT GUIDE
+
+When prompting an agent to build Nothing UI components, include token references and constraints explicitly.
+
+### Hero Section
+> Build a hero section for a product page. Container: `max-width: var(--page-max-width)`, `padding: 0 var(--space-lg)`, vertically centered with `var(--section-gap)` margin below. Headline: `--font-size-display-lg` (64px), `font-weight: 700`, `line-height: var(--leading-display-lg)`, `letter-spacing: var(--tracking-display-lg)`, color `--text`. Subhead: `--font-size-body-lg`, `--leading-body`, `--text-muted`. No imagery — use a dot-matrix illustration in an elevated card (`--surface-raised`, `--radius-card`, `1px solid var(--border-subtle)`). CTA: pill button (`--radius-button`), `--accent` background only if primary action.
+
+### Card
+> Build a content card. Surface: `var(--surface)`, border: `1px solid var(--border-subtle)`, radius: `var(--radius-card)` (16px). Padding: `var(--card-padding)` (24px). Title: `--font-size-heading-sm`, `--tracking-heading`. Body: `--font-size-body`, `--leading-body`, `--text-muted`. No shadow. If nested cards, outer uses `--surface-raised` + inner uses `--surface` to create hierarchy via contrast.
+
+### Navigation
+> Build a top navigation bar. Height: `56px`, sticky (`position: sticky; top: 0; z-index: var(--z-sticky)`). Background: `var(--surface)` with `border-bottom: 1px solid var(--border-subtle)`. Logo: monoline, 24px, `--text`. Nav items: `--font-size-label`, uppercase, `--tracking-label`, `--text-muted` default → `--text` on hover/active. Active item: `2px solid var(--accent)` bottom border (`--border-width-accent`). Each item meets `var(--touch-target-min)` (44px) hit area.
+
+### Data Row
+> Build a list row for a data table. Layout: grid with label column (narrow) + value column (wide). Row height: `48px`, `padding: 0 var(--space-md)`. Border-bottom: `1px solid var(--border-subtle)`. Label: `--font-size-label`, uppercase, `--tracking-label`, `--text-muted`. Value: `--font-size-body`, `--text`. Hover: background `var(--surface-raised)`. Active: `2px solid var(--accent)` left border (`--border-width-accent`). Focus: `outline: var(--focus-ring-width) solid var(--focus-ring-color); outline-offset: var(--focus-ring-offset)`.
+
+### Modal
+> Build a modal dialog. Overlay: `background: var(--overlay-heavy)`, `z-index: var(--z-modal)`. Dialog: `max-width: var(--modal-max-width)` (480px), `var(--surface-raised)`, `border: 1px solid var(--border-strong)`, `border-radius: var(--radius-card)`. Padding: `var(--space-lg)`. Title: `--font-size-heading-sm`, `--tracking-heading`. Close button: top-right, `--radius-button`, `--text-muted` → `--text` on hover. Focus trap inside modal. Escape key closes. Animate with `var(--transition-fade)`.
+
+---
+
+## 9. SIMILAR BRANDS
+
+Design context references — brands sharing Nothing UI's monochrome, reduction-first philosophy:
+
+| Brand | Shared Principle | Reference Value |
+|-------|------------------|-----------------|
+| **Linear** | Monochrome UI, keyboard-first, dense data, subtle motion | App UI patterns, issue tracking layout |
+| **Vercel** | Black/white/geist aesthetic, minimal chrome, mono typography | Marketing page structure, deployment dashboards |
+| **Teenage Engineering** | "Less, but better" hardware, dot-matrix displays, monochrome product | Dot-matrix aesthetic, hardware-software parity |
+| **Braun (Dieter Rams)** | "Less but better", functional clarity, no decoration | Ten principles for good design — philosophical anchor |
+| **Nothing (Phone)** | Dot-matrix UI, transparent materials, monochrome OS | Direct namesake — dot-matrix widget patterns, glyph font |
+
+Use these as mood-board references when extending the system. Do NOT copy component patterns directly — extract the underlying discipline (restraint, hierarchy via contrast, typographic precision).

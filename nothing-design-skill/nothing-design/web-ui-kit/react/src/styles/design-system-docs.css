@@ -1,0 +1,399 @@
+/* === Design System Documentation Section === */
+
+.ds-docs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+/* Subsection title */
+.ds-subsection-title {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-md) 0;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Card container for each doc block */
+.ds-doc-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--card-padding);
+}
+
+.ds-doc-card--raised {
+  background: var(--surface-raised);
+  border-color: var(--border-visible);
+}
+
+/* Token table */
+.ds-token-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+}
+
+.ds-token-table th {
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  padding: var(--space-xs) var(--space-sm);
+  border-bottom: 1px solid var(--border-visible);
+  font-weight: 400;
+}
+
+.ds-token-table td {
+  padding: var(--space-xs) var(--space-sm);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.ds-token-table tr:last-child td {
+  border-bottom: none;
+}
+
+.ds-token-name {
+  color: var(--text-display);
+}
+
+.ds-token-value {
+  color: var(--text-secondary);
+}
+
+/* Color swatch */
+.ds-swatch {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--border-visible);
+  vertical-align: middle;
+  margin-right: var(--space-sm);
+}
+
+/* Do's & Don'ts */
+.ds-dos-donts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.ds-dos,
+.ds-donts {
+  padding: var(--card-padding-sm);
+  border-radius: var(--radius-card-compact);
+  border: 1px solid var(--border);
+}
+
+.ds-dos {
+  background: var(--surface);
+}
+
+.ds-donts {
+  background: var(--surface-raised);
+  border-color: var(--accent);
+}
+
+.ds-dos-title,
+.ds-donts-title {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.ds-dos-title {
+  color: var(--text-primary);
+}
+
+.ds-donts-title {
+  color: var(--accent);
+}
+
+.ds-dos ul,
+.ds-donts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.ds-dos li,
+.ds-donts li {
+  font-family: var(--font-body);
+  font-size: var(--caption);
+  color: var(--text-secondary);
+  padding-left: var(--space-md);
+  position: relative;
+  line-height: 1.5;
+}
+
+.ds-dos li::before {
+  content: '[ OK ]';
+  position: absolute;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-primary);
+  top: 2px;
+}
+
+.ds-donts li::before {
+  content: '[ NO ]';
+  position: absolute;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--accent);
+  top: 2px;
+}
+
+/* Anti-patterns list */
+.ds-anti-patterns {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.ds-anti-patterns li {
+  font-family: var(--font-body);
+  font-size: var(--caption);
+  color: var(--text-secondary);
+  padding-left: var(--space-lg);
+  position: relative;
+  line-height: 1.5;
+}
+
+.ds-anti-patterns li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+/* Surface hierarchy demo */
+.ds-surface-demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.ds-surface-level {
+  padding: var(--space-md);
+  border-radius: var(--radius-card-compact);
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ds-surface-canvas {
+  background: var(--black);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.ds-surface-surface {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.ds-surface-raised {
+  background: var(--surface-raised);
+  color: var(--text-display);
+  border: 1px solid var(--border-visible);
+}
+
+.ds-surface-border {
+  background: var(--surface);
+  color: var(--text-display);
+  border: 2px solid var(--border-visible);
+}
+
+/* Focus ring demo */
+.ds-focus-demo {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  padding: var(--space-md);
+  background: var(--surface);
+  border-radius: var(--radius-card-compact);
+  border: 1px solid var(--border);
+}
+
+.ds-focus-demo button {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--text-display);
+  color: var(--black);
+  border: none;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+}
+
+.ds-focus-demo button:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.ds-focus-demo button.secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-visible);
+}
+
+/* Radius demo */
+.ds-radius-demo {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.ds-radius-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.ds-radius-box {
+  width: 64px;
+  height: 64px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-visible);
+}
+
+.ds-radius-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* Similar brands */
+.ds-brands-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: var(--caption);
+}
+
+.ds-brands-table th {
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  padding: var(--space-xs) var(--space-sm);
+  border-bottom: 1px solid var(--border-visible);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 9px;
+}
+
+.ds-brands-table td {
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.ds-brands-table td:first-child {
+  color: var(--text-display);
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+}
+
+.ds-brands-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Agent prompt guide */
+.ds-prompt-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card-compact);
+  padding: var(--card-padding-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.ds-prompt-card-title {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-display);
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.ds-prompt-card-body {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Philosophy principles */
+.ds-principles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-sm);
+}
+
+.ds-principle {
+  padding: var(--space-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card-compact);
+}
+
+.ds-principle-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.ds-principle-value {
+  font-family: var(--font-display);
+  font-size: var(--heading-sm);
+  color: var(--text-display);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Code inline */
+.ds-code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-display);
+  background: var(--black);
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}

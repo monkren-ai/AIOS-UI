@@ -7,7 +7,7 @@
 @keyframes streak-wave{0%,100%{filter:brightness(.5)}50%{filter:brightness(1.25)}}
 
 .nullframe-dashboard .bento{
-  width:100%;max-width:1120px;
+  width:100%;max-width:var(--page-max-width);
   display:grid;grid-template-columns:repeat(4,1fr);
   grid-template-rows:200px 200px 185px 185px;gap:10px;
 }

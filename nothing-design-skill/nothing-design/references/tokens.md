@@ -26,6 +26,36 @@
 | `--caption` | 12px | 1.4 | 0.04em | Timestamps, footnotes |
 | `--label` | 11px | 1.2 | 0.08em | ALL CAPS monospace labels |
 
+### Line Height Tokens
+
+| Token | Value | Paired with |
+|-------|-------|-------------|
+| `--leading-display-xl` | 1.0 | `--display-xl` |
+| `--leading-display-lg` | 1.05 | `--display-lg` |
+| `--leading-display-md` | 1.1 | `--display-md` |
+| `--leading-heading` | 1.2 | `--heading` |
+| `--leading-subheading` | 1.3 | `--subheading` |
+| `--leading-body` | 1.5 | `--body` |
+| `--leading-body-sm` | 1.5 | `--body-sm` |
+| `--leading-caption` | 1.4 | `--caption` |
+| `--leading-label` | 1.2 | `--label` |
+
+### Letter Spacing Tokens
+
+| Token | Value | Paired with |
+|-------|-------|-------------|
+| `--tracking-display-xl` | -0.03em | `--display-xl` |
+| `--tracking-display-lg` | -0.02em | `--display-lg` |
+| `--tracking-display-md` | -0.02em | `--display-md` |
+| `--tracking-heading` | -0.01em | `--heading` |
+| `--tracking-subheading` | 0 | `--subheading` |
+| `--tracking-body` | 0 | `--body` |
+| `--tracking-body-sm` | 0.01em | `--body-sm` |
+| `--tracking-caption` | 0.04em | `--caption` |
+| `--tracking-label` | 0.08em | `--label` |
+
+**Usage:** Always pair `--leading-*` and `--tracking-*` with the corresponding `--display-*` / `--heading` / `--body-*` / `--caption` / `--label` size token. Never use a line-height or letter-spacing token without its size counterpart.
+
 ### Typographic Rules
 
 - **Doto:** 36px+ only, tight tracking, never for body text
@@ -103,6 +133,98 @@
 | `--space-3xl` | 64px | Page-level vertical rhythm |
 | `--space-4xl` | 96px | Hero breathing room |
 
+### Named Radius by Element
+
+Element-specific radius tokens map generic radius values to component types, ensuring consistency without looking up the generic scale each time.
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--radius-button` | 999px | Pill buttons (primary, secondary, destructive) |
+| `--radius-button-technical` | 8px | Technical/square buttons |
+| `--radius-card` | 16px | Standard cards, widgets |
+| `--radius-card-compact` | 8px | Compact cards, dropdowns |
+| `--radius-card-technical` | 4px | Technical cards, data grids |
+| `--radius-input` | 8px | Bordered inputs |
+| `--radius-input-underline` | 0px | Underline inputs (flush) |
+| `--radius-tag` | 999px | Pill tags/chips |
+| `--radius-tag-technical` | 4px | Technical tags |
+| `--radius-tooltip` | 8px | Tooltips |
+| `--radius-segment` | 999px | Segmented control container |
+
+---
+
+## 3.5. LAYOUT
+
+Page-level layout tokens for consistent structure across screens.
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--page-max-width` | 1120px | Maximum page content width (centered) |
+| `--modal-max-width` | 480px | Standard modal dialog width |
+| `--modal-max-width-sm` | 400px | Compact modal / confirm dialog |
+| `--section-gap` | 80px | Standard vertical gap between sections |
+| `--section-gap-lg` | 120px | Large vertical gap for major page divisions |
+| `--card-padding` | 24px | Standard card internal padding |
+| `--card-padding-sm` | 16px | Compact card internal padding |
+| `--element-gap` | 8px | Gap between elements within a group |
+
+### Content Width Tokens
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--content-width-narrow` | 640px | Reading text, form fields |
+| `--content-width-normal` | 768px | Standard content, articles |
+| `--content-width-wide` | 1024px | Data tables, dashboards |
+| `--content-width-full` | 1120px | Full page width (same as `--page-max-width`) |
+
+---
+
+## 3.6. BORDER WIDTH & TOUCH TARGET
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--border-width-sm` | 1px | Standard borders, dividers, card outlines |
+| `--border-width-md` | 2px | Emphasized borders, focus indicators |
+| `--border-width-lg` | 4px | Strong separation, decorative borders |
+| `--border-width-accent` | 2px | Active row indicator (left bar) |
+| `--touch-target-min` | 44px | Minimum touch target size (WCAG 2.5.5) |
+
+---
+
+## 3.7. OPACITY SCALE
+
+Systematic opacity scale for consistent layering and state expression.
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--opacity-0` | 0 | Fully transparent |
+| `--opacity-10` | 0.1 | Dot-grid backgrounds, subtle textures |
+| `--opacity-20` | 0.2 | Decorative overlays |
+| `--opacity-30` | 0.3 | Tertiary data visualization |
+| `--opacity-40` | 0.4 | Disabled state (per SKILL.md anti-patterns) |
+| `--opacity-50` | 0.5 | Equal blend |
+| `--opacity-60` | 0.6 | Secondary data visualization |
+| `--opacity-70` | 0.7 | Widget secondary text (`--widget-white-70`) |
+| `--opacity-80` | 0.8 | Overlay backdrop (`--overlay-heavy`) |
+| `--opacity-90` | 0.9 | Near-fully visible |
+| `--opacity-100` | 1 | Fully visible |
+
+---
+
+## 3.8. NAMED TRANSITIONS
+
+Pre-composed transition shorthand tokens for common interaction patterns.
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--transition-fade` | `var(--duration-micro) var(--easing)` | Opacity fade in/out |
+| `--transition-color` | `var(--duration-micro) var(--easing)` | Text/border color change on hover |
+| `--transition-border` | `var(--duration-micro) var(--easing)` | Border color/width change |
+| `--transition-transform` | `var(--duration-transition) var(--easing)` | Position/scale transform |
+| `--transition-opacity` | `var(--duration-micro) var(--easing)` | Opacity-only transition |
+
+**Usage:** `transition: var(--transition-fade);` — cleaner than composing `var(--duration-micro) var(--easing)` each time.
+
 ---
 
 ## 4. MOTION & INTERACTION
@@ -112,6 +234,66 @@
 - Prefer opacity over position. Elements fade, don't slide.
 - Hover: border/text brightens. No scale, no shadows.
 - No parallax, scroll-jacking, gratuitous animation.
+
+### Named Transitions
+
+See [§3.8 Named Transitions](#38-named-transitions) for pre-composed transition tokens (`--transition-fade`, `--transition-color`, etc.) that pair `--duration-*` with `--easing` for common interaction patterns.
+
+---
+
+## 4.5. FOCUS RING
+
+Nothing UI uses a unified `:focus-visible` pattern across all interactive components. No component should define its own focus outline — always use these tokens.
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--focus-ring-width` | 2px | Outline width |
+| `--focus-ring-color` | `var(--interactive)` | Outline color (blue) |
+| `--focus-ring-offset` | 2px | Outline offset (external, for buttons/inputs) |
+| `--focus-ring-offset-inset` | -2px | Outline offset (inset, for dropdown items) |
+
+**Standard pattern (external focus):**
+```css
+.interactive-element:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+```
+
+**Inset pattern (for dropdown menu items, list items):**
+```css
+.menu-item:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset-inset);
+}
+```
+
+**Rules:**
+- Use `:focus-visible` only (not `:focus`) — prevents outline on mouse click, shows on keyboard nav
+- Never remove focus outline (`outline: none`) without replacing with an equivalent visible indicator
+- Focus color is always `--interactive` (blue), never `--accent` (red)
+
+---
+
+## 4.6. Z-INDEX SCALE
+
+Seven-level z-index scale for predictable layering. Never use arbitrary z-index values — always reference these tokens.
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--z-base` | 1 | Base content layer (default stacking) |
+| `--z-dropdown` | 50 | Dropdown menus, select popovers |
+| `--z-sticky` | 80 | Sticky headers, sticky sidebars |
+| `--z-overlay` | 100 | Full-screen overlays, backdrops, taskbars |
+| `--z-popover` | 200 | Popovers, hover cards, tooltips triggered from overlay |
+| `--z-tooltip` | 300 | Tooltips (always topmost except modal) |
+| `--z-modal` | 1000 | Modal dialogs (always highest) |
+
+**Stacking rules:**
+- Dropdowns (`--z-dropdown`) sit below overlays (`--z-overlay`) so a backdrop can cover them
+- Tooltips (`--z-tooltip`) sit above popovers (`--z-popover`) so tooltips on popover content are visible
+- Modal (`--z-modal`) is always topmost — nothing should appear above a modal except its own tooltips
+- Within the same z-index level, DOM order determines stacking
 
 ---
 
@@ -278,3 +460,89 @@ Three more shared factories are now exported alongside the originals:
 ### Component Metadata (`components.json`)
 
 The `web-ui-kit/react/components.json` file documents the project structure, alias mappings, and engine requirements. It's a shadcn-style metadata file that documents the design system for tooling and future CLI integration.
+
+---
+
+## 9. SURFACE & ELEVATION
+
+Nothing UI achieves depth through **surface contrast and borders, never shadows or blur.** This is a core philosophy — the system is flat by design.
+
+### Surface Hierarchy (4 Levels)
+
+| Level | Token | Dark Value | Light Value | Purpose |
+|-------|-------|------------|-------------|---------|
+| 1 | `--black` | `#000000` | `#FFFFFF` | Page canvas — the dominant background |
+| 2 | `--surface` | `#111111` | `#FFFFFF` | Cards, panels, elevated content on dark canvas |
+| 3 | `--surface-raised` | `#1A1A1A` | `#F0F0F0` | Secondary elevation (dropdowns, popovers, active rows) |
+| 4 | `--border-visible` | `#333333` | `#CCCCCC` | Intentional borders, wireframe lines, structural edges |
+
+**Dark mode:** Level 1 (OLED black) → Level 2 (slightly lifted) → Level 3 (more lifted) → Level 4 (border definition). Each step increases brightness by ~10-15%.
+
+**Light mode:** Level 1 (white) → Level 2 (white, same as canvas — elevation via border) → Level 3 (off-white, subtle warmth) → Level 4 (visible border). Light mode relies more on borders than surface contrast.
+
+### Elevation Patterns (No Shadow)
+
+| Pattern | How | Use |
+|---------|-----|-----|
+| **Border separation** | `1px solid var(--border-visible)` around a `--surface` card on `--black` canvas | Standard card elevation |
+| **Surface contrast** | `--surface-raised` element on `--surface` background | Dropdowns, popovers, active rows |
+| **Active indicator** | `2px solid var(--accent)` left bar + `--surface-raised` background | Active row in data table/grid |
+| **Backdrop dimming** | `rgba(0,0,0,0.8)` overlay (`--overlay-heavy`) behind modal | Modal/dialog elevation |
+
+**Anti-pattern:** Never use `box-shadow` to create elevation. The system has zero shadow tokens by design. If a element needs to feel "lifted," use surface contrast or border.
+
+---
+
+## 10. IMAGERY
+
+### Photography
+- **Not used.** Nothing UI is typographically driven — no stock photos, no lifestyle photography, no hero images.
+- Product screenshots (if needed) are displayed inside `--surface` cards with `1px solid var(--border-visible)` border, never full-bleed.
+
+### Illustration
+- **Dot-matrix only.** The signature visual motif is the 5×5 (or NxN) dot grid — used for hero typography (Doto font), decorative backgrounds (`.dot-grid`), loading indicators, and empty-state illustrations.
+- No mascots, no character illustrations, no isometric scenes, no flat-design people.
+- Empty states: centered dot-matrix pattern + headline in `--text-secondary` + 1-sentence description in `--text-disabled`.
+
+### Icons
+- **Monoline only:** 1.5px stroke, no fill, round caps/joins. 24×24 base, 20×20 live area.
+- Color inherits text color (`currentColor`). Never multi-color, never filled.
+- Max 5–6 strokes per icon — if more, the icon is too complex.
+- Preferred libraries: Lucide (thin), Phosphor (thin). Never Material filled, never Font Awesome solid.
+
+### Data Visualization Imagery
+- Charts: line 1.5–2px `--text-display`, average dashed 1px `--text-secondary`. No area fill.
+- Differentiate series by **opacity** (100%/60%/30%) → **pattern** (solid/striped/dotted) → **line style** (solid/dashed) → **color** (last resort, only for status encoding).
+- Always show numeric value alongside any visual — the visual is supplementary, the number is primary.
+
+---
+
+## 11. LAYOUT GUIDELINES
+
+### Page Structure
+- **Max width:** `var(--page-max-width)` (1120px) centered on canvas. Content beyond this width is rare and intentional.
+- **Section rhythm:** `var(--section-gap)` (80px) between standard sections, `var(--section-gap-lg)` (120px) between major page divisions.
+- **No sidebars by default.** Single-column or 2-column max. Sidebars only in app-shell contexts (dashboard, settings).
+
+### Content Width Selection
+| Content Type | Token | Width |
+|-------------|-------|-------|
+| Reading text, form fields | `--content-width-narrow` | 640px |
+| Standard content, articles | `--content-width-normal` | 768px |
+| Data tables, dashboards | `--content-width-wide` | 1024px |
+| Full page width | `--content-width-full` | 1120px |
+
+### Grid
+- **CSS Grid** preferred for multi-column layouts. `grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr))` for responsive card grids.
+- **Flexbox** for single-row alignment (nav bars, button groups, stat rows).
+- No CSS framework grid (no Bootstrap, no Tailwind grid). Pure CSS Grid/Flexbox.
+
+### Card Layout
+- Card padding: `var(--card-padding)` (24px) standard, `var(--card-padding-sm)` (16px) compact.
+- Card gap within a grid: `var(--space-md)` (16px) standard, `var(--space-lg)` (24px) spacious.
+- Card radius: `var(--radius-card)` (16px) standard, `var(--radius-card-compact)` (8px) compact, `var(--radius-card-technical)` (4px) technical.
+
+### Asymmetry
+- Favor **asymmetric** layouts over centered ones. Large-left-small-right, top-heavy, or edge-anchored compositions.
+- Balance heavy elements with **more empty space**, not with more heavy elements.
+- The "Three-Layer Rule" (see SKILL.md §2.1) governs visual hierarchy within any layout.

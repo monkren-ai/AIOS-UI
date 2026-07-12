@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '../lib/utils'
+import DotMatrixIcon from './DotMatrixIcon'
+import { componentIconSvg } from './widgets/icon-svg-registry'
 import '../styles/battery.css'
 
 const batteryVariants = cva('nothing-battery', {
@@ -72,7 +74,24 @@ export interface BatteryProps
 
 const CIRCUMFERENCE = 2 * Math.PI * 95
 
-const BatteryIcon = ({ percent, isCharging }: { percent: number; isCharging: boolean }) => {
+const BatteryIcon = ({ percent, isCharging, variant }: { percent: number; isCharging: boolean; variant?: 'solid' | 'dot' }) => {
+  const svgKey = isCharging ? 'batteryCharging' : percent <= 30 ? 'batteryLow' : 'batteryNormal'
+
+  if (variant === 'dot') {
+    return (
+      <DotMatrixIcon
+        svg={componentIconSvg[svgKey]}
+        rows={16}
+        cols={16}
+        dotSize={2}
+        gap={1}
+        alphaThreshold={100}
+        baseColor="var(--widget-white, #FCFAFE)"
+        backgroundColor="transparent"
+      />
+    )
+  }
+
   if (isCharging) {
     return (
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +119,23 @@ const BatteryIcon = ({ percent, isCharging }: { percent: number; isCharging: boo
   )
 }
 
-const DeviceTypeIcon: React.FC<{ type: BatteryDevice['type'] }> = ({ type }) => {
+const DeviceTypeIcon: React.FC<{ type: BatteryDevice['type']; variant?: 'solid' | 'dot' }> = ({ type, variant }) => {
+  if (variant === 'dot') {
+    const key = `device${type.charAt(0).toUpperCase() + type.slice(1)}` as keyof typeof componentIconSvg
+    return (
+      <DotMatrixIcon
+        svg={componentIconSvg[key]}
+        rows={16}
+        cols={16}
+        dotSize={2}
+        gap={1}
+        alphaThreshold={100}
+        baseColor="var(--widget-white, #FCFAFE)"
+        backgroundColor="transparent"
+      />
+    )
+  }
+
   switch (type) {
     case 'mouse':
       return (

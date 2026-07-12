@@ -25,13 +25,12 @@ import SunDial from '@/components/SunDial'
 import AgeMotion from '@/components/AgeMotion'
 import Chrono from '@/components/Chrono'
 import Spinner from '@/components/Spinner'
-import DotMatrix from '@/components/DotMatrix'
+import StaticDotMatrix from '@/components/StaticDotMatrix'
+import DotMatrixIcon from '@/components/DotMatrixIcon'
 import QuickToggle from '@/components/QuickToggle'
-import WeatherWidget from '@/components/widgets/WeatherWidget'
-import PhotoFrameWidget from '@/components/widgets/PhotoFrameWidget'
-import SvgIcon from '@/components/widgets/SvgIcon'
-import WidgetPill from '@/components/widgets/WidgetPill'
-import Glyph from '@/components/widgets/Glyph'
+import { WidgetIconList } from '@/components/widgets/WidgetIcons'
+import DotMatrixWeatherIcon from '@/components/widgets/DotMatrixWeatherIcon'
+import { quickToggleSvg, componentIconSvg } from '@/components/widgets/icon-svg-registry'
 import Accordion from '@/components/Accordion'
 import Checkbox from '@/components/Checkbox'
 import RadioGroup from '@/components/RadioGroup'
@@ -110,11 +109,16 @@ import '@/styles/navigation-menu.css'
 import '@/styles/aspect-ratio.css'
 import '@/styles/widgets.css'
 import '@/styles/widget-showcase.css'
+import '@/styles/dot-matrix-icon.css'
 
 import { WidgetShowcase } from '@/components/showcase/WidgetShowcase'
 import { Figma20Showcase } from '@/components/showcase/Figma20Showcase'
 
 const NullframeSection = lazy(() => import('./sections/NullframeSection'))
+const DotMatrixLoadersSection = lazy(() => import('./sections/DotMatrixLoadersSection'))
+const DesignSystemSection = lazy(() => import('./sections/DesignSystemSection'))
+const PodcastSection = lazy(() => import('./sections/PodcastSection'))
+const MarqueeSection = lazy(() => import('./sections/MarqueeSection'))
 
 const demoTitleStyle: React.CSSProperties = {
   fontFamily: 'var(--font-mono)',
@@ -189,20 +193,18 @@ const navLinkStyle: React.CSSProperties = {
 const categories = [
   { id: 'core-interaction', zh: '核心交互', en: 'Core Interaction' },
   { id: 'data-display', zh: '数据展示', en: 'Data Display' },
-  { id: 'overlays', zh: '弹窗与层', en: 'Overlays' },
+  { id: 'overlays', zh: '覆盖层', en: 'Overlays' },
   { id: 'navigation', zh: '导航', en: 'Navigation' },
   { id: 'menus-selection', zh: '菜单与选择', en: 'Menus & Selection' },
-  { id: 'states', zh: '状态', en: 'States' },
-  { id: 'utility', zh: '工具', en: 'Utility' },
-  { id: 'clock-calendar', zh: '时钟与日历', en: 'Clock & Calendar' },
-  { id: 'system-monitoring', zh: '系统与监控', en: 'System & Monitoring' },
-  { id: 'utility-tools', zh: '实用工具', en: 'Utility Tools' },
-  { id: 'time-progress', zh: '时间与进度', en: 'Time & Progress' },
-  { id: 'visual-display', zh: '视觉展示', en: 'Visual Display' },
-  { id: 'feature-widgets', zh: '特色组件', en: 'Feature Widgets' },
-  { id: 'widget-layout', zh: '组件布局', en: 'Widget Layout' },
-  { id: 'figma-20-library', zh: 'Figma 2.0 库', en: 'Figma 2.0 Library' },
-  { id: 'nullframe', zh: 'Nullframe 仪表盘', en: 'Nullframe Dashboard' }
+  { id: 'states', zh: '状态与反馈', en: 'States & Feedback' },
+  { id: 'time', zh: '时间与日历', en: 'Time & Calendar' },
+  { id: 'system', zh: '系统与媒体', en: 'System & Media' },
+  { id: 'widgets', zh: 'Widgets', en: 'Widgets' },
+  { id: 'dotmatrix-loaders', zh: '点阵加载器', en: 'Dotmatrix Loaders' },
+  { id: 'marquee-effect', zh: '滚动效果', en: 'Marquee Effect' },
+  { id: 'nullframe', zh: 'Nullframe 仪表盘', en: 'Nullframe Dashboard' },
+  { id: 'design-system', zh: '设计系统', en: 'Design System' },
+  { id: 'podcast', zh: '播客 App 实例', en: 'Podcast App Demo' }
 ]
 
 function CategorySection({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
@@ -605,9 +607,165 @@ function App() {
             <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-xs)' }}>{t('紧凑不确定', 'Slim Indeterminate')}</div>
             <ProgressBar value={0} variant="slim" indeterminate />
           </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('引用', 'Quotes')}</h2>
+            <Quotes />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('点阵', 'Dot Matrix')}</h2>
+            <StaticDotMatrix rows={5} cols={5} dotSize="md" theme="light" />
+            <StaticDotMatrix rows={8} cols={8} dotSize="sm" theme="dark" pattern="glyph" />
+            <StaticDotMatrix rows={10} cols={10} dotSize="sm" theme="dark" activeDots={[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[0,9],[1,8],[2,7],[3,6],[4,5],[5,4],[6,3],[7,2],[8,1],[9,0]]} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('点阵图标 — SVG 转点阵', 'Dot Matrix Icon — SVG to Dots')}</h2>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-xl)', alignItems: 'flex-start' }}>
+              <div>
+                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>{t('心形 · 24×24', 'Heart · 24×24')}</div>
+                <DotMatrixIcon
+                  svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5 6 5c2 0 3.5 1 4.5 2.5C11.5 6 13 5 15 5c3.5 0 5 4 3.5 7-2.5 4.5-9.5 9-9.5 9z"/></svg>'
+                  rows={24}
+                  cols={24}
+                  alphaThreshold={128}
+                  dotSize={6}
+                  baseColor="var(--widget-dark-2)"
+                />
+              </div>
+              <div>
+                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>{t('心形 · 随机脉冲', 'Heart · Random Pulse')}</div>
+                <DotMatrixIcon
+                  svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5 6 5c2 0 3.5 1 4.5 2.5C11.5 6 13 5 15 5c3.5 0 5 4 3.5 7-2.5 4.5-9.5 9-9.5 9z"/></svg>'
+                  rows={24}
+                  cols={24}
+                  alphaThreshold={128}
+                  dotSize={6}
+                  baseColor="var(--widget-dark-4)"
+                  activeColor="var(--widget-primary)"
+                  anim="random"
+                  activePercent={20}
+                  speedMs={1000}
+                />
+              </div>
+              <div>
+                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>{t('星形 · 24×24 · 背景与圆角', 'Star · 24×24 · Bg & Radius')}</div>
+                <DotMatrixIcon
+                  svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>'
+                  rows={24}
+                  cols={24}
+                  alphaThreshold={100}
+                  dotSize={5}
+                  gap={1}
+                  baseColor="var(--widget-white)"
+                  backgroundColor="var(--widget-dark-bg)"
+                  radius={12}
+                />
+              </div>
+              <div>
+                <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>{t('低阈值 · 捕获更多细节', 'Low Threshold · More Detail')}</div>
+                <DotMatrixIcon
+                  svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>'
+                  rows={24}
+                  cols={24}
+                  alphaThreshold={64}
+                  dotSize={5}
+                  baseColor="var(--widget-dark-2)"
+                  activeColor="var(--widget-primary)"
+                  anim="random"
+                  activePercent={15}
+                  speedMs={1400}
+                />
+              </div>
+            </div>
+          </section>
+
+          <section style={{ marginBottom: 0 }}>
+            <h2 style={demoTitleStyle}>{t('点阵图标集 — Dot Matrix Icon Set', 'Dot Matrix Icon Set')}</h2>
+
+            <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>{t('Widget 图标 · 40 个 · variant=dot', 'Widget Icons · 40 · variant=dot')}</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(72px, 1fr))', gap: 'var(--space-md)', marginBottom: 'var(--space-xl)' }}>
+              {WidgetIconList.map((Icon, i) => (
+                <div key={i} style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Icon variant="dot" size="sm" />
+                </div>
+              ))}
+            </div>
+
+            <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>{t('天气图标 · 7 个 · 随机脉冲', 'Weather Icons · 7 · Random Pulse')}</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', marginBottom: 'var(--space-xl)' }}>
+              {(['sunny', 'cloudy', 'partlyCloudyDay', 'partlyCloudyNight', 'rainOrMist', 'snowFall', 'thunder'] as const).map((name) => (
+                <div key={name} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-xs)' }}>
+                  <DotMatrixWeatherIcon name={name} size={96} rows={24} cols={24} anim="random" activePercent={15} speedMs={1400} />
+                  <span style={{ fontSize: 'var(--caption)', opacity: 0.6 }}>{name}</span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>{t('QuickToggle · 点阵变体', 'QuickToggle · Dot Variants')}</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', marginBottom: 'var(--space-xl)' }}>
+              {([
+                ['active', t('激活', 'Active')], ['torch', t('手电筒', 'Torch')], ['dnd', t('勿扰', 'DND')],
+                ['rotate', t('旋转', 'Rotate')], ['hotspot', t('热点', 'Hotspot')], ['bluetooth', t('蓝牙', 'Bluetooth')],
+                ['mobileData', t('移动数据', 'Mobile Data')], ['nfc', 'NFC'],
+              ] as const).map(([key, label]) => (
+                <QuickToggle
+                  key={key}
+                  variant="circle"
+                  theme="dark"
+                  label={label}
+                  icon={
+                    <DotMatrixIcon
+                      svg={quickToggleSvg[key]}
+                      rows={10}
+                      cols={10}
+                      dotSize={2}
+                      gap={0}
+                      alphaThreshold={100}
+                      baseColor="var(--widget-white, #FCFAFE)"
+                      backgroundColor="transparent"
+                    />
+                  }
+                />
+              ))}
+            </div>
+
+            <div style={{ ...demoTitleStyle, fontSize: 'var(--caption)', marginBottom: 'var(--space-sm)' }}>{t('组件图标 · Battery/Taskbar · 点阵变体', 'Component Icons · Battery/Taskbar · Dot Variants')}</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-lg)', alignItems: 'flex-start' }}>
+              {([
+                ['batteryCharging', t('充电', 'Charging')],
+                ['batteryLow', t('低电', 'Low')],
+                ['batteryNormal', t('正常', 'Normal')],
+                ['deviceMouse', t('鼠标', 'Mouse')],
+                ['deviceKeyboard', t('键盘', 'Keyboard')],
+                ['deviceEarbuds', t('耳机', 'Earbuds')],
+                ['devicePhone', t('手机', 'Phone')],
+                ['deviceWatch', t('手表', 'Watch')],
+                ['startIcon', t('开始', 'Start')],
+                ['searchIcon', t('搜索', 'Search')],
+                ['volumeIcon', t('音量', 'Volume')],
+              ] as const).map(([key, label]) => (
+                <div key={key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-xs)' }}>
+                  <DotMatrixIcon
+                    svg={componentIconSvg[key]}
+                    rows={16}
+                    cols={16}
+                    dotSize={2}
+                    gap={1}
+                    alphaThreshold={100}
+                    baseColor="var(--widget-white, #FCFAFE)"
+                    backgroundColor="var(--widget-dark-bg, #1A1D1C)"
+                    radius={8}
+                  />
+                  <span style={{ fontSize: 'var(--caption)', opacity: 0.6 }}>{label}</span>
+                </div>
+              ))}
+            </div>
+          </section>
         </CategorySection>
 
-        <CategorySection id="overlays" title={t('弹窗与层', 'Overlays')}>
+        <CategorySection id="overlays" title={t('覆盖层', 'Overlays')}>
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>{t('模态框', 'Modal')}</h2>
             <Button variant="primary" onClick={() => setModalOpen(true)}>{t('打开模态框', 'Open Modal')}</Button>
@@ -979,7 +1137,7 @@ function App() {
           </section>
         </CategorySection>
 
-        <CategorySection id="states" title={t('状态', 'States')}>
+        <CategorySection id="states" title={t('状态与反馈', 'States & Feedback')}>
           <section style={{ ...gridSectionStyle, marginBottom: 0 }}>
             <h2 style={demoTitleStyle}>{t('状态', 'States')}</h2>
             <LoadingState progress={65} label={t('同步中', 'Syncing')} />
@@ -1016,7 +1174,124 @@ function App() {
           </section>
         </CategorySection>
 
-        <CategorySection id="utility" title={t('工具', 'Utility')}>
+        <CategorySection id="time" title={t('时间与日历', 'Time & Calendar')}>
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('时钟', 'Clock')}</h2>
+            <Time variant="digital-compact" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-lg)' }} />
+            <Time variant="dial" />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('日历', 'Calendar')}</h2>
+            <Calendar type="compact" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-lg)' }} />
+            <Calendar type="full" />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('世界时钟', 'World Clock')}</h2>
+            <Time variant="world" cities={worldClockCities} />
+            <div style={{ marginTop: 'var(--space-md)', display: 'flex', gap: 'var(--space-sm)' }}>
+              <Button variant="secondary" size="sm" onClick={() => setWorldClockCities(prev => [...prev, { name: t('上海', 'SHANGHAI'), offset: 8 }])}>{t('添加上海', 'Add Shanghai')}</Button>
+              <Button variant="ghost" size="sm" onClick={() => setWorldClockCities(prev => prev.length > 1 ? prev.slice(0, -1) : prev)}>{t('移除最后', 'Remove Last')}</Button>
+            </div>
+          </section>
+
+          <section style={flexWrapSectionStyle}>
+            <h2 style={demoTitleStyle}>{t('日期小组件', 'Date Widget')}</h2>
+            <DateWidget type="rect" theme="light" />
+            <DateWidget type="rect" theme="dark" />
+            <DateWidget type="dual-ring" theme="light" />
+            <DateWidget type="dual-ring" theme="dark" />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('日晷', 'Sun Dial')}</h2>
+            <SunDial style={{ maxWidth: '400px', margin: '0 auto' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('年龄动态', 'Age Motion')}</h2>
+            <AgeMotion style={{ maxWidth: '400px', margin: '0 auto' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('计时', 'Chrono')}</h2>
+            <Chrono style={{ maxWidth: '400px', margin: '0 auto' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('旋转器', 'Spinner')}</h2>
+            <Spinner items={spinnerItems} style={{ maxWidth: '400px', margin: '0 auto' }} />
+            <div style={{ marginTop: 'var(--space-md)', display: 'flex', gap: 'var(--space-sm)' }}>
+              <Button variant="secondary" size="sm" onClick={() => setSpinnerItems(prev => [...prev.slice(1), prev[0]])}>{t('旋转条目', 'Rotate Items')}</Button>
+              <Button variant="ghost" size="sm" onClick={() => setSpinnerItems([t('是', 'YES'), t('否', 'NO'), t('可能', 'MAYBE'), t('稍后', 'LATER'), t('跳过', 'SKIP'), t('尝试', 'TRY')])}>{t('重置', 'Reset')}</Button>
+            </div>
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('下一个事件', 'Next Event')}</h2>
+            <NextEvent />
+          </section>
+
+          <section style={{ marginBottom: 0 }}>
+            <h2 style={demoTitleStyle}>{t('番茄钟', 'Pomodoro')}</h2>
+            <Pomodoro style={{ maxWidth: '400px', margin: '0 auto' }} />
+          </section>
+        </CategorySection>
+
+        <CategorySection id="system" title={t('系统与媒体', 'System & Media')}>
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('电量', 'Battery')}</h2>
+            <Battery />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('系统监控', 'System Monitor')}</h2>
+            <SystemMonitor />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('快速切换', 'Quick Toggle')}</h2>
+            <QuickToggle variant="circle" theme="light" label={t('激活', 'Active')} active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="circle" theme="light" label={t('手电筒', 'Torch')} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 6L17 7M6 18l1-1M6 6l1 1M18 18l-1-1" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" fill="none"/></svg>} />
+            <QuickToggle variant="circle" theme="accent" label={t('勿扰', 'DND')} active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/><line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
+            <QuickToggle variant="circle" theme="light" label={t('旋转', 'Rotate')} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 2v6h-6M3 12a9 9 0 0115-6.7L21 8M3 22v-6h6M21 12a9 9 0 01-15 6.7L3 16" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="pill" theme="dark" label={t('热点', 'Hotspot')} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 12h.01M8.5 8.5a5 5 0 017 0M5 5a10 10 0 0114 0M19 5a10 10 0 010 14M5 5a10 10 0 000 14" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="pill" theme="dark" label={t('蓝牙', 'Bluetooth')} active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/></svg>} />
+            <QuickToggle variant="pill" theme="light" label={t('移动数据', 'Mobile Data')} active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
+            <QuickToggle variant="pill" theme="dark" label={t('NFC', 'NFC')} icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="6" y="2" width="12" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/><line x1="10" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('任务栏', 'Taskbar')}</h2>
+            <Taskbar />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('音乐播放器', 'Music Player')}</h2>
+            <MusicPlayer style={{ maxWidth: '400px', margin: '0 auto' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('图片轮播', 'Photo Carousel')}</h2>
+            <PhotoCarousel />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('防睡眠', 'Caffeinate')}</h2>
+            <Caffeinate style={{ maxWidth: '400px' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('剪贴板', 'Clipboard')}</h2>
+            <Clipboard style={{ maxWidth: '400px' }} />
+          </section>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('对讲机', 'Walkie Talkie')}</h2>
+            <WalkieTalkie style={{ maxWidth: '300px', margin: '0 auto' }} />
+          </section>
+
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>{t('滚动区域', 'Scroll Area')}</h2>
             <ScrollArea height="200px">
@@ -1093,148 +1368,14 @@ function App() {
           </section>
         </CategorySection>
 
-        <CategorySection id="clock-calendar" title={t('时钟与日历', 'Clock & Calendar')}>
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('时钟', 'Clock')}</h2>
-            <Time variant="digital-compact" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-lg)' }} />
-            <Time variant="dial" />
-          </section>
-
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('日历', 'Calendar')}</h2>
-            <Calendar type="compact" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-lg)' }} />
-            <Calendar type="full" />
-          </section>
-
-          <section style={{ marginBottom: 0 }}>
-            <h2 style={demoTitleStyle}>{t('世界时钟', 'World Clock')}</h2>
-            <Time variant="world" cities={worldClockCities} />
-            <div style={{ marginTop: 'var(--space-md)', display: 'flex', gap: 'var(--space-sm)' }}>
-              <Button variant="secondary" size="sm" onClick={() => setWorldClockCities(prev => [...prev, { name: t('上海', 'SHANGHAI'), offset: 8 }])}>{t('添加上海', 'Add Shanghai')}</Button>
-              <Button variant="ghost" size="sm" onClick={() => setWorldClockCities(prev => prev.length > 1 ? prev.slice(0, -1) : prev)}>{t('移除最后', 'Remove Last')}</Button>
-            </div>
-          </section>
-
-          <section style={flexWrapSectionStyle}>
-            <h2 style={demoTitleStyle}>{t('日期小组件', 'Date Widget')}</h2>
-            <DateWidget type="rect" theme="light" />
-            <DateWidget type="rect" theme="dark" />
-            <DateWidget type="dual-ring" theme="light" />
-            <DateWidget type="dual-ring" theme="dark" />
-          </section>
-        </CategorySection>
-
-        <CategorySection id="system-monitoring" title={t('系统与监控', 'System & Monitoring')}>
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('电量', 'Battery')}</h2>
-            <Battery />
-          </section>
-
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('系统监控', 'System Monitor')}</h2>
-            <SystemMonitor />
-          </section>
-
-          <section style={{ marginBottom: 0 }}>
-            <h2 style={demoTitleStyle}>{t('快速切换', 'Quick Toggle')}</h2>
-            <QuickToggle variant="circle" theme="light" label={t('激活', 'Active')} active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-            <QuickToggle variant="circle" theme="light" label={t('手电筒', 'Torch')} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 6L17 7M6 18l1-1M6 6l1 1M18 18l-1-1" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" fill="none"/></svg>} />
-            <QuickToggle variant="circle" theme="accent" label={t('勿扰', 'DND')} active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/><line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
-            <QuickToggle variant="circle" theme="light" label={t('旋转', 'Rotate')} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 2v6h-6M3 12a9 9 0 0115-6.7L21 8M3 22v-6h6M21 12a9 9 0 01-15 6.7L3 16" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-            <QuickToggle variant="pill" theme="dark" label={t('热点', 'Hotspot')} icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 12h.01M8.5 8.5a5 5 0 017 0M5 5a10 10 0 0114 0M19 5a10 10 0 010 14M5 5a10 10 0 000 14" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-            <QuickToggle variant="pill" theme="dark" label={t('蓝牙', 'Bluetooth')} active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 6.5h11v11h-11z" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/></svg>} />
-            <QuickToggle variant="pill" theme="light" label={t('移动数据', 'Mobile Data')} active icon={<svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>} />
-            <QuickToggle variant="pill" theme="dark" label={t('NFC', 'NFC')} icon={<svg viewBox="0 0 24 24" width="20" height="20"><rect x="6" y="2" width="12" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/><line x1="10" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>} />
-          </section>
-        </CategorySection>
-
-        <CategorySection id="utility-tools" title={t('实用工具', 'Utility Tools')}>
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('音乐播放器', 'Music Player')}</h2>
-            <MusicPlayer style={{ maxWidth: '400px', margin: '0 auto' }} />
-          </section>
-
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('图片轮播', 'Photo Carousel')}</h2>
-            <PhotoCarousel />
-          </section>
-
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('防睡眠', 'Caffeinate')}</h2>
-            <Caffeinate style={{ maxWidth: '400px' }} />
-          </section>
-
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('剪贴板', 'Clipboard')}</h2>
-            <Clipboard style={{ maxWidth: '400px' }} />
-          </section>
-
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('番茄钟', 'Pomodoro')}</h2>
-            <Pomodoro style={{ maxWidth: '400px', margin: '0 auto' }} />
-          </section>
-
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('对讲机', 'Walkie Talkie')}</h2>
-            <WalkieTalkie style={{ maxWidth: '300px', margin: '0 auto' }} />
-          </section>
-
-          <section style={{ marginBottom: 0 }}>
-            <h2 style={demoTitleStyle}>{t('任务栏', 'Taskbar')}</h2>
-            <Taskbar />
-          </section>
-        </CategorySection>
-
-        <CategorySection id="time-progress" title={t('时间与进度', 'Time & Progress')}>
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('日晷', 'Sun Dial')}</h2>
-            <SunDial style={{ maxWidth: '400px', margin: '0 auto' }} />
-          </section>
-
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('年龄动态', 'Age Motion')}</h2>
-            <AgeMotion style={{ maxWidth: '400px', margin: '0 auto' }} />
-          </section>
-
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('计时', 'Chrono')}</h2>
-            <Chrono style={{ maxWidth: '400px', margin: '0 auto' }} />
-          </section>
-
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('旋转器', 'Spinner')}</h2>
-            <Spinner items={spinnerItems} style={{ maxWidth: '400px', margin: '0 auto' }} />
-            <div style={{ marginTop: 'var(--space-md)', display: 'flex', gap: 'var(--space-sm)' }}>
-              <Button variant="secondary" size="sm" onClick={() => setSpinnerItems(prev => [...prev.slice(1), prev[0]])}>{t('旋转条目', 'Rotate Items')}</Button>
-              <Button variant="ghost" size="sm" onClick={() => setSpinnerItems([t('是', 'YES'), t('否', 'NO'), t('可能', 'MAYBE'), t('稍后', 'LATER'), t('跳过', 'SKIP'), t('尝试', 'TRY')])}>{t('重置', 'Reset')}</Button>
-            </div>
-          </section>
-
-          <section style={{ marginBottom: 0 }}>
-            <h2 style={demoTitleStyle}>{t('下一个事件', 'Next Event')}</h2>
-            <NextEvent />
-          </section>
-        </CategorySection>
-
-        <CategorySection id="visual-display" title={t('视觉展示', 'Visual Display')}>
-          <section style={sectionStyle}>
-            <h2 style={demoTitleStyle}>{t('点阵', 'Dot Matrix')}</h2>
-            <DotMatrix rows={5} cols={5} dotSize="md" theme="light" />
-            <DotMatrix rows={8} cols={8} dotSize="sm" theme="dark" pattern="glyph" />
-            <DotMatrix rows={10} cols={10} dotSize="sm" theme="dark" activeDots={[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[0,9],[1,8],[2,7],[3,6],[4,5],[5,4],[6,3],[7,2],[8,1],[9,0]]} />
-          </section>
-
-          <section style={{ marginBottom: 0 }}>
-            <h2 style={demoTitleStyle}>{t('引用', 'Quotes')}</h2>
-            <Quotes />
-          </section>
-        </CategorySection>
-
-        <CategorySection id="feature-widgets" title={t('特色组件', 'Feature Widgets')}>
+        <CategorySection id="widgets" title={t('Widgets', 'Widgets')}>
+          <h3 style={groupTitleStyle}>{t('Widgets · 展示区', 'Widgets · Showcase')}</h3>
           <WidgetShowcase />
-        </CategorySection>
 
-        <CategorySection id="widget-layout" title={t('组件布局', 'Widget Layout')}>
+          <h3 style={groupTitleStyle}>{t('Widgets · Figma 2.0 库', 'Widgets · Figma 2.0 Library')}</h3>
+          <Figma20Showcase />
+
+          <h3 style={groupTitleStyle}>{t('Widgets · 布局基础', 'Widgets · Layout Primitives')}</h3>
           <section style={sectionStyle}>
             <h2 style={demoTitleStyle}>{t('组件卡片', 'Widget Card')}</h2>
             <WidgetCard />
@@ -1246,13 +1387,122 @@ function App() {
           </section>
         </CategorySection>
 
-        <CategorySection id="figma-20-library" title={t('Figma 2.0 库', 'Figma 2.0 Library')}>
-          <Figma20Showcase />
+        <CategorySection id="dotmatrix-loaders" title={t('点阵加载器', 'Dotmatrix Loaders')}>
+          <Suspense fallback={<div style={{ color: 'var(--text-secondary)', padding: '24px' }}>{t('加载中…', 'Loading...')}</div>}>
+            <DotMatrixLoadersSection />
+          </Suspense>
+        </CategorySection>
+
+        <CategorySection id="marquee-effect" title={t('滚动效果', 'Marquee Effect')}>
+          <Suspense fallback={<div style={{ color: 'var(--text-secondary)', padding: '24px' }}>{t('加载中…', 'Loading...')}</div>}>
+            <MarqueeSection />
+          </Suspense>
         </CategorySection>
 
         <CategorySection id="nullframe" title={t('Nullframe 仪表盘', 'Nullframe Dashboard')}>
           <Suspense fallback={<div style={{ color: 'var(--text-secondary)', padding: '24px' }}>{t('加载中…', 'Loading...')}</div>}>
             <NullframeSection />
+          </Suspense>
+        </CategorySection>
+
+        <CategorySection id="design-system" title={t('设计系统', 'Design System')}>
+          <Suspense fallback={<div style={{ color: 'var(--text-secondary)', padding: '24px' }}>{t('加载中…', 'Loading...')}</div>}>
+            <DesignSystemSection />
+          </Suspense>
+
+          <section style={sectionStyle}>
+            <h2 style={demoTitleStyle}>{t('完整包', 'Full Archive')}</h2>
+            <div style={{
+              background: 'var(--surface)',
+              border: '1px solid var(--border-visible)',
+              borderRadius: 'var(--radius-lg)',
+              padding: 'var(--space-xl)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--space-lg)'
+            }}>
+              <div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--heading)', letterSpacing: '-0.02em', color: 'var(--text-display)', marginBottom: 'var(--space-sm)' }}>
+                  nothing-design-skill
+                </div>
+                <p style={{ fontSize: 'var(--body)', color: 'var(--text-secondary)', maxWidth: '560px', margin: 0 }}>
+                  {t('完整技能包 — SKILL.md、design.md、所有参考文档及 web-ui-kit。', 'The complete skill package — SKILL.md, design.md, all references, and the web-ui-kit.')}
+                </p>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', alignItems: 'center' }}>
+                <a
+                  className="nothing-btn nothing-btn--primary"
+                  href="https://github.com/dominikmartn/nothing-design-skill"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {t('查看 GitHub', 'View on GitHub')}
+                </a>
+                <a
+                  className="nothing-btn nothing-btn--secondary"
+                  href="https://github.com/dominikmartn/nothing-design-skill/archive/refs/heads/main.zip"
+                >
+                  {t('下载 .zip', 'Download .zip')}
+                </a>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--label)', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-disabled)' }}>
+                  {t('或运行: node scripts/download-skill.mjs', 'or run: node scripts/download-skill.mjs')}
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <section style={{ marginBottom: 0 }}>
+            <h2 style={demoTitleStyle}>{t('单个文件', 'Individual Files')}</h2>
+            {([
+              { name: 'design.md', desc: t('结构化设计规范 — Overview, Typography, Colors, Spacing, Elevation, Shapes, Motion, WebGL + 参考示例', 'Structured design spec — Overview, Typography, Colors, Spacing, Elevation, Shapes, Motion, WebGL + reference examples'), path: 'nothing-design/design.md', variant: 'primary' },
+              { name: 'SKILL.md', desc: t('设计哲学、工艺规则、工作流 — LLM 技能定义 (v4.0.0)', 'Design philosophy, craft rules, workflow — LLM-facing skill definition (v4.0.0)'), path: 'nothing-design/SKILL.md', variant: 'primary' },
+              { name: 'tokens.md', desc: t('颜色、字体、间距、动效、图标、点阵主题、小部件 token', 'Colors, fonts, spacing, motion, iconography, dot-matrix motif, widget tokens'), path: 'nothing-design/references/tokens.md', variant: 'secondary' },
+              { name: 'components.md', desc: t('按钮、卡片、列表、表格、导航、标签、进度条、弹层', 'Buttons, cards, lists, tables, nav, tags, progress bars, overlays'), path: 'nothing-design/references/components.md', variant: 'secondary' },
+              { name: 'platform-mapping.md', desc: t('HTML/CSS、SwiftUI、React/Tailwind 输出约定', 'HTML/CSS, SwiftUI, React/Tailwind output conventions'), path: 'nothing-design/references/platform-mapping.md', variant: 'secondary' },
+              { name: 'component-matching.md', desc: t('组件类型映射表、迁移策略、匹配报告格式', 'Component type mapping tables, migration strategies, match report format'), path: 'nothing-design/references/component-matching.md', variant: 'secondary' }
+            ] as const).map((file) => (
+              <div
+                key={file.name}
+                style={{
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border-visible)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: 'var(--space-lg)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: 'var(--space-lg)',
+                  marginBottom: 'var(--space-md)',
+                  transition: 'border-color var(--duration-micro) var(--easing)'
+                }}
+              >
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)', minWidth: 0 }}>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--subheading)', letterSpacing: '-0.01em', color: 'var(--text-display)' }}>
+                    {file.name}
+                  </span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--caption)', letterSpacing: '0.04em', color: 'var(--text-secondary)' }}>
+                    {file.desc}
+                  </span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--label)', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-disabled)' }}>
+                    {file.path}
+                  </span>
+                </div>
+                <a
+                  className={`nothing-btn nothing-btn--${file.variant}`}
+                  href={`https://raw.githubusercontent.com/dominikmartn/nothing-design-skill/main/${file.path}`}
+                  download
+                  style={{ flexShrink: 0 }}
+                >
+                  {t('下载', 'Download')}
+                </a>
+              </div>
+            ))}
+          </section>
+        </CategorySection>
+
+        <CategorySection id="podcast" title={t('播客 App 实例', 'Podcast App Demo')}>
+          <Suspense fallback={<div style={{ color: 'var(--text-secondary)', padding: '24px' }}>{t('加载中…', 'Loading...')}</div>}>
+            <PodcastSection />
           </Suspense>
         </CategorySection>
       </div>
