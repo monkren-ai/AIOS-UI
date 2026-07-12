@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { useEffect, useState, type ReactNode } from 'react'
-import { motion, useReducedMotion } from 'motion/react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { bus } from '@/system/telemetry'
 import { useCtl } from '@/system/hooks'
+import { useMotionComponent } from '@/MotionProvider'
 import { cn, dataAttr } from '@/lib/utils'
 
 export type NfTag = 'LIVE' | 'SIM' | 'none'
@@ -64,7 +64,8 @@ export const NfCard = React.forwardRef<HTMLElement, NfCardProps>(
   ) => {
     const [sweepState, setSweep] = useState(false)
     const ctl = useCtl()
-    const reduced = (useReducedMotion() ?? false) || ctl.motionOff
+    const motionModule = useMotionComponent()
+    const reduced = ctl.motionOff
 
     const sweep = sweepProp ?? sweepState
 
@@ -83,8 +84,10 @@ export const NfCard = React.forwardRef<HTMLElement, NfCardProps>(
       }
     }, [index, sweepProp])
 
+    const MotionSection = motionModule.section as React.FC<Record<string, unknown>>
+
     return (
-      <motion.section
+      <MotionSection
         ref={ref as React.Ref<HTMLElement>}
         className={cn(nfCardVariants({ essential, sweep, tag: tag ?? 'none' }), className)}
         initial={reduced ? { opacity: 0 } : { opacity: 0, y: 22, scale: 0.93 }}
@@ -102,7 +105,7 @@ export const NfCard = React.forwardRef<HTMLElement, NfCardProps>(
           {right && <span className="right">{right}</span>}
         </div>
         {body ?? children}
-      </motion.section>
+      </MotionSection>
     )
   }
 )

@@ -9,13 +9,13 @@
  *  - 失败 / 不存在时回退到 useNow + 伪随机, 根元素加 `data-real="false"`.
  */
 import * as React from 'react'
-import { motion } from 'motion/react'
 import { Segbar } from './Segbar'
 import { useTelemetry, useBootNumber, useCtl, useNow, useTypedText } from '@/system/hooks'
 import { pad2 } from '@/system/time'
 import { bus } from '@/system/telemetry'
 import { commitMessages, statusMessages, WEEKS, DAYS, totalContribs, streakDays, streakSince, bestStreak } from '@/system/fake'
 import { glyphFrame, fbm1D, GLYPH_ANIMS, type GlyphAnim } from './animations'
+import { useMotionComponent } from '@/MotionProvider'
 import { cn, dataAttr } from '@/lib/utils'
 
 /* ------------------------------------------------------------------ */
@@ -49,6 +49,8 @@ export function ActivityBody({ className, feed = true }: { className?: string; f
   const [typing, setTyping] = React.useState('')
   const [active, setActive] = React.useState(false)
   const ctl = useCtl()
+  const motionModule = useMotionComponent()
+  const MotionDiv = motionModule.div as React.FC<Record<string, unknown>>
 
   React.useEffect(() => {
     let alive = true
@@ -105,7 +107,7 @@ export function ActivityBody({ className, feed = true }: { className?: string; f
         </div>
       )}
       {lines.map((l, i) => (
-        <motion.div
+        <MotionDiv
           key={l.time + l.msg}
           className="feed-row"
           style={{ opacity: 1 - i * 0.3 }}
@@ -115,7 +117,7 @@ export function ActivityBody({ className, feed = true }: { className?: string; f
         >
           <span>{l.msg}</span>
           <span className="dim">{l.time}</span>
-        </motion.div>
+        </MotionDiv>
       ))}
     </div>
   )

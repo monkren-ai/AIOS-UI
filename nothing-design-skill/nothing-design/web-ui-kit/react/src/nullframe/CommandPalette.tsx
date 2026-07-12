@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react'
-import { motion } from 'motion/react'
 import { cva } from 'class-variance-authority'
 import { bus } from '@/system/telemetry'
 import { useCtl } from '@/system/hooks'
+import { useMotionComponent } from '@/MotionProvider'
 import { cn, dataAttr } from '@/lib/utils'
 
 const commandPaletteVariants = cva('', {
@@ -24,6 +24,7 @@ export type CommandPaletteProps = Omit<
 export const CommandPalette = React.forwardRef<HTMLDivElement, CommandPaletteProps>(
   ({ className, ...props }, ref) => {
     const ctl = useCtl()
+    const motionModule = useMotionComponent()
     const [q, setQ] = useState('')
     const [sel, setSel] = useState(0)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -59,8 +60,10 @@ export const CommandPalette = React.forwardRef<HTMLDivElement, CommandPalettePro
       }
     }
 
+    const MotionDiv = motionModule.div as React.FC<Record<string, unknown>>
+
     return (
-      <motion.div
+      <MotionDiv
         ref={ref}
         className={cn('pal-overlay', commandPaletteVariants({ state: 'open' }), className)}
         initial={{ opacity: 0 }}
@@ -73,7 +76,7 @@ export const CommandPalette = React.forwardRef<HTMLDivElement, CommandPalettePro
         data-selected={dataAttr(sel)}
         {...props}
       >
-        <motion.div
+        <MotionDiv
           className="pal"
           initial={{ opacity: 0, y: -14, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -112,8 +115,8 @@ export const CommandPalette = React.forwardRef<HTMLDivElement, CommandPalettePro
               <span className="dim">↵</span>
             </div>
           ))}
-        </motion.div>
-      </motion.div>
+        </MotionDiv>
+      </MotionDiv>
     )
   }
 )

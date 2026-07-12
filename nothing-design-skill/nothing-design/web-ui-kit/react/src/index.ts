@@ -3,8 +3,8 @@
  *
  * @example
  * ```tsx
+ * import * as motion from 'motion/react'
  * import { ConfigProvider, Button, Input } from 'nothing-ui'
- * import { motion } from 'motion/react'
  *
  * <ConfigProvider motion={motion} defaultTheme="dark">
  *   <Button variant="primary">Click me</Button>

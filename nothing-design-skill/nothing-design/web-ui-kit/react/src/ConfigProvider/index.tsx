@@ -123,9 +123,16 @@ export interface ConfigProviderProps {
    */
   onThemeChange?: (theme: ThemeAppearance) => void
   /**
-   * Motion 组件集合，默认为 motion/react
+   * Motion 组件集合，必传。
+   * 从 `motion/react` 或 `motion/react-m` 导入后传入。
+   *
+   * @example
+   * ```tsx
+   * import * as motion from 'motion/react'
+   * <ConfigProvider motion={motion}><App /></ConfigProvider>
+   * ```
    */
-  motion?: MotionComponentType
+  motion: MotionComponentType
 }
 
 /**
@@ -136,10 +143,12 @@ export interface ConfigProviderProps {
  * - `MotionProvider`：动画组件注入
  * - `ConfigContext`：CDN、自定义元素等配置
  *
+ * motion 为必传 prop，由用户自行选择 `motion/react`（完整版）或 `motion/react-m`（精简版）。
+ *
  * @example
  * ```tsx
+ * import * as motion from 'motion/react'
  * import { ConfigProvider } from 'nothing-ui'
- * import { motion } from 'motion/react'
  *
  * <ConfigProvider
  *   motion={motion}

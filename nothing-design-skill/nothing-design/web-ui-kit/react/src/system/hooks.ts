@@ -1,15 +1,47 @@
 import { createContext, useContext, useEffect, useRef, useState, useSyncExternalStore } from 'react'
-import { animate } from 'motion/react'
 import { bus, type Snapshot } from './telemetry'
 
 export function useTelemetry(): Snapshot {
   return useSyncExternalStore(bus.subscribe, bus.get)
 }
 
+/**
+ * 自实现的数值补间动画，替代 motion 的 animate()。
+ * 使用 requestAnimationFrame + easeOutExpo 缓动函数，
+ * 无需引入 motion 依赖。
+ */
+function easeOutExpo(t: number): number {
+  return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t)
+}
+
+function tweenValue(
+  from: number,
+  to: number,
+  duration: number,
+  ease: (t: number) => number,
+  onUpdate: (v: number) => void,
+): { stop: () => void } {
+  const start = performance.now()
+  let raf = 0
+  const tick = (now: number) => {
+    const elapsed = now - start
+    const progress = Math.min(elapsed / (duration * 1000), 1)
+    const easedProgress = ease(progress)
+    onUpdate(from + (to - from) * easedProgress)
+    if (progress < 1) {
+      raf = requestAnimationFrame(tick)
+    }
+  }
+  raf = requestAnimationFrame(tick)
+  return {
+    stop() { cancelAnimationFrame(raf) },
+  }
+}
+
 export function useBootNumber(live: number, dec = 0, duration = 0.9): string {
   const [p, setP] = useState(0)
   useEffect(() => {
-    const c = animate(0, 1, { duration, ease: [0.22, 1, 0.36, 1], onUpdate: setP })
+    const c = tweenValue(0, 1, duration, easeOutExpo, setP)
     return () => c.stop()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
