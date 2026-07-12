@@ -102,7 +102,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           onKeyDown={handleKeyDown}
           aria-describedby={visible ? tooltipId : undefined}
         >
-          {triggerChild}
+          {children}
         </span>
         <div
           ref={setRefs}

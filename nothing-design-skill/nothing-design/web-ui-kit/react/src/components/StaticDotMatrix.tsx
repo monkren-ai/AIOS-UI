@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
-import './DotMatrix.css'
+import '../DotMatrix/DotMatrix.css'
 
 export const dotMatrixVariants = cva('nothing-dot-matrix', {
   variants: {
@@ -96,10 +96,5 @@ export const StaticDotMatrix = React.forwardRef<HTMLDivElement, StaticDotMatrixP
 )
 StaticDotMatrix.displayName = 'StaticDotMatrix'
 
-<<<<<<<< HEAD:nothing-design-skill/nothing-design/web-ui-kit/react/src/components/StaticDotMatrix.tsx
-export { dotMatrixVariants, dotVariants }
-export default StaticDotMatrix
-========
 export { dotVariants }
-export default DotMatrix
->>>>>>>> c09f367fe7a1e00e122b9f9960a68afc4bd0871e:nothing-design-skill/nothing-design/web-ui-kit/react/src/DotMatrix/DotMatrix.tsx
+export default StaticDotMatrix
