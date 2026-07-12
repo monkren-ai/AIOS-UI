@@ -1,12 +1,13 @@
-import { NfCard } from '../nullframe/NfCard'
+import * as React from 'react'
+import { NfCard } from '@/nullframe/NfCard'
 import { CtlCtx, type Ctl } from '../../system/hooks'
-import WeatherWidget from '../widgets/WeatherWidget'
-import Time from '../widgets/Time'
-import Battery from '../Battery'
-import DateWidget from '../Date'
-import MusicPlayer from '../MusicPlayer'
-import PhotoFrameWidget from '../widgets/PhotoFrameWidget'
-import Glyph from '../widgets/Glyph'
+import WeatherWidget from '@/widgets/WeatherWidget'
+import Time from '@/widgets/Time'
+import Battery from '@/Battery'
+import DateWidget from '@/Date'
+import MusicPlayer from '@/MusicPlayer'
+import PhotoFrameWidget from '@/widgets/PhotoFrameWidget'
+import Glyph from '@/widgets/Glyph'
 
 const mockCtl: Ctl = {
   focus: false,

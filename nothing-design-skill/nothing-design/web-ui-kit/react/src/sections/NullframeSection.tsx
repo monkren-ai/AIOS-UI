@@ -1,5 +1,5 @@
 import '../styles/nullframe.css'
-import { NullframeDashboard } from '../components/nullframe/NullframeDashboard'
+import { NullframeDashboard } from '@/nullframe/NullframeDashboard'
 
 function NullframeSection() {
   return <NullframeDashboard />

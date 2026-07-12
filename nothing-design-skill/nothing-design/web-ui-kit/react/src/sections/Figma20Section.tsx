@@ -1,8 +1,8 @@
-import { Home, DarkMode, Remote, Subtitle, Wallet, Location, DarkModeLight, NoSignal, DownArrow, DoNotDisturb, QrCode, Storage, Share, NoConnection, Record, FullNetwork, Shield, Glyphs, Aeroplane, Chart, Video, Temp, AutoRotate, Info, MicOff, NoSim, Watch, RecordAlt, AccessCamera, Dots, Filter, HomeLight, Cast, DoNotDisturbLight, ArrowDownAlt, QrCodeLight, SubtitleLight, Scan, CastAlt, BatteryPlus } from '../components/widgets/WidgetIcons'
-import WidgetPill from '../components/widgets/WidgetPill'
-import { LocationAccess, Compass as FigmaCompass, TempControl, AutoRotate1, Active, Watch as FigmaWatch, Recording, Glyphs as FigmaGlyphs, Campus, Location1, Flash, Weather as FigmaWeather, MicAccess, PairNewDevice, Overlimit, MusicPlayer as FigmaMusicPlayer, StepsCounter, OverLimit, LoadingBar1, Card as FigmaCard, Dots3, Play, NothingEar, Date as FigmaDate, Counter, Music, Device, Mode, DoubleDown, SelectDevice, ActivityTracker } from '../components/widgets/WidgetSubComponents'
-import { Time as FigmaTime } from '../components/widgets/Time'
-import { Date1 } from '../components/widgets/sub/Date'
+import { Home, DarkMode, Remote, Subtitle, Wallet, Location, DarkModeLight, NoSignal, DownArrow, DoNotDisturb, QrCode, Storage, Share, NoConnection, Record, FullNetwork, Shield, Glyphs, Aeroplane, Chart, Video, Temp, AutoRotate, Info, MicOff, NoSim, Watch, RecordAlt, AccessCamera, Dots, Filter, HomeLight, Cast, DoNotDisturbLight, ArrowDownAlt, QrCodeLight, SubtitleLight, Scan, CastAlt, BatteryPlus } from '@/widgets/WidgetIcons'
+import WidgetPill from '@/widgets/WidgetPill'
+import { LocationAccess, Compass as FigmaCompass, TempControl, AutoRotate1, Active, Watch as FigmaWatch, Recording, Glyphs as FigmaGlyphs, Campus, Location1, Flash, Weather as FigmaWeather, MicAccess, PairNewDevice, Overlimit, MusicPlayer as FigmaMusicPlayer, StepsCounter, OverLimit, LoadingBar1, Card as FigmaCard, Dots3, Play, NothingEar, Date as FigmaDate, Counter, Music, Device, Mode, DoubleDown, SelectDevice, ActivityTracker } from '@/widgets/WidgetSubComponents'
+import { Time as FigmaTime } from '@/widgets/Time'
+import { Date1 } from '@/widgets/sub/Date'
 
 const figmaWidgetWrapStyle: React.CSSProperties = {
   position: 'relative',

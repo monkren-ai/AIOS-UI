@@ -1,4 +1,5 @@
-export { cn, mergeRefs, dataAttr } from './utils'
+export { cn, dataAttr } from './utils'
+export { mergeRefs } from './refs'
 export {
   themeVariants,
   sizeVariants,

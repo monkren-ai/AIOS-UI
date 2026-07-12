@@ -1,0 +1,111 @@
+.nothing-command {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  width: 100%;
+  max-width: var(--modal-max-width);
+}
+
+.nothing-command__input {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  color: var(--text-primary);
+  background: var(--input-bg);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  outline: none;
+}
+
+.nothing-command__input::placeholder {
+  color: var(--text-disabled);
+}
+
+.nothing-command__input:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--interactive);
+}
+
+.nothing-command__list {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: var(--space-xs) 0;
+}
+
+.nothing-command__group-heading {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-disabled);
+  padding: var(--space-sm) var(--space-lg) var(--space-xs);
+}
+
+.nothing-command__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  cursor: pointer;
+  transition: background var(--duration-micro) var(--easing);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.nothing-command__item:hover {
+  background: var(--muted-bg);
+}
+
+.nothing-command__item--selected {
+  background: var(--accent-subtle);
+}
+
+.nothing-command__item--disabled {
+  color: var(--text-disabled);
+  pointer-events: none;
+}
+
+.nothing-command__item:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.nothing-command__item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.nothing-command__item-label {
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.nothing-command__item-shortcut {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  color: var(--text-disabled);
+  flex-shrink: 0;
+}
+
+.nothing-command__empty {
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
+  color: var(--text-disabled);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-command__item {
+    transition: none;
+  }
+}

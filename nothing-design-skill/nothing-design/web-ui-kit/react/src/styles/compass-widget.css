@@ -1,6 +1,9 @@
 .nothing-compass-widget {
   border-radius: 50%;
-  background: var(--widget-dark-bg);
+  background-color: var(--widget-dark-bg);
+  background-image: radial-gradient(circle, var(--widget-dark-2) 0.5px, transparent 0.5px);
+  background-size: 8px 8px;
+  background-position: center;
   width: var(--widget-size-md);
   height: var(--widget-size-md);
   display: flex;

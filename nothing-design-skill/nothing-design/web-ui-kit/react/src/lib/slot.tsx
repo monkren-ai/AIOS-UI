@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { mergeRefs } from './refs'
 
 /**
  * Slot 多态原语。
@@ -52,8 +53,8 @@ export const Slot = React.forwardRef<HTMLElement, SlotProps>(
       mergedProps.style = { ...slotStyle, ...childStyle }
     }
 
-    // 合并 ref
-    const childRef = (children as unknown as { ref?: React.Ref<HTMLElement> }).ref
+    // 合并 ref（子元素的 ref 通过 props.ref 访问）
+    const childRef = (childProps as { ref?: React.Ref<HTMLElement> }).ref
     if (forwardedRef || childRef) {
       mergedProps.ref = forwardedRef
         ? mergeRefs(forwardedRef, childRef)
@@ -64,18 +65,3 @@ export const Slot = React.forwardRef<HTMLElement, SlotProps>(
   }
 )
 Slot.displayName = 'Slot'
-
-/**
- * 合并多个 refs（用于 Slot 内同时处理 forwardedRef 和 child ref）。
- */
-function mergeRefs<T>(...refs: Array<React.Ref<T> | undefined>): React.RefCallback<T> {
-  return (node: T | null) => {
-    refs.forEach((ref) => {
-      if (typeof ref === 'function') {
-        ref(node)
-      } else if (ref && typeof ref === 'object' && 'current' in ref) {
-        ;(ref as React.MutableRefObject<T | null>).current = node
-      }
-    })
-  }
-}
