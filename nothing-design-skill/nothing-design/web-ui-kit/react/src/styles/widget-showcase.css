@@ -10,7 +10,7 @@
 
 .widget-showcase .bento {
   width: 100%;
-  max-width: 1240px;
+  max-width: var(--page-max-width-widget);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
@@ -27,7 +27,8 @@
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;
-  transition: border-color 0.2s ease-out, opacity 0.45s var(--ease);
+  transition: border-color var(--duration-micro) var(--ease),
+              opacity var(--duration-slow) var(--ease);
 }
 
 .widget-showcase .card:hover {
@@ -36,13 +37,13 @@
 
 .widget-showcase .tag {
   position: absolute;
-  top: 21px;
-  right: 18px;
+  top: var(--space-md-plus);
+  right: var(--space-md-plus);
   font: 700 11px/1 var(--font-mono);
-  letter-spacing: 0.10em;
+  letter-spacing: var(--tracking-label);
   color: var(--text-disabled);
   opacity: 0;
-  transition: opacity 0.25s var(--ease);
+  transition: opacity var(--duration-micro) var(--ease);
 }
 
 .widget-showcase .card:hover .tag,

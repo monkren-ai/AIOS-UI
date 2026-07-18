@@ -84,7 +84,10 @@ export const NfCard = React.forwardRef<HTMLElement, NfCardProps>(
       }
     }, [index, sweepProp])
 
-    const MotionSection = motionModule.section as React.FC<Record<string, unknown>>
+    const MotionSection = (motionModule.section ??
+      motionModule.div ??
+      motionModule.article ??
+      ((props: React.HTMLAttributes<HTMLElement>) => <section {...props} />)) as React.FC<Record<string, unknown>>
 
     return (
       <MotionSection

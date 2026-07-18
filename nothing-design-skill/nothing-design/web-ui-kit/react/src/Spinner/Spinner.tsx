@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
+import Button from '@/Button'
 import './Spinner.css'
 
 const spinnerVariants = cva('nothing-spinner', {
@@ -151,13 +152,16 @@ export const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
             <circle className="nothing-spinner-center-dot" cx={cx} cy={cy} r={6} />
           </svg>
         </div>
-        <button
-          className="nothing-spinner-btn"
+        <Button
+          variant="primary"
+          size="lg"
           onClick={handleSpin}
-          disabled={isSpinning}
+          loading={isSpinning}
+          loadingText="SPINNING…"
+          style={{ marginBottom: 'var(--space-md)' }}
         >
           SPIN
-        </button>
+        </Button>
         <div className="nothing-spinner-result">{result}</div>
       </div>
     )

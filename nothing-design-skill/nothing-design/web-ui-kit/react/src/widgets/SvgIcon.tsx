@@ -27,17 +27,17 @@ const svgIconVariants = cva('nothing-svg-icon', {
 })
 
 const themeBgTokens: Record<SvgIconTheme, string> = {
-  dark: 'var(--widget-dark-bg, #1A1D1C)',
-  light: 'var(--widget-card-bg, #FCFAFE)',
-  accent: 'var(--widget-primary, #D71921)',
-  error: 'var(--widget-error, #D71921)',
+  dark: 'var(--widget-dark-bg)',
+  light: 'var(--widget-card-bg)',
+  accent: 'var(--widget-primary)',
+  error: 'var(--widget-error)',
 }
 
 const themeIconTokens: Record<SvgIconTheme, string> = {
-  dark: 'var(--widget-white, #FCFAFE)',
-  light: 'var(--widget-dark-bg, #1A1D1C)',
-  accent: 'var(--widget-white, #FCFAFE)',
-  error: 'var(--widget-white, #FCFAFE)',
+  dark: 'var(--widget-white)',
+  light: 'var(--widget-dark-bg)',
+  accent: 'var(--widget-white)',
+  error: 'var(--widget-white)',
 }
 
 const sizeViewBox: Record<SvgIconSize, string> = {

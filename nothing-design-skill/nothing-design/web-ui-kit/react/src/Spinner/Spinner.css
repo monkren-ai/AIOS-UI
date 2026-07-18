@@ -89,36 +89,6 @@
   transition: fill var(--duration-transition) var(--easing);
 }
 
-.nothing-spinner-btn {
-  font-family: var(--font-mono);
-  font-size: var(--body-sm);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: var(--space-sm) var(--space-xl);
-  background: var(--surface-raised);
-  border: 2px solid var(--border-visible);
-  color: var(--text-display);
-  cursor: pointer;
-  transition: all var(--duration-micro) var(--easing);
-  margin-bottom: var(--space-md);
-}
-
-.nothing-spinner-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.nothing-spinner-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.nothing-spinner-btn:disabled:hover {
-  border-color: var(--border-visible);
-  color: var(--text-display);
-}
-
 .nothing-spinner-result {
   font-family: var(--font-body);
   font-size: var(--heading);

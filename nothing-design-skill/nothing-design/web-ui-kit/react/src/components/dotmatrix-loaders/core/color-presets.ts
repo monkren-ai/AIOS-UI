@@ -37,7 +37,7 @@ export const DOT_MATRIX_COLOR_PRESETS = {
 
 export type DotMatrixColorPreset = keyof typeof DOT_MATRIX_COLOR_PRESETS;
 
-export function resolveDmxColorTokens(color: string, colorPreset?: DotMatrixColorPreset): {
+export function resolveDmxColorTokens(color: string, colorPreset: DotMatrixColorPreset = "solid-theme"): {
   resolvedColor: string;
   dotFill: string;
 } {

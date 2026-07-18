@@ -7,10 +7,12 @@ import './PhotoCarousel.css'
 interface Slide {
   title: string
   subtitle?: string
-  /** CSS background (gradient / color). 默认回退到 var(--surface-raised)。 */
+  /** CSS background (gradient / color). 默认回退到 dot-matrix pattern。 */
   gradient?: string
   /** 可选图片 URL (优先于 gradient). */
   image?: string
+  /** 占位 dot-matrix 索引 0-3，NF 美学默认（无 image/gradient 时） */
+  pattern?: number
 }
 
 export type PhotoCarouselOrientation = 'horizontal' | 'vertical'
@@ -40,10 +42,10 @@ export interface PhotoCarouselProps
 }
 
 const defaultSlides: Slide[] = [
-  { title: 'Solar Flare', subtitle: 'Chromosphere · H-alpha' },
-  { title: 'Verdant', subtitle: 'Coastal pine · 04:21' },
-  { title: 'Glacial', subtitle: 'Polar · -12°C' },
-  { title: 'Ember', subtitle: 'Magma flow' },
+  { title: 'Solar Flare', subtitle: 'Chromosphere · H-alpha', pattern: 0 },
+  { title: 'Verdant', subtitle: 'Coastal pine · 04:21', pattern: 1 },
+  { title: 'Glacial', subtitle: 'Polar · -12°C', pattern: 2 },
+  { title: 'Ember', subtitle: 'Magma flow', pattern: 3 },
 ]
 
 export const PhotoCarousel = React.forwardRef<HTMLDivElement, PhotoCarouselProps>(

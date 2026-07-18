@@ -167,11 +167,20 @@ export const Command = React.forwardRef<HTMLDivElement, CommandProps>(
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder}
           aria-autocomplete="list"
-          aria-controls="nothing-command-list"
+          aria-controls={listId}
+          role="combobox"
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
+          aria-activedescendant={
+            isOpen && flatFilteredItems[selectedIndex]
+              ? `${generatedId}-item-${flatFilteredItems[selectedIndex].id}`
+              : undefined
+          }
+          aria-label={placeholder}
         />
         <div
           className="nothing-command__list"
-          id="nothing-command-list"
+          id={listId}
           ref={listRef}
           role="listbox"
         >

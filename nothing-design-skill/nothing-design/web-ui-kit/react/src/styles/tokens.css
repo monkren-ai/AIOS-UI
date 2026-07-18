@@ -161,6 +161,7 @@
 
   /* === Layout === */
   --page-max-width: 1120px;
+  --page-max-width-widget: 1240px;
   --modal-max-width: 480px;
   --modal-max-width-sm: 400px;
   --section-gap: 80px;
