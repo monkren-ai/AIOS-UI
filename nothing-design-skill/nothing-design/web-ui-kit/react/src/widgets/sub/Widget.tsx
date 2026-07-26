@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { cn, dataAttr } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import svgPaths from '../widget-svg-paths';

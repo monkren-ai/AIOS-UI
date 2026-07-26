@@ -546,3 +546,69 @@ Nothing UI achieves depth through **surface contrast and borders, never shadows 
 - Favor **asymmetric** layouts over centered ones. Large-left-small-right, top-heavy, or edge-anchored compositions.
 - Balance heavy elements with **more empty space**, not with more heavy elements.
 - The "Three-Layer Rule" (see SKILL.md §2.1) governs visual hierarchy within any layout.
+
+---
+
+## 12. AI OS / AGENT TOKENS
+
+Tokens for the **Nothing UI for AI OS** semantic extension. These tokens support agent-state visualization, plan transparency, and approval workflows while remaining strictly inside the monochrome + red-event palette.
+
+### Agent State Colors
+
+| Token | Maps To | Use |
+|-------|---------|-----|
+| `--agent-idle` | `var(--text-secondary)` | Agent待命 / 未激活 |
+| `--agent-thinking` | `var(--text-primary)` | Agent思考中（单色呼吸） |
+| `--agent-acting` | `var(--text-display)` | Agent执行中（高对比） |
+| `--agent-paused` | `var(--accent)` | 等待用户输入 / 审批（red event） |
+| `--agent-error` | `var(--accent)` | Agent错误（与 paused 同色，以形态区分） |
+| `--agent-trace` | `var(--surface-raised)` | 轨迹日志背景 |
+| `--surface-agent` | `var(--surface)` | Agent面板背景 |
+| `--border-agent` | `var(--border-visible)` | Agent卡片边框 |
+
+**Discipline:** No new colors are introduced. Agent states are expressed through the existing gray scale plus the existing `--accent` red. Differentiation comes from opacity, animation, and Doto/Space Mono label pairing — not from additional hues.
+
+### Agent Animation Tokens
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--duration-agent-breathe` | `2000ms` | Agent thinking 慢速呼吸 |
+| `--duration-agent-pulse` | `800ms` | Agent acting 快速脉冲 |
+| `--duration-agent-step` | `1200ms` | PlanCard 步骤进场 |
+| `--animation-agent-breathe` | `agent-breathe var(--duration-agent-breathe) ease-in-out infinite` | AgentOrb thinking |
+| `--animation-agent-pulse` | `agent-pulse var(--duration-agent-pulse) ease-in-out infinite` | AgentOrb acting |
+| `--animation-agent-step` | `agent-step var(--duration-agent-step) var(--easing) forwards` | PlanCard / ToolCallRow 步骤出现 |
+
+### Agent Radius Tokens
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--radius-agent-orb` | `999px` | AgentOrb 圆形 |
+| `--radius-agent-chip` | `999px` | 上下文建议胶囊（ContextChip） |
+| `--radius-agent-card` | `var(--radius-card)` | PlanCard / TraceLog 卡片 |
+| `--radius-agent-card-compact` | `var(--radius-card-compact)` | 紧凑 agent 卡片 |
+
+### Agent Keyframes
+
+```css
+@keyframes agent-breathe {
+  0%, 100% { opacity: 0.4; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes agent-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes agent-step {
+  0% { opacity: 0; transform: translateY(2px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+```
+
+**Rules:**
+- Agent animations use only `opacity` and `transform` — no blur, no shadow.
+- The breathing animation is slow and meditative (2s), not frantic.
+- The pulse is faster (0.8s) but still subtle; it signals "acting," not alarm.
+- All agent tokens are theme-agnostic because they reference existing semantic tokens that already respond to `data-theme`.

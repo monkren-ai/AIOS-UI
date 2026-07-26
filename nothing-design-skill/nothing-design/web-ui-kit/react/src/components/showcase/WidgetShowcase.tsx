@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { NfCard } from '@/nullframe/NfCard'
 import { CtlCtx, type Ctl } from '../../system/hooks'
 import WeatherWidget from '@/widgets/WeatherWidget'

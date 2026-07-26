@@ -90,7 +90,7 @@ const PhotoFrameWidgetInner = React.forwardRef<HTMLDivElement, PhotoFrameWidgetP
       if (!isCarousel || !autoPlay || isPaused || !hasContent) return
       if (typeof document !== 'undefined' && document.hidden) return
       setActiveIndex((prev) => (prev + 1) % displayImages.length)
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+       
     }, [now, isCarousel, autoPlay, isPaused, hasContent, displayImages.length])
 
     const handleMouseEnter = () => {

@@ -1,33 +1,9 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
 import { useClickOutside } from '@/hooks/useClickOutside'
+import { selectVariants, selectTriggerVariants, selectItemVariants } from './select-variants'
 import './Select.css'
-
-const selectVariants = cva('nothing-select', {
-  variants: {
-    disabled: { true: 'nothing-select--disabled', false: '' },
-    hasError: { true: 'nothing-select--error', false: '' },
-    open: { true: 'nothing-select--open', false: '' },
-  },
-  defaultVariants: { disabled: false, hasError: false, open: false },
-})
-
-const selectTriggerVariants = cva('nothing-select__trigger', {
-  variants: {
-    open: { true: 'nothing-select__trigger--open', false: '' },
-  },
-  defaultVariants: { open: false },
-})
-
-const selectItemVariants = cva('nothing-select__item', {
-  variants: {
-    selected: { true: 'nothing-select__item--selected', false: '' },
-    disabled: { true: 'nothing-select__item--disabled', false: '' },
-    highlighted: { true: 'nothing-select__item--highlighted', false: '' },
-  },
-  defaultVariants: { selected: false, disabled: false, highlighted: false },
-})
 
 export interface SelectOption {
   value: string
@@ -113,15 +89,18 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       setIsOpen((prev) => !prev)
     }
 
-    const handleSelect = (option: SelectOption) => {
-      if (option.disabled) return
-      if (controlledValue === undefined) {
-        setInternalValue(option.value)
-      }
-      onValueChange?.(option.value)
-      setIsOpen(false)
-      setSearchQuery('')
-    }
+    const handleSelect = React.useCallback(
+      (option: SelectOption) => {
+        if (option.disabled) return
+        if (controlledValue === undefined) {
+          setInternalValue(option.value)
+        }
+        onValueChange?.(option.value)
+        setIsOpen(false)
+        setSearchQuery('')
+      },
+      [controlledValue, onValueChange],
+    )
 
     const getEnabledIndices = React.useCallback(() => {
       return filteredOptions
@@ -176,7 +155,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           }
         }
       },
-      [isOpen, highlightedIndex, disabled, filteredOptions, getEnabledIndices]
+      [isOpen, highlightedIndex, disabled, filteredOptions, getEnabledIndices, handleSelect]
     )
 
     React.useEffect(() => {
@@ -194,6 +173,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           className
         )}
         onKeyDown={handleKeyDown}
+        data-slot="select"
         data-state={dataAttr(isOpen ? 'open' : 'closed')}
         data-disabled={dataAttr(disabled)}
         data-error={dataAttr(!!error || hasError)}
@@ -280,5 +260,4 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 )
 Select.displayName = 'Select'
 
-export { selectVariants, selectTriggerVariants, selectItemVariants }
 export default Select

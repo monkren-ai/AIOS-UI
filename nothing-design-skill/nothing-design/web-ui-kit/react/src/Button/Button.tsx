@@ -1,37 +1,9 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { Button as BaseButton } from '@base-ui/react/button'
+import { type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
+import { buttonVariants } from './button-variants'
 import './Button.css'
-
-export const buttonVariants = cva('nothing-btn', {
-  variants: {
-    variant: {
-      primary: 'nothing-btn--primary',
-      secondary: 'nothing-btn--secondary',
-      ghost: 'nothing-btn--ghost',
-      destructive: 'nothing-btn--destructive',
-    },
-    size: {
-      default: '',
-      sm: 'nothing-btn--sm',
-      lg: 'nothing-btn--lg',
-    },
-    fullWidth: {
-      true: 'nothing-btn--full',
-      false: '',
-    },
-    loading: {
-      true: 'nothing-btn--loading',
-      false: '',
-    },
-  },
-  defaultVariants: {
-    variant: 'primary',
-    size: 'default',
-    fullWidth: false,
-    loading: false,
-  },
-})
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants> & {
@@ -39,13 +11,14 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
     loadingText?: string
   }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLElement, ButtonProps>(
   ({ variant, size, fullWidth, className, loading = false, loadingText, disabled, children, ...props }, ref) => {
     const isDisabled = disabled || loading
     return (
-      <button
+      <BaseButton
         ref={ref}
         className={cn(buttonVariants({ variant, size, fullWidth, loading }), className)}
+        data-slot="button"
         data-variant={dataAttr(variant)}
         data-size={dataAttr(size)}
         data-loading={dataAttr(loading)}
@@ -63,7 +36,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <span className="nothing-btn__content" data-loading={dataAttr(loading)}>
           {loading && loadingText ? loadingText : children}
         </span>
-      </button>
+      </BaseButton>
     )
   },
 )

@@ -82,7 +82,7 @@ export const CommandPalette = React.forwardRef<HTMLDivElement, CommandPalettePro
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -10, scale: 0.98 }}
           transition={{ type: 'spring', stiffness: 500, damping: 32 }}
-          onClick={e => e.stopPropagation()}
+          onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
           onKeyDown={onKey}
           role="combobox"
           aria-expanded={true}

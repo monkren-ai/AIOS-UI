@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -88,8 +87,7 @@ describe('Slider', () => {
     expect(handleChange).toHaveBeenLastCalledWith(10)
   })
 
-  it('does not respond to keyboard when disabled', async () => {
-    const user = userEvent.setup()
+  it('does not respond to keyboard when disabled', () => {
     const handleChange = vi.fn()
     render(<Slider disabled onValueChange={handleChange} />)
     const slider = screen.getByRole('slider')

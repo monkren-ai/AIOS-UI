@@ -695,3 +695,64 @@ Design context references — brands sharing Nothing UI's monochrome, reduction-
 | **Nothing (Phone)** | Dot-matrix UI, transparent materials, monochrome OS | Direct namesake — dot-matrix widget patterns, glyph font |
 
 Use these as mood-board references when extending the system. Do NOT copy component patterns directly — extract the underlying discipline (restraint, hierarchy via contrast, typographic precision).
+
+---
+
+## 10. AI OS / AGENT EXTENSION
+
+When designing **AI OS interfaces** with Nothing UI, the visual language does not change — the interaction model does. The system extends from "user operates UI" to "user authorizes an agent."
+
+### Core Principles
+
+1. **Agent, don't just automate.** Every agent action has a UI state. No silent high-risk execution.
+2. **State is structure.** `PlanCard`, `ProgressTrace`, and `AgentOrb` are layout-bearing elements, not decorations.
+3. **Transparency without blur.** Explainability through plan + tool disclosure + trace log — never through glassmorphism.
+4. **Permission is the new click.** High-risk actions require explicit approval with impact scope.
+5. **Dot-matrix is the native AI skin.** Agent thinking uses dot-matrix breathing animation; loading uses `[THINKING…]` text.
+6. **Trust through visibility.** Every session has an audit trail; errors explain cause and recovery.
+
+### Agent State Tokens
+
+| Token | Maps To | State |
+|-------|---------|-------|
+| `--agent-idle` | `var(--text-secondary)` | Standby |
+| `--agent-thinking` | `var(--text-primary)` | Thinking (breathe) |
+| `--agent-acting` | `var(--text-display)` | Acting (pulse) |
+| `--agent-paused` / `--agent-error` | `var(--accent)` | Waiting / Error (red event) |
+
+See `references/tokens.md` §12 for full agent token specification and keyframes.
+
+### Core Agent Components
+
+Use these components when building agentic flows:
+
+- `AgentOrb` — monochrome status orb. `state: idle | thinking | acting | paused | error`.
+- `PlanCard` — shows the agent's planned steps before execution. Editable, approvable.
+- `ToolCallRow` — single tool invocation with status, args, elapsed time.
+- `ProgressTrace` — multi-step execution timeline, collapsible.
+- `ApprovalGate` — high-risk confirmation with impact and reversibility.
+- `AgentStatusBar` — persistent top/bottom bar showing current agent activity.
+- `SearchOrAsk` — evolved `Command`: search files + natural language + plan preview.
+
+### Three-Layer Screen Priority
+
+| Layer | Meaning | Examples |
+|-------|---------|----------|
+| Primary | User intent | `SearchOrAsk`, voice trigger |
+| Secondary | Agent plan | `PlanCard`, `ToolCallRow` |
+| Tertiary | Agent state | `AgentOrb`, `ProgressTrace` |
+
+### Agent Copy Rules
+
+- Status labels: Space Mono ALL CAPS — `[THINKING]`, `[ACTING]`, `[WAITING]`, `[DONE]`, `[ERROR]`.
+- Key numbers: Doto — step count, confidence, elapsed ms.
+- No anthropomorphism. Use `AGENT PROCESSING 3 STEPS`, not "I'm thinking."
+- Approval copy names the actor: `ALLOW AGENT TO SEND EMAIL TO 6 CONTACTS?`
+
+### Anti-Patterns
+
+- Don't build a plain chat UI for complex agent workflows.
+- Don't hide reasoning in a black box.
+- Don't add mascots, avatars, or emotional personas.
+- Don't introduce new colors for agent states — use the existing monochrome + red palette.
+- Don't use `box-shadow`, `blur`, or gradients to indicate "AI-ness."

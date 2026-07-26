@@ -59,7 +59,6 @@ export const Command = React.forwardRef<HTMLDivElement, CommandProps>(
     const listRef = React.useRef<HTMLDivElement | null>(null)
 
     const generatedId = React.useId()
-    const labelId = `${generatedId}-label`
     const listId = `${generatedId}-list`
 
     const setContainerRefs = React.useCallback(

@@ -1,9 +1,7 @@
+export { Select, type SelectProps, type SelectOption } from './Select'
 export {
-  Select,
   selectVariants,
   selectTriggerVariants,
   selectItemVariants,
-  type SelectProps,
-  type SelectOption,
-} from './Select'
+} from './select-variants'
 export { default } from './Select'

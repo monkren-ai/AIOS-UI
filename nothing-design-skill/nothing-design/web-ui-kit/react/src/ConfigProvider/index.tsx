@@ -2,7 +2,7 @@
 
 import { createContext, memo, type ReactNode, useContext, useMemo } from 'react'
 import { MotionProvider, type MotionComponentType } from '@/MotionProvider'
-import { ThemeProvider, type ThemeAppearance } from '@/ThemeProvider'
+import { ThemeProvider, type Theme } from '@/ThemeProvider'
 
 /**
  * CDN 代理类型
@@ -117,11 +117,15 @@ export interface ConfigProviderProps {
   /**
    * 默认主题，默认为 'dark'
    */
-  defaultTheme?: ThemeAppearance
+  defaultTheme?: Theme
+  /**
+   * 是否启用系统主题，默认 true
+   */
+  enableSystem?: boolean
   /**
    * 主题变化回调
    */
-  onThemeChange?: (theme: ThemeAppearance) => void
+  onThemeChange?: (theme: Theme) => void
   /**
    * Motion 组件集合，必传。
    * 从 `motion/react` 或 `motion/react-m` 导入后传入。
@@ -160,13 +164,14 @@ export interface ConfigProviderProps {
  * ```
  */
 export const ConfigProvider = memo<ConfigProviderProps>(
-  ({ children, config, defaultTheme, onThemeChange, motion }) => {
+  ({ children, config, defaultTheme, enableSystem = true, onThemeChange, motion }) => {
     const configValue = useMemo(() => config ?? null, [config])
 
     return (
       <ConfigContext value={configValue}>
         <ThemeProvider
           defaultTheme={defaultTheme}
+          enableSystem={enableSystem}
           onThemeChange={onThemeChange}
         >
           <MotionProvider motion={motion}>{children}</MotionProvider>

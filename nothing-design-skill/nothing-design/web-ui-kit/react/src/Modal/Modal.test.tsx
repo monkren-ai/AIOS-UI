@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -83,8 +82,9 @@ describe('Modal', () => {
       </Modal>
     )
     const dialog = screen.getByRole('dialog')
-    expect(dialog).toHaveAttribute('aria-labelledby', 'nothing-modal-title')
-    expect(screen.getByText('My Title')).toHaveAttribute('id', 'nothing-modal-title')
+    const title = screen.getByText('My Title')
+    expect(title).toHaveAttribute('id')
+    expect(dialog).toHaveAttribute('aria-labelledby', title.id)
   })
 
   it('renders alert variant with confirm and cancel buttons', async () => {

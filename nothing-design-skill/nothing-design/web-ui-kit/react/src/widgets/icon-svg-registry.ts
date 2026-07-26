@@ -10,13 +10,15 @@
  * Used by SvgIcon (variant="dot"), DotMatrixWeatherIcon, and showcase demos.
  */
 import svgPaths from './widget-svg-paths'
-import sunnyRaw from '../assets/weather/sunny.svg?raw'
-import cloudyRaw from '../assets/weather/cloudy.svg?raw'
-import partlyCloudyDayRaw from '../assets/weather/partly-cloudy-day.svg?raw'
-import partlyCloudyNightRaw from '../assets/weather/partly-cloudy-night.svg?raw'
-import rainOrMistRaw from '../assets/weather/rain-or-mist.svg?raw'
-import snowFallRaw from '../assets/weather/snow-fall.svg?raw'
-import thunderRaw from '../assets/weather/thunder.svg?raw'
+import {
+  sunnyRaw,
+  cloudyRaw,
+  partlyCloudyDayRaw,
+  partlyCloudyNightRaw,
+  rainOrMistRaw,
+  snowFallRaw,
+  thunderRaw,
+} from './weather-svg-strings'
 
 /** Wrap a path d-string into a full <svg> markup for DotMatrixIcon rasterization. */
 function wrapPath(d: string, viewBox = '0 0 68 68', fill = 'black'): string {

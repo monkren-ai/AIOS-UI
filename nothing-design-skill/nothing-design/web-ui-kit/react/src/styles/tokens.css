@@ -112,8 +112,32 @@
   /* ===== 动画 ===== */
   --duration-micro: 200ms;
   --duration-transition: 350ms;
+  --duration-agent-breathe: 2000ms;
+  --duration-agent-pulse: 800ms;
+  --duration-agent-step: 1200ms;
   --easing: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-back: cubic-bezier(.34, 1.56, .64, 1);
+  --animation-agent-breathe: agent-breathe var(--duration-agent-breathe) ease-in-out infinite;
+  --animation-agent-pulse: agent-pulse var(--duration-agent-pulse) ease-in-out infinite;
+  --animation-agent-step: agent-step var(--duration-agent-step) var(--easing) forwards;
+
+  /* ===== Agent / AI OS 状态色 =====
+   * 严格受 monochrome + red event 约束。不引入新色，只映射现有灰阶/红色。
+   */
+  --agent-idle: var(--text-secondary);
+  --agent-thinking: var(--text-primary);
+  --agent-acting: var(--text-display);
+  --agent-paused: var(--text-secondary);
+  --agent-error: var(--accent);
+  --agent-trace: var(--surface-raised);
+  --surface-agent: var(--surface);
+  --border-agent: var(--border-visible);
+
+  /* ===== Agent / AI OS Radius & Shape ===== */
+  --radius-agent-orb: 999px;
+  --radius-agent-chip: 999px;
+  --radius-agent-card: var(--radius-card);
+  --radius-agent-card-compact: var(--radius-card-compact);
 
   /* ===== 工具色 ===== */
   --accent-red: var(--accent);
@@ -246,6 +270,7 @@
   --text-secondary: #999999;
   --text-primary: #E8E8E8;
   --text-display: #FFFFFF;
+  --text-tertiary: #666666;
   --interactive: #5B9BF6;
   --popover-bg: #1A1A1A;
   --popover-fg: #E8E8E8;
@@ -275,6 +300,7 @@
   --text-secondary: #666666;
   --text-primary: #1A1A1A;
   --text-display: #000000;
+  --text-tertiary: #999999;
   --interactive: #007AFF;
   --popover-bg: #FFFFFF;
   --popover-fg: #1A1A1A;
@@ -311,4 +337,22 @@
 .dot-grid-subtle {
   background-image: radial-gradient(circle, var(--border) 0.5px, transparent 0.5px);
   background-size: 12px 12px;
+}
+
+/* ===== Agent / AI OS 动画关键帧 =====
+ * 仅使用 opacity/transform，不引入 blur/shadow。
+ */
+@keyframes agent-breathe {
+  0%, 100% { opacity: 0.4; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes agent-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes agent-step {
+  0% { opacity: 0; transform: translateY(2px); }
+  100% { opacity: 1; transform: translateY(0); }
 }

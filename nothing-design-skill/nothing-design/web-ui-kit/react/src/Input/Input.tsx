@@ -77,6 +77,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div
         className={cn(inputVariants({ variant, hasError, disabled }), className)}
         style={style}
+        data-slot="input"
         data-variant={dataAttr(variant)}
         data-state={hasError ? 'error' : disabled ? 'disabled' : 'default'}
       >

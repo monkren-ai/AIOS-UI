@@ -1,4 +1,4 @@
-import type { T } from '../hooks/useShowcaseState'
+import { useShowcaseContext } from '../ShowcaseContext'
 
 interface Category {
   id: string
@@ -7,6 +7,7 @@ interface Category {
 }
 
 const categories: Category[] = [
+  { id: 'agent-os', zh: 'AI OS Agent', en: 'AI OS Agent' },
   { id: 'core-interaction', zh: '核心交互', en: 'Core Interaction' },
   { id: 'data-display', zh: '数据展示', en: 'Data Display' },
   { id: 'overlays', zh: '弹窗与层', en: 'Overlays' },
@@ -25,16 +26,14 @@ const categories: Category[] = [
   { id: 'nullframe', zh: 'Nullframe 仪表盘', en: 'Nullframe Dashboard' },
 ]
 
-interface CategoryNavProps {
-  t: T
-}
-
 /**
  * 侧边栏分类导航。
  *
  * 渲染所有分类的锚点链接，点击平滑滚动到对应区段。
  */
-export function CategoryNav({ t }: CategoryNavProps) {
+export function CategoryNav() {
+  const { t } = useShowcaseContext()
+
   return (
     <aside className="showcase-aside" aria-label="Category navigation">
       <div className="showcase-aside-label">{t('分类', 'Categories')}</div>

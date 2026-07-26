@@ -34,6 +34,7 @@
     "build": "tsdown",
     "build:packages": "tsx ./scripts/build.ts",
     "build:showcase": "vite build",
+    "sync:exports": "tsx ./scripts/sync-exports.ts",
     "build:watch": "tsdown --watch",
     "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx",
@@ -51,7 +52,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.18.1"
   },
   "peerDependencies": {
     "motion": ">=12.0.0"

@@ -1,7 +1,7 @@
 import * as React from 'react'
-import DotMatrixIcon from '../DotMatrixIcon'
+import DotMatrixIcon from '@/components/DotMatrixIcon'
 import { weatherSvg } from './icon-svg-registry'
-import { cn } from '../../lib/utils'
+import { cn } from '@/lib/utils'
 
 export type WeatherIconName = keyof typeof weatherSvg
 

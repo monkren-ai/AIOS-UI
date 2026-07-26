@@ -6,13 +6,13 @@ import Select from '@/Select'
 import Sheet from '@/Sheet'
 import Switch from '@/Switch'
 import Command from '@/Command'
+import { useTheme } from '@/ThemeProvider'
 import { CategorySection } from '../components/CategorySection'
 import { DemoCard } from '../components/DemoCard'
-import type { T, Theme } from '../hooks/useShowcaseState'
+import type { T } from '../hooks/useShowcaseState'
 
 interface OverlaysSectionProps {
   t: T
-  theme: Theme
   modalOpen: boolean
   setModalOpen: (open: boolean) => void
   dropdownValue: string | undefined
@@ -27,7 +27,6 @@ interface OverlaysSectionProps {
 
 export function OverlaysSection({
   t,
-  theme,
   modalOpen,
   setModalOpen,
   dropdownValue,
@@ -39,6 +38,7 @@ export function OverlaysSection({
   commandOpen,
   setCommandOpen,
 }: OverlaysSectionProps) {
+  const { resolvedTheme } = useTheme()
   return (
     <CategorySection id="overlays" title={t('弹窗与层', 'Overlays')}>
       <DemoCard title={t('模态框', 'Modal')}>
@@ -108,7 +108,7 @@ export function OverlaysSection({
           side="right"
           title={t('设置面板', 'Settings Panel')}
         >
-          <Switch label={t('深色模式', 'Dark Mode')} on={theme === 'dark'} style={{ display: 'block', marginBottom: 'var(--space-lg)' }} />
+          <Switch label={t('深色模式', 'Dark Mode')} on={resolvedTheme === 'dark'} style={{ display: 'block', marginBottom: 'var(--space-lg)' }} />
           <Switch label={t('通知', 'Notifications')} on={true} style={{ display: 'block', marginBottom: 'var(--space-lg)' }} />
           <Switch label={t('自动更新', 'Auto-update')} style={{ display: 'block' }} />
         </Sheet>
@@ -122,7 +122,7 @@ export function OverlaysSection({
           side="bottom"
           title={t('设置', 'Settings')}
           sections={[
-            { title: t('显示', 'Display'), content: <Switch label={t('深色模式', 'Dark Mode')} on={theme === 'dark'} /> },
+            { title: t('显示', 'Display'), content: <Switch label={t('深色模式', 'Dark Mode')} on={resolvedTheme === 'dark'} /> },
             { title: t('连接', 'Connectivity'), content: <Switch label={t('Wi-Fi', 'Wi-Fi')} on={true} /> },
           ]}
         />

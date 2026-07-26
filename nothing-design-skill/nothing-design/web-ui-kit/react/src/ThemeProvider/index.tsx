@@ -1,77 +1,97 @@
 'use client'
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from 'react'
 
 /**
- * 主题外观
+ * 用户可选择的主题模式
+ */
+export type Theme = 'light' | 'dark' | 'system'
+
+/**
+ * 实际应用的外观（system 解析后的结果）
  */
 export type ThemeAppearance = 'light' | 'dark'
 
-/**
- * 主题上下文值
- */
 export interface ThemeContextValue {
   /**
-   * 当前主题外观
+   * 当前选中的主题，可能是 'system'
    */
-  theme: ThemeAppearance
+  theme: Theme
   /**
-   * 是否暗色模式
+   * 实际生效的主题（system 会被解析为 light/dark）
    */
-  isDarkMode: boolean
+  resolvedTheme: ThemeAppearance
+  /**
+   * 系统主题
+   */
+  systemTheme: ThemeAppearance | undefined
+  /**
+   * 是否已完成挂载（用于避免 SSR/首屏闪烁）
+   */
+  mounted: boolean
   /**
    * 设置主题
    */
-  setTheme: (theme: ThemeAppearance) => void
+  setTheme: (theme: Theme) => void
   /**
-   * 切换主题
+   * 切换主题（dark → light → system → dark，或仅 dark/light 之间切换）
    */
   toggleTheme: () => void
 }
 
 const STORAGE_KEY = 'nothing-theme'
+const MEDIA = '(prefers-color-scheme: dark)'
 
-/**
- * 主题上下文（默认 dark，与 Nothing 设计语言一致）
- */
-export const ThemeContext = createContext<ThemeContextValue>({
+const ThemeContext = createContext<ThemeContextValue>({
   theme: 'dark',
-  isDarkMode: true,
+  resolvedTheme: 'dark',
+  systemTheme: 'dark',
+  mounted: false,
   setTheme: () => {},
   toggleTheme: () => {},
 })
 
-/**
- * 从 localStorage 读取初始主题
- */
-function getInitialTheme(): ThemeAppearance {
-  if (typeof window === 'undefined') return 'dark'
+function getInitialTheme(defaultTheme: Theme): Theme {
+  if (typeof window === 'undefined') return defaultTheme
   const stored = window.localStorage.getItem(STORAGE_KEY)
-  if (stored === 'light' || stored === 'dark') return stored
-  // 默认 dark，与 index.html 的 data-theme="dark" 一致
-  return 'dark'
+  if (stored === 'light' || stored === 'dark' || stored === 'system') return stored
+  return defaultTheme
 }
 
-/**
- * 将主题应用到 document.documentElement
- */
+function getSystemTheme(): ThemeAppearance {
+  if (typeof window === 'undefined') return 'dark'
+  return window.matchMedia(MEDIA).matches ? 'dark' : 'light'
+}
+
 function applyTheme(theme: ThemeAppearance) {
   if (typeof document === 'undefined') return
   document.documentElement.setAttribute('data-theme', theme)
 }
 
-/**
- * useTheme hook
- *
- * 获取当前主题与切换方法。
- *
- * @example
- * ```tsx
- * const { theme, isDarkMode, toggleTheme } = useTheme()
- * ```
- */
-export function useTheme(): ThemeContextValue {
-  return useContext(ThemeContext)
+function disableAnimation() {
+  const css = document.createElement('style')
+  css.appendChild(
+    document.createTextNode(
+      '*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}',
+    ),
+  )
+  document.head.appendChild(css)
+  return () => {
+    // Force reflow to ensure the no-transition rule is applied before class swap paints.
+     
+    ;(() => window.getComputedStyle(document.body))()
+    setTimeout(() => {
+      document.head.removeChild(css)
+    }, 0)
+  }
 }
 
 export interface ThemeProviderProps {
@@ -79,11 +99,23 @@ export interface ThemeProviderProps {
   /**
    * 默认主题，默认为 'dark'
    */
-  defaultTheme?: ThemeAppearance
+  defaultTheme?: Theme
+  /**
+   * 强制主题，优先级最高
+   */
+  forcedTheme?: ThemeAppearance
+  /**
+   * 是否启用系统主题，默认 true
+   */
+  enableSystem?: boolean
+  /**
+   * 切换主题时是否禁用过渡动画，默认 true
+   */
+  disableTransitionOnChange?: boolean
   /**
    * 主题变化回调
    */
-  onThemeChange?: (theme: ThemeAppearance) => void
+  onThemeChange?: (theme: Theme) => void
 }
 
 /**
@@ -93,11 +125,13 @@ export interface ThemeProviderProps {
  *
  * - 通过 `data-theme` 属性切换主题（与 `tokens.css` 的 `[data-theme="dark"]` 选择器协同）
  * - 持久化到 `localStorage`（key: `nothing-theme`）
- * - 默认主题为 `dark`（与 Nothing 设计语言一致）
+ * - 支持系统主题跟随（prefers-color-scheme）
+ * - 支持 forcedTheme 强制主题
+ * - 切换时临时禁用 CSS 过渡，避免颜色渐变闪烁
  *
  * @example
  * ```tsx
- * <ThemeProvider defaultTheme="dark">
+ * <ThemeProvider defaultTheme="dark" enableSystem>
  *   <App />
  * </ThemeProvider>
  * ```
@@ -105,43 +139,95 @@ export interface ThemeProviderProps {
 export function ThemeProvider({
   children,
   defaultTheme = 'dark',
+  forcedTheme,
+  enableSystem = true,
+  disableTransitionOnChange = true,
   onThemeChange,
 }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<ThemeAppearance>(() => {
+  const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window === 'undefined') return defaultTheme
-    return getInitialTheme()
+    return getInitialTheme(defaultTheme)
   })
+  const [systemTheme, setSystemTheme] = useState<ThemeAppearance | undefined>(() =>
+    enableSystem ? getSystemTheme() : undefined,
+  )
+  const [mounted, setMounted] = useState(false)
 
-  // 应用主题到 documentElement
   useEffect(() => {
-    applyTheme(theme)
+    setMounted(true)
+  }, [])
+
+  const resolvedTheme = useMemo<ThemeAppearance>(() => {
+    if (forcedTheme) return forcedTheme
+    if (theme === 'system') return systemTheme ?? (defaultTheme === 'system' ? 'dark' : defaultTheme)
+    return theme
+  }, [forcedTheme, theme, systemTheme, defaultTheme])
+
+  // Apply theme and persist
+  useEffect(() => {
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(STORAGE_KEY, theme)
     }
     onThemeChange?.(theme)
   }, [theme, onThemeChange])
 
-  const setTheme = useCallback((next: ThemeAppearance) => {
-    setThemeState(next)
-  }, [])
+  // Apply data-theme attribute with optional transition suppression
+  useEffect(() => {
+    const enable = disableTransitionOnChange ? disableAnimation() : null
+    applyTheme(resolvedTheme)
+    enable?.()
+  }, [resolvedTheme, disableTransitionOnChange])
+
+  // Listen to system theme changes
+  useEffect(() => {
+    if (!enableSystem) return
+    const media = window.matchMedia(MEDIA)
+    const handler = (e: MediaQueryListEvent | MediaQueryList) => {
+      setSystemTheme(e.matches ? 'dark' : 'light')
+    }
+    handler(media)
+    media.addEventListener('change', handler)
+    return () => media.removeEventListener('change', handler)
+  }, [enableSystem])
+
+  const setTheme = useCallback(
+    (next: Theme) => {
+      setThemeState(next)
+    },
+    [],
+  )
 
   const toggleTheme = useCallback(() => {
-    setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark'))
-  }, [])
+    setThemeState((prev) => {
+      if (enableSystem) {
+        // Cycle: dark → light → system → dark
+        if (prev === 'dark') return 'light'
+        if (prev === 'light') return 'system'
+        return 'dark'
+      }
+      return prev === 'dark' ? 'light' : 'dark'
+    })
+  }, [enableSystem])
 
   const value = useMemo<ThemeContextValue>(
     () => ({
       theme,
-      isDarkMode: theme === 'dark',
+      resolvedTheme,
+      systemTheme,
+      mounted,
       setTheme,
       toggleTheme,
     }),
-    [theme, setTheme, toggleTheme],
+    [theme, resolvedTheme, systemTheme, mounted, setTheme, toggleTheme],
   )
 
   return <ThemeContext value={value}>{children}</ThemeContext>
 }
 
 ThemeProvider.displayName = 'ThemeProvider'
+
+export function useTheme(): ThemeContextValue {
+  return useContext(ThemeContext)
+}
 
 export default ThemeProvider

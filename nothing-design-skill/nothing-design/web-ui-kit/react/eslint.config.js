@@ -14,10 +14,10 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      // 组件库需要同时导出组件与 variants/types（如 Button/buttonVariants/ButtonProps），
+      // 强制拆分至独立文件收益有限且会破坏现有 barrel 结构。因此关闭该规则，
+      // 由 `scripts/sync-exports.ts` 与 `npm run type-check` 保证导出正确性。
+      'react-refresh/only-export-components': 'off',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {

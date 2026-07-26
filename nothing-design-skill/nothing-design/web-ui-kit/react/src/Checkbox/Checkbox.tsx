@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cva } from 'class-variance-authority'
+import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox'
 import { cn, dataAttr } from '@/lib/utils'
 import './Checkbox.css'
 
@@ -51,30 +52,17 @@ export const Checkbox = React.forwardRef<HTMLLabelElement, CheckboxProps>(
     const isChecked = isControlled ? controlledChecked : internalChecked
     const isDisabled = !!disabled
     const isIndeterminate = isChecked === 'indeterminate'
-    const inputRef = React.useRef<HTMLInputElement>(null)
 
-    const handleChange = React.useCallback(() => {
-      if (isDisabled) return
-      const nextChecked: boolean | 'indeterminate' =
-        isChecked === 'indeterminate' ? true : !isChecked
-      if (!isControlled) {
-        setInternalChecked(nextChecked)
-      }
-      onCheckedChange?.(nextChecked)
-    }, [isDisabled, isChecked, isControlled, onCheckedChange])
-
-    const handleKeyDown = React.useCallback(
-      (e: React.KeyboardEvent) => {
-        if (e.key === ' ') {
-          e.preventDefault()
-          handleChange()
+    const handleCheckedChange = React.useCallback(
+      (nextChecked: boolean) => {
+        const nextValue: boolean | 'indeterminate' = nextChecked
+        if (!isControlled) {
+          setInternalChecked(nextValue)
         }
+        onCheckedChange?.(nextValue)
       },
-      [handleChange]
+      [isControlled, onCheckedChange]
     )
-
-    const ariaChecked = isIndeterminate ? 'mixed' : isChecked ? 'true' : 'false'
-    const inputId = id ?? undefined
 
     return (
       <label
@@ -93,47 +81,45 @@ export const Checkbox = React.forwardRef<HTMLLabelElement, CheckboxProps>(
         data-disabled={dataAttr(isDisabled)}
         {...props}
       >
-        <input
-          ref={inputRef}
-          className="nothing-checkbox__input"
-          type="checkbox"
+        <BaseCheckbox.Root
+          className="nothing-checkbox__box"
           checked={isIndeterminate ? false : !!isChecked}
-          aria-checked={ariaChecked}
+          indeterminate={isIndeterminate}
+          defaultChecked={isControlled ? undefined : defaultChecked}
+          onCheckedChange={handleCheckedChange}
           disabled={isDisabled}
-          id={inputId}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          tabIndex={0}
-        />
-        <div className="nothing-checkbox__box">
-          <svg
-            className="nothing-checkbox__check"
-            viewBox="0 0 14 14"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M3 7L6 10L11 4"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <svg
-            className="nothing-checkbox__dash"
-            viewBox="0 0 14 14"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M3 7H11"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
+          id={id}
+        >
+          <BaseCheckbox.Indicator className="nothing-checkbox__indicator" keepMounted>
+            <svg
+              className="nothing-checkbox__check"
+              viewBox="0 0 14 14"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 7L6 10L11 4"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <svg
+              className="nothing-checkbox__dash"
+              viewBox="0 0 14 14"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 7H11"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </BaseCheckbox.Indicator>
+        </BaseCheckbox.Root>
         {label && <span className="nothing-checkbox__label">{label}</span>}
       </label>
     )

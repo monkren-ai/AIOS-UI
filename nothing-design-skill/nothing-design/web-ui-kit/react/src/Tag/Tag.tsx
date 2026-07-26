@@ -79,6 +79,7 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
       <span
         ref={ref}
         className={cn(tagVariants({ variant, active, disabled: isDisabled }), className)}
+        data-slot="tag"
         data-variant={dataAttr(variant)}
         data-active={dataAttr(active)}
         data-disabled={dataAttr(isDisabled)}

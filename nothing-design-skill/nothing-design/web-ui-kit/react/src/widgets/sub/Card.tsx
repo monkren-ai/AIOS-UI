@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { cn, dataAttr } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import imgImage from '@/assets/images/069cf4a7d68229b16958df0e634b08f7e38a57a5.png';

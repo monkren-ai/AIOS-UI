@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Command, type CommandGroup } from '@/components/Command'
+import { Command, type CommandGroup } from '@/Command'
 
 // === Mock Data ===
 

@@ -410,7 +410,75 @@ Don't
 - Do not exceed 16px border-radius on cards.
 - Do not make everything "secondary." Evenly-sized elements with even spacing = visual flatness. Be brave — make the primary absurdly large and the tertiary absurdly small.
 
+## AI OS Design Principles
+
+Nothing UI for AI OS is a **semantic extension**, not a visual rebrand. The monochrome canvas, dot-matrix motif, industrial typography, and no-shadow discipline remain intact. What changes is the interaction model: from "user operates UI" to "user authorizes an agent."
+
+### 1. Agent, don't just automate.
+
+> Automation runs in the background. Agent runs in the foreground — seen, understood, and permitted.
+
+- Every agent action must have a corresponding UI state.
+- High-risk operations are never silent.
+- The default flow is: show the plan, then execute.
+
+### 2. State is structure.
+
+> Agent state, plan, and progress are not loading animations — they are the structure of the interface.
+
+- A `PlanCard` can be the main content of a screen.
+- A `ProgressTrace` can live persistently in a sidebar.
+- An `AgentOrb` can anchor a corner like a navigation element.
+
+### 3. Transparency without blur.
+
+> AI transparency is not glassmorphism. It is explainability.
+
+- Show the agent's plan, tool calls, sources, and confidence.
+- Use border + surface hierarchy to communicate information layers.
+- Never use blur or translucency to imply "intelligence."
+
+### 4. Permission is the new click.
+
+> In AI OS, a click is often an authorization, not just a trigger.
+
+- High-risk actions require explicit approval.
+- Approval surfaces must show impact scope and reversibility.
+- Button copy shifts from "Confirm" to "Allow agent to …"
+
+### 5. Dot-matrix is the native AI skin.
+
+> The dot grid is the visual metaphor for AI thought: discrete, observable, rhythmic.
+
+- Agent thinking uses a dot-matrix breathing animation.
+- Loading states use `[THINKING…]` + dot-matrix spinner, not skeletons.
+- Notifications can use Glyph-like dot-matrix patterns.
+
+### 6. Trust through visibility.
+
+> User trust in an agent equals visibility into that agent's behavior.
+
+- Every agent session has an audit trail.
+- Users can inspect, export, and delete agent memory.
+- Error states must explain cause and provide a recovery path.
+
+### Three-Layer Priority for Agent Screens
+
+| Layer | Meaning | Component Examples |
+|-------|---------|-------------------|
+| **Primary: Intent** | What the user wants | `SearchOrAsk` input, voice trigger |
+| **Secondary: Plan** | What the agent will do | `PlanCard`, `ToolCallRow` |
+| **Tertiary: State** | Where the agent is now | `AgentOrb`, `ProgressTrace`, `TraceLog` |
+
+### Agent Copy & Tone
+
+- Use **Space Mono ALL CAPS** for agent status labels: `[THINKING]`, `[ACTING]`, `[WAITING]`, `[DONE]`, `[ERROR]`.
+- Use **Doto** for key numbers: step count, confidence score, elapsed time.
+- Avoid anthropomorphism. Say `AGENT PROCESSING 3 STEPS`, not "I'm thinking."
+- Approval copy names the actor: `ALLOW AGENT TO SEND EMAIL TO 6 CONTACTS?`
+
 ### Motion
+
 
 Motion stays restrained and interface-led. Easing favors ease-out. Percussive, not fluid — imagine UI sounds: click not swoosh, tick not chime.
 

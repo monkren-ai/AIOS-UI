@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
+import { Switch as BaseSwitch } from '@base-ui/react/switch'
 import { cn, dataAttr } from '@/lib/utils'
 import './Switch.css'
 
@@ -33,9 +34,7 @@ export const Switch = React.forwardRef<HTMLLabelElement, SwitchProps>(
     const isOn = controlledOn !== undefined ? controlledOn : (checked ?? internalOn)
     const isDisabled = !!disabled
 
-    const handleToggle = () => {
-      if (isDisabled) return
-      const newValue = !isOn
+    const handleCheckedChange = (newValue: boolean) => {
       if (controlledOn === undefined) {
         setInternalOn(newValue)
       }
@@ -46,21 +45,19 @@ export const Switch = React.forwardRef<HTMLLabelElement, SwitchProps>(
       <label
         ref={ref}
         className={cn(switchVariants({ checked: isOn, disabled: isDisabled }), className)}
+        data-slot="switch"
         data-state={dataAttr(isOn ? 'on' : 'off')}
         data-disabled={dataAttr(isDisabled)}
         {...props}
       >
-        <input
-          className="nothing-switch__input"
-          type="checkbox"
+        <BaseSwitch.Root
+          className="nothing-switch__track"
           checked={isOn}
+          onCheckedChange={handleCheckedChange}
           disabled={isDisabled}
-          onChange={handleToggle}
-          tabIndex={0}
-        />
-        <div className="nothing-switch__track">
-          <div className="nothing-switch__thumb" />
-        </div>
+        >
+          <BaseSwitch.Thumb className="nothing-switch__thumb" />
+        </BaseSwitch.Root>
         {label && <span className="nothing-switch__label">{label}</span>}
       </label>
     )

@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
+import type { AgentState, PlanStep, TraceStep, ToolCallRowProps } from '@/agent'
 
-export type Theme = 'dark' | 'light'
-export type Lang = 'zh' | 'en'
-export type T = (zh: string, en: string) => string
+export type { Lang, T } from '@/App'
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -12,11 +11,10 @@ const MONTHS = [
 /**
  * 展示页状态管理。
  *
- * 集中持有原 App.tsx 内的所有组件状态、主题/语言切换逻辑
- * 与翻译函数 `t`，供各 section 与浮动控制组件消费。
+ * 集中持有原 App.tsx 内的所有组件状态，供各 section 与浮动控制组件消费。
+ * 主题与语言由 App.tsx 统一管理，跨路由共享。
  */
 export function useShowcaseState() {
-  const [theme, setTheme] = useState<Theme>('dark')
   const [modalOpen, setModalOpen] = useState(false)
   const [dropdownValue, setDropdownValue] = useState<string | undefined>(undefined)
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false)
@@ -37,31 +35,54 @@ export function useShowcaseState() {
   const [otpValue, setOtpValue] = useState('')
   const [commandOpen, setCommandOpen] = useState(false)
   const [sliderValue, setSliderValue] = useState(65)
-  const [lang, setLang] = useState<Lang>('zh')
   const [forceSim, setForceSim] = useState(false)
+
+  // Agent / AI OS 展示状态
+  const [agentOrbState, setAgentOrbState] = useState<AgentState>('thinking')
+  const [approvalOpen, setApprovalOpen] = useState(false)
+  const [agentPlanSteps, setAgentPlanSteps] = useState<PlanStep[]>([
+    { id: '1', description: '搜索项目中的设计系统文档', tool: 'fileSearch', status: 'approved' },
+    { id: '2', description: '读取 tokens.css 与现有组件', tool: 'readFile', status: 'approved' },
+    { id: '3', description: '生成 AI OS Agent Token 提案', tool: 'writeFile', status: 'pending' },
+    { id: '4', description: '创建 AgentOrb / PlanCard / ToolCallRow 组件', tool: 'writeFile', status: 'pending' },
+  ])
+  const [agentTraceSteps, setAgentTraceSteps] = useState<TraceStep[]>([
+    { id: 't1', label: '初始化 Agent 上下文', status: 'done', timestamp: '09:12:04' },
+    { id: 't2', label: '解析设计哲学约束', status: 'done', timestamp: '09:12:05' },
+    { id: 't3', label: '生成组件规格', status: 'active', timestamp: '09:12:07' },
+    { id: 't4', label: '写入文件系统', status: 'pending' },
+  ])
+  const [agentToolCalls, setAgentToolCalls] = useState<Omit<ToolCallRowProps, 'ref'>[]>([
+    {
+      tool: 'readFile',
+      args: { path: 'src/styles/tokens.css' },
+      status: 'done',
+      elapsedMs: 120,
+      result: '读取 80+ tokens 完成',
+    },
+    {
+      tool: 'searchCode',
+      args: { query: 'border-left.*accent', glob: '*.css' },
+      status: 'done',
+      elapsedMs: 340,
+      result: '3 matches found',
+    },
+    {
+      tool: 'writeFile',
+      args: { path: 'src/agent/AgentOrb.tsx' },
+      status: 'running',
+      elapsedMs: 560,
+    },
+  ])
 
   // 同步到 document.documentElement dataset,让 CSS 强制覆盖
   useEffect(() => {
     document.documentElement.setAttribute('data-force-sim', forceSim ? 'true' : 'false')
   }, [forceSim])
 
-  const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const newTheme = prev === 'dark' ? 'light' : 'dark'
-      document.documentElement.setAttribute('data-theme', newTheme)
-      return newTheme
-    })
-  }, [])
-
-  const toggleLang = useCallback(() => {
-    setLang((prev) => (prev === 'zh' ? 'en' : 'zh'))
-  }, [])
-
   const toggleForceSim = useCallback(() => {
     setForceSim((v) => !v)
   }, [])
-
-  const t = useCallback<T>((zh, en) => (lang === 'zh' ? zh : en), [lang])
 
   const handleDatePrev = useCallback(() => {
     setDateNavLabel((prev) => {
@@ -92,8 +113,6 @@ export function useShowcaseState() {
   }, [])
 
   return {
-    theme,
-    setTheme,
     modalOpen,
     setModalOpen,
     dropdownValue,
@@ -125,12 +144,18 @@ export function useShowcaseState() {
     setCommandOpen,
     sliderValue,
     setSliderValue,
-    lang,
     forceSim,
-    toggleTheme,
-    toggleLang,
     toggleForceSim,
-    t,
+    agentOrbState,
+    setAgentOrbState,
+    approvalOpen,
+    setApprovalOpen,
+    agentPlanSteps,
+    setAgentPlanSteps,
+    agentTraceSteps,
+    setAgentTraceSteps,
+    agentToolCalls,
+    setAgentToolCalls,
   }
 }
 

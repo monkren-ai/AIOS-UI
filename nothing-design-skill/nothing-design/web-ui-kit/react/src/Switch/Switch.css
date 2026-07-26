@@ -28,11 +28,11 @@
   transition: all var(--duration-micro) var(--easing);
 }
 
-.nothing-switch--on .nothing-switch__track {
+.nothing-switch__track[data-checked] {
   background: var(--text-display);
 }
 
-.nothing-switch--on .nothing-switch__thumb {
+.nothing-switch__track[data-checked] .nothing-switch__thumb {
   left: var(--switch-thumb-active-offset);
   background: var(--black);
 }
@@ -42,11 +42,11 @@
   cursor: not-allowed;
 }
 
-.nothing-switch--disabled .nothing-switch__track {
+.nothing-switch__track[data-disabled] {
   background: var(--border);
 }
 
-.nothing-switch--disabled .nothing-switch__thumb {
+.nothing-switch__track[data-disabled] .nothing-switch__thumb {
   background: var(--text-disabled);
 }
 
@@ -59,7 +59,7 @@
   white-space: nowrap;
 }
 
-.nothing-switch__input:focus-visible + .nothing-switch__track {
+.nothing-switch__track:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
@@ -73,7 +73,8 @@
   transition: color var(--duration-micro) var(--easing);
 }
 
-.nothing-switch--on .nothing-switch__label {
+.nothing-switch--on .nothing-switch__label,
+.nothing-switch__track[data-checked] + .nothing-switch__label {
   color: var(--text-primary);
 }
 

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nothing UI Kit - React</title>
+    <script type="text/javascript">
+      // GitHub Pages SPA fallback for /Nothing-UI/ base path.
+      // Encodes the requested path into the query string so index.html can restore it.
+      var segmentCount = 1
+      var l = window.location
+      var pathname = l.pathname
+        .split('/')
+        .slice(segmentCount + 1)
+        .join('/')
+      var search = l.search ? l.search.slice(1).replace(/&/g, '~and~') : ''
+      l.replace(
+        l.protocol +
+          '//' +
+          l.hostname +
+          (l.port ? ':' + l.port : '') +
+          l.pathname
+            .split('/')
+            .slice(0, segmentCount + 1)
+            .join('/') +
+          '/?/' +
+          pathname +
+          (search ? '&' + search : '') +
+          l.hash,
+      )
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>

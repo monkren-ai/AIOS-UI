@@ -52,7 +52,7 @@ export const Quotes = React.forwardRef<HTMLDivElement, QuotesProps>(
     React.useEffect(() => {
       if (quotes.length <= 1) return
       setCurrentIndex((prev) => (prev + 1) % quotes.length)
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+       
     }, [tick, quotes.length])
 
     React.useEffect(() => {

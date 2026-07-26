@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { WidgetCard, WidgetCardProps } from '../Card'
 
 export type CardProp = boolean | Omit<WidgetCardProps, 'children'>

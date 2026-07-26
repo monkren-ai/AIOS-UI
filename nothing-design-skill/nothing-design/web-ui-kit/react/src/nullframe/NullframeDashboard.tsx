@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import { cva } from 'class-variance-authority'
+import { AnimatePresence } from 'motion/react'
 import '@/styles/nullframe.css'
 import { bus } from '@/system/telemetry'
 import { CtlCtx, type Ctl } from '@/system/hooks'
-import { useMotionComponent } from '@/MotionProvider'
 import { NfCard } from './NfCard'
 import { CommandPalette } from './CommandPalette'
 import {
@@ -46,8 +46,6 @@ export const NullframeDashboard = React.forwardRef<HTMLDivElement, NullframeDash
     const [motionOff, setMotionOff] = useState(false)
     const [autoSweep, setAutoSweepState] = useState(true)
     const [paletteOpen, setPaletteOpen] = useState(false)
-    const motionModule = useMotionComponent()
-    const AnimatePresence = motionModule.AnimatePresence as React.FC<Record<string, unknown>>
 
     useEffect(() => {
       bus.start()

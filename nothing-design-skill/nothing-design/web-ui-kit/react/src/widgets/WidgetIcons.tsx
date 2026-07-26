@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import svgPaths from './widget-svg-paths';
 import SvgIcon, { type SvgIconTheme, type SvgIconSize, type SvgIconVariant } from './SvgIcon';
 import { widgetIconSvg } from './icon-svg-registry';

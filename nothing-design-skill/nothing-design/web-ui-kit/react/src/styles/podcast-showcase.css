@@ -175,7 +175,6 @@
   border-radius: var(--radius-card-compact);
   cursor: pointer;
   transition: all var(--duration-micro) var(--easing);
-  border-left: 2px solid transparent;
 }
 
 .podcast-episode-row:hover {
@@ -184,7 +183,7 @@
 }
 
 .podcast-episode-row--active {
-  border-left-color: var(--accent);
+  border-color: var(--accent);
   background: var(--surface-raised);
 }
 
@@ -411,7 +410,6 @@
   display: flex;
   gap: var(--space-sm);
   padding: var(--space-xs) var(--space-sm);
-  border-left: 2px solid transparent;
   border-radius: var(--radius-card-technical);
   transition: all var(--duration-micro) var(--easing);
 }

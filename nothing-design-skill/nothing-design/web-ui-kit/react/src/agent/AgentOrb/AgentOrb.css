@@ -1,0 +1,70 @@
+.nothing-agent-orb {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+
+.nothing-agent-orb__dot {
+  display: block;
+  border-radius: var(--radius-agent-orb);
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.nothing-agent-orb__label {
+  font-size: var(--label);
+  line-height: var(--leading-label);
+  color: currentColor;
+}
+
+/* Sizes */
+.nothing-agent-orb--sm .nothing-agent-orb__dot {
+  width: 8px;
+  height: 8px;
+}
+
+.nothing-agent-orb--md .nothing-agent-orb__dot {
+  width: 12px;
+  height: 12px;
+}
+
+.nothing-agent-orb--lg .nothing-agent-orb__dot {
+  width: 18px;
+  height: 18px;
+}
+
+/* States */
+.nothing-agent-orb--idle {
+  color: var(--agent-idle);
+}
+
+.nothing-agent-orb--thinking {
+  color: var(--agent-thinking);
+}
+
+.nothing-agent-orb--thinking .nothing-agent-orb__dot {
+  animation: var(--animation-agent-breathe);
+}
+
+.nothing-agent-orb--acting {
+  color: var(--agent-acting);
+}
+
+.nothing-agent-orb--acting .nothing-agent-orb__dot {
+  animation: var(--animation-agent-pulse);
+}
+
+.nothing-agent-orb--paused {
+  color: var(--agent-paused);
+}
+
+.nothing-agent-orb--error {
+  color: var(--agent-error);
+}
+
+.nothing-agent-orb--error .nothing-agent-orb__dot {
+  border-radius: var(--radius-card-technical);
+}

@@ -19,8 +19,7 @@ interface AgeData {
   yearProgress: number
 }
 
-function computeAge(birthDate: Date): AgeData {
-  const now = new Date()
+function computeAge(birthDate: Date, now: Date): AgeData {
   const diff = now.getTime() - birthDate.getTime()
   const totalSeconds = Math.floor(diff / 1000)
   const totalMinutes = Math.floor(totalSeconds / 60)
@@ -105,7 +104,10 @@ export const AgeMotion = React.forwardRef<HTMLDivElement, AgeMotionProps>(
     const [birthDateStr, setBirthDateStr] = useState(initialBirthDate ?? '')
     const [now, setNow] = useState(new Date())
 
-    const birthDate = birthDateStr ? new Date(birthDateStr + 'T00:00:00') : null
+    const birthDate = useMemo(
+      () => (birthDateStr ? new Date(birthDateStr + 'T00:00:00') : null),
+      [birthDateStr],
+    )
 
     useEffect(() => {
       if (!birthDate) return
@@ -115,7 +117,7 @@ export const AgeMotion = React.forwardRef<HTMLDivElement, AgeMotionProps>(
 
     const ageData = useMemo(() => {
       if (!birthDate) return null
-      return computeAge(birthDate)
+      return computeAge(birthDate, now)
     }, [birthDate, now])
 
     const totalSegments = lifespan / 10
