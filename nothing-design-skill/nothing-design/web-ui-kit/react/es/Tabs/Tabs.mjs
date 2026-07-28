@@ -150,6 +150,6 @@ const Tabs = React.forwardRef(({ className, items, value: controlledValue, defau
 });
 Tabs.displayName = "Tabs";
 //#endregion
-export { TabPanel, Tabs as default, tabTriggerVariants, tabsVariants };
+export { TabPanel, Tabs, Tabs as default, tabTriggerVariants, tabsVariants };
 
 //# sourceMappingURL=Tabs.mjs.map

@@ -102,6 +102,6 @@ const Tooltip = React.forwardRef(({ className, content, side = "top", delay = 30
 });
 Tooltip.displayName = "Tooltip";
 //#endregion
-export { Tooltip as default, tooltipPopupVariants };
+export { Tooltip, Tooltip as default, tooltipPopupVariants };
 
 //# sourceMappingURL=Tooltip.mjs.map

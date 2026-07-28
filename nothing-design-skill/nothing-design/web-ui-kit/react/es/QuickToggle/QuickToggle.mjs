@@ -52,6 +52,6 @@ const QuickToggle = React.forwardRef(({ variant, theme, active, icon, label, cla
 });
 QuickToggle.displayName = "QuickToggle";
 //#endregion
-export { QuickToggle as default, quickToggleVariants };
+export { QuickToggle, QuickToggle as default, quickToggleVariants };
 
 //# sourceMappingURL=QuickToggle.mjs.map

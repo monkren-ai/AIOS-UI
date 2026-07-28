@@ -85,6 +85,6 @@ const Tags = React.forwardRef(({ className, children, ...props }, ref) => /* @__
 }));
 Tags.displayName = "Tags";
 //#endregion
-export { Tags, Tag as default, tagVariants };
+export { Tag, Tag as default, Tags, tagVariants };
 
 //# sourceMappingURL=Tag.mjs.map

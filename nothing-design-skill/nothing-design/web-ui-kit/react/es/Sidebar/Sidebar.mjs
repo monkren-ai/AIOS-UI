@@ -87,6 +87,6 @@ const Sidebar = React.forwardRef(({ className, items, collapsed: controlledColla
 });
 Sidebar.displayName = "Sidebar";
 //#endregion
-export { Sidebar as default, sidebarItemVariants, sidebarVariants };
+export { Sidebar, Sidebar as default, sidebarItemVariants, sidebarVariants };
 
 //# sourceMappingURL=Sidebar.mjs.map

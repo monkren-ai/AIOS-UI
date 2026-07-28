@@ -38,6 +38,6 @@ const Avatar = React.forwardRef(({ className, size, asChild = false, src, alt = 
 });
 Avatar.displayName = "Avatar";
 //#endregion
-export { avatarVariants, Avatar as default };
+export { Avatar, Avatar as default, avatarVariants };
 
 //# sourceMappingURL=Avatar.mjs.map

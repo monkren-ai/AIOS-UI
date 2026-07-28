@@ -167,6 +167,6 @@ const DotMatrixIcon = React.forwardRef(({ svg, rows = 24, cols = 24, alphaThresh
 });
 DotMatrixIcon.displayName = "DotMatrixIcon";
 //#endregion
-export { DotMatrixIcon as default };
+export { DotMatrixIcon, DotMatrixIcon as default };
 
 //# sourceMappingURL=DotMatrixIcon.mjs.map

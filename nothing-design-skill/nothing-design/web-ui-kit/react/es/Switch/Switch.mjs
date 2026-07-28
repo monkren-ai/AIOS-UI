@@ -53,6 +53,6 @@ const Switch$1 = React.forwardRef(({ className, on: controlledOn, label, disable
 });
 Switch$1.displayName = "Switch";
 //#endregion
-export { Switch$1 as default, switchVariants };
+export { Switch$1 as Switch, Switch$1 as default, switchVariants };
 
 //# sourceMappingURL=Switch.mjs.map

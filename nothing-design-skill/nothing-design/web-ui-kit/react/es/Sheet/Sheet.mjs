@@ -111,6 +111,6 @@ const Sheet = React.forwardRef(({ className, open: controlledOpen, onOpenChange,
 });
 Sheet.displayName = "Sheet";
 //#endregion
-export { Sheet as default, sheetBackdropVariants, sheetVariants };
+export { Sheet, Sheet as default, sheetBackdropVariants, sheetVariants };
 
 //# sourceMappingURL=Sheet.mjs.map

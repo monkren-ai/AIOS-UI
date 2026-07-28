@@ -116,6 +116,6 @@ const ProgressBar = React.forwardRef(({ className, value, total = 100, segments 
 });
 ProgressBar.displayName = "ProgressBar";
 //#endregion
-export { ProgressBar as default, progressBarValueVariants, progressBarVariants };
+export { ProgressBar, ProgressBar as default, progressBarValueVariants, progressBarVariants };
 
 //# sourceMappingURL=ProgressBar.mjs.map

@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import DotMatrixIcon from "../components/DotMatrixIcon.mjs";
+import { DotMatrixIcon } from "../components/DotMatrixIcon.mjs";
 import { componentIconSvg } from "../widgets/icon-svg-registry.mjs";
 import { useNow, useTelemetry } from "../system/hooks.mjs";
 import * as React from "react";
@@ -261,6 +261,6 @@ const Taskbar = React.forwardRef(({ className, theme = "dark", apps = [], showSe
 });
 Taskbar.displayName = "Taskbar";
 //#endregion
-export { Taskbar as default, taskbarVariants };
+export { Taskbar, Taskbar as default, taskbarVariants };
 
 //# sourceMappingURL=Taskbar.mjs.map

@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import DotMatrixIcon from "../components/DotMatrixIcon.mjs";
+import { DotMatrixIcon } from "../components/DotMatrixIcon.mjs";
 import { componentIconSvg } from "../widgets/icon-svg-registry.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
@@ -629,6 +629,6 @@ const Battery = React.forwardRef((props, ref) => {
 });
 Battery.displayName = "Battery";
 //#endregion
-export { batteryDeviceVariants, batteryRingVariants, batteryVariants, Battery as default };
+export { Battery, Battery as default, batteryDeviceVariants, batteryRingVariants, batteryVariants };
 
 //# sourceMappingURL=Battery.mjs.map

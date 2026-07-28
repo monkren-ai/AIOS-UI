@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
-import AgentOrb from "../AgentOrb/AgentOrb.mjs";
+import { AgentOrb } from "../AgentOrb/AgentOrb.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
@@ -107,6 +107,6 @@ const ProgressTrace = React.forwardRef(({ steps, defaultCollapsed = false, title
 });
 ProgressTrace.displayName = "ProgressTrace";
 //#endregion
-export { ProgressTrace as default, progressTraceVariants };
+export { ProgressTrace, ProgressTrace as default, progressTraceVariants };
 
 //# sourceMappingURL=ProgressTrace.mjs.map

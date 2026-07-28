@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { CategorySection } from '../components/CategorySection'
 import { DemoCard } from '../components/DemoCard'
 import { SegmentedControl } from '@/SegmentedControl'
@@ -13,6 +14,7 @@ import {
   type ToolCallRowProps,
   ApprovalGate,
 } from '@/agent'
+import { useShowcaseContext } from '../ShowcaseContext'
 import type { T } from '../hooks/useShowcaseState'
 
 interface AgentOSSectionProps {
@@ -40,6 +42,8 @@ export function AgentOSSection({
   approvalOpen,
   setApprovalOpen,
 }: AgentOSSectionProps) {
+  const { preloadAIPoc } = useShowcaseContext()
+
   const handleStepToggle = (stepId: string, approved: boolean) => {
     setAgentPlanSteps(
       agentPlanSteps.map((step) =>
@@ -58,6 +62,24 @@ export function AgentOSSection({
 
   return (
     <CategorySection id="agent-os" title={t('AI OS Agent', 'AI OS Agent')}>
+      <DemoCard title={t('AI 对话 PoC', 'AI Conversation PoC')}>
+        <p className="agent-os-demo-desc">
+          {t(
+            '体验 Sender、BubbleList、ThoughtChain 的完整联动演示。',
+            'Experience the full interaction of Sender, BubbleList, and ThoughtChain.',
+          )}
+        </p>
+        <div className="agent-os-demo-actions">
+          <Link
+            className="nothing-btn nothing-btn--primary"
+            to="/ai-poc"
+            onMouseEnter={preloadAIPoc}
+          >
+            {t('打开 AI PoC', 'Open AI PoC')}
+          </Link>
+        </div>
+      </DemoCard>
+
       <DemoCard title={t('Agent 状态 orb', 'Agent Orb')} variant="flex-wrap">
         {orbStates.map((state) => (
           <AgentOrb key={state} state={state} size="md" showLabel />

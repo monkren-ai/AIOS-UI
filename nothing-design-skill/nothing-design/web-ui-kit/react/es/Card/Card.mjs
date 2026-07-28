@@ -214,6 +214,6 @@ const Card = (props) => {
 	return /* @__PURE__ */ jsx(ContentCard, { ...rest });
 };
 //#endregion
-export { WidgetCardRenderer, contentCardVariants, Card as default, widgetCardVariants };
+export { Card, Card as default, WidgetCardRenderer as WidgetCard, contentCardVariants, widgetCardVariants };
 
 //# sourceMappingURL=Card.mjs.map

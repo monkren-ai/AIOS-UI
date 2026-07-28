@@ -112,6 +112,6 @@ const Navigation = React.forwardRef(({ className, items, activeIndex: controlled
 });
 Navigation.displayName = "Navigation";
 //#endregion
-export { Navigation as default, navItemVariants, navigationVariants };
+export { Navigation, Navigation as default, navItemVariants, navigationVariants };
 
 //# sourceMappingURL=Navigation.mjs.map

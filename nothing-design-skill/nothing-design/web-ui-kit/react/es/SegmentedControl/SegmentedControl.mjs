@@ -73,6 +73,6 @@ const SegmentedControl = React.forwardRef(({ className, segments, activeIndex: c
 });
 SegmentedControl.displayName = "SegmentedControl";
 //#endregion
-export { SegmentedControl as default, segmentVariants, segmentedVariants };
+export { SegmentedControl, SegmentedControl as default, segmentVariants, segmentedVariants };
 
 //# sourceMappingURL=SegmentedControl.mjs.map

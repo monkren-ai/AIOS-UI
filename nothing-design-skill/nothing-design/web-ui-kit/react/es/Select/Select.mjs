@@ -59,13 +59,15 @@ const Select = React.forwardRef(({ className, options, value: controlledValue, d
 			case "ArrowDown": {
 				e.preventDefault();
 				const currentPos = enabledIndices.indexOf(highlightedIndex);
-				setHighlightedIndex(enabledIndices[currentPos < enabledIndices.length - 1 ? currentPos + 1 : 0]);
+				const nextPos = currentPos < enabledIndices.length - 1 ? currentPos + 1 : 0;
+				setHighlightedIndex(enabledIndices[nextPos]);
 				break;
 			}
 			case "ArrowUp": {
 				e.preventDefault();
 				const currentPos = enabledIndices.indexOf(highlightedIndex);
-				setHighlightedIndex(enabledIndices[currentPos > 0 ? currentPos - 1 : enabledIndices.length - 1]);
+				const prevPos = currentPos > 0 ? currentPos - 1 : enabledIndices.length - 1;
+				setHighlightedIndex(enabledIndices[prevPos]);
 				break;
 			}
 			case "Enter":
@@ -179,6 +181,6 @@ const Select = React.forwardRef(({ className, options, value: controlledValue, d
 });
 Select.displayName = "Select";
 //#endregion
-export { Select as default };
+export { Select, Select as default };
 
 //# sourceMappingURL=Select.mjs.map

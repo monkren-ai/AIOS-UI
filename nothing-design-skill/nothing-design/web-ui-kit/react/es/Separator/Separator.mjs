@@ -48,6 +48,6 @@ const Separator = React.forwardRef(({ className, orientation = "horizontal", dec
 });
 Separator.displayName = "Separator";
 //#endregion
-export { Separator as default, separatorVariants };
+export { Separator, Separator as default, separatorVariants };
 
 //# sourceMappingURL=Separator.mjs.map

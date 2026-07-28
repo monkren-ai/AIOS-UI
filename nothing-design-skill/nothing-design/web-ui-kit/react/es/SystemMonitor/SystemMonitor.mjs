@@ -276,6 +276,6 @@ const SystemMonitor = React.forwardRef(({ className, variant = "default", size =
 });
 SystemMonitor.displayName = "SystemMonitor";
 //#endregion
-export { SystemMonitor as default, monitorItemVariants, monitorSegmentVariants, systemMonitorVariants };
+export { SystemMonitor, SystemMonitor as default, monitorItemVariants, monitorSegmentVariants, systemMonitorVariants };
 
 //# sourceMappingURL=SystemMonitor.mjs.map

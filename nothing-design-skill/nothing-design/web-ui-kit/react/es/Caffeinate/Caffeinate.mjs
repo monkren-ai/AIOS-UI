@@ -172,6 +172,6 @@ const Caffeinate = React.forwardRef(({ className, updateInterval = 6e4, totalSeg
 });
 Caffeinate.displayName = "Caffeinate";
 //#endregion
-export { caffeinateVariants, Caffeinate as default };
+export { Caffeinate, Caffeinate as default, caffeinateVariants };
 
 //# sourceMappingURL=Caffeinate.mjs.map

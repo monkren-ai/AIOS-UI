@@ -68,6 +68,6 @@ const RadioGroup$1 = React.forwardRef(({ className, options, value: controlledVa
 });
 RadioGroup$1.displayName = "RadioGroup";
 //#endregion
-export { RadioGroup$1 as default, radioGroupVariants };
+export { RadioGroup$1 as RadioGroup, RadioGroup$1 as default, radioGroupVariants };
 
 //# sourceMappingURL=RadioGroup.mjs.map

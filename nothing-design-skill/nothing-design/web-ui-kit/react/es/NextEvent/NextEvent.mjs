@@ -129,6 +129,6 @@ const NextEvent = React.forwardRef(({ className, theme = "dark", priority: prior
 });
 NextEvent.displayName = "NextEvent";
 //#endregion
-export { NextEvent as default, nextEventVariants };
+export { NextEvent, NextEvent as default, nextEventVariants };
 
 //# sourceMappingURL=NextEvent.mjs.map

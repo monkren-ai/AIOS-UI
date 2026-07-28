@@ -18,6 +18,6 @@ const Form = React.forwardRef(({ className, onSubmit, children, ...props }, ref)
 });
 Form.displayName = "Form";
 //#endregion
-export { Form as default };
+export { Form, Form as default };
 
 //# sourceMappingURL=Form.mjs.map

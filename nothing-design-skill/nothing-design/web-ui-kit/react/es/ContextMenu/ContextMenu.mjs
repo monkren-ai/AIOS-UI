@@ -77,7 +77,10 @@ const ContextMenu = React.forwardRef(({ className, items, visible: _visible, chi
 		loop: true,
 		onSelect: (focusableIndex) => {
 			const actualItem = focusableItems[focusableIndex];
-			if (actualItem) handleItemSelect(items.indexOf(actualItem));
+			if (actualItem) {
+				const realIndex = items.indexOf(actualItem);
+				handleItemSelect(realIndex);
+			}
 		}
 	});
 	return /* @__PURE__ */ jsxs("div", {
@@ -158,6 +161,6 @@ const ContextMenu = React.forwardRef(({ className, items, visible: _visible, chi
 });
 ContextMenu.displayName = "ContextMenu";
 //#endregion
-export { contextMenuContentVariants, contextMenuItemVariants, ContextMenu as default };
+export { ContextMenu, ContextMenu as default, contextMenuContentVariants, contextMenuItemVariants };
 
 //# sourceMappingURL=ContextMenu.mjs.map

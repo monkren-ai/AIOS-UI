@@ -105,6 +105,6 @@ const DateNav = React.forwardRef(({ className, label, prevDisabled = false, next
 });
 DateNav.displayName = "DateNav";
 //#endregion
-export { dateNavArrowVariants, dateNavLabelVariants, dateNavVariants, DateNav as default };
+export { DateNav, DateNav as default, dateNavArrowVariants, dateNavLabelVariants, dateNavVariants };
 
 //# sourceMappingURL=DateNav.mjs.map

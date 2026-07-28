@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
-import Button from "../../Button/Button.mjs";
-import AgentOrb from "../AgentOrb/AgentOrb.mjs";
+import { Button } from "../../Button/Button.mjs";
+import { AgentOrb } from "../AgentOrb/AgentOrb.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
@@ -140,6 +140,6 @@ const PlanCard = React.forwardRef(({ title = "AGENT PLAN", steps, editable = fal
 });
 PlanCard.displayName = "PlanCard";
 //#endregion
-export { PlanCard as default, planCardVariants };
+export { PlanCard, PlanCard as default, planCardVariants };
 
 //# sourceMappingURL=PlanCard.mjs.map

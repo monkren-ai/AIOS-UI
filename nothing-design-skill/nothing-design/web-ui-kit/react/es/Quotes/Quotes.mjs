@@ -114,6 +114,6 @@ const Quotes = React.forwardRef(({ className, theme = "dark", size = "md", quote
 });
 Quotes.displayName = "Quotes";
 //#endregion
-export { Quotes as default, quotesVariants };
+export { Quotes, Quotes as default, quotesVariants };
 
 //# sourceMappingURL=Quotes.mjs.map

@@ -91,6 +91,6 @@ const Checkbox$1 = React.forwardRef(({ className, checked: controlledChecked, de
 });
 Checkbox$1.displayName = "Checkbox";
 //#endregion
-export { checkboxVariants, Checkbox$1 as default };
+export { Checkbox$1 as Checkbox, Checkbox$1 as default, checkboxVariants };
 
 //# sourceMappingURL=Checkbox.mjs.map

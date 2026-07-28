@@ -262,7 +262,10 @@ const DropdownMenu = React.forwardRef(({ className, trigger, items, align = "sta
 		loop: true,
 		onSelect: (focusableIndex) => {
 			const actualItem = focusableItems[focusableIndex];
-			if (actualItem) handleItemSelect(defaultItems.indexOf(actualItem));
+			if (actualItem) {
+				const realIndex = defaultItems.indexOf(actualItem);
+				handleItemSelect(realIndex);
+			}
 		}
 	});
 	if (variant === "menubar") return /* @__PURE__ */ jsx(MenubarVariant, { items });
@@ -352,6 +355,6 @@ const DropdownMenu = React.forwardRef(({ className, trigger, items, align = "sta
 });
 DropdownMenu.displayName = "DropdownMenu";
 //#endregion
-export { DropdownMenu as default, dropdownMenuContentVariants, dropdownMenuItemVariants, menubarDropdownVariants, menubarItemVariants, menubarTriggerVariants };
+export { DropdownMenu, DropdownMenu as default, dropdownMenuContentVariants, dropdownMenuItemVariants, menubarDropdownVariants, menubarItemVariants, menubarTriggerVariants };
 
 //# sourceMappingURL=DropdownMenu.mjs.map

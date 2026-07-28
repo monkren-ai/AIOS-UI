@@ -423,3 +423,14 @@
     order: -1;
   }
 }
+
+/* ===== Agent OS 演示卡片 ===== */
+.agent-os-demo-desc {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--body-sm);
+}
+
+.agent-os-demo-actions {
+  margin-top: var(--space-md);
+}

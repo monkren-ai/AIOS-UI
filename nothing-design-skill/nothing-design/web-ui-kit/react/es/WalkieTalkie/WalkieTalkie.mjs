@@ -193,6 +193,6 @@ const WalkieTalkie = React.forwardRef(({ className, channel: initialChannel = 1,
 });
 WalkieTalkie.displayName = "WalkieTalkie";
 //#endregion
-export { WalkieTalkie as default, walkieTalkieVariants };
+export { WalkieTalkie, WalkieTalkie as default, walkieTalkieVariants };
 
 //# sourceMappingURL=WalkieTalkie.mjs.map

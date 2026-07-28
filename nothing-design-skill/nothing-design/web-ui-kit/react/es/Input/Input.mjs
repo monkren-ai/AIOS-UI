@@ -80,6 +80,6 @@ const Input = React.forwardRef(({ variant, label, placeholder, value: controlled
 });
 Input.displayName = "Input";
 //#endregion
-export { Input as default, inputVariants };
+export { Input, Input as default, inputVariants };
 
 //# sourceMappingURL=Input.mjs.map

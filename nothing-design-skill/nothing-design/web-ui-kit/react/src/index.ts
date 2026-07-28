@@ -22,7 +22,7 @@ export { ThemeScript, getThemeScript, type ThemeScriptOptions, type ThemeScriptP
 export { useMotionComponent, MotionProvider, type MotionComponentType, type MotionProviderProps } from './MotionProvider'
 
 // ===== Core Libs =====
-export { cn, dataAttr, mergeRefs, themeVariants, sizeVariants, sizeLayoutVariants, stateVariants, stateOnOffVariants, emphasisVariants, statusVariants, orientationVariants, Slot, isSingleReactElement, type SlotProps, type AsChildProps, type AsProp, type PolymorphicProps, type DivProps, type SpanProps, type ButtonPropsBase, type AnchorProps, type InputPropsBase, type TextareaPropsBase, type SelectPropsBase, type ContainerProps } from './lib'
+export { cn, dataAttr, mergeSemanticProps, mergeRefs, themeVariants, sizeVariants, sizeLayoutVariants, stateVariants, stateOnOffVariants, emphasisVariants, statusVariants, orientationVariants, Slot, isSingleReactElement, type SemanticClassNames, type SemanticStyles, type WithSemanticProps, type ComponentConfig, type SlotProps, type AsChildProps, type AsProp, type PolymorphicProps, type DivProps, type SpanProps, type ButtonPropsBase, type AnchorProps, type InputPropsBase, type TextareaPropsBase, type SelectPropsBase, type ContainerProps } from './lib'
 
 // ===== Components =====
 export { Accordion, accordionVariants, accordionItemVariants, type AccordionProps, type AccordionItem } from './Accordion'
@@ -43,6 +43,7 @@ export { Clipboard, clipboardVariants, type ClipboardProps, type ClipboardState,
 export { Collapsible, collapsibleVariants, type CollapsibleProps } from './Collapsible'
 export { Command, commandItemVariants, type CommandProps, type CommandItem, type CommandGroup } from './Command'
 export { ContextMenu, contextMenuContentVariants, contextMenuItemVariants, type ContextMenuProps, type ContextMenuItem } from './ContextMenu'
+export { Sender, senderVariants, Bubble, BubbleList, bubbleVariants, ThoughtChain, thoughtChainVariants, thoughtChainItemVariants, Prompts, promptsVariants, promptsItemVariants, Welcome, welcomeVariants, Conversations, conversationsVariants, conversationsItemVariants, type SenderProps, type SenderSemanticType, type SenderComponents, type BubbleProps, type BubbleSemanticType, type BubblePlacement, type BubbleVariant, type BubbleShape, type BubbleListProps, type BubbleItemType, type BubbleRole, type RoleConfig, type RoleType, type BubbleListSemanticType, type ThoughtChainProps, type ThoughtChainItem, type ThoughtChainItemStatus, type ThoughtChainSemanticType, type PromptsProps, type PromptItem, type PromptsSemanticType, type WelcomeProps, type WelcomeSemanticType, type ConversationsProps, type ConversationItem, type ConversationsSemanticType } from './conversation'
 export { DataTable, dataTableVariants, type DataTableProps, type DataTableVariant, type DataTableColumn, type DataTableGridRow, type DataTableRowsItem, type DataTableCellStatus, type DataCellStatus } from './DataTable'
 export { DateWidget, dateSerifVariants, dateRectVariants, dateDualRingVariants, type DateWidgetProps, type DateType } from './Date'
 export { DateNav, dateNavVariants, dateNavLabelVariants, dateNavArrowVariants, type DateNavProps } from './DateNav'

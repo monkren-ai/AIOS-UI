@@ -30,7 +30,8 @@ const Slider = React.forwardRef(({ className, value: controlledValue, defaultVal
 		const track = trackRef.current;
 		if (!track) return;
 		const rect = track.getBoundingClientRect();
-		const newValue = clampValue(min + Math.max(0, Math.min(1, (clientX - rect.left) / rect.width)) * (max - min));
+		const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+		const newValue = clampValue(min + ratio * (max - min));
 		if (controlledValue === void 0) setInternalValue(newValue);
 		onValueChange?.(newValue);
 	}, [
@@ -130,6 +131,6 @@ const Slider = React.forwardRef(({ className, value: controlledValue, defaultVal
 });
 Slider.displayName = "Slider";
 //#endregion
-export { Slider as default, sliderVariants };
+export { Slider, Slider as default, sliderVariants };
 
 //# sourceMappingURL=Slider.mjs.map

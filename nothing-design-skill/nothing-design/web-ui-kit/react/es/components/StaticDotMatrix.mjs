@@ -88,6 +88,6 @@ const StaticDotMatrix = React.forwardRef(({ className, rows, cols, dotSize = "md
 });
 StaticDotMatrix.displayName = "StaticDotMatrix";
 //#endregion
-export { StaticDotMatrix as default, dotMatrixVariants, dotVariants };
+export { StaticDotMatrix, StaticDotMatrix as default, dotMatrixVariants, dotVariants };
 
 //# sourceMappingURL=StaticDotMatrix.mjs.map

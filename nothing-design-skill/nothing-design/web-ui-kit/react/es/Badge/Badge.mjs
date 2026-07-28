@@ -23,6 +23,6 @@ const Badge = React.forwardRef(({ variant, className, ...props }, ref) => {
 });
 Badge.displayName = "Badge";
 //#endregion
-export { badgeVariants, Badge as default };
+export { Badge, Badge as default, badgeVariants };
 
 //# sourceMappingURL=Badge.mjs.map

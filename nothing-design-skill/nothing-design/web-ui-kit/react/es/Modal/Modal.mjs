@@ -158,6 +158,6 @@ const Modal = React.forwardRef(({ className, open: controlledOpen, onClose, titl
 });
 Modal.displayName = "Modal";
 //#endregion
-export { Modal as default, modalBackdropVariants, modalConfirmVariants, modalVariants };
+export { Modal, Modal as default, modalBackdropVariants, modalConfirmVariants, modalVariants };
 
 //# sourceMappingURL=Modal.mjs.map

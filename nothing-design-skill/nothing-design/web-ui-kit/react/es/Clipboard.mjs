@@ -1,2 +1,2 @@
-import Clipboard, { clipboardVariants } from "./Clipboard/Clipboard.mjs";
+import { Clipboard, clipboardVariants } from "./Clipboard/Clipboard.mjs";
 export { Clipboard, clipboardVariants, Clipboard as default };

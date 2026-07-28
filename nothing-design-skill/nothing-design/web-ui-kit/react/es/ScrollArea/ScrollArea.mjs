@@ -102,6 +102,6 @@ const ScrollArea = React.forwardRef(({ className, height, style, children, ...pr
 });
 ScrollArea.displayName = "ScrollArea";
 //#endregion
-export { ScrollArea as default };
+export { ScrollArea, ScrollArea as default };
 
 //# sourceMappingURL=ScrollArea.mjs.map

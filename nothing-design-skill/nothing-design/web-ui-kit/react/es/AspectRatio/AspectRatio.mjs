@@ -19,6 +19,6 @@ const AspectRatio = React.forwardRef(({ className, ratio = 16 / 9, style, childr
 }));
 AspectRatio.displayName = "AspectRatio";
 //#endregion
-export { AspectRatio as default };
+export { AspectRatio, AspectRatio as default };
 
 //# sourceMappingURL=AspectRatio.mjs.map

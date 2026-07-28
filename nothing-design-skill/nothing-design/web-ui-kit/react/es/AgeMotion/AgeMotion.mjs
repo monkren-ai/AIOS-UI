@@ -199,6 +199,6 @@ const AgeMotion = React.forwardRef(({ className, birthDate: initialBirthDate, li
 });
 AgeMotion.displayName = "AgeMotion";
 //#endregion
-export { ageMotionVariants, AgeMotion as default };
+export { AgeMotion, AgeMotion as default, ageMotionVariants };
 
 //# sourceMappingURL=AgeMotion.mjs.map

@@ -86,6 +86,6 @@ const HoverCard = React.forwardRef(({ className, content, side = "bottom", delay
 });
 HoverCard.displayName = "HoverCard";
 //#endregion
-export { HoverCard as default, hoverCardContentVariants };
+export { HoverCard, HoverCard as default, hoverCardContentVariants };
 
 //# sourceMappingURL=HoverCard.mjs.map

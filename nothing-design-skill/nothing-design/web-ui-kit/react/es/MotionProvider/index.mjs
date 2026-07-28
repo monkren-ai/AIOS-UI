@@ -56,6 +56,6 @@ const MotionProvider = memo(({ children, motion }) => {
 });
 MotionProvider.displayName = "MotionProvider";
 //#endregion
-export { MotionProvider as default, useMotionComponent };
+export { MotionContext, MotionProvider, MotionProvider as default, useMotionComponent };
 
 //# sourceMappingURL=index.mjs.map

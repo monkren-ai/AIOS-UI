@@ -479,6 +479,6 @@ const MusicPlayer = React.forwardRef(({ variant = "default", theme, size, classN
 });
 MusicPlayer.displayName = "MusicPlayer";
 //#endregion
-export { BlinkingSeparator, MusicPlayer as default, musicPlayerVariants };
+export { BlinkingSeparator, MusicPlayer, MusicPlayer as default, musicPlayerVariants };
 
 //# sourceMappingURL=MusicPlayer.mjs.map

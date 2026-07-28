@@ -46,6 +46,6 @@ const Collapsible = React.forwardRef(({ className, open: controlledOpen, default
 });
 Collapsible.displayName = "Collapsible";
 //#endregion
-export { collapsibleVariants, Collapsible as default };
+export { Collapsible, Collapsible as default, collapsibleVariants };
 
 //# sourceMappingURL=Collapsible.mjs.map

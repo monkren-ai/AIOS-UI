@@ -162,6 +162,6 @@ const Clipboard = React.forwardRef(({ className, maxItems = 5, truncateLength = 
 });
 Clipboard.displayName = "Clipboard";
 //#endregion
-export { clipboardVariants, Clipboard as default };
+export { Clipboard, Clipboard as default, clipboardVariants };
 
 //# sourceMappingURL=Clipboard.mjs.map

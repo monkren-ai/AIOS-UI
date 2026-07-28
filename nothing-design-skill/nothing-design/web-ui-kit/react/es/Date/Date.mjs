@@ -61,7 +61,8 @@ const DateWidgetImpl = ({ type = "rect", theme = "light", updateInterval = 6e4, 
 	const day = now.getDate();
 	const month = MONTHS[now.getMonth()];
 	const weekday = WEEKDAYS[now.getDay()];
-	const offset = RING_CIRCUMFERENCE - (now.getHours() + now.getMinutes() / 60) / 24 * RING_CIRCUMFERENCE;
+	const progress = now.getHours() + now.getMinutes() / 60;
+	const offset = RING_CIRCUMFERENCE - progress / 24 * RING_CIRCUMFERENCE;
 	if (type === "serif") return /* @__PURE__ */ jsxs("div", {
 		className: cn(dateSerifVariants({ theme }), className),
 		"data-state": dataAttr("serif"),
@@ -166,6 +167,6 @@ const DateWidget = React.forwardRef((props, ref) => {
 });
 DateWidget.displayName = "DateWidget";
 //#endregion
-export { dateDualRingVariants, dateRectVariants, dateSerifVariants, DateWidget as default };
+export { DateWidget, DateWidget as default, dateDualRingVariants, dateRectVariants, dateSerifVariants };
 
 //# sourceMappingURL=Date.mjs.map

@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import Button from "../Button/Button.mjs";
+import { Button } from "../Button/Button.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
@@ -190,6 +190,6 @@ const Spinner = React.forwardRef(({ className, items = defaultItems, spinDuratio
 });
 Spinner.displayName = "Spinner";
 //#endregion
-export { Spinner as default, spinnerSectorVariants, spinnerTextVariants, spinnerVariants };
+export { Spinner, Spinner as default, spinnerSectorVariants, spinnerTextVariants, spinnerVariants };
 
 //# sourceMappingURL=Spinner.mjs.map

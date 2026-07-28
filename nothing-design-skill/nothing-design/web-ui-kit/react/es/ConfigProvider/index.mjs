@@ -1,6 +1,6 @@
 "use client";
-import MotionProvider from "../MotionProvider/index.mjs";
-import ThemeProvider from "../ThemeProvider/index.mjs";
+import { MotionProvider } from "../MotionProvider/index.mjs";
+import { ThemeProvider } from "../ThemeProvider/index.mjs";
 import { createContext, memo, useContext, useMemo } from "react";
 import { jsx } from "react/jsx-runtime";
 //#region src/ConfigProvider/index.tsx
@@ -78,8 +78,9 @@ function useCdnFn() {
 * ```
 */
 const ConfigProvider = memo(({ children, config, defaultTheme, enableSystem = true, onThemeChange, motion }) => {
+	const configValue = useMemo(() => config ?? null, [config]);
 	return /* @__PURE__ */ jsx(ConfigContext, {
-		value: useMemo(() => config ?? null, [config]),
+		value: configValue,
 		children: /* @__PURE__ */ jsx(ThemeProvider, {
 			defaultTheme,
 			enableSystem,
@@ -93,6 +94,6 @@ const ConfigProvider = memo(({ children, config, defaultTheme, enableSystem = tr
 });
 ConfigProvider.displayName = "ConfigProvider";
 //#endregion
-export { ConfigProvider as default, useCdnFn, useConfig };
+export { ConfigContext, ConfigProvider, ConfigProvider as default, defaultCdnFn, useCdnFn, useConfig };
 
 //# sourceMappingURL=index.mjs.map

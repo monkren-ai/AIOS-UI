@@ -51,6 +51,6 @@ const Breadcrumb = React.forwardRef(({ className, items, separator = "/", ...pro
 }));
 Breadcrumb.displayName = "Breadcrumb";
 //#endregion
-export { Breadcrumb as default };
+export { Breadcrumb, Breadcrumb as default };
 
 //# sourceMappingURL=Breadcrumb.mjs.map

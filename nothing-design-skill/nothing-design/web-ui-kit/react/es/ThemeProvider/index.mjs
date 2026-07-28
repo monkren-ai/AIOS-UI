@@ -107,22 +107,23 @@ function ThemeProvider({ children, defaultTheme = "dark", forcedTheme, enableSys
 			return prev === "dark" ? "light" : "dark";
 		});
 	}, [enableSystem]);
+	const value = useMemo(() => ({
+		theme,
+		resolvedTheme,
+		systemTheme,
+		mounted,
+		setTheme,
+		toggleTheme
+	}), [
+		theme,
+		resolvedTheme,
+		systemTheme,
+		mounted,
+		setTheme,
+		toggleTheme
+	]);
 	return /* @__PURE__ */ jsx(ThemeContext, {
-		value: useMemo(() => ({
-			theme,
-			resolvedTheme,
-			systemTheme,
-			mounted,
-			setTheme,
-			toggleTheme
-		}), [
-			theme,
-			resolvedTheme,
-			systemTheme,
-			mounted,
-			setTheme,
-			toggleTheme
-		]),
+		value,
 		children
 	});
 }
@@ -131,6 +132,6 @@ function useTheme() {
 	return useContext(ThemeContext);
 }
 //#endregion
-export { ThemeProvider as default, useTheme };
+export { ThemeProvider, ThemeProvider as default, useTheme };
 
 //# sourceMappingURL=index.mjs.map

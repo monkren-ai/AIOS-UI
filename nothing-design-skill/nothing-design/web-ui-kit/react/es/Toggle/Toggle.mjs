@@ -113,6 +113,6 @@ const ToggleGroup = React.forwardRef(({ className, value: controlledValue, defau
 });
 ToggleGroup.displayName = "ToggleGroup";
 //#endregion
-export { ToggleGroup, Toggle as default, toggleGroupVariants, toggleVariants };
+export { Toggle, Toggle as default, ToggleGroup, toggleGroupVariants, toggleVariants };
 
 //# sourceMappingURL=Toggle.mjs.map

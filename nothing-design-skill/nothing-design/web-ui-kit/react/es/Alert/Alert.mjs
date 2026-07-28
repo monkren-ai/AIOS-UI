@@ -36,6 +36,6 @@ const Alert = React.forwardRef(({ variant, title, icon, className, children, ...
 });
 Alert.displayName = "Alert";
 //#endregion
-export { alertVariants, Alert as default };
+export { Alert, Alert as default, alertVariants };
 
 //# sourceMappingURL=Alert.mjs.map

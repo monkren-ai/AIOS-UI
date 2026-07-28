@@ -1,4 +1,10 @@
-export { cn, dataAttr } from './utils'
+export { cn, dataAttr, mergeSemanticProps } from './utils'
+export type {
+  SemanticClassNames,
+  SemanticStyles,
+  WithSemanticProps,
+  ComponentConfig,
+} from './types'
 export { mergeRefs } from './refs'
 export {
   themeVariants,

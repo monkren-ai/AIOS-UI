@@ -56,7 +56,8 @@ const InputOTP = React.forwardRef(({ className, length = 6, value: controlledVal
 		if (!/^\d$/.test(inputChar)) return;
 		const newValue = value.split("");
 		newValue[index] = inputChar;
-		updateValue(newValue.join("").slice(0, length));
+		const joined = newValue.join("").slice(0, length);
+		updateValue(joined);
 		if (index < length - 1) inputRefs.current[index + 1]?.focus();
 	}, [
 		value,
@@ -147,6 +148,6 @@ const InputOTP = React.forwardRef(({ className, length = 6, value: controlledVal
 });
 InputOTP.displayName = "InputOTP";
 //#endregion
-export { InputOTP as default, inputOTPSlotVariants, inputOTPVariants };
+export { InputOTP, InputOTP as default, inputOTPSlotVariants, inputOTPVariants };
 
 //# sourceMappingURL=InputOTP.mjs.map

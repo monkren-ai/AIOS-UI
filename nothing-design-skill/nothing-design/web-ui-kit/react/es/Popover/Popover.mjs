@@ -92,6 +92,6 @@ const Popover = React.forwardRef(({ className, content, side = "bottom", open: c
 });
 Popover.displayName = "Popover";
 //#endregion
-export { Popover as default, popoverContentVariants };
+export { Popover, Popover as default, popoverContentVariants };
 
 //# sourceMappingURL=Popover.mjs.map

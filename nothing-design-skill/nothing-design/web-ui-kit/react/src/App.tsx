@@ -6,6 +6,9 @@ const Showcase = lazy(() => import('@/showcase'))
 const ProjectIntroPage = lazy(
   () => import('@/showcase/ProjectIntroPage').then((m) => ({ default: m.ProjectIntroPage })),
 )
+const AIPocPage = lazy(
+  () => import('@/showcase/AIPocPage').then((m) => ({ default: m.AIPocPage })),
+)
 
 export type Lang = 'zh' | 'en'
 export type T = (zh: string, en: string) => string
@@ -45,6 +48,10 @@ export function App() {
     void import('@/showcase/ProjectIntroPage')
   }, [])
 
+  const preloadAIPoc = useCallback(() => {
+    void import('@/showcase/AIPocPage')
+  }, [])
+
   const preloadShowcase = useCallback(() => {
     void import('@/showcase')
   }, [])
@@ -54,8 +61,8 @@ export function App() {
   }, [lang])
 
   const contextValue = useMemo(
-    () => ({ lang, t, toggleLang, preloadProjectIntro, preloadShowcase }),
-    [lang, t, toggleLang, preloadProjectIntro, preloadShowcase],
+    () => ({ lang, t, toggleLang, preloadProjectIntro, preloadAIPoc, preloadShowcase }),
+    [lang, t, toggleLang, preloadProjectIntro, preloadAIPoc, preloadShowcase],
   )
 
   return (
@@ -65,6 +72,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<Showcase />} />
             <Route path="/project-intro" element={<ProjectIntroPage />} />
+            <Route path="/ai-poc" element={<AIPocPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>

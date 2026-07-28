@@ -165,6 +165,6 @@ const Command = React.forwardRef(({ className, groups, placeholder = "Type a com
 });
 Command.displayName = "Command";
 //#endregion
-export { commandItemVariants, Command as default };
+export { Command, Command as default, commandItemVariants };
 
 //# sourceMappingURL=Command.mjs.map

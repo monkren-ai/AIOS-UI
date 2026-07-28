@@ -103,6 +103,6 @@ const Textarea = React.forwardRef(({ className, value: controlledValue, defaultV
 });
 Textarea.displayName = "Textarea";
 //#endregion
-export { Textarea as default, textareaVariants };
+export { Textarea, Textarea as default, textareaVariants };
 
 //# sourceMappingURL=Textarea.mjs.map

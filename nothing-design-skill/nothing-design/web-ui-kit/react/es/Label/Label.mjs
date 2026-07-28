@@ -28,6 +28,6 @@ const Label = React.forwardRef(({ className, disabled, required, children, ...pr
 }));
 Label.displayName = "Label";
 //#endregion
-export { Label as default, labelVariants };
+export { Label, Label as default, labelVariants };
 
 //# sourceMappingURL=Label.mjs.map

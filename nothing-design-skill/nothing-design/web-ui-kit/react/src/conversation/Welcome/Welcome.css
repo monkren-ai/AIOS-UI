@@ -1,0 +1,66 @@
+.nothing-welcome {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+}
+
+.nothing-welcome--centered {
+  align-items: center;
+  text-align: center;
+}
+
+.nothing-welcome--compact {
+  gap: var(--space-sm);
+}
+
+.nothing-welcome__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-size: var(--heading);
+}
+
+.nothing-welcome--centered .nothing-welcome__icon {
+  width: 64px;
+  height: 64px;
+  font-size: var(--display-sm);
+}
+
+.nothing-welcome__title {
+  font-family: var(--font-display);
+  font-size: var(--heading);
+  color: var(--text-display);
+  line-height: 1.2;
+}
+
+.nothing-welcome--lg .nothing-welcome__title {
+  font-size: var(--display-sm);
+}
+
+.nothing-welcome--sm .nothing-welcome__title {
+  font-size: var(--subheading);
+}
+
+.nothing-welcome__description {
+  font-size: var(--body);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 560px;
+}
+
+.nothing-welcome__actions {
+  width: 100%;
+  margin-top: var(--space-sm);
+}
+
+.nothing-welcome__extra {
+  font-size: var(--body-sm);
+  color: var(--text-secondary);
+}

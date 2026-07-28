@@ -124,6 +124,6 @@ const Accordion = React.forwardRef(({ className, items, type = "single", default
 });
 Accordion.displayName = "Accordion";
 //#endregion
-export { accordionItemVariants, accordionVariants, Accordion as default };
+export { Accordion, Accordion as default, accordionItemVariants, accordionVariants };
 
 //# sourceMappingURL=Accordion.mjs.map

@@ -161,6 +161,6 @@ const Calendar = React.forwardRef(({ className, type = "compact", initialDate = 
 });
 Calendar.displayName = "Calendar";
 //#endregion
-export { calendarVariants, dayVariants, Calendar as default };
+export { Calendar, Calendar as default, calendarVariants, dayVariants };
 
 //# sourceMappingURL=Calendar.mjs.map

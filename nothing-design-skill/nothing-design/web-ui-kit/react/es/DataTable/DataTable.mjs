@@ -193,6 +193,6 @@ const DataTable = React.forwardRef(({ className, variant = "table", columns, row
 });
 DataTable.displayName = "DataTable";
 //#endregion
-export { dataTableVariants, DataTable as default };
+export { DataTable, DataTable as default, dataTableVariants };
 
 //# sourceMappingURL=DataTable.mjs.map

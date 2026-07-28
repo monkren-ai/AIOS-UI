@@ -13,16 +13,22 @@ const usePagination = (page, totalPages, siblingCount) => {
 	const rightSiblingIndex = Math.min(page + siblingCount, totalPages);
 	const showLeftEllipsis = leftSiblingIndex > 2;
 	const showRightEllipsis = rightSiblingIndex < totalPages - 1;
-	if (!showLeftEllipsis && showRightEllipsis) return [
-		...range(1, 3 + 2 * siblingCount),
-		"ellipsis",
-		totalPages
-	];
-	if (showLeftEllipsis && !showRightEllipsis) return [
-		1,
-		"ellipsis",
-		...range(totalPages - (3 + 2 * siblingCount) + 1, totalPages)
-	];
+	if (!showLeftEllipsis && showRightEllipsis) {
+		const leftItemCount = 3 + 2 * siblingCount;
+		return [
+			...range(1, leftItemCount),
+			"ellipsis",
+			totalPages
+		];
+	}
+	if (showLeftEllipsis && !showRightEllipsis) {
+		const rightItemCount = 3 + 2 * siblingCount;
+		return [
+			1,
+			"ellipsis",
+			...range(totalPages - rightItemCount + 1, totalPages)
+		];
+	}
 	return [
 		1,
 		"ellipsis",
@@ -111,6 +117,6 @@ const Pagination = React.forwardRef(({ className, page, totalPages, onPageChange
 });
 Pagination.displayName = "Pagination";
 //#endregion
-export { Pagination as default };
+export { Pagination, Pagination as default };
 
 //# sourceMappingURL=Pagination.mjs.map

@@ -122,6 +122,6 @@ const Pomodoro = React.forwardRef(({ className, workMinutes = 25, breakMinutes =
 });
 Pomodoro.displayName = "Pomodoro";
 //#endregion
-export { Pomodoro as default, pomodoroVariants };
+export { Pomodoro, Pomodoro as default, pomodoroVariants };
 
 //# sourceMappingURL=Pomodoro.mjs.map

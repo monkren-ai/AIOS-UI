@@ -66,6 +66,6 @@ const AgentOrb = React.forwardRef(({ state = "idle", size = "md", showLabel = fa
 });
 AgentOrb.displayName = "AgentOrb";
 //#endregion
-export { agentOrbVariants, AgentOrb as default };
+export { AgentOrb, AgentOrb as default, agentOrbVariants };
 
 //# sourceMappingURL=AgentOrb.mjs.map

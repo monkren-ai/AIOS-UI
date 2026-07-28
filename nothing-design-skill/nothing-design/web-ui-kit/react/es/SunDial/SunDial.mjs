@@ -215,6 +215,6 @@ const SunDial = React.forwardRef(({ className, latitude: propLat, longitude: pro
 });
 SunDial.displayName = "SunDial";
 //#endregion
-export { SunDial as default, sunDialVariants };
+export { SunDial, SunDial as default, sunDialVariants };
 
 //# sourceMappingURL=SunDial.mjs.map

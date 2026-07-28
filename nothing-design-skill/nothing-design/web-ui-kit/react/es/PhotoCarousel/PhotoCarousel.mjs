@@ -196,6 +196,6 @@ const PhotoCarousel = React.forwardRef(({ className, autoPlay = true, autoPlayIn
 });
 PhotoCarousel.displayName = "PhotoCarousel";
 //#endregion
-export { PhotoCarousel as default, photoCarouselVariants };
+export { PhotoCarousel, PhotoCarousel as default, photoCarouselVariants };
 
 //# sourceMappingURL=PhotoCarousel.mjs.map

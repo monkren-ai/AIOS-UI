@@ -6,6 +6,7 @@ export interface ShowcaseContextValue {
   t: T
   toggleLang: () => void
   preloadProjectIntro: () => void
+  preloadAIPoc: () => void
   preloadShowcase: () => void
 }
 

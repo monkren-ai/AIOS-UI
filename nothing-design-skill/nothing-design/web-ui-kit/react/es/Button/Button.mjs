@@ -48,6 +48,6 @@ const Button$1 = React.forwardRef(({ variant, size, fullWidth, className, loadin
 });
 Button$1.displayName = "Button";
 //#endregion
-export { Button$1 as default };
+export { Button$1 as Button, Button$1 as default };
 
 //# sourceMappingURL=Button.mjs.map

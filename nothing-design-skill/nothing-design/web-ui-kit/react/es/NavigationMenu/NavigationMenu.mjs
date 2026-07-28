@@ -163,6 +163,6 @@ const NavigationMenu = React.forwardRef(({ className, items, orientation = "hori
 });
 NavigationMenu.displayName = "NavigationMenu";
 //#endregion
-export { NavigationMenu as default, navigationMenuVariants };
+export { NavigationMenu, NavigationMenu as default, navigationMenuVariants };
 
 //# sourceMappingURL=NavigationMenu.mjs.map

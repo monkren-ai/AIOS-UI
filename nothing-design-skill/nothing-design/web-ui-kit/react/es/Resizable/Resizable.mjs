@@ -114,6 +114,6 @@ const Resizable = React.forwardRef(({ className, direction = "horizontal", initi
 });
 Resizable.displayName = "Resizable";
 //#endregion
-export { Resizable as default, resizableVariants };
+export { Resizable, Resizable as default, resizableVariants };
 
 //# sourceMappingURL=Resizable.mjs.map

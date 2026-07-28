@@ -183,6 +183,6 @@ const Chrono = React.forwardRef(({ className, maxLaps = 10, state: stateProp, si
 });
 Chrono.displayName = "Chrono";
 //#endregion
-export { chronoVariants, Chrono as default };
+export { Chrono, Chrono as default, chronoVariants };
 
 //# sourceMappingURL=Chrono.mjs.map
