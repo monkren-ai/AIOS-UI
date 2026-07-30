@@ -5,7 +5,7 @@ import { jsx, jsxs } from "react/jsx-runtime";
 import { Button } from "@base-ui/react/button";
 import "./Button.css";
 //#region src/Button/Button.tsx
-const Button$1 = React.forwardRef(({ variant, size, fullWidth, className, loading = false, loadingText, disabled, children, ...props }, ref) => {
+const Button$1 = React.forwardRef(({ variant, size, fullWidth, className, loading = false, loadingText, leadingIcon, trailingIcon, active, disabled, children, ...props }, ref) => {
 	const isDisabled = disabled || loading;
 	return /* @__PURE__ */ jsxs(Button, {
 		ref,
@@ -19,31 +19,46 @@ const Button$1 = React.forwardRef(({ variant, size, fullWidth, className, loadin
 		"data-variant": dataAttr(variant),
 		"data-size": dataAttr(size),
 		"data-loading": dataAttr(loading),
+		"data-active": dataAttr(active),
 		disabled: isDisabled,
 		"aria-busy": loading || void 0,
+		"aria-pressed": active || void 0,
 		...props,
-		children: [loading && /* @__PURE__ */ jsx("span", {
-			className: "nothing-btn__spinner",
-			"aria-hidden": "true",
-			children: /* @__PURE__ */ jsx("svg", {
-				viewBox: "0 0 16 16",
-				width: "14",
-				height: "14",
-				children: /* @__PURE__ */ jsx("circle", {
-					cx: "8",
-					cy: "8",
-					r: "6",
-					fill: "none",
-					stroke: "currentColor",
-					strokeWidth: "1.5",
-					strokeDasharray: "28 10"
+		children: [
+			loading && /* @__PURE__ */ jsx("span", {
+				className: "nothing-btn__spinner",
+				"aria-hidden": "true",
+				children: /* @__PURE__ */ jsx("svg", {
+					viewBox: "0 0 16 16",
+					width: "14",
+					height: "14",
+					children: /* @__PURE__ */ jsx("circle", {
+						cx: "8",
+						cy: "8",
+						r: "6",
+						fill: "none",
+						stroke: "currentColor",
+						strokeWidth: "1.5",
+						strokeDasharray: "28 10"
+					})
 				})
+			}),
+			!loading && leadingIcon && /* @__PURE__ */ jsx("span", {
+				className: "nothing-btn__icon nothing-btn__icon--leading",
+				"aria-hidden": "true",
+				children: leadingIcon
+			}),
+			/* @__PURE__ */ jsx("span", {
+				className: "nothing-btn__content",
+				"data-loading": dataAttr(loading),
+				children: loading && loadingText ? loadingText : children
+			}),
+			!loading && trailingIcon && /* @__PURE__ */ jsx("span", {
+				className: "nothing-btn__icon nothing-btn__icon--trailing",
+				"aria-hidden": "true",
+				children: trailingIcon
 			})
-		}), /* @__PURE__ */ jsx("span", {
-			className: "nothing-btn__content",
-			"data-loading": dataAttr(loading),
-			children: loading && loadingText ? loadingText : children
-		})]
+		]
 	});
 });
 Button$1.displayName = "Button";

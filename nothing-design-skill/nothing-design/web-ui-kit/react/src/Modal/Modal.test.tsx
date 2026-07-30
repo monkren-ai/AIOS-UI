@@ -38,8 +38,7 @@ describe('Modal', () => {
         Content
       </Modal>
     )
-    const dialog = screen.getByRole('dialog')
-    const backdrop = dialog.parentElement as HTMLElement
+    const backdrop = document.querySelector('.nothing-modal-backdrop') as HTMLElement
     await user.click(backdrop)
     expect(handleClose).toHaveBeenCalledTimes(1)
   })

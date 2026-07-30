@@ -10,17 +10,12 @@ const items: AccordionItem[] = [
 ]
 
 describe('Accordion', () => {
-  it('renders all items with triggers', () => {
+  it('renders all triggers', () => {
     render(<Accordion items={items} />)
     items.forEach((item) => {
-      expect(screen.getByText(item.title)).toBeInTheDocument()
-      expect(screen.getByText(item.content)).toBeInTheDocument()
+      expect(screen.getByRole('button', { name: item.title as string })).toBeInTheDocument()
     })
-    const triggers = screen.getAllByRole('button')
-    expect(triggers).toHaveLength(3)
-    triggers.forEach((trigger) => {
-      expect(trigger).toHaveAttribute('aria-expanded', 'false')
-    })
+    expect(screen.getAllByRole('button')).toHaveLength(3)
   })
 
   it('expands and collapses a panel on click', async () => {
@@ -31,6 +26,7 @@ describe('Accordion', () => {
 
     await user.click(trigger)
     expect(trigger).toHaveAttribute('aria-expanded', 'true')
+    expect(screen.getByText('Content for section 1')).toBeVisible()
 
     await user.click(trigger)
     expect(trigger).toHaveAttribute('aria-expanded', 'false')
@@ -70,7 +66,8 @@ describe('Accordion', () => {
     ]
     render(<Accordion items={disabledItems} />)
     const disabledTrigger = screen.getByRole('button', { name: 'Disabled' })
-    expect(disabledTrigger).toBeDisabled()
+    expect(disabledTrigger).toHaveAttribute('aria-disabled', 'true')
+    expect(disabledTrigger).toHaveAttribute('data-disabled')
 
     fireEvent.click(disabledTrigger)
     expect(disabledTrigger).toHaveAttribute('aria-expanded', 'false')
@@ -78,30 +75,34 @@ describe('Accordion', () => {
 
   it('supports custom className', () => {
     render(<Accordion items={items} className="my-accordion" />)
-    const triggers = screen.getAllByRole('button')
-    // Walk up to the accordion root: button -> h3 -> item div -> accordion root
-    const accordionRoot = triggers[0].closest('.nothing-accordion')
-    expect(accordionRoot).toHaveClass('my-accordion')
-    expect(accordionRoot).toHaveClass('nothing-accordion')
+    const root = screen.getByRole('button', { name: 'Section 1' }).closest('.nothing-accordion')
+    expect(root).toHaveClass('my-accordion')
+    expect(root).toHaveClass('nothing-accordion')
   })
 
-  it('opens items specified in defaultOpen', () => {
+  it('opens items specified in defaultOpen', async () => {
+    const user = userEvent.setup()
     render(<Accordion items={items} defaultOpen={['1']} />)
     const trigger1 = screen.getByRole('button', { name: 'Section 1' })
     expect(trigger1).toHaveAttribute('aria-expanded', 'true')
     const trigger2 = screen.getByRole('button', { name: 'Section 2' })
     expect(trigger2).toHaveAttribute('aria-expanded', 'false')
+
+    await user.click(trigger2)
+    expect(trigger1).toHaveAttribute('aria-expanded', 'false')
+    expect(trigger2).toHaveAttribute('aria-expanded', 'true')
   })
 
-  it('triggers have correct aria-controls pointing to content', () => {
+  it('triggers have correct aria-controls pointing to content', async () => {
+    const user = userEvent.setup()
     render(<Accordion items={items} />)
-    const triggers = screen.getAllByRole('button')
-    triggers.forEach((trigger) => {
-      const controlsId = trigger.getAttribute('aria-controls')
-      expect(controlsId).toBeTruthy()
-      const content = document.getElementById(controlsId!)
-      expect(content).not.toBeNull()
-      expect(content).toHaveAttribute('role', 'region')
-    })
+    const trigger = screen.getByRole('button', { name: 'Section 1' })
+    await user.click(trigger)
+
+    const controlsId = trigger.getAttribute('aria-controls')
+    expect(controlsId).toBeTruthy()
+    const content = document.getElementById(controlsId!)
+    expect(content).not.toBeNull()
+    expect(content).toHaveAttribute('role', 'region')
   })
 })

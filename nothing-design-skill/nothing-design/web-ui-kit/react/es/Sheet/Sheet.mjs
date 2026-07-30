@@ -1,8 +1,8 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import { OverlayPortal, useEscapeKey, useOverlayState, useScrollLock, useTabCycle } from "../ui/OverlayPortal.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
+import { Dialog } from "@base-ui/react/dialog";
 import "./Sheet.css";
 //#region src/Sheet/Sheet.tsx
 const sheetBackdropVariants = cva("nothing-sheet-backdrop", {
@@ -20,12 +20,6 @@ const sheetVariants = cva("nothing-sheet", {
 			top: "nothing-sheet--top",
 			bottom: "nothing-sheet--bottom"
 		},
-		visible: {
-			left: "nothing-sheet--visible-left",
-			right: "nothing-sheet--visible-right",
-			top: "nothing-sheet--visible-top",
-			bottom: "nothing-sheet--visible-bottom"
-		},
 		full: {
 			true: "nothing-sheet--full",
 			false: ""
@@ -37,40 +31,30 @@ const sheetVariants = cva("nothing-sheet", {
 	}
 });
 const Sheet = React.forwardRef(({ className, open: controlledOpen, onOpenChange, side = "right", title, full = false, sections, footer, children, ...props }, ref) => {
-	const { isOpen, close } = useOverlayState(controlledOpen, onOpenChange);
-	const { ref: sheetRef, onKeyDown: tabCycle } = useTabCycle(isOpen);
-	useScrollLock(isOpen);
-	useEscapeKey(isOpen, close);
-	const setSheetRefs = React.useCallback((node) => {
-		sheetRef.current = node;
-		if (typeof ref === "function") ref(node);
-		else if (ref && "current" in ref) ref.current = node;
-	}, [ref, sheetRef]);
-	const handleBackdropClick = () => {
-		close();
-	};
-	const isBottomSheetMode = side === "bottom" && sections;
-	const titleId = title ? "nothing-sheet-title" : void 0;
-	return /* @__PURE__ */ jsxs(OverlayPortal, {
+	const [internalOpen, setInternalOpen] = React.useState(false);
+	const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
+	const handleOpenChange = React.useCallback((nextOpen) => {
+		if (controlledOpen === void 0) setInternalOpen(nextOpen);
+		onOpenChange?.(nextOpen);
+	}, [controlledOpen, onOpenChange]);
+	const isBottomSheetMode = side === "bottom" && Boolean(sections);
+	return /* @__PURE__ */ jsx(Dialog.Root, {
 		open: isOpen,
-		children: [/* @__PURE__ */ jsx("div", {
+		onOpenChange: handleOpenChange,
+		children: /* @__PURE__ */ jsxs(Dialog.Portal, { children: [/* @__PURE__ */ jsx(Dialog.Backdrop, {
 			className: cn(sheetBackdropVariants({ visible: isOpen })),
-			onClick: handleBackdropClick,
-			"aria-hidden": "true",
-			"data-state": dataAttr(isOpen ? "visible" : "hidden")
-		}), /* @__PURE__ */ jsxs("div", {
-			ref: setSheetRefs,
+			"data-slot": "sheet-backdrop",
+			"data-state": dataAttr(isOpen ? "open" : "closed")
+		}), /* @__PURE__ */ jsxs(Dialog.Popup, {
+			ref,
 			className: cn(sheetVariants({
 				side,
-				visible: isOpen ? side : void 0,
 				full
 			}), className),
-			role: "dialog",
-			"aria-modal": "true",
-			"aria-labelledby": titleId,
-			onKeyDown: tabCycle,
+			"data-slot": "sheet",
 			"data-state": dataAttr(isOpen ? "open" : "closed"),
 			"data-side": dataAttr(side),
+			"aria-modal": "true",
 			...props,
 			children: [
 				isBottomSheetMode && /* @__PURE__ */ jsx("div", {
@@ -82,12 +66,11 @@ const Sheet = React.forwardRef(({ className, open: controlledOpen, onOpenChange,
 					className: "nothing-sheet__header",
 					children: [title && /* @__PURE__ */ jsx("div", {
 						className: "nothing-sheet__title",
-						id: titleId,
 						children: title
-					}), /* @__PURE__ */ jsx("button", {
+					}), /* @__PURE__ */ jsx(Dialog.Close, {
 						className: isBottomSheetMode ? "nothing-sheet__dismiss" : "nothing-sheet__close",
-						onClick: close,
 						"aria-label": "Close",
+						"data-slot": "sheet-close",
 						children: isBottomSheetMode ? "Done" : "×"
 					})]
 				}),
@@ -106,7 +89,7 @@ const Sheet = React.forwardRef(({ className, open: controlledOpen, onOpenChange,
 					children: footer
 				})
 			]
-		})]
+		})] })
 	});
 });
 Sheet.displayName = "Sheet";

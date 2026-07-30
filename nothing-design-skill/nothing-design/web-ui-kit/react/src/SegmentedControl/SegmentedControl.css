@@ -44,18 +44,37 @@
   color: var(--black);
 }
 
-.nothing-segmented__slider {
+.nothing-segmented--proximity .nothing-segmented__segment--hovered {
+  color: var(--text-primary);
+}
+
+.nothing-segmented__slider,
+.nothing-segmented__hover-slider {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  background: var(--text-display);
   border-radius: var(--radius-pill);
-  transition: all var(--duration-micro) var(--easing);
+  pointer-events: none;
+  transition:
+    left var(--duration-spring-moderate) var(--ease-spring-moderate),
+    width var(--duration-spring-moderate) var(--ease-spring-moderate),
+    opacity var(--duration-micro) var(--easing);
   z-index: 0;
 }
 
-.nothing-segmented--rounded .nothing-segmented__slider {
+.nothing-segmented__slider {
+  background: var(--text-display);
+}
+
+.nothing-segmented__hover-slider {
+  background: var(--surface-raised);
+  opacity: 0;
+  z-index: -1;
+}
+
+.nothing-segmented--rounded .nothing-segmented__slider,
+.nothing-segmented--rounded .nothing-segmented__hover-slider {
   border-radius: var(--radius-sm);
 }
 
@@ -68,5 +87,12 @@
   .nothing-segmented__segment {
     height: 44px;
     padding: 0 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-segmented__slider,
+  .nothing-segmented__hover-slider {
+    transition: none;
   }
 }

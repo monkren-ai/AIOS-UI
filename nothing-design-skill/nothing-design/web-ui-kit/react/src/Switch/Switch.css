@@ -17,6 +17,10 @@
   flex-shrink: 0;
 }
 
+.nothing-switch__track:hover:not([data-disabled]) {
+  background: var(--text-secondary);
+}
+
 .nothing-switch__thumb {
   position: absolute;
   top: var(--switch-thumb-offset);
@@ -28,8 +32,16 @@
   transition: all var(--duration-micro) var(--easing);
 }
 
+.nothing-switch__track:active:not([data-disabled]) .nothing-switch__thumb {
+  transform: scale(0.92);
+}
+
 .nothing-switch__track[data-checked] {
   background: var(--text-display);
+}
+
+.nothing-switch__track[data-checked]:hover:not([data-disabled]) {
+  background: var(--text-primary);
 }
 
 .nothing-switch__track[data-checked] .nothing-switch__thumb {
@@ -76,6 +88,39 @@
 .nothing-switch--on .nothing-switch__label,
 .nothing-switch__track[data-checked] + .nothing-switch__label {
   color: var(--text-primary);
+}
+
+/* Size variants */
+.nothing-switch--sm .nothing-switch__track {
+  width: 36px;
+  height: 20px;
+}
+
+.nothing-switch--sm .nothing-switch__thumb {
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+}
+
+.nothing-switch--sm .nothing-switch__track[data-checked] .nothing-switch__thumb {
+  left: 18px;
+}
+
+.nothing-switch--lg .nothing-switch__track {
+  width: 56px;
+  height: 32px;
+}
+
+.nothing-switch--lg .nothing-switch__thumb {
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+.nothing-switch--lg .nothing-switch__track[data-checked] .nothing-switch__thumb {
+  left: 28px;
 }
 
 @media (pointer: coarse) {

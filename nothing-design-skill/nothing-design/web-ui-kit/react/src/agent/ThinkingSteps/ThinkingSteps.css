@@ -1,0 +1,183 @@
+.nothing-thinking-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--surface-agent);
+  border: 1px solid var(--border-agent);
+  border-radius: var(--radius-agent-card);
+  font-family: var(--font-body);
+}
+
+.nothing-thinking-steps__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: var(--touch-target-min);
+}
+
+.nothing-thinking-steps__title {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.nothing-thinking-steps__count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-disabled);
+}
+
+.nothing-thinking-steps__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nothing-thinking-steps__item {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  opacity: 0;
+  transform: translateY(4px);
+  animation:
+    nothing-thinking-steps-enter 0.35s var(--ease-spring-moderate) forwards;
+  animation-delay: calc(var(--step-index) * 80ms);
+}
+
+.nothing-thinking-steps__item--last {
+  padding-bottom: 0;
+}
+
+.nothing-thinking-steps__marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+  width: 24px;
+}
+
+.nothing-thinking-steps__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--border-visible);
+  opacity: 0.5;
+}
+
+.nothing-thinking-steps__line {
+  width: 1px;
+  flex: 1;
+  min-height: var(--space-md);
+  background: var(--border-visible);
+}
+
+.nothing-thinking-steps__item--pending .nothing-thinking-steps__line {
+  background: var(--border);
+}
+
+.nothing-thinking-steps__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding-bottom: var(--space-sm);
+  min-width: 0;
+}
+
+.nothing-thinking-steps__item--last .nothing-thinking-steps__content {
+  padding-bottom: 0;
+}
+
+.nothing-thinking-steps__row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
+.nothing-thinking-steps__label {
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
+  color: var(--text-primary);
+}
+
+.nothing-thinking-steps__status {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-secondary);
+}
+
+.nothing-thinking-steps__item--thinking .nothing-thinking-steps__status {
+  color: var(--agent-acting);
+}
+
+.nothing-thinking-steps__item--error .nothing-thinking-steps__status {
+  color: var(--agent-error);
+}
+
+.nothing-thinking-steps__description {
+  font-family: var(--font-body);
+  font-size: var(--caption);
+  color: var(--text-secondary);
+}
+
+/* Compact variant */
+.nothing-thinking-steps--compact {
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+}
+
+.nothing-thinking-steps--compact .nothing-thinking-steps__header {
+  min-height: auto;
+}
+
+.nothing-thinking-steps--compact .nothing-thinking-steps__title,
+.nothing-thinking-steps--compact .nothing-thinking-steps__count,
+.nothing-thinking-steps--compact .nothing-thinking-steps__status {
+  font-size: var(--caption);
+}
+
+.nothing-thinking-steps--compact .nothing-thinking-steps__item {
+  gap: var(--space-xs);
+  padding: var(--space-xs) 0;
+}
+
+.nothing-thinking-steps--compact .nothing-thinking-steps__content {
+  gap: var(--space-3xs);
+  padding-bottom: var(--space-xs);
+}
+
+.nothing-thinking-steps--compact .nothing-thinking-steps__label {
+  font-size: var(--caption);
+}
+
+.nothing-thinking-steps--compact .nothing-thinking-steps__description {
+  font-size: var(--widget-label);
+}
+
+@keyframes nothing-thinking-steps-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-thinking-steps__item {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

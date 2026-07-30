@@ -14,14 +14,26 @@
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  transition: all var(--duration-micro) var(--easing);
+  transition:
+    border-color var(--duration-micro) var(--easing),
+    color var(--duration-micro) var(--easing),
+    background var(--duration-micro) var(--easing),
+    opacity var(--duration-micro) var(--easing),
+    transform var(--duration-spring-moderate) var(--ease-spring-moderate);
   line-height: 1.4;
   white-space: nowrap;
+  animation: nothing-tag-enter var(--duration-spring-moderate) var(--ease-spring-moderate) both;
 }
 
 .nothing-tag:hover {
   border-color: var(--text-secondary);
   color: var(--text-primary);
+  transform: scale(1.02);
+}
+
+.nothing-tag:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .nothing-tag--active {
@@ -47,6 +59,32 @@
 .nothing-tag--disabled:hover {
   border-color: var(--border-visible);
   color: var(--text-secondary);
+  transform: none;
+}
+
+.nothing-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.nothing-tags--proximity .nothing-tag {
+  transition:
+    border-color var(--duration-micro) var(--easing),
+    color var(--duration-micro) var(--easing),
+    opacity var(--duration-micro) var(--easing),
+    transform var(--duration-spring-moderate) var(--ease-spring-moderate);
+}
+
+.nothing-tags--proximity .nothing-tag[data-proximity-active='true'] {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  transform: scale(1.04);
+  z-index: 1;
+}
+
+.nothing-tags--proximity:hover .nothing-tag[data-proximity-active='false'] {
+  opacity: 0.55;
 }
 
 .nothing-tag__remove {
@@ -66,8 +104,24 @@
   opacity: 1;
 }
 
-.nothing-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
+@keyframes nothing-tag-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-tag {
+    transition: none;
+    animation: none;
+  }
+
+  .nothing-tags--proximity .nothing-tag {
+    transition: none;
+  }
 }

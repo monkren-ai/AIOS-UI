@@ -30,6 +30,14 @@ export function NavigationSection({
     <CategorySection id="navigation" title={t('导航', 'Navigation')}>
       <DemoCard title={t('导航栏', 'Navigation')}>
         <Navigation
+          items={[
+            { label: t('主页', 'Home') },
+            { label: t('设备', 'Devices') },
+            { label: t('设置', 'Settings') },
+          ]}
+          style={{ marginBottom: 'var(--space-md)' }}
+        />
+        <Navigation
           variant="bracket"
           items={[
             { label: t('主页', 'Home') },

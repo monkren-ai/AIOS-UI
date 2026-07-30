@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
+import { useProximityHover } from '@/hooks/useProximityHover'
 import './Tag.css'
 
 const tagVariants = cva('nothing-tag', {
@@ -44,7 +45,7 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
       onRemove,
       ...props
     },
-    ref
+    ref,
   ) => {
     const isDisabled = !!disabled
 
@@ -92,6 +93,7 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
         {children}
         {removable && (
           <button
+            type="button"
             className="nothing-tag__remove"
             onClick={handleRemove}
             onKeyDown={handleRemoveKeyDown}
@@ -103,24 +105,62 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
         )}
       </span>
     )
-  }
+  },
 )
 Tag.displayName = 'Tag'
 
 export type TagsProps = React.HTMLAttributes<HTMLDivElement> & {
   children?: React.ReactNode
+  proximity?: boolean | 'x' | 'y' | 'xy'
 }
 
 export const Tags = React.forwardRef<HTMLDivElement, TagsProps>(
-  ({ className, children, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn('nothing-tags', className)}
-      {...props}
-    >
-      {children}
-    </div>
-  )
+  ({ className, children, proximity = false, ...props }, ref) => {
+    const containerRef = React.useRef<HTMLDivElement>(null)
+    const axis = typeof proximity === 'string' ? proximity : 'xy'
+    const enabled = !!proximity
+    const { activeIndex, registerItem, handlers } = useProximityHover(
+      containerRef as React.RefObject<HTMLElement | null>,
+      { axis },
+    )
+
+    const mergedRef = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        ;(containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node
+        if (typeof ref === 'function') ref(node)
+        else if (ref && 'current' in ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+      },
+      [ref],
+    )
+
+    const items = React.Children.toArray(children).filter(React.isValidElement)
+
+    return (
+      <div
+        ref={mergedRef}
+        className={cn('nothing-tags', enabled && 'nothing-tags--proximity', className)}
+        {...(enabled ? handlers : {})}
+        {...props}
+      >
+        {items.map((child, index) =>
+          React.cloneElement(
+            child as React.ReactElement<
+              TagProps & {
+                ref?: React.Ref<HTMLSpanElement>
+                'data-proximity-active'?: boolean
+                'data-index'?: number
+              }
+            >,
+            {
+              ref: (node: HTMLSpanElement | null) => registerItem(index, node),
+              'data-proximity-active': activeIndex === index,
+              'data-index': index,
+            },
+          ),
+        )}
+      </div>
+    )
+  },
 )
 Tags.displayName = 'Tags'
 

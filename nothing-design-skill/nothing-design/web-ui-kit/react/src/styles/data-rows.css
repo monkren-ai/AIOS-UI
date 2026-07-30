@@ -1,4 +1,4 @@
-﻿.nothing-data-rows {
+.nothing-data-rows {
   display: flex;
   flex-direction: column;
 }
@@ -81,15 +81,23 @@
   font-size: var(--body-sm);
 }
 
+.nothing-data-row {
+  transition: opacity var(--duration-micro) var(--easing),
+              background var(--duration-micro) var(--easing);
+}
+
 .nothing-data-row--interactive {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
-  transition: background var(--duration-micro) var(--easing);
 }
 
 .nothing-data-row--interactive:hover {
   background: var(--surface-raised);
+}
+
+.nothing-data-table--proximity:hover .nothing-data-row:not(:hover) {
+  opacity: 0.55;
 }
 
 .nothing-data-row--interactive:active {
@@ -111,4 +119,10 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-data-row {
+    transition: none;
+  }
 }

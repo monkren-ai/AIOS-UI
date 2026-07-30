@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import "react";
+import * as React from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "./Card.css";
@@ -10,7 +10,8 @@ const contentCardVariants = cva("nothing-card", {
 			default: "",
 			raised: "nothing-card--raised",
 			compact: "nothing-card--compact",
-			technical: "nothing-card--technical"
+			technical: "nothing-card--technical",
+			borderless: "nothing-card--borderless"
 		},
 		interactive: {
 			true: "nothing-card--interactive",
@@ -70,7 +71,7 @@ const widgetCardVariants = cva("nothing-widget-card", {
 		iconPosition: "top"
 	}
 });
-const ContentCard = ({ variant, interactive, disabled, title, action, onAction, onClick, footer, children, className, style, ...props }) => {
+const ContentCard = ({ variant, interactive, disabled, title, action, onAction, onClick, footer, media, logo, feature, children, className, style, ...props }) => {
 	const handleClick = (e) => {
 		if (disabled) return;
 		onClick?.(e);
@@ -94,18 +95,33 @@ const ContentCard = ({ variant, interactive, disabled, title, action, onAction, 
 		style,
 		"data-variant": dataAttr(variant),
 		"data-state": dataAttr(disabled ? "disabled" : interactive ? "interactive" : "default"),
+		"data-slot": "card",
 		...props,
 		children: [
-			(title || action) && /* @__PURE__ */ jsxs("div", {
+			logo && /* @__PURE__ */ jsx("div", {
+				className: "nothing-card__logo",
+				children: logo
+			}),
+			(title || action || feature) && /* @__PURE__ */ jsxs("div", {
 				className: "nothing-card__header",
-				children: [title && /* @__PURE__ */ jsx("div", {
-					className: "nothing-card__title",
-					children: title
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "nothing-card__header-main",
+					children: [title && /* @__PURE__ */ jsx("div", {
+						className: "nothing-card__title",
+						children: title
+					}), feature && /* @__PURE__ */ jsx("span", {
+						className: "nothing-card__feature",
+						children: feature
+					})]
 				}), action && /* @__PURE__ */ jsx("button", {
 					className: "nothing-card__action",
 					onClick: onAction,
 					children: action
 				})]
+			}),
+			media && /* @__PURE__ */ jsx("div", {
+				className: "nothing-card__media",
+				children: media
 			}),
 			/* @__PURE__ */ jsx("div", {
 				className: "nothing-card__body",
@@ -118,9 +134,24 @@ const ContentCard = ({ variant, interactive, disabled, title, action, onAction, 
 		]
 	});
 };
-const WidgetCardRenderer = ({ size, shape, theme, variant, title, value, subtitle, icon, iconPosition, align, className, children, onClick, ...props }) => {
+const WidgetCardRenderer = ({ size, shape, theme, variant, title, value, subtitle, icon, iconPosition, align, className, children, onClick, style, ...props }) => {
 	const hasChildren = Boolean(children);
 	const hasOwnContent = title || value !== void 0 || subtitle || icon;
+	const cardRef = React.useRef(null);
+	const [hoverStyle, setHoverStyle] = React.useState({});
+	const handleMouseMove = React.useCallback((e) => {
+		const rect = cardRef.current?.getBoundingClientRect();
+		if (!rect) return;
+		const x = (e.clientX - rect.left) / rect.width * 100;
+		const y = (e.clientY - rect.top) / rect.height * 100;
+		setHoverStyle({
+			"--widget-card-hover-x": `${x}%`,
+			"--widget-card-hover-y": `${y}%`
+		});
+	}, []);
+	const handleMouseLeave = React.useCallback(() => {
+		setHoverStyle({});
+	}, []);
 	const handleKeyDown = (e) => {
 		if (onClick && (e.key === "Enter" || e.key === " ")) {
 			e.preventDefault();
@@ -172,6 +203,7 @@ const WidgetCardRenderer = ({ size, shape, theme, variant, title, value, subtitl
 		}
 	};
 	return /* @__PURE__ */ jsxs("div", {
+		ref: cardRef,
 		className: cn(widgetCardVariants({
 			size,
 			shape,
@@ -181,6 +213,8 @@ const WidgetCardRenderer = ({ size, shape, theme, variant, title, value, subtitl
 			iconPosition
 		}), hasChildren && "nothing-widget-card--has-children", onClick && "nothing-widget-card--clickable", className),
 		onClick,
+		onMouseMove: handleMouseMove,
+		onMouseLeave: handleMouseLeave,
 		role: onClick ? "button" : void 0,
 		tabIndex: onClick ? 0 : void 0,
 		onKeyDown: onClick ? handleKeyDown : void 0,
@@ -188,6 +222,11 @@ const WidgetCardRenderer = ({ size, shape, theme, variant, title, value, subtitl
 		"data-shape": dataAttr(shape),
 		"data-theme": dataAttr(theme),
 		"data-variant": dataAttr(variant),
+		"data-slot": "widget-card",
+		style: {
+			...style,
+			...hoverStyle
+		},
 		...props,
 		children: [
 			title && /* @__PURE__ */ jsx("div", {

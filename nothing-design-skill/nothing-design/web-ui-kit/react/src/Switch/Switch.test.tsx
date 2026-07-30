@@ -85,4 +85,14 @@ describe('Switch', () => {
     const label = screen.getByText('Dark mode')
     expect(label).toHaveClass('nothing-switch__label')
   })
+
+  it('renders size variants with correct classes', () => {
+    const { rerender } = render(<Switch size="sm" />)
+    expect(screen.getByRole('switch').closest('label')).toHaveClass('nothing-switch--sm')
+    expect(screen.getByRole('switch').closest('label')).toHaveAttribute('data-size', 'sm')
+
+    rerender(<Switch size="lg" />)
+    expect(screen.getByRole('switch').closest('label')).toHaveClass('nothing-switch--lg')
+    expect(screen.getByRole('switch').closest('label')).toHaveAttribute('data-size', 'lg')
+  })
 })

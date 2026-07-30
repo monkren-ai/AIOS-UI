@@ -31,10 +31,12 @@ export interface NavItem {
 function getItemSlug(item: NavItem, idx: number): string {
   if (item.slug) return item.slug
   // 默认用 label 转 slug
-  return item.label
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '') || `item-${idx}`
+  return (
+    item.label
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '') || `item-${idx}`
+  )
 }
 
 export interface NavigationProps
@@ -65,11 +67,16 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
       scrollIntoView = false,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [internalIndex, setInternalIndex] = React.useState(0)
     const isControlled = controlledIndex !== undefined
     const activeIdx = isControlled ? controlledIndex : internalIndex
+
+    const navRef = React.useRef<HTMLElement>(null)
+    const itemRefs = React.useRef<(HTMLButtonElement | null)[]>([])
+    const [indicatorStyle, setIndicatorStyle] = React.useState({ left: 0, width: 0 })
+    const showIndicator = variant !== 'bracket'
 
     // 初始化:从 URL hash 匹配 slug
     React.useEffect(() => {
@@ -100,6 +107,29 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [syncWithUrl, isControlled, items.length])
 
+    const updateIndicator = React.useCallback(() => {
+      if (!showIndicator) return
+      const nav = navRef.current
+      const btn = itemRefs.current[activeIdx]
+      if (!nav || !btn) return
+      const navRect = nav.getBoundingClientRect()
+      const btnRect = btn.getBoundingClientRect()
+      setIndicatorStyle({
+        left: btnRect.left - navRect.left,
+        width: btnRect.width,
+      })
+    }, [activeIdx, showIndicator])
+
+    React.useLayoutEffect(() => {
+      updateIndicator()
+    }, [updateIndicator])
+
+    React.useEffect(() => {
+      if (typeof window === 'undefined' || !showIndicator) return
+      window.addEventListener('resize', updateIndicator)
+      return () => window.removeEventListener('resize', updateIndicator)
+    }, [updateIndicator, showIndicator])
+
     const handleSelect = (index: number) => {
       if (!isControlled) {
         setInternalIndex(index)
@@ -122,10 +152,19 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
       }
     }
 
+    const setRefs = React.useCallback(
+      (node: HTMLElement | null) => {
+        navRef.current = node
+        if (typeof ref === 'function') ref(node)
+        else if (ref && 'current' in ref) (ref as React.MutableRefObject<HTMLElement | null>).current = node
+      },
+      [ref],
+    )
+
     return (
       <nav
-        ref={ref}
-        className={cn(navigationVariants({ variant }), className)}
+        ref={setRefs}
+        className={cn(navigationVariants({ variant }), showIndicator && 'nothing-nav--has-indicator', className)}
         data-variant={dataAttr(variant)}
         data-active-index={dataAttr(activeIdx)}
         data-real={dataAttr(syncWithUrl && typeof window !== 'undefined')}
@@ -140,23 +179,32 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
         )}
         {items.map((item, index) => (
           <span key={index} className="nothing-nav__item-wrapper">
-            {index > 0 && variant === 'pipe' && (
-              <span className="nothing-nav__separator">|</span>
-            )}
+            {index > 0 && variant === 'pipe' && <span className="nothing-nav__separator">|</span>}
             <button
+              ref={(node) => {
+                itemRefs.current[index] = node
+              }}
               className={cn(navItemVariants({ active: index === activeIdx }))}
               onClick={() => handleSelect(index)}
               data-state={dataAttr(index === activeIdx ? 'active' : 'inactive')}
               data-slug={dataAttr(getItemSlug(item, index))}
+              aria-current={index === activeIdx ? 'page' : undefined}
             >
               {item.icon}
               {item.label}
             </button>
           </span>
         ))}
+        {showIndicator && (
+          <span
+            className="nothing-nav__indicator"
+            style={{ left: indicatorStyle.left, width: indicatorStyle.width }}
+            aria-hidden="true"
+          />
+        )}
       </nav>
     )
-  }
+  },
 )
 Navigation.displayName = 'Navigation'
 

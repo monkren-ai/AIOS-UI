@@ -8,9 +8,6 @@ export {
   type TraceStep,
   type TraceStepStatus,
 } from './ProgressTrace'
-export {
-  ToolCallRow,
-  toolCallRowVariants,
-  type ToolCallRowProps,
-  type ToolCallStatus,
-} from './ToolCallRow'
+export { ThinkingIndicator, thinkingIndicatorVariants, type ThinkingIndicatorProps, type ThinkingState } from './ThinkingIndicator'
+export { ThinkingSteps, thinkingStepsVariants, type ThinkingStepsProps, type ThinkingStep, type ThinkingStepStatus } from './ThinkingSteps'
+export { ToolCallRow, toolCallRowVariants, type ToolCallRowProps, type ToolCallStatus } from './ToolCallRow'

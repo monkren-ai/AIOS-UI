@@ -1,12 +1,28 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { useProximityHover } from "../hooks/useProximityHover.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
+import { Tabs } from "@base-ui/react/tabs";
 import "./Tabs.css";
 //#region src/Tabs/Tabs.tsx
 const tabsVariants = cva("nothing-tabs", {
-	variants: {},
-	defaultVariants: {}
+	variants: {
+		variant: {
+			default: "nothing-tabs--default",
+			pills: "nothing-tabs--pills",
+			subtle: "nothing-tabs--subtle"
+		},
+		indicator: {
+			line: "nothing-tabs--indicator-line",
+			background: "nothing-tabs--indicator-background",
+			none: "nothing-tabs--indicator-none"
+		}
+	},
+	defaultVariants: {
+		variant: "default",
+		indicator: "line"
+	}
 });
 const tabTriggerVariants = cva("nothing-tabs__trigger", {
 	variants: {
@@ -24,132 +40,124 @@ const tabTriggerVariants = cva("nothing-tabs__trigger", {
 		disabled: false
 	}
 });
-const TabPanel = () => {
-	return null;
-};
-const Tabs = React.forwardRef(({ className, items, value: controlledValue, defaultValue, onValueChange, children, ...props }, ref) => {
-	const [internalValue, setInternalValue] = React.useState(defaultValue ?? items[0]?.value ?? "");
-	const selectedValue = controlledValue !== void 0 ? controlledValue : internalValue;
-	const [indicatorStyle, setIndicatorStyle] = React.useState({});
-	const triggerRefs = React.useRef([]);
+const TabPanel = () => null;
+const Tabs$1 = React.forwardRef(({ className, items, value: controlledValue, defaultValue, onValueChange, variant, indicator, enableProximityHover = true, children, ...props }, ref) => {
 	const baseId = React.useId();
-	React.useEffect(() => {
-		const activeIndex = items.findIndex((item) => item.value === selectedValue);
-		const activeTrigger = triggerRefs.current[activeIndex];
-		if (activeTrigger) setIndicatorStyle({
-			width: activeTrigger.offsetWidth,
-			left: activeTrigger.offsetLeft
+	const listRef = React.useRef(null);
+	const [indicatorStyle, setIndicatorStyle] = React.useState({});
+	const [hoverStyle, setHoverStyle] = React.useState({});
+	const { activeIndex: hoveredIndex, registerItem, handlers } = useProximityHover(listRef, { axis: "x" });
+	const handleValueChange = React.useCallback((value) => {
+		onValueChange?.(value);
+	}, [onValueChange]);
+	const updateIndicator = React.useCallback((activeTabPosition) => {
+		if (!activeTabPosition) {
+			setIndicatorStyle({ opacity: 0 });
+			return;
+		}
+		const width = activeTabPosition.right - activeTabPosition.left;
+		setIndicatorStyle({
+			left: activeTabPosition.left,
+			width,
+			opacity: 1
 		});
-	}, [selectedValue, items]);
-	const handleSelect = React.useCallback((itemValue) => {
-		if (controlledValue === void 0) setInternalValue(itemValue);
-		onValueChange?.(itemValue);
-	}, [controlledValue, onValueChange]);
-	const findNextEnabled = React.useCallback((currentIndex, direction) => {
-		let idx = currentIndex + direction;
-		while (idx >= 0 && idx < items.length) {
-			if (!items[idx].disabled) return idx;
-			idx += direction;
+	}, []);
+	React.useEffect(() => {
+		if (!enableProximityHover) return;
+		if (hoveredIndex == null || !items[hoveredIndex]) {
+			setHoverStyle({ opacity: 0 });
+			return;
 		}
-		if (direction > 0) {
-			for (let i = 0; i < currentIndex; i++) if (!items[i].disabled) return i;
-		} else for (let i = items.length - 1; i > currentIndex; i--) if (!items[i].disabled) return i;
-		return currentIndex;
-	}, [items]);
-	const handleKeyDown = React.useCallback((e, index) => {
-		if (items.filter((item) => !item.disabled).length === 0) return;
-		let nextIndex = -1;
-		switch (e.key) {
-			case "ArrowRight":
-				e.preventDefault();
-				nextIndex = findNextEnabled(index, 1);
-				break;
-			case "ArrowLeft":
-				e.preventDefault();
-				nextIndex = findNextEnabled(index, -1);
-				break;
-			case "Home":
-				e.preventDefault();
-				nextIndex = items.findIndex((item) => !item.disabled);
-				break;
-			case "End":
-				e.preventDefault();
-				for (let i = items.length - 1; i >= 0; i--) if (!items[i].disabled) {
-					nextIndex = i;
-					break;
-				}
-				break;
-			case "Enter":
-			case " ":
-				e.preventDefault();
-				handleSelect(items[index].value);
-				return;
-			default: return;
-		}
-		if (nextIndex >= 0 && nextIndex < items.length) {
-			triggerRefs.current[nextIndex]?.focus();
-			handleSelect(items[nextIndex].value);
-		}
+		const element = listRef.current?.querySelector(`[data-tab-index="${hoveredIndex}"]`);
+		if (!element) return;
+		const rect = element.getBoundingClientRect();
+		const listRect = listRef.current?.getBoundingClientRect();
+		if (!listRect) return;
+		setHoverStyle({
+			left: rect.left - listRect.left,
+			width: rect.width,
+			opacity: .5
+		});
 	}, [
-		items,
-		findNextEnabled,
-		handleSelect
+		hoveredIndex,
+		enableProximityHover,
+		items
 	]);
-	const matchedPanels = (children ? Array.isArray(children) ? children : [children] : []).filter((panel) => React.isValidElement(panel) && panel.props.value !== void 0);
-	return /* @__PURE__ */ jsxs("div", {
+	const panels = React.useMemo(() => {
+		return (children ? Array.isArray(children) ? children : [children] : []).filter((panel) => React.isValidElement(panel) && panel.props.value !== void 0);
+	}, [children]);
+	return /* @__PURE__ */ jsxs(Tabs.Root, {
 		ref,
-		className: cn(tabsVariants({}), className),
-		"data-state": dataAttr(selectedValue),
+		className: cn(tabsVariants({
+			variant,
+			indicator
+		}), className),
+		"data-slot": "tabs",
+		"data-variant": dataAttr(variant),
+		"data-indicator": dataAttr(indicator),
+		value: controlledValue,
+		defaultValue,
+		onValueChange: handleValueChange,
 		...props,
-		children: [/* @__PURE__ */ jsxs("div", {
+		children: [/* @__PURE__ */ jsxs(Tabs.List, {
+			ref: listRef,
 			className: "nothing-tabs__list",
-			role: "tablist",
-			children: [items.map((item, index) => {
-				const isActive = item.value === selectedValue;
-				const tabId = `${baseId}-tab-${item.value}`;
-				const panelId = `${baseId}-panel-${item.value}`;
-				return /* @__PURE__ */ jsx("button", {
-					ref: (el) => {
-						triggerRefs.current[index] = el;
-					},
-					id: tabId,
-					className: cn(tabTriggerVariants({
-						active: isActive,
-						disabled: !!item.disabled
-					})),
-					role: "tab",
-					"aria-selected": isActive,
-					"aria-controls": panelId,
-					tabIndex: isActive ? 0 : -1,
-					disabled: item.disabled,
-					onClick: () => !item.disabled && handleSelect(item.value),
-					onKeyDown: (e) => handleKeyDown(e, index),
-					"data-state": dataAttr(isActive ? "active" : "inactive"),
-					"data-disabled": dataAttr(item.disabled),
-					children: item.label
-				}, item.value);
-			}), /* @__PURE__ */ jsx("div", {
-				className: "nothing-tabs__indicator",
-				style: indicatorStyle
-			})]
-		}), matchedPanels.map((panel) => {
-			const panelValue = panel.props.value;
-			const isActive = panelValue === selectedValue;
-			return /* @__PURE__ */ jsx("div", {
-				id: `${baseId}-panel-${panelValue}`,
-				className: "nothing-tabs__panel",
-				role: "tabpanel",
-				"aria-labelledby": `${baseId}-tab-${panelValue}`,
-				hidden: !isActive,
-				tabIndex: 0,
-				"data-state": dataAttr(isActive ? "active" : "inactive"),
-				children: panel.props.children
-			}, panelValue);
-		})]
+			activateOnFocus: true,
+			...handlers,
+			children: [
+				enableProximityHover && indicator !== "background" && /* @__PURE__ */ jsx("span", {
+					className: "nothing-tabs__hover-bg",
+					style: hoverStyle,
+					"aria-hidden": "true"
+				}),
+				indicator === "line" && /* @__PURE__ */ jsx(Tabs.Indicator, {
+					className: "nothing-tabs__indicator",
+					renderBeforeHydration: true,
+					render: (_props, state) => {
+						updateIndicator(state.activeTabPosition);
+						return /* @__PURE__ */ jsx("span", {
+							..._props,
+							style: {
+								..._props.style,
+								...indicatorStyle
+							},
+							"data-slot": "tabs-indicator"
+						});
+					}
+				}),
+				items.map((item, index) => {
+					const tabId = `${baseId}-tab-${item.value}`;
+					const panelId = `${baseId}-panel-${item.value}`;
+					return /* @__PURE__ */ jsx(Tabs.Tab, {
+						value: item.value,
+						disabled: item.disabled,
+						id: tabId,
+						className: (state) => cn(tabTriggerVariants({
+							active: state.active,
+							disabled: state.disabled
+						})),
+						"data-tab-index": index,
+						ref: (el) => {
+							registerItem(index, el);
+						},
+						"aria-controls": panelId,
+						"data-slot": "tabs-trigger",
+						"data-state": dataAttr(item.value === controlledValue ? "active" : "inactive"),
+						"data-disabled": dataAttr(item.disabled),
+						children: item.label
+					}, item.value);
+				})
+			]
+		}), panels.map((panel) => /* @__PURE__ */ jsx(Tabs.Panel, {
+			value: panel.props.value,
+			className: "nothing-tabs__panel",
+			"data-slot": "tabs-panel",
+			children: panel.props.children
+		}, panel.props.value))]
 	});
 });
-Tabs.displayName = "Tabs";
+Tabs$1.displayName = "Tabs";
 //#endregion
-export { TabPanel, Tabs, Tabs as default, tabTriggerVariants, tabsVariants };
+export { TabPanel, Tabs$1 as Tabs, Tabs$1 as default, tabTriggerVariants, tabsVariants };
 
 //# sourceMappingURL=Tabs.mjs.map

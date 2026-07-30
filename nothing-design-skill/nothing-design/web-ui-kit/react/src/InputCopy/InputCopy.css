@@ -1,0 +1,133 @@
+.nothing-input-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-family: var(--font-body);
+}
+
+.nothing-input-copy__label {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.nothing-input-copy__control {
+  display: flex;
+  align-items: stretch;
+  background: var(--surface);
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-input);
+  overflow: hidden;
+  transition: border-color var(--duration-micro) var(--easing);
+}
+
+.nothing-input-copy__control:focus-within {
+  border-color: var(--text-secondary);
+}
+
+.nothing-input-copy__field {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-sm) var(--space-md);
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
+  outline: none;
+}
+
+.nothing-input-copy__field::placeholder {
+  color: var(--text-tertiary);
+}
+
+.nothing-input-copy__field:read-only {
+  cursor: text;
+}
+
+.nothing-input-copy__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-md);
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color var(--duration-micro) var(--easing),
+    border-color var(--duration-micro) var(--easing),
+    background var(--duration-micro) var(--easing);
+  white-space: nowrap;
+}
+
+.nothing-input-copy__button:hover {
+  color: var(--text-primary);
+  background: var(--surface-raised);
+}
+
+.nothing-input-copy__button:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.nothing-input-copy__button--copied {
+  color: var(--success);
+  border-left-color: var(--success);
+  animation: nothing-input-copy-flash 0.4s var(--ease-spring-moderate);
+}
+
+.nothing-input-copy__button-text {
+  display: inline-block;
+  transition: opacity var(--duration-micro) var(--easing);
+}
+
+/* Size variants */
+.nothing-input-copy--sm .nothing-input-copy__field {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--caption);
+}
+
+.nothing-input-copy--sm .nothing-input-copy__button {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--widget-label);
+}
+
+.nothing-input-copy--lg .nothing-input-copy__field {
+  padding: var(--space-md);
+  font-size: var(--body);
+}
+
+.nothing-input-copy--lg .nothing-input-copy__button {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--body-sm);
+}
+
+@keyframes nothing-input-copy-flash {
+  0% {
+    background: transparent;
+  }
+  50% {
+    background: color-mix(in srgb, var(--success) 15%, transparent);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nothing-input-copy__button--copied {
+    animation: none;
+  }
+
+  .nothing-input-copy__button-text {
+    transition: none;
+  }
+}

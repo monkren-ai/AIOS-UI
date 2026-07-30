@@ -34,3 +34,5 @@ export type {
   SelectPropsBase,
   ContainerProps,
 } from './component-types'
+export { spring, exitFallbackMs, enterTransition, exitTransition, type SpringToken } from './motion'
+export { fontVariationWeights, fontWeightValues, FONT_WEIGHT_TRANSITION_CSS } from './fontWeight'

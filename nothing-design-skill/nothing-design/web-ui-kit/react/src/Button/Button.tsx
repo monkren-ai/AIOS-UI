@@ -9,10 +9,29 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants> & {
     loading?: boolean
     loadingText?: string
+    leadingIcon?: React.ReactNode
+    trailingIcon?: React.ReactNode
+    active?: boolean
   }
 
 export const Button = React.forwardRef<HTMLElement, ButtonProps>(
-  ({ variant, size, fullWidth, className, loading = false, loadingText, disabled, children, ...props }, ref) => {
+  (
+    {
+      variant,
+      size,
+      fullWidth,
+      className,
+      loading = false,
+      loadingText,
+      leadingIcon,
+      trailingIcon,
+      active,
+      disabled,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     const isDisabled = disabled || loading
     return (
       <BaseButton
@@ -22,8 +41,10 @@ export const Button = React.forwardRef<HTMLElement, ButtonProps>(
         data-variant={dataAttr(variant)}
         data-size={dataAttr(size)}
         data-loading={dataAttr(loading)}
+        data-active={dataAttr(active)}
         disabled={isDisabled}
         aria-busy={loading || undefined}
+        aria-pressed={active || undefined}
         {...props}
       >
         {loading && (
@@ -33,9 +54,19 @@ export const Button = React.forwardRef<HTMLElement, ButtonProps>(
             </svg>
           </span>
         )}
+        {!loading && leadingIcon && (
+          <span className="nothing-btn__icon nothing-btn__icon--leading" aria-hidden="true">
+            {leadingIcon}
+          </span>
+        )}
         <span className="nothing-btn__content" data-loading={dataAttr(loading)}>
           {loading && loadingText ? loadingText : children}
         </span>
+        {!loading && trailingIcon && (
+          <span className="nothing-btn__icon nothing-btn__icon--trailing" aria-hidden="true">
+            {trailingIcon}
+          </span>
+        )}
       </BaseButton>
     )
   },

@@ -1,9 +1,13 @@
+import * as React from 'react'
 import { Card } from '@/Card'
+import { Accordion } from '@/Accordion'
 import { DataTable } from '@/DataTable'
 import ProgressBar from '@/ProgressBar'
 import Badge from '@/Badge'
 import Avatar from '@/Avatar'
 import Separator from '@/Separator'
+import ColorPicker from '@/ColorPicker'
+import { Surfaces } from '@/Surfaces'
 import { CategorySection } from '../components/CategorySection'
 import { DemoCard } from '../components/DemoCard'
 import type { T } from '../hooks/useShowcaseState'
@@ -13,6 +17,8 @@ interface DataDisplaySectionProps {
 }
 
 export function DataDisplaySection({ t }: DataDisplaySectionProps) {
+  const [color, setColor] = React.useState('#D71921')
+
   return (
     <CategorySection id="data-display" title={t('数据展示', 'Data Display')}>
       <DemoCard title={t('卡片', 'Cards')} variant="grid">
@@ -28,6 +34,41 @@ export function DataDisplaySection({ t }: DataDisplaySectionProps) {
         <Card variant="technical" title="[ Technical ]">
           <p style={{ fontSize: 'var(--body)', margin: 0 }}>{t('等宽技术风格变体。', 'Monospace technical variant.')}</p>
         </Card>
+        <Card
+          variant="borderless"
+          title={t('无框卡片', 'Borderless Card')}
+          feature={t('新', 'New')}
+          logo={
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="24" height="24">
+              <rect x="3" y="3" width="18" height="18" rx="4" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+          }
+        >
+          <p style={{ fontSize: 'var(--body)', margin: 0 }}>{t('支持徽标、Logo 和媒体插槽。', 'Supports feature badge, logo and media slots.')}</p>
+        </Card>
+        <Card
+          variant="default"
+          title={t('媒体卡片', 'Media Card')}
+          media={
+            <div style={{ height: '120px', background: 'var(--surface-raised)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)' }}>
+              Media Slot
+            </div>
+          }
+        >
+          <p style={{ fontSize: 'var(--body)', margin: 0 }}>{t('在主体上方展示媒体内容。', 'Show media content above the body.')}</p>
+        </Card>
+      </DemoCard>
+
+      <DemoCard title={t('手风琴', 'Accordion')}>
+        <Accordion
+          items={[
+            { id: '1', title: t('设计理念', 'Design Philosophy'), content: t('单色、零阴影、零渐变，以工业控制台的诚实感呈现信息。', 'Monochrome, zero shadows, zero gradients, presenting information with the honesty of an industrial console.') },
+            { id: '2', title: t('动效原则', 'Motion Principles'), content: t('所有动效都服务于信息反馈，使用 spring 物理曲线保持一致的节奏。', 'All motion serves informational feedback, using spring physics curves for a consistent rhythm.') },
+            { id: '3', title: t('无障碍支持', 'Accessibility'), content: t('完整的键盘导航、ARIA 状态与 reduced-motion 媒体查询支持。', 'Full keyboard navigation, ARIA states and reduced-motion media query support.') },
+          ]}
+          style={{ maxWidth: '600px' }}
+        />
       </DemoCard>
 
       <DemoCard title={t('数据行', 'Data Rows')}>
@@ -46,10 +87,11 @@ export function DataDisplaySection({ t }: DataDisplaySectionProps) {
       <DemoCard title={t('数据网格', 'Data Grid')}>
         <DataTable
           variant="grid"
+          proximity
           columns={[
             { key: 'name', label: t('名称', 'Name') },
             { key: 'status', label: t('状态', 'Status') },
-            { key: 'value', label: t('数值', 'Value'), type: 'numeric' },
+            { key: 'value', label: t('数值', 'Value'), type: 'numeric', sortable: true },
           ]}
           rows={[
             { cells: { name: t('传感器 A', 'Sensor A'), status: t('在线', 'Online'), value: 42 }, interactive: true, cellStatuses: [{ columnKey: 'status', status: 'good' }] },
@@ -89,6 +131,8 @@ export function DataDisplaySection({ t }: DataDisplaySectionProps) {
         <Badge variant="secondary">{t('次要', 'Secondary')}</Badge>
         <Badge variant="destructive">{t('危险', 'Destructive')}</Badge>
         <Badge variant="outline">{t('描边', 'Outline')}</Badge>
+        <Badge variant="default" dot>{t('状态', 'Status')}</Badge>
+        <Badge variant="destructive" dot>{t('异常', 'Alert')}</Badge>
       </DemoCard>
 
       <DemoCard title={t('头像', 'Avatar')} variant="flex-wrap">
@@ -104,6 +148,22 @@ export function DataDisplaySection({ t }: DataDisplaySectionProps) {
           <span style={{ fontSize: 'var(--body)' }}>{t('右', 'Right')}</span>
         </div>
         <Separator orientation="horizontal" decorative style={{ marginTop: 'var(--space-md)' }} />
+      </DemoCard>
+
+      <DemoCard title={t('颜色选择器', 'Color Picker')}>
+        <ColorPicker value={color} onChange={setColor} title={t('主题色', 'Theme Color')} />
+      </DemoCard>
+
+      <DemoCard title={t('表面层级', 'Surface Elevations')}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+          {[1, 2, 3, 4].map((elevation) => (
+            <Surfaces key={elevation} elevation={elevation as 1} padding="md" style={{ width: '100%' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--caption)', color: 'var(--text-secondary)' }}>
+                ELEVATION {String(elevation).padStart(2, '0')}
+              </span>
+            </Surfaces>
+          ))}
+        </div>
       </DemoCard>
 
       <DemoCard title={t('骨架屏', 'Skeleton')}>

@@ -108,4 +108,15 @@ describe('Tags', () => {
     expect(ref.current).toHaveClass('custom-tags')
     expect(ref.current).toHaveClass('nothing-tags')
   })
+
+  it('applies proximity mode class', () => {
+    render(
+      <Tags proximity>
+        <Tag>One</Tag>
+        <Tag>Two</Tag>
+      </Tags>,
+    )
+    const tags = screen.getByText('One').closest('.nothing-tags')
+    expect(tags).toHaveClass('nothing-tags--proximity')
+  })
 })

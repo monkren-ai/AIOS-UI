@@ -6,12 +6,17 @@
 .nothing-tabs__list {
   display: flex;
   position: relative;
-  border-bottom: 1px solid var(--border-visible);
   gap: 0;
+}
+
+/* ─── Default variant ─── */
+.nothing-tabs--default .nothing-tabs__list {
+  border-bottom: 1px solid var(--border-visible);
 }
 
 .nothing-tabs__trigger {
   position: relative;
+  z-index: 1;
   font-family: var(--font-mono);
   font-size: var(--body-sm);
   text-transform: uppercase;
@@ -25,6 +30,7 @@
   -webkit-tap-highlight-color: transparent;
   transition: color var(--duration-micro) var(--easing);
   white-space: nowrap;
+  outline: none;
 }
 
 .nothing-tabs__trigger:hover {
@@ -36,10 +42,12 @@
   outline-offset: -2px;
 }
 
+.nothing-tabs__trigger[data-active='true'],
 .nothing-tabs__trigger--active {
   color: var(--text-primary);
 }
 
+.nothing-tabs__trigger[data-disabled='true'],
 .nothing-tabs__trigger--disabled {
   color: var(--text-disabled);
   cursor: not-allowed;
@@ -49,37 +57,102 @@
   color: var(--text-disabled);
 }
 
+/* ─── Line indicator ─── */
 .nothing-tabs__indicator {
   position: absolute;
   bottom: -1px;
   left: 0;
   height: 2px;
   background: var(--interactive);
-  transition: left var(--duration-transition) var(--easing), width var(--duration-transition) var(--easing);
   border-radius: var(--radius-pill);
+  transition:
+    left var(--duration-spring-moderate) var(--ease-spring-moderate),
+    width var(--duration-spring-moderate) var(--ease-spring-moderate),
+    opacity var(--duration-micro) var(--easing);
+  pointer-events: none;
 }
 
+/* ─── Hover background ─── */
+.nothing-tabs__hover-bg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: var(--muted-bg);
+  border-radius: var(--radius-sm);
+  transition:
+    left var(--duration-spring-fast) var(--ease-spring-fast),
+    width var(--duration-spring-fast) var(--ease-spring-fast),
+    opacity var(--duration-micro) var(--easing);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Pills variant ─── */
+.nothing-tabs--pills .nothing-tabs__list {
+  padding: var(--space-xs);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-card-compact);
+  gap: var(--space-xs);
+}
+
+.nothing-tabs--pills .nothing-tabs__trigger {
+  border-radius: var(--radius-pill);
+  padding: var(--space-sm) var(--space-md);
+  transition:
+    color var(--duration-micro) var(--easing),
+    background-color var(--duration-micro) var(--easing);
+}
+
+.nothing-tabs--pills .nothing-tabs__trigger[data-active='true'] {
+  background: var(--surface);
+  color: var(--text-display);
+  border: 1px solid var(--border-visible);
+}
+
+/* ─── Subtle variant ─── */
+.nothing-tabs--subtle .nothing-tabs__list {
+  border-bottom: none;
+  gap: var(--space-md);
+}
+
+.nothing-tabs--subtle .nothing-tabs__trigger {
+  font-family: var(--font-body);
+  text-transform: none;
+  letter-spacing: 0;
+  padding: var(--space-sm) 0;
+}
+
+.nothing-tabs--subtle .nothing-tabs__indicator {
+  bottom: 0;
+  height: 1px;
+  background: var(--text-primary);
+}
+
+/* ─── Panel ─── */
 .nothing-tabs__panel {
   padding: var(--space-md) 0;
+  outline: none;
 }
 
-.nothing-tabs__panel--hidden {
-  display: none;
+.nothing-tabs__panel:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: 2px;
 }
 
+/* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
-  .nothing-tabs__indicator {
-    transition: none;
-  }
-
+  .nothing-tabs__indicator,
+  .nothing-tabs__hover-bg,
   .nothing-tabs__trigger {
     transition: none;
   }
 }
 
+/* ─── Coarse pointer ─── */
 @media (pointer: coarse) {
   .nothing-tabs__trigger {
     padding: var(--space-sm-plus) var(--space-md);
-    min-height: 44px;
+    min-height: var(--touch-target-min);
   }
 }

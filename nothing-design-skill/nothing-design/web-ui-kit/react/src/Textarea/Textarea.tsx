@@ -5,6 +5,10 @@ import './Textarea.css'
 
 const textareaVariants = cva('nothing-textarea', {
   variants: {
+    variant: {
+      underline: 'nothing-textarea--underline',
+      bordered: 'nothing-textarea--bordered',
+    },
     hasError: {
       true: 'nothing-textarea--error',
       false: '',
@@ -18,7 +22,7 @@ const textareaVariants = cva('nothing-textarea', {
       false: '',
     },
   },
-  defaultVariants: { hasError: false, disabled: false, focused: false },
+  defaultVariants: { variant: 'underline', hasError: false, disabled: false, focused: false },
 })
 
 export type TextareaProps = Omit<
@@ -32,31 +36,37 @@ export type TextareaProps = Omit<
     value?: string
     defaultValue?: string
     onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-  label?: string
+    label?: string
     error?: string
+    message?: string
     autoResize?: boolean
     minRows?: number
     maxRows?: number
-} & VariantProps<typeof textareaVariants>
+  } & VariantProps<typeof textareaVariants>
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
       className,
+      style,
       value: controlledValue,
       defaultValue,
       onChange,
       placeholder,
       label,
       error,
+      message,
       disabled,
       autoResize = false,
       minRows = 3,
       maxRows,
+      variant,
       id,
-      ...props
+      onFocus,
+      onBlur,
+      ...textareaProps
     },
-    ref
+    ref,
   ) => {
     const [internalValue, setInternalValue] = React.useState(defaultValue ?? '')
     const [focused, setFocused] = React.useState(false)
@@ -64,6 +74,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const generatedId = React.useId()
     const inputId = id || generatedId
     const errorId = `${inputId}-error`
+    const messageId = `${inputId}-message`
     const isControlled = controlledValue !== undefined
     const value = isControlled ? controlledValue : internalValue
     const hasError = !!error
@@ -75,18 +86,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         if (typeof ref === 'function') ref(node)
         else if (ref && 'current' in ref) (ref as React.MutableRefObject<HTMLTextAreaElement | null>).current = node
       },
-      [ref]
+      [ref],
     )
 
     const resizeTextarea = React.useCallback(() => {
       const textarea = internalRef.current
       if (!textarea || !autoResize) return
       textarea.style.height = 'auto'
-      const lineHeight =
-        parseFloat(getComputedStyle(textarea).lineHeight) || 20
+      const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight) || 20
       const padding =
-        parseFloat(getComputedStyle(textarea).paddingTop) +
-          parseFloat(getComputedStyle(textarea).paddingBottom) || 0
+        parseFloat(getComputedStyle(textarea).paddingTop) + parseFloat(getComputedStyle(textarea).paddingBottom) || 0
       const minHeight = lineHeight * minRows + padding
       const maxHeight = maxRows ? lineHeight * maxRows + padding : Infinity
       const newHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight)
@@ -106,14 +115,29 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       onChange?.(e)
     }
 
+    const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      setFocused(true)
+      onFocus?.(e)
+    }
+
+    const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      setFocused(false)
+      onBlur?.(e)
+    }
+
+    const describedBy = hasError ? errorId : message ? messageId : undefined
+
     return (
       <div
         className={cn(
-          textareaVariants({ hasError, disabled: isDisabled, focused }),
-          className
+          textareaVariants({ variant, hasError, disabled: isDisabled, focused }),
+          autoResize && 'nothing-textarea--auto-resize',
+          className,
         )}
+        style={style}
+        data-slot="textarea"
+        data-variant={dataAttr(variant)}
         data-state={dataAttr(hasError ? 'error' : focused ? 'focused' : 'default')}
-        {...props}
       >
         {label && (
           <label className="nothing-textarea__label" htmlFor={inputId}>
@@ -128,20 +152,26 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           value={value}
           disabled={isDisabled}
           onChange={handleChange}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           rows={minRows}
           aria-invalid={hasError}
-          aria-describedby={hasError ? errorId : undefined}
+          aria-describedby={describedBy}
+          {...textareaProps}
         />
-        {error && (
-          <div className="nothing-textarea__error" id={errorId}>
+        {hasError && (
+          <div className="nothing-textarea__error" id={errorId} role="alert">
             {error}
+          </div>
+        )}
+        {!hasError && message && (
+          <div className="nothing-textarea__message" id={messageId}>
+            {message}
           </div>
         )}
       </div>
     )
-  }
+  },
 )
 Textarea.displayName = 'Textarea'
 

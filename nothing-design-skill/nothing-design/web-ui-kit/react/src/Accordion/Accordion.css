@@ -4,6 +4,21 @@
   overflow: hidden;
 }
 
+.nothing-accordion--flush {
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.nothing-accordion--flush .nothing-accordion__item {
+  border-bottom: none;
+  border-top: 1px solid var(--border);
+}
+
+.nothing-accordion--flush .nothing-accordion__item:first-child {
+  border-top: none;
+}
+
 .nothing-accordion__item {
   border-bottom: 1px solid var(--border);
 }
@@ -33,8 +48,9 @@
   gap: var(--space-sm);
   cursor: pointer;
   min-height: 44px;
-  transition: background var(--duration-micro) var(--easing),
-              color var(--duration-micro) var(--easing);
+  transition:
+    background var(--duration-micro) var(--easing),
+    color var(--duration-micro) var(--easing);
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
@@ -49,9 +65,27 @@
   z-index: 1;
 }
 
+.nothing-accordion__trigger[data-panel-open] {
+  color: var(--text-display);
+}
+
+.nothing-accordion__trigger[data-disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .nothing-accordion__trigger-text {
   flex: 1;
   text-align: left;
+}
+
+.nothing-accordion__trigger-icon-leading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-secondary);
 }
 
 .nothing-accordion__trigger-icon {
@@ -64,28 +98,23 @@
   transition: transform var(--duration-micro) var(--easing);
 }
 
-.nothing-accordion__item--open .nothing-accordion__trigger-icon {
+.nothing-accordion__trigger[data-panel-open] .nothing-accordion__trigger-icon {
   transform: rotate(180deg);
 }
 
-.nothing-accordion__item--open .nothing-accordion__trigger {
-  color: var(--text-display);
-}
-
-.nothing-accordion__item--disabled .nothing-accordion__trigger {
-  opacity: 0.4;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.nothing-accordion__content {
-  max-height: 0;
+.nothing-accordion__panel {
   overflow: hidden;
-  transition: max-height var(--duration-transition) var(--easing);
+  height: 0;
+  transition: height var(--duration-spring-moderate) var(--ease-spring-moderate);
 }
 
-.nothing-accordion__item--open .nothing-accordion__content {
-  max-height: 500px;
+.nothing-accordion__panel[data-open] {
+  height: var(--accordion-panel-height, auto);
+}
+
+.nothing-accordion__panel[data-starting-style],
+.nothing-accordion__panel[data-ending-style] {
+  height: 0;
 }
 
 .nothing-accordion__content-inner {
@@ -97,7 +126,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nothing-accordion__content {
+  .nothing-accordion__panel {
     transition: none;
   }
 

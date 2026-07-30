@@ -1,13 +1,8 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
-import {
-  OverlayPortal,
-  useEscapeKey,
-  useOverlayState,
-  useScrollLock,
-  useTabCycle,
-} from '@/ui/OverlayPortal'
+import { Dialog as DialogPrimitive } from '@base-ui/react/dialog'
+import { AlertDialog as AlertDialogPrimitive } from '@base-ui/react/alert-dialog'
 import './Modal.css'
 
 const modalBackdropVariants = cva('nothing-modal-backdrop', {
@@ -69,137 +64,122 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       destructive = false,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const { isOpen, close, setOpen } = useOverlayState(controlledOpen, onClose)
-    const { ref: trapRef, onKeyDown: tabCycle } = useTabCycle<HTMLDivElement>(isOpen)
-    useScrollLock(isOpen)
-    useEscapeKey(isOpen, () => {
-      if (variant === 'alert') {
-        handleCancel()
-      } else {
-        close()
-      }
-    })
+    const [internalOpen, setInternalOpen] = React.useState(false)
+    const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen
+    const isAlert = variant === 'alert'
+    const noHeader = !title && !isAlert
 
-    const generatedId = React.useId()
-    const titleId = title ? `${generatedId}-title` : undefined
-    const descriptionId = description ? `${generatedId}-description` : undefined
-
-    const previouslyFocused = React.useRef<HTMLElement | null>(null)
-    React.useEffect(() => {
-      if (isOpen) {
-        previouslyFocused.current = document.activeElement as HTMLElement | null
-        const node = trapRef.current
-        if (node) {
-          const focusable = node.querySelector<HTMLElement>(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          )
-          ;(focusable ?? node).focus()
+    const handleOpenChange = React.useCallback(
+      (nextOpen: boolean) => {
+        if (controlledOpen === undefined) {
+          setInternalOpen(nextOpen)
         }
-      } else {
-        previouslyFocused.current?.focus()
-      }
-    }, [isOpen, trapRef])
-
-    const setDialogRefs = React.useCallback(
-      (node: HTMLDivElement | null) => {
-        trapRef.current = node
-        if (typeof ref === 'function') ref(node)
-        else if (ref && 'current' in ref) {
-          ;(ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+        if (!nextOpen) {
+          onClose?.()
         }
       },
-      [ref, trapRef]
+      [controlledOpen, onClose],
     )
 
     const handleConfirm = React.useCallback(() => {
       onConfirm?.()
-      setOpen(false)
-    }, [onConfirm, setOpen])
+      handleOpenChange(false)
+    }, [onConfirm, handleOpenChange])
 
     const handleCancel = React.useCallback(() => {
       onCancel?.()
-      setOpen(false)
-    }, [onCancel, setOpen])
+      handleOpenChange(false)
+    }, [onCancel, handleOpenChange])
 
-    const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-      if (e.target === e.currentTarget) {
-        if (variant === 'alert') {
-          handleCancel()
-        } else {
-          close()
-        }
-      }
-    }
-
-    const isAlert = variant === 'alert'
-    const noHeader = !title && !isAlert
-
-    return (
-      <OverlayPortal open={isOpen}>
-        <div
+    const popup = (
+      <DialogPrimitive.Portal>
+        <DialogPrimitive.Backdrop
           className={cn(modalBackdropVariants({ alert: isAlert, visible: isOpen }))}
-          onClick={handleBackdropClick}
-          aria-hidden={!isOpen ? 'true' : undefined}
+          data-slot="modal-backdrop"
           data-state={dataAttr(isOpen ? 'open' : 'closed')}
           data-variant={dataAttr(variant)}
+        />
+        <DialogPrimitive.Popup
+          ref={ref}
+          className={cn(
+            modalVariants({ alert: isAlert, destructive: isAlert && destructive, noHeader }),
+            className,
+          )}
+          data-slot="modal"
+          data-state={dataAttr(isOpen ? 'open' : 'closed')}
+          data-variant={dataAttr(variant)}
+          aria-modal="true"
+          {...props}
         >
-          <div
-            ref={setDialogRefs}
-            className={cn(
-              modalVariants({ alert: isAlert, destructive: isAlert && destructive, noHeader }),
-              className
-            )}
-            role={isAlert ? 'alertdialog' : 'dialog'}
-            aria-modal="true"
-            aria-labelledby={titleId}
-            aria-describedby={isAlert ? descriptionId : undefined}
-            onKeyDown={tabCycle}
-            data-state={dataAttr(isOpen ? 'open' : 'closed')}
-            data-variant={dataAttr(variant)}
-            {...props}
-          >
-            {!isAlert && (
-              <button className="nothing-modal__close" onClick={close} aria-label="Close">
-                ×
-              </button>
-            )}
-            {(title || (isAlert && description)) && (
-              <div className="nothing-modal__header">
-                {title && (
-                  <div className="nothing-modal__title" id={titleId}>
-                    {title}
-                  </div>
-                )}
-                {isAlert && description && (
-                  <div className="nothing-modal__description" id={descriptionId}>
-                    {description}
-                  </div>
-                )}
-              </div>
-            )}
-            {children && <div className="nothing-modal__body">{children}</div>}
-            {isAlert ? (
-              <div className="nothing-modal__footer">
-                <button className="nothing-modal__cancel" onClick={handleCancel}>
-                  {cancelLabel}
-                </button>
-                <button
-                  className={cn(modalConfirmVariants({ destructive }))}
-                  onClick={handleConfirm}
+          {!isAlert && (
+            <DialogPrimitive.Close
+              className="nothing-modal__close"
+              aria-label="Close"
+              data-slot="modal-close"
+            >
+              ×
+            </DialogPrimitive.Close>
+          )}
+          {(title || (isAlert && description)) && (
+            <div className="nothing-modal__header" data-slot="modal-header">
+              {title && (
+                <DialogPrimitive.Title className="nothing-modal__title" data-slot="modal-title">
+                  {title}
+                </DialogPrimitive.Title>
+              )}
+              {isAlert && description && (
+                <DialogPrimitive.Description
+                  className="nothing-modal__description"
+                  data-slot="modal-description"
                 >
-                  {confirmLabel}
-                </button>
-              </div>
-            ) : footer ? (
-              <div className="nothing-modal__footer">{footer}</div>
-            ) : null}
-          </div>
-        </div>
-      </OverlayPortal>
+                  {description}
+                </DialogPrimitive.Description>
+              )}
+            </div>
+          )}
+          {children && (
+            <div className="nothing-modal__body" data-slot="modal-body">
+              {children}
+            </div>
+          )}
+          {isAlert ? (
+            <div className="nothing-modal__footer" data-slot="modal-footer">
+              <button className="nothing-modal__cancel" onClick={handleCancel} type="button">
+                {cancelLabel}
+              </button>
+              <button
+                className={cn(modalConfirmVariants({ destructive }))}
+                onClick={handleConfirm}
+                type="button"
+              >
+                {confirmLabel}
+              </button>
+            </div>
+          ) : footer ? (
+            <div className="nothing-modal__footer" data-slot="modal-footer">
+              {footer}
+            </div>
+          ) : null}
+        </DialogPrimitive.Popup>
+      </DialogPrimitive.Portal>
     )
-  }
+
+    if (isAlert) {
+      return (
+        <AlertDialogPrimitive.Root open={isOpen} onOpenChange={handleOpenChange}>
+          {popup}
+        </AlertDialogPrimitive.Root>
+      )
+    }
+
+    return (
+      <DialogPrimitive.Root open={isOpen} onOpenChange={handleOpenChange}>
+        {popup}
+      </DialogPrimitive.Root>
+    )
+  },
 )
 Modal.displayName = 'Modal'
 

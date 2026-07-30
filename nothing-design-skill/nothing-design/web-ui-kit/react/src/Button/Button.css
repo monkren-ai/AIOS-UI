@@ -16,6 +16,8 @@
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   line-height: 1;
+  position: relative;
+  overflow: hidden;
 }
 
 .nothing-btn:focus-visible {
@@ -26,6 +28,30 @@
 .nothing-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.nothing-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Hover background layer for non-solid variants */
+.nothing-btn--secondary::before,
+.nothing-btn--ghost::before,
+.nothing-btn--tertiary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--muted-bg);
+  opacity: 0;
+  transition: opacity var(--duration-micro) var(--easing);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.nothing-btn--secondary:hover:not(:disabled)::before,
+.nothing-btn--ghost:hover:not(:disabled)::before,
+.nothing-btn--tertiary:hover:not(:disabled)::before {
+  opacity: 1;
 }
 
 .nothing-btn--primary {
@@ -89,6 +115,27 @@
   color: var(--black);
 }
 
+.nothing-btn--tertiary {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: var(--radius-pill);
+}
+
+.nothing-btn--tertiary:hover:not(:disabled) {
+  border-color: var(--border-visible);
+  color: var(--text-display);
+}
+
+.nothing-btn--tertiary:active:not(:disabled) {
+  background: var(--border);
+}
+
+.nothing-btn[data-active] {
+  outline: 1px solid var(--text-primary);
+  outline-offset: -1px;
+}
+
 .nothing-btn--sm {
   padding: var(--space-sm) var(--space-md);
   min-height: 36px;
@@ -99,6 +146,27 @@
   padding: var(--space-lg-minus) var(--space-xl);
   min-height: 52px;
   font-size: var(--body-sm);
+}
+
+.nothing-btn--icon {
+  padding: var(--space-sm);
+  min-height: 44px;
+  min-width: 44px;
+  aspect-ratio: 1 / 1;
+}
+
+.nothing-btn--icon-sm {
+  padding: var(--space-xs);
+  min-height: 36px;
+  min-width: 36px;
+  aspect-ratio: 1 / 1;
+}
+
+.nothing-btn--icon-lg {
+  padding: var(--space-md);
+  min-height: 52px;
+  min-width: 52px;
+  aspect-ratio: 1 / 1;
 }
 
 .nothing-btn--full {
@@ -120,6 +188,34 @@
   justify-content: center;
   margin-right: var(--space-xs);
   animation: nothing-btn-spin 0.9s linear infinite;
+}
+
+.nothing-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--duration-micro) var(--easing);
+}
+
+.nothing-btn__icon svg {
+  width: 1em;
+  height: 1em;
+  transition:
+    stroke-width var(--duration-micro) var(--easing),
+    transform var(--duration-micro) var(--easing);
+}
+
+.nothing-btn:hover:not(:disabled) .nothing-btn__icon svg {
+  stroke-width: 2;
+}
+
+.nothing-btn__icon--leading {
+  margin-right: var(--space-xs);
+}
+
+.nothing-btn__icon--trailing {
+  margin-left: var(--space-xs);
 }
 
 @keyframes nothing-btn-spin {

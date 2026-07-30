@@ -13,6 +13,8 @@ import {
   ToolCallRow,
   type ToolCallRowProps,
   ApprovalGate,
+  ThinkingIndicator,
+  ThinkingSteps,
 } from '@/agent'
 import { useShowcaseContext } from '../ShowcaseContext'
 import type { T } from '../hooks/useShowcaseState'
@@ -92,6 +94,25 @@ export function AgentOSSection({
           segments={orbStates.map((s) => s.toUpperCase())}
           activeIndex={orbStates.indexOf(agentOrbState)}
           onChange={(index) => setAgentOrbState(orbStates[index])}
+        />
+      </DemoCard>
+
+      <DemoCard title={t('思考指示器', 'Thinking Indicator')} variant="flex-wrap">
+        <ThinkingIndicator state="thinking" label={t('思考中', 'Thinking')} />
+        <ThinkingIndicator state="acting" label={t('执行中', 'Acting')} />
+        <ThinkingIndicator state="done" label={t('完成', 'Done')} />
+        <ThinkingIndicator state="error" label={t('错误', 'Error')} />
+      </DemoCard>
+
+      <DemoCard title={t('思考链', 'Thinking Steps')}>
+        <ThinkingSteps
+          title={t('THINKING', 'THINKING')}
+          steps={[
+            { id: 's1', title: t('解析请求', 'Parse request'), content: t('提取实体与意图', 'Extract entities and intent') },
+            { id: 's2', title: t('检索上下文', 'Retrieve context'), content: t('加载相关记忆片段', 'Load relevant memory fragments') },
+            { id: 's3', title: t('生成回复', 'Generate response'), content: t('组合语言模型输出', 'Compose language model output') },
+          ]}
+          activeIndex={agentOrbState === 'acting' ? 2 : agentOrbState === 'error' ? 0 : 1}
         />
       </DemoCard>
 

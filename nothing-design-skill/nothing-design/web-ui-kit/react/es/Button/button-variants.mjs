@@ -6,12 +6,16 @@ const buttonVariants = cva("nothing-btn", {
 			primary: "nothing-btn--primary",
 			secondary: "nothing-btn--secondary",
 			ghost: "nothing-btn--ghost",
-			destructive: "nothing-btn--destructive"
+			destructive: "nothing-btn--destructive",
+			tertiary: "nothing-btn--tertiary"
 		},
 		size: {
 			default: "",
 			sm: "nothing-btn--sm",
-			lg: "nothing-btn--lg"
+			lg: "nothing-btn--lg",
+			icon: "nothing-btn--icon",
+			"icon-sm": "nothing-btn--icon-sm",
+			"icon-lg": "nothing-btn--icon-lg"
 		},
 		fullWidth: {
 			true: "nothing-btn--full",

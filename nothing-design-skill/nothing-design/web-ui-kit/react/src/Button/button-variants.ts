@@ -7,11 +7,15 @@ export const buttonVariants = cva('nothing-btn', {
       secondary: 'nothing-btn--secondary',
       ghost: 'nothing-btn--ghost',
       destructive: 'nothing-btn--destructive',
+      tertiary: 'nothing-btn--tertiary',
     },
     size: {
       default: '',
       sm: 'nothing-btn--sm',
       lg: 'nothing-btn--lg',
+      icon: 'nothing-btn--icon',
+      'icon-sm': 'nothing-btn--icon-sm',
+      'icon-lg': 'nothing-btn--icon-lg',
     },
     fullWidth: {
       true: 'nothing-btn--full',

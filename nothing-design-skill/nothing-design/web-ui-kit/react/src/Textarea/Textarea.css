@@ -22,13 +22,16 @@
   outline: none;
   padding: var(--space-sm) 0;
   width: 100%;
+  min-height: calc(var(--leading-body) * var(--body) * 3 + var(--space-sm) * 2);
   resize: vertical;
   border: none;
   border-bottom: 1px solid var(--border-visible);
   border-radius: 0;
-  transition: border-color var(--duration-micro) var(--easing),
-              color var(--duration-micro) var(--easing);
-  line-height: 1.5;
+  transition:
+    border-color var(--duration-micro) var(--easing),
+    box-shadow var(--duration-micro) var(--easing),
+    color var(--duration-micro) var(--easing);
+  line-height: var(--leading-body);
 }
 
 .nothing-textarea__input::placeholder {
@@ -48,24 +51,44 @@
   color: var(--text-primary);
 }
 
+.nothing-textarea--bordered .nothing-textarea__input {
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-input);
+  padding: var(--space-sm);
+}
+
+.nothing-textarea--bordered .nothing-textarea__input:focus {
+  border-color: var(--text-primary);
+  box-shadow: 0 0 0 1px var(--text-primary);
+}
+
 .nothing-textarea--error .nothing-textarea__input {
-  border-color: var(--error);
-  border-bottom-color: var(--error);
+  border-color: var(--accent);
+  border-bottom-color: var(--accent);
+  animation: nothing-textarea-shake 0.3s var(--easing);
 }
 
 .nothing-textarea--error .nothing-textarea__label {
-  color: var(--error);
+  color: var(--accent);
 }
 
-.nothing-textarea__error {
+.nothing-textarea__error,
+.nothing-textarea__message {
   font-family: var(--font-mono);
   font-size: var(--label);
-  color: var(--error);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   min-height: 0;
   overflow: hidden;
   transition: all var(--duration-micro) var(--easing);
+}
+
+.nothing-textarea__error {
+  color: var(--accent);
+}
+
+.nothing-textarea__message {
+  color: var(--text-secondary);
 }
 
 .nothing-textarea--disabled .nothing-textarea__label {
@@ -80,10 +103,37 @@
   resize: none;
 }
 
+.nothing-textarea--disabled.nothing-textarea--bordered .nothing-textarea__input {
+  background: var(--muted-bg);
+}
+
+.nothing-textarea--auto-resize .nothing-textarea__input {
+  resize: none;
+  overflow: hidden;
+}
+
+@keyframes nothing-textarea-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nothing-textarea__input,
   .nothing-textarea__label,
-  .nothing-textarea__error {
+  .nothing-textarea__error,
+  .nothing-textarea__message {
     transition: none;
+  }
+
+  .nothing-textarea--error .nothing-textarea__input {
+    animation: none;
   }
 }

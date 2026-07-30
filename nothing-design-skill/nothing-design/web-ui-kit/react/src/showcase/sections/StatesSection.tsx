@@ -1,3 +1,4 @@
+import * as React from 'react'
 import Button from '@/Button'
 import Modal from '@/Modal'
 import { LoadingState, ErrorState, EmptyState, DisabledState } from '@/States'
@@ -13,6 +14,8 @@ interface StatesSectionProps {
 }
 
 export function StatesSection({ t, alertDialogOpen, setAlertDialogOpen }: StatesSectionProps) {
+  const [closableVisible, setClosableVisible] = React.useState(true)
+
   return (
     <CategorySection id="states" title={t('状态', 'States')}>
       <DemoCard title={t('状态', 'States')} variant="grid" last>
@@ -26,9 +29,24 @@ export function StatesSection({ t, alertDialogOpen, setAlertDialogOpen }: States
         <Alert title={t('注意！', 'Heads up!')} variant="default" style={{ maxWidth: '500px', marginBottom: 'var(--space-md)' }}>
           {t('你可以通过 CLI 将组件添加到应用中。', 'You can add components to your app using the CLI.')}
         </Alert>
-        <Alert title={t('错误', 'Error')} variant="destructive" style={{ maxWidth: '500px' }}>
+        <Alert title={t('错误', 'Error')} variant="destructive" style={{ maxWidth: '500px', marginBottom: 'var(--space-md)' }}>
           {t('你的会话已过期。请重新登录。', 'Your session has expired. Please log in again.')}
         </Alert>
+        {closableVisible && (
+          <Alert
+            title={t('可关闭', 'Closable')}
+            variant="default"
+            onClose={() => setClosableVisible(false)}
+            style={{ maxWidth: '500px' }}
+          >
+            {t('点击右侧关闭按钮，Alert 将以退出动效消失。', 'Click the close button and the Alert will disappear with an exit motion.')}
+          </Alert>
+        )}
+        {!closableVisible && (
+          <Button variant="secondary" onClick={() => setClosableVisible(true)}>
+            {t('重新显示提示', 'Show alert again')}
+          </Button>
+        )}
       </DemoCard>
 
       <DemoCard title={t('确认对话框', 'Alert Dialog')} last>

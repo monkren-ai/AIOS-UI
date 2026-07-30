@@ -8,59 +8,32 @@
   cursor: pointer;
 }
 
-.nothing-popover__content {
-  position: absolute;
+.nothing-popover__positioner {
   z-index: var(--z-popover);
+}
+
+.nothing-popover__content {
   background: var(--popover-bg);
   color: var(--popover-fg);
   border: 1px solid var(--border-visible);
   border-radius: var(--radius-md);
   padding: var(--space-md);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--duration-micro) var(--easing),
-              visibility var(--duration-micro) var(--easing);
+  animation: nothing-popover-enter var(--duration-spring-moderate) var(--ease-spring-moderate);
 }
 
-.nothing-popover__content--visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.nothing-popover__content--top {
-  transform: translateY(calc(-1 * var(--space-xs)));
-}
-
-.nothing-popover__content--bottom {
-  transform: translateY(var(--space-xs));
-}
-
-.nothing-popover__content--left {
-  transform: translateX(calc(-1 * var(--space-xs)));
-}
-
-.nothing-popover__content--right {
-  transform: translateX(var(--space-xs));
-}
-
-.nothing-popover__content--visible.nothing-popover__content--top {
-  transform: translateY(0);
-}
-
-.nothing-popover__content--visible.nothing-popover__content--bottom {
-  transform: translateY(0);
-}
-
-.nothing-popover__content--visible.nothing-popover__content--left {
-  transform: translateX(0);
-}
-
-.nothing-popover__content--visible.nothing-popover__content--right {
-  transform: translateX(0);
+@keyframes nothing-popover-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .nothing-popover__content {
-    transition: none;
+    animation: none;
   }
 }

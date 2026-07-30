@@ -24,16 +24,89 @@ const dataTableVariants = cva("nothing-data-table", {
 		hoverable: {
 			true: "nothing-table--hoverable",
 			false: ""
+		},
+		proximity: {
+			true: "nothing-data-table--proximity",
+			false: ""
 		}
 	},
 	defaultVariants: {
 		variant: "table",
 		striped: false,
 		compact: false,
-		hoverable: false
+		hoverable: false,
+		proximity: false
 	}
 });
-function TableView({ columns, rows, caption, striped }) {
+function getSortValue(cell, type) {
+	if (cell == null) return "";
+	if (typeof cell === "number") return cell;
+	const text = typeof cell === "string" ? cell : String(cell);
+	if (type === "numeric") {
+		const parsed = parseFloat(text);
+		return Number.isNaN(parsed) ? text : parsed;
+	}
+	return text.toLowerCase();
+}
+function useSortedRows(rows, columns, sortKey, sortDirection) {
+	return React.useMemo(() => {
+		if (!sortKey || !sortDirection) return rows;
+		const column = columns.find((c) => c.key === sortKey);
+		return [...rows].sort((a, b) => {
+			const aValue = getSortValue(a.cells[sortKey], column?.type);
+			const bValue = getSortValue(b.cells[sortKey], column?.type);
+			if (aValue < bValue) return sortDirection === "asc" ? -1 : 1;
+			if (aValue > bValue) return sortDirection === "asc" ? 1 : -1;
+			return 0;
+		});
+	}, [
+		rows,
+		columns,
+		sortKey,
+		sortDirection
+	]);
+}
+function SortIcon({ direction }) {
+	return /* @__PURE__ */ jsxs("svg", {
+		className: cn("nothing-sort-icon", direction === "asc" && "nothing-sort-icon--asc", direction === "desc" && "nothing-sort-icon--desc"),
+		viewBox: "0 0 16 16",
+		fill: "none",
+		stroke: "currentColor",
+		strokeWidth: "1.5",
+		"aria-hidden": "true",
+		children: [/* @__PURE__ */ jsx("path", {
+			d: "M4 6l4-4 4 4",
+			className: "nothing-sort-icon__up"
+		}), /* @__PURE__ */ jsx("path", {
+			d: "M4 10l4 4 4-4",
+			className: "nothing-sort-icon__down"
+		})]
+	});
+}
+function TableHeader({ columns, sortKey, sortDirection, onSort }) {
+	return /* @__PURE__ */ jsx("thead", {
+		className: "nothing-table__head",
+		children: /* @__PURE__ */ jsx("tr", {
+			className: "nothing-table__row",
+			children: columns.map((col) => {
+				const active = sortKey === col.key;
+				return /* @__PURE__ */ jsx("th", {
+					className: cn("nothing-table__header", col.align === "center" && "nothing-table__cell--center", col.align === "right" && "nothing-table__cell--right", col.sortable && "nothing-table__header--sortable", active && "nothing-table__header--sorted"),
+					style: col.width ? { width: col.width } : void 0,
+					"aria-sort": active ? sortDirection === "asc" ? "ascending" : "descending" : "none",
+					children: col.sortable ? /* @__PURE__ */ jsxs("button", {
+						type: "button",
+						className: "nothing-table__sort-button",
+						onClick: () => onSort(col.key),
+						"aria-label": `Sort by ${col.label}`,
+						children: [/* @__PURE__ */ jsx("span", { children: col.label }), /* @__PURE__ */ jsx(SortIcon, { direction: active ? sortDirection : null })]
+					}) : col.label
+				}, col.key);
+			})
+		})
+	});
+}
+function TableView({ columns, rows, caption, striped, sortKey, sortDirection, onSort }) {
 	return /* @__PURE__ */ jsxs("table", {
 		className: "nothing-table__table",
 		children: [
@@ -41,16 +114,11 @@ function TableView({ columns, rows, caption, striped }) {
 				className: "nothing-table__caption",
 				children: caption
 			}),
-			/* @__PURE__ */ jsx("thead", {
-				className: "nothing-table__head",
-				children: /* @__PURE__ */ jsx("tr", {
-					className: "nothing-table__row",
-					children: columns.map((col) => /* @__PURE__ */ jsx("th", {
-						className: cn("nothing-table__header", col.align === "center" && "nothing-table__cell--center", col.align === "right" && "nothing-table__cell--right"),
-						style: col.width ? { width: col.width } : void 0,
-						children: col.label
-					}, col.key))
-				})
+			/* @__PURE__ */ jsx(TableHeader, {
+				columns,
+				sortKey,
+				sortDirection,
+				onSort
 			}),
 			/* @__PURE__ */ jsx("tbody", {
 				className: "nothing-table__body",
@@ -65,7 +133,26 @@ function TableView({ columns, rows, caption, striped }) {
 		]
 	});
 }
-function GridView({ columns, rows, emptyMessage, onRowClick }) {
+function GridHeader({ columns, sortKey, sortDirection, onSort }) {
+	return /* @__PURE__ */ jsx("div", {
+		className: "nothing-data-grid__header",
+		children: columns.map((col) => {
+			const active = sortKey === col.key;
+			return /* @__PURE__ */ jsx("div", {
+				className: cn("nothing-data-grid__header-cell", col.type === "numeric" && "nothing-data-grid__header-cell--numeric", col.sortable && "nothing-data-grid__header-cell--sortable", active && "nothing-data-grid__header-cell--sorted"),
+				"aria-sort": active ? sortDirection === "asc" ? "ascending" : "descending" : "none",
+				children: col.sortable ? /* @__PURE__ */ jsxs("button", {
+					type: "button",
+					className: "nothing-data-grid__sort-button",
+					onClick: () => onSort(col.key),
+					"aria-label": `Sort by ${col.label}`,
+					children: [/* @__PURE__ */ jsx("span", { children: col.label }), /* @__PURE__ */ jsx(SortIcon, { direction: active ? sortDirection : null })]
+				}) : col.label
+			}, col.key);
+		})
+	});
+}
+function GridView({ columns, rows, emptyMessage, onRowClick, sortKey, sortDirection, onSort }) {
 	const [activeRowIndex, setActiveRowIndex] = React.useState(null);
 	const handleRowClick = (index) => {
 		setActiveRowIndex(index);
@@ -80,12 +167,11 @@ function GridView({ columns, rows, emptyMessage, onRowClick }) {
 	const getCellStatus = (row, columnKey) => {
 		return row.cellStatuses?.find((cs) => cs.columnKey === columnKey)?.status;
 	};
-	return /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx("div", {
-		className: "nothing-data-grid__header",
-		children: columns.map((col) => /* @__PURE__ */ jsx("div", {
-			className: cn("nothing-data-grid__header-cell", col.type === "numeric" && "nothing-data-grid__header-cell--numeric"),
-			children: col.label
-		}, col.key))
+	return /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx(GridHeader, {
+		columns,
+		sortKey,
+		sortDirection,
+		onSort
 	}), rows.length === 0 ? /* @__PURE__ */ jsx("div", {
 		className: "nothing-data-grid__empty",
 		children: /* @__PURE__ */ jsx("div", {
@@ -158,31 +244,55 @@ function RowsView({ items, onRowClick }) {
 		}, index);
 	}) });
 }
-const DataTable = React.forwardRef(({ className, variant = "table", columns, rows = [], caption, items = [], emptyMessage = "No data", onRowClick, striped = false, compact = false, hoverable = false, ...props }, ref) => {
+const DataTable = React.forwardRef(({ className, variant = "table", columns, rows = [], caption, items = [], emptyMessage = "No data", onRowClick, onSortChange, striped = false, compact = false, hoverable = false, proximity = false, ...props }, ref) => {
+	const [sortKey, setSortKey] = React.useState(null);
+	const [sortDirection, setSortDirection] = React.useState(null);
+	const handleSort = React.useCallback((key) => {
+		setSortKey((prevKey) => {
+			if (prevKey !== key) {
+				setSortDirection("asc");
+				onSortChange?.(key, "asc");
+				return key;
+			}
+			setSortDirection((prevDir) => {
+				const nextDir = prevDir === "asc" ? "desc" : prevDir === "desc" ? null : "asc";
+				onSortChange?.(nextDir ? key : null, nextDir);
+				return nextDir;
+			});
+			return key;
+		});
+	}, [onSortChange]);
+	const sortedRows = useSortedRows(rows, columns ?? [], sortKey, sortDirection);
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(dataTableVariants({
 			variant,
 			striped: variant === "table" ? striped : false,
 			compact: variant === "table" ? compact : false,
-			hoverable: variant === "table" ? hoverable : false
+			hoverable: variant === "table" ? hoverable : false,
+			proximity
 		}), className),
 		"data-state": dataAttr(hoverable ? "hoverable" : "static"),
 		"data-variant": dataAttr(variant),
-		role: variant === "table" ? "table" : void 0,
 		...props,
 		children: [
 			variant === "table" && columns && /* @__PURE__ */ jsx(TableView, {
 				columns,
-				rows,
+				rows: sortedRows,
 				caption,
-				striped
+				striped,
+				sortKey,
+				sortDirection,
+				onSort: handleSort
 			}),
 			variant === "grid" && columns && /* @__PURE__ */ jsx(GridView, {
 				columns,
-				rows,
+				rows: sortedRows,
 				emptyMessage,
-				onRowClick
+				onRowClick,
+				sortKey,
+				sortDirection,
+				onSort: handleSort
 			}),
 			variant === "rows" && /* @__PURE__ */ jsx(RowsView, {
 				items,

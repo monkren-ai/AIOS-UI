@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
-import { useFloating } from '../hooks'
-import { useEscapeKey, useOverlayState, OverlayPortal, type OverlaySide } from '@/ui/OverlayPortal'
+import { Popover as PopoverPrimitive } from '@base-ui/react/popover'
+import type { OverlaySide } from '@/ui/OverlayPortal'
 import './Popover.css'
 
 const popoverContentVariants = cva('nothing-popover__content', {
@@ -30,99 +30,62 @@ export interface PopoverProps
 
 export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   (
-    {
-      className,
-      content,
-      side = 'bottom',
-      open: controlledOpen,
-      onOpenChange,
-      visible: _visible,
-      children,
-      ...props
-    },
-    ref
+    { className, content, side = 'bottom', open: controlledOpen, onOpenChange, visible: _visible, children, ...props },
+    ref,
   ) => {
-    const { isOpen, setOpen } = useOverlayState(controlledOpen, onOpenChange)
-    const triggerRef = React.useRef<HTMLElement | null>(null)
-    const contentRef = React.useRef<HTMLDivElement | null>(null)
-    const containerRef = React.useRef<HTMLDivElement | null>(null)
-    const popoverId = React.useId()
-    const { style, update } = useFloating(side)
+    const [internalOpen, setInternalOpen] = React.useState(false)
+    const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen
 
-    const setContainerRefs = React.useCallback(
-      (node: HTMLDivElement | null) => {
-        containerRef.current = node
-        if (typeof ref === 'function') ref(node)
-        else if (ref && 'current' in ref) {
-          ;(ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+    const handleOpenChange = React.useCallback(
+      (nextOpen: boolean) => {
+        if (controlledOpen === undefined) {
+          setInternalOpen(nextOpen)
         }
+        onOpenChange?.(nextOpen)
       },
-      [ref]
+      [controlledOpen, onOpenChange],
     )
-
-    // Click outside covers both the trigger container AND the portaled content
-    // (content lives in document.body after portal, so containerRef alone is not enough).
-    React.useEffect(() => {
-      if (!isOpen) return
-      const handler = (event: MouseEvent | TouchEvent) => {
-        const target = event.target as Node | null
-        if (!target) return
-        if (containerRef.current?.contains(target)) return
-        if (contentRef.current?.contains(target)) return
-        setOpen(false)
-      }
-      document.addEventListener('mousedown', handler)
-      document.addEventListener('touchstart', handler)
-      return () => {
-        document.removeEventListener('mousedown', handler)
-        document.removeEventListener('touchstart', handler)
-      }
-    }, [isOpen, setOpen])
-
-    useEscapeKey(isOpen, () => {
-      setOpen(false)
-      triggerRef.current?.focus()
-    })
-
-    React.useEffect(() => {
-      if (isOpen && triggerRef.current && contentRef.current) {
-        update(triggerRef.current, contentRef.current)
-      }
-    }, [isOpen, update])
 
     return (
-      <div
-        ref={setContainerRefs}
-        className={cn('nothing-popover', className)}
-        data-state={dataAttr(isOpen ? 'open' : 'closed')}
-        {...props}
-      >
-        <span
-          className="nothing-popover__trigger"
-          ref={triggerRef}
-          onClick={() => setOpen(!isOpen)}
-          aria-haspopup={true}
-          aria-expanded={isOpen}
-          aria-controls={popoverId}
-        >
-          {children}
-        </span>
-        <OverlayPortal open={isOpen}>
-          <div
-            ref={contentRef}
-            className={cn(popoverContentVariants({ visible: isOpen, side }))}
-            role="dialog"
-            id={popoverId}
-            style={style}
-            data-state={dataAttr(isOpen ? 'open' : 'closed')}
-            data-side={dataAttr(side)}
+      <PopoverPrimitive.Root open={isOpen} onOpenChange={handleOpenChange}>
+        <PopoverPrimitive.Trigger
+          data-slot="popover-trigger"
+          render={(triggerProps) => {
+            if (React.isValidElement(children)) {
+              return React.cloneElement(children as React.ReactElement<{ className?: string }>, {
+                ...triggerProps,
+                className: cn('nothing-popover__trigger', (children.props as { className?: string }).className),
+              })
+            }
+            return (
+              <span {...triggerProps} className="nothing-popover__trigger" data-slot="popover-trigger">
+                {children}
+              </span>
+            )
+          }}
+        />
+        <PopoverPrimitive.Portal>
+          <PopoverPrimitive.Positioner
+            className="nothing-popover__positioner"
+            data-slot="popover-positioner"
+            side={side}
+            sideOffset={4}
           >
-            {content}
-          </div>
-        </OverlayPortal>
-      </div>
+            <PopoverPrimitive.Popup
+              ref={ref}
+              className={cn(popoverContentVariants({ visible: isOpen, side }), className)}
+              data-slot="popover-content"
+              data-state={dataAttr(isOpen ? 'open' : 'closed')}
+              data-side={dataAttr(side)}
+              {...props}
+            >
+              {content}
+            </PopoverPrimitive.Popup>
+          </PopoverPrimitive.Positioner>
+        </PopoverPrimitive.Portal>
+      </PopoverPrimitive.Root>
     )
-  }
+  },
 )
 Popover.displayName = 'Popover'
 

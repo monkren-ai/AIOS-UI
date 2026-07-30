@@ -1,5 +1,5 @@
 import "../hooks/useDisclosure.mjs";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 //#region src/ui/OverlayPortal.tsx
 /**
@@ -59,65 +59,12 @@ function useEscapeKey(active, handler) {
 		return () => document.removeEventListener("keydown", fn);
 	}, [active, handler]);
 }
-/**
-* active=true 时锁住 body 滚动 (overflow=hidden), 卸载时还原。
-* 多个 overlay 同时活跃时, 用 ref-count 保证不会提前解锁。
-*/
-let scrollLockCount = 0;
-let savedBodyOverflow = "";
-function lockBodyScroll() {
-	if (typeof document === "undefined") return;
-	if (scrollLockCount === 0) {
-		savedBodyOverflow = document.body.style.overflow;
-		document.body.style.overflow = "hidden";
-	}
-	scrollLockCount += 1;
-}
-function unlockBodyScroll() {
-	if (typeof document === "undefined") return;
-	scrollLockCount = Math.max(0, scrollLockCount - 1);
-	if (scrollLockCount === 0) document.body.style.overflow = savedBodyOverflow;
-}
-function useScrollLock(active) {
-	useEffect(() => {
-		if (!active) return;
-		lockBodyScroll();
-		return () => {
-			unlockBodyScroll();
-		};
-	}, [active]);
-}
-const FOCUSABLE_SELECTOR = "button, [href], input, select, textarea, [tabindex]:not([tabindex=\"-1\"])";
-/**
-* 在 ref 容器内实现 Tab 循环焦点陷阱。
-* 消费者应把返回的 onKeyDown 挂到 dialog 根元素。
-*/
-function useTabCycle(active) {
-	const ref = useRef(null);
-	return {
-		ref,
-		onKeyDown: useCallback((e) => {
-			if (e.key !== "Tab" || !active || !ref.current) return;
-			const focusable = ref.current.querySelectorAll(FOCUSABLE_SELECTOR);
-			if (focusable.length === 0) return;
-			const first = focusable[0];
-			const last = focusable[focusable.length - 1];
-			if (e.shiftKey && document.activeElement === first) {
-				e.preventDefault();
-				last.focus();
-			} else if (!e.shiftKey && document.activeElement === last) {
-				e.preventDefault();
-				first.focus();
-			}
-		}, [active])
-	};
-}
 const OverlayPortal = ({ open, children, container, ssrGuard = true }) => {
 	if (!open) return null;
 	if (ssrGuard && typeof document === "undefined") return null;
 	return createPortal(children, container ?? document.body);
 };
 //#endregion
-export { OverlayPortal, useEscapeKey, useOverlayState, useScrollLock, useTabCycle };
+export { OverlayPortal, useEscapeKey, useOverlayState };
 
 //# sourceMappingURL=OverlayPortal.mjs.map

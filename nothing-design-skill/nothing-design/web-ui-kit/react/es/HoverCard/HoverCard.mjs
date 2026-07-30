@@ -1,9 +1,8 @@
-import { cn, dataAttr } from "../lib/utils.mjs";
-import { OverlayPortal, useOverlayState } from "../ui/OverlayPortal.mjs";
-import { useFloating } from "../hooks/useFloating.mjs";
+import { cn } from "../lib/utils.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
+import { Popover } from "@base-ui/react/popover";
 import "./HoverCard.css";
 //#region src/HoverCard/HoverCard.tsx
 const hoverCardContentVariants = cva("nothing-hover-card__content", {
@@ -23,66 +22,37 @@ const hoverCardContentVariants = cva("nothing-hover-card__content", {
 	}
 });
 const HoverCard = React.forwardRef(({ className, content, side = "bottom", delay = 300, visible: _visible, children, ...props }, ref) => {
-	const { isOpen, setOpen } = useOverlayState(void 0);
-	const triggerRef = React.useRef(null);
-	const contentRef = React.useRef(null);
-	const timeoutRef = React.useRef(null);
-	const hoverCardId = React.useId();
-	const { style, update } = useFloating(side);
-	const setContainerRefs = React.useCallback((node) => {
-		contentRef.current = node;
-		if (typeof ref === "function") ref(node);
-		else if (ref && "current" in ref) ref.current = node;
-	}, [ref]);
-	const show = React.useCallback(() => {
-		if (timeoutRef.current) clearTimeout(timeoutRef.current);
-		timeoutRef.current = setTimeout(() => {
-			setOpen(true);
-		}, delay);
-	}, [delay, setOpen]);
-	const hide = React.useCallback(() => {
-		if (timeoutRef.current) clearTimeout(timeoutRef.current);
-		setOpen(false);
-	}, [setOpen]);
-	React.useEffect(() => {
-		if (isOpen && triggerRef.current && contentRef.current) update(triggerRef.current, contentRef.current);
-	}, [isOpen, update]);
-	React.useEffect(() => {
-		return () => {
-			if (timeoutRef.current) clearTimeout(timeoutRef.current);
-		};
-	}, []);
-	return /* @__PURE__ */ jsxs("div", {
-		className: cn("nothing-hover-card", className),
-		"data-state": dataAttr(isOpen ? "visible" : "hidden"),
-		...props,
-		children: [/* @__PURE__ */ jsx("span", {
-			className: "nothing-hover-card__trigger",
-			ref: triggerRef,
-			onMouseEnter: show,
-			onMouseLeave: hide,
-			onFocus: show,
-			onBlur: hide,
-			"aria-describedby": hoverCardId,
-			children
-		}), /* @__PURE__ */ jsx(OverlayPortal, {
-			open: isOpen,
-			children: /* @__PURE__ */ jsx("div", {
-				ref: setContainerRefs,
-				className: cn(hoverCardContentVariants({
-					visible: isOpen,
-					side
-				})),
-				id: hoverCardId,
-				style,
-				onMouseEnter: show,
-				onMouseLeave: hide,
-				"data-state": dataAttr(isOpen ? "visible" : "hidden"),
-				"data-side": dataAttr(side),
-				children: content
-			})
-		})]
-	});
+	return /* @__PURE__ */ jsxs(Popover.Root, { children: [/* @__PURE__ */ jsx(Popover.Trigger, {
+		openOnHover: true,
+		delay,
+		closeDelay: 0,
+		"data-slot": "hover-card-trigger",
+		render: (triggerProps) => {
+			if (React.isValidElement(children)) return React.cloneElement(children, {
+				...triggerProps,
+				className: cn("nothing-hover-card__trigger", children.props.className)
+			});
+			return /* @__PURE__ */ jsx("span", {
+				...triggerProps,
+				className: "nothing-hover-card__trigger",
+				"data-slot": "hover-card-trigger",
+				children
+			});
+		}
+	}), /* @__PURE__ */ jsx(Popover.Portal, { children: /* @__PURE__ */ jsx(Popover.Positioner, {
+		className: "nothing-hover-card__positioner",
+		"data-slot": "hover-card-positioner",
+		side,
+		sideOffset: 4,
+		children: /* @__PURE__ */ jsx(Popover.Popup, {
+			ref,
+			className: cn(hoverCardContentVariants({ side }), className),
+			"data-slot": "hover-card-content",
+			"data-side": side,
+			...props,
+			children: content
+		})
+	}) })] });
 });
 HoverCard.displayName = "HoverCard";
 //#endregion

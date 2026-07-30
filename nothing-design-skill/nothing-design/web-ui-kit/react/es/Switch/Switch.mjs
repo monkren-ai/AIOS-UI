@@ -14,14 +14,20 @@ const switchVariants = cva("nothing-switch", {
 		disabled: {
 			true: "nothing-switch--disabled",
 			false: ""
+		},
+		size: {
+			sm: "nothing-switch--sm",
+			md: "",
+			lg: "nothing-switch--lg"
 		}
 	},
 	defaultVariants: {
 		checked: false,
-		disabled: false
+		disabled: false,
+		size: "md"
 	}
 });
-const Switch$1 = React.forwardRef(({ className, on: controlledOn, label, disabled, onChange, checked, ...props }, ref) => {
+const Switch$1 = React.forwardRef(({ className, on: controlledOn, label, disabled, onChange, checked, size = "md", ...props }, ref) => {
 	const [internalOn, setInternalOn] = React.useState(false);
 	const isOn = controlledOn !== void 0 ? controlledOn : checked ?? internalOn;
 	const isDisabled = !!disabled;
@@ -33,11 +39,13 @@ const Switch$1 = React.forwardRef(({ className, on: controlledOn, label, disable
 		ref,
 		className: cn(switchVariants({
 			checked: isOn,
-			disabled: isDisabled
+			disabled: isDisabled,
+			size
 		}), className),
 		"data-slot": "switch",
 		"data-state": dataAttr(isOn ? "on" : "off"),
 		"data-disabled": dataAttr(isDisabled),
+		"data-size": dataAttr(size),
 		...props,
 		children: [/* @__PURE__ */ jsx(Switch.Root, {
 			className: "nothing-switch__track",

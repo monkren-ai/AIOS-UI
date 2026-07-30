@@ -2,135 +2,80 @@ import { cn, dataAttr } from "../lib/utils.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
+import { Slider } from "@base-ui/react/slider";
 import "./Slider.css";
 //#region src/Slider/Slider.tsx
 const sliderVariants = cva("nothing-slider", {
-	variants: { disabled: {
-		true: "nothing-slider--disabled",
-		false: ""
-	} },
-	defaultVariants: { disabled: false }
-});
-const Slider = React.forwardRef(({ className, value: controlledValue, defaultValue, onValueChange, min = 0, max = 100, step = 1, disabled, label, showValue = false, ...props }, ref) => {
-	const [internalValue, setInternalValue] = React.useState(defaultValue ?? min);
-	const currentValue = controlledValue !== void 0 ? controlledValue : internalValue;
-	const trackRef = React.useRef(null);
-	const isDragging = React.useRef(false);
-	const isDisabled = !!disabled;
-	const clampValue = React.useCallback((val) => {
-		const stepped = Math.round(Math.max(min, Math.min(max, val)) / step) * step;
-		const precision = String(step).includes(".") ? String(step).split(".")[1].length : 0;
-		return Number(stepped.toFixed(precision));
-	}, [
-		min,
-		max,
-		step
-	]);
-	const updateValue = React.useCallback((clientX) => {
-		const track = trackRef.current;
-		if (!track) return;
-		const rect = track.getBoundingClientRect();
-		const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-		const newValue = clampValue(min + ratio * (max - min));
-		if (controlledValue === void 0) setInternalValue(newValue);
-		onValueChange?.(newValue);
-	}, [
-		min,
-		max,
-		controlledValue,
-		onValueChange,
-		clampValue
-	]);
-	const handlePointerDown = React.useCallback((e) => {
-		if (isDisabled) return;
-		isDragging.current = true;
-		e.currentTarget.setPointerCapture(e.pointerId);
-		updateValue(e.clientX);
-	}, [isDisabled, updateValue]);
-	const handlePointerMove = React.useCallback((e) => {
-		if (!isDragging.current || isDisabled) return;
-		updateValue(e.clientX);
-	}, [isDisabled, updateValue]);
-	const handlePointerUp = React.useCallback(() => {
-		isDragging.current = false;
-	}, []);
-	const handleKeyDown = React.useCallback((e) => {
-		if (isDisabled) return;
-		let newValue = currentValue;
-		switch (e.key) {
-			case "ArrowRight":
-			case "ArrowUp":
-				e.preventDefault();
-				newValue = clampValue(currentValue + step);
-				break;
-			case "ArrowLeft":
-			case "ArrowDown":
-				e.preventDefault();
-				newValue = clampValue(currentValue - step);
-				break;
-			case "Home":
-				e.preventDefault();
-				newValue = min;
-				break;
-			case "End":
-				e.preventDefault();
-				newValue = max;
-				break;
-			default: return;
+	variants: {
+		size: {
+			sm: "nothing-slider--sm",
+			md: "nothing-slider--md",
+			lg: "nothing-slider--lg"
+		},
+		variant: {
+			default: "nothing-slider--default",
+			minimal: "nothing-slider--minimal"
+		},
+		disabled: {
+			true: "nothing-slider--disabled",
+			false: ""
 		}
-		if (controlledValue === void 0) setInternalValue(newValue);
-		onValueChange?.(newValue);
-	}, [
-		isDisabled,
-		currentValue,
-		step,
+	},
+	defaultVariants: {
+		size: "md",
+		variant: "default",
+		disabled: false
+	}
+});
+const Slider$1 = React.forwardRef(({ className, value: controlledValue, defaultValue, onValueChange, min = 0, max = 100, step = 1, disabled, label, showValue = false, size, variant, ...props }, ref) => {
+	const handleValueChange = React.useCallback((value) => {
+		onValueChange?.(value);
+	}, [onValueChange]);
+	const hasHeader = Boolean(label || showValue);
+	return /* @__PURE__ */ jsxs(Slider.Root, {
+		ref,
+		className: cn(sliderVariants({
+			size,
+			variant,
+			disabled: !!disabled
+		}), className),
+		"data-slot": "slider",
+		"data-size": dataAttr(size),
+		"data-variant": dataAttr(variant),
+		value: controlledValue,
+		defaultValue,
 		min,
 		max,
-		controlledValue,
-		onValueChange,
-		clampValue
-	]);
-	const percentage = (currentValue - min) / (max - min) * 100;
-	return /* @__PURE__ */ jsxs("div", {
-		ref,
-		className: cn(sliderVariants({ disabled: isDisabled }), className),
-		"data-disabled": dataAttr(isDisabled),
-		"data-value": currentValue,
+		step,
+		disabled,
+		"data-disabled": dataAttr(disabled),
+		onValueChange: handleValueChange,
 		...props,
-		children: [(label || showValue) && /* @__PURE__ */ jsxs("div", {
+		children: [hasHeader && /* @__PURE__ */ jsxs("div", {
 			className: "nothing-slider__header",
-			children: [label && /* @__PURE__ */ jsx("span", {
+			children: [label && /* @__PURE__ */ jsx(Slider.Label, {
 				className: "nothing-slider__label",
 				children: label
-			}), showValue && /* @__PURE__ */ jsx("span", {
-				className: "nothing-slider__value",
-				children: currentValue
-			})]
-		}), /* @__PURE__ */ jsxs("div", {
-			className: "nothing-slider__track",
-			ref: trackRef,
-			onPointerDown: handlePointerDown,
-			onPointerMove: handlePointerMove,
-			onPointerUp: handlePointerUp,
-			children: [/* @__PURE__ */ jsx("div", {
-				className: "nothing-slider__fill",
-				style: { width: `${percentage}%` }
-			}), /* @__PURE__ */ jsx("div", {
+			}), showValue && /* @__PURE__ */ jsx(Slider.Value, { className: "nothing-slider__value" })]
+		}), /* @__PURE__ */ jsxs(Slider.Control, {
+			className: "nothing-slider__control",
+			"data-slot": "slider-control",
+			children: [/* @__PURE__ */ jsx(Slider.Track, {
+				className: "nothing-slider__track",
+				"data-slot": "slider-track",
+				children: /* @__PURE__ */ jsx(Slider.Indicator, {
+					className: "nothing-slider__fill",
+					"data-slot": "slider-fill"
+				})
+			}), /* @__PURE__ */ jsx(Slider.Thumb, {
 				className: "nothing-slider__thumb",
-				style: { left: `${percentage}%` },
-				role: "slider",
-				tabIndex: isDisabled ? -1 : 0,
-				"aria-valuemin": min,
-				"aria-valuemax": max,
-				"aria-valuenow": currentValue,
-				"aria-label": label,
-				onKeyDown: handleKeyDown
+				"data-slot": "slider-thumb"
 			})]
 		})]
 	});
 });
-Slider.displayName = "Slider";
+Slider$1.displayName = "Slider";
 //#endregion
-export { Slider, Slider as default, sliderVariants };
+export { Slider$1 as Slider, Slider$1 as default, sliderVariants };
 
 //# sourceMappingURL=Slider.mjs.map

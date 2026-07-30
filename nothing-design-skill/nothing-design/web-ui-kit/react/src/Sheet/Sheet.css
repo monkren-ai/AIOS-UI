@@ -18,7 +18,7 @@
   position: fixed;
   background: var(--surface);
   z-index: calc(var(--z-modal) + 1);
-  transition: transform var(--duration-transition) var(--easing);
+  transition: transform var(--duration-spring-moderate) var(--ease-spring-moderate);
   display: flex;
   flex-direction: column;
   max-height: 100vh;
@@ -36,6 +36,10 @@
   transform: translateX(100%);
 }
 
+.nothing-sheet--right[data-state='open'] {
+  transform: translateX(0);
+}
+
 .nothing-sheet--left {
   top: 0;
   left: 0;
@@ -45,6 +49,10 @@
   border-right: 1px solid var(--border-visible);
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
   transform: translateX(-100%);
+}
+
+.nothing-sheet--left[data-state='open'] {
+  transform: translateX(0);
 }
 
 .nothing-sheet--top {
@@ -58,6 +66,10 @@
   transform: translateY(-100%);
 }
 
+.nothing-sheet--top[data-state='open'] {
+  transform: translateY(0);
+}
+
 .nothing-sheet--bottom {
   bottom: 0;
   left: 0;
@@ -69,19 +81,7 @@
   transform: translateY(100%);
 }
 
-.nothing-sheet--visible-right {
-  transform: translateX(0);
-}
-
-.nothing-sheet--visible-left {
-  transform: translateX(0);
-}
-
-.nothing-sheet--visible-top {
-  transform: translateY(0);
-}
-
-.nothing-sheet--visible-bottom {
+.nothing-sheet--bottom[data-state='open'] {
   transform: translateY(0);
 }
 

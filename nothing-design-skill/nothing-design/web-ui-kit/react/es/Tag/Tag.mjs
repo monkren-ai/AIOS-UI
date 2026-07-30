@@ -1,4 +1,5 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { useProximityHover } from "../hooks/useProximityHover.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
@@ -67,6 +68,7 @@ const Tag = React.forwardRef(({ className, variant = "pill", active = false, rem
 		onKeyDown: handleKeyDown,
 		...props,
 		children: [children, removable && /* @__PURE__ */ jsx("button", {
+			type: "button",
 			className: "nothing-tag__remove",
 			onClick: handleRemove,
 			onKeyDown: handleRemoveKeyDown,
@@ -77,12 +79,29 @@ const Tag = React.forwardRef(({ className, variant = "pill", active = false, rem
 	});
 });
 Tag.displayName = "Tag";
-const Tags = React.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx("div", {
-	ref,
-	className: cn("nothing-tags", className),
-	...props,
-	children
-}));
+const Tags = React.forwardRef(({ className, children, proximity = false, ...props }, ref) => {
+	const containerRef = React.useRef(null);
+	const axis = typeof proximity === "string" ? proximity : "xy";
+	const enabled = !!proximity;
+	const { activeIndex, registerItem, handlers } = useProximityHover(containerRef, { axis });
+	const mergedRef = React.useCallback((node) => {
+		containerRef.current = node;
+		if (typeof ref === "function") ref(node);
+		else if (ref && "current" in ref) ref.current = node;
+	}, [ref]);
+	const items = React.Children.toArray(children).filter(React.isValidElement);
+	return /* @__PURE__ */ jsx("div", {
+		ref: mergedRef,
+		className: cn("nothing-tags", enabled && "nothing-tags--proximity", className),
+		...enabled ? handlers : {},
+		...props,
+		children: items.map((child, index) => React.cloneElement(child, {
+			ref: (node) => registerItem(index, node),
+			"data-proximity-active": activeIndex === index,
+			"data-index": index
+		}))
+	});
+});
 Tags.displayName = "Tags";
 //#endregion
 export { Tag, Tag as default, Tags, tagVariants };

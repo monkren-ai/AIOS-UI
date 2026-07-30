@@ -115,6 +115,18 @@
   --duration-agent-breathe: 2000ms;
   --duration-agent-pulse: 800ms;
   --duration-agent-step: 1200ms;
+
+  /* Spring tokens — 参考 fluid-functionalism */
+  --duration-spring-fast: 80ms;
+  --duration-spring-fast-exit: 60ms;
+  --duration-spring-moderate: 160ms;
+  --duration-spring-moderate-exit: 120ms;
+  --duration-spring-slow: 240ms;
+  --duration-spring-slow-exit: 160ms;
+  --ease-spring-fast: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring-moderate: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring-slow: cubic-bezier(0.33, 1, 0.68, 1);
+
   --easing: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-back: cubic-bezier(.34, 1.56, .64, 1);
   --animation-agent-breathe: agent-breathe var(--duration-agent-breathe) ease-in-out infinite;
@@ -253,6 +265,36 @@
   --content-width-normal: 768px;
   --content-width-wide: 1024px;
   --content-width-full: 1120px;
+
+  /* ===== Surface Elevation（无阴影，仅通过 background/border 层级区分） =====
+   * 参考 fluid-functionalism 的 surface 系统，映射为 Nothing 的 monochrome 层级。
+   */
+  --surface-elevated-1: var(--surface);
+  --surface-elevated-2: var(--surface-raised);
+  --surface-elevated-3: var(--surface);
+  --surface-elevated-4: var(--surface-raised);
+  --surface-elevated-5: var(--surface);
+  --surface-elevated-6: var(--surface-raised);
+  --surface-elevated-7: var(--surface);
+  --surface-elevated-8: var(--surface-raised);
+  --border-elevated-1: var(--border);
+  --border-elevated-2: var(--border-visible);
+  --border-elevated-3: var(--border);
+  --border-elevated-4: var(--border-visible);
+  --border-elevated-5: var(--border);
+  --border-elevated-6: var(--border-visible);
+  --border-elevated-7: var(--border);
+  --border-elevated-8: var(--border-visible);
+
+  /* ===== 字重过渡工具类 ===== */
+  --font-weight-transition:
+    font-weight var(--duration-micro) var(--easing),
+    font-variation-settings var(--duration-micro) var(--easing);
+}
+
+/* ===== 字重过渡工具类 ===== */
+.nothing-font-weight-transition {
+  transition: var(--font-weight-transition);
 }
 
 /* ===== 暗色主题（默认）=====

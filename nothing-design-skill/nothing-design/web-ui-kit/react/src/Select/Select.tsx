@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
-import { useClickOutside } from '@/hooks/useClickOutside'
+import { Select as SelectPrimitive } from '@base-ui/react/select'
 import { selectVariants, selectTriggerVariants, selectItemVariants } from './select-variants'
 import './Select.css'
 
@@ -12,8 +11,7 @@ export interface SelectOption {
 }
 
 export interface SelectProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue' | 'value'>,
-    VariantProps<typeof selectVariants> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue' | 'value'> {
   options: SelectOption[]
   value?: string
   defaultValue?: string
@@ -21,6 +19,11 @@ export interface SelectProps
   placeholder?: string
   error?: string
   label?: string
+  disabled?: boolean
+  /**
+   * 是否在弹出层顶部显示搜索框并过滤选项。
+   * @default false
+   */
   searchable?: boolean
 }
 
@@ -34,230 +37,166 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       onValueChange,
       placeholder = 'Select an option',
       disabled = false,
-      hasError = false,
       label,
       error,
       searchable = false,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const [internalValue, setInternalValue] = React.useState<string | undefined>(defaultValue)
-    const [isOpen, setIsOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false)
     const [searchQuery, setSearchQuery] = React.useState('')
-    const [highlightedIndex, setHighlightedIndex] = React.useState(-1)
-    const containerRef = React.useRef<HTMLDivElement | null>(null)
-    const searchInputRef = React.useRef<HTMLInputElement | null>(null)
-    const listRef = React.useRef<HTMLDivElement | null>(null)
 
-    const setContainerRefs = React.useCallback(
-      (node: HTMLDivElement | null) => {
-        containerRef.current = node
-        if (typeof ref === 'function') ref(node)
-        else if (ref && 'current' in ref) {
-          ;(ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+    const handleValueChange = React.useCallback(
+      (value: string | null) => {
+        if (value !== null) {
+          onValueChange?.(value)
         }
       },
-      [ref]
+      [onValueChange],
     )
 
-    const selectedValue = controlledValue !== undefined ? controlledValue : internalValue
-    const selectedOption = options.find((opt) => opt.value === selectedValue)
-
-    const filteredOptions =
-      searchable && searchQuery
-        ? options.filter((opt) => opt.label.toLowerCase().includes(searchQuery.toLowerCase()))
-        : options
-
-    useClickOutside(containerRef, () => {
-      setIsOpen(false)
-      setSearchQuery('')
-    })
-
-    React.useEffect(() => {
-      if (isOpen && searchable && searchInputRef.current) {
-        searchInputRef.current.focus()
-      }
-      if (isOpen) {
-        setHighlightedIndex(-1)
-        setSearchQuery('')
-      }
-    }, [isOpen, searchable])
-
-    const handleToggle = () => {
-      if (disabled) return
-      setIsOpen((prev) => !prev)
-    }
-
-    const handleSelect = React.useCallback(
-      (option: SelectOption) => {
-        if (option.disabled) return
-        if (controlledValue === undefined) {
-          setInternalValue(option.value)
-        }
-        onValueChange?.(option.value)
-        setIsOpen(false)
-        setSearchQuery('')
-      },
-      [controlledValue, onValueChange],
-    )
-
-    const getEnabledIndices = React.useCallback(() => {
-      return filteredOptions
-        .map((opt, i) => (!opt.disabled ? i : -1))
-        .filter((i) => i !== -1)
-    }, [filteredOptions])
-
-    const handleKeyDown = React.useCallback(
-      (e: React.KeyboardEvent<HTMLDivElement>) => {
-        if (!isOpen) {
-          if (
-            e.key === 'Enter' ||
-            e.key === ' ' ||
-            e.key === 'ArrowDown' ||
-            e.key === 'ArrowUp'
-          ) {
-            e.preventDefault()
-            if (!disabled) setIsOpen(true)
-          }
-          return
-        }
-
-        const enabledIndices = getEnabledIndices()
-
-        switch (e.key) {
-          case 'ArrowDown': {
-            e.preventDefault()
-            const currentPos = enabledIndices.indexOf(highlightedIndex)
-            const nextPos = currentPos < enabledIndices.length - 1 ? currentPos + 1 : 0
-            setHighlightedIndex(enabledIndices[nextPos])
-            break
-          }
-          case 'ArrowUp': {
-            e.preventDefault()
-            const currentPos = enabledIndices.indexOf(highlightedIndex)
-            const prevPos = currentPos > 0 ? currentPos - 1 : enabledIndices.length - 1
-            setHighlightedIndex(enabledIndices[prevPos])
-            break
-          }
-          case 'Enter': {
-            e.preventDefault()
-            if (highlightedIndex >= 0 && highlightedIndex < filteredOptions.length) {
-              handleSelect(filteredOptions[highlightedIndex])
-            }
-            break
-          }
-          case 'Escape': {
-            e.preventDefault()
-            setIsOpen(false)
-            setSearchQuery('')
-            break
-          }
+    const handleOpenChange = React.useCallback(
+      (nextOpen: boolean) => {
+        setOpen(nextOpen)
+        if (!nextOpen) {
+          setSearchQuery('')
         }
       },
-      [isOpen, highlightedIndex, disabled, filteredOptions, getEnabledIndices, handleSelect]
+      [setOpen, setSearchQuery],
     )
 
-    React.useEffect(() => {
-      if (highlightedIndex >= 0 && listRef.current) {
-        const items = listRef.current.querySelectorAll('[role="option"]')
-        items[highlightedIndex]?.scrollIntoView({ block: 'nearest' })
-      }
-    }, [highlightedIndex])
+    const filteredOptions = React.useMemo(() => {
+      if (!searchable || !searchQuery) return options
+      const query = searchQuery.toLowerCase()
+      return options.filter((opt) => opt.label.toLowerCase().includes(query))
+    }, [options, searchable, searchQuery])
+
+    const hasError = Boolean(error)
 
     return (
       <div
-        ref={setContainerRefs}
-        className={cn(
-          selectVariants({ disabled, hasError: !!error || hasError, open: isOpen }),
-          className
-        )}
-        onKeyDown={handleKeyDown}
+        ref={ref}
+        className={cn(selectVariants({ disabled, hasError }), className)}
         data-slot="select"
-        data-state={dataAttr(isOpen ? 'open' : 'closed')}
+        data-state={dataAttr(open ? 'open' : 'closed')}
         data-disabled={dataAttr(disabled)}
-        data-error={dataAttr(!!error || hasError)}
+        data-error={dataAttr(hasError)}
         {...props}
       >
-        {label && <label className="nothing-select__label">{label}</label>}
-        <button
-          className={cn(selectTriggerVariants({ open: isOpen }))}
-          onClick={handleToggle}
-          disabled={!!disabled}
-          role={searchable ? 'combobox' : 'listbox'}
-          aria-expanded={isOpen}
-          aria-haspopup="listbox"
-          type="button"
-          data-state={dataAttr(isOpen ? 'open' : 'closed')}
+        <SelectPrimitive.Root
+          value={controlledValue}
+          defaultValue={defaultValue}
+          onValueChange={handleValueChange}
+          onOpenChange={handleOpenChange}
+          open={open}
+          disabled={disabled}
         >
-          {selectedOption ? (
-            <span className="nothing-select__trigger-value">{selectedOption.label}</span>
-          ) : (
-            <span className="nothing-select__trigger-placeholder">{placeholder}</span>
+          {label && (
+            <SelectPrimitive.Label className="nothing-select__label" data-slot="select-label">
+              {label}
+            </SelectPrimitive.Label>
           )}
-          <span className="nothing-select__trigger-icon" aria-hidden="true">
-            ▾
-          </span>
-        </button>
-        {isOpen && (
-          <div
-            className="nothing-select__content"
-            role="listbox"
-            aria-label={label || 'Options'}
-            data-state={dataAttr('open')}
+          <SelectPrimitive.Trigger
+            className={(state) =>
+              cn(
+                selectTriggerVariants({
+                  open: state.open,
+                }),
+              )
+            }
+            data-slot="select-trigger"
+            data-state={dataAttr(open ? 'open' : 'closed')}
           >
-            {searchable && (
-              <div className="nothing-select__search">
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search..."
-                  className="nothing-select__search-input"
-                  aria-label="Search options"
-                />
-              </div>
-            )}
-            <div className="nothing-select__list" ref={listRef}>
-              {filteredOptions.length === 0 ? (
-                <div className="nothing-select__item nothing-select__item--disabled">
-                  No results found
-                </div>
-              ) : (
-                filteredOptions.map((option, index) => {
-                  const isSelected = option.value === selectedValue
-                  const isHighlighted = index === highlightedIndex
-                  return (
-                    <div
-                      key={option.value}
-                      className={cn(
-                        selectItemVariants({
-                          selected: isSelected,
-                          disabled: !!option.disabled,
-                          highlighted: isHighlighted,
-                        })
-                      )}
-                      onClick={() => handleSelect(option)}
-                      role="option"
-                      aria-selected={isSelected}
-                      data-state={dataAttr(isSelected ? 'selected' : 'idle')}
-                      data-highlighted={dataAttr(isHighlighted)}
-                      data-disabled={dataAttr(option.disabled)}
-                    >
-                      {option.label}
+            <SelectPrimitive.Value
+              className="nothing-select__trigger-value"
+              data-slot="select-value"
+            >
+              {(value: string | null) => {
+                if (value === null) {
+                  return <span className="nothing-select__trigger-placeholder">{placeholder}</span>
+                }
+                const option = options.find((opt) => opt.value === value)
+                return option?.label ?? value
+              }}
+            </SelectPrimitive.Value>
+            <span className="nothing-select__trigger-icon" aria-hidden="true">
+              ▾
+            </span>
+          </SelectPrimitive.Trigger>
+          <SelectPrimitive.Portal>
+            <SelectPrimitive.Positioner
+              className="nothing-select__positioner"
+              data-slot="select-positioner"
+              sideOffset={4}
+              align="start"
+            >
+              <SelectPrimitive.Popup
+                className="nothing-select__content"
+                data-slot="select-content"
+                data-state={dataAttr(open ? 'open' : 'closed')}
+              >
+                {searchable && (
+                  <div className="nothing-select__search" data-slot="select-search">
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search..."
+                      className="nothing-select__search-input"
+                      aria-label="Search options"
+                      autoFocus={open}
+                    />
+                  </div>
+                )}
+                <SelectPrimitive.List className="nothing-select__list" data-slot="select-list">
+                  {filteredOptions.length === 0 ? (
+                    <div className="nothing-select__item nothing-select__item--disabled">
+                      No results found
                     </div>
-                  )
-                })
-              )}
-            </div>
-          </div>
-        )}
+                  ) : (
+                    filteredOptions.map((option) => (
+                      <SelectPrimitive.Item
+                        key={option.value}
+                        value={option.value}
+                        disabled={option.disabled}
+                        className={(state) =>
+                          cn(
+                            selectItemVariants({
+                              selected: state.selected,
+                              disabled: state.disabled,
+                              highlighted: state.highlighted,
+                            }),
+                          )
+                        }
+                        data-slot="select-item"
+                        data-state={dataAttr(
+                          option.value === controlledValue ? 'selected' : 'idle',
+                        )}
+                        data-disabled={dataAttr(option.disabled)}
+                      >
+                        <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
+                        <SelectPrimitive.ItemIndicator
+                          keepMounted
+                          className="nothing-select__item-indicator"
+                          data-slot="select-item-indicator"
+                        >
+                          ✓
+                        </SelectPrimitive.ItemIndicator>
+                      </SelectPrimitive.Item>
+                    ))
+                  )}
+                </SelectPrimitive.List>
+              </SelectPrimitive.Popup>
+            </SelectPrimitive.Positioner>
+          </SelectPrimitive.Portal>
+        </SelectPrimitive.Root>
         {error && <div className="nothing-select__error">{error}</div>}
       </div>
     )
-  }
+  },
 )
 Select.displayName = 'Select'
 
+export { selectVariants, selectTriggerVariants, selectItemVariants }
 export default Select

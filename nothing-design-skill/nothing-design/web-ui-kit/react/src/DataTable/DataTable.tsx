@@ -29,6 +29,7 @@ export interface DataTableColumn {
   width?: string
   align?: 'left' | 'center' | 'right'
   type?: 'text' | 'numeric'
+  sortable?: boolean
 }
 
 export interface DataTableCellStatus {
@@ -55,6 +56,8 @@ export interface DataTableRowsItem {
   disabled?: boolean
 }
 
+export type SortDirection = 'asc' | 'desc' | null
+
 // ---------- CVA ----------
 
 export const dataTableVariants = cva('nothing-data-table', {
@@ -67,8 +70,9 @@ export const dataTableVariants = cva('nothing-data-table', {
     striped: { true: 'nothing-table--striped', false: '' },
     compact: { true: 'nothing-table--compact', false: '' },
     hoverable: { true: 'nothing-table--hoverable', false: '' },
+    proximity: { true: 'nothing-data-table--proximity', false: '' },
   },
-  defaultVariants: { variant: 'table', striped: false, compact: false, hoverable: false },
+  defaultVariants: { variant: 'table', striped: false, compact: false, hoverable: false, proximity: false },
 })
 
 // ---------- props ----------
@@ -87,47 +91,141 @@ export interface DataTableProps
   /** variant='rows' */
   items?: DataTableRowsItem[]
   onRowClick?: (index: number) => void
+  onSortChange?: (key: string | null, direction: SortDirection) => void
   // table-specific
   striped?: boolean
   compact?: boolean
   hoverable?: boolean
+  /** 启用 proximity hover 效果 */
+  proximity?: boolean
 }
 
 // ---------- helpers ----------
 
+function getSortValue(cell: React.ReactNode, type?: 'text' | 'numeric'): string | number {
+  if (cell == null) return ''
+  if (typeof cell === 'number') return cell
+  const text = typeof cell === 'string' ? cell : String(cell)
+  if (type === 'numeric') {
+    const parsed = parseFloat(text)
+    return Number.isNaN(parsed) ? text : parsed
+  }
+  return text.toLowerCase()
+}
+
+function useSortedRows(
+  rows: DataTableGridRow[],
+  columns: DataTableColumn[],
+  sortKey: string | null,
+  sortDirection: SortDirection,
+) {
+  return React.useMemo(() => {
+    if (!sortKey || !sortDirection) return rows
+    const column = columns.find((c) => c.key === sortKey)
+    const sorted = [...rows].sort((a, b) => {
+      const aValue = getSortValue(a.cells[sortKey], column?.type)
+      const bValue = getSortValue(b.cells[sortKey], column?.type)
+      if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1
+      if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1
+      return 0
+    })
+    return sorted
+  }, [rows, columns, sortKey, sortDirection])
+}
+
+function SortIcon({ direction }: { direction: SortDirection }) {
+  return (
+    <svg
+      className={cn(
+        'nothing-sort-icon',
+        direction === 'asc' && 'nothing-sort-icon--asc',
+        direction === 'desc' && 'nothing-sort-icon--desc',
+      )}
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      aria-hidden="true"
+    >
+      <path d="M4 6l4-4 4 4" className="nothing-sort-icon__up" />
+      <path d="M4 10l4 4 4-4" className="nothing-sort-icon__down" />
+    </svg>
+  )
+}
+
 // ---------- sub-renderers ----------
 
-function TableView({
+function TableHeader({
   columns,
-  rows,
-  caption,
-  striped,
+  sortKey,
+  sortDirection,
+  onSort,
 }: {
   columns: DataTableColumn[]
-  rows: DataTableGridRow[]
-  caption?: string
-  striped?: boolean
+  sortKey: string | null
+  sortDirection: SortDirection
+  onSort: (key: string) => void
 }) {
   return (
-    <table className="nothing-table__table">
-      {caption && <caption className="nothing-table__caption">{caption}</caption>}
-      <thead className="nothing-table__head">
-        <tr className="nothing-table__row">
-          {columns.map((col) => (
+    <thead className="nothing-table__head">
+      <tr className="nothing-table__row">
+        {columns.map((col) => {
+          const active = sortKey === col.key
+          return (
             <th
               key={col.key}
               className={cn(
                 'nothing-table__header',
                 col.align === 'center' && 'nothing-table__cell--center',
                 col.align === 'right' && 'nothing-table__cell--right',
+                col.sortable && 'nothing-table__header--sortable',
+                active && 'nothing-table__header--sorted',
               )}
               style={col.width ? { width: col.width } : undefined}
+              aria-sort={active ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'}
             >
-              {col.label}
+              {col.sortable ? (
+                <button
+                  type="button"
+                  className="nothing-table__sort-button"
+                  onClick={() => onSort(col.key)}
+                  aria-label={`Sort by ${col.label}`}
+                >
+                  <span>{col.label}</span>
+                  <SortIcon direction={active ? sortDirection : null} />
+                </button>
+              ) : (
+                col.label
+              )}
             </th>
-          ))}
-        </tr>
-      </thead>
+          )
+        })}
+      </tr>
+    </thead>
+  )
+}
+
+function TableView({
+  columns,
+  rows,
+  caption,
+  striped,
+  sortKey,
+  sortDirection,
+  onSort,
+}: {
+  columns: DataTableColumn[]
+  rows: DataTableGridRow[]
+  caption?: string
+  striped?: boolean
+  sortKey: string | null
+  sortDirection: SortDirection
+  onSort: (key: string) => void
+}) {
+  return (
+    <table className="nothing-table__table">
+      {caption && <caption className="nothing-table__caption">{caption}</caption>}
+      <TableHeader columns={columns} sortKey={sortKey} sortDirection={sortDirection} onSort={onSort} />
       <tbody className="nothing-table__body">
         {rows.map((row, rowIndex) => (
           <tr
@@ -153,16 +251,68 @@ function TableView({
   )
 }
 
+function GridHeader({
+  columns,
+  sortKey,
+  sortDirection,
+  onSort,
+}: {
+  columns: DataTableColumn[]
+  sortKey: string | null
+  sortDirection: SortDirection
+  onSort: (key: string) => void
+}) {
+  return (
+    <div className="nothing-data-grid__header">
+      {columns.map((col) => {
+        const active = sortKey === col.key
+        return (
+          <div
+            key={col.key}
+            className={cn(
+              'nothing-data-grid__header-cell',
+              col.type === 'numeric' && 'nothing-data-grid__header-cell--numeric',
+              col.sortable && 'nothing-data-grid__header-cell--sortable',
+              active && 'nothing-data-grid__header-cell--sorted',
+            )}
+            aria-sort={active ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'}
+          >
+            {col.sortable ? (
+              <button
+                type="button"
+                className="nothing-data-grid__sort-button"
+                onClick={() => onSort(col.key)}
+                aria-label={`Sort by ${col.label}`}
+              >
+                <span>{col.label}</span>
+                <SortIcon direction={active ? sortDirection : null} />
+              </button>
+            ) : (
+              col.label
+            )}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 function GridView({
   columns,
   rows,
   emptyMessage,
   onRowClick,
+  sortKey,
+  sortDirection,
+  onSort,
 }: {
   columns: DataTableColumn[]
   rows: DataTableGridRow[]
   emptyMessage: string
   onRowClick?: (index: number) => void
+  sortKey: string | null
+  sortDirection: SortDirection
+  onSort: (key: string) => void
 }) {
   const [activeRowIndex, setActiveRowIndex] = React.useState<number | null>(null)
 
@@ -182,19 +332,7 @@ function GridView({
 
   return (
     <>
-      <div className="nothing-data-grid__header">
-        {columns.map((col) => (
-          <div
-            key={col.key}
-            className={cn(
-              'nothing-data-grid__header-cell',
-              col.type === 'numeric' && 'nothing-data-grid__header-cell--numeric',
-            )}
-          >
-            {col.label}
-          </div>
-        ))}
-      </div>
+      <GridHeader columns={columns} sortKey={sortKey} sortDirection={sortDirection} onSort={onSort} />
       {rows.length === 0 ? (
         <div className="nothing-data-grid__empty">
           <div className="nothing-data-grid__empty-cell" style={{ gridColumn: `1 / ${columns.length + 1}` }}>
@@ -316,13 +454,39 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
       items = [],
       emptyMessage = 'No data',
       onRowClick,
+      onSortChange,
       striped = false,
       compact = false,
       hoverable = false,
+      proximity = false,
       ...props
     },
-    ref
+    ref,
   ) => {
+    const [sortKey, setSortKey] = React.useState<string | null>(null)
+    const [sortDirection, setSortDirection] = React.useState<SortDirection>(null)
+
+    const handleSort = React.useCallback(
+      (key: string) => {
+        setSortKey((prevKey) => {
+          if (prevKey !== key) {
+            setSortDirection('asc')
+            onSortChange?.(key, 'asc')
+            return key
+          }
+          setSortDirection((prevDir) => {
+            const nextDir: SortDirection = prevDir === 'asc' ? 'desc' : prevDir === 'desc' ? null : 'asc'
+            onSortChange?.(nextDir ? key : null, nextDir)
+            return nextDir
+          })
+          return key
+        })
+      },
+      [onSortChange],
+    )
+
+    const sortedRows = useSortedRows(rows, columns ?? [], sortKey, sortDirection)
+
     return (
       <div
         ref={ref}
@@ -332,24 +496,40 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
             striped: variant === 'table' ? striped : false,
             compact: variant === 'table' ? compact : false,
             hoverable: variant === 'table' ? hoverable : false,
+            proximity,
           }),
-          className
+          className,
         )}
         data-state={dataAttr(hoverable ? 'hoverable' : 'static')}
         data-variant={dataAttr(variant)}
-        role={variant === 'table' ? 'table' : undefined}
         {...props}
       >
         {variant === 'table' && columns && (
-          <TableView columns={columns} rows={rows} caption={caption} striped={striped} />
+          <TableView
+            columns={columns}
+            rows={sortedRows}
+            caption={caption}
+            striped={striped}
+            sortKey={sortKey}
+            sortDirection={sortDirection}
+            onSort={handleSort}
+          />
         )}
         {variant === 'grid' && columns && (
-          <GridView columns={columns} rows={rows} emptyMessage={emptyMessage} onRowClick={onRowClick} />
+          <GridView
+            columns={columns}
+            rows={sortedRows}
+            emptyMessage={emptyMessage}
+            onRowClick={onRowClick}
+            sortKey={sortKey}
+            sortDirection={sortDirection}
+            onSort={handleSort}
+          />
         )}
         {variant === 'rows' && <RowsView items={items} onRowClick={onRowClick} />}
       </div>
     )
-  }
+  },
 )
 DataTable.displayName = 'DataTable'
 

@@ -13,6 +13,7 @@ export const contentCardVariants = cva('nothing-card', {
       raised: 'nothing-card--raised',
       compact: 'nothing-card--compact',
       technical: 'nothing-card--technical',
+      borderless: 'nothing-card--borderless',
     },
     interactive: { true: 'nothing-card--interactive', false: '' },
     disabled: { true: 'nothing-card--disabled', false: '' },
@@ -80,6 +81,9 @@ type ContentCardProps = React.HTMLAttributes<HTMLDivElement> &
     action?: string
     onAction?: (e: React.MouseEvent<HTMLElement>) => void
     footer?: React.ReactNode
+    media?: React.ReactNode
+    logo?: React.ReactNode
+    feature?: React.ReactNode
   }
 
 export type WidgetCardProps = React.HTMLAttributes<HTMLDivElement> &
@@ -107,6 +111,9 @@ const ContentCard: React.FC<ContentCardProps> = ({
   onAction,
   onClick,
   footer,
+  media,
+  logo,
+  feature,
   children,
   className,
   style,
@@ -133,11 +140,16 @@ const ContentCard: React.FC<ContentCardProps> = ({
       style={style}
       data-variant={dataAttr(variant)}
       data-state={dataAttr(disabled ? 'disabled' : interactive ? 'interactive' : 'default')}
+      data-slot="card"
       {...props}
     >
-      {(title || action) && (
+      {logo && <div className="nothing-card__logo">{logo}</div>}
+      {(title || action || feature) && (
         <div className="nothing-card__header">
-          {title && <div className="nothing-card__title">{title}</div>}
+          <div className="nothing-card__header-main">
+            {title && <div className="nothing-card__title">{title}</div>}
+            {feature && <span className="nothing-card__feature">{feature}</span>}
+          </div>
           {action && (
             <button className="nothing-card__action" onClick={onAction}>
               {action}
@@ -145,6 +157,7 @@ const ContentCard: React.FC<ContentCardProps> = ({
           )}
         </div>
       )}
+      {media && <div className="nothing-card__media">{media}</div>}
       <div className="nothing-card__body">{children}</div>
       {footer && <div className="nothing-card__footer">{footer}</div>}
     </div>
@@ -168,10 +181,28 @@ const WidgetCardRenderer: React.FC<WidgetCardProps> = ({
   className,
   children,
   onClick,
+  style,
   ...props
 }) => {
   const hasChildren = Boolean(children)
   const hasOwnContent = title || value !== undefined || subtitle || icon
+  const cardRef = React.useRef<HTMLDivElement>(null)
+  const [hoverStyle, setHoverStyle] = React.useState<React.CSSProperties>({})
+
+  const handleMouseMove = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = cardRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    setHoverStyle({
+      '--widget-card-hover-x': `${x}%`,
+      '--widget-card-hover-y': `${y}%`,
+    } as React.CSSProperties)
+  }, [])
+
+  const handleMouseLeave = React.useCallback(() => {
+    setHoverStyle({})
+  }, [])
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (onClick && (e.key === 'Enter' || e.key === ' ')) {
@@ -221,13 +252,16 @@ const WidgetCardRenderer: React.FC<WidgetCardProps> = ({
 
   return (
     <div
+      ref={cardRef}
       className={cn(
         widgetCardVariants({ size, shape, theme, variant, align, iconPosition }),
         hasChildren && 'nothing-widget-card--has-children',
         onClick && 'nothing-widget-card--clickable',
-        className
+        className,
       )}
       onClick={onClick}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
       onKeyDown={onClick ? handleKeyDown : undefined}
@@ -235,6 +269,8 @@ const WidgetCardRenderer: React.FC<WidgetCardProps> = ({
       data-shape={dataAttr(shape)}
       data-theme={dataAttr(theme)}
       data-variant={dataAttr(variant)}
+      data-slot="widget-card"
+      style={{ ...style, ...hoverStyle }}
       {...props}
     >
       {title && <div className="nothing-widget-card__title">{title}</div>}

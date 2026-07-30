@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Slider } from './Slider'
 
@@ -10,8 +10,8 @@ describe('Slider', () => {
     expect(slider).toBeInTheDocument()
     const wrapper = slider.closest('.nothing-slider')
     expect(wrapper).toHaveClass('nothing-slider')
-    expect(slider).toHaveAttribute('aria-valuemin', '0')
-    expect(slider).toHaveAttribute('aria-valuemax', '100')
+    expect(slider).toHaveAttribute('min', '0')
+    expect(slider).toHaveAttribute('max', '100')
     expect(slider).toHaveAttribute('aria-valuenow', '0')
   })
 
@@ -21,7 +21,9 @@ describe('Slider', () => {
     render(<Slider onValueChange={handleChange} />)
     const slider = screen.getByRole('slider')
     slider.focus()
-    await user.keyboard('{ArrowRight}')
+    await act(async () => {
+      await user.keyboard('{ArrowRight}')
+    })
     expect(handleChange).toHaveBeenLastCalledWith(1)
     expect(slider).toHaveAttribute('aria-valuenow', '1')
   })
@@ -32,7 +34,9 @@ describe('Slider', () => {
     render(<Slider defaultValue={50} onValueChange={handleChange} />)
     const slider = screen.getByRole('slider')
     slider.focus()
-    await user.keyboard('{ArrowLeft}')
+    await act(async () => {
+      await user.keyboard('{ArrowLeft}')
+    })
     expect(handleChange).toHaveBeenLastCalledWith(49)
   })
 
@@ -46,7 +50,9 @@ describe('Slider', () => {
     expect(slider).toHaveAttribute('aria-valuenow', '30')
 
     slider.focus()
-    await user.keyboard('{ArrowRight}')
+    await act(async () => {
+      await user.keyboard('{ArrowRight}')
+    })
     expect(handleChange).toHaveBeenLastCalledWith(31)
     // Controlled: value doesn't change until parent updates
     expect(slider).toHaveAttribute('aria-valuenow', '30')
@@ -58,8 +64,8 @@ describe('Slider', () => {
   it('respects custom min and max attributes', () => {
     render(<Slider min={10} max={50} defaultValue={20} />)
     const slider = screen.getByRole('slider')
-    expect(slider).toHaveAttribute('aria-valuemin', '10')
-    expect(slider).toHaveAttribute('aria-valuemax', '50')
+    expect(slider).toHaveAttribute('min', '10')
+    expect(slider).toHaveAttribute('max', '50')
     expect(slider).toHaveAttribute('aria-valuenow', '20')
   })
 
@@ -71,7 +77,9 @@ describe('Slider', () => {
     )
     const slider = screen.getByRole('slider')
     slider.focus()
-    await user.keyboard('{End}')
+    await act(async () => {
+      await user.keyboard('{End}')
+    })
     expect(handleChange).toHaveBeenLastCalledWith(100)
   })
 
@@ -83,7 +91,9 @@ describe('Slider', () => {
     )
     const slider = screen.getByRole('slider')
     slider.focus()
-    await user.keyboard('{Home}')
+    await act(async () => {
+      await user.keyboard('{Home}')
+    })
     expect(handleChange).toHaveBeenLastCalledWith(10)
   })
 
@@ -91,7 +101,7 @@ describe('Slider', () => {
     const handleChange = vi.fn()
     render(<Slider disabled onValueChange={handleChange} />)
     const slider = screen.getByRole('slider')
-    expect(slider).toHaveAttribute('tabindex', '-1')
+    expect(slider).toBeDisabled()
     const wrapper = slider.closest('.nothing-slider')
     expect(wrapper).toHaveClass('nothing-slider--disabled')
   })

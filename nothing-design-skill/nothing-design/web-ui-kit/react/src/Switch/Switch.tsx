@@ -14,8 +14,13 @@ const switchVariants = cva('nothing-switch', {
       true: 'nothing-switch--disabled',
       false: '',
     },
+    size: {
+      sm: 'nothing-switch--sm',
+      md: '',
+      lg: 'nothing-switch--lg',
+    },
   },
-  defaultVariants: { checked: false, disabled: false },
+  defaultVariants: { checked: false, disabled: false, size: 'md' },
 })
 
 export type SwitchProps = Omit<React.HTMLAttributes<HTMLLabelElement>, 'onChange'> & {
@@ -26,10 +31,7 @@ export type SwitchProps = Omit<React.HTMLAttributes<HTMLLabelElement>, 'onChange
 } & VariantProps<typeof switchVariants>
 
 export const Switch = React.forwardRef<HTMLLabelElement, SwitchProps>(
-  (
-    { className, on: controlledOn, label, disabled, onChange, checked, ...props },
-    ref
-  ) => {
+  ({ className, on: controlledOn, label, disabled, onChange, checked, size = 'md', ...props }, ref) => {
     const [internalOn, setInternalOn] = React.useState(false)
     const isOn = controlledOn !== undefined ? controlledOn : (checked ?? internalOn)
     const isDisabled = !!disabled
@@ -44,10 +46,11 @@ export const Switch = React.forwardRef<HTMLLabelElement, SwitchProps>(
     return (
       <label
         ref={ref}
-        className={cn(switchVariants({ checked: isOn, disabled: isDisabled }), className)}
+        className={cn(switchVariants({ checked: isOn, disabled: isDisabled, size }), className)}
         data-slot="switch"
         data-state={dataAttr(isOn ? 'on' : 'off')}
         data-disabled={dataAttr(isDisabled)}
+        data-size={dataAttr(size)}
         {...props}
       >
         <BaseSwitch.Root
@@ -61,7 +64,7 @@ export const Switch = React.forwardRef<HTMLLabelElement, SwitchProps>(
         {label && <span className="nothing-switch__label">{label}</span>}
       </label>
     )
-  }
+  },
 )
 Switch.displayName = 'Switch'
 

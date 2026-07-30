@@ -1,8 +1,8 @@
-import { cn, dataAttr } from "../lib/utils.mjs";
-import { useFloating } from "../hooks/useFloating.mjs";
+import { cn } from "../lib/utils.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
+import { Tooltip } from "@base-ui/react/tooltip";
 import "./Tooltip.css";
 //#region src/Tooltip/Tooltip.tsx
 const tooltipPopupVariants = cva("nothing-tooltip__popup", {
@@ -23,85 +23,40 @@ const tooltipPopupVariants = cva("nothing-tooltip__popup", {
 		side: "top"
 	}
 });
-const Tooltip = React.forwardRef(({ className, content, side = "top", delay = 300, children, ...props }, ref) => {
-	const [visible, setVisible] = React.useState(false);
-	const timeoutRef = React.useRef(null);
-	const triggerRef = React.useRef(null);
-	const internalPopupRef = React.useRef(null);
-	const tooltipId = React.useId();
-	const { style, update } = useFloating(side);
-	const setRefs = React.useCallback((node) => {
-		internalPopupRef.current = node;
-		if (typeof ref === "function") ref(node);
-		else if (ref && "current" in ref) ref.current = node;
-	}, [ref]);
-	const FOCUSABLE_TAGS = /* @__PURE__ */ new Set([
-		"A",
-		"BUTTON",
-		"INPUT",
-		"SELECT",
-		"TEXTAREA"
-	]);
-	const childIsFocusable = (() => {
-		if (!React.isValidElement(children)) return false;
-		const type = children.type;
-		const tagName = typeof type === "string" ? type.toUpperCase() : type?.displayName || "";
-		if (FOCUSABLE_TAGS.has(tagName)) return true;
-		return children.props?.tabIndex !== void 0;
-	})();
-	const triggerEl = React.isValidElement(children) ? React.cloneElement(children, childIsFocusable && visible ? { "aria-describedby": tooltipId } : {}) : children;
-	const show = React.useCallback(() => {
-		if (timeoutRef.current) clearTimeout(timeoutRef.current);
-		timeoutRef.current = setTimeout(() => {
-			setVisible(true);
-		}, delay);
-	}, [delay]);
-	const hide = React.useCallback(() => {
-		if (timeoutRef.current) clearTimeout(timeoutRef.current);
-		setVisible(false);
-	}, []);
-	React.useEffect(() => {
-		if (visible && triggerRef.current && internalPopupRef.current) update(triggerRef.current, internalPopupRef.current);
-	}, [visible, update]);
-	React.useEffect(() => {
-		return () => {
-			if (timeoutRef.current) clearTimeout(timeoutRef.current);
-		};
-	}, []);
-	const handleKeyDown = React.useCallback((e) => {
-		if (e.key === "Escape") hide();
-	}, [hide]);
-	return /* @__PURE__ */ jsxs("div", {
-		className: "nothing-tooltip",
-		...props,
-		children: [/* @__PURE__ */ jsx("span", {
-			className: "nothing-tooltip__trigger",
-			ref: triggerRef,
-			onMouseEnter: show,
-			onMouseLeave: hide,
-			onFocus: show,
-			onBlur: hide,
-			onKeyDown: handleKeyDown,
-			"aria-describedby": !childIsFocusable && visible ? tooltipId : void 0,
-			tabIndex: childIsFocusable ? void 0 : 0,
-			children: triggerEl
-		}), /* @__PURE__ */ jsx("div", {
-			ref: setRefs,
-			className: cn(tooltipPopupVariants({
-				visible,
-				side
-			}), className),
+const Tooltip$1 = React.forwardRef(({ className, content, side = "top", delay = 300, children, ...props }, ref) => {
+	return /* @__PURE__ */ jsxs(Tooltip.Root, { children: [/* @__PURE__ */ jsx(Tooltip.Trigger, {
+		delay,
+		"data-slot": "tooltip-trigger",
+		render: (triggerProps) => {
+			if (React.isValidElement(children)) return React.cloneElement(children, {
+				...triggerProps,
+				className: cn("nothing-tooltip__trigger", children.props.className)
+			});
+			return /* @__PURE__ */ jsx("span", {
+				...triggerProps,
+				className: "nothing-tooltip__trigger",
+				"data-slot": "tooltip-trigger",
+				children
+			});
+		}
+	}), /* @__PURE__ */ jsx(Tooltip.Portal, { children: /* @__PURE__ */ jsx(Tooltip.Positioner, {
+		className: "nothing-tooltip__positioner",
+		"data-slot": "tooltip-positioner",
+		side,
+		sideOffset: 4,
+		children: /* @__PURE__ */ jsx(Tooltip.Popup, {
+			ref,
+			className: cn(tooltipPopupVariants({ side }), className),
 			role: "tooltip",
-			id: tooltipId,
-			style,
-			"data-state": dataAttr(visible ? "visible" : "hidden"),
-			"data-side": dataAttr(side),
+			"data-slot": "tooltip-popup",
+			"data-side": side,
+			...props,
 			children: content
-		})]
-	});
+		})
+	}) })] });
 });
-Tooltip.displayName = "Tooltip";
+Tooltip$1.displayName = "Tooltip";
 //#endregion
-export { Tooltip, Tooltip as default, tooltipPopupVariants };
+export { Tooltip$1 as Tooltip, Tooltip$1 as default, tooltipPopupVariants };
 
 //# sourceMappingURL=Tooltip.mjs.map

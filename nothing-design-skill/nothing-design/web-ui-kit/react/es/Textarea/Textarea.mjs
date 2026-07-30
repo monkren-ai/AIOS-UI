@@ -6,6 +6,10 @@ import "./Textarea.css";
 //#region src/Textarea/Textarea.tsx
 const textareaVariants = cva("nothing-textarea", {
 	variants: {
+		variant: {
+			underline: "nothing-textarea--underline",
+			bordered: "nothing-textarea--bordered"
+		},
 		hasError: {
 			true: "nothing-textarea--error",
 			false: ""
@@ -20,18 +24,20 @@ const textareaVariants = cva("nothing-textarea", {
 		}
 	},
 	defaultVariants: {
+		variant: "underline",
 		hasError: false,
 		disabled: false,
 		focused: false
 	}
 });
-const Textarea = React.forwardRef(({ className, value: controlledValue, defaultValue, onChange, placeholder, label, error, disabled, autoResize = false, minRows = 3, maxRows, id, ...props }, ref) => {
+const Textarea = React.forwardRef(({ className, style, value: controlledValue, defaultValue, onChange, placeholder, label, error, message, disabled, autoResize = false, minRows = 3, maxRows, variant, id, onFocus, onBlur, ...textareaProps }, ref) => {
 	const [internalValue, setInternalValue] = React.useState(defaultValue ?? "");
 	const [focused, setFocused] = React.useState(false);
 	const internalRef = React.useRef(null);
 	const generatedId = React.useId();
 	const inputId = id || generatedId;
 	const errorId = `${inputId}-error`;
+	const messageId = `${inputId}-message`;
 	const isControlled = controlledValue !== void 0;
 	const value = isControlled ? controlledValue : internalValue;
 	const hasError = !!error;
@@ -65,14 +71,26 @@ const Textarea = React.forwardRef(({ className, value: controlledValue, defaultV
 		if (!isControlled) setInternalValue(newValue);
 		onChange?.(e);
 	};
+	const handleFocus = (e) => {
+		setFocused(true);
+		onFocus?.(e);
+	};
+	const handleBlur = (e) => {
+		setFocused(false);
+		onBlur?.(e);
+	};
+	const describedBy = hasError ? errorId : message ? messageId : void 0;
 	return /* @__PURE__ */ jsxs("div", {
 		className: cn(textareaVariants({
+			variant,
 			hasError,
 			disabled: isDisabled,
 			focused
-		}), className),
+		}), autoResize && "nothing-textarea--auto-resize", className),
+		style,
+		"data-slot": "textarea",
+		"data-variant": dataAttr(variant),
 		"data-state": dataAttr(hasError ? "error" : focused ? "focused" : "default"),
-		...props,
 		children: [
 			label && /* @__PURE__ */ jsx("label", {
 				className: "nothing-textarea__label",
@@ -87,16 +105,23 @@ const Textarea = React.forwardRef(({ className, value: controlledValue, defaultV
 				value,
 				disabled: isDisabled,
 				onChange: handleChange,
-				onFocus: () => setFocused(true),
-				onBlur: () => setFocused(false),
+				onFocus: handleFocus,
+				onBlur: handleBlur,
 				rows: minRows,
 				"aria-invalid": hasError,
-				"aria-describedby": hasError ? errorId : void 0
+				"aria-describedby": describedBy,
+				...textareaProps
 			}),
-			error && /* @__PURE__ */ jsx("div", {
+			hasError && /* @__PURE__ */ jsx("div", {
 				className: "nothing-textarea__error",
 				id: errorId,
+				role: "alert",
 				children: error
+			}),
+			!hasError && message && /* @__PURE__ */ jsx("div", {
+				className: "nothing-textarea__message",
+				id: messageId,
+				children: message
 			})
 		]
 	});

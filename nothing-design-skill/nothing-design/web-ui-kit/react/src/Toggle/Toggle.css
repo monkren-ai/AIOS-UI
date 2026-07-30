@@ -1,6 +1,7 @@
 .nothing-toggle {
   font-family: var(--font-mono);
   font-size: var(--body-sm);
+  font-weight: var(--weight-medium);
   color: var(--text-primary);
   background: var(--surface);
   border: 1px solid transparent;
@@ -9,7 +10,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--duration-micro) var(--easing);
+  transition:
+    background var(--duration-micro) var(--easing),
+    color var(--duration-micro) var(--easing),
+    border-color var(--duration-micro) var(--easing),
+    transform var(--duration-micro) var(--easing),
+    font-weight var(--duration-micro) var(--easing);
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   white-space: nowrap;
@@ -19,9 +25,17 @@
   background: var(--surface-raised);
 }
 
+.nothing-toggle:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
 .nothing-toggle:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
+}
+
+.nothing-toggle--pressed {
+  font-weight: var(--weight-bold);
 }
 
 .nothing-toggle--sm {

@@ -1,8 +1,10 @@
+import { useMergeSplit } from "./hooks/useMergeSplit.mjs";
 import { useClickOutside } from "./hooks/useClickOutside.mjs";
 import { useKeyboardNavigation } from "./hooks/useKeyboardNavigation.mjs";
 import { useDisclosure } from "./hooks/useDisclosure.mjs";
+import { useProximityHover } from "./hooks/useProximityHover.mjs";
 import { useFloating } from "./hooks/useFloating.mjs";
 import { useDeviceOrientation } from "./hooks/useDeviceOrientation.mjs";
 import { useWeather } from "./hooks/useWeather.mjs";
 import { useLocalStorageState } from "./hooks/useLocalStorageState.mjs";
-export { useClickOutside, useDeviceOrientation, useDisclosure, useFloating, useKeyboardNavigation, useLocalStorageState, useWeather };
+export { useClickOutside, useDeviceOrientation, useDisclosure, useFloating, useKeyboardNavigation, useLocalStorageState, useMergeSplit, useProximityHover, useWeather };
