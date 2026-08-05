@@ -209,8 +209,10 @@ describe('Button', () => {
 
 ## 9. 参考文档
 
+- [PROJECT_PROGRESS.md](./PROJECT_PROGRESS.md) — 项目进度与里程碑追踪
 - [design.md](../design.md) — Nothing 设计原则
 - [SKILL.md](../../SKILL.md) — Nothing UI Skill 使用指南（含 AI OS 扩展）
+- [COMPONENTS.md](./COMPONENTS.md) — 组件目录与 API 参考
 - [src/styles/tokens.css](src/styles/tokens.css) — 设计令牌
 - [appica-ui](https://github.com/appica-dev/appica-ui) — 参考项目
 
@@ -220,4 +222,5 @@ describe('Button', () => {
 
 | 日期 | 版本 | 说明 |
 |---|---|---|
+| 2026-08-05 | 1.0.0 | 新增 PROJECT_PROGRESS.md；同步 v1.0 完成状态（AI 组件矩阵、Showcase 三路由、v5 合并） |
 | 2026-07-25 | 1.0.0 | 初始版本，基于 appica-ui 调研与 Nothing 设计约束制定 |

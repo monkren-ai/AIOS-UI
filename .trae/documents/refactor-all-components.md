@@ -396,6 +396,8 @@ export { Card, Card1, /* ... */ } from './sub/index'
 
 ## 进度追踪
 
+> **2026-08-05 更新**：全部阶段已完成。详见 [PROJECT_PROGRESS.md](../../nothing-design-skill/nothing-design/web-ui-kit/react/PROJECT_PROGRESS.md)。
+
 | 阶段 | 状态 | 备注 |
 |------|------|------|
 | 0. lib 基础设施 | ✅ 完成 | slot, polymorphic, component-types, variants (8 shared) |
@@ -403,12 +405,12 @@ export { Card, Card1, /* ... */ } from './sub/index'
 | 2A. 简单组件 (10) | ✅ 完成 | Avatar/Label/Separator/Breadcrumb/Resizable/ScrollArea/AspectRatio/Collapsible/Pagination/Form |
 | 2B. 表单 (15) | ✅ 完成 | Checkbox/Switch/Slider/RadioGroup/Textarea/Tags/DateNav/Calendar/Inputs/Card/QuickToggle/Alert/Badge/Buttons/InputOTP |
 | 2C. 交互 (15) | ✅ 完成 | Toggle/Tabs/Accordion/Navigation/SegmentedControl/Tooltip/Popover/HoverCard/DropdownMenu/ContextMenu/Select/Sheet/Modal/Command/Sidebar |
-| 2D. 数据展示 (15) | ✅ 完成 | ProgressBar/DataGrid/DataRows/Table/States/Spinner/Quotes/DotMatrix/NextEvent/Clock/Battery/SystemMonitor/WorldClock/Date/Taskbar；tsc + vite build 已通过 |
-| 2E. Widgets 主 (11) | 🔜 下一步 | WeatherWidget 等；注意 `withWidgetCard` HOC 包裹 |
-| 2F. 杂项 widgets (13) | ⬜ | |
-| 3. Nullframe (14) | ⬜ | |
-| 4. Widget sub (43) | ⬜ | 浅层 |
-| 5. HOC | ⬜ | |
-| 6. App.tsx 别名 | ⬜ | |
-| 7. 验证 | ⬜ | |
-| 8. 文档 | ⬜ | |
+| 2D. 数据展示 (15) | ✅ 完成 | ProgressBar/DataTable/States/Spinner/Quotes/DotMatrix/NextEvent/Battery/SystemMonitor/Date/Taskbar 等 |
+| 2E. Widgets 主 (11) | ✅ 完成 | WeatherWidget/StepsWidget/ActivityWidget 等 |
+| 2F. 杂项 widgets (13) | ✅ 完成 | MusicPlayer/Pomodoro/Chrono 等 |
+| 3. Nullframe (14) | ✅ 完成 | NfCard + bodies 模式 |
+| 4. Widget sub (43) | ✅ 完成 | v5 合并精简至 32 个 |
+| 5. HOC | ✅ 完成 | withWidgetCard / WidgetPill 工厂 |
+| 6. App.tsx 别名 | ✅ 完成 | Showcase 拆分至 showcase/sections/ |
+| 7. 验证 | ✅ 完成 | type-check / test / build 通过 |
+| 8. 文档 | ✅ 完成 | AGENTS.md / COMPONENTS.md / PROJECT_PROGRESS.md |

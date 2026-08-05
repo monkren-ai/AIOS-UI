@@ -485,6 +485,8 @@ npm run lint                  # 0 错误
 
 ## 进度追踪
 
+> **2026-08-05 更新**：全部阶段已完成。详见 [PROJECT_PROGRESS.md](../../nothing-design-skill/nothing-design/web-ui-kit/react/PROJECT_PROGRESS.md)。
+
 | 阶段 | 状态 | 备注 |
 |------|------|------|
 | 0. lib 基础设施 | ✅ 完成 | 6 文件 |
@@ -493,12 +495,12 @@ npm run lint                  # 0 错误
 | 2C. 交互 (15) | ✅ 完成 | — |
 | 2D. 数据展示 (15) | ✅ 完成 | tsc + vite build 通过 |
 | 2E. Widgets 主 (11) | ✅ 完成 | tsc + vite build 通过 |
-| **2F. 杂项 Widgets (11)** | 🔜 **下一步** | MusicPlayer 等 11 个（去掉 States/Taskbar） |
-| 3. Nullframe (14) | ⬜ | — |
-| 4. Widget sub (43) | ⬜ | 浅层 |
-| 5. HOC (3) | ⬜ | — |
-| 6. App.tsx 别名 (3) | ⬜ | — |
-| 7. 验证 | ⬜ | 全量 |
-| 8. 文档 (3) | ⬜ | — |
+| 2F. 杂项 Widgets (11) | ✅ 完成 | MusicPlayer/Pomodoro/Chrono 等 |
+| 3. Nullframe (14) | ✅ 完成 | NfCard + bodies |
+| 4. Widget sub (43) | ✅ 完成 | v5 合并精简至 32 个 |
+| 5. HOC (3) | ✅ 完成 | withWidgetCard / WidgetPill |
+| 6. App.tsx 别名 (3) | ✅ 完成 | showcase/sections/ 拆分 |
+| 7. 验证 | ✅ 完成 | type-check / test / build |
+| 8. 文档 (3) | ✅ 完成 | PROJECT_PROGRESS.md 等 |
 
-**已完成：71 文件 → 待重构：76 文件 → 完成后总计 147 文件**（实际为 138 组件，差异来自 9 个 sub/HOC 文件）
+**重构已全部完成**：72 顶层模块 + 14 widgets + 7 agent + 7 conversation
