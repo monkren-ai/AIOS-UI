@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { CategorySection } from '../components/CategorySection'
 import { DemoCard } from '../components/DemoCard'
 import { SegmentedControl } from '@/SegmentedControl'
-import { Button } from '@/Button'
+import { Button, buttonVariants } from '@/Button'
 import {
   AgentOrb,
   type AgentState,
@@ -73,7 +73,7 @@ export function AgentOSSection({
         </p>
         <div className="agent-os-demo-actions">
           <Link
-            className="nothing-btn nothing-btn--primary"
+            className={buttonVariants({ variant: 'primary', size: 'md' })}
             to="/ai-poc"
             onMouseEnter={preloadAIPoc}
           >
@@ -108,9 +108,21 @@ export function AgentOSSection({
         <ThinkingSteps
           title={t('THINKING', 'THINKING')}
           steps={[
-            { id: 's1', title: t('解析请求', 'Parse request'), content: t('提取实体与意图', 'Extract entities and intent') },
-            { id: 's2', title: t('检索上下文', 'Retrieve context'), content: t('加载相关记忆片段', 'Load relevant memory fragments') },
-            { id: 's3', title: t('生成回复', 'Generate response'), content: t('组合语言模型输出', 'Compose language model output') },
+            {
+              id: 's1',
+              title: t('解析请求', 'Parse request'),
+              content: t('提取实体与意图', 'Extract entities and intent'),
+            },
+            {
+              id: 's2',
+              title: t('检索上下文', 'Retrieve context'),
+              content: t('加载相关记忆片段', 'Load relevant memory fragments'),
+            },
+            {
+              id: 's3',
+              title: t('生成回复', 'Generate response'),
+              content: t('组合语言模型输出', 'Compose language model output'),
+            },
           ]}
           activeIndex={agentOrbState === 'acting' ? 2 : agentOrbState === 'error' ? 0 : 1}
         />
@@ -186,7 +198,10 @@ export function AgentOSSection({
           )}
           <ApprovalGate
             action={t('允许 Agent 读取当前文档？', 'Allow agent to read the current document?')}
-            impact={t('只读访问，不会修改文件内容。', 'Read-only access. File will not be modified.')}
+            impact={t(
+              '只读访问，不会修改文件内容。',
+              'Read-only access. File will not be modified.',
+            )}
             risk="low"
             reversible
             allowLabel={t('ALLOW', 'ALLOW')}

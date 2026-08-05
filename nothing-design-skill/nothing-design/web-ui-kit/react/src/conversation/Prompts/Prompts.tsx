@@ -22,7 +22,8 @@ export interface PromptItem {
 }
 
 export interface PromptsProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
     VariantProps<typeof promptsVariants> {
   items: PromptItem[]
   title?: React.ReactNode
@@ -49,9 +50,10 @@ export const Prompts = React.forwardRef<HTMLDivElement, PromptsProps>(
     },
     ref,
   ) => {
-    const { classNames, styles } = mergeSemanticProps<PromptsSemanticType>(
-      { classNames: userClassNames, styles: userStyles },
-    )
+    const { classNames, styles } = mergeSemanticProps<PromptsSemanticType>({
+      classNames: userClassNames,
+      styles: userStyles,
+    })
 
     const handleItemClick = (item: PromptItem, index: number) => {
       if (item.disabled) return
@@ -100,10 +102,7 @@ export const Prompts = React.forwardRef<HTMLDivElement, PromptsProps>(
             <button
               key={item.key}
               type="button"
-              className={cn(
-                promptsItemVariants({ disabled: item.disabled }),
-                classNames.item,
-              )}
+              className={cn(promptsItemVariants({ disabled: item.disabled }), classNames.item)}
               style={styles.item}
               data-slot="prompts-item"
               data-disabled={dataAttr(item.disabled)}
@@ -132,10 +131,7 @@ export const Prompts = React.forwardRef<HTMLDivElement, PromptsProps>(
                 )}
                 {item.description && (
                   <span
-                    className={cn(
-                      'nothing-prompts__item-description',
-                      classNames.itemDescription,
-                    )}
+                    className={cn('nothing-prompts__item-description', classNames.itemDescription)}
                     style={styles.itemDescription}
                     data-slot="prompts-item-description"
                   >

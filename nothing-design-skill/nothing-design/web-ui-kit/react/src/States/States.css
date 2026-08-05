@@ -1,151 +1,16 @@
-﻿.nothing-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: var(--space-4xl) var(--space-lg);
-}
-
-.nothing-state--error {
-  align-items: flex-start;
-  text-align: left;
-  padding: var(--space-md);
-}
-
-.nothing-state--loading {
-  align-items: center;
-  text-align: center;
-  padding: var(--space-lg);
-}
-
-.nothing-state--disabled {
-  opacity: 0.4;
-}
-
-.nothing-state__icon {
-  margin-bottom: var(--space-md);
-}
-
-.nothing-state__headline {
-  font-family: var(--font-mono);
-  font-size: var(--body);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-xs);
-}
-
-.nothing-state__description {
-  font-family: var(--font-body);
-  font-size: var(--body-sm);
-  color: var(--text-disabled);
-  max-width: 320px;
-  line-height: 1.5;
-}
-
-.nothing-state__action {
-  margin-top: var(--space-lg);
-}
-
-.nothing-state--error .nothing-state__headline {
-  color: var(--accent);
-}
-
-.nothing-state--error .nothing-state__message {
-  font-family: var(--font-mono);
-  font-size: var(--caption);
-  color: var(--accent);
-  margin-top: var(--space-xs);
-}
-
-.nothing-state--error .nothing-state__prefix {
-  font-family: var(--font-mono);
-  font-size: var(--label);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  margin-right: var(--space-xs);
-}
-
-.nothing-state--empty .nothing-state__dot-matrix {
-  width: 64px;
-  height: 64px;
-  margin-bottom: var(--space-md);
-  background-image: radial-gradient(circle, var(--border-visible) 2px, transparent 2px);
-  background-size: 8px 8px;
-  opacity: 0.6;
-}
-
-.nothing-state__spinner {
-  display: flex;
-  gap: 3px;
-  align-items: flex-end;
-  height: 24px;
-  margin-bottom: var(--space-md);
-}
-
-.nothing-state__spinner-segment {
-  width: 4px;
-  background: var(--text-display);
-  border-radius: 0;
-  animation: nothing-spinner-pulse 1.2s ease-in-out infinite;
-}
-
-.nothing-state__spinner-segment:nth-child(1) { animation-delay: 0s; height: 8px; }
-.nothing-state__spinner-segment:nth-child(2) { animation-delay: 0.15s; height: 12px; }
-.nothing-state__spinner-segment:nth-child(3) { animation-delay: 0.3s; height: 18px; }
-.nothing-state__spinner-segment:nth-child(4) { animation-delay: 0.45s; height: 24px; }
-.nothing-state__spinner-segment:nth-child(5) { animation-delay: 0.6s; height: 18px; }
-.nothing-state__spinner-segment:nth-child(6) { animation-delay: 0.75s; height: 12px; }
-.nothing-state__spinner-segment:nth-child(7) { animation-delay: 0.9s; height: 8px; }
+﻿/**
+ * 只剩一条 @keyframes。
+ *
+ * 其余样式已经全部迁到 `states-variants.ts` 的 Tailwind 工具类；
+ * keyframes 无法用工具类表达，所以留在这里，由 `animate-[...]` 引用。
+ */
 
 @keyframes nothing-spinner-pulse {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nothing-loading-spinner {
-    animation: none;
+  0%,
+  100% {
+    opacity: 0.2;
   }
-}
-
-.nothing-state__loading-bar {
-  display: flex;
-  gap: var(--space-2xs);
-  width: 200px;
-  margin-bottom: var(--space-sm);
-}
-
-.nothing-state__loading-segment {
-  flex: 1;
-  height: 4px;
-  background: var(--border);
-  border-radius: 0;
-  transition: background var(--duration-micro) var(--easing);
-}
-
-.nothing-state__loading-segment--filled {
-  background: var(--text-display);
-}
-
-.nothing-state__percentage {
-  font-family: var(--font-mono);
-  font-size: var(--caption);
-  color: var(--text-secondary);
-  font-variant-numeric: tabular-nums;
-}
-
-.nothing-state__bracket-text {
-  font-family: var(--font-mono);
-  font-size: var(--caption);
-  color: var(--text-disabled);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.nothing-state--disabled .nothing-state__headline,
-.nothing-state--disabled .nothing-state__description {
-  color: var(--text-disabled);
+  50% {
+    opacity: 1;
+  }
 }

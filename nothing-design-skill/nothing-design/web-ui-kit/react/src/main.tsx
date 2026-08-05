@@ -1,4 +1,4 @@
-import './styles/tokens.css'
+import './app.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { motion } from 'motion/react'
@@ -10,7 +10,11 @@ import ErrorBoundary from '@/ErrorBoundary'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
-      <ConfigProvider motion={motion as unknown as MotionComponentType} defaultTheme="dark" enableSystem>
+      <ConfigProvider
+        motion={motion as unknown as MotionComponentType}
+        defaultTheme="dark"
+        enableSystem
+      >
         <App />
       </ConfigProvider>
     </ErrorBoundary>

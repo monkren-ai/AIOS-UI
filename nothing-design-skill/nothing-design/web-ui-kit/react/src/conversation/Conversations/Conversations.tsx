@@ -25,7 +25,8 @@ export interface ConversationItem {
 }
 
 export interface ConversationsProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'>,
     VariantProps<typeof conversationsVariants> {
   items: ConversationItem[]
   activeKey?: string
@@ -79,9 +80,10 @@ export const Conversations = React.forwardRef<HTMLDivElement, ConversationsProps
     },
     ref,
   ) => {
-    const { classNames, styles } = mergeSemanticProps<ConversationsSemanticType>(
-      { classNames: userClassNames, styles: userStyles },
-    )
+    const { classNames, styles } = mergeSemanticProps<ConversationsSemanticType>({
+      classNames: userClassNames,
+      styles: userStyles,
+    })
     const { current, set } = useActiveKey(defaultActiveKey, activeKey, onActiveChange)
 
     const handleSelect = (item: ConversationItem) => {

@@ -1,64 +1,16 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { modalBackdropVariants, modalBodyVariants, modalCancelVariants, modalCloseVariants, modalConfirmVariants, modalDescriptionVariants, modalFooterVariants, modalHeaderVariants, modalTitleVariants, modalVariants } from "./modal-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import { Dialog } from "@base-ui/react/dialog";
 import { AlertDialog } from "@base-ui/react/alert-dialog";
-import "./Modal.css";
 //#region src/Modal/Modal.tsx
-const modalBackdropVariants = cva("nothing-modal-backdrop", {
-	variants: {
-		alert: {
-			true: "",
-			false: ""
-		},
-		visible: {
-			true: "nothing-modal-backdrop--visible",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		alert: false,
-		visible: false
-	}
-});
-const modalVariants = cva("nothing-modal", {
-	variants: {
-		alert: {
-			true: "nothing-modal--alert",
-			false: ""
-		},
-		destructive: {
-			true: "nothing-modal--destructive",
-			false: ""
-		},
-		noHeader: {
-			true: "nothing-modal--no-header",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		alert: false,
-		destructive: false,
-		noHeader: false
-	}
-});
-const modalConfirmVariants = cva("nothing-modal__confirm", {
-	variants: { destructive: {
-		true: "nothing-modal__confirm--destructive",
-		false: ""
-	} },
-	defaultVariants: { destructive: false }
-});
-const Modal = React.forwardRef(({ className, open: controlledOpen, onClose, title, footer, children, variant = "default", description, confirmLabel = "Confirm", cancelLabel = "Cancel", onConfirm, onCancel, destructive = false, ...props }, ref) => {
-	const [internalOpen, setInternalOpen] = React.useState(false);
-	const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
+function Modal({ className, open: isOpen, onClose, title, footer, children, variant = "default", description, confirmLabel = "Confirm", cancelLabel = "Cancel", onConfirm, onCancel, destructive = false, ref, ...props }) {
 	const isAlert = variant === "alert";
 	const noHeader = !title && !isAlert;
 	const handleOpenChange = React.useCallback((nextOpen) => {
-		if (controlledOpen === void 0) setInternalOpen(nextOpen);
 		if (!nextOpen) onClose?.();
-	}, [controlledOpen, onClose]);
+	}, [onClose]);
 	const handleConfirm = React.useCallback(() => {
 		onConfirm?.();
 		handleOpenChange(false);
@@ -85,49 +37,56 @@ const Modal = React.forwardRef(({ className, open: controlledOpen, onClose, titl
 		"data-slot": "modal",
 		"data-state": dataAttr(isOpen ? "open" : "closed"),
 		"data-variant": dataAttr(variant),
+		"data-destructive": dataAttr(isAlert && destructive),
 		"aria-modal": "true",
 		...props,
 		children: [
 			!isAlert && /* @__PURE__ */ jsx(Dialog.Close, {
-				className: "nothing-modal__close",
+				className: cn(modalCloseVariants({ noHeader })),
 				"aria-label": "Close",
 				"data-slot": "modal-close",
 				children: "×"
 			}),
 			(title || isAlert && description) && /* @__PURE__ */ jsxs("div", {
-				className: "nothing-modal__header",
+				className: cn(modalHeaderVariants({ alert: isAlert })),
 				"data-slot": "modal-header",
 				children: [title && /* @__PURE__ */ jsx(Dialog.Title, {
-					className: "nothing-modal__title",
+					className: cn(modalTitleVariants({
+						alert: isAlert,
+						destructive: isAlert && destructive
+					})),
 					"data-slot": "modal-title",
 					children: title
 				}), isAlert && description && /* @__PURE__ */ jsx(Dialog.Description, {
-					className: "nothing-modal__description",
+					className: cn(modalDescriptionVariants()),
 					"data-slot": "modal-description",
 					children: description
 				})]
 			}),
 			children && /* @__PURE__ */ jsx("div", {
-				className: "nothing-modal__body",
+				className: cn(modalBodyVariants()),
 				"data-slot": "modal-body",
 				children
 			}),
 			isAlert ? /* @__PURE__ */ jsxs("div", {
-				className: "nothing-modal__footer",
+				className: cn(modalFooterVariants()),
 				"data-slot": "modal-footer",
 				children: [/* @__PURE__ */ jsx("button", {
-					className: "nothing-modal__cancel",
+					className: cn(modalCancelVariants()),
+					"data-slot": "modal-cancel",
 					onClick: handleCancel,
 					type: "button",
 					children: cancelLabel
 				}), /* @__PURE__ */ jsx("button", {
 					className: cn(modalConfirmVariants({ destructive })),
+					"data-slot": "modal-confirm",
+					"data-destructive": dataAttr(destructive),
 					onClick: handleConfirm,
 					type: "button",
 					children: confirmLabel
 				})]
 			}) : footer ? /* @__PURE__ */ jsx("div", {
-				className: "nothing-modal__footer",
+				className: cn(modalFooterVariants()),
 				"data-slot": "modal-footer",
 				children: footer
 			}) : null
@@ -143,9 +102,9 @@ const Modal = React.forwardRef(({ className, open: controlledOpen, onClose, titl
 		onOpenChange: handleOpenChange,
 		children: popup
 	});
-});
+}
 Modal.displayName = "Modal";
 //#endregion
-export { Modal, Modal as default, modalBackdropVariants, modalConfirmVariants, modalVariants };
+export { Modal as default };
 
 //# sourceMappingURL=Modal.mjs.map

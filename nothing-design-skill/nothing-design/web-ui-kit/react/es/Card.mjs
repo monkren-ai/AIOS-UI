@@ -1,2 +1,3 @@
-import { Card, WidgetCard as WidgetCardRenderer, contentCardVariants, widgetCardVariants } from "./Card/Card.mjs";
-export { Card, WidgetCardRenderer as WidgetCard, contentCardVariants, Card as default, widgetCardVariants };
+import { contentCardVariants, widgetCardSubtitleVariants, widgetCardTitleVariants, widgetCardValueVariants, widgetCardVariants } from "./Card/card-variants.mjs";
+import Card, { ContentCard, WidgetCard } from "./Card/Card.mjs";
+export { Card, ContentCard, WidgetCard, contentCardVariants, Card as default, widgetCardSubtitleVariants, widgetCardTitleVariants, widgetCardValueVariants, widgetCardVariants };

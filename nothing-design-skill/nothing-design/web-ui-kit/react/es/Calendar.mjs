@@ -1,2 +1,3 @@
-import { Calendar, calendarVariants, dayVariants } from "./Calendar/Calendar.mjs";
+import { calendarVariants, dayVariants } from "./Calendar/calendar-variants.mjs";
+import Calendar from "./Calendar/Calendar.mjs";
 export { Calendar, calendarVariants, dayVariants, Calendar as default };

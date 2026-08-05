@@ -12,7 +12,8 @@ const widgetGridVariants = cva('nothing-widget-grid', {
 })
 
 export interface WidgetGridProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     VariantProps<typeof widgetGridVariants> {
   children?: React.ReactNode
 }
@@ -30,7 +31,7 @@ export const WidgetGrid = React.forwardRef<HTMLDivElement, WidgetGridProps>(
         {children}
       </div>
     )
-  }
+  },
 )
 WidgetGrid.displayName = 'WidgetGrid'
 

@@ -12,3 +12,4 @@ export type {
   EmptyStateProps,
   DisabledStateProps,
 } from './States'
+export type { StateSize, StateVariant } from './states-variants'

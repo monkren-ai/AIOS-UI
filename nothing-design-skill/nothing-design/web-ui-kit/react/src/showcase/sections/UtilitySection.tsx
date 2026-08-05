@@ -30,34 +30,34 @@ export function UtilitySection({ t, otpValue, setOtpValue }: UtilitySectionProps
       </DemoCard>
 
       <DemoCard title={t('可调整大小', 'Resizable')}>
-        <Resizable
-          direction="horizontal"
-          initialSizes={[50, 50]}
-          minSizes={[20, 20]}
-        >
-          <div className="showcase-resizable-panel">
-            {t('面板 A', 'Panel A')}
-          </div>
-          <div className="showcase-resizable-panel">
-            {t('面板 B', 'Panel B')}
-          </div>
+        <Resizable direction="horizontal" initialSizes={[50, 50]} minSizes={[20, 20]}>
+          <div className="showcase-resizable-panel">{t('面板 A', 'Panel A')}</div>
+          <div className="showcase-resizable-panel">{t('面板 B', 'Panel B')}</div>
         </Resizable>
       </DemoCard>
 
       <DemoCard title={t('宽高比', 'Aspect Ratio')}>
         <AspectRatio ratio={16 / 9} style={{ maxWidth: '500px' }}>
-          <div className="showcase-aspect-inner">
-            16:9
-          </div>
+          <div className="showcase-aspect-inner">16:9</div>
         </AspectRatio>
       </DemoCard>
 
       <DemoCard title={t('表单', 'Form')}>
         <Form onSubmit={() => {}} style={{ maxWidth: '400px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-            <Input variant="underline" label={t('姓名', 'Name')} placeholder={t('你的姓名', 'Your name')} />
-            <Input variant="underline" label={t('邮箱', 'Email')} placeholder={t('you@example.com', 'you@example.com')} />
-            <button type="submit" className="showcase-form-submit">{t('提交', 'Submit')}</button>
+            <Input
+              variant="underline"
+              label={t('姓名', 'Name')}
+              placeholder={t('你的姓名', 'Your name')}
+            />
+            <Input
+              variant="underline"
+              label={t('邮箱', 'Email')}
+              placeholder={t('you@example.com', 'you@example.com')}
+            />
+            <button type="submit" className="showcase-form-submit">
+              {t('提交', 'Submit')}
+            </button>
           </div>
         </Form>
       </DemoCard>

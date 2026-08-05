@@ -1,23 +1,25 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
 import Input from '@/Input'
-import './ColorPicker.css'
+import {
+  colorPickerCustomLabelVariants,
+  colorPickerHeaderVariants,
+  colorPickerInputVariants,
+  colorPickerNativeVariants,
+  colorPickerPreviewVariants,
+  colorPickerSwatchVariants,
+  colorPickerSwatchesVariants,
+  colorPickerTitleVariants,
+  colorPickerValueVariants,
+  colorPickerVariants,
+  resolveColorPickerSize,
+  type ColorPickerSize,
+} from './color-picker-variants'
 
-export const colorPickerVariants = cva('nothing-color-picker', {
-  variants: {
-    size: {
-      sm: 'nothing-color-picker--sm',
-      md: 'nothing-color-picker--md',
-      lg: 'nothing-color-picker--lg',
-    },
-  },
-  defaultVariants: { size: 'md' },
-})
-
-export interface ColorPickerProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'onChange' | 'value' | 'defaultValue'>,
-    VariantProps<typeof colorPickerVariants> {
+export interface ColorPickerProps extends Omit<
+  React.ComponentPropsWithRef<'div'>,
+  'children' | 'onChange' | 'value' | 'defaultValue'
+> {
   value?: string
   defaultValue?: string
   onChange?: (color: string) => void
@@ -26,6 +28,8 @@ export interface ColorPickerProps
   showInput?: boolean
   inputLabel?: string
   customLabel?: string
+  /** 色块边长：36 / 44 / 52px。 */
+  size?: ColorPickerSize
 }
 
 const defaultPresets = [
@@ -41,117 +45,139 @@ const defaultPresets = [
 
 const isValidHex = (value: string): boolean => /^#([0-9A-Fa-f]{3}){1,2}$/.test(value)
 
-export const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>(
-  (
-    {
-      value: valueProp,
-      defaultValue = defaultPresets[0],
-      onChange,
-      presets = defaultPresets,
-      title = 'COLOR',
-      showInput = true,
-      inputLabel = 'HEX',
-      customLabel = 'Custom',
-      size = 'md',
-      className,
-      ...props
-    },
-    ref,
-  ) => {
-    const isControlled = valueProp !== undefined
-    const [internalValue, setInternalValue] = React.useState(defaultValue)
-    const value = isControlled ? valueProp : internalValue
-    const nativeInputRef = React.useRef<HTMLInputElement>(null)
+export function ColorPicker({
+  value: valueProp,
+  defaultValue = defaultPresets[0],
+  onChange,
+  presets = defaultPresets,
+  title = 'COLOR',
+  showInput = true,
+  inputLabel = 'HEX',
+  customLabel = 'Custom',
+  size = 'md',
+  className,
+  ref,
+  ...props
+}: ColorPickerProps) {
+  const isControlled = valueProp !== undefined
+  const [internalValue, setInternalValue] = React.useState(defaultValue)
+  const value = isControlled ? valueProp : internalValue
+  const nativeInputRef = React.useRef<HTMLInputElement>(null)
+  const resolvedSize = (resolveColorPickerSize(size) ?? 'md') as 'sm' | 'md' | 'lg'
 
-    const handleChange = React.useCallback(
-      (color: string) => {
-        if (!isControlled) {
-          setInternalValue(color)
-        }
-        onChange?.(color)
-      },
-      [isControlled, onChange],
-    )
-
-    const handleHexChange = (hex: string) => {
-      const normalized = hex.startsWith('#') ? hex : `#${hex}`
-      if (isValidHex(normalized)) {
-        handleChange(normalized.toUpperCase())
+  const handleChange = React.useCallback(
+    (color: string) => {
+      if (!isControlled) {
+        setInternalValue(color)
       }
-    }
+      onChange?.(color)
+    },
+    [isControlled, onChange],
+  )
 
-    const openNativePicker = () => {
-      nativeInputRef.current?.click()
+  const handleHexChange = (hex: string) => {
+    const normalized = hex.startsWith('#') ? hex : `#${hex}`
+    if (isValidHex(normalized)) {
+      handleChange(normalized.toUpperCase())
     }
+  }
 
-    return (
+  const openNativePicker = () => {
+    nativeInputRef.current?.click()
+  }
+
+  return (
+    <div
+      ref={ref}
+      className={cn(colorPickerVariants({ size: resolvedSize }), className)}
+      data-slot="color-picker"
+      data-size={dataAttr(resolvedSize)}
+      {...props}
+    >
+      <div className={colorPickerHeaderVariants()} data-slot="color-picker-header">
+        <span className={colorPickerTitleVariants()} data-slot="color-picker-title">
+          {title}
+        </span>
+        <span className={colorPickerValueVariants()} data-slot="color-picker-value">
+          {value.toUpperCase()}
+        </span>
+      </div>
+
       <div
-        ref={ref}
-        className={cn(colorPickerVariants({ size }), className)}
-        data-slot="color-picker"
-        data-size={dataAttr(size)}
-        {...props}
+        className={colorPickerSwatchesVariants()}
+        data-slot="color-picker-swatches"
+        role="group"
+        aria-label="Color presets"
       >
-        <div className="nothing-color-picker__header">
-          <span className="nothing-color-picker__title">{title}</span>
-          <span className="nothing-color-picker__value">{value.toUpperCase()}</span>
-        </div>
-
-        <div className="nothing-color-picker__swatches" role="group" aria-label="Color presets">
-          {presets.map((color) => (
+        {presets.map((color) => {
+          const isActive = value.toUpperCase() === color.toUpperCase()
+          return (
             <button
               key={color}
               type="button"
-              className={cn(
-                'nothing-color-picker__swatch',
-                value.toUpperCase() === color.toUpperCase() && 'nothing-color-picker__swatch--active',
-              )}
-              style={{ '--swatch-color': color } as React.CSSProperties}
+              className={colorPickerSwatchVariants({ size: resolvedSize, active: isActive })}
+              data-slot="color-picker-swatch"
+              data-active={dataAttr(isActive)}
+              data-color={color}
+              style={
+                {
+                  '--swatch-color': color,
+                  backgroundColor: 'var(--swatch-color)',
+                } as React.CSSProperties
+              }
               aria-label={`Select color ${color}`}
-              aria-pressed={value.toUpperCase() === color.toUpperCase()}
+              aria-pressed={isActive}
               onClick={() => handleChange(color)}
             />
-          ))}
-          <button
-            type="button"
-            className="nothing-color-picker__swatch nothing-color-picker__swatch--custom"
-            aria-label={customLabel}
-            onClick={openNativePicker}
-          >
-            <span className="nothing-color-picker__custom-label">{customLabel}</span>
-            <input
-              ref={nativeInputRef}
-              type="color"
-              className="nothing-color-picker__native"
-              value={value}
-              onChange={(e) => handleChange(e.target.value.toUpperCase())}
-              aria-hidden="true"
-              tabIndex={-1}
-            />
-          </button>
-        </div>
-
-        {showInput && (
-          <div className="nothing-color-picker__input">
-            <Input
-              variant="bordered"
-              label={inputLabel}
-              value={value.replace('#', '').toUpperCase()}
-              onChange={handleHexChange}
-              leadingIcon={
-                <span
-                  className="nothing-color-picker__preview"
-                  style={{ backgroundColor: value }}
-                  aria-hidden="true"
-                />
-              }
-            />
-          </div>
-        )}
+          )
+        })}
+        <button
+          type="button"
+          className={colorPickerSwatchVariants({ size: resolvedSize, custom: true })}
+          data-slot="color-picker-swatch-custom"
+          aria-label={customLabel}
+          onClick={openNativePicker}
+        >
+          <span className={colorPickerCustomLabelVariants()} data-slot="color-picker-custom-label">
+            {customLabel}
+          </span>
+          <input
+            ref={nativeInputRef}
+            type="color"
+            className={colorPickerNativeVariants()}
+            data-slot="color-picker-native"
+            value={value}
+            onChange={(e) => handleChange(e.target.value.toUpperCase())}
+            aria-hidden="true"
+            tabIndex={-1}
+          />
+        </button>
       </div>
-    )
-  },
-)
+
+      {showInput && (
+        <div className={colorPickerInputVariants()} data-slot="color-picker-input">
+          <Input
+            variant="soft"
+            size={resolvedSize}
+            label={inputLabel}
+            value={value.replace('#', '').toUpperCase()}
+            onValueChange={handleHexChange}
+            leadingIcon={
+              <span
+                className={colorPickerPreviewVariants()}
+                data-slot="color-picker-preview"
+                style={{ backgroundColor: value }}
+                aria-hidden="true"
+              />
+            }
+          />
+        </div>
+      )}
+    </div>
+  )
+}
+
 ColorPicker.displayName = 'ColorPicker'
 
+export { colorPickerVariants }
 export default ColorPicker

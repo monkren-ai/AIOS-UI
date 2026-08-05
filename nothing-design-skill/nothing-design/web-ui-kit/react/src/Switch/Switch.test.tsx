@@ -5,13 +5,16 @@ import userEvent from '@testing-library/user-event'
 import { Switch } from './Switch'
 
 describe('Switch', () => {
-  it('renders unchecked by default', () => {
+  it('renders off with data-slot and the md default', () => {
     render(<Switch />)
     const sw = screen.getByRole('switch')
     expect(sw).toHaveAttribute('aria-checked', 'false')
-    const label = sw.closest('label')
-    expect(label).toHaveClass('nothing-switch')
-    expect(label).toHaveAttribute('data-state', 'off')
+    expect(sw).toHaveAttribute('data-slot', 'switch-track')
+    const root = sw.closest('label')
+    expect(root).toHaveAttribute('data-slot', 'switch')
+    expect(root).toHaveAttribute('data-state', 'off')
+    expect(root).toHaveAttribute('data-size', 'md')
+    expect(document.querySelector('[data-slot="switch-thumb"]')).toBeInTheDocument()
   })
 
   it('toggles checked state when clicked', async () => {
@@ -19,10 +22,10 @@ describe('Switch', () => {
     const handleChange = vi.fn()
     render(<Switch onChange={handleChange} />)
     const sw = screen.getByRole('switch')
-    expect(sw).toHaveAttribute('aria-checked', 'false')
 
     await user.click(sw)
     expect(sw).toHaveAttribute('aria-checked', 'true')
+    expect(sw.closest('label')).toHaveAttribute('data-state', 'on')
     expect(handleChange).toHaveBeenLastCalledWith(true)
 
     await user.click(sw)
@@ -30,23 +33,18 @@ describe('Switch', () => {
     expect(handleChange).toHaveBeenLastCalledWith(false)
   })
 
-  it('works in controlled mode with on prop', async () => {
+  it('works in controlled mode with the on prop', async () => {
     const user = userEvent.setup()
     const handleChange = vi.fn()
-    const { rerender } = render(
-      <Switch on={false} onChange={handleChange} />,
-    )
+    const { rerender } = render(<Switch checked={false} onChange={handleChange} />)
     const sw = screen.getByRole('switch')
-    expect(sw).toHaveAttribute('aria-checked', 'false')
     expect(sw.closest('label')).toHaveAttribute('data-state', 'off')
 
     await user.click(sw)
     expect(handleChange).toHaveBeenLastCalledWith(true)
-    // In controlled mode, the state doesn't change until parent updates
     expect(sw).toHaveAttribute('aria-checked', 'false')
 
-    // Simulate parent updating the prop
-    rerender(<Switch on={true} onChange={handleChange} />)
+    rerender(<Switch checked onChange={handleChange} />)
     expect(sw).toHaveAttribute('aria-checked', 'true')
     expect(sw.closest('label')).toHaveAttribute('data-state', 'on')
   })
@@ -57,42 +55,36 @@ describe('Switch', () => {
     render(<Switch disabled onChange={handleChange} />)
     const sw = screen.getByRole('switch')
     expect(sw).toHaveAttribute('aria-disabled', 'true')
-    const label = sw.closest('label')
-    expect(label).toHaveClass('nothing-switch--disabled')
-    expect(label).toHaveAttribute('data-disabled')
+    expect(sw.closest('label')).toHaveAttribute('data-disabled')
 
     await user.click(sw)
     expect(handleChange).not.toHaveBeenCalled()
     expect(sw).toHaveAttribute('aria-checked', 'false')
   })
 
-  it('supports custom className', () => {
-    render(<Switch className="my-switch" />)
-    const label = screen.getByRole('switch').closest('label')
-    expect(label).toHaveClass('my-switch')
-    expect(label).toHaveClass('nothing-switch')
+  it('renders label text when provided', () => {
+    render(<Switch label="Dark mode" />)
+    expect(screen.getByText('Dark mode')).toHaveAttribute('data-slot', 'switch-label')
   })
 
-  it('forwards ref to the label element', () => {
+  it('reports every size through data-size', () => {
+    ;(['sm', 'md', 'lg'] as const).forEach((size) => {
+      const { unmount } = render(<Switch size={size} />)
+      expect(screen.getByRole('switch').closest('label')).toHaveAttribute('data-size', size)
+      unmount()
+    })
+  })
+
+  it('accepts ref as a plain prop', () => {
     const ref = React.createRef<HTMLLabelElement>()
     render(<Switch ref={ref} />)
     expect(ref.current).toBeInstanceOf(HTMLLabelElement)
-    expect(ref.current?.tagName).toBe('LABEL')
   })
 
-  it('renders label text when provided', () => {
-    render(<Switch label="Dark mode" />)
-    const label = screen.getByText('Dark mode')
-    expect(label).toHaveClass('nothing-switch__label')
-  })
-
-  it('renders size variants with correct classes', () => {
-    const { rerender } = render(<Switch size="sm" />)
-    expect(screen.getByRole('switch').closest('label')).toHaveClass('nothing-switch--sm')
-    expect(screen.getByRole('switch').closest('label')).toHaveAttribute('data-size', 'sm')
-
-    rerender(<Switch size="lg" />)
-    expect(screen.getByRole('switch').closest('label')).toHaveClass('nothing-switch--lg')
-    expect(screen.getByRole('switch').closest('label')).toHaveAttribute('data-size', 'lg')
+  it('lets a caller-supplied utility win over the variant default', () => {
+    render(<Switch className="gap-6" />)
+    const root = screen.getByRole('switch').closest('label')
+    expect(root).toHaveClass('gap-6')
+    expect(root).not.toHaveClass('gap-2')
   })
 })

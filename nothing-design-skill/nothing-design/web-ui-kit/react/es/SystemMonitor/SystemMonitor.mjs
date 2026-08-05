@@ -1,59 +1,9 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { monitorItemDetailsVariants, monitorItemLabelVariants, monitorItemStatusVariants, monitorItemValueVariants, monitorItemVariants, monitorSegmentVariants, monitorTitleVariants, systemMonitorVariants } from "./system-monitor-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./SystemMonitor.css";
 //#region src/SystemMonitor/SystemMonitor.tsx
-const systemMonitorVariants = cva("nothing-system-monitor", {
-	variants: {
-		variant: {
-			default: "",
-			compact: "nothing-system-monitor--compact",
-			detailed: "nothing-system-monitor--detailed"
-		},
-		size: {
-			sm: "nothing-system-monitor--sm",
-			md: "nothing-system-monitor--md",
-			lg: "nothing-system-monitor--lg"
-		}
-	},
-	defaultVariants: {
-		variant: "default",
-		size: "md"
-	}
-});
-const monitorItemVariants = cva("monitor-item", {
-	variants: {
-		type: {
-			cpu: "cpu",
-			ram: "ram",
-			storage: "storage",
-			network: "network",
-			battery: "battery"
-		},
-		status: {
-			none: "",
-			warning: "warning",
-			critical: "critical",
-			charging: "charging",
-			low: "low",
-			connected: "connected",
-			disconnected: "disconnected"
-		}
-	},
-	defaultVariants: {
-		type: "cpu",
-		status: "none"
-	}
-});
-const monitorSegmentVariants = cva("monitor-segment", {
-	variants: { filled: {
-		true: "filled",
-		false: ""
-	} },
-	defaultVariants: { filled: false }
-});
-const SystemMonitor = React.forwardRef(({ className, variant = "default", size = "md", updateInterval = 2e3, totalSegments = 12, cpuPercent: initialCpuPercent, ramPercent: initialRamPercent, storagePercent: initialStoragePercent, ramTotal = 8, storageTotal = 256, netConnected: initialNetConnected, netSpeed: initialNetSpeed, batteryPercent: initialBatteryPercent, batteryCharging: initialBatteryCharging, ...props }, ref) => {
+function SystemMonitor({ className, variant = "default", size = "md", updateInterval = 2e3, totalSegments = 12, cpuPercent: initialCpuPercent, ramPercent: initialRamPercent, storagePercent: initialStoragePercent, ramTotal = 8, storageTotal = 256, netConnected: initialNetConnected, netSpeed: initialNetSpeed, batteryPercent: initialBatteryPercent, batteryCharging: initialBatteryCharging, ref, ...props }) {
 	const [internalCpuPercent, setInternalCpuPercent] = React.useState(initialCpuPercent ?? 42);
 	const [internalRamPercent, setInternalRamPercent] = React.useState(initialRamPercent ?? 67);
 	const [internalStoragePercent, setInternalStoragePercent] = React.useState(initialStoragePercent ?? 54);
@@ -125,61 +75,92 @@ const SystemMonitor = React.forwardRef(({ className, variant = "default", size =
 	const batteryFilledSegments = Math.round(batteryPercent / 100 * totalSegments);
 	const ramUsed = (ramTotal * ramPercent / 100).toFixed(1);
 	const storageUsed = (storageTotal * storagePercent / 100).toFixed(0);
+	const renderProgress = (type, status, filled) => /* @__PURE__ */ jsx("div", {
+		"data-slot": "monitor-progress",
+		className: "flex h-3 w-full gap-0.5",
+		children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", {
+			"data-slot": "monitor-segment",
+			"data-filled": dataAttr(index < filled),
+			className: cn(monitorSegmentVariants({
+				filled: index < filled,
+				type,
+				status
+			}))
+		}, index))
+	});
+	const cpuStatus = getStatusClass(cpuPercent);
+	const ramStatus = getStatusClass(ramPercent);
+	const storageStatus = getStatusClass(storagePercent);
+	const netStatus = netConnected ? "connected" : "disconnected";
+	const batteryStatus = getBatteryStatus(batteryPercent, batteryCharging);
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(systemMonitorVariants({
 			variant,
 			size
 		}), className),
+		"data-slot": "system-monitor",
+		"data-variant": dataAttr(variant),
+		"data-size": dataAttr(size),
 		"data-state": dataAttr("monitoring"),
 		...props,
 		children: [
 			/* @__PURE__ */ jsx("div", {
-				className: "monitor-header",
+				"data-slot": "monitor-header",
+				className: "mb-6 flex w-full items-baseline justify-between",
 				children: /* @__PURE__ */ jsx("div", {
-					className: "monitor-title",
+					"data-slot": "monitor-title",
+					className: cn(monitorTitleVariants()),
 					children: "System"
 				})
 			}),
 			/* @__PURE__ */ jsxs("div", {
+				"data-slot": "monitor-item",
+				"data-type": "cpu",
 				className: cn(monitorItemVariants({
 					type: "cpu",
-					status: getStatusClass(cpuPercent)
+					status: cpuStatus
 				})),
-				"data-state": dataAttr(getStatusClass(cpuPercent)),
+				"data-state": dataAttr(cpuStatus),
 				children: [/* @__PURE__ */ jsxs("div", {
-					className: "monitor-item-header-row",
+					"data-slot": "monitor-item-header",
+					className: "mb-1 flex items-baseline justify-between",
 					children: [/* @__PURE__ */ jsx("div", {
-						className: "monitor-item-label",
+						"data-slot": "monitor-item-label",
+						className: cn(monitorItemLabelVariants()),
 						children: "CPU"
 					}), /* @__PURE__ */ jsxs("div", {
-						className: "monitor-item-value",
+						"data-slot": "monitor-item-value",
+						className: cn(monitorItemValueVariants({ status: cpuStatus })),
 						children: [cpuPercent, "%"]
 					})]
-				}), /* @__PURE__ */ jsx("div", {
-					className: "monitor-progress",
-					children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", { className: cn(monitorSegmentVariants({ filled: index < cpuFilledSegments })) }, index))
-				})]
+				}), renderProgress("cpu", cpuStatus, cpuFilledSegments)]
 			}),
 			/* @__PURE__ */ jsxs("div", {
+				"data-slot": "monitor-item",
+				"data-type": "ram",
 				className: cn(monitorItemVariants({
 					type: "ram",
-					status: getStatusClass(ramPercent)
+					status: ramStatus
 				})),
-				"data-state": dataAttr(getStatusClass(ramPercent)),
+				"data-state": dataAttr(ramStatus),
 				children: [
 					/* @__PURE__ */ jsxs("div", {
-						className: "monitor-item-header-row",
+						"data-slot": "monitor-item-header",
+						className: "mb-1 flex items-baseline justify-between",
 						children: [/* @__PURE__ */ jsx("div", {
-							className: "monitor-item-label",
+							"data-slot": "monitor-item-label",
+							className: cn(monitorItemLabelVariants()),
 							children: "RAM"
 						}), /* @__PURE__ */ jsxs("div", {
-							className: "monitor-item-value",
+							"data-slot": "monitor-item-value",
+							className: cn(monitorItemValueVariants({ status: ramStatus })),
 							children: [ramPercent, "%"]
 						})]
 					}),
 					/* @__PURE__ */ jsxs("div", {
-						className: "monitor-item-details",
+						"data-slot": "monitor-item-details",
+						className: cn(monitorItemDetailsVariants()),
 						children: [
 							ramUsed,
 							" / ",
@@ -187,31 +168,34 @@ const SystemMonitor = React.forwardRef(({ className, variant = "default", size =
 							" GB"
 						]
 					}),
-					/* @__PURE__ */ jsx("div", {
-						className: "monitor-progress",
-						children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", { className: cn(monitorSegmentVariants({ filled: index < ramFilledSegments })) }, index))
-					})
+					renderProgress("ram", ramStatus, ramFilledSegments)
 				]
 			}),
 			/* @__PURE__ */ jsxs("div", {
+				"data-slot": "monitor-item",
+				"data-type": "storage",
 				className: cn(monitorItemVariants({
 					type: "storage",
-					status: getStatusClass(storagePercent)
+					status: storageStatus
 				})),
-				"data-state": dataAttr(getStatusClass(storagePercent)),
+				"data-state": dataAttr(storageStatus),
 				children: [
 					/* @__PURE__ */ jsxs("div", {
-						className: "monitor-item-header-row",
+						"data-slot": "monitor-item-header",
+						className: "mb-1 flex items-baseline justify-between",
 						children: [/* @__PURE__ */ jsx("div", {
-							className: "monitor-item-label",
+							"data-slot": "monitor-item-label",
+							className: cn(monitorItemLabelVariants()),
 							children: "Storage"
 						}), /* @__PURE__ */ jsxs("div", {
-							className: "monitor-item-value",
+							"data-slot": "monitor-item-value",
+							className: cn(monitorItemValueVariants({ status: storageStatus })),
 							children: [storagePercent, "%"]
 						})]
 					}),
 					/* @__PURE__ */ jsxs("div", {
-						className: "monitor-item-details",
+						"data-slot": "monitor-item-details",
+						className: cn(monitorItemDetailsVariants()),
 						children: [
 							storageUsed,
 							" / ",
@@ -219,63 +203,68 @@ const SystemMonitor = React.forwardRef(({ className, variant = "default", size =
 							" GB"
 						]
 					}),
-					/* @__PURE__ */ jsx("div", {
-						className: "monitor-progress",
-						children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", { className: cn(monitorSegmentVariants({ filled: index < storageFilledSegments })) }, index))
-					})
+					renderProgress("storage", storageStatus, storageFilledSegments)
 				]
 			}),
 			/* @__PURE__ */ jsxs("div", {
+				"data-slot": "monitor-item",
+				"data-type": "network",
 				className: cn(monitorItemVariants({
 					type: "network",
-					status: netConnected ? "connected" : "disconnected"
+					status: netStatus
 				})),
-				"data-state": dataAttr(netConnected ? "connected" : "disconnected"),
+				"data-state": dataAttr(netStatus),
 				children: [/* @__PURE__ */ jsxs("div", {
-					className: "monitor-item-header-row",
+					"data-slot": "monitor-item-header",
+					className: "mb-1 flex items-baseline justify-between",
 					children: [/* @__PURE__ */ jsx("div", {
-						className: "monitor-item-label",
+						"data-slot": "monitor-item-label",
+						className: cn(monitorItemLabelVariants()),
 						children: "NET"
 					}), /* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsxs("span", {
-						className: "monitor-item-value",
+						"data-slot": "monitor-item-value",
+						className: cn(monitorItemValueVariants()),
 						children: [netSpeed, " MB/s"]
 					}), /* @__PURE__ */ jsx("span", {
-						className: `monitor-item-status ${netConnected ? "connected" : "disconnected"}`,
+						"data-slot": "monitor-item-status",
+						"data-tone": netConnected ? "connected" : "disconnected",
+						className: cn(monitorItemStatusVariants({ tone: netConnected ? "connected" : "disconnected" })),
 						children: netConnected ? "Connected" : "Disconnected"
 					})] })]
-				}), /* @__PURE__ */ jsx("div", {
-					className: "monitor-progress",
-					children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", { className: cn(monitorSegmentVariants({ filled: index < netFilledSegments })) }, index))
-				})]
+				}), renderProgress("network", netStatus, netFilledSegments)]
 			}),
 			/* @__PURE__ */ jsxs("div", {
+				"data-slot": "monitor-item",
+				"data-type": "battery",
 				className: cn(monitorItemVariants({
 					type: "battery",
-					status: getBatteryStatus(batteryPercent, batteryCharging)
+					status: batteryStatus
 				})),
-				"data-state": dataAttr(getBatteryStatus(batteryPercent, batteryCharging)),
+				"data-state": dataAttr(batteryStatus),
 				children: [/* @__PURE__ */ jsxs("div", {
-					className: "monitor-item-header-row",
+					"data-slot": "monitor-item-header",
+					className: "mb-1 flex items-baseline justify-between",
 					children: [/* @__PURE__ */ jsx("div", {
-						className: "monitor-item-label",
+						"data-slot": "monitor-item-label",
+						className: cn(monitorItemLabelVariants()),
 						children: "Battery"
 					}), /* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsxs("span", {
-						className: "monitor-item-value",
+						"data-slot": "monitor-item-value",
+						className: cn(monitorItemValueVariants({ status: batteryStatus })),
 						children: [batteryPercent, "%"]
 					}), /* @__PURE__ */ jsx("span", {
-						className: `monitor-item-status ${batteryCharging ? "charging" : "discharging"}`,
+						"data-slot": "monitor-item-status",
+						"data-tone": batteryCharging ? "charging" : "discharging",
+						className: cn(monitorItemStatusVariants({ tone: batteryCharging ? "charging" : "discharging" })),
 						children: batteryCharging ? "Charging" : "Discharging"
 					})] })]
-				}), /* @__PURE__ */ jsx("div", {
-					className: "monitor-progress",
-					children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", { className: cn(monitorSegmentVariants({ filled: index < batteryFilledSegments })) }, index))
-				})]
+				}), renderProgress("battery", batteryStatus, batteryFilledSegments)]
 			})
 		]
 	});
-});
+}
 SystemMonitor.displayName = "SystemMonitor";
 //#endregion
-export { SystemMonitor, SystemMonitor as default, monitorItemVariants, monitorSegmentVariants, systemMonitorVariants };
+export { SystemMonitor as default };
 
 //# sourceMappingURL=SystemMonitor.mjs.map

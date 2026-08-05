@@ -23,7 +23,16 @@ const DOT_COLS = 7
 
 function getDirectionLabel(degrees: number): string {
   const normalized = ((degrees % 360) + 360) % 360
-  const directions = ['North', 'Northeast', 'East', 'Southeast', 'South', 'Southwest', 'West', 'Northwest']
+  const directions = [
+    'North',
+    'Northeast',
+    'East',
+    'Southeast',
+    'South',
+    'Southwest',
+    'West',
+    'Northwest',
+  ]
   const index = Math.round(normalized / 45) % 8
   return directions[index]
 }
@@ -31,7 +40,8 @@ function getDirectionLabel(degrees: number): string {
 export type CompassHeading = number | 'auto'
 
 export interface CompassWidgetProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     Omit<VariantProps<typeof compassWidgetVariants>, 'size' | 'dotted'> {
   heading?: CompassHeading
   showDots?: boolean
@@ -42,7 +52,12 @@ const CompassWidgetInner = React.forwardRef<HTMLDivElement, CompassWidgetProps>(
   ({ className, heading = 0, showDots = true, size, style, ...props }, ref) => {
     const useAuto = heading === 'auto'
     const orient = useDeviceOrientation(useAuto)
-    const effectiveHeading: number = useAuto && orient.heading !== null ? orient.heading : (typeof heading === 'number' ? heading : 0)
+    const effectiveHeading: number =
+      useAuto && orient.heading !== null
+        ? orient.heading
+        : typeof heading === 'number'
+          ? heading
+          : 0
     const real = !useAuto ? true : orient.real
     const normalizedHeading = ((effectiveHeading % 360) + 360) % 360
 
@@ -122,7 +137,7 @@ const CompassWidgetInner = React.forwardRef<HTMLDivElement, CompassWidgetProps>(
         </span>
       </div>
     )
-  }
+  },
 )
 CompassWidgetInner.displayName = 'CompassWidget'
 

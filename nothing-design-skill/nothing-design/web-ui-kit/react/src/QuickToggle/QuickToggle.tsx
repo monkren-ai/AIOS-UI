@@ -1,57 +1,59 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
-import './QuickToggle.css'
+import {
+  quickToggleIconVariants,
+  quickToggleLabelVariants,
+  quickToggleVariants,
+} from './quick-toggle-variants'
 
-const quickToggleVariants = cva('nothing-quick-toggle', {
-  variants: {
-    variant: {
-      circle: 'nothing-quick-toggle--circle',
-      pill: 'nothing-quick-toggle--pill',
-    },
-    theme: {
-      light: 'nothing-quick-toggle--light',
-      dark: 'nothing-quick-toggle--dark',
-      accent: 'nothing-quick-toggle--accent',
-    },
-    active: {
-      true: 'nothing-quick-toggle--active',
-      false: '',
-    },
-  },
-  defaultVariants: {
-    variant: 'circle',
-    theme: 'light',
-    active: false,
-  },
-})
-
-export type QuickToggleProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+export type QuickToggleProps = React.ComponentPropsWithRef<'button'> &
   VariantProps<typeof quickToggleVariants> & {
     icon?: React.ReactNode
     label?: string
   }
 
-const QuickToggle = React.forwardRef<HTMLButtonElement, QuickToggleProps>(
-  ({ variant, theme, active, icon, label, className, onClick, ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        className={cn(quickToggleVariants({ variant, theme, active }), className)}
-        onClick={onClick}
-        aria-pressed={active ?? false}
-        type="button"
-        data-variant={dataAttr(variant)}
-        data-theme={dataAttr(theme)}
-        data-state={active ? 'on' : 'off'}
-        {...props}
-      >
-        {icon && <span className="nothing-quick-toggle__icon">{icon}</span>}
-        {label && <span className="nothing-quick-toggle__label">{label}</span>}
-      </button>
-    )
-  }
-)
+function QuickToggle({
+  variant = 'circle',
+  theme = 'light',
+  active,
+  icon,
+  label,
+  className,
+  onClick,
+  ref,
+  ...props
+}: QuickToggleProps) {
+  return (
+    <button
+      ref={ref}
+      className={cn(quickToggleVariants({ variant, theme, active }), className)}
+      onClick={onClick}
+      aria-pressed={active ?? false}
+      type="button"
+      data-slot="quick-toggle"
+      data-variant={dataAttr(variant)}
+      data-widget-theme={dataAttr(theme)}
+      data-state={active ? 'on' : 'off'}
+      {...props}
+    >
+      {icon && (
+        <span data-slot="quick-toggle-icon" className={cn(quickToggleIconVariants({ theme }))}>
+          {icon}
+        </span>
+      )}
+      {label && (
+        <span
+          data-slot="quick-toggle-label"
+          className={cn(quickToggleLabelVariants({ variant, theme }))}
+        >
+          {label}
+        </span>
+      )}
+    </button>
+  )
+}
+
 QuickToggle.displayName = 'QuickToggle'
 
 export { QuickToggle, quickToggleVariants }

@@ -1,46 +1,23 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { switchLabelVariants, switchThumbVariants, switchTrackVariants, switchVariants } from "./switch-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import { Switch } from "@base-ui/react/switch";
-import "./Switch.css";
 //#region src/Switch/Switch.tsx
-const switchVariants = cva("nothing-switch", {
-	variants: {
-		checked: {
-			true: "nothing-switch--on",
-			false: ""
-		},
-		disabled: {
-			true: "nothing-switch--disabled",
-			false: ""
-		},
-		size: {
-			sm: "nothing-switch--sm",
-			md: "",
-			lg: "nothing-switch--lg"
-		}
-	},
-	defaultVariants: {
-		checked: false,
-		disabled: false,
-		size: "md"
-	}
-});
-const Switch$1 = React.forwardRef(({ className, on: controlledOn, label, disabled, onChange, checked, size = "md", ...props }, ref) => {
-	const [internalOn, setInternalOn] = React.useState(false);
-	const isOn = controlledOn !== void 0 ? controlledOn : checked ?? internalOn;
+function Switch$1({ className, label, disabled, onChange, checked, defaultChecked = false, size = "md", ref, ...props }) {
+	const [internalOn, setInternalOn] = React.useState(defaultChecked);
+	const isOn = checked ?? internalOn;
 	const isDisabled = !!disabled;
-	const handleCheckedChange = (newValue) => {
-		if (controlledOn === void 0) setInternalOn(newValue);
-		onChange?.(newValue);
+	const handleCheckedChange = (nextValue) => {
+		if (checked === void 0) setInternalOn(nextValue);
+		onChange?.(nextValue);
 	};
 	return /* @__PURE__ */ jsxs("label", {
 		ref,
 		className: cn(switchVariants({
+			size,
 			checked: isOn,
-			disabled: isDisabled,
-			size
+			disabled: isDisabled
 		}), className),
 		"data-slot": "switch",
 		"data-state": dataAttr(isOn ? "on" : "off"),
@@ -48,19 +25,24 @@ const Switch$1 = React.forwardRef(({ className, on: controlledOn, label, disable
 		"data-size": dataAttr(size),
 		...props,
 		children: [/* @__PURE__ */ jsx(Switch.Root, {
-			className: "nothing-switch__track",
+			className: switchTrackVariants({ size }),
+			"data-slot": "switch-track",
 			checked: isOn,
 			onCheckedChange: handleCheckedChange,
 			disabled: isDisabled,
-			children: /* @__PURE__ */ jsx(Switch.Thumb, { className: "nothing-switch__thumb" })
+			children: /* @__PURE__ */ jsx(Switch.Thumb, {
+				className: switchThumbVariants({ size }),
+				"data-slot": "switch-thumb"
+			})
 		}), label && /* @__PURE__ */ jsx("span", {
-			className: "nothing-switch__label",
+			className: switchLabelVariants({ size }),
+			"data-slot": "switch-label",
 			children: label
 		})]
 	});
-});
+}
 Switch$1.displayName = "Switch";
 //#endregion
-export { Switch$1 as Switch, Switch$1 as default, switchVariants };
+export { Switch$1 as default };
 
 //# sourceMappingURL=Switch.mjs.map

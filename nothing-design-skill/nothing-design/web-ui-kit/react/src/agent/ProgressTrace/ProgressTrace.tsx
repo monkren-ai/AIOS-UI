@@ -42,7 +42,8 @@ export const progressTraceVariants = cva('nothing-progress-trace', {
 })
 
 export interface ProgressTraceProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     VariantProps<typeof progressTraceVariants> {
   steps: TraceStep[]
   defaultCollapsed?: boolean
@@ -109,7 +110,9 @@ export const ProgressTrace = React.forwardRef<HTMLDivElement, ProgressTraceProps
                 >
                   <div className="nothing-progress-trace__marker">
                     <AgentOrb state={statusToAgentState[status]} size="sm" />
-                    {!isLast && <span className="nothing-progress-trace__line" aria-hidden="true" />}
+                    {!isLast && (
+                      <span className="nothing-progress-trace__line" aria-hidden="true" />
+                    )}
                   </div>
                   <div className="nothing-progress-trace__content">
                     <div className="nothing-progress-trace__row">
@@ -117,7 +120,9 @@ export const ProgressTrace = React.forwardRef<HTMLDivElement, ProgressTraceProps
                       <span className="nothing-progress-trace__status">{statusLabels[status]}</span>
                     </div>
                     {step.description && (
-                      <span className="nothing-progress-trace__description">{step.description}</span>
+                      <span className="nothing-progress-trace__description">
+                        {step.description}
+                      </span>
                     )}
                     {step.timestamp && (
                       <span className="nothing-progress-trace__timestamp">{step.timestamp}</span>

@@ -13,38 +13,41 @@ export function useFloating(placement: Placement = 'bottom'): FloatingReturn {
     zIndex: 1000,
   })
 
-  const update = useCallback((anchor: HTMLElement, floating: HTMLElement) => {
-    const anchorRect = anchor.getBoundingClientRect()
-    const floatingRect = floating.getBoundingClientRect()
-    const gap = 8
+  const update = useCallback(
+    (anchor: HTMLElement, floating: HTMLElement) => {
+      const anchorRect = anchor.getBoundingClientRect()
+      const floatingRect = floating.getBoundingClientRect()
+      const gap = 8
 
-    let top = 0
-    let left = 0
+      let top = 0
+      let left = 0
 
-    switch (placement) {
-      case 'top':
-        top = anchorRect.top - floatingRect.height - gap
-        left = anchorRect.left + (anchorRect.width - floatingRect.width) / 2
-        break
-      case 'bottom':
-        top = anchorRect.bottom + gap
-        left = anchorRect.left + (anchorRect.width - floatingRect.width) / 2
-        break
-      case 'left':
-        top = anchorRect.top + (anchorRect.height - floatingRect.height) / 2
-        left = anchorRect.left - floatingRect.width - gap
-        break
-      case 'right':
-        top = anchorRect.top + (anchorRect.height - floatingRect.height) / 2
-        left = anchorRect.right + gap
-        break
-    }
+      switch (placement) {
+        case 'top':
+          top = anchorRect.top - floatingRect.height - gap
+          left = anchorRect.left + (anchorRect.width - floatingRect.width) / 2
+          break
+        case 'bottom':
+          top = anchorRect.bottom + gap
+          left = anchorRect.left + (anchorRect.width - floatingRect.width) / 2
+          break
+        case 'left':
+          top = anchorRect.top + (anchorRect.height - floatingRect.height) / 2
+          left = anchorRect.left - floatingRect.width - gap
+          break
+        case 'right':
+          top = anchorRect.top + (anchorRect.height - floatingRect.height) / 2
+          left = anchorRect.right + gap
+          break
+      }
 
-    top = Math.max(8, Math.min(top, window.innerHeight - floatingRect.height - 8))
-    left = Math.max(8, Math.min(left, window.innerWidth - floatingRect.width - 8))
+      top = Math.max(8, Math.min(top, window.innerHeight - floatingRect.height - 8))
+      left = Math.max(8, Math.min(left, window.innerWidth - floatingRect.width - 8))
 
-    setStyle(prev => ({ ...prev, top, left }))
-  }, [placement])
+      setStyle((prev) => ({ ...prev, top, left }))
+    },
+    [placement],
+  )
 
   return { style, update }
 }

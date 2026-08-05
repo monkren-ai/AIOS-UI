@@ -25,7 +25,8 @@ export const approvalGateVariants = cva('nothing-approval-gate', {
 })
 
 export interface ApprovalGateProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     VariantProps<typeof approvalGateVariants> {
   action: string
   impact?: string
@@ -88,11 +89,7 @@ export const ApprovalGate = React.forwardRef<HTMLDivElement, ApprovalGateProps>(
           <Button variant="secondary" size="sm" onClick={onDeny}>
             {denyLabel}
           </Button>
-          <Button
-            variant={risk === 'high' ? 'destructive' : 'primary'}
-            size="sm"
-            onClick={onAllow}
-          >
+          <Button variant={risk === 'high' ? 'destructive' : 'primary'} size="sm" onClick={onAllow}>
             {allowLabel}
           </Button>
         </div>

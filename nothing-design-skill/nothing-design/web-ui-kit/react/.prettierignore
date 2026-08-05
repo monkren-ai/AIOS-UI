@@ -1,0 +1,11 @@
+# 构建产物
+es/
+dist/
+node_modules/
+coverage/
+
+# 生成文件。这些由 `sync:exports` / `sync:subpaths` 写出，格式由生成器决定：
+# 让 Prettier 也来插一手的话，`sync:exports --check` 会和 `prettier --check`
+# 互相判对方不合格，CI 上就成了死结。
+src/index.ts
+src/subpath/

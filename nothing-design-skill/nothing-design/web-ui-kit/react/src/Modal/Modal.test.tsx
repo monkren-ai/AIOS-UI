@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -14,7 +15,24 @@ describe('Modal', () => {
     const dialog = screen.getByRole('dialog')
     expect(dialog).toBeInTheDocument()
     expect(dialog).toHaveAttribute('aria-modal', 'true')
+    expect(dialog).toHaveAttribute('data-slot', 'modal')
+    expect(dialog).toHaveAttribute('data-variant', 'default')
+    expect(dialog).toHaveAttribute('data-state', 'open')
     expect(screen.getByText('Modal content')).toBeInTheDocument()
+  })
+
+  it('marks up every part with a data-slot', () => {
+    render(
+      <Modal open={true} title="Title" footer={<span>Footer</span>}>
+        Body
+      </Modal>,
+    )
+    expect(document.querySelector('[data-slot="modal-backdrop"]')).toBeInTheDocument()
+    expect(document.querySelector('[data-slot="modal-header"]')).toBeInTheDocument()
+    expect(document.querySelector('[data-slot="modal-title"]')).toBeInTheDocument()
+    expect(document.querySelector('[data-slot="modal-body"]')).toBeInTheDocument()
+    expect(document.querySelector('[data-slot="modal-footer"]')).toBeInTheDocument()
+    expect(document.querySelector('[data-slot="modal-close"]')).toBeInTheDocument()
   })
 
   it('calls onClose when close button is clicked', async () => {
@@ -23,7 +41,7 @@ describe('Modal', () => {
     render(
       <Modal open={true} onClose={handleClose}>
         Content
-      </Modal>
+      </Modal>,
     )
     const closeBtn = screen.getByRole('button', { name: 'Close' })
     await user.click(closeBtn)
@@ -36,9 +54,10 @@ describe('Modal', () => {
     render(
       <Modal open={true} onClose={handleClose}>
         Content
-      </Modal>
+      </Modal>,
     )
-    const backdrop = document.querySelector('.nothing-modal-backdrop') as HTMLElement
+    const backdrop = document.querySelector('[data-slot="modal-backdrop"]') as HTMLElement
+    expect(backdrop).toHaveAttribute('data-state', 'open')
     await user.click(backdrop)
     expect(handleClose).toHaveBeenCalledTimes(1)
   })
@@ -49,7 +68,7 @@ describe('Modal', () => {
     render(
       <Modal open={true} onClose={handleClose}>
         <div>Inner content</div>
-      </Modal>
+      </Modal>,
     )
     await user.click(screen.getByText('Inner content'))
     expect(handleClose).not.toHaveBeenCalled()
@@ -61,24 +80,39 @@ describe('Modal', () => {
     render(
       <Modal open={true} onClose={handleClose}>
         Content
-      </Modal>
+      </Modal>,
     )
     await user.keyboard('{Escape}')
     expect(handleClose).toHaveBeenCalledTimes(1)
   })
 
   it('supports custom className', () => {
-    render(<Modal open={true} className="my-modal">Content</Modal>)
+    render(
+      <Modal open={true} className="my-modal">
+        Content
+      </Modal>,
+    )
     const dialog = screen.getByRole('dialog')
     expect(dialog).toHaveClass('my-modal')
-    expect(dialog).toHaveClass('nothing-modal')
+    expect(dialog).toHaveAttribute('data-slot', 'modal')
+  })
+
+  it('lets a caller-supplied utility win over the variant default', () => {
+    render(
+      <Modal open={true} className="rounded-none">
+        Content
+      </Modal>,
+    )
+    const dialog = screen.getByRole('dialog')
+    expect(dialog).toHaveClass('rounded-none')
+    expect(dialog).not.toHaveClass('rounded-lg')
   })
 
   it('renders title with correct aria-labelledby', () => {
     render(
       <Modal open={true} title="My Title">
         Body
-      </Modal>
+      </Modal>,
     )
     const dialog = screen.getByRole('dialog')
     const title = screen.getByText('My Title')
@@ -99,16 +133,36 @@ describe('Modal', () => {
         cancelLabel="No"
         onConfirm={handleConfirm}
         onCancel={handleCancel}
-      />
+      />,
     )
     const dialog = screen.getByRole('alertdialog')
     expect(dialog).toBeInTheDocument()
+    expect(dialog).toHaveAttribute('data-variant', 'alert')
     expect(screen.getByText('Are you sure?')).toBeInTheDocument()
+    expect(document.querySelector('[data-slot="modal-description"]')).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: 'Yes' }))
     expect(handleConfirm).toHaveBeenCalledTimes(1)
 
     await user.click(screen.getByRole('button', { name: 'No' }))
     expect(handleCancel).toHaveBeenCalledTimes(1)
+  })
+
+  it('flags the destructive alert through data-destructive', () => {
+    render(<Modal open={true} variant="alert" destructive title="Delete" description="Sure?" />)
+    expect(screen.getByRole('alertdialog')).toHaveAttribute('data-destructive')
+    expect(document.querySelector('[data-slot="modal-confirm"]')).toHaveAttribute(
+      'data-destructive',
+    )
+  })
+
+  it('accepts ref as a plain prop', () => {
+    const ref = React.createRef<HTMLDivElement>()
+    render(
+      <Modal open={true} ref={ref}>
+        Content
+      </Modal>,
+    )
+    expect(ref.current).toBeInstanceOf(HTMLDivElement)
   })
 })

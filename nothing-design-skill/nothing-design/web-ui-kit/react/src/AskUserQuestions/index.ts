@@ -6,4 +6,5 @@ export {
   type AskUserQuestionType,
   type AskUserAnswerValue,
 } from './AskUserQuestions'
+export type { AskUserQuestionsSize } from './ask-user-questions-variants'
 export { default } from './AskUserQuestions'

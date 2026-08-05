@@ -17,7 +17,10 @@ const external = [
   ...Object.keys(pkg.peerDependencies ?? {}),
 ];
 
-// Dynamic scan: src/*/index.ts + src/index.ts as multi-entry
+// 展示站代码不进包
+const NON_LIBRARY_DIRS = new Set(['showcase', 'site', 'sections']);
+
+// Dynamic scan: src/*/index.ts + src/index.ts + src/subpath/*.ts as multi-entry
 const scanEntries = (): Record<string, string> => {
   const entries: Record<string, string> = {};
   const srcDir = join(__dirname, 'src');
@@ -32,11 +35,21 @@ const scanEntries = (): Record<string, string> => {
   if (existsSync(srcDir)) {
     const dirs = readdirSync(srcDir, { withFileTypes: true });
     for (const dir of dirs) {
-      if (!dir.isDirectory()) continue;
+      if (!dir.isDirectory() || NON_LIBRARY_DIRS.has(dir.name)) continue;
       const entryPath = join(srcDir, dir.name, 'index.ts');
       if (existsSync(entryPath)) {
         entries[dir.name] = entryPath;
       }
+    }
+  }
+
+  // subpath 入口 src/subpath/*.ts —— 对应 package.json 的 "./*" 导出，
+  // 让 `import { Button } from 'nothing-ui/button'` 有真实文件可落。
+  const subpathDir = join(srcDir, 'subpath');
+  if (existsSync(subpathDir)) {
+    for (const file of readdirSync(subpathDir)) {
+      if (!file.endsWith('.ts')) continue;
+      entries[`subpath/${file.slice(0, -3)}`] = join(subpathDir, file);
     }
   }
 

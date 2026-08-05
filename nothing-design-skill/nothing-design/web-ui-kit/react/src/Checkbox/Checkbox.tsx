@@ -1,130 +1,127 @@
 import * as React from 'react'
-import { cva } from 'class-variance-authority'
 import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox'
 import { cn, dataAttr } from '@/lib/utils'
-import './Checkbox.css'
+import {
+  checkboxBoxVariants,
+  checkboxCheckVariants,
+  checkboxDashVariants,
+  checkboxIndicatorVariants,
+  checkboxLabelVariants,
+  checkboxVariants,
+  type CheckboxSize,
+} from './checkbox-variants'
 
-const checkboxVariants = cva('nothing-checkbox', {
-  variants: {
-    isChecked: {
-      true: 'nothing-checkbox--checked',
-      false: '',
-    },
-    indeterminate: {
-      true: 'nothing-checkbox--indeterminate',
-      false: '',
-    },
-    disabled: {
-      true: 'nothing-checkbox--disabled',
-      false: '',
-    },
-  },
-  defaultVariants: { isChecked: false, indeterminate: false, disabled: false },
-})
-
-export type CheckboxProps = Omit<React.HTMLAttributes<HTMLLabelElement>, 'onChange'> & {
+export type CheckboxProps = Omit<React.ComponentPropsWithRef<'label'>, 'onChange'> & {
   checked?: boolean | 'indeterminate'
   defaultChecked?: boolean
   onCheckedChange?: (checked: boolean | 'indeterminate') => void
   disabled?: boolean
   label?: string
+  /** 盒子与行高阶梯。 */
+  size?: CheckboxSize
   id?: string
 }
 
-export const Checkbox = React.forwardRef<HTMLLabelElement, CheckboxProps>(
-  (
-    {
-      className,
-      checked: controlledChecked,
-      defaultChecked = false,
-      onCheckedChange,
-      disabled,
-      label,
-      id,
-      ...props
+export function Checkbox({
+  className,
+  checked: controlledChecked,
+  defaultChecked = false,
+  onCheckedChange,
+  disabled,
+  label,
+  size = 'md',
+  id,
+  ref,
+  ...props
+}: CheckboxProps) {
+  const [internalChecked, setInternalChecked] = React.useState<boolean | 'indeterminate'>(
+    defaultChecked,
+  )
+  const isControlled = controlledChecked !== undefined
+  const isChecked = isControlled ? controlledChecked : internalChecked
+  const isDisabled = !!disabled
+  const isIndeterminate = isChecked === 'indeterminate'
+
+  const handleCheckedChange = React.useCallback(
+    (nextChecked: boolean) => {
+      if (!isControlled) {
+        setInternalChecked(nextChecked)
+      }
+      onCheckedChange?.(nextChecked)
     },
-    ref
-  ) => {
-    const [internalChecked, setInternalChecked] = React.useState<
-      boolean | 'indeterminate'
-    >(defaultChecked)
-    const isControlled = controlledChecked !== undefined
-    const isChecked = isControlled ? controlledChecked : internalChecked
-    const isDisabled = !!disabled
-    const isIndeterminate = isChecked === 'indeterminate'
+    [isControlled, onCheckedChange],
+  )
 
-    const handleCheckedChange = React.useCallback(
-      (nextChecked: boolean) => {
-        const nextValue: boolean | 'indeterminate' = nextChecked
-        if (!isControlled) {
-          setInternalChecked(nextValue)
-        }
-        onCheckedChange?.(nextValue)
-      },
-      [isControlled, onCheckedChange]
-    )
+  const state = isIndeterminate ? 'indeterminate' : isChecked ? 'checked' : 'unchecked'
 
-    return (
-      <label
-        ref={ref}
-        className={cn(
-          checkboxVariants({
-            isChecked: !!isChecked,
-            indeterminate: isIndeterminate,
-            disabled: isDisabled,
-          }),
-          className
-        )}
-        data-state={dataAttr(
-          isIndeterminate ? 'indeterminate' : isChecked ? 'checked' : 'unchecked'
-        )}
-        data-disabled={dataAttr(isDisabled)}
-        {...props}
+  return (
+    <label
+      ref={ref}
+      className={cn(
+        checkboxVariants({
+          size,
+          isChecked: !!isChecked,
+          indeterminate: isIndeterminate,
+          disabled: isDisabled,
+        }),
+        className,
+      )}
+      data-slot="checkbox"
+      data-size={dataAttr(size)}
+      data-state={dataAttr(state)}
+      data-disabled={dataAttr(isDisabled)}
+      {...props}
+    >
+      <BaseCheckbox.Root
+        className={checkboxBoxVariants({ size })}
+        data-slot="checkbox-box"
+        checked={isIndeterminate ? false : !!isChecked}
+        indeterminate={isIndeterminate}
+        defaultChecked={isControlled ? undefined : defaultChecked}
+        onCheckedChange={handleCheckedChange}
+        disabled={isDisabled}
+        id={id}
       >
-        <BaseCheckbox.Root
-          className="nothing-checkbox__box"
-          checked={isIndeterminate ? false : !!isChecked}
-          indeterminate={isIndeterminate}
-          defaultChecked={isControlled ? undefined : defaultChecked}
-          onCheckedChange={handleCheckedChange}
-          disabled={isDisabled}
-          id={id}
+        <BaseCheckbox.Indicator
+          className={checkboxIndicatorVariants()}
+          data-slot="checkbox-indicator"
+          keepMounted
         >
-          <BaseCheckbox.Indicator className="nothing-checkbox__indicator" keepMounted>
-            <svg
-              className="nothing-checkbox__check"
-              viewBox="0 0 14 14"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M3 7L6 10L11 4"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <svg
-              className="nothing-checkbox__dash"
-              viewBox="0 0 14 14"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M3 7H11"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </BaseCheckbox.Indicator>
-        </BaseCheckbox.Root>
-        {label && <span className="nothing-checkbox__label">{label}</span>}
-      </label>
-    )
-  }
-)
+          <svg
+            className={checkboxCheckVariants({ size })}
+            data-slot="checkbox-check"
+            viewBox="0 0 14 14"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M3 7L6 10L11 4"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <svg
+            className={checkboxDashVariants({ size })}
+            data-slot="checkbox-dash"
+            viewBox="0 0 14 14"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path d="M3 7H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </BaseCheckbox.Indicator>
+      </BaseCheckbox.Root>
+      {label && (
+        <span className={checkboxLabelVariants({ size })} data-slot="checkbox-label">
+          {label}
+        </span>
+      )}
+    </label>
+  )
+}
+
 Checkbox.displayName = 'Checkbox'
 
 export { checkboxVariants }

@@ -36,7 +36,8 @@ export const planCardVariants = cva('nothing-plan-card', {
 })
 
 export interface PlanCardProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     VariantProps<typeof planCardVariants> {
   title?: string
   steps: PlanStep[]
@@ -104,10 +105,7 @@ export const PlanCard = React.forwardRef<HTMLDivElement, PlanCardProps>(
             return (
               <li
                 key={step.id}
-                className={cn(
-                  'nothing-plan-card__item',
-                  `nothing-plan-card__item--${status}`,
-                )}
+                className={cn('nothing-plan-card__item', `nothing-plan-card__item--${status}`)}
                 data-status={dataAttr(status)}
               >
                 <span className="nothing-plan-card__number">{stepNumber}</span>
@@ -123,7 +121,9 @@ export const PlanCard = React.forwardRef<HTMLDivElement, PlanCardProps>(
                     onClick={() => onStepToggle?.(step.id, status !== 'approved')}
                     aria-pressed={status === 'approved'}
                     aria-label={
-                      status === 'approved' ? `Reject step ${stepNumber}` : `Approve step ${stepNumber}`
+                      status === 'approved'
+                        ? `Reject step ${stepNumber}`
+                        : `Approve step ${stepNumber}`
                     }
                   >
                     {status === 'approved' ? '−' : '+'}

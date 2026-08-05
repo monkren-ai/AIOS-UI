@@ -65,16 +65,21 @@ const EXCLUDED_ENTRIES = new Set([
   'showcase',
   'sections',
   'nullframe',
+  'site',
+  'subpath',
+  'system',
+  'types',
+  'ui',
   'App',
   'index',
   'main',
+  'version',
 ])
 
 // 各模块中不对外暴露的内部导出（保持与历史 barrel 一致）
 const INTERNAL_EXPORTS: Record<string, Set<string>> = {
   ConfigProvider: new Set(['ConfigContext', 'defaultCdnFn']),
   MotionProvider: new Set(['MotionContext']),
-  States: new Set(['stateVariants']),
 }
 
 // 当模块入口是聚合层，且部分导出实际来自子文件时，指定覆盖导入路径。
@@ -255,7 +260,10 @@ function filterInternalExports(name: string, exports: ParsedExports): ParsedExpo
   }
 }
 
-function buildCategories(): { title: string; entries: { name: string; sources: ExportSource[] }[] }[] {
+function buildCategories(): {
+  title: string
+  entries: { name: string; sources: ExportSource[] }[]
+}[] {
   const reserved = new Set(CATEGORIES.flatMap((c) => c.members))
   const allEntries = listTopLevelEntries()
 

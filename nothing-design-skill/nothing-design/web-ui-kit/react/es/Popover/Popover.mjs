@@ -1,29 +1,10 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { popoverContentVariants, popoverPositionerVariants, popoverTriggerVariants } from "./popover-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import { Popover } from "@base-ui/react/popover";
-import "./Popover.css";
 //#region src/Popover/Popover.tsx
-const popoverContentVariants = cva("nothing-popover__content", {
-	variants: {
-		visible: {
-			true: "nothing-popover__content--visible",
-			false: ""
-		},
-		side: {
-			top: "nothing-popover__content--top",
-			bottom: "nothing-popover__content--bottom",
-			left: "nothing-popover__content--left",
-			right: "nothing-popover__content--right"
-		}
-	},
-	defaultVariants: {
-		visible: false,
-		side: "bottom"
-	}
-});
-const Popover$1 = React.forwardRef(({ className, content, side = "bottom", open: controlledOpen, onOpenChange, visible: _visible, children, ...props }, ref) => {
+function Popover$1({ className, content, side = "bottom", open: controlledOpen, onOpenChange, children, ref, ...props }) {
 	const [internalOpen, setInternalOpen] = React.useState(false);
 	const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
 	const handleOpenChange = React.useCallback((nextOpen) => {
@@ -38,26 +19,23 @@ const Popover$1 = React.forwardRef(({ className, content, side = "bottom", open:
 			render: (triggerProps) => {
 				if (React.isValidElement(children)) return React.cloneElement(children, {
 					...triggerProps,
-					className: cn("nothing-popover__trigger", children.props.className)
+					className: cn(popoverTriggerVariants(), children.props.className)
 				});
 				return /* @__PURE__ */ jsx("span", {
 					...triggerProps,
-					className: "nothing-popover__trigger",
+					className: cn(popoverTriggerVariants()),
 					"data-slot": "popover-trigger",
 					children
 				});
 			}
 		}), /* @__PURE__ */ jsx(Popover.Portal, { children: /* @__PURE__ */ jsx(Popover.Positioner, {
-			className: "nothing-popover__positioner",
+			className: cn(popoverPositionerVariants()),
 			"data-slot": "popover-positioner",
 			side,
 			sideOffset: 4,
 			children: /* @__PURE__ */ jsx(Popover.Popup, {
 				ref,
-				className: cn(popoverContentVariants({
-					visible: isOpen,
-					side
-				}), className),
+				className: cn(popoverContentVariants({ side }), className),
 				"data-slot": "popover-content",
 				"data-state": dataAttr(isOpen ? "open" : "closed"),
 				"data-side": dataAttr(side),
@@ -66,9 +44,9 @@ const Popover$1 = React.forwardRef(({ className, content, side = "bottom", open:
 			})
 		}) })]
 	});
-});
+}
 Popover$1.displayName = "Popover";
 //#endregion
-export { Popover$1 as Popover, Popover$1 as default, popoverContentVariants };
+export { Popover$1 as default };
 
 //# sourceMappingURL=Popover.mjs.map

@@ -5,7 +5,13 @@ import { AskUserQuestions } from './AskUserQuestions'
 
 const questions = [
   { id: 'name', title: 'What is your name?', type: 'text' as const, required: true },
-  { id: 'role', title: 'Select a role', type: 'single' as const, options: ['Design', 'Engineering'], required: true },
+  {
+    id: 'role',
+    title: 'Select a role',
+    type: 'single' as const,
+    options: ['Design', 'Engineering'],
+    required: true,
+  },
   { id: 'tools', title: 'Pick tools', type: 'multiple' as const, options: ['Figma', 'React'] },
   { id: 'terms', title: 'Accept terms', type: 'confirm' as const, required: true },
 ]
@@ -13,7 +19,9 @@ const questions = [
 describe('AskUserQuestions', () => {
   it('renders with data-slot', () => {
     render(<AskUserQuestions questions={questions} />)
-    expect(screen.getByText('QUESTIONS').closest('[data-slot]')).toHaveAttribute('data-slot', 'ask-user-questions')
+    expect(
+      screen.getByText('QUESTIONS').closest('[data-slot="ask-user-questions"]'),
+    ).toBeInTheDocument()
   })
 
   it('renders first question and progress', () => {
@@ -51,7 +59,13 @@ describe('AskUserQuestions', () => {
 
   it('selects single option', () => {
     const onChange = vi.fn()
-    render(<AskUserQuestions questions={questions} defaultValue={{ name: 'Alice' }} onChange={onChange} />)
+    render(
+      <AskUserQuestions
+        questions={questions}
+        defaultValue={{ name: 'Alice' }}
+        onChange={onChange}
+      />,
+    )
     fireEvent.click(screen.getByRole('button', { name: 'NEXT' }))
 
     fireEvent.click(screen.getByRole('button', { name: 'Design' }))
@@ -61,10 +75,7 @@ describe('AskUserQuestions', () => {
 
   it('selects multiple options via CheckboxGroup', () => {
     render(
-      <AskUserQuestions
-        questions={questions}
-        defaultValue={{ name: 'Alice', role: 'Design' }}
-      />,
+      <AskUserQuestions questions={questions} defaultValue={{ name: 'Alice', role: 'Design' }} />,
     )
     fireEvent.click(screen.getByRole('button', { name: 'NEXT' }))
     fireEvent.click(screen.getByRole('button', { name: 'NEXT' }))
@@ -146,18 +157,37 @@ describe('AskUserQuestions', () => {
     const sizes = ['sm', 'md', 'lg'] as const
     for (const size of sizes) {
       const { unmount } = render(<AskUserQuestions questions={questions} size={size} />)
-      const root = screen.getByText('QUESTIONS').closest('[data-slot]')
-      expect(root).toHaveClass(`nothing-ask-user-questions--${size}`)
+      const root = screen.getByText('QUESTIONS').closest('[data-slot="ask-user-questions"]')
       expect(root).toHaveAttribute('data-size', size)
       unmount()
     }
   })
 
+  it('exposes the step direction so the enter animation can mirror', () => {
+    const { container } = render(
+      <AskUserQuestions questions={questions} defaultValue={{ name: 'Alice' }} />,
+    )
+    const step = () => container.querySelector('[data-slot="ask-user-questions-step"]')
+    expect(step()).toHaveAttribute('data-direction', 'forward')
+
+    fireEvent.click(screen.getByRole('button', { name: 'NEXT' }))
+    expect(step()).toHaveAttribute('data-direction', 'forward')
+
+    fireEvent.click(screen.getByRole('button', { name: 'BACK' }))
+    expect(step()).toHaveAttribute('data-direction', 'back')
+  })
+
   it('supports custom className', () => {
     render(<AskUserQuestions questions={questions} className="custom-questions" />)
-    const root = screen.getByText('QUESTIONS').closest('[data-slot]')
+    const root = screen.getByText('QUESTIONS').closest('[data-slot="ask-user-questions"]')
     expect(root).toHaveClass('custom-questions')
-    expect(root).toHaveClass('nothing-ask-user-questions')
+  })
+
+  it('lets the caller override variant defaults', () => {
+    render(<AskUserQuestions questions={questions} className="p-0" />)
+    const root = screen.getByText('QUESTIONS').closest('[data-slot="ask-user-questions"]')
+    expect(root).toHaveClass('p-0')
+    expect(root).not.toHaveClass('p-4')
   })
 
   it('forwards ref to the div element', () => {

@@ -1,24 +1,21 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import { walkieChannelButtonVariants, walkieChannelLabelVariants, walkieChannelNumberVariants, walkieChannelVariants, walkiePttAreaVariants, walkiePttVariants, walkiePulseVariants, walkieStatusVariants, walkieTalkieVariants, walkieVolumeLabelVariants, walkieVolumeSegmentVariants, walkieVolumeVariants } from "./walkie-talkie-variants.mjs";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import "./WalkieTalkie.css";
 //#region src/WalkieTalkie/WalkieTalkie.tsx
-const walkieTalkieVariants = cva("nothing-walkie-talkie", {
-	variants: { status: {
-		ready: "nothing-walkie-talkie--ready",
-		transmitting: "nothing-walkie-talkie--transmitting",
-		sent: "nothing-walkie-talkie--sent"
-	} },
-	defaultVariants: { status: "ready" }
-});
 const STATUS_LABELS = {
 	ready: "READY",
 	transmitting: "TRANSMITTING",
 	sent: "SENT"
 };
-const WalkieTalkie = React.forwardRef(({ className, channel: initialChannel = 1, minChannel = 1, maxChannel = 22, volumeSegments = 5, volumeLevel = 3, status: statusProp, style, ...props }, ref) => {
+/** 三圈涟漪，相位依次错开 0.4s。 */
+const PULSE_RINGS = [
+	0,
+	1,
+	2
+];
+function WalkieTalkie({ className, channel: initialChannel = 1, minChannel = 1, maxChannel = 22, volumeSegments = 5, volumeLevel = 3, status: statusProp, style, ...props }) {
 	const [channel, setChannel] = useState(initialChannel);
 	const [isTransmitting, setIsTransmitting] = useState(false);
 	const [status, setStatus] = useState("READY");
@@ -92,85 +89,96 @@ const WalkieTalkie = React.forwardRef(({ className, channel: initialChannel = 1,
 		26,
 		32
 	];
-	const statusClass = cn(derivedStatus === "transmitting" && "transmitting", derivedStatus === "sent" && "sent");
 	return /* @__PURE__ */ jsxs("div", {
-		ref,
 		className: cn(walkieTalkieVariants({ status: derivedStatus }), className),
 		style,
+		"data-slot": "walkie-talkie",
 		"data-status": dataAttr(derivedStatus),
 		"data-channel": dataAttr(channel),
+		"data-transmitting": dataAttr(isTransmitting),
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "walkie-channel",
+				"data-slot": "walkie-talkie-channel",
+				className: walkieChannelVariants(),
 				children: [
 					/* @__PURE__ */ jsx("button", {
-						className: "walkie-channel__btn",
+						"data-slot": "walkie-talkie-channel-down",
+						className: walkieChannelButtonVariants(),
 						onClick: () => handleChannelChange(-1),
+						"aria-label": "Previous channel",
 						children: /* @__PURE__ */ jsx("svg", {
 							viewBox: "0 0 24 24",
-							children: /* @__PURE__ */ jsx("polyline", {
-								className: "walkie-channel__btn-icon",
-								points: "6 9 12 15 18 9"
-							})
+							"aria-hidden": "true",
+							children: /* @__PURE__ */ jsx("polyline", { points: "6 9 12 15 18 9" })
 						})
 					}),
 					/* @__PURE__ */ jsx("span", {
-						className: "walkie-channel__label",
+						"data-slot": "walkie-talkie-channel-label",
+						className: walkieChannelLabelVariants(),
 						children: "CHANNEL"
 					}),
 					/* @__PURE__ */ jsx("span", {
-						className: "walkie-channel__number",
+						"data-slot": "walkie-talkie-channel-number",
+						className: walkieChannelNumberVariants(),
 						children: String(channel).padStart(2, "0")
 					}),
 					/* @__PURE__ */ jsx("button", {
-						className: "walkie-channel__btn",
+						"data-slot": "walkie-talkie-channel-up",
+						className: walkieChannelButtonVariants(),
 						onClick: () => handleChannelChange(1),
+						"aria-label": "Next channel",
 						children: /* @__PURE__ */ jsx("svg", {
 							viewBox: "0 0 24 24",
-							children: /* @__PURE__ */ jsx("polyline", {
-								className: "walkie-channel__btn-icon",
-								points: "6 15 12 9 18 15"
+							"aria-hidden": "true",
+							children: /* @__PURE__ */ jsx("polyline", { points: "6 15 12 9 18 15" })
+						})
+					})
+				]
+			}),
+			/* @__PURE__ */ jsxs("div", {
+				"data-slot": "walkie-talkie-ptt-area",
+				className: walkiePttAreaVariants(),
+				"data-transmitting": dataAttr(isTransmitting),
+				children: [PULSE_RINGS.map((index) => /* @__PURE__ */ jsx("div", {
+					"data-slot": "walkie-talkie-pulse",
+					"aria-hidden": "true",
+					className: walkiePulseVariants({
+						transmitting: isTransmitting,
+						index
+					})
+				}, index)), /* @__PURE__ */ jsx("button", {
+					"data-slot": "walkie-talkie-ptt",
+					className: walkiePttVariants({ active: isTransmitting }),
+					"data-active": dataAttr(isTransmitting),
+					"aria-label": "Push to talk",
+					onMouseDown: handlePttDown,
+					onTouchStart: handlePttDown,
+					children: /* @__PURE__ */ jsxs("svg", {
+						viewBox: "0 0 24 24",
+						"aria-hidden": "true",
+						children: [
+							/* @__PURE__ */ jsx("path", { d: "M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" }),
+							/* @__PURE__ */ jsx("path", { d: "M19 10v2a7 7 0 0 1-14 0v-2" }),
+							/* @__PURE__ */ jsx("line", {
+								x1: "12",
+								y1: "19",
+								x2: "12",
+								y2: "23"
+							}),
+							/* @__PURE__ */ jsx("line", {
+								x1: "8",
+								y1: "23",
+								x2: "16",
+								y2: "23"
 							})
-						})
+						]
 					})
-				]
+				})]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: cn("walkie-ptt-area", isTransmitting && "transmitting"),
-				children: [
-					/* @__PURE__ */ jsx("div", { className: "walkie-pulse" }),
-					/* @__PURE__ */ jsx("div", { className: "walkie-pulse" }),
-					/* @__PURE__ */ jsx("div", { className: "walkie-pulse" }),
-					/* @__PURE__ */ jsx("button", {
-						className: cn("walkie-ptt", isTransmitting && "active"),
-						onMouseDown: handlePttDown,
-						onTouchStart: handlePttDown,
-						children: /* @__PURE__ */ jsxs("svg", {
-							className: "walkie-ptt__icon",
-							viewBox: "0 0 24 24",
-							children: [
-								/* @__PURE__ */ jsx("path", { d: "M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" }),
-								/* @__PURE__ */ jsx("path", { d: "M19 10v2a7 7 0 0 1-14 0v-2" }),
-								/* @__PURE__ */ jsx("line", {
-									x1: "12",
-									y1: "19",
-									x2: "12",
-									y2: "23"
-								}),
-								/* @__PURE__ */ jsx("line", {
-									x1: "8",
-									y1: "23",
-									x2: "16",
-									y2: "23"
-								})
-							]
-						})
-					})
-				]
-			}),
-			/* @__PURE__ */ jsxs("div", {
-				className: cn("walkie-status", statusClass),
+				"data-slot": "walkie-talkie-status",
+				className: walkieStatusVariants({ status: derivedStatus }),
 				children: [
 					"[",
 					STATUS_LABELS[derivedStatus],
@@ -178,21 +186,25 @@ const WalkieTalkie = React.forwardRef(({ className, channel: initialChannel = 1,
 				]
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "walkie-volume",
+				"data-slot": "walkie-talkie-volume",
+				className: walkieVolumeVariants(),
 				children: Array.from({ length: volumeSegments }).map((_, i) => /* @__PURE__ */ jsx("div", {
-					className: cn("walkie-volume__segment", i < volumeLevel && "filled"),
+					"data-slot": "walkie-talkie-volume-segment",
+					"data-filled": dataAttr(i < volumeLevel),
+					className: walkieVolumeSegmentVariants({ filled: i < volumeLevel }),
 					style: { height: `${segmentHeights[i] || 20}px` }
 				}, i))
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "walkie-volume__label",
+				"data-slot": "walkie-talkie-volume-label",
+				className: walkieVolumeLabelVariants(),
 				children: "VOL"
 			})
 		]
 	});
-});
+}
 WalkieTalkie.displayName = "WalkieTalkie";
 //#endregion
-export { WalkieTalkie, WalkieTalkie as default, walkieTalkieVariants };
+export { WalkieTalkie as default };
 
 //# sourceMappingURL=WalkieTalkie.mjs.map

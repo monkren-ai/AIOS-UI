@@ -4,8 +4,18 @@ import type { AgentState, PlanStep, TraceStep, ToolCallRowProps } from '@/agent'
 export type { Lang, T } from '@/App'
 
 const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ]
 
 /**
@@ -19,7 +29,14 @@ export function useShowcaseState() {
   const [dropdownValue, setDropdownValue] = useState<string | undefined>(undefined)
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false)
   const [dateNavLabel, setDateNavLabel] = useState('May 2026')
-  const [spinnerItems, setSpinnerItems] = useState<string[]>(['YES', 'NO', 'MAYBE', 'LATER', 'SKIP', 'TRY'])
+  const [spinnerItems, setSpinnerItems] = useState<string[]>([
+    'YES',
+    'NO',
+    'MAYBE',
+    'LATER',
+    'SKIP',
+    'TRY',
+  ])
   const [worldClockCities, setWorldClockCities] = useState([
     { name: 'NEW YORK', offset: -5 },
     { name: 'LONDON', offset: 0 },
@@ -44,7 +61,12 @@ export function useShowcaseState() {
     { id: '1', description: '搜索项目中的设计系统文档', tool: 'fileSearch', status: 'approved' },
     { id: '2', description: '读取 tokens.css 与现有组件', tool: 'readFile', status: 'approved' },
     { id: '3', description: '生成 AI OS Agent Token 提案', tool: 'writeFile', status: 'pending' },
-    { id: '4', description: '创建 AgentOrb / PlanCard / ToolCallRow 组件', tool: 'writeFile', status: 'pending' },
+    {
+      id: '4',
+      description: '创建 AgentOrb / PlanCard / ToolCallRow 组件',
+      tool: 'writeFile',
+      status: 'pending',
+    },
   ])
   const [agentTraceSteps, setAgentTraceSteps] = useState<TraceStep[]>([
     { id: 't1', label: '初始化 Agent 上下文', status: 'done', timestamp: '09:12:04' },

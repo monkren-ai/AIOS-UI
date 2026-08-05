@@ -3,7 +3,15 @@
 export {
   StaticDotMatrix as DotMatrix,
   dotMatrixVariants,
+  dotMatrixRowVariants,
   dotVariants,
   type StaticDotMatrixProps as DotMatrixProps,
   default,
 } from '../components/StaticDotMatrix'
+
+export type {
+  DotMatrixPattern,
+  DotMatrixSize,
+  DotMatrixTheme,
+  DotState,
+} from './dot-matrix-variants'

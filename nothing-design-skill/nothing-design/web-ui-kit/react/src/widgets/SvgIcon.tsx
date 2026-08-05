@@ -61,7 +61,10 @@ const sizeCenter: Record<SvgIconSize, number> = {
 /** Dot-matrix config per size — used when variant="dot".
  *  Total px = cols * dotSize + (cols - 1) * gap, must match CSS container:
  *  sm=48px, md=68px, lg=96px. */
-const sizeDotMatrix: Record<SvgIconSize, { dotSize: number; rows: number; cols: number; gap: number }> = {
+const sizeDotMatrix: Record<
+  SvgIconSize,
+  { dotSize: number; rows: number; cols: number; gap: number }
+> = {
   sm: { dotSize: 2, rows: 16, cols: 16, gap: 1 }, // 16*2 + 15*1 = 47px ≈ 48px
   md: { dotSize: 3, rows: 17, cols: 17, gap: 1 }, // 17*3 + 16*1 = 67px ≈ 68px
   lg: { dotSize: 3, rows: 24, cols: 24, gap: 1 }, // 24*3 + 23*1 = 95px ≈ 96px
@@ -69,14 +72,27 @@ const sizeDotMatrix: Record<SvgIconSize, { dotSize: number; rows: number; cols: 
 
 /** Dot-matrix color config per theme — used when variant="dot". */
 const themeDotMatrix: Record<SvgIconTheme, { baseColor: string; backgroundColor: string }> = {
-  dark: { baseColor: 'var(--widget-white, #FCFAFE)', backgroundColor: 'var(--widget-dark-bg, #1A1D1C)' },
-  light: { baseColor: 'var(--widget-dark-bg, #1A1D1C)', backgroundColor: 'var(--widget-card-bg, #FCFAFE)' },
-  accent: { baseColor: 'var(--widget-white, #FCFAFE)', backgroundColor: 'var(--widget-primary, #D71921)' },
-  error: { baseColor: 'var(--widget-white, #FCFAFE)', backgroundColor: 'var(--widget-error, #D71921)' },
+  dark: {
+    baseColor: 'var(--widget-white, #FCFAFE)',
+    backgroundColor: 'var(--widget-dark-bg, #1A1D1C)',
+  },
+  light: {
+    baseColor: 'var(--widget-dark-bg, #1A1D1C)',
+    backgroundColor: 'var(--widget-card-bg, #FCFAFE)',
+  },
+  accent: {
+    baseColor: 'var(--widget-white, #FCFAFE)',
+    backgroundColor: 'var(--widget-primary, #D71921)',
+  },
+  error: {
+    baseColor: 'var(--widget-white, #FCFAFE)',
+    backgroundColor: 'var(--widget-error, #D71921)',
+  },
 }
 
 export interface SvgIconProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     Omit<VariantProps<typeof svgIconVariants>, 'theme' | 'size' | 'labeled'> {
   bgFill?: string
   iconPath?: string | React.ReactNode
@@ -110,7 +126,7 @@ export const SvgIcon = React.forwardRef<HTMLDivElement, SvgIconProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const resolvedBg = bgFill ?? themeBgTokens[theme]
     const resolvedIconFill = iconFill ?? themeIconTokens[theme]
@@ -121,19 +137,12 @@ export const SvgIcon = React.forwardRef<HTMLDivElement, SvgIconProps>(
     const dotTheme = themeDotMatrix[theme]
 
     const iconContent =
-      typeof iconPath === 'string' ? (
-        <path d={iconPath} fill={resolvedIconFill} />
-      ) : (
-        iconPath
-      )
+      typeof iconPath === 'string' ? <path d={iconPath} fill={resolvedIconFill} /> : iconPath
 
     return (
       <div
         ref={ref}
-        className={cn(
-          svgIconVariants({ theme, size, labeled: Boolean(label) }),
-          className
-        )}
+        className={cn(svgIconVariants({ theme, size, labeled: Boolean(label) }), className)}
         style={style}
         data-name={dataName}
         data-theme={dataAttr(theme)}
@@ -176,7 +185,7 @@ export const SvgIcon = React.forwardRef<HTMLDivElement, SvgIconProps>(
         {label && <span className="nothing-svg-icon__label">{label}</span>}
       </div>
     )
-  }
+  },
 )
 SvgIcon.displayName = 'SvgIcon'
 

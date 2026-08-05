@@ -1,33 +1,14 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useProximityHover } from "../hooks/useProximityHover.mjs";
+import { resolveTagShape, resolveTagVariant, tagVariants, tagsVariants } from "./tag-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Tag.css";
 //#region src/Tag/Tag.tsx
-const tagVariants = cva("nothing-tag", {
-	variants: {
-		variant: {
-			pill: "",
-			technical: "nothing-tag--technical"
-		},
-		active: {
-			true: "nothing-tag--active",
-			false: ""
-		},
-		disabled: {
-			true: "nothing-tag--disabled",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		variant: "pill",
-		active: false,
-		disabled: false
-	}
-});
-const Tag = React.forwardRef(({ className, variant = "pill", active = false, removable = false, disabled = false, children, onClick, onRemove, ...props }, ref) => {
+function Tag({ className, variant, size = "md", shape, active = false, removable = false, disabled = false, children, onClick, onRemove, ...props }) {
 	const isDisabled = !!disabled;
+	const isInteractive = !!onClick;
+	const resolvedVariant = resolveTagVariant(variant) ?? "secondary";
+	const resolvedShape = resolveTagShape(variant, shape) ?? "pill";
 	const handleClick = () => {
 		if (isDisabled) return;
 		onClick?.();
@@ -52,24 +33,30 @@ const Tag = React.forwardRef(({ className, variant = "pill", active = false, rem
 		}
 	};
 	return /* @__PURE__ */ jsxs("span", {
-		ref,
 		className: cn(tagVariants({
-			variant,
+			variant: resolvedVariant,
+			size,
+			shape: resolvedShape,
 			active,
 			disabled: isDisabled
 		}), className),
 		"data-slot": "tag",
-		"data-variant": dataAttr(variant),
+		"data-variant": dataAttr(resolveTagVariant(variant) ?? "secondary"),
+		"data-size": dataAttr(size),
+		"data-shape": dataAttr(resolveTagShape(variant, shape) ?? "pill"),
 		"data-active": dataAttr(active),
 		"data-disabled": dataAttr(isDisabled),
-		role: "button",
-		tabIndex: isDisabled ? -1 : 0,
-		onClick: handleClick,
-		onKeyDown: handleKeyDown,
+		role: isInteractive ? "button" : void 0,
+		tabIndex: isInteractive ? isDisabled ? -1 : 0 : void 0,
+		"aria-pressed": isInteractive ? active : void 0,
+		"aria-disabled": isInteractive && isDisabled ? true : void 0,
+		onClick: isInteractive ? handleClick : void 0,
+		onKeyDown: isInteractive ? handleKeyDown : void 0,
 		...props,
 		children: [children, removable && /* @__PURE__ */ jsx("button", {
 			type: "button",
-			className: "nothing-tag__remove",
+			"data-slot": "tag-remove",
+			className: cn("inline-flex size-3.5 cursor-pointer items-center justify-center", "border-none bg-transparent p-0 text-micro leading-none text-current opacity-60", "transition-opacity duration-200 ease-nothing motion-reduce:transition-none", "hover:opacity-100", "outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"),
 			onClick: handleRemove,
 			onKeyDown: handleRemoveKeyDown,
 			tabIndex: isDisabled ? -1 : 0,
@@ -77,9 +64,9 @@ const Tag = React.forwardRef(({ className, variant = "pill", active = false, rem
 			children: "×"
 		})]
 	});
-});
+}
 Tag.displayName = "Tag";
-const Tags = React.forwardRef(({ className, children, proximity = false, ...props }, ref) => {
+function Tags({ className, children, proximity = false, ref, ...props }) {
 	const containerRef = React.useRef(null);
 	const axis = typeof proximity === "string" ? proximity : "xy";
 	const enabled = !!proximity;
@@ -92,18 +79,20 @@ const Tags = React.forwardRef(({ className, children, proximity = false, ...prop
 	const items = React.Children.toArray(children).filter(React.isValidElement);
 	return /* @__PURE__ */ jsx("div", {
 		ref: mergedRef,
-		className: cn("nothing-tags", enabled && "nothing-tags--proximity", className),
+		className: cn(tagsVariants({ proximity: enabled }), className),
+		"data-slot": "tags",
+		"data-proximity": dataAttr(enabled),
 		...enabled ? handlers : {},
 		...props,
-		children: items.map((child, index) => React.cloneElement(child, {
+		children: enabled ? items.map((child, index) => React.cloneElement(child, {
 			ref: (node) => registerItem(index, node),
 			"data-proximity-active": activeIndex === index,
 			"data-index": index
-		}))
+		})) : children
 	});
-});
+}
 Tags.displayName = "Tags";
 //#endregion
-export { Tag, Tag as default, Tags, tagVariants };
+export { Tags, Tag as default };
 
 //# sourceMappingURL=Tag.mjs.map

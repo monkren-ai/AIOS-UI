@@ -1,30 +1,8 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { dateNavArrowVariants, dateNavLabelVariants, dateNavVariants } from "./date-nav-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./DateNav.css";
 //#region src/DateNav/DateNav.tsx
-const dateNavVariants = cva("nothing-date-nav", {
-	variants: { disabled: {
-		true: "nothing-date-nav--disabled",
-		false: ""
-	} },
-	defaultVariants: { disabled: false }
-});
-const dateNavLabelVariants = cva("nothing-date-nav__label", {
-	variants: { grotesk: {
-		true: "nothing-date-nav__label--grotesk",
-		false: ""
-	} },
-	defaultVariants: { grotesk: false }
-});
-const dateNavArrowVariants = cva("nothing-date-nav__arrow", {
-	variants: { disabled: {
-		true: "nothing-date-nav__arrow--disabled",
-		false: ""
-	} },
-	defaultVariants: { disabled: false }
-});
 const MONTH_NAMES = [
 	"January",
 	"February",
@@ -48,7 +26,7 @@ function shiftMonth(d, delta) {
 	nd.setMonth(nd.getMonth() + delta);
 	return nd;
 }
-const DateNav = React.forwardRef(({ className, label, prevDisabled = false, nextDisabled = false, grotesk = false, disabled = false, onPrev, onNext, initialDate, currentDate: currentDateProp, onDateChange, ...props }, ref) => {
+function DateNav({ className, label, prevDisabled = false, nextDisabled = false, grotesk = false, disabled = false, onPrev, onNext, initialDate, currentDate: currentDateProp, onDateChange, ref, ...props }) {
 	const isDisabled = !!disabled;
 	const isControlled = currentDateProp !== void 0;
 	const [internalDate, setInternalDate] = React.useState(() => initialDate ?? /* @__PURE__ */ new Date());
@@ -76,6 +54,7 @@ const DateNav = React.forwardRef(({ className, label, prevDisabled = false, next
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(dateNavVariants({ disabled: isDisabled }), className),
+		"data-slot": "date-nav",
 		"data-disabled": dataAttr(isDisabled),
 		"data-month": dataAttr(month),
 		"data-year": dataAttr(year),
@@ -83,6 +62,10 @@ const DateNav = React.forwardRef(({ className, label, prevDisabled = false, next
 		...props,
 		children: [
 			/* @__PURE__ */ jsx("button", {
+				type: "button",
+				"data-slot": "date-nav-arrow",
+				"data-direction": "prev",
+				"data-disabled": dataAttr(prevDisabled || isDisabled),
 				className: cn(dateNavArrowVariants({ disabled: prevDisabled })),
 				onClick: handlePrev,
 				disabled: prevDisabled || isDisabled,
@@ -90,10 +73,15 @@ const DateNav = React.forwardRef(({ className, label, prevDisabled = false, next
 				children: "<"
 			}),
 			/* @__PURE__ */ jsx("div", {
+				"data-slot": "date-nav-label",
 				className: cn(dateNavLabelVariants({ grotesk })),
 				children: displayLabel
 			}),
 			/* @__PURE__ */ jsx("button", {
+				type: "button",
+				"data-slot": "date-nav-arrow",
+				"data-direction": "next",
+				"data-disabled": dataAttr(nextDisabled || isDisabled),
 				className: cn(dateNavArrowVariants({ disabled: nextDisabled })),
 				onClick: handleNext,
 				disabled: nextDisabled || isDisabled,
@@ -102,9 +90,9 @@ const DateNav = React.forwardRef(({ className, label, prevDisabled = false, next
 			})
 		]
 	});
-});
+}
 DateNav.displayName = "DateNav";
 //#endregion
-export { DateNav, DateNav as default, dateNavArrowVariants, dateNavLabelVariants, dateNavVariants };
+export { DateNav as default };
 
 //# sourceMappingURL=DateNav.mjs.map

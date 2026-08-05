@@ -1,48 +1,21 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useProximityHover } from "../hooks/useProximityHover.mjs";
+import { tabTriggerVariants, tabsHoverBackgroundVariants, tabsIndicatorVariants, tabsListVariants, tabsPanelVariants, tabsVariants } from "./tabs-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import { Tabs } from "@base-ui/react/tabs";
-import "./Tabs.css";
 //#region src/Tabs/Tabs.tsx
-const tabsVariants = cva("nothing-tabs", {
-	variants: {
-		variant: {
-			default: "nothing-tabs--default",
-			pills: "nothing-tabs--pills",
-			subtle: "nothing-tabs--subtle"
-		},
-		indicator: {
-			line: "nothing-tabs--indicator-line",
-			background: "nothing-tabs--indicator-background",
-			none: "nothing-tabs--indicator-none"
-		}
-	},
-	defaultVariants: {
-		variant: "default",
-		indicator: "line"
-	}
-});
-const tabTriggerVariants = cva("nothing-tabs__trigger", {
-	variants: {
-		active: {
-			true: "nothing-tabs__trigger--active",
-			false: ""
-		},
-		disabled: {
-			true: "nothing-tabs__trigger--disabled",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		active: false,
-		disabled: false
-	}
-});
+/**
+* 把「相对容器左边缘的物理偏移」换算成 inline-start 偏移。
+* 浏览器测量 API 只给物理坐标，RTL 下必须翻面才能配合 `inset-inline-start`。
+*/
+function toInlineStart(container, physicalLeft, width) {
+	if (!container) return physicalLeft;
+	if (getComputedStyle(container).direction !== "rtl") return physicalLeft;
+	return container.clientWidth - physicalLeft - width;
+}
 const TabPanel = () => null;
-const Tabs$1 = React.forwardRef(({ className, items, value: controlledValue, defaultValue, onValueChange, variant, indicator, enableProximityHover = true, children, ...props }, ref) => {
-	const baseId = React.useId();
+function Tabs$1({ className, items, value: controlledValue, defaultValue, onValueChange, variant = "default", indicator = "line", enableProximityHover = true, children, ...props }) {
 	const listRef = React.useRef(null);
 	const [indicatorStyle, setIndicatorStyle] = React.useState({});
 	const [hoverStyle, setHoverStyle] = React.useState({});
@@ -52,12 +25,13 @@ const Tabs$1 = React.forwardRef(({ className, items, value: controlledValue, def
 	}, [onValueChange]);
 	const updateIndicator = React.useCallback((activeTabPosition) => {
 		if (!activeTabPosition) {
-			setIndicatorStyle({ opacity: 0 });
+			setIndicatorStyle((prev) => prev.opacity === 0 ? prev : { opacity: 0 });
 			return;
 		}
 		const width = activeTabPosition.right - activeTabPosition.left;
-		setIndicatorStyle({
-			left: activeTabPosition.left,
+		const insetInlineStart = toInlineStart(listRef.current, activeTabPosition.left, width);
+		setIndicatorStyle((prev) => prev.insetInlineStart === insetInlineStart && prev.width === width && prev.opacity === 1 ? prev : {
+			insetInlineStart,
 			width,
 			opacity: 1
 		});
@@ -74,7 +48,7 @@ const Tabs$1 = React.forwardRef(({ className, items, value: controlledValue, def
 		const listRect = listRef.current?.getBoundingClientRect();
 		if (!listRect) return;
 		setHoverStyle({
-			left: rect.left - listRect.left,
+			insetInlineStart: toInlineStart(listRef.current, rect.left - listRect.left, rect.width),
 			width: rect.width,
 			opacity: .5
 		});
@@ -87,7 +61,6 @@ const Tabs$1 = React.forwardRef(({ className, items, value: controlledValue, def
 		return (children ? Array.isArray(children) ? children : [children] : []).filter((panel) => React.isValidElement(panel) && panel.props.value !== void 0);
 	}, [children]);
 	return /* @__PURE__ */ jsxs(Tabs.Root, {
-		ref,
 		className: cn(tabsVariants({
 			variant,
 			indicator
@@ -101,63 +74,63 @@ const Tabs$1 = React.forwardRef(({ className, items, value: controlledValue, def
 		...props,
 		children: [/* @__PURE__ */ jsxs(Tabs.List, {
 			ref: listRef,
-			className: "nothing-tabs__list",
+			className: tabsListVariants({ variant }),
+			"data-slot": "tabs-list",
 			activateOnFocus: true,
 			...handlers,
 			children: [
 				enableProximityHover && indicator !== "background" && /* @__PURE__ */ jsx("span", {
-					className: "nothing-tabs__hover-bg",
+					className: tabsHoverBackgroundVariants(),
+					"data-slot": "tabs-hover-background",
 					style: hoverStyle,
 					"aria-hidden": "true"
 				}),
 				indicator === "line" && /* @__PURE__ */ jsx(Tabs.Indicator, {
-					className: "nothing-tabs__indicator",
+					className: tabsIndicatorVariants({ variant }),
 					renderBeforeHydration: true,
-					render: (_props, state) => {
+					render: (indicatorProps, state) => {
 						updateIndicator(state.activeTabPosition);
 						return /* @__PURE__ */ jsx("span", {
-							..._props,
+							...indicatorProps,
 							style: {
-								..._props.style,
+								...indicatorProps.style,
 								...indicatorStyle
 							},
 							"data-slot": "tabs-indicator"
 						});
 					}
 				}),
-				items.map((item, index) => {
-					const tabId = `${baseId}-tab-${item.value}`;
-					const panelId = `${baseId}-panel-${item.value}`;
-					return /* @__PURE__ */ jsx(Tabs.Tab, {
-						value: item.value,
-						disabled: item.disabled,
-						id: tabId,
-						className: (state) => cn(tabTriggerVariants({
-							active: state.active,
-							disabled: state.disabled
-						})),
-						"data-tab-index": index,
-						ref: (el) => {
-							registerItem(index, el);
-						},
-						"aria-controls": panelId,
+				items.map((item, index) => /* @__PURE__ */ jsx(Tabs.Tab, {
+					value: item.value,
+					disabled: item.disabled,
+					className: (state) => cn(tabTriggerVariants({
+						variant,
+						active: state.active,
+						disabled: state.disabled
+					})),
+					"data-tab-index": index,
+					ref: (el) => {
+						registerItem(index, el);
+					},
+					render: (tabProps, state) => /* @__PURE__ */ jsx("button", {
+						...tabProps,
 						"data-slot": "tabs-trigger",
-						"data-state": dataAttr(item.value === controlledValue ? "active" : "inactive"),
+						"data-state": dataAttr(state.active ? "active" : "inactive"),
 						"data-disabled": dataAttr(item.disabled),
 						children: item.label
-					}, item.value);
-				})
+					})
+				}, item.value))
 			]
 		}), panels.map((panel) => /* @__PURE__ */ jsx(Tabs.Panel, {
 			value: panel.props.value,
-			className: "nothing-tabs__panel",
+			className: tabsPanelVariants(),
 			"data-slot": "tabs-panel",
 			children: panel.props.children
 		}, panel.props.value))]
 	});
-});
+}
 Tabs$1.displayName = "Tabs";
 //#endregion
-export { TabPanel, Tabs$1 as Tabs, Tabs$1 as default, tabTriggerVariants, tabsVariants };
+export { TabPanel, Tabs$1 as default };
 
 //# sourceMappingURL=Tabs.mjs.map

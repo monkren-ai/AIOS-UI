@@ -23,7 +23,11 @@ interface CoreInteractionSectionProps {
   setSliderValue: (value: number) => void
 }
 
-export function CoreInteractionSection({ t, sliderValue, setSliderValue }: CoreInteractionSectionProps) {
+export function CoreInteractionSection({
+  t,
+  sliderValue,
+  setSliderValue,
+}: CoreInteractionSectionProps) {
   const [copyValue] = React.useState('npm install nothing-ui')
   const [messageValue, setMessageValue] = React.useState('')
   const [answers, setAnswers] = React.useState<Record<string, AskUserAnswerValue>>({})
@@ -36,21 +40,48 @@ export function CoreInteractionSection({ t, sliderValue, setSliderValue }: CoreI
         <Button variant="tertiary">{t('三级', 'Tertiary')}</Button>
         <Button variant="ghost">{t('幽灵', 'Ghost')}</Button>
         <Button variant="destructive">{t('危险', 'Destructive')}</Button>
-        <Button variant="primary" size="sm">{t('小号', 'Small')}</Button>
-        <Button variant="primary" size="lg">{t('大号', 'Large')}</Button>
-        <Button variant="primary" active>{t('激活', 'Active')}</Button>
-        <Button variant="primary" loading>{t('加载', 'Loading')}</Button>
-        <Button variant="primary" disabled>{t('已禁用', 'Disabled')}</Button>
+        <Button variant="primary" size="sm">
+          {t('小号', 'Small')}
+        </Button>
+        <Button variant="primary" size="lg">
+          {t('大号', 'Large')}
+        </Button>
+        <Button variant="primary" active>
+          {t('激活', 'Active')}
+        </Button>
+        <Button variant="primary" loading>
+          {t('加载', 'Loading')}
+        </Button>
+        <Button variant="primary" disabled>
+          {t('已禁用', 'Disabled')}
+        </Button>
         <Button variant="primary" size="icon" aria-label="Icon button">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            width="16"
+            height="16"
+          >
             <circle cx="8" cy="8" r="6" />
           </svg>
         </Button>
       </DemoCard>
 
       <DemoCard title={t('输入框', 'Inputs')}>
-        <Input variant="underline" label={t('下划线输入', 'Underline Input')} placeholder={t('请输入内容…', 'Type something...')} style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }} />
-        <Input variant="bordered" label={t('带边框输入', 'Bordered Input')} placeholder={t('请输入内容…', 'Type something...')} style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }} />
+        <Input
+          variant="underline"
+          label={t('下划线输入', 'Underline Input')}
+          placeholder={t('请输入内容…', 'Type something...')}
+          style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }}
+        />
+        <Input
+          variant="bordered"
+          label={t('带边框输入', 'Bordered Input')}
+          placeholder={t('请输入内容…', 'Type something...')}
+          style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }}
+        />
         <Input
           variant="bordered"
           label={t('可清除输入', 'Clearable Input')}
@@ -63,28 +94,72 @@ export function CoreInteractionSection({ t, sliderValue, setSliderValue }: CoreI
           label={t('带图标输入', 'Input with Icons')}
           placeholder={t('搜索…', 'Search...')}
           leadingIcon={
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16">
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              width="16"
+              height="16"
+            >
               <circle cx="7" cy="7" r="5" />
               <path d="M11 11l3 3" />
             </svg>
           }
           trailingIcon={
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16">
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              width="16"
+              height="16"
+            >
               <path d="M3 8h10" />
             </svg>
           }
           style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }}
         />
-        <Input variant="underline" label={t('错误提示', 'With Error')} placeholder={t('输入无效', 'Invalid input')} error={t('该字段为必填项', 'This field is required')} style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }} />
-        <Input variant="bordered" label={t('帮助信息', 'With Message')} placeholder={t('普通输入', 'Normal input')} message={t('此处展示辅助说明文案', 'Helper text is shown here')} style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }} />
-        <Input variant="bordered" label={t('已禁用', 'Disabled')} placeholder={t('无法编辑', 'Cannot edit')} disabled style={{ maxWidth: '400px' }} />
+        <Input
+          variant="underline"
+          label={t('错误提示', 'With Error')}
+          placeholder={t('输入无效', 'Invalid input')}
+          error={t('该字段为必填项', 'This field is required')}
+          style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }}
+        />
+        <Input
+          variant="bordered"
+          label={t('帮助信息', 'With Message')}
+          placeholder={t('普通输入', 'Normal input')}
+          message={t('此处展示辅助说明文案', 'Helper text is shown here')}
+          style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }}
+        />
+        <Input
+          variant="bordered"
+          label={t('已禁用', 'Disabled')}
+          placeholder={t('无法编辑', 'Cannot edit')}
+          disabled
+          style={{ maxWidth: '400px' }}
+        />
       </DemoCard>
 
       <DemoCard title={t('开关', 'Switch')}>
         <Switch label={t('Wi-Fi', 'Wi-Fi')} style={{ marginBottom: 'var(--space-md)' }} />
-        <Switch label={t('蓝牙', 'Bluetooth')} on={true} style={{ marginBottom: 'var(--space-md)' }} />
-        <Switch label={t('已禁用', 'Disabled')} disabled style={{ marginBottom: 'var(--space-md)' }} />
-        <Switch label={t('小尺寸', 'Small')} size="sm" style={{ marginBottom: 'var(--space-md)' }} />
+        <Switch
+          label={t('蓝牙', 'Bluetooth')}
+          checked={true}
+          style={{ marginBottom: 'var(--space-md)' }}
+        />
+        <Switch
+          label={t('已禁用', 'Disabled')}
+          disabled
+          style={{ marginBottom: 'var(--space-md)' }}
+        />
+        <Switch
+          label={t('小尺寸', 'Small')}
+          size="sm"
+          style={{ marginBottom: 'var(--space-md)' }}
+        />
         <Switch label={t('大尺寸', 'Large')} size="lg" />
       </DemoCard>
 
@@ -101,22 +176,43 @@ export function CoreInteractionSection({ t, sliderValue, setSliderValue }: CoreI
       </DemoCard>
 
       <DemoCard title={t('滑块', 'Slider')}>
-        <Slider value={sliderValue} onValueChange={setSliderValue} label={t('音量', 'Volume')} showValue style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }} />
-        <Slider defaultValue={30} label={t('亮度', 'Brightness')} showValue style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }} />
+        <Slider
+          value={sliderValue}
+          onValueChange={setSliderValue}
+          label={t('音量', 'Volume')}
+          showValue
+          style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }}
+        />
+        <Slider
+          defaultValue={30}
+          label={t('亮度', 'Brightness')}
+          showValue
+          style={{ maxWidth: '400px', marginBottom: 'var(--space-lg)' }}
+        />
         <Slider disabled label={t('已禁用', 'Disabled')} style={{ maxWidth: '400px' }} />
       </DemoCard>
 
       <DemoCard title={t('标签', 'Tags')} variant="flex-wrap">
         <Tags>
           <Tag variant="pill">{t('设计', 'Design')}</Tag>
-          <Tag variant="pill" active>{t('激活', 'Active')}</Tag>
-          <Tag variant="pill" removable>{t('可移除', 'Removable')}</Tag>
-          <Tag variant="pill" disabled>{t('已禁用', 'Disabled')}</Tag>
+          <Tag variant="pill" active>
+            {t('激活', 'Active')}
+          </Tag>
+          <Tag variant="pill" removable>
+            {t('可移除', 'Removable')}
+          </Tag>
+          <Tag variant="pill" disabled>
+            {t('已禁用', 'Disabled')}
+          </Tag>
         </Tags>
         <Tags>
           <Tag variant="technical">v2.1.0</Tag>
-          <Tag variant="technical" active>{t('稳定', 'stable')}</Tag>
-          <Tag variant="technical" removable>{t('测试', 'beta')}</Tag>
+          <Tag variant="technical" active>
+            {t('稳定', 'stable')}
+          </Tag>
+          <Tag variant="technical" removable>
+            {t('测试', 'beta')}
+          </Tag>
         </Tags>
         <Tags proximity>
           <Tag variant="pill">{t('接近', 'Proximity')}</Tag>
@@ -127,14 +223,22 @@ export function CoreInteractionSection({ t, sliderValue, setSliderValue }: CoreI
       </DemoCard>
 
       <DemoCard title={t('分段控件', 'Segmented Control')}>
-        <SegmentedControl segments={[t('日', 'Day'), t('周', 'Week'), t('月', 'Month')]} style={{ marginBottom: 'var(--space-md)' }} />
-        <SegmentedControl segments={[t('列表', 'List'), t('网格', 'Grid'), t('画廊', 'Gallery')]} proximity />
+        <SegmentedControl
+          segments={[t('日', 'Day'), t('周', 'Week'), t('月', 'Month')]}
+          style={{ marginBottom: 'var(--space-md)' }}
+        />
+        <SegmentedControl
+          segments={[t('列表', 'List'), t('网格', 'Grid'), t('画廊', 'Gallery')]}
+          proximity
+        />
       </DemoCard>
 
       <DemoCard title={t('切换', 'Toggle')} variant="flex-wrap">
         <Toggle defaultPressed>{t('按下', 'Pressed')}</Toggle>
         <Toggle>{t('未按下', 'Unpressed')}</Toggle>
-        <Toggle variant="outline" defaultPressed>{t('描边', 'Outline')}</Toggle>
+        <Toggle variant="outline" defaultPressed>
+          {t('描边', 'Outline')}
+        </Toggle>
         <ToggleGroup defaultValue={['bold']}>
           <Toggle value="bold">B</Toggle>
           <Toggle value="italic">I</Toggle>
@@ -191,9 +295,25 @@ export function CoreInteractionSection({ t, sliderValue, setSliderValue }: CoreI
           title={t('快速配置', 'Quick Setup')}
           questions={[
             { id: 'project', title: t('项目名称', 'Project name'), type: 'text', required: true },
-            { id: 'theme', title: t('默认主题', 'Default theme'), type: 'single', options: [t('暗色', 'Dark'), t('亮色', 'Light')], required: true },
-            { id: 'features', title: t('启用功能', 'Enable features'), type: 'multiple', options: ['Motion', 'Telemetry', 'AI Agent'] },
-            { id: 'confirm', title: t('同意使用条款', 'Agree to terms'), type: 'confirm', required: true },
+            {
+              id: 'theme',
+              title: t('默认主题', 'Default theme'),
+              type: 'single',
+              options: [t('暗色', 'Dark'), t('亮色', 'Light')],
+              required: true,
+            },
+            {
+              id: 'features',
+              title: t('启用功能', 'Enable features'),
+              type: 'multiple',
+              options: ['Motion', 'Telemetry', 'AI Agent'],
+            },
+            {
+              id: 'confirm',
+              title: t('同意使用条款', 'Agree to terms'),
+              type: 'confirm',
+              required: true,
+            },
           ]}
           value={answers}
           onChange={setAnswers}
@@ -202,9 +322,15 @@ export function CoreInteractionSection({ t, sliderValue, setSliderValue }: CoreI
       </DemoCard>
 
       <DemoCard title={t('标签', 'Label')} last>
-        <Label style={{ display: 'block', marginBottom: 'var(--space-md)' }}>{t('普通标签', 'Normal Label')}</Label>
-        <Label required style={{ display: 'block', marginBottom: 'var(--space-md)' }}>{t('必填标签', 'Required Label')}</Label>
-        <Label disabled style={{ display: 'block' }}>{t('已禁用标签', 'Disabled Label')}</Label>
+        <Label style={{ display: 'block', marginBottom: 'var(--space-md)' }}>
+          {t('普通标签', 'Normal Label')}
+        </Label>
+        <Label required style={{ display: 'block', marginBottom: 'var(--space-md)' }}>
+          {t('必填标签', 'Required Label')}
+        </Label>
+        <Label disabled style={{ display: 'block' }}>
+          {t('已禁用标签', 'Disabled Label')}
+        </Label>
       </DemoCard>
     </CategorySection>
   )

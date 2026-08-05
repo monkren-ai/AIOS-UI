@@ -1,2 +1,3 @@
-import { Badge, badgeVariants } from "./Badge/Badge.mjs";
-export { Badge, badgeVariants, Badge as default };
+import { badgeDotVariants, badgeVariants } from "./Badge/badge-variants.mjs";
+import Badge from "./Badge/Badge.mjs";
+export { Badge, badgeDotVariants, badgeVariants, Badge as default };

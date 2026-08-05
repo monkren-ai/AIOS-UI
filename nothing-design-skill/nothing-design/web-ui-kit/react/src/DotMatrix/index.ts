@@ -1,3 +1,9 @@
-export { DotMatrix, dotMatrixVariants, dotVariants } from './DotMatrix'
-export type { DotMatrixProps } from './DotMatrix'
+export { DotMatrix, dotMatrixVariants, dotMatrixRowVariants, dotVariants } from './DotMatrix'
+export type {
+  DotMatrixProps,
+  DotMatrixPattern,
+  DotMatrixSize,
+  DotMatrixTheme,
+  DotState,
+} from './DotMatrix'
 export { default } from './DotMatrix'

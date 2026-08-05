@@ -6,7 +6,7 @@ import { InputCopy } from './InputCopy'
 describe('InputCopy', () => {
   it('renders with data-slot', () => {
     render(<InputCopy value="hello" />)
-    expect(screen.getByRole('textbox').closest('[data-slot]')).toHaveAttribute(
+    expect(screen.getByRole('textbox').closest('[data-slot="input-copy"]')).toHaveAttribute(
       'data-slot',
       'input-copy',
     )
@@ -44,7 +44,9 @@ describe('InputCopy', () => {
   })
 
   it('supports custom copy labels', async () => {
-    render(<InputCopy value="copy-me" copyLabel="Copy URL" copiedLabel="Got it" copiedDuration={50} />)
+    render(
+      <InputCopy value="copy-me" copyLabel="Copy URL" copiedLabel="Got it" copiedDuration={50} />,
+    )
     expect(screen.getByRole('button')).toHaveTextContent('Copy URL')
     fireEvent.click(screen.getByRole('button'))
     await waitFor(() => expect(screen.getByRole('button')).toHaveTextContent('Got it'))
@@ -54,18 +56,46 @@ describe('InputCopy', () => {
     const sizes = ['sm', 'md', 'lg'] as const
     for (const size of sizes) {
       const { unmount } = render(<InputCopy value="x" size={size} />)
-      const root = screen.getByRole('textbox').closest('[data-slot]')
-      expect(root).toHaveClass(`nothing-input-copy--${size}`)
+      const root = screen.getByRole('textbox').closest('[data-slot="input-copy"]')
       expect(root).toHaveAttribute('data-size', size)
       unmount()
     }
   })
 
+  it('exposes every part through data-slot', () => {
+    render(<InputCopy value="x" label="Token" />)
+    const root = screen.getByRole('textbox').closest('[data-slot="input-copy"]')!
+    for (const slot of [
+      'input-copy-label',
+      'input-copy-control',
+      'input-copy-field',
+      'input-copy-button',
+      'input-copy-button-text',
+    ]) {
+      expect(root.querySelector(`[data-slot="${slot}"]`)).not.toBeNull()
+    }
+  })
+
+  it('flags the copied state through data-copied', async () => {
+    render(<InputCopy value="x" />)
+    const root = screen.getByRole('textbox').closest('[data-slot="input-copy"]')!
+    expect(root).not.toHaveAttribute('data-copied')
+    fireEvent.click(screen.getByRole('button'))
+    await waitFor(() => expect(root).toHaveAttribute('data-copied', ''))
+    expect(screen.getByRole('button')).toHaveAttribute('data-copied', '')
+  })
+
   it('supports custom className', () => {
     render(<InputCopy value="x" className="custom-copy" />)
-    const root = screen.getByRole('textbox').closest('[data-slot]')
+    const root = screen.getByRole('textbox').closest('[data-slot="input-copy"]')
     expect(root).toHaveClass('custom-copy')
-    expect(root).toHaveClass('nothing-input-copy')
+  })
+
+  it('lets the caller override variant defaults', () => {
+    render(<InputCopy value="x" className="gap-6" />)
+    const root = screen.getByRole('textbox').closest('[data-slot="input-copy"]')!
+    expect(root.className).toContain('gap-6')
+    expect(root.className).not.toContain('gap-xs')
   })
 
   it('forwards ref to the div element', () => {

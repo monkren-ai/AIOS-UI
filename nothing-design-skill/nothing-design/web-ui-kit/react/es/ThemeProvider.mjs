@@ -1,3 +1,3 @@
-import { ThemeProvider, useTheme } from "./ThemeProvider/index.mjs";
+import ThemeProvider, { DEFAULT_STORAGE_KEY, useTheme } from "./ThemeProvider/index.mjs";
 import { ThemeScript, getThemeScript } from "./ThemeProvider/ThemeScript.mjs";
-export { ThemeProvider, ThemeScript, ThemeProvider as default, getThemeScript, useTheme };
+export { DEFAULT_STORAGE_KEY, ThemeProvider, ThemeScript, ThemeProvider as default, getThemeScript, useTheme };

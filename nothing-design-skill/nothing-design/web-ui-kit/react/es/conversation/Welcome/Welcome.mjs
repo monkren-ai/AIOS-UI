@@ -59,6 +59,6 @@ const Welcome = React.forwardRef(({ title, description, icon, extra, actions, cl
 });
 Welcome.displayName = "Welcome";
 //#endregion
-export { Welcome, Welcome as default };
+export { Welcome as default };
 
 //# sourceMappingURL=Welcome.mjs.map

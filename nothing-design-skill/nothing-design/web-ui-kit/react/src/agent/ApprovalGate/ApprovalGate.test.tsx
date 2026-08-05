@@ -12,7 +12,12 @@ describe('ApprovalGate', () => {
   })
 
   it('renders action and impact text', () => {
-    render(<ApprovalGate action="Transfer funds" impact="This will move $100 to account ending in 1234." />)
+    render(
+      <ApprovalGate
+        action="Transfer funds"
+        impact="This will move $100 to account ending in 1234."
+      />,
+    )
     expect(screen.getByText('Transfer funds')).toBeInTheDocument()
     expect(screen.getByText('This will move $100 to account ending in 1234.')).toBeInTheDocument()
   })

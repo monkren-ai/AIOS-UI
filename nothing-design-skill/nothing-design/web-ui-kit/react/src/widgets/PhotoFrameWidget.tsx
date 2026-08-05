@@ -46,7 +46,8 @@ const dotVariants = cva('nothing-photo-frame__dot', {
 })
 
 export interface PhotoFrameWidgetProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     Omit<VariantProps<typeof photoFrameVariants>, 'variant' | 'theme' | 'aspectRatio'> {
   variant?: 'pill' | 'square'
   src?: string
@@ -73,7 +74,7 @@ const PhotoFrameWidgetInner = React.forwardRef<HTMLDivElement, PhotoFrameWidgetP
       style,
       ...props
     },
-    ref
+    ref,
   ) => {
     const isCarousel = Array.isArray(images) && images.length > 1
     const displayImages = isCarousel ? images! : src ? [{ src, alt }] : []
@@ -81,7 +82,8 @@ const PhotoFrameWidgetInner = React.forwardRef<HTMLDivElement, PhotoFrameWidgetP
     const [activeIndex, setActiveIndex] = useState(0)
     const [isPaused, setIsPaused] = useState(false)
     // useNow 节拍:仅在需要时按 autoPlayInterval tick,否则保持低频心跳
-    const tickInterval = isCarousel && autoPlay && !isPaused && hasContent ? autoPlayInterval : 60_000
+    const tickInterval =
+      isCarousel && autoPlay && !isPaused && hasContent ? autoPlayInterval : 60_000
     const now = useNow(tickInterval)
     // 将 now 引用作为 effect 依赖,触发 autoPlay 推进
     void now
@@ -90,7 +92,6 @@ const PhotoFrameWidgetInner = React.forwardRef<HTMLDivElement, PhotoFrameWidgetP
       if (!isCarousel || !autoPlay || isPaused || !hasContent) return
       if (typeof document !== 'undefined' && document.hidden) return
       setActiveIndex((prev) => (prev + 1) % displayImages.length)
-       
     }, [now, isCarousel, autoPlay, isPaused, hasContent, displayImages.length])
 
     const handleMouseEnter = () => {
@@ -139,7 +140,9 @@ const PhotoFrameWidgetInner = React.forwardRef<HTMLDivElement, PhotoFrameWidgetP
         aria-label={ariaLabel}
         data-variant={dataAttr(variant)}
         data-theme={dataAttr(theme)}
-        data-state={dataAttr(isCarousel ? (isPaused ? 'paused' : 'playing') : showFallback ? 'fallback' : 'static')}
+        data-state={dataAttr(
+          isCarousel ? (isPaused ? 'paused' : 'playing') : showFallback ? 'fallback' : 'static',
+        )}
         data-real={dataAttr(hasContent)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -180,7 +183,11 @@ const PhotoFrameWidgetInner = React.forwardRef<HTMLDivElement, PhotoFrameWidgetP
           )}
         </div>
         {isCarousel && (
-          <div className="nothing-photo-frame__dots" role="tablist" aria-label="Carousel navigation">
+          <div
+            className="nothing-photo-frame__dots"
+            role="tablist"
+            aria-label="Carousel navigation"
+          >
             {displayImages.map((image, index) => (
               <button
                 key={index}
@@ -208,7 +215,7 @@ const PhotoFrameWidgetInner = React.forwardRef<HTMLDivElement, PhotoFrameWidgetP
         )}
       </div>
     )
-  }
+  },
 )
 PhotoFrameWidgetInner.displayName = 'PhotoFrameWidget'
 

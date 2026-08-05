@@ -1,0 +1,213 @@
+/**
+ * Nothing UI — Tailwind v4 主题层
+ *
+ * 把 tokens.css 的设计令牌映射进 Tailwind 的 theme namespace，
+ * 使 `bg-surface` / `text-foreground-muted` / `rounded-card` 等工具类可用。
+ *
+ * 分工：
+ * - tokens.css  持有随 [data-theme] 切换的原始变量（--surface、--text-primary…），
+ *               以及 109 个既有组件 CSS 依赖的历史命名（--space-md、--duration-micro…）。
+ * - theme.css   只负责 Tailwind namespace，颜色一律用 `@theme inline` 指向 tokens.css，
+ *               这样把 data-theme 放在任意嵌套节点上也能正确继承。
+ */
+
+/* 默认颜色调色板整体关闭：Nothing 是 monochrome + 单点红，
+   放行 Tailwind 的 22 组彩色会让设计系统迅速漂移。 */
+@theme {
+  --color-*: initial;
+  --font-*: initial;
+  --radius-*: initial;
+}
+
+@theme inline {
+  /* ===== 语义色（随 [data-theme] 切换） ===== */
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-inherit: inherit;
+
+  --color-background: var(--black);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-muted: var(--muted-bg);
+
+  --color-border: var(--border);
+  --color-border-visible: var(--border-visible);
+
+  --color-foreground: var(--text-primary);
+  --color-foreground-display: var(--text-display);
+  --color-foreground-muted: var(--text-secondary);
+  --color-foreground-subtle: var(--text-tertiary);
+  --color-foreground-disabled: var(--text-disabled);
+
+  --color-accent: var(--accent);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-interactive: var(--interactive);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+
+  --color-popover: var(--popover-bg);
+  --color-popover-foreground: var(--popover-fg);
+
+  --color-overlay: var(--overlay-heavy);
+  --color-overlay-light: var(--overlay-light);
+
+  /* Agent / AI OS 状态色 */
+  --color-agent-idle: var(--agent-idle);
+  --color-agent-thinking: var(--agent-thinking);
+  --color-agent-acting: var(--agent-acting);
+  --color-agent-paused: var(--agent-paused);
+  --color-agent-error: var(--agent-error);
+
+  /* Widget 色板 */
+  --color-widget-bg: var(--widget-bg);
+  --color-widget-card: var(--widget-card-bg);
+  --color-widget-dark: var(--widget-dark-bg);
+  --color-widget-grey: var(--widget-grey);
+}
+
+@theme {
+  /* ===== 绝对色（不随主题切换） ===== */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* ===== 字体族 ===== */
+  --font-display: 'Doto', 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
+  --font-body: 'Space Grotesk', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Space Grotesk', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
+  --font-ndot: 'NDOT 47', 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ===== 字号阶梯（与 tokens.css 同值） ===== */
+  --text-display-xl: 72px;
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.03em;
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 1.05;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-md: 36px;
+  --text-display-md--line-height: 1.1;
+  --text-display-md--letter-spacing: -0.02em;
+  --text-display-sm: 32px;
+  --text-display-sm--line-height: 1.1;
+  --text-heading: 24px;
+  --text-heading--line-height: 1.2;
+  --text-heading--letter-spacing: -0.01em;
+  --text-subheading: 18px;
+  --text-subheading--line-height: 1.3;
+  --text-base: 16px;
+  --text-base--line-height: 1.5;
+  --text-sm: 14px;
+  --text-sm--line-height: 1.5;
+  --text-xs: 13px;
+  --text-xs--line-height: 1.5;
+  --text-caption: 12px;
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0.04em;
+  --text-label: 11px;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.08em;
+  --text-micro: 10px;
+  --text-micro--line-height: 1.2;
+
+  /* ===== 字重 ===== */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* ===== 间距：4px 网格 + 命名令牌 ===== */
+  --spacing: 4px;
+  --spacing-3xs: 1px;
+  --spacing-2xs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+
+  /* ===== 圆角：2-6px 工业风区间；lg/xl 留给 widget 容器 ===== */
+  --radius-none: 0px;
+  --radius-2xs: 2px;
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 999px;
+  --radius-pill: 999px;
+  --radius-button: 999px;
+  --radius-button-technical: 8px;
+  --radius-card: 16px;
+  --radius-card-compact: 8px;
+  --radius-card-technical: 4px;
+  --radius-input: 8px;
+  --radius-tag: 999px;
+  --radius-tooltip: 8px;
+  --radius-segment: 999px;
+
+  /* ===== 字间距 / 行高 ===== */
+  --tracking-tighter: -0.03em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.04em;
+  --tracking-wider: 0.06em;
+  --tracking-widest: 0.08em;
+
+  /* ===== 动效 ===== */
+  --ease-nothing: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring-fast: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring-moderate: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring-slow: cubic-bezier(0.33, 1, 0.68, 1);
+
+  --animate-agent-breathe: agent-breathe 2000ms ease-in-out infinite;
+  --animate-agent-pulse: agent-pulse 800ms ease-in-out infinite;
+  --animate-agent-step: agent-step 1200ms var(--ease-nothing) forwards;
+
+  /* ===== 布局容器 ===== */
+  --container-narrow: 640px;
+  --container-normal: 768px;
+  --container-wide: 1024px;
+  --container-page: 1120px;
+  --container-page-widget: 1240px;
+
+  /*
+   * max-w-* 默认优先读 --spacing-*；本项目 spacing 是 4px 网格（如 --spacing-2xl: 48px），
+   * 会覆盖 Tailwind 的 container 尺度。显式绑定 --max-width-* 恢复文档宽度语义。
+   */
+  --max-width-xs: var(--container-xs);
+  --max-width-sm: var(--container-sm);
+  --max-width-md: var(--container-md);
+  --max-width-lg: var(--container-lg);
+  --max-width-xl: var(--container-xl);
+  --max-width-2xl: var(--container-2xl);
+  --max-width-3xl: var(--container-3xl);
+  --max-width-4xl: var(--container-4xl);
+  --max-width-5xl: var(--container-5xl);
+  --max-width-6xl: var(--container-6xl);
+  --max-width-7xl: var(--container-7xl);
+}
+
+/* ===== 变体 ===== */
+
+/* 主题变体：data-theme 可以挂在任意祖先节点上 */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+@custom-variant light (&:where([data-theme='light'], [data-theme='light'] *));
+
+/* Base UI 状态变体 —— 对应组件根元素的 data-* 约定 */
+@custom-variant open (&:where([data-open], [data-state='open']));
+@custom-variant closed (&:where([data-closed], [data-state='closed']));
+@custom-variant highlighted (&:where([data-highlighted]));
+@custom-variant selected (&:where([data-selected]));
+@custom-variant checked (&:where([data-checked]));
+@custom-variant unchecked (&:where([data-unchecked]));
+@custom-variant pressed (&:where([data-pressed]));
+@custom-variant loading (&:where([data-loading]));
+@custom-variant nothing-disabled (&:where([data-disabled], :disabled));

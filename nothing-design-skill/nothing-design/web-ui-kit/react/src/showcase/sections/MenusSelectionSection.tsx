@@ -36,17 +36,49 @@ export function MenusSelectionSection({
           type="single"
           style={{ maxWidth: '500px' }}
           items={[
-            { id: '1', title: t('什么是 Nothing UI？', 'What is Nothing UI?'), content: t('一个以克制与精确为核心构建的设计系统。', 'A design system built with purposeful restraint and technical precision.') },
-            { id: '2', title: t('如何安装？', 'How do I install it?'), content: t('通过 npm 安装：npm install nothing-ui-kit', 'Install via npm: npm install nothing-ui-kit') },
-            { id: '3', title: t('是否具备可访问性？', 'Is it accessible?'), content: t('是的，所有组件均遵循 WAI-ARIA 指南并支持完整键盘导航。', 'Yes, all components follow WAI-ARIA guidelines with full keyboard navigation.') },
+            {
+              id: '1',
+              title: t('什么是 Nothing UI？', 'What is Nothing UI?'),
+              content: t(
+                '一个以克制与精确为核心构建的设计系统。',
+                'A design system built with purposeful restraint and technical precision.',
+              ),
+            },
+            {
+              id: '2',
+              title: t('如何安装？', 'How do I install it?'),
+              content: t(
+                '通过 npm 安装：npm install nothing-ui-kit',
+                'Install via npm: npm install nothing-ui-kit',
+              ),
+            },
+            {
+              id: '3',
+              title: t('是否具备可访问性？', 'Is it accessible?'),
+              content: t(
+                '是的，所有组件均遵循 WAI-ARIA 指南并支持完整键盘导航。',
+                'Yes, all components follow WAI-ARIA guidelines with full keyboard navigation.',
+              ),
+            },
           ]}
         />
       </DemoCard>
 
       <DemoCard title={t('复选框', 'Checkbox')}>
-        <Checkbox label={t('未选中', 'Unchecked')} style={{ display: 'block', marginBottom: 'var(--space-md)' }} />
-        <Checkbox label={t('已选中', 'Checked')} defaultChecked style={{ display: 'block', marginBottom: 'var(--space-md)' }} />
-        <Checkbox label={t('不确定', 'Indeterminate')} checked="indeterminate" style={{ display: 'block' }} />
+        <Checkbox
+          label={t('未选中', 'Unchecked')}
+          style={{ display: 'block', marginBottom: 'var(--space-md)' }}
+        />
+        <Checkbox
+          label={t('已选中', 'Checked')}
+          defaultChecked
+          style={{ display: 'block', marginBottom: 'var(--space-md)' }}
+        />
+        <Checkbox
+          label={t('不确定', 'Indeterminate')}
+          checked="indeterminate"
+          style={{ display: 'block' }}
+        />
       </DemoCard>
 
       <DemoCard title={t('单选组', 'Radio Group')}>
@@ -149,11 +181,7 @@ export function MenusSelectionSection({
         <div className="showcase-sub-label">{t('单个切换', 'Single Toggle')}</div>
         <Toggle style={{ marginBottom: 'var(--space-lg)' }}>{t('切换', 'Toggle')}</Toggle>
         <div className="showcase-sub-label">{t('切换组', 'Toggle Group')}</div>
-        <ToggleGroup
-          value={toggleGroupValue}
-          onValueChange={setToggleGroupValue}
-          variant="outline"
-        >
+        <ToggleGroup value={toggleGroupValue} onValueChange={setToggleGroupValue} variant="outline">
           <Toggle value="bold">{t('粗体', 'Bold')}</Toggle>
           <Toggle value="italic">{t('斜体', 'Italic')}</Toggle>
           <Toggle value="underline">{t('下划线', 'Underline')}</Toggle>
@@ -163,7 +191,10 @@ export function MenusSelectionSection({
       <DemoCard title={t('可折叠', 'Collapsible')} last>
         <Collapsible trigger={t('显示详情', 'Show Details')} style={{ maxWidth: '500px' }}>
           <div className="showcase-collapsible-content">
-            {t('这些是点击上方触发器后展开或折叠的隐藏详情。', 'These are the hidden details that can be expanded or collapsed by clicking the trigger above.')}
+            {t(
+              '这些是点击上方触发器后展开或折叠的隐藏详情。',
+              'These are the hidden details that can be expanded or collapsed by clicking the trigger above.',
+            )}
           </div>
         </Collapsible>
       </DemoCard>

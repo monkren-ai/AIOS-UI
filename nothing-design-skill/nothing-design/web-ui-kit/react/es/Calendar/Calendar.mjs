@@ -1,32 +1,8 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { calendarNavButtonVariants, calendarVariants, calendarWeekdayVariants, dayVariants } from "./calendar-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Calendar.css";
 //#region src/Calendar/Calendar.tsx
-const calendarVariants = cva("", {
-	variants: { type: {
-		compact: "nothing-calendar-compact",
-		full: "nothing-calendar-full"
-	} },
-	defaultVariants: { type: "compact" }
-});
-const dayVariants = cva("calendar-day", {
-	variants: {
-		isOtherMonth: {
-			true: "other-month",
-			false: ""
-		},
-		isToday: {
-			true: "today",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		isOtherMonth: false,
-		isToday: false
-	}
-});
 const days = [
 	"Sunday",
 	"Monday",
@@ -59,7 +35,7 @@ const weekdays = [
 	"F",
 	"S"
 ];
-const Calendar = React.forwardRef(({ className, type = "compact", initialDate = /* @__PURE__ */ new Date(), ...props }, ref) => {
+function Calendar({ className, type = "compact", initialDate = /* @__PURE__ */ new Date(), ref, ...props }) {
 	const [currentDate, setCurrentDate] = React.useState(initialDate);
 	const dayName = days[currentDate.getDay()];
 	const date = currentDate.getDate();
@@ -102,19 +78,23 @@ const Calendar = React.forwardRef(({ className, type = "compact", initialDate = 
 	if (type === "compact") return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(calendarVariants({ type }), className),
+		"data-slot": "calendar",
 		"data-type": dataAttr(type),
 		...props,
 		children: [
 			/* @__PURE__ */ jsx("div", {
-				className: "calendar-compact-day",
+				"data-slot": "calendar-day-name",
+				className: "mb-1 font-mono text-sm uppercase tracking-[0.15em] text-foreground-muted transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
 				children: dayName
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "calendar-compact-date",
+				"data-slot": "calendar-date",
+				className: "mb-1 font-display text-display-xl font-semibold leading-none tracking-[-0.02em] tabular-nums text-foreground-display transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
 				children: String(date).padStart(2, "0")
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "calendar-compact-month",
+				"data-slot": "calendar-month",
+				className: "font-mono text-sm uppercase tracking-[0.1em] text-accent transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
 				children: monthName
 			})
 		]
@@ -122,34 +102,49 @@ const Calendar = React.forwardRef(({ className, type = "compact", initialDate = 
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(calendarVariants({ type }), className),
+		"data-slot": "calendar",
 		"data-type": dataAttr(type),
 		...props,
 		children: [/* @__PURE__ */ jsxs("div", {
-			className: "calendar-full-header",
+			"data-slot": "calendar-header",
+			className: "mb-6 flex w-full items-baseline justify-between",
 			children: [/* @__PURE__ */ jsx("div", {
-				className: "calendar-full-month-year",
+				"data-slot": "calendar-month-year",
+				className: "font-display text-heading font-semibold tracking-[-0.02em] text-foreground-display transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
 				children: monthYear
 			}), /* @__PURE__ */ jsxs("div", {
-				className: "calendar-full-nav",
+				"data-slot": "calendar-nav",
+				className: "flex gap-2",
 				children: [/* @__PURE__ */ jsx("button", {
-					className: "calendar-nav-btn",
+					type: "button",
+					"data-slot": "calendar-nav-button",
+					"data-direction": "prev",
+					className: cn(calendarNavButtonVariants()),
 					onClick: handlePrevMonth,
 					"aria-label": "Previous month",
 					children: "<"
 				}), /* @__PURE__ */ jsx("button", {
-					className: "calendar-nav-btn",
+					type: "button",
+					"data-slot": "calendar-nav-button",
+					"data-direction": "next",
+					className: cn(calendarNavButtonVariants()),
 					onClick: handleNextMonth,
 					"aria-label": "Next month",
 					children: ">"
 				})]
 			})]
 		}), /* @__PURE__ */ jsxs("div", {
-			className: "calendar-grid",
+			"data-slot": "calendar-grid",
+			className: "grid grid-cols-7 gap-1",
 			role: "grid",
 			children: [weekdays.map((day, index) => /* @__PURE__ */ jsx("div", {
-				className: "calendar-weekday",
+				"data-slot": "calendar-weekday",
+				className: cn(calendarWeekdayVariants()),
 				children: day
 			}, index)), getCalendarDays().map((day, index) => /* @__PURE__ */ jsx("div", {
+				"data-slot": "calendar-day",
+				"data-other-month": dataAttr(day.isOtherMonth),
+				"data-today": dataAttr(day.isToday),
 				className: cn(dayVariants({
 					isOtherMonth: day.isOtherMonth,
 					isToday: day.isToday
@@ -158,9 +153,9 @@ const Calendar = React.forwardRef(({ className, type = "compact", initialDate = 
 			}, index))]
 		})]
 	});
-});
+}
 Calendar.displayName = "Calendar";
 //#endregion
-export { Calendar, Calendar as default, calendarVariants, dayVariants };
+export { Calendar as default };
 
 //# sourceMappingURL=Calendar.mjs.map

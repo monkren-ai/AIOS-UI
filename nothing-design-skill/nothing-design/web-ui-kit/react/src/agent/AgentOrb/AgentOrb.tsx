@@ -43,7 +43,8 @@ const ariaLabels: Record<AgentState, string> = {
 }
 
 export interface AgentOrbProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     VariantProps<typeof agentOrbVariants> {
   state?: AgentState
   size?: 'sm' | 'md' | 'lg'
@@ -52,10 +53,7 @@ export interface AgentOrbProps
 }
 
 export const AgentOrb = React.forwardRef<HTMLDivElement, AgentOrbProps>(
-  (
-    { state = 'idle', size = 'md', showLabel = false, label, className, ...props },
-    ref,
-  ) => {
+  ({ state = 'idle', size = 'md', showLabel = false, label, className, ...props }, ref) => {
     const displayLabel = label ?? (showLabel ? stateLabels[state] : undefined)
     const ariaLabel = label ?? ariaLabels[state]
 
@@ -73,9 +71,7 @@ export const AgentOrb = React.forwardRef<HTMLDivElement, AgentOrbProps>(
         {...props}
       >
         <span className="nothing-agent-orb__dot" aria-hidden="true" />
-        {displayLabel && (
-          <span className="nothing-agent-orb__label">{displayLabel}</span>
-        )}
+        {displayLabel && <span className="nothing-agent-orb__label">{displayLabel}</span>}
       </div>
     )
   },

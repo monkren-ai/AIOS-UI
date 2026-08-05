@@ -108,6 +108,6 @@ const ThoughtChain = React.forwardRef(({ items, defaultExpandedKeys, expandedKey
 });
 ThoughtChain.displayName = "ThoughtChain";
 //#endregion
-export { ThoughtChain, ThoughtChain as default };
+export { ThoughtChain as default };
 
 //# sourceMappingURL=ThoughtChain.mjs.map

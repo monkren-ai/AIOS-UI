@@ -70,7 +70,8 @@ const timeVariants = cva('nothing-time', {
 })
 
 export interface TimeProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     Omit<VariantProps<typeof timeVariants>, 'variant'> {
   variant?: TimeVariant
   theme?: 'light' | 'dark' | 'accent'
@@ -107,7 +108,9 @@ function DigitalCompact({ now }: { now: Date }) {
   const dayName = DAYS[now.getDay()]
   return (
     <>
-      <div className="digital-time">{hours}:{minutes}</div>
+      <div className="digital-time">
+        {hours}:{minutes}
+      </div>
       <div className="digital-date">{dayName}</div>
     </>
   )
@@ -119,7 +122,7 @@ function Dial({ now }: { now: Date }) {
   const seconds = pad2(now.getSeconds())
   const secondAngle = (now.getSeconds() / 60) * 360
   const minuteAngle = ((now.getMinutes() + now.getSeconds() / 60) / 60) * 360
-  const hourAngle = ((now.getHours() % 12 + now.getMinutes() / 60) / 12) * 360
+  const hourAngle = (((now.getHours() % 12) + now.getMinutes() / 60) / 12) * 360
   const circumference = 2 * Math.PI * 90
   const getDashOffset = (angle: number) => circumference - (angle / 360) * circumference
   return (
@@ -127,12 +130,41 @@ function Dial({ now }: { now: Date }) {
       <svg className="gauge-svg" viewBox="0 0 200 200">
         <circle className="gauge-bg" cx="100" cy="100" r="90" />
         <circle className="gauge-track" cx="100" cy="100" r="90" />
-        <circle className="gauge-hour" cx="100" cy="100" r="90" style={{ strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: getDashOffset(hourAngle) }} />
-        <circle className="gauge-minute" cx="100" cy="100" r="90" style={{ strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: getDashOffset(minuteAngle) }} />
-        <circle className="gauge-second" cx="100" cy="100" r="90" style={{ strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: getDashOffset(secondAngle) }} />
+        <circle
+          className="gauge-hour"
+          cx="100"
+          cy="100"
+          r="90"
+          style={{
+            strokeDasharray: `${circumference} ${circumference}`,
+            strokeDashoffset: getDashOffset(hourAngle),
+          }}
+        />
+        <circle
+          className="gauge-minute"
+          cx="100"
+          cy="100"
+          r="90"
+          style={{
+            strokeDasharray: `${circumference} ${circumference}`,
+            strokeDashoffset: getDashOffset(minuteAngle),
+          }}
+        />
+        <circle
+          className="gauge-second"
+          cx="100"
+          cy="100"
+          r="90"
+          style={{
+            strokeDasharray: `${circumference} ${circumference}`,
+            strokeDashoffset: getDashOffset(secondAngle),
+          }}
+        />
         <circle className="gauge-center" cx="100" cy="100" r="8" />
       </svg>
-      <div className="gauge-time">{hours}:{minutes}</div>
+      <div className="gauge-time">
+        {hours}:{minutes}
+      </div>
       <div className="gauge-seconds">{seconds}</div>
     </>
   )
@@ -172,7 +204,15 @@ interface AnalogTimeState {
   milliseconds: number
 }
 
-function AnalogFace({ state, radius, dial }: { state: AnalogTimeState; radius: number; dial: TimeDial }) {
+function AnalogFace({
+  state,
+  radius,
+  dial,
+}: {
+  state: AnalogTimeState
+  radius: number
+  dial: TimeDial
+}) {
   const cx = radius
   const cy = radius
   const hourAngle = (state.hours % 12) * 30 + state.minutes * 0.5
@@ -190,9 +230,30 @@ function AnalogFace({ state, radius, dial }: { state: AnalogTimeState; radius: n
     const secDotY = cy + secDotDist * Math.sin(secDotAngle)
     return (
       <g>
-        <rect className="nothing-analog-clock-widget__hand--hour" x={cx - hourW / 2} y={cy - hourLen} width={hourW} height={hourLen} rx={hourW / 2} style={{ transform: `rotate(${hourAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }} />
-        <rect className="nothing-analog-clock-widget__hand--minute" x={cx - minW / 2} y={cy - minLen} width={minW} height={minLen} rx={minW / 2} style={{ transform: `rotate(${minuteAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }} />
-        <circle className="nothing-analog-clock-widget__second-dot" cx={secDotX} cy={secDotY} r={secDotR} />
+        <rect
+          className="nothing-analog-clock-widget__hand--hour"
+          x={cx - hourW / 2}
+          y={cy - hourLen}
+          width={hourW}
+          height={hourLen}
+          rx={hourW / 2}
+          style={{ transform: `rotate(${hourAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
+        />
+        <rect
+          className="nothing-analog-clock-widget__hand--minute"
+          x={cx - minW / 2}
+          y={cy - minLen}
+          width={minW}
+          height={minLen}
+          rx={minW / 2}
+          style={{ transform: `rotate(${minuteAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
+        />
+        <circle
+          className="nothing-analog-clock-widget__second-dot"
+          cx={secDotX}
+          cy={secDotY}
+          r={secDotR}
+        />
       </g>
     )
   }
@@ -209,7 +270,20 @@ function AnalogFace({ state, radius, dial }: { state: AnalogTimeState; radius: n
     const x2 = cx + innerR * Math.cos(angle)
     const y2 = cy + innerR * Math.sin(angle)
     ticks.push(
-      <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} strokeWidth={strokeWidth} strokeLinecap="round" className={isLarge ? 'nothing-analog-clock-widget__tick--large' : 'nothing-analog-clock-widget__tick--small'} />
+      <line
+        key={i}
+        x1={x1}
+        y1={y1}
+        x2={x2}
+        y2={y2}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        className={
+          isLarge
+            ? 'nothing-analog-clock-widget__tick--large'
+            : 'nothing-analog-clock-widget__tick--small'
+        }
+      />,
     )
   }
   const hourLen = radius * 0.5
@@ -224,16 +298,55 @@ function AnalogFace({ state, radius, dial }: { state: AnalogTimeState; radius: n
   return (
     <g>
       {ticks}
-      <rect className="nothing-analog-clock-widget__hand--hour" x={cx - hourW / 2} y={cy - hourLen} width={hourW} height={hourLen} rx={hourW / 2} style={{ transform: `rotate(${hourAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }} />
-      <rect className="nothing-analog-clock-widget__hand--minute" x={cx - minW / 2} y={cy - minLen} width={minW} height={minLen} rx={minW / 2} style={{ transform: `rotate(${minuteAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }} />
-      <line className="nothing-analog-clock-widget__hand--second" x1={cx} y1={cy} x2={cx} y2={cy - secLen} strokeWidth={secW} strokeLinecap="round" style={{ transform: `rotate(${secondAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }} />
-      <circle className="nothing-analog-clock-widget__hand--second" cx={cx} cy={cy - secDotDist} r={secDotR} style={{ transform: `rotate(${secondAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }} />
+      <rect
+        className="nothing-analog-clock-widget__hand--hour"
+        x={cx - hourW / 2}
+        y={cy - hourLen}
+        width={hourW}
+        height={hourLen}
+        rx={hourW / 2}
+        style={{ transform: `rotate(${hourAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
+      />
+      <rect
+        className="nothing-analog-clock-widget__hand--minute"
+        x={cx - minW / 2}
+        y={cy - minLen}
+        width={minW}
+        height={minLen}
+        rx={minW / 2}
+        style={{ transform: `rotate(${minuteAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
+      />
+      <line
+        className="nothing-analog-clock-widget__hand--second"
+        x1={cx}
+        y1={cy}
+        x2={cx}
+        y2={cy - secLen}
+        strokeWidth={secW}
+        strokeLinecap="round"
+        style={{ transform: `rotate(${secondAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
+      />
+      <circle
+        className="nothing-analog-clock-widget__hand--second"
+        cx={cx}
+        cy={cy - secDotDist}
+        r={secDotR}
+        style={{ transform: `rotate(${secondAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
+      />
       <circle className="nothing-analog-clock-widget__pivot" cx={cx} cy={cy} r={pivotR} />
     </g>
   )
 }
 
-function DigitalLarge({ now, showSeconds, showDate = true }: { now: Date; showSeconds?: boolean; showDate?: boolean }) {
+function DigitalLarge({
+  now,
+  showSeconds,
+  showDate = true,
+}: {
+  now: Date
+  showSeconds?: boolean
+  showDate?: boolean
+}) {
   const hours = pad2(now.getHours())
   const minutes = pad2(now.getMinutes())
   const seconds = pad2(now.getSeconds())
@@ -278,7 +391,7 @@ function useWorldCities(useBrowser: boolean, provided?: WorldClockCity[]): World
       }
       // 过滤 UTC / 短别名,只保留有意义的地区
       const meaningful = tzs.filter(
-        (tz) => tz.includes('/') && !tz.startsWith('Etc/') && !tz.startsWith('SystemV/')
+        (tz) => tz.includes('/') && !tz.startsWith('Etc/') && !tz.startsWith('SystemV/'),
       )
       // 挑选覆盖全球的 8 个时区 (跨大洲)
       const picks = [
@@ -363,7 +476,12 @@ function TotalDisplay() {
   // 静态示例值 (与原 sub/TotalTime 一致: 6H 20M)
   return (
     <>
-      <svg viewBox="0 0 118 20" fill="none" preserveAspectRatio="xMidYMid meet" className="h-[20px] widget-relative widget-shrink-0 w-[118px]">
+      <svg
+        viewBox="0 0 118 20"
+        fill="none"
+        preserveAspectRatio="xMidYMid meet"
+        className="h-[20px] widget-relative widget-shrink-0 w-[118px]"
+      >
         <circle cx="38" cy="3" r="3" fill="var(--widget-white)" />
         <circle cx="38" cy="17" r="3" fill="var(--widget-white)" />
         <circle cx="38" cy="10" r="3" fill="var(--widget-white)" />
@@ -416,12 +534,18 @@ function TotalDisplay() {
         <circle cx="3" cy="10" r="3" fill="var(--widget-white)" />
         <circle cx="17" cy="10" r="3" fill="var(--widget-white)" />
       </svg>
-      <p className="widget-text widget-text--light widget-text--sr widget-text--white widget-relative widget-shrink-0" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <p
+        className="widget-text widget-text--light widget-text--sr widget-text--white widget-relative widget-shrink-0"
+        style={{ fontVariationSettings: "'wdth' 100" }}
+      >
         <span className="widget-leading-normal text-[32px]">6</span>
         <span className="widget-leading-normal text-[16px]">{`H `}</span>
         <span className="widget-leading-normal text-[32px]">20</span>
       </p>
-      <p className="widget-text widget-text--10 widget-text--grey2 widget-text--uppercase" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <p
+        className="widget-text widget-text--10 widget-text--grey2 widget-text--uppercase"
+        style={{ fontVariationSettings: "'wdth' 100" }}
+      >
         Total Time
       </p>
     </>
@@ -451,16 +575,19 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
       style,
       ...props
     },
-    ref
+    ref,
   ) => {
     // For most variants use 1s tick. For smooth analog, use a separate state.
     const now = useNow(smoothSeconds && variant === 'analog' ? 50 : 1000)
-    const analogState = React.useMemo(() => ({
-      hours: now.getHours(),
-      minutes: now.getMinutes(),
-      seconds: now.getSeconds(),
-      milliseconds: now.getMilliseconds(),
-    }), [now])
+    const analogState = React.useMemo(
+      () => ({
+        hours: now.getHours(),
+        minutes: now.getMinutes(),
+        seconds: now.getSeconds(),
+        milliseconds: now.getMilliseconds(),
+      }),
+      [now],
+    )
     // world 变体的城市数据必须在所有 early return 之前调用,避免 hooks 顺序错乱
     const worldCities = useWorldCities(useBrowserTimezones, cities)
 
@@ -483,7 +610,10 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
       return (
         <div
           ref={ref}
-          className={cn('widget-card widget-card--152 widget-card--rounded widget-card--dark', className)}
+          className={cn(
+            'widget-card widget-card--152 widget-card--rounded widget-card--dark',
+            className,
+          )}
           style={style}
           data-state={dataAttr('total')}
           data-variant={dataAttr(variant)}
@@ -510,7 +640,11 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
         >
           <div className="world-clock-header">
             World Clock
-            {!world.real && <span className="world-clock-header-badge" aria-label="simulated">SIM</span>}
+            {!world.real && (
+              <span className="world-clock-header-badge" aria-label="simulated">
+                SIM
+              </span>
+            )}
           </div>
           <div className="world-clock-grid">
             {world.cities.map((city) => {
@@ -519,7 +653,10 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
               return (
                 <div className="world-clock-city" key={city.name}>
                   <div className="world-clock-city-row">
-                    <div className={cn('world-clock-day-indicator', isDay ? 'day' : 'night')} data-state={dataAttr(isDay ? 'day' : 'night')} />
+                    <div
+                      className={cn('world-clock-day-indicator', isDay ? 'day' : 'night')}
+                      data-state={dataAttr(isDay ? 'day' : 'night')}
+                    />
                     <div className="world-clock-city-name">{city.name}</div>
                   </div>
                   <div className="world-clock-time">{stamp(cityDate)}</div>
@@ -540,7 +677,13 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
       return (
         <div
           ref={ref}
-          className={cn('nothing-analog-clock-widget', `nothing-analog-clock-widget--${dial}`, `nothing-analog-clock-widget--${theme}`, smoothSeconds && 'nothing-analog-clock-widget--smooth', className)}
+          className={cn(
+            'nothing-analog-clock-widget',
+            `nothing-analog-clock-widget--${dial}`,
+            `nothing-analog-clock-widget--${theme}`,
+            smoothSeconds && 'nothing-analog-clock-widget--smooth',
+            className,
+          )}
           style={style}
           role="img"
           aria-label={`Analog clock showing ${h}:${m}:${s}`}
@@ -548,8 +691,17 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
           data-theme={dataAttr(theme)}
           {...props}
         >
-          <svg className="nothing-analog-clock-widget__svg" viewBox={`0 0 152 152`} xmlns="http://www.w3.org/2000/svg">
-            <circle className="nothing-analog-clock-widget__face" cx={radius} cy={radius} r={radius} />
+          <svg
+            className="nothing-analog-clock-widget__svg"
+            viewBox={`0 0 152 152`}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              className="nothing-analog-clock-widget__face"
+              cx={radius}
+              cy={radius}
+              r={radius}
+            />
             <AnalogFace state={analogState} radius={radius} dial={dial} />
           </svg>
         </div>
@@ -560,7 +712,12 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
       return (
         <div
           ref={ref}
-          className={cn('nothing-digital-clock-large', `nothing-digital-clock-large--${font}`, `nothing-digital-clock-large--${theme}`, className)}
+          className={cn(
+            'nothing-digital-clock-large',
+            `nothing-digital-clock-large--${font}`,
+            `nothing-digital-clock-large--${theme}`,
+            className,
+          )}
           style={style}
           role="timer"
           aria-label={`Current time: ${pad2(now.getHours())}:${pad2(now.getMinutes())}`}
@@ -578,7 +735,11 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
       return (
         <div
           ref={ref}
-          className={cn('nothing-time-widget', `nothing-time-widget--${format ?? '24h'}`, className)}
+          className={cn(
+            'nothing-time-widget',
+            `nothing-time-widget--${format ?? '24h'}`,
+            className,
+          )}
           style={style}
           data-variant={dataAttr('hero')}
           {...props}
@@ -651,7 +812,7 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
         <Overlay now={now} />
       </div>
     )
-  }
+  },
 )
 TimeInner.displayName = 'Time'
 

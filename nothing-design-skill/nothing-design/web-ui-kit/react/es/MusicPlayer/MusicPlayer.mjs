@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import { blinkingSeparatorVariants, musicPlayerVariants, playerAlbumArtVariants, playerArtistVariants, playerButtonVariants, playerCompactAlbumVariants, playerCompactInfoTextVariants, playerCompactInfoVariants, playerCompactProgressFillVariants, playerCompactProgressVariants, playerCompactSourceVariants, playerCompactTopVariants, playerControlsVariants, playerInfoVariants, playerProgressBarVariants, playerProgressSegmentVariants, playerProgressVariants, playerRecordingIndicatorVariants, playerTimeVariants, playerTitleVariants } from "./music-player-variants.mjs";
 import { useEffect, useState } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
@@ -7,28 +7,13 @@ import "./MusicPlayer.css";
 //#region src/MusicPlayer/MusicPlayer.tsx
 const BlinkingSeparator = ({ active = true, speed = 1e3, className }) => {
 	return /* @__PURE__ */ jsx("span", {
-		className: cn("nothing-blinking-separator", active && "nothing-blinking-separator--active", className),
+		className: cn(blinkingSeparatorVariants({ active }), className),
+		"data-slot": "blinking-separator",
+		"data-active": dataAttr(active),
 		style: active ? { animationDuration: `${speed}ms` } : void 0,
 		"aria-hidden": "true"
 	});
 };
-const musicPlayerVariants = cva("nothing-music-player", {
-	variants: {
-		variant: {
-			default: "",
-			compact: "nothing-music-player--compact",
-			mini: "nothing-music-player--mini"
-		},
-		recording: {
-			true: "nothing-music-player--recording",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		variant: "default",
-		recording: false
-	}
-});
 const defaultTracks = [
 	{
 		title: "Digital Silence",
@@ -102,7 +87,7 @@ const miniGroupCircles = [
 ];
 function MiniGroup() {
 	return /* @__PURE__ */ jsx("div", {
-		className: "widget-col-1 h-[29.256px] ml-[17px] mt-[17px] widget-relative widget-row-1 w-[29.557px]",
+		className: "widget-col-1 h-[29.256px] ms-[17px] mt-[17px] widget-relative widget-row-1 w-[29.557px]",
 		"aria-hidden": "true",
 		children: /* @__PURE__ */ jsx("svg", {
 			className: "nothing-widget-icon-svg",
@@ -133,7 +118,7 @@ function MiniIcons() {
 			className: "widget-grid-auto",
 			"data-name": "Icon",
 			"aria-hidden": "true",
-			children: [/* @__PURE__ */ jsx("div", { className: "widget-bg-grey widget-col-1 ml-0 mt-0 widget-relative widget-rounded-6 widget-card__svg--64" }), /* @__PURE__ */ jsx(MiniGroup, {})]
+			children: [/* @__PURE__ */ jsx("div", { className: "widget-bg-grey widget-col-1 ms-0 mt-0 widget-relative widget-rounded-6 widget-card__svg--64" }), /* @__PURE__ */ jsx(MiniGroup, {})]
 		}), /* @__PURE__ */ jsx("div", {
 			className: "widget-relative widget-shrink-0 widget-card__svg--24",
 			"data-name": "Spotify - Negative",
@@ -158,7 +143,7 @@ function MiniLoadingBar() {
 	return /* @__PURE__ */ jsxs("div", {
 		className: "widget-grid-loading",
 		"data-name": "Loading Bar",
-		children: [/* @__PURE__ */ jsx("div", { className: "widget-bg-grey widget-col-1 h-[2px] ml-0 mt-0 widget-relative widget-row-1 w-full" }), /* @__PURE__ */ jsx("div", { className: "widget-bg-light widget-col-1 h-[2px] ml-0 mt-0 widget-relative widget-row-1 w-[26.23%]" })]
+		children: [/* @__PURE__ */ jsx("div", { className: "widget-bg-grey widget-col-1 h-[2px] ms-0 mt-0 widget-relative widget-row-1 w-full" }), /* @__PURE__ */ jsx("div", { className: "widget-bg-light widget-col-1 h-[2px] ms-0 mt-0 widget-relative widget-row-1 w-[26.23%]" })]
 	});
 }
 function MiniInfo() {
@@ -174,7 +159,7 @@ function MiniInfo() {
 }
 function MiniBullet() {
 	return /* @__PURE__ */ jsx("div", {
-		className: "-translate-y-1/2 absolute h-[13px] right-[16px] top-[calc(50%-0.5px)] w-[4px]",
+		className: "-translate-y-1/2 absolute h-[13px] end-[16px] top-[calc(50%-0.5px)] w-[4px]",
 		"data-name": "Bullet",
 		children: /* @__PURE__ */ jsx("svg", {
 			className: "nothing-widget-icon-svg",
@@ -204,14 +189,14 @@ function MiniBullet() {
 		})
 	});
 }
-const MusicPlayerMini = React.forwardRef(({ theme = "dark", size = "medium", className, style, ...props }, ref) => {
+function MusicPlayerMini({ theme = "dark", size = "medium", className, style, ...props }) {
 	return /* @__PURE__ */ jsx("div", {
-		ref,
 		style,
 		className: cn(widgetSubVariants({
 			theme,
 			size
-		}), `widget-card widget-card--152 widget-card--rounded widget-card--dark ${className || ""}`.trim()),
+		}), "widget-card widget-card--152 widget-card--rounded widget-card--dark", className),
+		"data-slot": "music-player",
 		"data-theme": dataAttr(theme),
 		"data-size": dataAttr(size),
 		"data-name": "Music Player",
@@ -230,9 +215,9 @@ const MusicPlayerMini = React.forwardRef(({ theme = "dark", size = "medium", cla
 			})
 		})
 	});
-});
+}
 MusicPlayerMini.displayName = "MusicPlayerMini";
-const MusicPlayerDefault = React.forwardRef(({ className, totalSegments = 20, updateInterval = 1e3, tracks: tracksProp, variant = "default", showRecordingIndicator = false, sourceIcon, recording = false, style, ...props }, ref) => {
+function MusicPlayerDefault({ className, totalSegments = 20, updateInterval = 1e3, tracks: tracksProp, variant = "default", showRecordingIndicator = false, sourceIcon, recording = false, style, theme: _theme, size: _size, ...props }) {
 	const safeTracks = tracksProp && tracksProp.length > 0 ? tracksProp : defaultTracks;
 	const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -276,27 +261,28 @@ const MusicPlayerDefault = React.forwardRef(({ className, totalSegments = 20, up
 		setCurrentTime(0);
 	};
 	if (variant === "compact") return /* @__PURE__ */ jsxs("div", {
-		ref,
 		className: cn(musicPlayerVariants({
 			variant,
 			recording
 		}), className),
 		style,
+		"data-slot": "music-player",
 		"data-variant": dataAttr(variant),
 		"data-state": dataAttr(isPlaying ? "playing" : "paused"),
 		"data-recording": dataAttr(recording),
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-music-player__compact-top",
+				"data-slot": "music-player-compact-top",
+				className: playerCompactTopVariants(),
 				children: [/* @__PURE__ */ jsx("div", {
-					className: "nothing-music-player__compact-album",
+					"data-slot": "music-player-album",
+					className: playerCompactAlbumVariants(),
 					children: /* @__PURE__ */ jsx("svg", {
 						viewBox: "0 0 24 24",
 						fill: "none",
 						"aria-hidden": "true",
 						children: /* @__PURE__ */ jsx("path", {
-							className: "nothing-music-player__compact-album-icon",
 							d: "M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z",
 							strokeWidth: "1.5",
 							strokeLinecap: "round",
@@ -304,14 +290,17 @@ const MusicPlayerDefault = React.forwardRef(({ className, totalSegments = 20, up
 						})
 					})
 				}), sourceIcon && /* @__PURE__ */ jsx("div", {
-					className: "nothing-music-player__compact-source",
+					"data-slot": "music-player-source",
+					className: playerCompactSourceVariants(),
 					children: sourceIcon
 				})]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-music-player__compact-info",
+				"data-slot": "music-player-info",
+				className: playerCompactInfoVariants(),
 				children: [/* @__PURE__ */ jsxs("span", {
-					className: "nothing-music-player__compact-info-text",
+					"data-slot": "music-player-info-text",
+					className: playerCompactInfoTextVariants(),
 					children: [
 						currentTrack.artist,
 						" - ",
@@ -320,44 +309,46 @@ const MusicPlayerDefault = React.forwardRef(({ className, totalSegments = 20, up
 				}), showRecordingIndicator && /* @__PURE__ */ jsx(BlinkingSeparator, { active: isPlaying })]
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "nothing-music-player__compact-progress",
+				"data-slot": "music-player-progress",
+				className: playerCompactProgressVariants(),
 				role: "progressbar",
 				"aria-valuenow": Math.round(percent),
 				"aria-valuemin": 0,
 				"aria-valuemax": 100,
 				"aria-label": `Playback progress: ${formatTime(currentTime)} of ${formatTime(currentTrack.duration)}`,
 				children: /* @__PURE__ */ jsx("div", {
-					className: "nothing-music-player__compact-progress-fill",
+					"data-slot": "music-player-progress-fill",
+					className: playerCompactProgressFillVariants(),
 					style: { width: `${percent}%` }
 				})
 			})
 		]
 	});
 	return /* @__PURE__ */ jsxs("div", {
-		ref,
 		className: cn(musicPlayerVariants({
 			variant,
 			recording
 		}), className),
 		style,
+		"data-slot": "music-player",
 		"data-variant": dataAttr(variant),
 		"data-state": dataAttr(isPlaying ? "playing" : "paused"),
 		"data-recording": dataAttr(recording),
 		...props,
 		children: [
 			/* @__PURE__ */ jsx("div", {
-				className: "player-album-art",
+				"data-slot": "music-player-album",
+				className: playerAlbumArtVariants(),
 				children: /* @__PURE__ */ jsxs("svg", {
 					viewBox: "0 0 24 24",
 					fill: "none",
+					"aria-hidden": "true",
 					children: [/* @__PURE__ */ jsx("circle", {
-						className: "player-album-icon",
 						cx: "12",
 						cy: "12",
 						r: "10",
 						strokeWidth: "2"
 					}), /* @__PURE__ */ jsx("circle", {
-						className: "player-album-icon",
 						cx: "12",
 						cy: "12",
 						r: "3",
@@ -366,37 +357,50 @@ const MusicPlayerDefault = React.forwardRef(({ className, totalSegments = 20, up
 				})
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "player-info",
+				"data-slot": "music-player-info",
+				className: playerInfoVariants(),
 				children: [
 					/* @__PURE__ */ jsx("div", {
-						className: "player-title",
+						"data-slot": "music-player-title",
+						className: playerTitleVariants(),
 						children: currentTrack.title
 					}),
 					/* @__PURE__ */ jsx("div", {
-						className: "player-artist",
+						"data-slot": "music-player-artist",
+						className: playerArtistVariants(),
 						children: currentTrack.artist
 					}),
 					showRecordingIndicator && /* @__PURE__ */ jsx("div", {
-						className: "player-recording-indicator",
+						"data-slot": "music-player-recording",
+						className: playerRecordingIndicatorVariants(),
 						children: /* @__PURE__ */ jsx(BlinkingSeparator, { active: isPlaying })
 					})
 				]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "player-progress",
+				"data-slot": "music-player-progress",
+				className: playerProgressVariants(),
 				children: [/* @__PURE__ */ jsx("div", {
-					className: "player-progress-bar",
-					children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", { className: cn("player-progress-segment", index < filledSegments && "filled") }, index))
+					"data-slot": "music-player-progress-bar",
+					className: playerProgressBarVariants(),
+					children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", {
+						"data-slot": "music-player-progress-segment",
+						"data-filled": dataAttr(index < filledSegments),
+						className: playerProgressSegmentVariants({ filled: index < filledSegments })
+					}, index))
 				}), /* @__PURE__ */ jsxs("div", {
-					className: "player-time",
+					"data-slot": "music-player-time",
+					className: playerTimeVariants(),
 					children: [/* @__PURE__ */ jsx("span", { children: formatTime(currentTime) }), /* @__PURE__ */ jsx("span", { children: formatTime(currentTrack.duration) })]
 				})]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "player-controls",
+				"data-slot": "music-player-controls",
+				className: playerControlsVariants(),
 				children: [
 					/* @__PURE__ */ jsx("button", {
-						className: "player-btn",
+						"data-slot": "music-player-prev",
+						className: playerButtonVariants(),
 						onClick: handlePrev,
 						"aria-label": "Previous track",
 						children: /* @__PURE__ */ jsx("svg", {
@@ -404,7 +408,6 @@ const MusicPlayerDefault = React.forwardRef(({ className, totalSegments = 20, up
 							fill: "none",
 							"aria-hidden": "true",
 							children: /* @__PURE__ */ jsx("path", {
-								className: "player-btn-icon",
 								d: "M6 6h2v12H6zm3.5 6l8.5 6V6z",
 								strokeWidth: "2",
 								strokeLinecap: "round",
@@ -413,7 +416,8 @@ const MusicPlayerDefault = React.forwardRef(({ className, totalSegments = 20, up
 						})
 					}),
 					/* @__PURE__ */ jsx("button", {
-						className: "player-btn primary",
+						"data-slot": "music-player-toggle",
+						className: playerButtonVariants({ primary: true }),
 						onClick: handleTogglePlay,
 						"aria-label": isPlaying ? "Pause" : "Play",
 						children: /* @__PURE__ */ jsx("svg", {
@@ -421,13 +425,11 @@ const MusicPlayerDefault = React.forwardRef(({ className, totalSegments = 20, up
 							fill: "none",
 							"aria-hidden": "true",
 							children: isPlaying ? /* @__PURE__ */ jsx("path", {
-								className: "player-btn-icon",
 								d: "M6 4h4v16H6V4zm8 0h4v16h-4V4z",
 								strokeWidth: "2",
 								strokeLinecap: "round",
 								strokeLinejoin: "round"
 							}) : /* @__PURE__ */ jsx("path", {
-								className: "player-btn-icon",
 								d: "M8 5v14l11-7z",
 								strokeWidth: "2",
 								strokeLinecap: "round",
@@ -436,7 +438,8 @@ const MusicPlayerDefault = React.forwardRef(({ className, totalSegments = 20, up
 						})
 					}),
 					/* @__PURE__ */ jsx("button", {
-						className: "player-btn",
+						"data-slot": "music-player-next",
+						className: playerButtonVariants(),
 						onClick: handleNext,
 						"aria-label": "Next track",
 						children: /* @__PURE__ */ jsx("svg", {
@@ -444,7 +447,6 @@ const MusicPlayerDefault = React.forwardRef(({ className, totalSegments = 20, up
 							fill: "none",
 							"aria-hidden": "true",
 							children: /* @__PURE__ */ jsx("path", {
-								className: "player-btn-icon",
 								d: "M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z",
 								strokeWidth: "2",
 								strokeLinecap: "round",
@@ -456,11 +458,10 @@ const MusicPlayerDefault = React.forwardRef(({ className, totalSegments = 20, up
 			})
 		]
 	});
-});
+}
 MusicPlayerDefault.displayName = "MusicPlayerDefault";
-const MusicPlayer = React.forwardRef(({ variant = "default", theme, size, className, style, ...props }, ref) => {
+function MusicPlayer({ variant = "default", theme, size, className, style, ...props }) {
 	if (variant === "mini") return /* @__PURE__ */ jsx(MusicPlayerMini, {
-		ref,
 		theme: theme ?? "dark",
 		size: size ?? "medium",
 		className,
@@ -468,7 +469,6 @@ const MusicPlayer = React.forwardRef(({ variant = "default", theme, size, classN
 		...props
 	});
 	return /* @__PURE__ */ jsx(MusicPlayerDefault, {
-		ref,
 		variant,
 		theme,
 		size,
@@ -476,9 +476,9 @@ const MusicPlayer = React.forwardRef(({ variant = "default", theme, size, classN
 		style,
 		...props
 	});
-});
+}
 MusicPlayer.displayName = "MusicPlayer";
 //#endregion
-export { BlinkingSeparator, MusicPlayer, MusicPlayer as default, musicPlayerVariants };
+export { BlinkingSeparator, MusicPlayer as default };
 
 //# sourceMappingURL=MusicPlayer.mjs.map

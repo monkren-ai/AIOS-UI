@@ -1,28 +1,8 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import { chronoButtonVariants, chronoDisplayVariants, chronoLapDeltaVariants, chronoLapItemVariants, chronoLapNumberVariants, chronoLapTotalVariants, chronoLapsVariants, chronoTitleVariants, chronoVariants } from "./chrono-variants.mjs";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Chrono.css";
 //#region src/Chrono/Chrono.tsx
-const chronoVariants = cva("nothing-chrono", {
-	variants: {
-		state: {
-			idle: "nothing-chrono--idle",
-			running: "nothing-chrono--running",
-			paused: "nothing-chrono--paused"
-		},
-		size: {
-			sm: "nothing-chrono--sm",
-			md: "nothing-chrono--md",
-			lg: "nothing-chrono--lg"
-		}
-	},
-	defaultVariants: {
-		state: "idle",
-		size: "md"
-	}
-});
 const formatTime = (ms) => {
 	const totalSeconds = Math.floor(ms / 1e3);
 	const minutes = Math.floor(totalSeconds / 60);
@@ -30,7 +10,7 @@ const formatTime = (ms) => {
 	const centiseconds = Math.floor(ms % 1e3 / 10);
 	return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(centiseconds).padStart(2, "0")}`;
 };
-const Chrono = React.forwardRef(({ className, maxLaps = 10, state: stateProp, size = "md", style, ...props }, ref) => {
+function Chrono({ className, maxLaps = 10, state: stateProp, size = "md", style, ref, ...props }) {
 	const [elapsed, setElapsed] = useState(0);
 	const [running, setRunning] = useState(false);
 	const [laps, setLaps] = useState([]);
@@ -109,32 +89,42 @@ const Chrono = React.forwardRef(({ className, maxLaps = 10, state: stateProp, si
 			size
 		}), className),
 		style,
+		"data-slot": "chrono",
 		"data-state": dataAttr(derivedState),
 		"data-size": dataAttr(size),
 		...props,
 		children: [
 			/* @__PURE__ */ jsx("div", {
-				className: "chrono-header",
+				"data-slot": "chrono-header",
+				className: "mb-6 flex w-full items-baseline justify-between",
 				children: /* @__PURE__ */ jsx("div", {
-					className: "chrono-title",
+					"data-slot": "chrono-title",
+					className: cn(chronoTitleVariants()),
 					children: "Chrono"
 				})
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "chrono-display",
+				"data-slot": "chrono-display",
+				className: cn(chronoDisplayVariants({ size })),
 				children: formatTime(elapsed)
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "chrono-controls",
+				"data-slot": "chrono-controls",
+				className: "mb-4 flex gap-2",
 				children: /* @__PURE__ */ jsxs("div", {
-					className: "chrono-controls-main",
+					"data-slot": "chrono-controls-main",
+					className: "flex flex-1 gap-2",
 					children: [/* @__PURE__ */ jsx("button", {
-						className: cn("chrono-btn", running ? "chrono-btn--pause" : "chrono-btn--start"),
+						"data-slot": "chrono-button",
+						"data-action": running ? "pause" : "start",
+						className: cn(chronoButtonVariants({ action: running ? "pause" : "start" })),
 						onClick: handleStartPause,
 						type: "button",
 						children: running ? "PAUSE" : "START"
 					}), /* @__PURE__ */ jsx("button", {
-						className: "chrono-btn chrono-btn--lap",
+						"data-slot": "chrono-button",
+						"data-action": "lap",
+						className: cn(chronoButtonVariants({ action: "lap" })),
 						onClick: handleLap,
 						type: "button",
 						disabled: !running,
@@ -143,35 +133,43 @@ const Chrono = React.forwardRef(({ className, maxLaps = 10, state: stateProp, si
 				})
 			}),
 			/* @__PURE__ */ jsx("button", {
-				className: "chrono-btn chrono-btn--reset",
+				"data-slot": "chrono-button",
+				"data-action": "reset",
+				className: cn(chronoButtonVariants({ action: "reset" })),
 				onClick: handleReset,
 				type: "button",
 				disabled: running || elapsed === 0,
 				children: "RESET"
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "chrono-laps",
+				"data-slot": "chrono-laps",
+				className: cn(chronoLapsVariants()),
 				ref: lapsRef,
 				children: [...laps].reverse().map((lap) => {
 					const originalIndex = lap.number - 1;
-					let lapClass = "chrono-lap-item";
+					let pace = "normal";
 					if (laps.length > 1) {
-						if (originalIndex === fastestIndex) lapClass += " fastest";
-						if (originalIndex === slowestIndex) lapClass += " slowest";
+						if (originalIndex === fastestIndex) pace = "fastest";
+						if (originalIndex === slowestIndex) pace = "slowest";
 					}
 					return /* @__PURE__ */ jsxs("div", {
-						className: lapClass,
+						"data-slot": "chrono-lap",
+						"data-pace": dataAttr(pace),
+						className: cn(chronoLapItemVariants()),
 						children: [
 							/* @__PURE__ */ jsxs("div", {
-								className: "chrono-lap-number",
+								"data-slot": "chrono-lap-number",
+								className: cn(chronoLapNumberVariants()),
 								children: ["LAP ", String(lap.number).padStart(2, "0")]
 							}),
 							/* @__PURE__ */ jsx("div", {
-								className: "chrono-lap-delta",
+								"data-slot": "chrono-lap-delta",
+								className: cn(chronoLapDeltaVariants({ pace })),
 								children: formatTime(lap.delta)
 							}),
 							/* @__PURE__ */ jsx("div", {
-								className: "chrono-lap-total",
+								"data-slot": "chrono-lap-total",
+								className: cn(chronoLapTotalVariants()),
 								children: formatTime(lap.total)
 							})
 						]
@@ -180,9 +178,9 @@ const Chrono = React.forwardRef(({ className, maxLaps = 10, state: stateProp, si
 			})
 		]
 	});
-});
+}
 Chrono.displayName = "Chrono";
 //#endregion
-export { Chrono, Chrono as default, chronoVariants };
+export { Chrono as default };
 
 //# sourceMappingURL=Chrono.mjs.map

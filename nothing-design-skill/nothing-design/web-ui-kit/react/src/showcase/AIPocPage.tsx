@@ -9,7 +9,10 @@ import { Welcome } from '@/conversation/Welcome'
 import { Conversations } from '@/conversation/Conversations'
 import { Button } from '@/Button'
 import type { BubbleItemType } from '@/conversation/Bubble/BubbleList'
-import type { ThoughtChainItem, ThoughtChainItemStatus } from '@/conversation/ThoughtChain/ThoughtChain'
+import type {
+  ThoughtChainItem,
+  ThoughtChainItemStatus,
+} from '@/conversation/ThoughtChain/ThoughtChain'
 import type { PromptItem } from '@/conversation/Prompts'
 import type { ConversationItem } from '@/conversation/Conversations'
 
@@ -129,7 +132,10 @@ export function AIPocPage() {
         key: 'empty',
         label: t('新会话', 'New Chat'),
         messages: [],
-        thoughts: createInitialThoughtChain().map((item) => ({ ...item, status: 'pending' as const })),
+        thoughts: createInitialThoughtChain().map((item) => ({
+          ...item,
+          status: 'pending' as const,
+        })),
         loading: false,
       },
     ],
@@ -306,7 +312,10 @@ export function AIPocPage() {
       {
         key: 'components',
         title: t('演示 AI 组件', 'Show AI components'),
-        description: t('查看 Prompts、Conversations、Welcome', 'See Prompts, Conversations, Welcome'),
+        description: t(
+          '查看 Prompts、Conversations、Welcome',
+          'See Prompts, Conversations, Welcome',
+        ),
       },
       {
         key: 'code',
@@ -428,7 +437,10 @@ export function AIPocPage() {
 
         <aside className="ai-poc-thoughts" aria-label={t('思维链', 'Thought Chain')}>
           <h2 className="ai-poc-thoughts__title">{t('思考过程', 'THINKING')}</h2>
-          <ThoughtChain items={activeConversation.thoughts} defaultExpandedKeys={['intent', 'plan']} />
+          <ThoughtChain
+            items={activeConversation.thoughts}
+            defaultExpandedKeys={['intent', 'plan']}
+          />
         </aside>
       </div>
     </main>

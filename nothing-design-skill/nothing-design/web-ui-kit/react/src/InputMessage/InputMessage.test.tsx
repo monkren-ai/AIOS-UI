@@ -6,7 +6,7 @@ import { InputMessage } from './InputMessage'
 describe('InputMessage', () => {
   it('renders with data-slot', () => {
     render(<InputMessage />)
-    expect(screen.getByRole('textbox').closest('[data-slot]')).toHaveAttribute(
+    expect(screen.getByRole('textbox').closest('[data-slot="input-message"]')).toHaveAttribute(
       'data-slot',
       'input-message',
     )
@@ -83,18 +83,54 @@ describe('InputMessage', () => {
     const sizes = ['sm', 'md', 'lg'] as const
     for (const size of sizes) {
       const { unmount } = render(<InputMessage size={size} />)
-      const root = screen.getByRole('textbox').closest('[data-slot]')
-      expect(root).toHaveClass(`nothing-input-message--${size}`)
+      const root = screen.getByRole('textbox').closest('[data-slot="input-message"]')
       expect(root).toHaveAttribute('data-size', size)
       unmount()
     }
   })
 
+  it('exposes every part through data-slot', () => {
+    render(<InputMessage />)
+    const root = screen.getByRole('textbox').closest('[data-slot="input-message"]')!
+    for (const slot of [
+      'input-message-control',
+      'input-message-field',
+      'input-message-send',
+      'input-message-send-icon',
+      'input-message-meta',
+      'input-message-count',
+    ]) {
+      expect(root.querySelector(`[data-slot="${slot}"]`)).not.toBeNull()
+    }
+  })
+
+  it('exposes the disabled state on the root and the send button', () => {
+    render(<InputMessage disabled defaultValue="hi" />)
+    const root = screen.getByRole('textbox').closest('[data-slot="input-message"]')!
+    expect(root).toHaveAttribute('data-disabled', '')
+    expect(root.querySelector('[data-slot="input-message-send"]')).toHaveAttribute(
+      'data-disabled',
+      '',
+    )
+  })
+
+  it('hides the meta row when hideCount is set', () => {
+    render(<InputMessage hideCount />)
+    const root = screen.getByRole('textbox').closest('[data-slot="input-message"]')!
+    expect(root.querySelector('[data-slot="input-message-meta"]')).toBeNull()
+  })
+
   it('supports custom className', () => {
     render(<InputMessage className="custom-composer" />)
-    const root = screen.getByRole('textbox').closest('[data-slot]')
+    const root = screen.getByRole('textbox').closest('[data-slot="input-message"]')
     expect(root).toHaveClass('custom-composer')
-    expect(root).toHaveClass('nothing-input-message')
+  })
+
+  it('lets the caller override variant defaults', () => {
+    render(<InputMessage className="gap-6" />)
+    const root = screen.getByRole('textbox').closest('[data-slot="input-message"]')!
+    expect(root.className).toContain('gap-6')
+    expect(root.className).not.toContain('gap-xs')
   })
 
   it('forwards ref to the textarea element', () => {

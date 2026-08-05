@@ -3,7 +3,22 @@ export { useClickOutside } from './useClickOutside'
 export { useKeyboardNavigation } from './useKeyboardNavigation'
 export { useFloating, type Placement, type FloatingReturn } from './useFloating'
 export { useDeviceOrientation, type DeviceOrientationState } from './useDeviceOrientation'
-export { useWeather, type WeatherData, type UseWeatherOptions, type UseWeatherResult } from './useWeather'
+export {
+  useWeather,
+  type WeatherData,
+  type UseWeatherOptions,
+  type UseWeatherResult,
+} from './useWeather'
 export { useLocalStorageState } from './useLocalStorageState'
-export { useProximityHover, type UseProximityHoverOptions, type UseProximityHoverReturn, type ItemRect } from './useProximityHover'
-export { useMergeSplit, type MergeSplitState, type UseMergeSplitOptions, type UseMergeSplitReturn } from './useMergeSplit'
+export {
+  useProximityHover,
+  type UseProximityHoverOptions,
+  type UseProximityHoverReturn,
+  type ItemRect,
+} from './useProximityHover'
+export {
+  useMergeSplit,
+  type MergeSplitState,
+  type UseMergeSplitOptions,
+  type UseMergeSplitReturn,
+} from './useMergeSplit'

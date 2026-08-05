@@ -52,7 +52,7 @@ function wave(t: number): [number, number][] {
   const dots: [number, number][] = []
   for (let x = 0; x < COLS; x++) {
     const phase = (x / COLS) * Math.PI * 2 + t * Math.PI * 2
-    const y = Math.round((ROWS - 1) / 2 + Math.sin(phase) * (ROWS - 1) / 2)
+    const y = Math.round((ROWS - 1) / 2 + (Math.sin(phase) * (ROWS - 1)) / 2)
     dots.push([y, x])
   }
   return dots
@@ -66,7 +66,7 @@ function sparkle(t: number): [number, number][] {
   for (let y = 0; y < ROWS; y++) {
     for (let x = 0; x < COLS; x++) {
       const h = (seed * (y * COLS + x + 1)) % 233280
-      if ((h / 233280) < 0.3) dots.push([y, x])
+      if (h / 233280 < 0.3) dots.push([y, x])
     }
   }
   return dots.length > 0 ? dots : emptyFrame()

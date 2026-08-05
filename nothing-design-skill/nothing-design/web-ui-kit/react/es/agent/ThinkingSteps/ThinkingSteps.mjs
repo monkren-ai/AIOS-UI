@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
-import { ThinkingIndicator } from "../ThinkingIndicator/ThinkingIndicator.mjs";
+import ThinkingIndicator from "../ThinkingIndicator/ThinkingIndicator.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
@@ -114,6 +114,6 @@ const ThinkingSteps = React.forwardRef(({ steps, title = "THINKING", activeIndex
 });
 ThinkingSteps.displayName = "ThinkingSteps";
 //#endregion
-export { ThinkingSteps, ThinkingSteps as default, thinkingStepsVariants };
+export { ThinkingSteps as default, thinkingStepsVariants };
 
 //# sourceMappingURL=ThinkingSteps.mjs.map

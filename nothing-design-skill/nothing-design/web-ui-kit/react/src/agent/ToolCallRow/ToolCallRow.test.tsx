@@ -7,7 +7,10 @@ import { ToolCallRow } from './ToolCallRow'
 describe('ToolCallRow', () => {
   it('renders with data-slot', () => {
     render(<ToolCallRow tool="search" />)
-    expect(screen.getByText('search').closest('[data-slot]')).toHaveAttribute('data-slot', 'tool-call-row')
+    expect(screen.getByText('search').closest('[data-slot]')).toHaveAttribute(
+      'data-slot',
+      'tool-call-row',
+    )
   })
 
   it('renders tool name and status label', () => {
@@ -47,14 +50,7 @@ describe('ToolCallRow', () => {
 
   it('expands and collapses details', async () => {
     const user = userEvent.setup()
-    render(
-      <ToolCallRow
-        tool="query"
-        args={{ q: 'nothing ui' }}
-        result="42 results"
-        error=""
-      />,
-    )
+    render(<ToolCallRow tool="query" args={{ q: 'nothing ui' }} result="42 results" error="" />)
 
     const toggle = screen.getByRole('button', { name: 'Show details' })
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
@@ -72,13 +68,7 @@ describe('ToolCallRow', () => {
   })
 
   it('expands details by default when showArgs is true', () => {
-    render(
-      <ToolCallRow
-        tool="query"
-        args={{ q: 'nothing ui' }}
-        showArgs
-      />,
-    )
+    render(<ToolCallRow tool="query" args={{ q: 'nothing ui' }} showArgs />)
     expect(screen.getByRole('button')).toHaveAttribute('aria-expanded', 'true')
     expect(screen.getByText('q')).toBeInTheDocument()
   })
@@ -105,12 +95,7 @@ describe('ToolCallRow', () => {
   it('supports custom expand/collapse labels', async () => {
     const user = userEvent.setup()
     render(
-      <ToolCallRow
-        tool="custom"
-        result="summary"
-        expandLabel="Reveal"
-        collapseLabel="Conceal"
-      />,
+      <ToolCallRow tool="custom" result="summary" expandLabel="Reveal" collapseLabel="Conceal" />,
     )
     const toggle = screen.getByRole('button')
     expect(toggle).toHaveAttribute('aria-label', 'Reveal')

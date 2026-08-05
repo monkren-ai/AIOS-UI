@@ -47,7 +47,7 @@ export interface ThemeContextValue {
   toggleTheme: () => void
 }
 
-const STORAGE_KEY = 'nothing-theme'
+export const DEFAULT_STORAGE_KEY = 'nothing-theme'
 const MEDIA = '(prefers-color-scheme: dark)'
 
 const ThemeContext = createContext<ThemeContextValue>({
@@ -59,9 +59,9 @@ const ThemeContext = createContext<ThemeContextValue>({
   toggleTheme: () => {},
 })
 
-function getInitialTheme(defaultTheme: Theme): Theme {
+function getInitialTheme(defaultTheme: Theme, storageKey: string): Theme {
   if (typeof window === 'undefined') return defaultTheme
-  const stored = window.localStorage.getItem(STORAGE_KEY)
+  const stored = window.localStorage.getItem(storageKey)
   if (stored === 'light' || stored === 'dark' || stored === 'system') return stored
   return defaultTheme
 }
@@ -86,7 +86,7 @@ function disableAnimation() {
   document.head.appendChild(css)
   return () => {
     // Force reflow to ensure the no-transition rule is applied before class swap paints.
-     
+
     ;(() => window.getComputedStyle(document.body))()
     setTimeout(() => {
       document.head.removeChild(css)
@@ -116,6 +116,13 @@ export interface ThemeProviderProps {
    * 主题变化回调
    */
   onThemeChange?: (theme: Theme) => void
+  /**
+   * localStorage 的 key，默认 `'nothing-theme'`。
+   *
+   * 改了这里，`<ThemeScript>` 的同名属性必须一起改成同一个值，否则首屏内联脚本
+   * 读的是另一个 key，会闪一下错误主题再被 provider 纠正。
+   */
+  storageKey?: string
 }
 
 /**
@@ -143,10 +150,11 @@ export function ThemeProvider({
   enableSystem = true,
   disableTransitionOnChange = true,
   onThemeChange,
+  storageKey = DEFAULT_STORAGE_KEY,
 }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window === 'undefined') return defaultTheme
-    return getInitialTheme(defaultTheme)
+    return getInitialTheme(defaultTheme, storageKey)
   })
   const [systemTheme, setSystemTheme] = useState<ThemeAppearance | undefined>(() =>
     enableSystem ? getSystemTheme() : undefined,
@@ -159,17 +167,18 @@ export function ThemeProvider({
 
   const resolvedTheme = useMemo<ThemeAppearance>(() => {
     if (forcedTheme) return forcedTheme
-    if (theme === 'system') return systemTheme ?? (defaultTheme === 'system' ? 'dark' : defaultTheme)
+    if (theme === 'system')
+      return systemTheme ?? (defaultTheme === 'system' ? 'dark' : defaultTheme)
     return theme
   }, [forcedTheme, theme, systemTheme, defaultTheme])
 
   // Apply theme and persist
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      window.localStorage.setItem(STORAGE_KEY, theme)
+      window.localStorage.setItem(storageKey, theme)
     }
     onThemeChange?.(theme)
-  }, [theme, onThemeChange])
+  }, [theme, onThemeChange, storageKey])
 
   // Apply data-theme attribute with optional transition suppression
   useEffect(() => {
@@ -190,12 +199,9 @@ export function ThemeProvider({
     return () => media.removeEventListener('change', handler)
   }, [enableSystem])
 
-  const setTheme = useCallback(
-    (next: Theme) => {
-      setThemeState(next)
-    },
-    [],
-  )
+  const setTheme = useCallback((next: Theme) => {
+    setThemeState(next)
+  }, [])
 
   const toggleTheme = useCallback(() => {
     setThemeState((prev) => {

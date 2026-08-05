@@ -1,62 +1,62 @@
-import { cn } from "../lib/utils.mjs";
+import { cn, dataAttr } from "../lib/utils.mjs";
+import { tooltipPopupVariants, tooltipPositionerVariants, tooltipTriggerVariants } from "./tooltip-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import { Tooltip } from "@base-ui/react/tooltip";
-import "./Tooltip.css";
 //#region src/Tooltip/Tooltip.tsx
-const tooltipPopupVariants = cva("nothing-tooltip__popup", {
-	variants: {
-		visible: {
-			true: "nothing-tooltip__popup--visible",
-			false: ""
-		},
-		side: {
-			top: "nothing-tooltip__popup--top",
-			bottom: "nothing-tooltip__popup--bottom",
-			left: "nothing-tooltip__popup--left",
-			right: "nothing-tooltip__popup--right"
-		}
-	},
-	defaultVariants: {
-		visible: false,
-		side: "top"
-	}
-});
-const Tooltip$1 = React.forwardRef(({ className, content, side = "top", delay = 300, children, ...props }, ref) => {
-	return /* @__PURE__ */ jsxs(Tooltip.Root, { children: [/* @__PURE__ */ jsx(Tooltip.Trigger, {
-		delay,
-		"data-slot": "tooltip-trigger",
-		render: (triggerProps) => {
-			if (React.isValidElement(children)) return React.cloneElement(children, {
-				...triggerProps,
-				className: cn("nothing-tooltip__trigger", children.props.className)
-			});
-			return /* @__PURE__ */ jsx("span", {
-				...triggerProps,
-				className: "nothing-tooltip__trigger",
-				"data-slot": "tooltip-trigger",
-				children
-			});
-		}
-	}), /* @__PURE__ */ jsx(Tooltip.Portal, { children: /* @__PURE__ */ jsx(Tooltip.Positioner, {
-		className: "nothing-tooltip__positioner",
-		"data-slot": "tooltip-positioner",
-		side,
-		sideOffset: 4,
-		children: /* @__PURE__ */ jsx(Tooltip.Popup, {
-			ref,
-			className: cn(tooltipPopupVariants({ side }), className),
-			role: "tooltip",
-			"data-slot": "tooltip-popup",
-			"data-side": side,
-			...props,
+function Tooltip$1({ className, content, side = "top", delay = 300, children, ref, ...props }) {
+	/**
+	* 描述文本单独渲染一份视觉隐藏的副本，`aria-describedby` 指向它，而不是指向
+	* 浮层本身。浮层只在打开时才挂载，而读屏是在焦点落上来的那一刻读描述的——
+	* 隔着 `delay` 毫秒，那时浮层多半还不存在，描述就丢了。这份副本一直在。
+	*/
+	const descriptionId = React.useId();
+	return /* @__PURE__ */ jsxs(Tooltip.Root, { children: [
+		/* @__PURE__ */ jsx(Tooltip.Trigger, {
+			delay,
+			"data-slot": "tooltip-trigger",
+			render: (triggerProps) => {
+				if (React.isValidElement(children)) {
+					const childProps = children.props;
+					return React.cloneElement(children, {
+						...triggerProps,
+						className: cn(tooltipTriggerVariants(), childProps.className),
+						"aria-describedby": [childProps["aria-describedby"], descriptionId].filter(Boolean).join(" ")
+					});
+				}
+				return /* @__PURE__ */ jsx("span", {
+					...triggerProps,
+					className: cn(tooltipTriggerVariants()),
+					"data-slot": "tooltip-trigger",
+					"aria-describedby": descriptionId,
+					children
+				});
+			}
+		}),
+		/* @__PURE__ */ jsx("span", {
+			id: descriptionId,
+			hidden: true,
 			children: content
-		})
-	}) })] });
-});
+		}),
+		/* @__PURE__ */ jsx(Tooltip.Portal, { children: /* @__PURE__ */ jsx(Tooltip.Positioner, {
+			className: cn(tooltipPositionerVariants()),
+			"data-slot": "tooltip-positioner",
+			side,
+			sideOffset: 4,
+			children: /* @__PURE__ */ jsx(Tooltip.Popup, {
+				ref,
+				className: cn(tooltipPopupVariants({ side }), className),
+				role: "tooltip",
+				"data-slot": "tooltip-popup",
+				"data-side": dataAttr(side),
+				...props,
+				children: content
+			})
+		}) })
+	] });
+}
 Tooltip$1.displayName = "Tooltip";
 //#endregion
-export { Tooltip$1 as Tooltip, Tooltip$1 as default, tooltipPopupVariants };
+export { Tooltip$1 as default };
 
 //# sourceMappingURL=Tooltip.mjs.map

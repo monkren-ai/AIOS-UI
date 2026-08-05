@@ -1,53 +1,47 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import { separatorLabelVariants, separatorLineVariants, separatorVariants } from "./separator-variants.mjs";
+import "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Separator.css";
 //#region src/Separator/Separator.tsx
-const separatorVariants = cva("nothing-separator", {
-	variants: {
-		orientation: {
-			horizontal: "nothing-separator--horizontal",
-			vertical: "nothing-separator--vertical"
-		},
-		labeled: {
-			true: "nothing-separator--labeled",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		orientation: "horizontal",
-		labeled: false
-	}
-});
-const Separator = React.forwardRef(({ className, orientation = "horizontal", decorative = false, labeled, label, ...props }, ref) => {
+function Separator({ className, orientation = "horizontal", size = "md", decorative = false, labeled, label, ...props }) {
 	const isLabeled = labeled ?? Boolean(label);
 	const ariaProps = decorative ? { "aria-hidden": true } : label ? {} : {
 		role: "separator",
-		"aria-orientation": orientation ?? "horizontal"
+		"aria-orientation": orientation
 	};
 	return /* @__PURE__ */ jsxs("div", {
-		ref,
 		className: cn(separatorVariants({
 			orientation,
-			labeled: isLabeled
+			size
 		}), className),
+		"data-slot": "separator",
 		"data-orientation": dataAttr(orientation),
+		"data-size": dataAttr(size),
 		"data-labeled": dataAttr(isLabeled),
 		...ariaProps,
 		...props,
 		children: [
-			/* @__PURE__ */ jsx("div", { className: "nothing-separator__line" }),
+			/* @__PURE__ */ jsx("div", {
+				"data-slot": "separator-line",
+				className: separatorLineVariants({ orientation })
+			}),
 			label && /* @__PURE__ */ jsx("span", {
-				className: "nothing-separator__label",
+				"data-slot": "separator-label",
+				className: separatorLabelVariants({
+					orientation,
+					size
+				}),
 				children: label
 			}),
-			/* @__PURE__ */ jsx("div", { className: "nothing-separator__line" })
+			/* @__PURE__ */ jsx("div", {
+				"data-slot": "separator-line",
+				className: separatorLineVariants({ orientation })
+			})
 		]
 	});
-});
+}
 Separator.displayName = "Separator";
 //#endregion
-export { Separator, Separator as default, separatorVariants };
+export { Separator as default };
 
 //# sourceMappingURL=Separator.mjs.map

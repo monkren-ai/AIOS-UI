@@ -72,15 +72,20 @@ export const dataTableVariants = cva('nothing-data-table', {
     hoverable: { true: 'nothing-table--hoverable', false: '' },
     proximity: { true: 'nothing-data-table--proximity', false: '' },
   },
-  defaultVariants: { variant: 'table', striped: false, compact: false, hoverable: false, proximity: false },
+  defaultVariants: {
+    variant: 'table',
+    striped: false,
+    compact: false,
+    hoverable: false,
+    proximity: false,
+  },
 })
 
 // ---------- props ----------
 
 export type DataTableVariant = 'table' | 'grid' | 'rows'
 
-export interface DataTableProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface DataTableProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   variant?: DataTableVariant
   /** variant='table' */
   columns?: DataTableColumn[]
@@ -225,12 +230,20 @@ function TableView({
   return (
     <table className="nothing-table__table">
       {caption && <caption className="nothing-table__caption">{caption}</caption>}
-      <TableHeader columns={columns} sortKey={sortKey} sortDirection={sortDirection} onSort={onSort} />
+      <TableHeader
+        columns={columns}
+        sortKey={sortKey}
+        sortDirection={sortDirection}
+        onSort={onSort}
+      />
       <tbody className="nothing-table__body">
         {rows.map((row, rowIndex) => (
           <tr
             key={row.id ?? rowIndex}
-            className={cn('nothing-table__row', striped && rowIndex % 2 === 1 && 'nothing-table__row--even')}
+            className={cn(
+              'nothing-table__row',
+              striped && rowIndex % 2 === 1 && 'nothing-table__row--even',
+            )}
           >
             {columns.map((col) => (
               <td
@@ -326,16 +339,27 @@ function GridView({
       handleRowClick(index)
     }
   }
-  const getCellStatus = (row: DataTableGridRow, columnKey: string): DataTableCellStatus['status'] => {
+  const getCellStatus = (
+    row: DataTableGridRow,
+    columnKey: string,
+  ): DataTableCellStatus['status'] => {
     return row.cellStatuses?.find((cs) => cs.columnKey === columnKey)?.status
   }
 
   return (
     <>
-      <GridHeader columns={columns} sortKey={sortKey} sortDirection={sortDirection} onSort={onSort} />
+      <GridHeader
+        columns={columns}
+        sortKey={sortKey}
+        sortDirection={sortDirection}
+        onSort={onSort}
+      />
       {rows.length === 0 ? (
         <div className="nothing-data-grid__empty">
-          <div className="nothing-data-grid__empty-cell" style={{ gridColumn: `1 / ${columns.length + 1}` }}>
+          <div
+            className="nothing-data-grid__empty-cell"
+            style={{ gridColumn: `1 / ${columns.length + 1}` }}
+          >
             {emptyMessage}
           </div>
         </div>
@@ -475,7 +499,8 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
             return key
           }
           setSortDirection((prevDir) => {
-            const nextDir: SortDirection = prevDir === 'asc' ? 'desc' : prevDir === 'desc' ? null : 'asc'
+            const nextDir: SortDirection =
+              prevDir === 'asc' ? 'desc' : prevDir === 'desc' ? null : 'asc'
             onSortChange?.(nextDir ? key : null, nextDir)
             return nextDir
           })

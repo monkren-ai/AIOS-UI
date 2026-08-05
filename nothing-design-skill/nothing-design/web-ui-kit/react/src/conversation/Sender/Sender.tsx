@@ -20,7 +20,8 @@ export interface SenderComponents {
 }
 
 export interface SenderProps
-  extends Omit<
+  extends
+    Omit<
       React.TextareaHTMLAttributes<HTMLTextAreaElement>,
       'value' | 'defaultValue' | 'onChange' | 'onSubmit' | 'prefix' | 'size'
     >,
@@ -42,9 +43,10 @@ export interface SenderProps
   styles?: Partial<Record<SenderSemanticType, React.CSSProperties>>
 }
 
-function getAutoSizeRows(
-  autoSize: boolean | { minRows?: number; maxRows?: number } | undefined,
-): { minRows: number; maxRows: number } {
+function getAutoSizeRows(autoSize: boolean | { minRows?: number; maxRows?: number } | undefined): {
+  minRows: number
+  maxRows: number
+} {
   if (autoSize === true) {
     return { minRows: 2, maxRows: 6 }
   }
@@ -97,9 +99,10 @@ export const Sender = React.forwardRef<HTMLTextAreaElement, SenderProps>(
     const isControlled = controlledValue !== undefined
     const value = isControlled ? controlledValue : internalValue
 
-    const { classNames, styles } = mergeSemanticProps<SenderSemanticType>(
-      { classNames: userClassNames, styles: userStyles },
-    )
+    const { classNames, styles } = mergeSemanticProps<SenderSemanticType>({
+      classNames: userClassNames,
+      styles: userStyles,
+    })
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       const newValue = event.target.value

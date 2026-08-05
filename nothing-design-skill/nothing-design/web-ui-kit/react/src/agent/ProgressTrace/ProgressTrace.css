@@ -45,8 +45,9 @@
   font-family: var(--font-mono);
   font-size: var(--body);
   cursor: pointer;
-  transition: border-color var(--duration-micro) var(--easing),
-              color var(--duration-micro) var(--easing);
+  transition:
+    border-color var(--duration-micro) var(--easing),
+    color var(--duration-micro) var(--easing);
 }
 
 .nothing-progress-trace__toggle:hover {

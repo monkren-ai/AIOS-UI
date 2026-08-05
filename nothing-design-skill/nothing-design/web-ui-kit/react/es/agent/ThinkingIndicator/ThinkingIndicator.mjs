@@ -95,6 +95,6 @@ const ThinkingIndicator = React.forwardRef(({ state = "thinking", size = "md", l
 });
 ThinkingIndicator.displayName = "ThinkingIndicator";
 //#endregion
-export { ThinkingIndicator, ThinkingIndicator as default, thinkingIndicatorVariants };
+export { ThinkingIndicator as default, thinkingIndicatorVariants };
 
 //# sourceMappingURL=ThinkingIndicator.mjs.map

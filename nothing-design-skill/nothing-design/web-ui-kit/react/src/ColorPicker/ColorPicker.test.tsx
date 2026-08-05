@@ -6,7 +6,10 @@ import { ColorPicker } from './ColorPicker'
 describe('ColorPicker', () => {
   it('renders with data-slot', () => {
     render(<ColorPicker />)
-    expect(screen.getByText('COLOR').closest('[data-slot]')).toHaveAttribute('data-slot', 'color-picker')
+    expect(screen.getByText('COLOR').closest('[data-slot="color-picker"]')).toHaveAttribute(
+      'data-slot',
+      'color-picker',
+    )
   })
 
   it('renders title and default value', () => {
@@ -26,8 +29,12 @@ describe('ColorPicker', () => {
   it('marks active swatch', () => {
     render(<ColorPicker defaultValue="#FFFFFF" />)
     const active = screen.getByRole('button', { name: 'Select color #FFFFFF' })
-    expect(active).toHaveClass('nothing-color-picker__swatch--active')
-    expect(active).toHaveAttribute('aria-pressed')
+    expect(active).toHaveAttribute('data-slot', 'color-picker-swatch')
+    expect(active).toHaveAttribute('data-active', '')
+    expect(active).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByRole('button', { name: 'Select color #000000' })).not.toHaveAttribute(
+      'data-active',
+    )
   })
 
   it('supports controlled value', () => {
@@ -63,18 +70,40 @@ describe('ColorPicker', () => {
     const sizes = ['sm', 'md', 'lg'] as const
     for (const size of sizes) {
       const { unmount } = render(<ColorPicker size={size} />)
-      const root = screen.getByText('COLOR').closest('[data-slot]')
-      expect(root).toHaveClass(`nothing-color-picker--${size}`)
+      const root = screen.getByText('COLOR').closest('[data-slot="color-picker"]')
       expect(root).toHaveAttribute('data-size', size)
       unmount()
     }
   })
 
+  it('exposes every part through data-slot', () => {
+    render(<ColorPicker />)
+    const root = screen.getByText('COLOR').closest('[data-slot="color-picker"]')!
+    for (const slot of [
+      'color-picker-header',
+      'color-picker-title',
+      'color-picker-value',
+      'color-picker-swatches',
+      'color-picker-swatch',
+      'color-picker-swatch-custom',
+      'color-picker-native',
+      'color-picker-input',
+    ]) {
+      expect(root.querySelector(`[data-slot="${slot}"]`)).not.toBeNull()
+    }
+  })
+
   it('supports custom className', () => {
     render(<ColorPicker className="custom-picker" />)
-    const root = screen.getByText('COLOR').closest('[data-slot]')
+    const root = screen.getByText('COLOR').closest('[data-slot="color-picker"]')
     expect(root).toHaveClass('custom-picker')
-    expect(root).toHaveClass('nothing-color-picker')
+  })
+
+  it('lets the caller override variant defaults', () => {
+    render(<ColorPicker className="rounded-none" />)
+    const root = screen.getByText('COLOR').closest('[data-slot="color-picker"]')!
+    expect(root.className).toContain('rounded-none')
+    expect(root.className).not.toContain('rounded-card-compact')
   })
 
   it('forwards ref to the div element', () => {

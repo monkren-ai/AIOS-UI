@@ -13,7 +13,16 @@ import { Segbar } from './Segbar'
 import { useTelemetry, useBootNumber, useCtl, useNow, useTypedText } from '@/system/hooks'
 import { pad2 } from '@/system/time'
 import { bus } from '@/system/telemetry'
-import { commitMessages, statusMessages, WEEKS, DAYS, totalContribs, streakDays, streakSince, bestStreak } from '@/system/fake'
+import {
+  commitMessages,
+  statusMessages,
+  WEEKS,
+  DAYS,
+  totalContribs,
+  streakDays,
+  streakSince,
+  bestStreak,
+} from '@/system/fake'
 import { glyphFrame, fbm1D, GLYPH_ANIMS, type GlyphAnim } from './animations'
 import { useMotionComponent } from '@/MotionProvider'
 import { cn, dataAttr } from '@/lib/utils'

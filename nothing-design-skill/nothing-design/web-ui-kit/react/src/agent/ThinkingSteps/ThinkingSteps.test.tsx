@@ -78,7 +78,9 @@ describe('ThinkingSteps', () => {
 
   it('loops when loop is true', async () => {
     const onStepChange = vi.fn()
-    render(<ThinkingSteps steps={steps} autoAdvance interval={50} loop onStepChange={onStepChange} />)
+    render(
+      <ThinkingSteps steps={steps} autoAdvance interval={50} loop onStepChange={onStepChange} />,
+    )
 
     await waitFor(() => expect(onStepChange).toHaveBeenCalledWith(1), { timeout: 200 })
     await waitFor(() => expect(onStepChange).toHaveBeenCalledWith(2), { timeout: 300 })

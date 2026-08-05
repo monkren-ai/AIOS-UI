@@ -15,11 +15,17 @@ describe('ThoughtChain', () => {
     const items = [{ key: '1', title: 'Step 1', content: 'Details' }]
     render(<ThoughtChain items={items} />)
     const header = document.querySelector('[data-slot="thought-chain-item-header"]')
-    expect(document.querySelector('[data-slot="thought-chain-item-content"]')).not.toBeInTheDocument()
+    expect(
+      document.querySelector('[data-slot="thought-chain-item-content"]'),
+    ).not.toBeInTheDocument()
     fireEvent.click(header!)
-    expect(document.querySelector('[data-slot="thought-chain-item-content"]')).toHaveTextContent('Details')
+    expect(document.querySelector('[data-slot="thought-chain-item-content"]')).toHaveTextContent(
+      'Details',
+    )
     fireEvent.click(header!)
-    expect(document.querySelector('[data-slot="thought-chain-item-content"]')).not.toBeInTheDocument()
+    expect(
+      document.querySelector('[data-slot="thought-chain-item-content"]'),
+    ).not.toBeInTheDocument()
   })
 
   it('calls onExpand when toggled', () => {
@@ -34,7 +40,9 @@ describe('ThoughtChain', () => {
   it('supports controlled expandedKeys', () => {
     const items = [{ key: '1', title: 'Step 1', content: 'Details' }]
     const { rerender } = render(<ThoughtChain items={items} expandedKeys={[]} />)
-    expect(document.querySelector('[data-slot="thought-chain-item-content"]')).not.toBeInTheDocument()
+    expect(
+      document.querySelector('[data-slot="thought-chain-item-content"]'),
+    ).not.toBeInTheDocument()
     rerender(<ThoughtChain items={items} expandedKeys={['1']} />)
     expect(document.querySelector('[data-slot="thought-chain-item-content"]')).toBeInTheDocument()
   })

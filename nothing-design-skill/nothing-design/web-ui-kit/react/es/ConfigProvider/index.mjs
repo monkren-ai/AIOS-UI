@@ -1,6 +1,8 @@
 "use client";
-import { MotionProvider } from "../MotionProvider/index.mjs";
-import { ThemeProvider } from "../ThemeProvider/index.mjs";
+import MotionProvider from "../MotionProvider/index.mjs";
+import ThemeProvider from "../ThemeProvider/index.mjs";
+import DirectionProvider from "../DirectionProvider/DirectionProvider.mjs";
+import ReducedMotionProvider from "../ReducedMotionProvider/ReducedMotionProvider.mjs";
 import { createContext, memo, useContext, useMemo } from "react";
 import { jsx } from "react/jsx-runtime";
 //#region src/ConfigProvider/index.tsx
@@ -77,23 +79,28 @@ function useCdnFn() {
 * </ConfigProvider>
 * ```
 */
-const ConfigProvider = memo(({ children, config, defaultTheme, enableSystem = true, onThemeChange, motion }) => {
-	const configValue = useMemo(() => config ?? null, [config]);
+const ConfigProvider = memo(({ children, config, defaultTheme, enableSystem = true, onThemeChange, dir = "ltr", reducedMotion, motion }) => {
 	return /* @__PURE__ */ jsx(ConfigContext, {
-		value: configValue,
+		value: useMemo(() => config ?? null, [config]),
 		children: /* @__PURE__ */ jsx(ThemeProvider, {
 			defaultTheme,
 			enableSystem,
 			onThemeChange,
-			children: /* @__PURE__ */ jsx(MotionProvider, {
-				motion,
-				children
+			children: /* @__PURE__ */ jsx(DirectionProvider, {
+				dir,
+				children: /* @__PURE__ */ jsx(ReducedMotionProvider, {
+					force: reducedMotion,
+					children: /* @__PURE__ */ jsx(MotionProvider, {
+						motion,
+						children
+					})
+				})
 			})
 		})
 	});
 });
 ConfigProvider.displayName = "ConfigProvider";
 //#endregion
-export { ConfigContext, ConfigProvider, ConfigProvider as default, defaultCdnFn, useCdnFn, useConfig };
+export { ConfigContext, ConfigProvider as default, defaultCdnFn, useCdnFn, useConfig };
 
 //# sourceMappingURL=index.mjs.map

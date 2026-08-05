@@ -1,26 +1,19 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useKeyboardNavigation } from "../hooks/useKeyboardNavigation.mjs";
 import { OverlayPortal, useEscapeKey, useOverlayState } from "../ui/OverlayPortal.mjs";
+import { contextMenuContentVariants, contextMenuItemLabelVariants, contextMenuItemShortcutVariants, contextMenuItemVariants, contextMenuSeparatorVariants, contextMenuTriggerVariants, contextMenuVariants } from "./context-menu-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./ContextMenu.css";
 //#region src/ContextMenu/ContextMenu.tsx
-const contextMenuContentVariants = cva("nothing-context-menu__content", {
-	variants: { visible: {
-		true: "nothing-context-menu__content--visible",
-		false: ""
-	} },
-	defaultVariants: { visible: false }
-});
-const contextMenuItemVariants = cva("nothing-context-menu__item", {
-	variants: { disabled: {
-		true: "nothing-context-menu__item--disabled",
-		false: ""
-	} },
-	defaultVariants: { disabled: false }
-});
-const ContextMenu = React.forwardRef(({ className, items, visible: _visible, children, ...props }, ref) => {
+/**
+* 只有 `separator` 没有 `label` 才是独立分隔线——它不渲染菜单项，因此也不能出现在
+* 任何一份焦点索引里。带 `label` 的 `separator: true` 是过渡期保留的旧写法，含义是
+* 「渲染这一项，再在它下面补一条线」。
+*/
+function isStandaloneSeparator(item) {
+	return !!item.separator && item.label === void 0;
+}
+function ContextMenu({ className, items, children, ref, ...props }) {
 	const { isOpen, close, setOpen } = useOverlayState(void 0);
 	const [position, setPosition] = React.useState({
 		top: 0,
@@ -29,6 +22,8 @@ const ContextMenu = React.forwardRef(({ className, items, visible: _visible, chi
 	const [activeIndex, setActiveIndex] = React.useState(-1);
 	const contentRef = React.useRef(null);
 	const containerRef = React.useRef(null);
+	const triggerRef = React.useRef(null);
+	const previousFocusRef = React.useRef(null);
 	const itemRefs = React.useRef([]);
 	const setContainerRefs = React.useCallback((node) => {
 		containerRef.current = node;
@@ -52,45 +47,108 @@ const ContextMenu = React.forwardRef(({ className, items, visible: _visible, chi
 		};
 	}, [isOpen, close]);
 	useEscapeKey(isOpen, close);
-	const handleContextMenu = React.useCallback((e) => {
-		e.preventDefault();
+	const firstFocusableIndex = items.findIndex((item) => !isStandaloneSeparator(item) && !item.disabled);
+	/**
+	* 打开时把焦点交给第一个可用项，关闭时还原。
+	*
+	* 依赖里放的是 `firstFocusableIndex` 而不是 `items`——调用方几乎都是内联字面量数组，
+	* 用 `items` 会让这个 effect 每次渲染都重跑一遍，焦点被反复抢走。
+	*/
+	React.useEffect(() => {
+		if (!isOpen) return;
+		const trigger = triggerRef.current;
+		previousFocusRef.current = document.activeElement;
+		if (firstFocusableIndex >= 0) {
+			setActiveIndex(firstFocusableIndex);
+			itemRefs.current[firstFocusableIndex]?.focus();
+		} else contentRef.current?.focus();
+		return () => {
+			const previous = previousFocusRef.current;
+			previousFocusRef.current = null;
+			setActiveIndex(-1);
+			if (previous && previous !== document.body && previous.isConnected) previous.focus();
+			else trigger?.focus();
+		};
+	}, [isOpen, firstFocusableIndex]);
+	const openAt = React.useCallback((top, left) => {
 		setPosition({
-			top: e.clientY,
-			left: e.clientX
+			top,
+			left
 		});
 		setOpen(true);
 		setActiveIndex(-1);
 	}, [setOpen]);
+	const handleContextMenu = React.useCallback((e) => {
+		e.preventDefault();
+		if (e.clientX === 0 && e.clientY === 0) {
+			const rect = triggerRef.current?.getBoundingClientRect();
+			openAt(rect?.bottom ?? 0, rect?.left ?? 0);
+			return;
+		}
+		openAt(e.clientY, e.clientX);
+	}, [openAt]);
+	const handleTriggerKeyDown = React.useCallback((e) => {
+		if (e.key === "ContextMenu" || e.shiftKey && e.key === "F10") {
+			e.preventDefault();
+			const rect = triggerRef.current?.getBoundingClientRect();
+			openAt(rect?.bottom ?? 0, rect?.left ?? 0);
+		}
+	}, [openAt]);
 	const handleItemSelect = React.useCallback((index) => {
 		const item = items[index];
-		if (item?.disabled) return;
-		item?.onClick?.();
+		if (!item || isStandaloneSeparator(item) || item.disabled) return;
+		item.onClick?.();
 		close();
 	}, [items, close]);
-	const focusableItems = items.filter((item) => !item.disabled);
+	/**
+	* 键盘导航只认这一份列表：分隔线与禁用项都不在里面，每一项带着自己在 `items` 里的原始
+	* 下标。只收已经拿到 DOM 节点的项，这样「第几个可聚焦项」与 `focusableNodes` 的下标
+	* 永远对齐，不会出现两套编号各走各的。
+	*/
+	const focusableEntries = items.flatMap((item, index) => {
+		if (isStandaloneSeparator(item) || item.disabled) return [];
+		const node = itemRefs.current[index];
+		return node ? [{
+			index,
+			node
+		}] : [];
+	});
+	const focusableNodes = focusableEntries.map((entry) => entry.node);
 	const handleKeyDown = useKeyboardNavigation({
-		items: focusableItems.map((item) => {
-			const idx = items.indexOf(item);
-			return itemRefs.current[idx];
-		}).filter(Boolean),
+		items: focusableNodes,
 		orientation: "vertical",
 		loop: true,
 		onSelect: (focusableIndex) => {
-			const actualItem = focusableItems[focusableIndex];
-			if (actualItem) {
-				const realIndex = items.indexOf(actualItem);
-				handleItemSelect(realIndex);
-			}
+			const entry = focusableEntries[focusableIndex];
+			if (entry) handleItemSelect(entry.index);
 		}
 	});
+	const handleTabCycle = React.useCallback((e) => {
+		e.preventDefault();
+		if (focusableNodes.length === 0) return;
+		const current = focusableNodes.indexOf(document.activeElement);
+		if (current === -1) {
+			(e.shiftKey ? focusableNodes[focusableNodes.length - 1] : focusableNodes[0])?.focus();
+			return;
+		}
+		focusableNodes[(current + (e.shiftKey ? -1 : 1) + focusableNodes.length) % focusableNodes.length]?.focus();
+	}, [focusableNodes]);
+	const rovingIndex = focusableEntries.some((entry) => entry.index === activeIndex) ? activeIndex : firstFocusableIndex;
 	return /* @__PURE__ */ jsxs("div", {
 		ref: setContainerRefs,
-		className: cn("nothing-context-menu", className),
+		className: cn(contextMenuVariants(), className),
+		"data-slot": "context-menu",
 		"data-state": dataAttr(isOpen ? "open" : "closed"),
 		...props,
 		children: [/* @__PURE__ */ jsx("div", {
-			className: "nothing-context-menu__trigger",
+			ref: triggerRef,
+			className: cn(contextMenuTriggerVariants()),
+			"data-slot": "context-menu-trigger",
+			tabIndex: 0,
+			"aria-haspopup": "menu",
+			"aria-expanded": isOpen,
 			onContextMenu: handleContextMenu,
+			onKeyDown: handleTriggerKeyDown,
 			children
 		}), /* @__PURE__ */ jsx(OverlayPortal, {
 			open: isOpen,
@@ -98,69 +156,77 @@ const ContextMenu = React.forwardRef(({ className, items, visible: _visible, chi
 				ref: contentRef,
 				className: cn(contextMenuContentVariants({ visible: isOpen })),
 				role: "menu",
+				tabIndex: -1,
+				"data-slot": "context-menu-content",
 				style: {
-					position: "fixed",
 					top: position.top,
-					left: position.left,
-					zIndex: "var(--z-dropdown)"
+					left: position.left
 				},
 				onKeyDown: (e) => {
-					if (activeIndex >= 0) {
-						const focusableIndex = focusableItems.indexOf(items[activeIndex]);
+					if (e.key === "Tab") handleTabCycle(e);
+					else if (activeIndex >= 0) {
+						const focusableIndex = focusableEntries.findIndex((entry) => entry.index === activeIndex);
 						if (focusableIndex >= 0) handleKeyDown(e, focusableIndex);
 					} else if (e.key === "ArrowDown") {
 						e.preventDefault();
-						const firstFocusable = focusableItems[0];
-						if (firstFocusable) {
-							const idx = items.indexOf(firstFocusable);
-							setActiveIndex(idx);
-							itemRefs.current[idx]?.focus();
+						const first = focusableEntries[0];
+						if (first) {
+							setActiveIndex(first.index);
+							first.node.focus();
 						}
 					} else if (e.key === "ArrowUp") {
 						e.preventDefault();
-						const lastFocusable = focusableItems[focusableItems.length - 1];
-						if (lastFocusable) {
-							const idx = items.indexOf(lastFocusable);
-							setActiveIndex(idx);
-							itemRefs.current[idx]?.focus();
+						const last = focusableEntries[focusableEntries.length - 1];
+						if (last) {
+							setActiveIndex(last.index);
+							last.node.focus();
 						}
 					}
 				},
 				"data-state": dataAttr(isOpen ? "open" : "closed"),
-				children: items.map((item, index) => /* @__PURE__ */ jsxs(React.Fragment, { children: [/* @__PURE__ */ jsxs("div", {
+				children: items.map((item, index) => isStandaloneSeparator(item) ? /* @__PURE__ */ jsx("div", {
+					className: cn(contextMenuSeparatorVariants()),
+					role: "separator",
+					"data-slot": "context-menu-separator"
+				}, `sep-${index}`) : /* @__PURE__ */ jsxs(React.Fragment, { children: [/* @__PURE__ */ jsxs("div", {
 					ref: (node) => {
 						itemRefs.current[index] = node;
 					},
 					className: cn(contextMenuItemVariants({ disabled: !!item.disabled })),
 					role: "menuitem",
-					tabIndex: item.disabled ? -1 : 0,
+					tabIndex: !item.disabled && index === rovingIndex ? 0 : -1,
 					"aria-disabled": item.disabled || void 0,
 					onClick: () => handleItemSelect(index),
 					onKeyDown: (e) => {
 						if (e.key === "Enter" || e.key === " ") {
 							e.preventDefault();
+							e.stopPropagation();
 							handleItemSelect(index);
 						}
 					},
 					onFocus: () => setActiveIndex(index),
+					"data-slot": "context-menu-item",
 					"data-disabled": dataAttr(item.disabled),
 					children: [/* @__PURE__ */ jsx("span", {
-						className: "nothing-context-menu__item-label",
+						className: cn(contextMenuItemLabelVariants()),
+						"data-slot": "context-menu-item-label",
 						children: item.label
 					}), item.shortcut && /* @__PURE__ */ jsx("span", {
-						className: "nothing-context-menu__item-shortcut",
+						className: cn(contextMenuItemShortcutVariants()),
+						"data-slot": "context-menu-item-shortcut",
 						children: item.shortcut
 					})]
 				}), item.separator && /* @__PURE__ */ jsx("div", {
-					className: "nothing-context-menu__separator",
-					role: "separator"
-				})] }, index))
+					className: cn(contextMenuSeparatorVariants()),
+					role: "separator",
+					"data-slot": "context-menu-separator"
+				})] }, `item-${index}`))
 			})
 		})]
 	});
-});
+}
 ContextMenu.displayName = "ContextMenu";
 //#endregion
-export { ContextMenu, ContextMenu as default, contextMenuContentVariants, contextMenuItemVariants };
+export { ContextMenu as default };
 
 //# sourceMappingURL=ContextMenu.mjs.map

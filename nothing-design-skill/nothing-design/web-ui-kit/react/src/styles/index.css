@@ -1,0 +1,61 @@
+/**
+ * Nothing UI — 样式入口
+ *
+ * 消费方只需 `@import 'nothing-ui/styles.css'`（在 `@import 'tailwindcss'` 之后），
+ * 再加一条 `@source` 指向 dist 让 Tailwind 扫描编译产物里的类名。
+ * 详见 /docs/installation。
+ */
+
+@import './tokens.css';
+@import './theme.css';
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--black);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--body);
+    line-height: var(--leading-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Nothing 不用阴影表达层级，焦点态必须靠 outline 说清楚 */
+  :focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .dot-grid {
+    background-image: radial-gradient(circle, var(--border-visible) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  .dot-grid-subtle {
+    background-image: radial-gradient(circle, var(--border) 0.5px, transparent 0.5px);
+    background-size: 12px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

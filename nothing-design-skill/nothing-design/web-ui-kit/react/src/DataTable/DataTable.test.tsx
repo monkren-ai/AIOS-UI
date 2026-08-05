@@ -76,7 +76,9 @@ describe('DataTable', () => {
   })
 
   it('applies proximity class', () => {
-    const { container } = render(<DataTable variant="grid" columns={columns} rows={rows} proximity />)
+    const { container } = render(
+      <DataTable variant="grid" columns={columns} rows={rows} proximity />,
+    )
     expect(container.firstChild).toHaveClass('nothing-data-table--proximity')
   })
 

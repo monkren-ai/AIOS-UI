@@ -1,48 +1,50 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
-import './Badge.css'
+import {
+  badgeDotVariants,
+  badgeVariants,
+  resolveBadgeVariant,
+  type BadgeSize,
+  type BadgeVariant,
+} from './badge-variants'
 
-export const badgeVariants = cva('nothing-badge', {
-  variants: {
-    variant: {
-      default: '',
-      secondary: 'nothing-badge--secondary',
-      destructive: 'nothing-badge--destructive',
-      outline: 'nothing-badge--outline',
-    },
-    dot: {
-      true: 'nothing-badge--dot',
-      false: '',
-    },
-  },
-  defaultVariants: {
-    variant: 'default',
-    dot: false,
-  },
-})
+export interface BadgeProps extends React.ComponentPropsWithRef<'span'> {
+  /** 视觉样式。 */
+  variant?: BadgeVariant
+  /** 高度与字号。 */
+  size?: BadgeSize
+  /** 在文字前渲染一个呼吸的状态圆点。 */
+  dot?: boolean
+}
 
-export type BadgeProps = React.HTMLAttributes<HTMLSpanElement> &
-  VariantProps<typeof badgeVariants> & {
-    dot?: boolean
-  }
+export function Badge({
+  variant,
+  size = 'md',
+  dot = false,
+  className,
+  children,
+  ...props
+}: BadgeProps) {
+  const resolvedVariant = resolveBadgeVariant(variant) as never
 
-export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
-  ({ variant, dot, className, children, ...props }, ref) => {
-    return (
-      <span
-        ref={ref}
-        className={cn(badgeVariants({ variant, dot }), className)}
-        data-variant={dataAttr(variant)}
-        data-dot={dataAttr(dot)}
-        {...props}
-      >
-        {dot && <span className="nothing-badge__dot" aria-hidden="true" />}
-        {children}
-      </span>
-    )
-  }
-)
+  return (
+    <span
+      className={cn(badgeVariants({ variant: resolvedVariant, size, dot }), className)}
+      data-slot="badge"
+      data-variant={dataAttr(resolveBadgeVariant(variant) ?? 'primary')}
+      data-size={dataAttr(size)}
+      data-dot={dataAttr(dot)}
+      {...props}
+    >
+      {dot && (
+        <span data-slot="badge-dot" aria-hidden="true" className={badgeDotVariants({ size })} />
+      )}
+      {children}
+    </span>
+  )
+}
+
 Badge.displayName = 'Badge'
 
+export { badgeVariants }
 export default Badge

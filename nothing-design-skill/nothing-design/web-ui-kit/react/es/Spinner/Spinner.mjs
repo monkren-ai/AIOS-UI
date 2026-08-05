@@ -1,59 +1,9 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import { Button } from "../Button/Button.mjs";
+import Button from "../Button/Button.mjs";
+import { resolveSpinnerVariant, spinnerPointerVariants, spinnerSectorVariants, spinnerSvgVariants, spinnerTextVariants, spinnerVariants, spinnerWheelVariants } from "./spinner-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Spinner.css";
 //#region src/Spinner/Spinner.tsx
-const spinnerVariants = cva("nothing-spinner", {
-	variants: {
-		size: {
-			sm: "nothing-spinner--sm",
-			md: "nothing-spinner--md",
-			lg: "nothing-spinner--lg"
-		},
-		variant: {
-			default: "nothing-spinner--default",
-			accent: "nothing-spinner--accent"
-		}
-	},
-	defaultVariants: {
-		size: "md",
-		variant: "default"
-	}
-});
-const spinnerSectorVariants = cva("nothing-spinner-sector", {
-	variants: {
-		isEven: {
-			true: "nothing-spinner-sector-even",
-			false: "nothing-spinner-sector-odd"
-		},
-		selected: {
-			true: "selected",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		isEven: true,
-		selected: false
-	}
-});
-const spinnerTextVariants = cva("nothing-spinner-sector-text", {
-	variants: {
-		isEven: {
-			true: "nothing-spinner-sector-text-even",
-			false: "nothing-spinner-sector-text-odd"
-		},
-		selected: {
-			true: "selected",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		isEven: true,
-		selected: false
-	}
-});
 const defaultItems = [
 	"YES",
 	"NO",
@@ -62,7 +12,7 @@ const defaultItems = [
 	"SKIP",
 	"TRY"
 ];
-const Spinner = React.forwardRef(({ className, items = defaultItems, spinDuration = 3500, size = "md", variant = "default", style, ...props }, ref) => {
+function Spinner({ className, items = defaultItems, spinDuration = 3500, size = "md", variant, ...props }) {
 	const [rotation, setRotation] = React.useState(0);
 	const [isSpinning, setIsSpinning] = React.useState(false);
 	const [selectedIndex, setSelectedIndex] = React.useState(null);
@@ -70,6 +20,7 @@ const Spinner = React.forwardRef(({ className, items = defaultItems, spinDuratio
 	const rotationRef = React.useRef(0);
 	const pendingIndexRef = React.useRef(null);
 	const transitionEndedRef = React.useRef(false);
+	const resolvedVariant = resolveSpinnerVariant(variant) ?? "soft";
 	const n = items.length;
 	const sectorAngle = 2 * Math.PI / n;
 	const cx = 150;
@@ -124,47 +75,59 @@ const Spinner = React.forwardRef(({ className, items = defaultItems, spinDuratio
 		}, spinDuration + 500);
 	};
 	return /* @__PURE__ */ jsxs("div", {
-		ref,
 		className: cn(spinnerVariants({
-			size,
-			variant
+			variant: resolvedVariant,
+			size
 		}), className),
-		style,
+		"data-slot": "spinner",
+		"data-variant": dataAttr(resolveSpinnerVariant(variant) ?? "soft"),
+		"data-size": dataAttr(size),
 		"data-state": dataAttr(isSpinning ? "spinning" : "idle"),
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-spinner-wheel-container",
-				children: [/* @__PURE__ */ jsx("div", { className: "nothing-spinner-pointer" }), /* @__PURE__ */ jsxs("svg", {
-					className: "nothing-spinner-svg",
+				"data-slot": "spinner-wheel",
+				className: spinnerWheelVariants({ size }),
+				children: [/* @__PURE__ */ jsx("div", {
+					"data-slot": "spinner-pointer",
+					"aria-hidden": "true",
+					className: spinnerPointerVariants()
+				}), /* @__PURE__ */ jsxs("svg", {
+					"data-slot": "spinner-dial",
+					className: spinnerSvgVariants(),
 					viewBox: "0 0 300 300",
 					style: { transform: `rotate(${rotation}deg)` },
 					onTransitionEnd: handleSpinEnd,
 					children: [
 						sectors.map(({ d, isEven, item, tx, ty, textRotation, index }) => /* @__PURE__ */ jsxs("g", { children: [/* @__PURE__ */ jsx("path", {
-							className: cn(spinnerSectorVariants({
+							"data-slot": "spinner-sector",
+							"data-selected": dataAttr(selectedIndex === index),
+							className: spinnerSectorVariants({
 								isEven,
 								selected: selectedIndex === index
-							})),
+							}),
 							d
 						}), /* @__PURE__ */ jsx("text", {
-							className: cn(spinnerTextVariants({
+							"data-slot": "spinner-sector-text",
+							className: spinnerTextVariants({
 								isEven,
 								selected: selectedIndex === index
-							})),
+							}),
 							x: tx,
 							y: ty,
 							transform: `rotate(${textRotation} ${tx} ${ty})`,
 							children: item
 						})] }, index)),
 						/* @__PURE__ */ jsx("circle", {
-							className: "nothing-spinner-center",
+							"data-slot": "spinner-hub",
+							className: "fill-surface stroke-border [stroke-width:2]",
 							cx,
 							cy,
 							r: 24
 						}),
 						/* @__PURE__ */ jsx("circle", {
-							className: "nothing-spinner-center-dot",
+							"data-slot": "spinner-hub-dot",
+							className: "fill-accent",
 							cx,
 							cy,
 							r: 6
@@ -175,21 +138,22 @@ const Spinner = React.forwardRef(({ className, items = defaultItems, spinDuratio
 			/* @__PURE__ */ jsx(Button, {
 				variant: "primary",
 				size: "lg",
+				className: "mb-4",
 				onClick: handleSpin,
 				loading: isSpinning,
 				loadingText: "SPINNING…",
-				style: { marginBottom: "var(--space-md)" },
 				children: "SPIN"
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "nothing-spinner-result",
+				"data-slot": "spinner-result",
+				className: "min-h-8 text-center font-body text-heading font-bold text-accent",
 				children: result
 			})
 		]
 	});
-});
+}
 Spinner.displayName = "Spinner";
 //#endregion
-export { Spinner, Spinner as default, spinnerSectorVariants, spinnerTextVariants, spinnerVariants };
+export { Spinner as default };
 
 //# sourceMappingURL=Spinner.mjs.map

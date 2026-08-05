@@ -63,7 +63,7 @@ function notify() {
 }
 
 function emit(name: string) {
-  events.get(name)?.forEach(fn => fn())
+  events.get(name)?.forEach((fn) => fn())
 }
 
 function readHeap() {
@@ -76,12 +76,20 @@ function readHeap() {
 }
 
 function readNet() {
-  const c = (navigator as { connection?: { downlink?: number; rtt?: number; effectiveType?: string } }).connection
+  const c = (
+    navigator as { connection?: { downlink?: number; rtt?: number; effectiveType?: string } }
+  ).connection
   if (c && typeof c.downlink === 'number') {
-    return { net: { downlink: c.downlink, rtt: c.rtt ?? 25, type: c.effectiveType ?? 'wifi' }, real: true }
+    return {
+      net: { downlink: c.downlink, rtt: c.rtt ?? 25, type: c.effectiveType ?? 'wifi' },
+      real: true,
+    }
   }
   simNet = Math.min(10, Math.max(5.2, simNet + (Math.random() - 0.5) * 0.8))
-  return { net: { downlink: simNet, rtt: Math.round(18 + Math.random() * 14), type: 'wifi' }, real: false }
+  return {
+    net: { downlink: simNet, rtt: Math.round(18 + Math.random() * 14), type: 'wifi' },
+    real: false,
+  }
 }
 
 function publish() {
@@ -198,16 +206,27 @@ export const bus = {
       buckets[bucketIdx] = 0
     }, 1000)
     startSweep()
-    const getBattery = (navigator as { getBattery?: () => Promise<{ level: number; charging: boolean; addEventListener: (n: string, f: () => void) => void }> }).getBattery
-    getBattery?.call(navigator).then(b => {
-      const update = () => {
-        battery = { level: b.level, charging: b.charging }
-        batteryReal = true
+    const getBattery = (
+      navigator as {
+        getBattery?: () => Promise<{
+          level: number
+          charging: boolean
+          addEventListener: (n: string, f: () => void) => void
+        }>
       }
-      update()
-      b.addEventListener('levelchange', update)
-      b.addEventListener('chargingchange', update)
-    }).catch(() => {})
+    ).getBattery
+    getBattery
+      ?.call(navigator)
+      .then((b) => {
+        const update = () => {
+          battery = { level: b.level, charging: b.charging }
+          batteryReal = true
+        }
+        update()
+        b.addEventListener('levelchange', update)
+        b.addEventListener('chargingchange', update)
+      })
+      .catch(() => {})
     if (!getBattery) {
       battery = { level: 0.87, charging: false }
       batteryReal = false

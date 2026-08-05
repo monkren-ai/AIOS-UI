@@ -10,18 +10,20 @@
   font-family: var(--font-body);
   background-color: var(--black);
   color: var(--text-primary);
-  min-height: 100vh;
+  /* 展示页现在嵌在站点顶栏（3.5rem）下面，高度和吸顶偏移都得让出这一段 */
+  min-height: calc(100vh - 3.5rem);
   display: flex;
-  transition: background-color var(--duration-transition) var(--easing),
+  transition:
+    background-color var(--duration-transition) var(--easing),
     color var(--duration-transition) var(--easing);
 }
 
 /* ===== 侧边栏导航 ===== */
 .showcase-aside {
   position: sticky;
-  top: 0;
+  top: 3.5rem;
   flex: 0 0 220px;
-  height: 100vh;
+  height: calc(100vh - 3.5rem);
   padding: var(--space-lg) var(--space-md);
   border-right: 1px solid var(--border-visible);
   background-color: var(--black);
@@ -72,7 +74,7 @@
 /* ===== 浮动控制按钮 ===== */
 .showcase-floating-btn {
   position: fixed;
-  top: var(--space-md);
+  top: calc(3.5rem + var(--space-md));
   padding: var(--space-sm) var(--space-md);
   background: var(--surface);
   border: 1px solid var(--border-visible);
@@ -90,16 +92,8 @@
   border-color: var(--text-display);
 }
 
-.showcase-floating-btn--theme {
-  right: var(--space-md);
-}
-
-.showcase-floating-btn--lang {
-  right: calc(var(--space-md) + 150px);
-}
-
 .showcase-floating-btn--sim {
-  right: calc(var(--space-md) + 220px);
+  right: var(--space-md);
 }
 
 .showcase-floating-btn--sim[data-active='true'] {

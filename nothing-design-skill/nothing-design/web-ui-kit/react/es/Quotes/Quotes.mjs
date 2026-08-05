@@ -1,27 +1,9 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useNow } from "../system/hooks.mjs";
+import { quotesAuthorVariants, quotesContentVariants, quotesRingVariants, quotesSvgVariants, quotesTextVariants, quotesVariants } from "./quotes-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Quotes.css";
 //#region src/Quotes/Quotes.tsx
-const quotesVariants = cva("nothing-quotes", {
-	variants: {
-		theme: {
-			light: "nothing-quotes--light",
-			dark: "nothing-quotes--dark"
-		},
-		size: {
-			sm: "nothing-quotes--sm",
-			md: "nothing-quotes--md",
-			lg: "nothing-quotes--lg"
-		}
-	},
-	defaultVariants: {
-		theme: "dark",
-		size: "md"
-	}
-});
 const defaultQuotes = [
 	{
 		text: "Less, but better.",
@@ -56,7 +38,7 @@ const defaultQuotes = [
 		author: "Steve Jobs"
 	}
 ];
-const Quotes = React.forwardRef(({ className, theme = "dark", size = "md", quotes = defaultQuotes, interval = 3e4, ...props }, ref) => {
+function Quotes({ className, theme = "dark", size = "md", quotes = defaultQuotes, interval = 3e4, ...props }) {
 	const [currentIndex, setCurrentIndex] = React.useState(0);
 	const tick = useNow(quotes.length > 1 ? interval : 6e4);
 	React.useEffect(() => {
@@ -71,49 +53,61 @@ const Quotes = React.forwardRef(({ className, theme = "dark", size = "md", quote
 		author: ""
 	};
 	const real = quotes !== defaultQuotes;
+	const progress = quotes.length > 0 ? (currentIndex + 1) / quotes.length * 100 : 100;
 	return /* @__PURE__ */ jsxs("div", {
-		ref,
 		className: cn(quotesVariants({
 			theme,
 			size
 		}), className),
+		"data-slot": "quotes",
 		"data-state": dataAttr(quotes.length > 0 ? "ready" : "empty"),
+		"data-quotes-theme": dataAttr(theme),
+		"data-size": dataAttr(size),
+		"data-index": dataAttr(currentIndex),
 		"data-real": dataAttr(real),
 		...props,
 		children: [/* @__PURE__ */ jsxs("svg", {
-			className: "nothing-quotes__svg",
+			"data-slot": "quotes-progress",
+			className: quotesSvgVariants({ theme }),
 			viewBox: "0 0 200 200",
 			"aria-hidden": "true",
 			children: [/* @__PURE__ */ jsx("circle", {
-				className: "nothing-quotes__ring nothing-quotes__ring--bg",
+				"data-slot": "quotes-ring",
+				"data-kind": "bg",
+				className: quotesRingVariants({ kind: "bg" }),
 				cx: "100",
 				cy: "100",
 				r: "95",
 				fill: "none"
 			}), /* @__PURE__ */ jsx("circle", {
-				className: "nothing-quotes__ring nothing-quotes__ring--progress",
+				"data-slot": "quotes-ring",
+				"data-kind": "progress",
+				className: quotesRingVariants({ kind: "progress" }),
 				cx: "100",
 				cy: "100",
 				r: "95",
 				fill: "none",
 				pathLength: "100",
 				strokeDasharray: "100",
-				strokeDashoffset: 100 - (currentIndex + 1) / quotes.length * 100
+				strokeDashoffset: 100 - progress
 			})]
 		}), /* @__PURE__ */ jsxs("div", {
-			className: "nothing-quotes__content",
+			"data-slot": "quotes-content",
+			className: quotesContentVariants(),
 			children: [/* @__PURE__ */ jsx("div", {
-				className: "nothing-quotes__text",
+				"data-slot": "quotes-text",
+				className: quotesTextVariants({ theme }),
 				children: quote.text
 			}), quote.author && /* @__PURE__ */ jsx("div", {
-				className: "nothing-quotes__author",
+				"data-slot": "quotes-author",
+				className: quotesAuthorVariants(),
 				children: quote.author
 			})]
 		})]
 	});
-});
+}
 Quotes.displayName = "Quotes";
 //#endregion
-export { Quotes, Quotes as default, quotesVariants };
+export { Quotes as default };
 
 //# sourceMappingURL=Quotes.mjs.map

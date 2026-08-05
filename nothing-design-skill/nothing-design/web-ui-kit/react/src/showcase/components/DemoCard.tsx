@@ -17,7 +17,13 @@ interface DemoCardProps {
  * 将一个演示区段（标题 + 内容）统一包裹为 `<section>`，
  * 并根据 variant 选择 flex-wrap / grid / 默认布局。
  */
-export function DemoCard({ title, variant = 'default', last = false, className, children }: DemoCardProps) {
+export function DemoCard({
+  title,
+  variant = 'default',
+  last = false,
+  className,
+  children,
+}: DemoCardProps) {
   const classes = [
     'showcase-section',
     variant === 'flex-wrap' && 'showcase-section--flex-wrap',

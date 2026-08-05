@@ -1,45 +1,29 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import { badgeDotVariants, badgeVariants, resolveBadgeVariant } from "./badge-variants.mjs";
+import "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Badge.css";
 //#region src/Badge/Badge.tsx
-const badgeVariants = cva("nothing-badge", {
-	variants: {
-		variant: {
-			default: "",
-			secondary: "nothing-badge--secondary",
-			destructive: "nothing-badge--destructive",
-			outline: "nothing-badge--outline"
-		},
-		dot: {
-			true: "nothing-badge--dot",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		variant: "default",
-		dot: false
-	}
-});
-const Badge = React.forwardRef(({ variant, dot, className, children, ...props }, ref) => {
+function Badge({ variant, size = "md", dot = false, className, children, ...props }) {
 	return /* @__PURE__ */ jsxs("span", {
-		ref,
 		className: cn(badgeVariants({
-			variant,
+			variant: resolveBadgeVariant(variant),
+			size,
 			dot
 		}), className),
-		"data-variant": dataAttr(variant),
+		"data-slot": "badge",
+		"data-variant": dataAttr(resolveBadgeVariant(variant) ?? "primary"),
+		"data-size": dataAttr(size),
 		"data-dot": dataAttr(dot),
 		...props,
 		children: [dot && /* @__PURE__ */ jsx("span", {
-			className: "nothing-badge__dot",
-			"aria-hidden": "true"
+			"data-slot": "badge-dot",
+			"aria-hidden": "true",
+			className: badgeDotVariants({ size })
 		}), children]
 	});
-});
+}
 Badge.displayName = "Badge";
 //#endregion
-export { Badge, Badge as default, badgeVariants };
+export { Badge as default };
 
 //# sourceMappingURL=Badge.mjs.map

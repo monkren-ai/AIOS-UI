@@ -48,12 +48,7 @@ export function NavigationSection({
       </DemoCard>
 
       <DemoCard title={t('日期导航', 'Date Nav')}>
-        <DateNav
-          label={dateNavLabel}
-          onPrev={onDatePrev}
-          onNext={onDateNext}
-          grotesk
-        />
+        <DateNav label={dateNavLabel} onPrev={onDatePrev} onNext={onDateNext} grotesk />
       </DemoCard>
 
       <DemoCard title={t('标签页', 'Tabs')}>
@@ -65,9 +60,15 @@ export function NavigationSection({
             { value: 'settings', label: t('设置', 'Settings') },
           ]}
         >
-          <TabPanel value="account">{t('管理你的账号设置与偏好。', 'Manage your account settings and preferences.')}</TabPanel>
-          <TabPanel value="password">{t('修改你的密码与安全选项。', 'Change your password and security options.')}</TabPanel>
-          <TabPanel value="settings">{t('配置应用设置与通知。', 'Configure application settings and notifications.')}</TabPanel>
+          <TabPanel value="account">
+            {t('管理你的账号设置与偏好。', 'Manage your account settings and preferences.')}
+          </TabPanel>
+          <TabPanel value="password">
+            {t('修改你的密码与安全选项。', 'Change your password and security options.')}
+          </TabPanel>
+          <TabPanel value="settings">
+            {t('配置应用设置与通知。', 'Configure application settings and notifications.')}
+          </TabPanel>
         </Tabs>
       </DemoCard>
 
@@ -83,11 +84,7 @@ export function NavigationSection({
       </DemoCard>
 
       <DemoCard title={t('分页', 'Pagination')}>
-        <Pagination
-          page={paginationPage}
-          totalPages={20}
-          onPageChange={setPaginationPage}
-        />
+        <Pagination page={paginationPage} totalPages={20} onPageChange={setPaginationPage} />
       </DemoCard>
 
       <DemoCard title={t('导航菜单', 'Navigation Menu')}>

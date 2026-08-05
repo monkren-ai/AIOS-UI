@@ -1,5 +1,5 @@
 import { useClickOutside } from "../hooks/useClickOutside.mjs";
-import { useDisclosure } from "../hooks/useDisclosure.mjs";
+import "../hooks/useDisclosure.mjs";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 //#region src/OverlayPortal/OverlayPortal.tsx
@@ -152,6 +152,6 @@ function useOverlayClickOutside(ref, open, handler) {
 	});
 }
 //#endregion
-export { OverlayPortal, useDisclosure, useEscapeKey, useFocusTrap, useOverlayClickOutside, useOverlayState, useScrollLock, useTabCycle };
+export { OverlayPortal, useEscapeKey, useFocusTrap, useOverlayClickOutside, useOverlayState, useScrollLock, useTabCycle };
 
 //# sourceMappingURL=OverlayPortal.mjs.map

@@ -1,2 +1,3 @@
-import { Checkbox, checkboxVariants } from "./Checkbox/Checkbox.mjs";
-export { Checkbox, checkboxVariants, Checkbox as default };
+import { checkboxBoxVariants, checkboxCheckVariants, checkboxDashVariants, checkboxIndicatorVariants, checkboxLabelVariants, checkboxVariants } from "./Checkbox/checkbox-variants.mjs";
+import Checkbox from "./Checkbox/Checkbox.mjs";
+export { Checkbox, checkboxBoxVariants, checkboxCheckVariants, checkboxDashVariants, checkboxIndicatorVariants, checkboxLabelVariants, checkboxVariants, Checkbox as default };

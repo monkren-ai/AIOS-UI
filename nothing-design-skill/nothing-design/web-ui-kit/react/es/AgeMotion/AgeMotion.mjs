@@ -1,9 +1,7 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import { ageDecadeFillVariants, ageDecadeLabelVariants, ageDecadeSegmentVariants, ageInputFieldVariants, ageInputLabelVariants, ageMotionVariants, ageSecondaryVariants, ageSectionLabelVariants, ageUnitLabelVariants, ageValueVariants, ageYearPercentVariants, ageYearSegmentVariants } from "./age-motion-variants.mjs";
 import { useEffect, useMemo, useState } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./AgeMotion.css";
 //#region src/AgeMotion/AgeMotion.tsx
 function computeAge(birthDate, now) {
 	const diff = now.getTime() - birthDate.getTime();
@@ -40,24 +38,7 @@ function computeAge(birthDate, now) {
 		yearProgress
 	};
 }
-const ageMotionVariants = cva("nothing-age-motion", {
-	variants: {
-		size: {
-			sm: "nothing-age-motion--sm",
-			md: "nothing-age-motion--md",
-			lg: "nothing-age-motion--lg"
-		},
-		theme: {
-			light: "nothing-age-motion--light",
-			dark: "nothing-age-motion--dark"
-		}
-	},
-	defaultVariants: {
-		size: "md",
-		theme: "dark"
-	}
-});
-const AgeMotion = React.forwardRef(({ className, birthDate: initialBirthDate, lifespan = 80, updateInterval = 1e3, yearSegments = 20, size = "md", theme = "dark", style, ...props }, ref) => {
+function AgeMotion({ className, birthDate: initialBirthDate, lifespan = 80, updateInterval = 1e3, yearSegments = 20, size = "md", theme = "dark", style, ref, ...props }) {
 	const [birthDateStr, setBirthDateStr] = useState(initialBirthDate ?? "");
 	const [now, setNow] = useState(/* @__PURE__ */ new Date());
 	const birthDate = useMemo(() => birthDateStr ? /* @__PURE__ */ new Date(birthDateStr + "T00:00:00") : null, [birthDateStr]);
@@ -79,19 +60,24 @@ const AgeMotion = React.forwardRef(({ className, birthDate: initialBirthDate, li
 			theme
 		}), className),
 		style,
+		"data-slot": "age-motion",
 		"data-size": dataAttr(size),
-		"data-theme": dataAttr(theme),
+		"data-widget-theme": dataAttr(theme),
+		"data-state": dataAttr(ageData ? "ready" : "empty"),
 		...props,
 		children: [/* @__PURE__ */ jsx("div", {
-			className: "age-input-area",
+			"data-slot": "age-motion-input-area",
+			className: "mb-6",
 			children: /* @__PURE__ */ jsxs("div", {
-				className: "age-input",
+				className: "relative flex flex-col gap-1",
 				children: [/* @__PURE__ */ jsx("label", {
-					className: "age-input__label",
+					"data-slot": "age-motion-input-label",
+					className: cn(ageInputLabelVariants()),
 					htmlFor: "birthDateInput",
 					children: "Date of Birth"
 				}), /* @__PURE__ */ jsx("input", {
-					className: "age-input__field",
+					"data-slot": "age-motion-input",
+					className: cn(ageInputFieldVariants()),
 					type: "date",
 					id: "birthDateInput",
 					placeholder: "YYYY-MM-DD",
@@ -101,43 +87,43 @@ const AgeMotion = React.forwardRef(({ className, birthDate: initialBirthDate, li
 			})
 		}), ageData && /* @__PURE__ */ jsxs(Fragment, { children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "age-display",
-				children: [/* @__PURE__ */ jsxs("div", {
-					className: "age-display__primary",
+				"data-slot": "age-motion-display",
+				className: "mb-6",
+				children: [/* @__PURE__ */ jsx("div", {
+					className: "mb-2 flex items-baseline gap-4",
 					children: [
-						/* @__PURE__ */ jsxs("div", {
-							className: "age-display__unit",
-							children: [/* @__PURE__ */ jsx("div", {
-								className: "age-display__value",
-								children: ageData.years
-							}), /* @__PURE__ */ jsx("div", {
-								className: "age-display__label",
-								children: "Years"
-							})]
-						}),
-						/* @__PURE__ */ jsxs("div", {
-							className: "age-display__unit",
-							children: [/* @__PURE__ */ jsx("div", {
-								className: "age-display__value",
-								children: ageData.months
-							}), /* @__PURE__ */ jsx("div", {
-								className: "age-display__label",
-								children: "Months"
-							})]
-						}),
-						/* @__PURE__ */ jsxs("div", {
-							className: "age-display__unit",
-							children: [/* @__PURE__ */ jsx("div", {
-								className: "age-display__value",
-								children: ageData.days
-							}), /* @__PURE__ */ jsx("div", {
-								className: "age-display__label",
-								children: "Days"
-							})]
-						})
-					]
+						[
+							"years",
+							ageData.years,
+							"Years"
+						],
+						[
+							"months",
+							ageData.months,
+							"Months"
+						],
+						[
+							"days",
+							ageData.days,
+							"Days"
+						]
+					].map(([unit, value, label]) => /* @__PURE__ */ jsxs("div", {
+						"data-slot": "age-motion-unit",
+						"data-unit": dataAttr(unit),
+						className: "flex flex-col items-center",
+						children: [/* @__PURE__ */ jsx("div", {
+							"data-slot": "age-motion-value",
+							className: cn(ageValueVariants()),
+							children: value
+						}), /* @__PURE__ */ jsx("div", {
+							"data-slot": "age-motion-unit-label",
+							className: cn(ageUnitLabelVariants()),
+							children: label
+						})]
+					}, unit))
 				}), /* @__PURE__ */ jsxs("div", {
-					className: "age-display__secondary",
+					"data-slot": "age-motion-secondary",
+					className: cn(ageSecondaryVariants()),
 					children: [
 						ageData.totalHours.toLocaleString(),
 						"h ",
@@ -150,23 +136,27 @@ const AgeMotion = React.forwardRef(({ className, birthDate: initialBirthDate, li
 				})]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "age-progress",
+				"data-slot": "age-motion-life-progress",
+				className: "mb-6",
 				children: [/* @__PURE__ */ jsx("div", {
-					className: "age-progress__label",
+					"data-slot": "age-motion-life-progress-label",
+					className: cn(ageSectionLabelVariants(), "mb-2 block"),
 					children: "Life Progress"
 				}), /* @__PURE__ */ jsx("div", {
-					className: "age-progress__segments",
+					className: "mb-1 flex w-full gap-0.5",
 					children: Array.from({ length: totalSegments }).map((_, i) => {
-						let segClass = "age-progress__segment";
-						if (i < ageData.currentSegment) segClass += " completed";
-						else if (i === ageData.currentSegment) segClass += " current";
+						const state = i < ageData.currentSegment ? "completed" : i === ageData.currentSegment ? "current" : "upcoming";
 						return /* @__PURE__ */ jsxs("div", {
-							className: segClass,
-							children: [i === ageData.currentSegment && /* @__PURE__ */ jsx("div", {
-								className: "age-progress__segment-fill",
+							"data-slot": "age-motion-decade",
+							"data-state": dataAttr(state),
+							className: cn(ageDecadeSegmentVariants({ state })),
+							children: [state === "current" && /* @__PURE__ */ jsx("div", {
+								"data-slot": "age-motion-decade-fill",
+								className: cn(ageDecadeFillVariants()),
 								style: { width: `${ageData.segmentProgress * 100}%` }
 							}), /* @__PURE__ */ jsxs("span", {
-								className: "age-progress__segment-label",
+								"data-slot": "age-motion-decade-label",
+								className: cn(ageDecadeLabelVariants({ state })),
 								children: [
 									i * 10,
 									"-",
@@ -178,27 +168,34 @@ const AgeMotion = React.forwardRef(({ className, birthDate: initialBirthDate, li
 				})]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "age-year-progress",
+				"data-slot": "age-motion-year-progress",
+				className: "mb-4",
 				children: [
 					/* @__PURE__ */ jsx("div", {
-						className: "age-year-progress__label",
+						"data-slot": "age-motion-year-progress-label",
+						className: cn(ageSectionLabelVariants(), "mb-1 block"),
 						children: "Year Progress"
 					}),
 					/* @__PURE__ */ jsx("div", {
-						className: "age-year-progress__bar",
-						children: Array.from({ length: yearSegments }).map((_, i) => /* @__PURE__ */ jsx("div", { className: cn("age-year-progress__segment", i < filledYearSegments && "filled") }, i))
+						className: "flex h-2 w-full gap-0.5",
+						children: Array.from({ length: yearSegments }).map((_, i) => /* @__PURE__ */ jsx("div", {
+							"data-slot": "age-motion-year-segment",
+							"data-filled": dataAttr(i < filledYearSegments),
+							className: cn(ageYearSegmentVariants({ filled: i < filledYearSegments }))
+						}, i))
 					}),
 					/* @__PURE__ */ jsxs("div", {
-						className: "age-year-progress__percent",
+						"data-slot": "age-motion-year-percent",
+						className: cn(ageYearPercentVariants()),
 						children: [(ageData.yearProgress * 100).toFixed(1), "%"]
 					})
 				]
 			})
 		] })]
 	});
-});
+}
 AgeMotion.displayName = "AgeMotion";
 //#endregion
-export { AgeMotion, AgeMotion as default, ageMotionVariants };
+export { AgeMotion as default };
 
 //# sourceMappingURL=AgeMotion.mjs.map

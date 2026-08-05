@@ -1,26 +1,13 @@
+import { useDirection } from "../DirectionProvider/DirectionProvider.mjs";
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { sidebarFooterVariants, sidebarHeaderVariants, sidebarItemBadgeVariants, sidebarItemIconVariants, sidebarItemLabelVariants, sidebarItemLinkVariants, sidebarItemVariants, sidebarListVariants, sidebarToggleVariants, sidebarVariants } from "./sidebar-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Sidebar.css";
 //#region src/Sidebar/Sidebar.tsx
-const sidebarVariants = cva("nothing-sidebar", {
-	variants: { collapsed: {
-		true: "nothing-sidebar--collapsed",
-		false: ""
-	} },
-	defaultVariants: { collapsed: false }
-});
-const sidebarItemVariants = cva("nothing-sidebar__item", {
-	variants: { active: {
-		true: "nothing-sidebar__item--active",
-		false: ""
-	} },
-	defaultVariants: { active: false }
-});
-const Sidebar = React.forwardRef(({ className, items, collapsed: controlledCollapsed, onCollapsedChange, header, footer, ...props }, ref) => {
+function Sidebar({ className, items, collapsed: controlledCollapsed, onCollapsedChange, header, footer, ...props }) {
 	const [internalCollapsed, setInternalCollapsed] = React.useState(false);
 	const isCollapsed = controlledCollapsed !== void 0 ? controlledCollapsed : internalCollapsed;
+	const { dir } = useDirection();
 	const handleToggle = React.useCallback(() => {
 		const next = !isCollapsed;
 		if (controlledCollapsed === void 0) setInternalCollapsed(next);
@@ -30,31 +17,42 @@ const Sidebar = React.forwardRef(({ className, items, collapsed: controlledColla
 		controlledCollapsed,
 		onCollapsedChange
 	]);
+	const toggleGlyph = isCollapsed === (dir === "rtl") ? "←" : "→";
 	return /* @__PURE__ */ jsxs("aside", {
-		ref,
 		className: cn(sidebarVariants({ collapsed: isCollapsed }), className),
 		role: "navigation",
 		"aria-label": "Sidebar navigation",
+		"data-slot": "sidebar",
 		"data-state": dataAttr(isCollapsed ? "collapsed" : "expanded"),
+		"data-collapsed": dataAttr(isCollapsed),
 		...props,
 		children: [
 			header && /* @__PURE__ */ jsx("div", {
-				className: "nothing-sidebar__header",
+				"data-slot": "sidebar-header",
+				className: sidebarHeaderVariants(),
 				children: header
 			}),
 			/* @__PURE__ */ jsx("button", {
-				className: "nothing-sidebar__toggle",
+				"data-slot": "sidebar-toggle",
+				className: sidebarToggleVariants(),
 				onClick: handleToggle,
 				"aria-label": isCollapsed ? "Expand sidebar" : "Collapse sidebar",
-				children: isCollapsed ? "→" : "←"
+				children: toggleGlyph
 			}),
 			/* @__PURE__ */ jsx("ul", {
-				className: "nothing-sidebar__list",
+				"data-slot": "sidebar-list",
+				className: sidebarListVariants(),
 				children: items.map((item, index) => /* @__PURE__ */ jsx("li", {
-					className: cn(sidebarItemVariants({ active: !!item.active })),
+					"data-slot": "sidebar-item",
+					className: sidebarItemVariants({ active: !!item.active }),
 					"data-state": dataAttr(item.active ? "active" : "inactive"),
+					"data-active": dataAttr(!!item.active),
 					children: /* @__PURE__ */ jsxs("a", {
-						className: "nothing-sidebar__item-link",
+						"data-slot": "sidebar-item-link",
+						className: sidebarItemLinkVariants({
+							active: !!item.active,
+							collapsed: isCollapsed
+						}),
 						href: item.href ?? void 0,
 						onClick: (e) => {
 							e.preventDefault();
@@ -63,15 +61,18 @@ const Sidebar = React.forwardRef(({ className, items, collapsed: controlledColla
 						title: isCollapsed ? item.label : void 0,
 						children: [
 							item.icon && /* @__PURE__ */ jsx("span", {
-								className: "nothing-sidebar__item-icon",
+								"data-slot": "sidebar-item-icon",
+								className: sidebarItemIconVariants(),
 								children: item.icon
 							}),
 							!isCollapsed && /* @__PURE__ */ jsx("span", {
-								className: "nothing-sidebar__item-label",
+								"data-slot": "sidebar-item-label",
+								className: sidebarItemLabelVariants(),
 								children: item.label
 							}),
 							item.badge !== void 0 && !isCollapsed && /* @__PURE__ */ jsx("span", {
-								className: "nothing-sidebar__item-badge",
+								"data-slot": "sidebar-item-badge",
+								className: sidebarItemBadgeVariants(),
 								children: item.badge
 							})
 						]
@@ -79,14 +80,15 @@ const Sidebar = React.forwardRef(({ className, items, collapsed: controlledColla
 				}, index))
 			}),
 			footer && /* @__PURE__ */ jsx("div", {
-				className: "nothing-sidebar__footer",
+				"data-slot": "sidebar-footer",
+				className: sidebarFooterVariants(),
 				children: footer
 			})
 		]
 	});
-});
+}
 Sidebar.displayName = "Sidebar";
 //#endregion
-export { Sidebar, Sidebar as default, sidebarItemVariants, sidebarVariants };
+export { Sidebar as default };
 
 //# sourceMappingURL=Sidebar.mjs.map

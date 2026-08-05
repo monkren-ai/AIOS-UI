@@ -2,7 +2,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { jsx } from "react/jsx-runtime";
 //#region src/ThemeProvider/index.tsx
-const STORAGE_KEY = "nothing-theme";
+const DEFAULT_STORAGE_KEY = "nothing-theme";
 const MEDIA = "(prefers-color-scheme: dark)";
 const ThemeContext = createContext({
 	theme: "dark",
@@ -12,9 +12,9 @@ const ThemeContext = createContext({
 	setTheme: () => {},
 	toggleTheme: () => {}
 });
-function getInitialTheme(defaultTheme) {
+function getInitialTheme(defaultTheme, storageKey) {
 	if (typeof window === "undefined") return defaultTheme;
-	const stored = window.localStorage.getItem(STORAGE_KEY);
+	const stored = window.localStorage.getItem(storageKey);
 	if (stored === "light" || stored === "dark" || stored === "system") return stored;
 	return defaultTheme;
 }
@@ -55,10 +55,10 @@ function disableAnimation() {
 * </ThemeProvider>
 * ```
 */
-function ThemeProvider({ children, defaultTheme = "dark", forcedTheme, enableSystem = true, disableTransitionOnChange = true, onThemeChange }) {
+function ThemeProvider({ children, defaultTheme = "dark", forcedTheme, enableSystem = true, disableTransitionOnChange = true, onThemeChange, storageKey = DEFAULT_STORAGE_KEY }) {
 	const [theme, setThemeState] = useState(() => {
 		if (typeof window === "undefined") return defaultTheme;
-		return getInitialTheme(defaultTheme);
+		return getInitialTheme(defaultTheme, storageKey);
 	});
 	const [systemTheme, setSystemTheme] = useState(() => enableSystem ? getSystemTheme() : void 0);
 	const [mounted, setMounted] = useState(false);
@@ -76,9 +76,13 @@ function ThemeProvider({ children, defaultTheme = "dark", forcedTheme, enableSys
 		defaultTheme
 	]);
 	useEffect(() => {
-		if (typeof window !== "undefined") window.localStorage.setItem(STORAGE_KEY, theme);
+		if (typeof window !== "undefined") window.localStorage.setItem(storageKey, theme);
 		onThemeChange?.(theme);
-	}, [theme, onThemeChange]);
+	}, [
+		theme,
+		onThemeChange,
+		storageKey
+	]);
 	useEffect(() => {
 		const enable = disableTransitionOnChange ? disableAnimation() : null;
 		applyTheme(resolvedTheme);
@@ -107,23 +111,22 @@ function ThemeProvider({ children, defaultTheme = "dark", forcedTheme, enableSys
 			return prev === "dark" ? "light" : "dark";
 		});
 	}, [enableSystem]);
-	const value = useMemo(() => ({
-		theme,
-		resolvedTheme,
-		systemTheme,
-		mounted,
-		setTheme,
-		toggleTheme
-	}), [
-		theme,
-		resolvedTheme,
-		systemTheme,
-		mounted,
-		setTheme,
-		toggleTheme
-	]);
 	return /* @__PURE__ */ jsx(ThemeContext, {
-		value,
+		value: useMemo(() => ({
+			theme,
+			resolvedTheme,
+			systemTheme,
+			mounted,
+			setTheme,
+			toggleTheme
+		}), [
+			theme,
+			resolvedTheme,
+			systemTheme,
+			mounted,
+			setTheme,
+			toggleTheme
+		]),
 		children
 	});
 }
@@ -132,6 +135,6 @@ function useTheme() {
 	return useContext(ThemeContext);
 }
 //#endregion
-export { ThemeProvider, ThemeProvider as default, useTheme };
+export { DEFAULT_STORAGE_KEY, ThemeProvider as default, useTheme };
 
 //# sourceMappingURL=index.mjs.map

@@ -1,7 +1,7 @@
-import { cn } from "../lib/utils.mjs";
+import { cn, dataAttr } from "../lib/utils.mjs";
+import { paginationArrowVariants, paginationButtonVariants, paginationEllipsisVariants, paginationItemVariants, paginationListVariants, paginationVariants } from "./pagination-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import "./Pagination.css";
 //#region src/Pagination/Pagination.tsx
 const range = (start, end) => {
 	const length = end - start + 1;
@@ -13,22 +13,16 @@ const usePagination = (page, totalPages, siblingCount) => {
 	const rightSiblingIndex = Math.min(page + siblingCount, totalPages);
 	const showLeftEllipsis = leftSiblingIndex > 2;
 	const showRightEllipsis = rightSiblingIndex < totalPages - 1;
-	if (!showLeftEllipsis && showRightEllipsis) {
-		const leftItemCount = 3 + 2 * siblingCount;
-		return [
-			...range(1, leftItemCount),
-			"ellipsis",
-			totalPages
-		];
-	}
-	if (showLeftEllipsis && !showRightEllipsis) {
-		const rightItemCount = 3 + 2 * siblingCount;
-		return [
-			1,
-			"ellipsis",
-			...range(totalPages - rightItemCount + 1, totalPages)
-		];
-	}
+	if (!showLeftEllipsis && showRightEllipsis) return [
+		...range(1, 3 + 2 * siblingCount),
+		"ellipsis",
+		totalPages
+	];
+	if (showLeftEllipsis && !showRightEllipsis) return [
+		1,
+		"ellipsis",
+		...range(totalPages - (3 + 2 * siblingCount) + 1, totalPages)
+	];
 	return [
 		1,
 		"ellipsis",
@@ -37,7 +31,7 @@ const usePagination = (page, totalPages, siblingCount) => {
 		totalPages
 	];
 };
-const Pagination = React.forwardRef(({ className, page, totalPages, onPageChange, siblingCount = 1, ...props }, ref) => {
+function Pagination({ className, page, totalPages, onPageChange, siblingCount = 1, ...props }) {
 	const pages = usePagination(page, totalPages, siblingCount);
 	const handlePageChange = React.useCallback((p) => {
 		if (p < 1 || p > totalPages || p === page) return;
@@ -48,50 +42,63 @@ const Pagination = React.forwardRef(({ className, page, totalPages, onPageChange
 		onPageChange
 	]);
 	const handleKeyDown = React.useCallback((e) => {
-		if (e.key === "ArrowRight") {
-			e.preventDefault();
-			handlePageChange(page + 1);
-		} else if (e.key === "ArrowLeft") {
-			e.preventDefault();
-			handlePageChange(page - 1);
-		}
+		if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+		e.preventDefault();
+		const forwardKey = getComputedStyle(e.currentTarget).direction === "rtl" ? "ArrowLeft" : "ArrowRight";
+		handlePageChange(e.key === forwardKey ? page + 1 : page - 1);
 	}, [page, handlePageChange]);
 	if (totalPages <= 1) return null;
+	const isFirst = page <= 1;
+	const isLast = page >= totalPages;
 	return /* @__PURE__ */ jsx("nav", {
-		ref,
-		className: cn("nothing-pagination", className),
+		className: cn(paginationVariants(), className),
+		"data-slot": "pagination",
 		"aria-label": "Pagination",
 		onKeyDown: handleKeyDown,
 		"data-page": page,
 		"data-total": totalPages,
 		...props,
 		children: /* @__PURE__ */ jsxs("ul", {
-			className: "nothing-pagination__list",
+			className: paginationListVariants(),
+			"data-slot": "pagination-list",
 			children: [
 				/* @__PURE__ */ jsx("li", {
-					className: "nothing-pagination__item",
+					className: paginationItemVariants(),
+					"data-slot": "pagination-item",
 					children: /* @__PURE__ */ jsx("button", {
-						className: cn("nothing-pagination__button", page <= 1 && "nothing-pagination__button--disabled"),
+						className: paginationButtonVariants({ disabled: isFirst }),
+						"data-slot": "pagination-button",
+						"data-direction": "previous",
+						"data-disabled": dataAttr(isFirst),
 						onClick: () => handlePageChange(page - 1),
-						disabled: page <= 1,
+						disabled: isFirst,
 						"aria-label": "Previous page",
 						type: "button",
-						children: "‹"
+						children: /* @__PURE__ */ jsx("span", {
+							className: paginationArrowVariants(),
+							"aria-hidden": "true",
+							children: "‹"
+						})
 					})
 				}),
 				pages.map((p, index) => {
 					if (p === "ellipsis") return /* @__PURE__ */ jsx("li", {
-						className: "nothing-pagination__item",
+						className: paginationItemVariants(),
+						"data-slot": "pagination-item",
 						children: /* @__PURE__ */ jsx("span", {
-							className: "nothing-pagination__ellipsis",
+							className: paginationEllipsisVariants(),
+							"data-slot": "pagination-ellipsis",
 							children: "…"
 						})
 					}, `ellipsis-${index}`);
 					const isActive = p === page;
 					return /* @__PURE__ */ jsx("li", {
-						className: "nothing-pagination__item",
+						className: paginationItemVariants(),
+						"data-slot": "pagination-item",
 						children: /* @__PURE__ */ jsx("button", {
-							className: cn("nothing-pagination__button", isActive && "nothing-pagination__button--active"),
+							className: paginationButtonVariants({ active: isActive }),
+							"data-slot": "pagination-button",
+							"data-active": dataAttr(isActive),
 							onClick: () => handlePageChange(p),
 							"aria-current": isActive ? "page" : void 0,
 							"aria-label": `Page ${p}`,
@@ -101,22 +108,30 @@ const Pagination = React.forwardRef(({ className, page, totalPages, onPageChange
 					}, p);
 				}),
 				/* @__PURE__ */ jsx("li", {
-					className: "nothing-pagination__item",
+					className: paginationItemVariants(),
+					"data-slot": "pagination-item",
 					children: /* @__PURE__ */ jsx("button", {
-						className: cn("nothing-pagination__button", page >= totalPages && "nothing-pagination__button--disabled"),
+						className: paginationButtonVariants({ disabled: isLast }),
+						"data-slot": "pagination-button",
+						"data-direction": "next",
+						"data-disabled": dataAttr(isLast),
 						onClick: () => handlePageChange(page + 1),
-						disabled: page >= totalPages,
+						disabled: isLast,
 						"aria-label": "Next page",
 						type: "button",
-						children: "›"
+						children: /* @__PURE__ */ jsx("span", {
+							className: paginationArrowVariants(),
+							"aria-hidden": "true",
+							children: "›"
+						})
 					})
 				})
 			]
 		})
 	});
-});
+}
 Pagination.displayName = "Pagination";
 //#endregion
-export { Pagination, Pagination as default };
+export { Pagination as default };
 
 //# sourceMappingURL=Pagination.mjs.map

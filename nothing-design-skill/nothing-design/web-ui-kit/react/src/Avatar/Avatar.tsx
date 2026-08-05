@@ -1,63 +1,82 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
 import { Slot } from '@/lib/slot'
 import { cn, dataAttr } from '@/lib/utils'
-import './Avatar.css'
+import {
+  avatarFallbackVariants,
+  avatarVariants,
+  resolveAvatarSize,
+  type AvatarShape,
+  type AvatarSize,
+  type AvatarVariant,
+} from './avatar-variants'
 
-export const avatarVariants = cva('nothing-avatar', {
-  variants: {
-    size: {
-      sm: 'nothing-avatar--sm',
-      md: 'nothing-avatar--md',
-      lg: 'nothing-avatar--lg',
-    },
-  },
-  defaultVariants: { size: 'md' },
-})
+export interface AvatarProps extends React.ComponentPropsWithRef<'div'> {
+  /** 视觉样式。 */
+  variant?: AvatarVariant
+  /** 直径。 */
+  size?: AvatarSize
+  /** 圆形或工业风方角。 */
+  shape?: AvatarShape
+  /** 把样式合并到唯一的子元素上，而不是渲染额外的 div。 */
+  asChild?: boolean
+  /** 图片地址。加载失败会自动退回 `fallback`。 */
+  src?: string
+  alt?: string
+  /** 图片缺席时展示的缩写。 */
+  fallback?: string
+}
 
-export type AvatarProps = React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof avatarVariants> & {
-    asChild?: boolean
-    src?: string
-    alt?: string
-    fallback?: string
-  }
+export function Avatar({
+  className,
+  variant,
+  size,
+  shape,
+  asChild = false,
+  src,
+  alt = '',
+  fallback,
+  children,
+  ...props
+}: AvatarProps) {
+  const Comp = asChild ? Slot : 'div'
+  const [imageError, setImageError] = React.useState(false)
+  const showImage = Boolean(src) && !imageError
+  const resolvedSize = (resolveAvatarSize(size) ?? 'md') as 'sm' | 'md' | 'lg'
 
-export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
-  (
-    { className, size, asChild = false, src, alt = '', fallback, children, ...props },
-    ref
-  ) => {
-    const Comp = asChild ? Slot : 'div'
-    const [imageError, setImageError] = React.useState(false)
-    const showImage = src && !imageError
+  const inner = showImage ? (
+    <img
+      data-slot="avatar-image"
+      className="block size-full rounded-[inherit] object-cover"
+      src={src}
+      alt={alt}
+      onError={() => setImageError(true)}
+    />
+  ) : (
+    <span
+      data-slot="avatar-fallback"
+      className={avatarFallbackVariants({ size: resolvedSize })}
+      aria-label={alt || fallback}
+    >
+      {fallback || ''}
+    </span>
+  )
 
-    const inner = showImage ? (
-      <img
-        className="nothing-avatar__image"
-        src={src}
-        alt={alt}
-        onError={() => setImageError(true)}
-      />
-    ) : (
-      <span className="nothing-avatar__fallback" aria-label={alt || fallback}>
-        {fallback || ''}
-      </span>
-    )
+  return (
+    <Comp
+      className={cn(avatarVariants({ variant, size: resolvedSize, shape }), className)}
+      data-slot="avatar"
+      data-variant={dataAttr(variant ?? 'soft')}
+      data-size={dataAttr(resolvedSize)}
+      data-shape={dataAttr(shape ?? 'circle')}
+      data-state={showImage ? 'image' : 'fallback'}
+      {...props}
+    >
+      {asChild ? children : inner}
+    </Comp>
+  )
+}
 
-    return (
-      <Comp
-        ref={ref}
-        className={cn(avatarVariants({ size }), className)}
-        data-size={dataAttr(size)}
-        data-state={showImage ? 'image' : 'fallback'}
-        {...props}
-      >
-        {asChild ? children : inner}
-      </Comp>
-    )
-  }
-)
 Avatar.displayName = 'Avatar'
 
+export { avatarVariants }
 export default Avatar

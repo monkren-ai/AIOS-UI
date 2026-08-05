@@ -1,40 +1,51 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
-import './Label.css'
+import {
+  labelRequiredVariants,
+  labelTextVariants,
+  labelVariants,
+  type LabelSize,
+} from './label-variants'
 
-const labelVariants = cva('nothing-label', {
-  variants: {
-    disabled: {
-      true: 'nothing-label--disabled',
-      false: '',
-    },
-  },
-  defaultVariants: { disabled: false },
-})
+export type LabelProps = Omit<React.ComponentPropsWithRef<'label'>, 'children'> & {
+  /** 字号阶梯。 */
+  size?: LabelSize
+  disabled?: boolean
+  required?: boolean
+  children?: React.ReactNode
+}
 
-export type LabelProps = Omit<React.LabelHTMLAttributes<HTMLLabelElement>, 'children'> &
-  VariantProps<typeof labelVariants> & {
-    required?: boolean
-    children?: React.ReactNode
-  }
-
-export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
-  ({ className, disabled, required, children, ...props }, ref) => (
+export function Label({
+  className,
+  size = 'md',
+  disabled,
+  required,
+  children,
+  ref,
+  ...props
+}: LabelProps) {
+  return (
     <label
       ref={ref}
-      className={cn(labelVariants({ disabled: !!disabled }), className)}
+      className={cn(labelVariants({ size, disabled: !!disabled }), className)}
+      data-slot="label"
+      data-size={dataAttr(size)}
       data-disabled={dataAttr(disabled)}
       data-required={dataAttr(required)}
       {...props}
     >
-      <span className="nothing-label__text">{children}</span>
+      <span className={labelTextVariants()} data-slot="label-text">
+        {children}
+      </span>
       {required && (
-        <span className="nothing-label__required" aria-hidden="true">*</span>
+        <span className={labelRequiredVariants()} data-slot="label-required" aria-hidden="true">
+          *
+        </span>
       )}
     </label>
   )
-)
+}
+
 Label.displayName = 'Label'
 
 export { labelVariants }

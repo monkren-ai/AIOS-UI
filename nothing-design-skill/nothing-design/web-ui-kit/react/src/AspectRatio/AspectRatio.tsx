@@ -1,27 +1,36 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
-import './AspectRatio.css'
+import { aspectRatioInnerVariants, aspectRatioVariants } from './aspect-ratio-variants'
 
-export type AspectRatioProps = React.HTMLAttributes<HTMLDivElement> & {
+export type AspectRatioProps = React.ComponentPropsWithRef<'div'> & {
   ratio?: number
   children?: React.ReactNode
 }
 
-export const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
-  ({ className, ratio = 16 / 9, style, children, ...props }, ref) => (
+export function AspectRatio({
+  className,
+  ratio = 16 / 9,
+  style,
+  children,
+  ref,
+  ...props
+}: AspectRatioProps) {
+  return (
     <div
       ref={ref}
-      className={cn('nothing-aspect-ratio', className)}
+      className={cn(aspectRatioVariants(), className)}
       style={{ aspectRatio: `${ratio}`, ...style }}
+      data-slot="aspect-ratio"
       data-ratio={ratio}
       {...props}
     >
-      <div className="nothing-aspect-ratio__inner">
+      <div className={aspectRatioInnerVariants()} data-slot="aspect-ratio-inner">
         {children}
       </div>
     </div>
   )
-)
+}
+
 AspectRatio.displayName = 'AspectRatio'
 
 export default AspectRatio

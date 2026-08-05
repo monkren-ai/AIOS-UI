@@ -1,36 +1,9 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { resolveTextareaVariant, textareaFieldVariants, textareaLabelVariants, textareaMessageVariants, textareaVariants } from "./textarea-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Textarea.css";
 //#region src/Textarea/Textarea.tsx
-const textareaVariants = cva("nothing-textarea", {
-	variants: {
-		variant: {
-			underline: "nothing-textarea--underline",
-			bordered: "nothing-textarea--bordered"
-		},
-		hasError: {
-			true: "nothing-textarea--error",
-			false: ""
-		},
-		disabled: {
-			true: "nothing-textarea--disabled",
-			false: ""
-		},
-		focused: {
-			true: "nothing-textarea--focused",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		variant: "underline",
-		hasError: false,
-		disabled: false,
-		focused: false
-	}
-});
-const Textarea = React.forwardRef(({ className, style, value: controlledValue, defaultValue, onChange, placeholder, label, error, message, disabled, autoResize = false, minRows = 3, maxRows, variant, id, onFocus, onBlur, ...textareaProps }, ref) => {
+function Textarea({ className, style, value: controlledValue, defaultValue, onChange, onValueChange, placeholder, label, error, message, disabled, autoResize = false, minRows = 3, maxRows, variant, size, id, onFocus, onBlur, ref, ...textareaProps }) {
 	const [internalValue, setInternalValue] = React.useState(defaultValue ?? "");
 	const [focused, setFocused] = React.useState(false);
 	const internalRef = React.useRef(null);
@@ -42,10 +15,12 @@ const Textarea = React.forwardRef(({ className, style, value: controlledValue, d
 	const value = isControlled ? controlledValue : internalValue;
 	const hasError = !!error;
 	const isDisabled = !!disabled;
+	const resolvedVariant = resolveTextareaVariant(variant) ?? "outline";
+	const resolvedSize = size ?? "md";
 	const setRefs = React.useCallback((node) => {
 		internalRef.current = node;
 		if (typeof ref === "function") ref(node);
-		else if (ref && "current" in ref) ref.current = node;
+		else if (ref) ref.current = node;
 	}, [ref]);
 	const resizeTextarea = React.useCallback(() => {
 		const textarea = internalRef.current;
@@ -66,40 +41,58 @@ const Textarea = React.forwardRef(({ className, style, value: controlledValue, d
 	React.useEffect(() => {
 		resizeTextarea();
 	}, [value, resizeTextarea]);
-	const handleChange = (e) => {
-		const newValue = e.target.value;
-		if (!isControlled) setInternalValue(newValue);
-		onChange?.(e);
+	const handleChange = (event) => {
+		if (!isControlled) setInternalValue(event.target.value);
+		onChange?.(event);
+		onValueChange?.(event.target.value);
 	};
-	const handleFocus = (e) => {
+	const handleFocus = (event) => {
 		setFocused(true);
-		onFocus?.(e);
+		onFocus?.(event);
 	};
-	const handleBlur = (e) => {
+	const handleBlur = (event) => {
 		setFocused(false);
-		onBlur?.(e);
+		onBlur?.(event);
 	};
 	const describedBy = hasError ? errorId : message ? messageId : void 0;
 	return /* @__PURE__ */ jsxs("div", {
 		className: cn(textareaVariants({
-			variant,
+			variant: resolvedVariant,
+			size: resolvedSize,
 			hasError,
 			disabled: isDisabled,
 			focused
-		}), autoResize && "nothing-textarea--auto-resize", className),
+		}), className),
 		style,
 		"data-slot": "textarea",
-		"data-variant": dataAttr(variant),
-		"data-state": dataAttr(hasError ? "error" : focused ? "focused" : "default"),
+		"data-variant": dataAttr(resolvedVariant),
+		"data-size": dataAttr(resolvedSize),
+		"data-disabled": dataAttr(isDisabled),
+		"data-invalid": dataAttr(hasError),
+		"data-auto-resize": dataAttr(autoResize),
+		"data-state": hasError ? "error" : focused ? "focused" : "default",
 		children: [
 			label && /* @__PURE__ */ jsx("label", {
-				className: "nothing-textarea__label",
+				className: textareaLabelVariants({
+					size: resolvedSize,
+					focused,
+					hasError,
+					disabled: isDisabled
+				}),
+				"data-slot": "textarea-label",
 				htmlFor: inputId,
 				children: label
 			}),
 			/* @__PURE__ */ jsx("textarea", {
 				ref: setRefs,
-				className: "nothing-textarea__input",
+				className: textareaFieldVariants({
+					variant: resolvedVariant,
+					size: resolvedSize,
+					hasError,
+					disabled: isDisabled,
+					autoResize
+				}),
+				"data-slot": "textarea-field",
 				id: inputId,
 				placeholder,
 				value,
@@ -113,21 +106,23 @@ const Textarea = React.forwardRef(({ className, style, value: controlledValue, d
 				...textareaProps
 			}),
 			hasError && /* @__PURE__ */ jsx("div", {
-				className: "nothing-textarea__error",
+				className: textareaMessageVariants({ variant: "error" }),
+				"data-slot": "textarea-error",
 				id: errorId,
 				role: "alert",
 				children: error
 			}),
 			!hasError && message && /* @__PURE__ */ jsx("div", {
-				className: "nothing-textarea__message",
+				className: textareaMessageVariants({ variant: "default" }),
+				"data-slot": "textarea-message",
 				id: messageId,
 				children: message
 			})
 		]
 	});
-});
+}
 Textarea.displayName = "Textarea";
 //#endregion
-export { Textarea, Textarea as default, textareaVariants };
+export { Textarea as default };
 
 //# sourceMappingURL=Textarea.mjs.map

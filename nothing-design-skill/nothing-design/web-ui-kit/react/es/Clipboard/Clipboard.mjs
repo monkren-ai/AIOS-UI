@@ -1,27 +1,8 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import { clipboardClearVariants, clipboardCopiedVariants, clipboardCountVariants, clipboardDeleteVariants, clipboardHeaderVariants, clipboardItemContentVariants, clipboardItemVariants, clipboardListVariants, clipboardTextVariants, clipboardTimeVariants, clipboardTitleVariants, clipboardVariants, resolveClipboardSize } from "./clipboard-variants.mjs";
 import { useCallback, useEffect, useState } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Clipboard.css";
 //#region src/Clipboard/Clipboard.tsx
-const clipboardVariants = cva("nothing-clipboard", {
-	variants: {
-		size: {
-			sm: "nothing-clipboard--sm",
-			md: "nothing-clipboard--md",
-			lg: "nothing-clipboard--lg"
-		},
-		state: {
-			idle: "",
-			copied: "nothing-clipboard--copied"
-		}
-	},
-	defaultVariants: {
-		size: "md",
-		state: "idle"
-	}
-});
 const defaultDemoItems = [
 	{
 		text: "npm install nothing-design@latest",
@@ -36,10 +17,11 @@ const defaultDemoItems = [
 		time: /* @__PURE__ */ new Date(Date.now() - 108e5)
 	}
 ];
-const Clipboard = React.forwardRef(({ className, maxItems = 5, truncateLength = 40, copiedDuration = 2e3, demoItems = defaultDemoItems, size = "md", state: stateProp, style, ...props }, ref) => {
+function Clipboard({ className, maxItems = 5, truncateLength = 40, copiedDuration = 2e3, demoItems = defaultDemoItems, size = "md", state: stateProp, style, ref, ...props }) {
 	const [items, setItems] = useState([...demoItems]);
 	const [copiedIndex, setCopiedIndex] = useState(null);
 	const derivedState = stateProp ?? (copiedIndex !== null ? "copied" : "idle");
+	const resolvedSize = resolveClipboardSize(size) ?? "md";
 	const formatTime = (date) => {
 		return date.toLocaleTimeString([], {
 			hour: "2-digit",
@@ -96,21 +78,25 @@ const Clipboard = React.forwardRef(({ className, maxItems = 5, truncateLength = 
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(clipboardVariants({
-			size,
+			size: resolvedSize,
 			state: derivedState
 		}), className),
 		style,
-		"data-size": dataAttr(size),
+		"data-slot": "clipboard",
+		"data-size": dataAttr(resolvedSize),
 		"data-state": dataAttr(derivedState),
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "clipboard-header",
+				className: clipboardHeaderVariants(),
+				"data-slot": "clipboard-header",
 				children: [/* @__PURE__ */ jsx("div", {
-					className: "clipboard-title",
+					className: clipboardTitleVariants({ size: resolvedSize }),
+					"data-slot": "clipboard-title",
 					children: "Clipboard"
 				}), /* @__PURE__ */ jsxs("div", {
-					className: "clipboard-count",
+					className: clipboardCountVariants(),
+					"data-slot": "clipboard-count",
 					children: [
 						items.length,
 						"/",
@@ -119,30 +105,43 @@ const Clipboard = React.forwardRef(({ className, maxItems = 5, truncateLength = 
 				})]
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "clipboard-list",
+				className: clipboardListVariants(),
+				"data-slot": "clipboard-list",
 				children: items.map((item, index) => /* @__PURE__ */ jsxs("div", {
-					className: cn("clipboard-item", copiedIndex === index && "copied"),
+					className: clipboardItemVariants({
+						size: resolvedSize,
+						copied: copiedIndex === index
+					}),
+					"data-slot": "clipboard-item",
+					"data-copied": dataAttr(copiedIndex === index),
 					role: "button",
 					tabIndex: 0,
 					onClick: () => handleCopy(index),
 					onKeyDown: (e) => handleCopyKeyDown(e, index),
 					children: [
 						/* @__PURE__ */ jsxs("div", {
-							className: "clipboard-item-content",
+							className: clipboardItemContentVariants(),
+							"data-slot": "clipboard-item-content",
 							children: [/* @__PURE__ */ jsx("div", {
-								className: "clipboard-text",
+								className: clipboardTextVariants(),
+								"data-slot": "clipboard-text",
 								children: truncate(item.text)
 							}), /* @__PURE__ */ jsx("div", {
-								className: "clipboard-time",
+								className: clipboardTimeVariants(),
+								"data-slot": "clipboard-time",
 								children: formatTime(item.time)
 							})]
 						}),
 						/* @__PURE__ */ jsx("div", {
-							className: "clipboard-copied",
+							className: clipboardCopiedVariants(),
+							"data-slot": "clipboard-copied",
 							children: "[COPIED]"
 						}),
 						/* @__PURE__ */ jsx("button", {
-							className: "clipboard-delete",
+							type: "button",
+							className: clipboardDeleteVariants(),
+							"data-slot": "clipboard-delete",
+							"aria-label": "Delete item",
 							onClick: (e) => {
 								e.stopPropagation();
 								handleDelete(index);
@@ -153,15 +152,17 @@ const Clipboard = React.forwardRef(({ className, maxItems = 5, truncateLength = 
 				}, index))
 			}),
 			items.length > 0 && /* @__PURE__ */ jsx("button", {
-				className: "clipboard-clear",
+				type: "button",
+				className: clipboardClearVariants({ size: resolvedSize }),
+				"data-slot": "clipboard-clear",
 				onClick: handleClearAll,
 				children: "Clear All"
 			})
 		]
 	});
-});
+}
 Clipboard.displayName = "Clipboard";
 //#endregion
-export { Clipboard, Clipboard as default, clipboardVariants };
+export { Clipboard as default };
 
 //# sourceMappingURL=Clipboard.mjs.map

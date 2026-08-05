@@ -30,7 +30,8 @@ const ariaLabels: Record<ThinkingState, string> = {
 }
 
 export interface ThinkingIndicatorProps
-  extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLSpanElement>, 'children'>,
     VariantProps<typeof thinkingIndicatorVariants> {
   state?: ThinkingState
   size?: 'sm' | 'md' | 'lg'
@@ -72,16 +73,10 @@ export const ThinkingIndicator = React.forwardRef<HTMLSpanElement, ThinkingIndic
             </g>
           )}
           {state === 'done' && (
-            <path
-              d="M20 6L9 17l-5-5"
-              className="nothing-thinking-indicator__mark"
-            />
+            <path d="M20 6L9 17l-5-5" className="nothing-thinking-indicator__mark" />
           )}
           {state === 'error' && (
-            <path
-              d="M18 6L6 18M6 6l12 12"
-              className="nothing-thinking-indicator__mark"
-            />
+            <path d="M18 6L6 18M6 6l12 12" className="nothing-thinking-indicator__mark" />
           )}
         </svg>
         {label && <span className="nothing-thinking-indicator__label">{label}</span>}

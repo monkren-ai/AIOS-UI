@@ -1,56 +1,13 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { progressBarVariants, progressIndeterminateVariants, progressSegmentVariants, progressTrackVariants, progressValueVariants, resolveProgressBarSize, resolveProgressBarVariant } from "./progress-bar-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import "./ProgressBar.css";
 //#region src/ProgressBar/ProgressBar.tsx
-const progressBarVariants = cva("nothing-progress", {
-	variants: {
-		size: {
-			hero: "nothing-progress--hero",
-			standard: "nothing-progress--standard",
-			compact: "nothing-progress--compact"
-		},
-		variant: {
-			default: "",
-			slim: "nothing-progress--slim"
-		},
-		status: {
-			default: "",
-			good: "nothing-progress__value--good",
-			warning: "nothing-progress__value--warning",
-			overlimit: "nothing-progress__value--overlimit",
-			error: "nothing-progress__value--error"
-		},
-		indeterminate: {
-			true: "nothing-progress--indeterminate",
-			false: ""
-		},
-		disabled: {
-			true: "nothing-progress--disabled",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		size: "standard",
-		variant: "default",
-		status: "default",
-		indeterminate: false,
-		disabled: false
-	}
-});
-const progressBarValueVariants = cva("nothing-progress__value", {
-	variants: { status: {
-		default: "",
-		good: "nothing-progress__value--good",
-		warning: "nothing-progress__value--warning",
-		overlimit: "nothing-progress__value--overlimit",
-		error: "nothing-progress__value--error"
-	} },
-	defaultVariants: { status: "default" }
-});
-const ProgressBar = React.forwardRef(({ className, value, total = 100, segments = 20, size = "standard", variant = "default", indeterminate = false, label, unit, status = "default", showReadout = true, disabled = false, style, ...props }, ref) => {
+function ProgressBar({ className, value, total = 100, segments = 20, size, variant, indeterminate = false, label, unit, status = "default", showReadout = true, disabled = false, ...props }) {
 	const [animatedSegments, setAnimatedSegments] = React.useState(0);
+	const hasOwnLabel = Boolean(props["aria-label"] || props["aria-labelledby"]);
+	const ariaLabel = label && !hasOwnLabel ? label : void 0;
 	React.useEffect(() => {
 		const filled = Math.round(value / total * segments);
 		const timer = setTimeout(() => setAnimatedSegments(filled), 50);
@@ -60,62 +17,71 @@ const ProgressBar = React.forwardRef(({ className, value, total = 100, segments 
 		total,
 		segments
 	]);
-	const getSegmentStatus = (index) => {
+	const resolvedVariant = resolveProgressBarVariant(variant) ?? "segmented";
+	const resolvedSize = resolveProgressBarSize(size) ?? "md";
+	const isSlim = resolvedVariant === "slim";
+	const getSegmentState = (index) => {
 		if (index >= animatedSegments) return "empty";
 		return status === "default" ? "filled" : status;
 	};
-	const track = /* @__PURE__ */ jsx("div", {
-		className: "nothing-progress__track",
-		children: indeterminate ? /* @__PURE__ */ jsx("div", { className: "nothing-progress__indeterminate_bar" }) : Array.from({ length: segments }).map((_, index) => /* @__PURE__ */ jsx("div", { className: `nothing-progress__segment nothing-progress__segment--${getSegmentStatus(index)}` }, index))
-	});
-	if (variant === "slim") return /* @__PURE__ */ jsx("div", {
-		ref,
-		className: cn(progressBarVariants({
-			variant: "slim",
-			indeterminate,
-			disabled
-		}), className),
-		style,
-		role: "progressbar",
-		"aria-valuenow": indeterminate ? void 0 : value,
-		"aria-valuemin": 0,
-		"aria-valuemax": total,
-		"data-state": dataAttr(indeterminate ? "indeterminate" : disabled ? "disabled" : "normal"),
-		...props,
-		children: track
-	});
 	return /* @__PURE__ */ jsxs("div", {
-		ref,
 		className: cn(progressBarVariants({
-			size,
-			variant,
-			indeterminate,
+			variant: resolvedVariant,
+			size: resolvedSize,
 			disabled
 		}), className),
-		style,
 		role: "progressbar",
 		"aria-valuenow": indeterminate ? void 0 : value,
 		"aria-valuemin": 0,
 		"aria-valuemax": total,
+		"aria-label": ariaLabel,
+		"aria-valuetext": !indeterminate && unit ? `${value}${unit}` : void 0,
+		"data-slot": "progress-bar",
+		"data-variant": dataAttr(resolvedVariant),
+		"data-size": dataAttr(resolvedSize),
+		"data-status": dataAttr(status),
 		"data-state": dataAttr(indeterminate ? "indeterminate" : disabled ? "disabled" : "normal"),
 		...props,
-		children: [track, showReadout && !indeterminate && /* @__PURE__ */ jsxs("div", {
-			className: "nothing-progress__readout",
+		children: [/* @__PURE__ */ jsx("div", {
+			"data-slot": "progress-bar-track",
+			className: progressTrackVariants({
+				variant: resolvedVariant,
+				size: resolvedSize,
+				indeterminate
+			}),
+			children: indeterminate ? /* @__PURE__ */ jsx("div", {
+				"data-slot": "progress-bar-indeterminate",
+				className: progressIndeterminateVariants()
+			}) : Array.from({ length: segments }).map((_, index) => /* @__PURE__ */ jsx("div", {
+				"data-slot": "progress-bar-segment",
+				"data-state": getSegmentState(index),
+				className: progressSegmentVariants({
+					state: getSegmentState(index),
+					size: resolvedSize,
+					variant: resolvedVariant
+				})
+			}, index))
+		}), showReadout && !isSlim && !indeterminate && /* @__PURE__ */ jsxs("div", {
+			"data-slot": "progress-bar-readout",
+			className: "flex items-baseline justify-between",
 			children: [/* @__PURE__ */ jsxs("div", {
-				className: cn(progressBarValueVariants({ status })),
+				"data-slot": "progress-bar-value",
+				className: progressValueVariants({ status }),
 				children: [value, unit && /* @__PURE__ */ jsx("span", {
-					className: "nothing-progress__unit",
+					"data-slot": "progress-bar-unit",
+					className: "ms-0.5 font-mono text-label text-foreground-muted",
 					children: unit
 				})]
 			}), label && /* @__PURE__ */ jsx("div", {
-				className: "nothing-progress__label",
+				"data-slot": "progress-bar-label",
+				className: "font-mono text-label uppercase tracking-wider text-foreground-muted",
 				children: label
 			})]
 		})]
 	});
-});
+}
 ProgressBar.displayName = "ProgressBar";
 //#endregion
-export { ProgressBar, ProgressBar as default, progressBarValueVariants, progressBarVariants };
+export { ProgressBar as default };
 
 //# sourceMappingURL=ProgressBar.mjs.map

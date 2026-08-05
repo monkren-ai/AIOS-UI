@@ -42,14 +42,25 @@ export function OverlaysSection({
   return (
     <CategorySection id="overlays" title={t('弹窗与层', 'Overlays')}>
       <DemoCard title={t('模态框', 'Modal')}>
-        <Button variant="primary" onClick={() => setModalOpen(true)}>{t('打开模态框', 'Open Modal')}</Button>
+        <Button variant="primary" onClick={() => setModalOpen(true)}>
+          {t('打开模态框', 'Open Modal')}
+        </Button>
         <Modal
           open={modalOpen}
           title={t('确认操作', 'Confirm Action')}
           onClose={() => setModalOpen(false)}
-          footer={<Button variant="primary" onClick={() => setModalOpen(false)}>{t('确认', 'Confirm')}</Button>}
+          footer={
+            <Button variant="primary" onClick={() => setModalOpen(false)}>
+              {t('确认', 'Confirm')}
+            </Button>
+          }
         >
-          <p style={{ fontSize: 'var(--body)' }}>{t('你确定要继续吗？此操作无法撤销。', 'Are you sure you want to proceed? This action cannot be undone.')}</p>
+          <p style={{ fontSize: 'var(--body)' }}>
+            {t(
+              '你确定要继续吗？此操作无法撤销。',
+              'Are you sure you want to proceed? This action cannot be undone.',
+            )}
+          </p>
         </Modal>
       </DemoCard>
 
@@ -73,16 +84,22 @@ export function OverlaysSection({
           content={
             <div className="showcase-popover-content">
               <div className="showcase-popover-title">@nothingdesign</div>
-              <div>{t('Nothing 生态系统的设计系统。', 'Design system for the Nothing ecosystem.')}</div>
+              <div>
+                {t('Nothing 生态系统的设计系统。', 'Design system for the Nothing ecosystem.')}
+              </div>
             </div>
           }
         >
-          <a href="#" className="showcase-inline-link" onClick={(e) => e.preventDefault()}>@nothingdesign</a>
+          <a href="#" className="showcase-inline-link" onClick={(e) => e.preventDefault()}>
+            @nothingdesign
+          </a>
         </HoverCard>
       </DemoCard>
 
       <DemoCard title={t('轻提示（Toast）', 'Sonner (Toast)')} variant="flex-wrap">
-        <p className="showcase-not-implemented">{t('组件尚未实现', 'Component not yet implemented')}</p>
+        <p className="showcase-not-implemented">
+          {t('组件尚未实现', 'Component not yet implemented')}
+        </p>
       </DemoCard>
 
       <DemoCard title={t('下拉', 'Dropdown')}>
@@ -101,49 +118,77 @@ export function OverlaysSection({
       </DemoCard>
 
       <DemoCard title={t('抽屉', 'Sheet')}>
-        <Button variant="secondary" onClick={() => setSheetOpen(true)}>{t('打开抽屉', 'Open Sheet')}</Button>
+        <Button variant="secondary" onClick={() => setSheetOpen(true)}>
+          {t('打开抽屉', 'Open Sheet')}
+        </Button>
         <Sheet
           open={sheetOpen}
           onOpenChange={setSheetOpen}
           side="right"
           title={t('设置面板', 'Settings Panel')}
         >
-          <Switch label={t('深色模式', 'Dark Mode')} on={resolvedTheme === 'dark'} style={{ display: 'block', marginBottom: 'var(--space-lg)' }} />
-          <Switch label={t('通知', 'Notifications')} on={true} style={{ display: 'block', marginBottom: 'var(--space-lg)' }} />
+          <Switch
+            label={t('深色模式', 'Dark Mode')}
+            checked={resolvedTheme === 'dark'}
+            style={{ display: 'block', marginBottom: 'var(--space-lg)' }}
+          />
+          <Switch
+            label={t('通知', 'Notifications')}
+            checked={true}
+            style={{ display: 'block', marginBottom: 'var(--space-lg)' }}
+          />
           <Switch label={t('自动更新', 'Auto-update')} style={{ display: 'block' }} />
         </Sheet>
       </DemoCard>
 
       <DemoCard title={t('底部抽屉', 'Bottom Sheet')}>
-        <Button variant="primary" onClick={() => setBottomSheetOpen(true)}>{t('打开底部抽屉', 'Open Bottom Sheet')}</Button>
+        <Button variant="primary" onClick={() => setBottomSheetOpen(true)}>
+          {t('打开底部抽屉', 'Open Bottom Sheet')}
+        </Button>
         <Sheet
           open={bottomSheetOpen}
           onOpenChange={setBottomSheetOpen}
           side="bottom"
           title={t('设置', 'Settings')}
           sections={[
-            { title: t('显示', 'Display'), content: <Switch label={t('深色模式', 'Dark Mode')} on={resolvedTheme === 'dark'} /> },
-            { title: t('连接', 'Connectivity'), content: <Switch label={t('Wi-Fi', 'Wi-Fi')} on={true} /> },
+            {
+              title: t('显示', 'Display'),
+              content: (
+                <Switch label={t('深色模式', 'Dark Mode')} checked={resolvedTheme === 'dark'} />
+              ),
+            },
+            {
+              title: t('连接', 'Connectivity'),
+              content: <Switch label={t('Wi-Fi', 'Wi-Fi')} checked={true} />,
+            },
           ]}
         />
       </DemoCard>
 
       <DemoCard title={t('命令面板', 'Command Palette')} last>
-        <Button variant="primary" onClick={() => setCommandOpen(true)}>{t('打开命令面板', 'Open Command Palette')}</Button>
+        <Button variant="primary" onClick={() => setCommandOpen(true)}>
+          {t('打开命令面板', 'Open Command Palette')}
+        </Button>
         <Command
           open={commandOpen}
           onOpenChange={setCommandOpen}
           groups={[
-            { heading: t('操作', 'Actions'), items: [
-              { id: '1', label: t('新建文件', 'New File'), shortcut: '⌘N', onSelect: () => {} },
-              { id: '2', label: t('打开文件', 'Open File'), shortcut: '⌘O', onSelect: () => {} },
-              { id: '3', label: t('保存', 'Save'), shortcut: '⌘S', onSelect: () => {} },
-            ]},
-            { heading: t('导航', 'Navigation'), items: [
-              { id: '4', label: t('回到主页', 'Go to Home'), onSelect: () => {} },
-              { id: '5', label: t('打开设置', 'Go to Settings'), onSelect: () => {} },
-              { id: '6', label: t('打开个人主页', 'Go to Profile'), onSelect: () => {} },
-            ]},
+            {
+              heading: t('操作', 'Actions'),
+              items: [
+                { id: '1', label: t('新建文件', 'New File'), shortcut: '⌘N', onSelect: () => {} },
+                { id: '2', label: t('打开文件', 'Open File'), shortcut: '⌘O', onSelect: () => {} },
+                { id: '3', label: t('保存', 'Save'), shortcut: '⌘S', onSelect: () => {} },
+              ],
+            },
+            {
+              heading: t('导航', 'Navigation'),
+              items: [
+                { id: '4', label: t('回到主页', 'Go to Home'), onSelect: () => {} },
+                { id: '5', label: t('打开设置', 'Go to Settings'), onSelect: () => {} },
+                { id: '6', label: t('打开个人主页', 'Go to Profile'), onSelect: () => {} },
+              ],
+            },
           ]}
         />
       </DemoCard>

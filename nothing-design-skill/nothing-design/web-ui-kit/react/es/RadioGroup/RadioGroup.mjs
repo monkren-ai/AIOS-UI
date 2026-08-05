@@ -1,28 +1,11 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { radioGroupCircleVariants, radioGroupDotVariants, radioGroupItemVariants, radioGroupLabelVariants, radioGroupVariants } from "./radio-group-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import { RadioGroup } from "@base-ui/react/radio-group";
 import { Radio } from "@base-ui/react/radio";
-import "./RadioGroup.css";
 //#region src/RadioGroup/RadioGroup.tsx
-const radioGroupVariants = cva("nothing-radio-group", {
-	variants: {
-		orientation: {
-			horizontal: "nothing-radio-group--horizontal",
-			vertical: "nothing-radio-group--vertical"
-		},
-		disabled: {
-			true: "nothing-radio-group--disabled",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		orientation: "vertical",
-		disabled: false
-	}
-});
-const RadioGroup$1 = React.forwardRef(({ className, options, value: controlledValue, defaultValue, onValueChange, disabled, orientation = "vertical", name, ...props }, ref) => {
+function RadioGroup$1({ className, options, value: controlledValue, defaultValue, onValueChange, disabled, orientation = "vertical", size = "md", name, ref, ...props }) {
 	const [internalValue, setInternalValue] = React.useState(defaultValue ?? "");
 	const selectedValue = controlledValue !== void 0 ? controlledValue : internalValue;
 	const isDisabled = !!disabled;
@@ -34,11 +17,14 @@ const RadioGroup$1 = React.forwardRef(({ className, options, value: controlledVa
 		ref,
 		className: cn(radioGroupVariants({
 			orientation,
+			size,
 			disabled: isDisabled
 		}), className),
 		role: "radiogroup",
 		"aria-orientation": orientation,
 		"data-slot": "radio-group",
+		"data-orientation": dataAttr(orientation),
+		"data-size": dataAttr(size),
 		"data-disabled": dataAttr(isDisabled),
 		value: selectedValue,
 		defaultValue: controlledValue !== void 0 ? void 0 : defaultValue,
@@ -47,27 +33,38 @@ const RadioGroup$1 = React.forwardRef(({ className, options, value: controlledVa
 		name,
 		...props,
 		children: options.map((option) => {
-			const isItemDisabled = option.disabled || isDisabled;
+			const isItemDisabled = Boolean(option.disabled || isDisabled);
+			const isChecked = option.value === selectedValue;
 			return /* @__PURE__ */ jsxs("label", {
-				className: cn("nothing-radio-group__item", option.value === selectedValue && "nothing-radio-group__item--checked", isItemDisabled && "nothing-radio-group__item--disabled"),
+				className: radioGroupItemVariants({
+					size,
+					checked: isChecked,
+					disabled: isItemDisabled
+				}),
+				"data-slot": "radio-group-item",
+				"data-state": dataAttr(isChecked ? "checked" : "unchecked"),
+				"data-disabled": dataAttr(isItemDisabled),
 				children: [/* @__PURE__ */ jsx(Radio.Root, {
-					className: "nothing-radio-group__circle",
+					className: radioGroupCircleVariants({ size }),
+					"data-slot": "radio-group-circle",
 					value: option.value,
 					disabled: isItemDisabled,
 					children: /* @__PURE__ */ jsx(Radio.Indicator, {
-						className: "nothing-radio-group__dot",
+						className: radioGroupDotVariants({ size }),
+						"data-slot": "radio-group-dot",
 						keepMounted: true
 					})
 				}), /* @__PURE__ */ jsx("span", {
-					className: "nothing-radio-group__label",
+					className: radioGroupLabelVariants({ size }),
+					"data-slot": "radio-group-label",
 					children: option.label
 				})]
 			}, option.value);
 		})
 	});
-});
+}
 RadioGroup$1.displayName = "RadioGroup";
 //#endregion
-export { RadioGroup$1 as RadioGroup, RadioGroup$1 as default, radioGroupVariants };
+export { RadioGroup$1 as default };
 
 //# sourceMappingURL=RadioGroup.mjs.map

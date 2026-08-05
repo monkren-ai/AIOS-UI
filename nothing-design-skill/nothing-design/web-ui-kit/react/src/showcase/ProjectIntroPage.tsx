@@ -130,39 +130,150 @@ export function ProjectIntroPage() {
               className="pi-visual pi-hero__visual"
               aria-label={t('AI OS 界面可视化', 'AI OS interface visualization')}
             >
-              <svg viewBox="0 0 920 460" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+              <svg
+                viewBox="0 0 920 460"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid meet"
+              >
                 <rect width="920" height="460" fill="var(--pi-surface)" />
-                <rect x="24" y="24" width="72" height="412" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="24"
+                  y="24"
+                  width="72"
+                  height="412"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="40" y="48" width="40" height="4" rx="2" fill="var(--pi-text-primary)" />
                 <rect x="40" y="64" width="28" height="4" rx="2" fill="var(--pi-text-secondary)" />
                 <rect x="40" y="80" width="32" height="4" rx="2" fill="var(--pi-text-secondary)" />
                 <rect x="40" y="96" width="24" height="4" rx="2" fill="var(--pi-text-secondary)" />
                 <circle cx="60" cy="392" r="8" fill="var(--pi-accent)" />
 
-                <rect x="116" y="24" width="780" height="64" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="116"
+                  y="24"
+                  width="780"
+                  height="64"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="140" y="52" width="160" height="8" rx="4" fill="var(--pi-text-display)" />
                 <rect x="780" y="48" width="96" height="16" rx="8" fill="var(--pi-text-primary)" />
 
-                <rect x="116" y="108" width="480" height="328" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="116"
+                  y="108"
+                  width="480"
+                  height="328"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="140" y="132" width="120" height="8" rx="4" fill="var(--pi-text-display)" />
                 <rect x="140" y="156" width="432" height="1" fill="var(--pi-border-visible)" />
-                <rect x="140" y="176" width="200" height="120" rx="4" fill="var(--pi-surface)" stroke="var(--pi-border-visible)" strokeWidth="1" />
-                <rect x="372" y="176" width="200" height="120" rx="4" fill="var(--pi-surface)" stroke="var(--pi-border-visible)" strokeWidth="1" />
-                <rect x="140" y="316" width="432" height="96" rx="4" fill="var(--pi-surface)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="140"
+                  y="176"
+                  width="200"
+                  height="120"
+                  rx="4"
+                  fill="var(--pi-surface)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
+                <rect
+                  x="372"
+                  y="176"
+                  width="200"
+                  height="120"
+                  rx="4"
+                  fill="var(--pi-surface)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
+                <rect
+                  x="140"
+                  y="316"
+                  width="432"
+                  height="96"
+                  rx="4"
+                  fill="var(--pi-surface)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <circle cx="164" cy="200" r="6" fill="var(--pi-accent)" />
                 <rect x="188" y="196" width="120" height="4" rx="2" fill="var(--pi-text-primary)" />
-                <rect x="188" y="208" width="80" height="4" rx="2" fill="var(--pi-text-secondary)" />
-                <rect x="188" y="220" width="100" height="4" rx="2" fill="var(--pi-text-secondary)" />
+                <rect
+                  x="188"
+                  y="208"
+                  width="80"
+                  height="4"
+                  rx="2"
+                  fill="var(--pi-text-secondary)"
+                />
+                <rect
+                  x="188"
+                  y="220"
+                  width="100"
+                  height="4"
+                  rx="2"
+                  fill="var(--pi-text-secondary)"
+                />
 
-                <rect x="620" y="108" width="276" height="156" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="620"
+                  y="108"
+                  width="276"
+                  height="156"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="644" y="132" width="96" height="8" rx="4" fill="var(--pi-text-display)" />
                 <rect x="644" y="156" width="228" height="1" fill="var(--pi-border-visible)" />
                 <rect x="644" y="172" width="228" height="8" rx="4" fill="var(--pi-text-primary)" />
-                <rect x="644" y="188" width="180" height="8" rx="4" fill="var(--pi-text-secondary)" />
-                <rect x="644" y="204" width="200" height="8" rx="4" fill="var(--pi-text-secondary)" />
-                <rect x="644" y="220" width="140" height="8" rx="4" fill="var(--pi-text-secondary)" />
+                <rect
+                  x="644"
+                  y="188"
+                  width="180"
+                  height="8"
+                  rx="4"
+                  fill="var(--pi-text-secondary)"
+                />
+                <rect
+                  x="644"
+                  y="204"
+                  width="200"
+                  height="8"
+                  rx="4"
+                  fill="var(--pi-text-secondary)"
+                />
+                <rect
+                  x="644"
+                  y="220"
+                  width="140"
+                  height="8"
+                  rx="4"
+                  fill="var(--pi-text-secondary)"
+                />
 
-                <rect x="620" y="280" width="276" height="156" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="620"
+                  y="280"
+                  width="276"
+                  height="156"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="644" y="304" width="120" height="8" rx="4" fill="var(--pi-text-display)" />
                 <rect x="644" y="328" width="228" height="1" fill="var(--pi-border-visible)" />
                 <circle cx="660" cy="356" r="6" fill="var(--pi-text-tertiary)" />
@@ -171,7 +282,14 @@ export function ProjectIntroPage() {
                 <circle cx="756" cy="356" r="6" fill="var(--pi-accent)" />
                 <circle cx="788" cy="356" r="6" fill="var(--pi-text-tertiary)" />
                 <rect x="644" y="380" width="228" height="1" fill="var(--pi-border-visible)" />
-                <rect x="644" y="396" width="160" height="4" rx="2" fill="var(--pi-text-secondary)" />
+                <rect
+                  x="644"
+                  y="396"
+                  width="160"
+                  height="4"
+                  rx="2"
+                  fill="var(--pi-text-secondary)"
+                />
               </svg>
             </figure>
           </div>
@@ -181,7 +299,9 @@ export function ProjectIntroPage() {
           <section className="pi-section" id="philosophy">
             <header className="pi-section__header">
               <span className="pi-section__label">Philosophy</span>
-              <h2 className="pi-section__title">{t('更少装饰，更多结构', 'Less Decoration, More Structure')}</h2>
+              <h2 className="pi-section__title">
+                {t('更少装饰，更多结构', 'Less Decoration, More Structure')}
+              </h2>
             </header>
             <p className="pi-body">
               {t(
@@ -236,7 +356,9 @@ export function ProjectIntroPage() {
           <section className="pi-section" id="typography">
             <header className="pi-section__header">
               <span className="pi-section__label">Typography</span>
-              <h2 className="pi-section__title">{t('三种声音，一个系统', 'Three Voices, One System')}</h2>
+              <h2 className="pi-section__title">
+                {t('三种声音，一个系统', 'Three Voices, One System')}
+              </h2>
             </header>
             <div className="pi-grid">
               <div className="pi-type-card">
@@ -325,57 +447,221 @@ export function ProjectIntroPage() {
                 'Over 60 components cover core interactions, data display, system monitoring, and feature widgets. Each follows the same geometry and color discipline.',
               )}
             </p>
-            <figure className="pi-visual pi-visual--framed" aria-label={t('组件概览', 'Component overview')}>
-              <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <figure
+              className="pi-visual pi-visual--framed"
+              aria-label={t('组件概览', 'Component overview')}
+            >
+              <svg
+                viewBox="0 0 800 320"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid meet"
+              >
                 <rect width="800" height="320" fill="var(--pi-surface)" />
 
                 <rect x="24" y="24" width="120" height="40" rx="8" fill="var(--pi-text-display)" />
                 <rect x="44" y="40" width="80" height="8" rx="4" fill="var(--pi-surface)" />
 
-                <rect x="160" y="24" width="120" height="40" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="160"
+                  y="24"
+                  width="120"
+                  height="40"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="176" y="40" width="88" height="8" rx="4" fill="var(--pi-text-primary)" />
 
-                <rect x="296" y="24" width="120" height="40" rx="20" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="296"
+                  y="24"
+                  width="120"
+                  height="40"
+                  rx="20"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="316" y="40" width="80" height="8" rx="4" fill="var(--pi-text-secondary)" />
 
-                <rect x="432" y="24" width="120" height="40" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="432"
+                  y="24"
+                  width="120"
+                  height="40"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="488" y="32" width="56" height="24" rx="12" fill="var(--pi-text-display)" />
                 <circle cx="532" cy="44" r="8" fill="var(--pi-surface)" />
 
-                <rect x="568" y="24" width="208" height="40" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
-                <rect x="588" y="40" width="120" height="8" rx="4" fill="var(--pi-text-secondary)" />
+                <rect
+                  x="568"
+                  y="24"
+                  width="208"
+                  height="40"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
+                <rect
+                  x="588"
+                  y="40"
+                  width="120"
+                  height="8"
+                  rx="4"
+                  fill="var(--pi-text-secondary)"
+                />
                 <rect x="720" y="36" width="40" height="16" rx="8" fill="var(--pi-accent)" />
 
-                <rect x="24" y="80" width="372" height="120" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="24"
+                  y="80"
+                  width="372"
+                  height="120"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="44" y="100" width="120" height="8" rx="4" fill="var(--pi-text-display)" />
                 <rect x="44" y="120" width="332" height="1" fill="var(--pi-border-visible)" />
                 <rect x="44" y="140" width="200" height="8" rx="4" fill="var(--pi-text-primary)" />
-                <rect x="44" y="156" width="160" height="8" rx="4" fill="var(--pi-text-secondary)" />
-                <rect x="44" y="172" width="120" height="8" rx="4" fill="var(--pi-text-secondary)" />
+                <rect
+                  x="44"
+                  y="156"
+                  width="160"
+                  height="8"
+                  rx="4"
+                  fill="var(--pi-text-secondary)"
+                />
+                <rect
+                  x="44"
+                  y="172"
+                  width="120"
+                  height="8"
+                  rx="4"
+                  fill="var(--pi-text-secondary)"
+                />
 
-                <rect x="408" y="80" width="368" height="120" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="408"
+                  y="80"
+                  width="368"
+                  height="120"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="428" y="100" width="96" height="8" rx="4" fill="var(--pi-text-display)" />
                 <rect x="428" y="120" width="328" height="1" fill="var(--pi-border-visible)" />
                 <rect x="428" y="140" width="328" height="12" rx="6" fill="var(--pi-surface)" />
-                <rect x="428" y="140" width="240" height="12" rx="6" fill="var(--pi-text-primary)" />
+                <rect
+                  x="428"
+                  y="140"
+                  width="240"
+                  height="12"
+                  rx="6"
+                  fill="var(--pi-text-primary)"
+                />
                 <rect x="428" y="164" width="328" height="12" rx="6" fill="var(--pi-surface)" />
-                <rect x="428" y="164" width="160" height="12" rx="6" fill="var(--pi-text-secondary)" />
+                <rect
+                  x="428"
+                  y="164"
+                  width="160"
+                  height="12"
+                  rx="6"
+                  fill="var(--pi-text-secondary)"
+                />
 
-                <rect x="24" y="216" width="248" height="80" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="24"
+                  y="216"
+                  width="248"
+                  height="80"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="40" y="236" width="160" height="8" rx="4" fill="var(--pi-text-primary)" />
-                <rect x="40" y="256" width="120" height="8" rx="4" fill="var(--pi-text-secondary)" />
+                <rect
+                  x="40"
+                  y="256"
+                  width="120"
+                  height="8"
+                  rx="4"
+                  fill="var(--pi-text-secondary)"
+                />
                 <rect x="216" y="248" width="40" height="16" rx="8" fill="var(--pi-accent)" />
 
-                <rect x="288" y="216" width="248" height="80" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="288"
+                  y="216"
+                  width="248"
+                  height="80"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="308" y="236" width="100" height="8" rx="4" fill="var(--pi-text-primary)" />
-                <rect x="308" y="256" width="80" height="8" rx="4" fill="var(--pi-text-secondary)" />
-                <circle cx="500" cy="256" r="12" stroke="var(--pi-border-visible)" strokeWidth="2" fill="none" />
-                <path d="M500 250 L500 256 L506 256" stroke="var(--pi-text-primary)" strokeWidth="2" fill="none" strokeLinecap="round" />
+                <rect
+                  x="308"
+                  y="256"
+                  width="80"
+                  height="8"
+                  rx="4"
+                  fill="var(--pi-text-secondary)"
+                />
+                <circle
+                  cx="500"
+                  cy="256"
+                  r="12"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <path
+                  d="M500 250 L500 256 L506 256"
+                  stroke="var(--pi-text-primary)"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                />
 
-                <rect x="552" y="216" width="224" height="80" rx="8" fill="var(--pi-surface-raised)" stroke="var(--pi-border-visible)" strokeWidth="1" />
+                <rect
+                  x="552"
+                  y="216"
+                  width="224"
+                  height="80"
+                  rx="8"
+                  fill="var(--pi-surface-raised)"
+                  stroke="var(--pi-border-visible)"
+                  strokeWidth="1"
+                />
                 <rect x="572" y="236" width="184" height="8" rx="4" fill="var(--pi-text-primary)" />
-                <rect x="572" y="252" width="120" height="8" rx="4" fill="var(--pi-text-secondary)" />
-                <rect x="572" y="268" width="80" height="8" rx="4" fill="var(--pi-text-secondary)" />
+                <rect
+                  x="572"
+                  y="252"
+                  width="120"
+                  height="8"
+                  rx="4"
+                  fill="var(--pi-text-secondary)"
+                />
+                <rect
+                  x="572"
+                  y="268"
+                  width="80"
+                  height="8"
+                  rx="4"
+                  fill="var(--pi-text-secondary)"
+                />
               </svg>
             </figure>
             <div className="pi-grid">

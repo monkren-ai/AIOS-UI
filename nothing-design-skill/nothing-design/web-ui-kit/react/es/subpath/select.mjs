@@ -1,0 +1,3 @@
+import { selectContentVariants, selectErrorVariants, selectItemIndicatorVariants, selectItemVariants, selectLabelVariants, selectListVariants, selectPlaceholderVariants, selectPositionerVariants, selectSearchInputVariants, selectSearchVariants, selectTriggerIconVariants, selectTriggerVariants, selectValueVariants, selectVariants } from "../Select/select-variants.mjs";
+import Select from "../Select/Select.mjs";
+export { Select, selectContentVariants, selectErrorVariants, selectItemIndicatorVariants, selectItemVariants, selectLabelVariants, selectListVariants, selectPlaceholderVariants, selectPositionerVariants, selectSearchInputVariants, selectSearchVariants, selectTriggerIconVariants, selectTriggerVariants, selectValueVariants, selectVariants };

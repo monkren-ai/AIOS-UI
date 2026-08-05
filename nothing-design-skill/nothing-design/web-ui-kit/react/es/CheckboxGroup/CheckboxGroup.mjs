@@ -1,19 +1,11 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import { Checkbox } from "../Checkbox/Checkbox.mjs";
+import Checkbox from "../Checkbox/Checkbox.mjs";
 import { useMergeSplit } from "../hooks/useMergeSplit.mjs";
+import { checkboxGroupItemVariants, checkboxGroupMergeBgVariants, checkboxGroupVariants } from "./checkbox-group-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./CheckboxGroup.css";
 //#region src/CheckboxGroup/CheckboxGroup.tsx
-const checkboxGroupVariants = cva("nothing-checkbox-group", {
-	variants: { orientation: {
-		horizontal: "nothing-checkbox-group--horizontal",
-		vertical: "nothing-checkbox-group--vertical"
-	} },
-	defaultVariants: { orientation: "vertical" }
-});
-const CheckboxGroup = React.forwardRef(({ className, options, value: controlledValue, defaultValue, onValueChange, disabled, orientation = "vertical", ...props }, ref) => {
+function CheckboxGroup({ className, options, value: controlledValue, defaultValue, onValueChange, disabled, orientation = "vertical", size = "md", ref, ...props }) {
 	const [internalValue, setInternalValue] = React.useState(defaultValue ?? []);
 	const selectedValues = controlledValue !== void 0 ? controlledValue : internalValue;
 	const containerRef = React.useRef(null);
@@ -34,15 +26,15 @@ const CheckboxGroup = React.forwardRef(({ className, options, value: controlledV
 		selectedValues
 	]);
 	React.useEffect(() => {
-		const selectedIndices = options.map((option, index) => selectedValues.includes(option.value) ? index : -1).filter((index) => index !== -1);
-		const merge = calculateMerge(selectedIndices);
+		const merge = calculateMerge(options.map((option, index) => selectedValues.includes(option.value) ? index : -1).filter((index) => index !== -1));
 		if (!merge.hasSelection) {
 			setMergeStyle({ opacity: 0 });
 			return;
 		}
+		const container = containerRef.current;
 		setMergeStyle({
 			opacity: 1,
-			transform: `translate(${merge.left}px, ${merge.top}px)`,
+			transform: `translate(${(typeof window !== "undefined" && container ? window.getComputedStyle(container).direction === "rtl" : false) ? -((container?.offsetWidth ?? 0) - merge.left - merge.width) : merge.left}px, ${merge.top}px)`,
 			width: merge.width,
 			height: merge.height
 		});
@@ -57,28 +49,40 @@ const CheckboxGroup = React.forwardRef(({ className, options, value: controlledV
 		className: cn(checkboxGroupVariants({ orientation }), className),
 		"data-slot": "checkbox-group",
 		"data-orientation": dataAttr(orientation),
+		"data-size": dataAttr(size),
+		"data-disabled": dataAttr(disabled),
 		...props,
 		children: [/* @__PURE__ */ jsx("span", {
-			className: "nothing-checkbox-group__merge-bg",
+			className: checkboxGroupMergeBgVariants(),
+			"data-slot": "checkbox-group-merge-bg",
 			style: mergeStyle,
 			"aria-hidden": "true"
 		}), options.map((option, index) => {
 			const isSelected = selectedValues.includes(option.value);
+			const isDisabled = Boolean(disabled || option.disabled);
 			return /* @__PURE__ */ jsx("div", {
 				ref: (el) => registerItem(index, el),
-				className: cn("nothing-checkbox-group__item", isSelected && "nothing-checkbox-group__item--selected", option.disabled && "nothing-checkbox-group__item--disabled"),
+				className: checkboxGroupItemVariants({
+					selected: isSelected,
+					disabled: isDisabled
+				}),
+				"data-slot": "checkbox-group-item",
+				"data-value": option.value,
+				"data-state": isSelected ? "checked" : "unchecked",
+				"data-disabled": dataAttr(isDisabled),
 				children: /* @__PURE__ */ jsx(Checkbox, {
 					label: option.label,
+					size,
 					checked: isSelected,
 					onCheckedChange: () => toggleValue(option.value),
-					disabled: disabled || option.disabled
+					disabled: isDisabled
 				})
 			}, option.value);
 		})]
 	});
-});
+}
 CheckboxGroup.displayName = "CheckboxGroup";
 //#endregion
-export { CheckboxGroup, CheckboxGroup as default, checkboxGroupVariants };
+export { CheckboxGroup as default };
 
 //# sourceMappingURL=CheckboxGroup.mjs.map

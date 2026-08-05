@@ -79,7 +79,15 @@ function DotMatrixLoadersSection() {
           >
             {shapeLabel[shape]}
           </div>
-          <div style={{ color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '90px' }}>
+          <div
+            style={{
+              color: 'var(--text-primary)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minHeight: '90px',
+            }}
+          >
             <Comp size={80} />
           </div>
           <div

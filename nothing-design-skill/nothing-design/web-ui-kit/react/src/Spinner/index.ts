@@ -1,8 +1,12 @@
+export { Spinner, type SpinnerProps } from './Spinner'
 export {
-  Spinner,
   spinnerVariants,
+  spinnerWheelVariants,
+  spinnerPointerVariants,
+  spinnerSvgVariants,
   spinnerSectorVariants,
   spinnerTextVariants,
-  type SpinnerProps,
-} from './Spinner'
+  type SpinnerVariant,
+  type SpinnerSize,
+} from './spinner-variants'
 export { default } from './Spinner'

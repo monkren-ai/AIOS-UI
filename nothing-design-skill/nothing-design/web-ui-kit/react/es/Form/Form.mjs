@@ -1,23 +1,24 @@
 import { cn } from "../lib/utils.mjs";
-import * as React from "react";
+import { formVariants } from "./form-variants.mjs";
+import "react";
 import { jsx } from "react/jsx-runtime";
-import "./Form.css";
 //#region src/Form/Form.tsx
-const Form = React.forwardRef(({ className, onSubmit, children, ...props }, ref) => {
+function Form({ className, onSubmit, children, ref, ...props }) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		onSubmit?.(e);
 	};
 	return /* @__PURE__ */ jsx("form", {
 		ref,
-		className: cn("nothing-form", className),
+		className: cn(formVariants(), className),
+		"data-slot": "form",
 		onSubmit: handleSubmit,
 		...props,
 		children
 	});
-});
+}
 Form.displayName = "Form";
 //#endregion
-export { Form, Form as default };
+export { Form as default };
 
 //# sourceMappingURL=Form.mjs.map

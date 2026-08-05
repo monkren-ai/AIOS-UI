@@ -44,7 +44,7 @@ export type OverlayAlign = 'start' | 'center' | 'end'
  */
 export function useOverlayState(
   controlled: boolean | undefined,
-  onChange?: (open: boolean) => void
+  onChange?: (open: boolean) => void,
 ) {
   const [internal, setInternal] = useState(false)
   const isOpen = controlled !== undefined ? controlled : internal
@@ -56,7 +56,7 @@ export function useOverlayState(
       }
       onChange?.(next)
     },
-    [controlled, onChange]
+    [controlled, onChange],
   )
 
   return {
@@ -177,7 +177,7 @@ export function useTabCycle<T extends HTMLElement>(active: boolean) {
         first.focus()
       }
     },
-    [active]
+    [active],
   )
   return { ref, onKeyDown }
 }
@@ -214,7 +214,7 @@ export const OverlayPortal: React.FC<OverlayPortalProps> = ({
 export function useOverlayClickOutside(
   ref: React.RefObject<HTMLElement | null>,
   open: boolean,
-  handler: () => void
+  handler: () => void,
 ) {
   useClickOutside(ref, () => {
     if (open) handler()

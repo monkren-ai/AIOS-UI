@@ -1,23 +1,15 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { type VariantProps } from 'class-variance-authority'
 import { useNow } from '@/system/hooks'
 import { cn, dataAttr } from '@/lib/utils'
-import './NextEvent.css'
-
-const nextEventVariants = cva('nothing-next-event', {
-  variants: {
-    theme: {
-      light: 'nothing-next-event--light',
-      dark: 'nothing-next-event--dark',
-    },
-    priority: {
-      low: 'nothing-next-event--low',
-      normal: 'nothing-next-event--normal',
-      high: 'nothing-next-event--high',
-    },
-  },
-  defaultVariants: { theme: 'dark', priority: 'normal' },
-})
+import {
+  nextEventCountdownVariants,
+  nextEventDateVariants,
+  nextEventLabelVariants,
+  nextEventMonthVariants,
+  nextEventTitleVariants,
+  nextEventVariants,
+} from './next-event-variants'
 
 export interface EventData {
   title: string
@@ -58,8 +50,9 @@ function pad2(n: number): string {
 }
 
 export interface NextEventProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
-    Omit<VariantProps<typeof nextEventVariants>, 'priority'> {
+  extends
+    Omit<React.ComponentPropsWithRef<'div'>, 'children'>,
+    Omit<VariantProps<typeof nextEventVariants>, 'priority' | 'real'> {
   /** 单个事件 (向后兼容). 优先于 events. */
   event?: EventData
   /** 事件数组,自动选择最近一个未到期的 */
@@ -67,56 +60,78 @@ export interface NextEventProps
   priority?: 'low' | 'normal' | 'high'
 }
 
-export const NextEvent = React.forwardRef<HTMLDivElement, NextEventProps>(
-  ({ className, theme = 'dark', priority: priorityProp, event, events, ...props }, ref) => {
-    const now = useNow(60_000)
-    const defaultEvents = React.useMemo(makeDefaultEvents, [])
+export function NextEvent({
+  className,
+  theme = 'dark',
+  priority: priorityProp,
+  event,
+  events,
+  ref,
+  ...props
+}: NextEventProps) {
+  const now = useNow(60_000)
+  const defaultEvents = React.useMemo(makeDefaultEvents, [])
 
-    let displayEvent: EventData
-    if (event) {
-      displayEvent = event
-    } else if (events && events.length > 0) {
-      // 选择最近一个未到期
-      const sorted = [...events].sort((a, b) => a.date - b.date)
-      const upcoming = sorted.find((e) => e.date > now.getTime())
-      displayEvent = upcoming || sorted[0]
-    } else {
-      // 选择默认中最近一个未到期
-      const sorted = [...defaultEvents].sort((a, b) => a.date - b.date)
-      const upcoming = sorted.find((e) => e.date > now.getTime())
-      displayEvent = upcoming || sorted[0]
-    }
-
-    const ts = now.getTime()
-    const eventDate = new Date(displayEvent.date)
-    const diff = displayEvent.date - ts
-    const real = event !== undefined || (events !== undefined && events.length > 0)
-    const priority: 'low' | 'normal' | 'high' =
-      priorityProp ?? (diff > 0 && diff < 24 * 60 * 60 * 1000 ? 'high' : 'normal')
-    const day = eventDate.getDate()
-    const monthStr = MONTHS[eventDate.getMonth()]
-    const countdown = formatCountdown(diff)
-
-    return (
-      <div
-        ref={ref}
-        className={cn(nextEventVariants({ theme, priority }), className)}
-        data-state={dataAttr(real ? 'has-event' : 'demo')}
-        data-priority={dataAttr(priority)}
-        data-real={dataAttr(real)}
-        {...props}
-      >
-        <span className="nothing-next-event__label">Next Event:</span>
-        <div className="nothing-next-event__content">
-          <span className="nothing-next-event__title">{displayEvent.title}</span>
-          <span className="nothing-next-event__date">{day}</span>
-          <span className="nothing-next-event__month">{monthStr}</span>
-          <span className="nothing-next-event__countdown">{countdown}</span>
-        </div>
-      </div>
-    )
+  let displayEvent: EventData
+  if (event) {
+    displayEvent = event
+  } else if (events && events.length > 0) {
+    // 选择最近一个未到期
+    const sorted = [...events].sort((a, b) => a.date - b.date)
+    const upcoming = sorted.find((e) => e.date > now.getTime())
+    displayEvent = upcoming || sorted[0]
+  } else {
+    // 选择默认中最近一个未到期
+    const sorted = [...defaultEvents].sort((a, b) => a.date - b.date)
+    const upcoming = sorted.find((e) => e.date > now.getTime())
+    displayEvent = upcoming || sorted[0]
   }
-)
+
+  const ts = now.getTime()
+  const eventDate = new Date(displayEvent.date)
+  const diff = displayEvent.date - ts
+  const real = event !== undefined || (events !== undefined && events.length > 0)
+  const priority: 'low' | 'normal' | 'high' =
+    priorityProp ?? (diff > 0 && diff < 24 * 60 * 60 * 1000 ? 'high' : 'normal')
+  const day = eventDate.getDate()
+  const monthStr = MONTHS[eventDate.getMonth()]
+  const countdown = formatCountdown(diff)
+
+  return (
+    <div
+      ref={ref}
+      className={cn(nextEventVariants({ theme, priority, real }), className)}
+      data-slot="next-event"
+      data-widget-theme={dataAttr(theme)}
+      data-state={dataAttr(real ? 'has-event' : 'demo')}
+      data-priority={dataAttr(priority)}
+      data-real={dataAttr(real)}
+      {...props}
+    >
+      <span data-slot="next-event-label" className={cn(nextEventLabelVariants({ theme }))}>
+        Next Event:
+      </span>
+      <div data-slot="next-event-content" className="flex items-baseline gap-1">
+        <span data-slot="next-event-title" className={cn(nextEventTitleVariants({ theme }))}>
+          {displayEvent.title}
+        </span>
+        <span data-slot="next-event-date" className={cn(nextEventDateVariants())}>
+          {day}
+        </span>
+        <span data-slot="next-event-month" className={cn(nextEventMonthVariants())}>
+          {monthStr}
+        </span>
+        <span
+          data-slot="next-event-countdown"
+          className={cn(nextEventCountdownVariants({ priority }))}
+        >
+          {countdown}
+        </span>
+      </div>
+    </div>
+  )
+}
+
 NextEvent.displayName = 'NextEvent'
 
 export { nextEventVariants }

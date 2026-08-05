@@ -1,64 +1,68 @@
-"use client";
+'use client'
 
-import { useMemo } from "react";
+import { useMemo } from 'react'
 
-import { DotMatrixBase } from "../base/dot-matrix-base";
-import { useDotMatrixPhases } from "../core/phases";
-import { useCyclePhase } from "../hooks/use-cycle-phase";
-import { usePrefersReducedMotion } from "../hooks/use-prefers-reduced-motion";
-import type { DotAnimationResolver, DotMatrixCommonProps } from "../types";
+import { DotMatrixBase } from '../base/dot-matrix-base'
+import { useDotMatrixPhases } from '../core/phases'
+import { useCyclePhase } from '../hooks/use-cycle-phase'
+import { usePrefersReducedMotion } from '../hooks/use-prefers-reduced-motion'
+import type { DotAnimationResolver, DotMatrixCommonProps } from '../types'
 
-export type DotmSquare18Props = DotMatrixCommonProps;
+export type DotmSquare18Props = DotMatrixCommonProps
 
-const BASE_OPACITY = 0.08;
-const LIT_OPACITY = 0.94;
-const CAP_OPACITY = 1;
-const STEP_COUNT = 24;
-const MAX_LEVEL = 5;
+const BASE_OPACITY = 0.08
+const LIT_OPACITY = 0.94
+const CAP_OPACITY = 1
+const STEP_COUNT = 24
+const MAX_LEVEL = 5
 
 function clampLevel(value: number): number {
-  return Math.max(1, Math.min(MAX_LEVEL, Math.round(value)));
+  return Math.max(1, Math.min(MAX_LEVEL, Math.round(value)))
 }
 
 export function DotmSquare18({
   speed = 1,
-  pattern = "full",
+  pattern = 'full',
   animated = true,
   hoverAnimated = false,
   ...rest
 }: DotmSquare18Props) {
-  const reducedMotion = usePrefersReducedMotion();
-  const { phase: matrixPhase, onMouseEnter, onMouseLeave } = useDotMatrixPhases({
+  const reducedMotion = usePrefersReducedMotion()
+  const {
+    phase: matrixPhase,
+    onMouseEnter,
+    onMouseLeave,
+  } = useDotMatrixPhases({
     animated: Boolean(animated && !reducedMotion),
     hoverAnimated: Boolean(hoverAnimated && !reducedMotion),
-    speed
-  });
+    speed,
+  })
   const animPhase = useCyclePhase({
-    active: !reducedMotion && matrixPhase !== "idle",
+    active: !reducedMotion && matrixPhase !== 'idle',
     cycleMsBase: 1750,
-    speed
-  });
+    speed,
+  })
 
   const resolver = useMemo<DotAnimationResolver>(() => {
     return ({ isActive, row, col, phase }) => {
       if (!isActive) {
-        return { className: "dmx-inactive" };
+        return { className: 'dmx-inactive' }
       }
 
-      const t = reducedMotion || phase === "idle" ? 0 : animPhase * STEP_COUNT;
-      const colPhase = t * 0.52 + col * 1.15;
-      const level = clampLevel(1 + ((Math.sin(colPhase) + 1) / 2) * (MAX_LEVEL - 1));
-      const topLitRow = MAX_LEVEL - level;
+      const t = reducedMotion || phase === 'idle' ? 0 : animPhase * STEP_COUNT
+      const colPhase = t * 0.52 + col * 1.15
+      const level = clampLevel(1 + ((Math.sin(colPhase) + 1) / 2) * (MAX_LEVEL - 1))
+      const topLitRow = MAX_LEVEL - level
 
       if (row > topLitRow) {
-        return { style: { opacity: LIT_OPACITY } };
+        return { style: { opacity: LIT_OPACITY } }
       }
       if (row === topLitRow) {
-        return { style: { opacity: CAP_OPACITY } };
+        return { style: { opacity: CAP_OPACITY } }
       }
-      return { style: { opacity: BASE_OPACITY } };
-    };
-  }, [reducedMotion, animPhase]);
+      return { style: { opacity: BASE_OPACITY } }
+    }
+  }, [reducedMotion, animPhase])
 
   return (
     <DotMatrixBase
@@ -72,5 +76,5 @@ export function DotmSquare18({
       reducedMotion={reducedMotion}
       animationResolver={resolver}
     />
-  );
+  )
 }

@@ -112,6 +112,6 @@ const Bubble = React.forwardRef(({ content, placement = "start", variant = "fill
 });
 Bubble.displayName = "Bubble";
 //#endregion
-export { Bubble, Bubble as default };
+export { Bubble as default };
 
 //# sourceMappingURL=Bubble.mjs.map

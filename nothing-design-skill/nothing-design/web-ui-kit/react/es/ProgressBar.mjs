@@ -1,2 +1,3 @@
-import { ProgressBar, progressBarValueVariants, progressBarVariants } from "./ProgressBar/ProgressBar.mjs";
-export { ProgressBar, ProgressBar as default, progressBarValueVariants, progressBarVariants };
+import { progressBarVariants, progressIndeterminateVariants, progressSegmentVariants, progressTrackVariants, progressValueVariants } from "./ProgressBar/progress-bar-variants.mjs";
+import ProgressBar from "./ProgressBar/ProgressBar.mjs";
+export { ProgressBar, ProgressBar as default, progressValueVariants as progressBarValueVariants, progressBarVariants, progressIndeterminateVariants, progressSegmentVariants, progressTrackVariants, progressValueVariants };

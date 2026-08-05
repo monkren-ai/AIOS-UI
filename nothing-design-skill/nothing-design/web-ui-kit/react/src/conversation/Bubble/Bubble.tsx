@@ -3,14 +3,22 @@ import { type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr, mergeSemanticProps } from '@/lib/utils'
 import { bubbleVariants } from './bubble-variants'
 
-export type BubbleSemanticType = 'root' | 'avatar' | 'body' | 'header' | 'content' | 'footer' | 'extra'
+export type BubbleSemanticType =
+  | 'root'
+  | 'avatar'
+  | 'body'
+  | 'header'
+  | 'content'
+  | 'footer'
+  | 'extra'
 
 export type BubblePlacement = 'start' | 'end'
 export type BubbleVariant = 'filled' | 'outlined' | 'borderless'
 export type BubbleShape = 'default' | 'round' | 'corner'
 
 export interface BubbleProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'content'>,
     VariantProps<typeof bubbleVariants> {
   content?: React.ReactNode
   placement?: BubblePlacement
@@ -89,9 +97,10 @@ export const Bubble = React.forwardRef<HTMLDivElement, BubbleProps>(
     },
     ref,
   ) => {
-    const { classNames, styles } = mergeSemanticProps<BubbleSemanticType>(
-      { classNames: userClassNames, styles: userStyles },
-    )
+    const { classNames, styles } = mergeSemanticProps<BubbleSemanticType>({
+      classNames: userClassNames,
+      styles: userStyles,
+    })
 
     const { displayed, isTyping } = useTypingRender(content, typing)
 

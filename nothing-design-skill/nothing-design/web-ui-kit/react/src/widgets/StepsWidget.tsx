@@ -7,13 +7,18 @@ import '@/styles/steps-widget.css'
 
 const stepsWidgetVariants = cva('nothing-steps-widget', {
   variants: {
-    variant: { compact: 'nothing-steps-widget--compact', full: 'nothing-steps-widget--full', default: '' },
+    variant: {
+      compact: 'nothing-steps-widget--compact',
+      full: 'nothing-steps-widget--full',
+      default: '',
+    },
   },
   defaultVariants: { variant: 'default' },
 })
 
 export interface StepsWidgetProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     Omit<VariantProps<typeof stepsWidgetVariants>, 'variant'> {
   steps?: number
   streak?: number
@@ -27,8 +32,17 @@ const STORAGE_KEY = 'nothing-ui:steps'
 
 const StepsWidgetInner = React.forwardRef<HTMLDivElement, StepsWidgetProps>(
   (
-    { className, steps: stepsProp, streak = 0, streakUnit = 'DAYS', variant, editable = true, style, ...props },
-    ref
+    {
+      className,
+      steps: stepsProp,
+      streak = 0,
+      streakUnit = 'DAYS',
+      variant,
+      editable = true,
+      style,
+      ...props
+    },
+    ref,
   ) => {
     const formatNumber = (num: number): string => num.toLocaleString('en-US')
     const [persisted, setPersisted] = useLocalStorageState<number>(STORAGE_KEY, 0)
@@ -107,7 +121,7 @@ const StepsWidgetInner = React.forwardRef<HTMLDivElement, StepsWidgetProps>(
         </div>
       </div>
     )
-  }
+  },
 )
 StepsWidgetInner.displayName = 'StepsWidget'
 

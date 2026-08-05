@@ -6,8 +6,7 @@ export type BubbleListSemanticType = 'root' | 'scroll' | 'bubble'
 
 export type BubbleRole = 'ai' | 'system' | 'user' | 'divider'
 
-export interface BubbleItemType
-  extends Omit<BubbleProps, 'classNames' | 'styles' | 'content'> {
+export interface BubbleItemType extends Omit<BubbleProps, 'classNames' | 'styles' | 'content'> {
   key: string | number
   role?: BubbleRole | string
   content?: React.ReactNode
@@ -17,17 +16,12 @@ export interface BubbleItemType
 
 export type RoleConfig = Pick<
   BubbleProps,
-  | 'placement'
-  | 'variant'
-  | 'shape'
-  | 'avatar'
-  | 'classNames'
-  | 'styles'
-  | 'loading'
-  | 'typing'
+  'placement' | 'variant' | 'shape' | 'avatar' | 'classNames' | 'styles' | 'loading' | 'typing'
 >
 
-export type RoleType = Partial<Record<BubbleRole | string, RoleConfig | ((item: BubbleItemType) => RoleConfig)>>
+export type RoleType = Partial<
+  Record<BubbleRole | string, RoleConfig | ((item: BubbleItemType) => RoleConfig)>
+>
 
 export interface BubbleListProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'role'> {
   items: BubbleItemType[]
@@ -49,7 +43,16 @@ function resolveRoleConfig(
 
 export const BubbleList = React.forwardRef<HTMLDivElement, BubbleListProps>(
   (
-    { items, role, autoScroll = true, className, style, classNames: userClassNames, styles: userStyles, ...rest },
+    {
+      items,
+      role,
+      autoScroll = true,
+      className,
+      style,
+      classNames: userClassNames,
+      styles: userStyles,
+      ...rest
+    },
     ref,
   ) => {
     const rootRef = React.useRef<HTMLDivElement>(null)
@@ -64,9 +67,10 @@ export const BubbleList = React.forwardRef<HTMLDivElement, BubbleListProps>(
       }
     }, [ref])
 
-    const { classNames, styles } = mergeSemanticProps<BubbleListSemanticType>(
-      { classNames: userClassNames, styles: userStyles },
-    )
+    const { classNames, styles } = mergeSemanticProps<BubbleListSemanticType>({
+      classNames: userClassNames,
+      styles: userStyles,
+    })
 
     React.useEffect(() => {
       if (!autoScroll || !rootRef.current) return
@@ -90,7 +94,14 @@ export const BubbleList = React.forwardRef<HTMLDivElement, BubbleListProps>(
           data-slot="bubble-list-scroll"
         >
           {items.map((item) => {
-            const { key, role: itemRole, content, classNames: itemClassNames, styles: itemStyles, ...itemProps } = item
+            const {
+              key,
+              role: itemRole,
+              content,
+              classNames: itemClassNames,
+              styles: itemStyles,
+              ...itemProps
+            } = item
             const resolvedRole = itemRole || 'ai'
             const roleConfig = resolveRoleConfig(role?.[resolvedRole], item)
             const mergedClassNames = mergeSemanticProps<BubbleSemanticType>(

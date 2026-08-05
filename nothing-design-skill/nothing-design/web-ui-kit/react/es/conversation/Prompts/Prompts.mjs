@@ -79,6 +79,6 @@ const Prompts = React.forwardRef(({ items, title, layout = "grid", onItemClick, 
 });
 Prompts.displayName = "Prompts";
 //#endregion
-export { Prompts, Prompts as default };
+export { Prompts as default };
 
 //# sourceMappingURL=Prompts.mjs.map

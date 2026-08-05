@@ -1,27 +1,9 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import { pomodoroButtonVariants, pomodoroCountVariants, pomodoroSegmentVariants, pomodoroStatusVariants, pomodoroTimerVariants, pomodoroTitleVariants, pomodoroVariants } from "./pomodoro-variants.mjs";
 import { useCallback, useEffect, useState } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Pomodoro.css";
 //#region src/Pomodoro/Pomodoro.tsx
-const pomodoroVariants = cva("nothing-pomodoro", {
-	variants: {
-		phase: {
-			work: "nothing-pomodoro--work",
-			break: "nothing-pomodoro--break"
-		},
-		running: {
-			true: "nothing-pomodoro--running",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		phase: "work",
-		running: false
-	}
-});
-const Pomodoro = React.forwardRef(({ className, workMinutes = 25, breakMinutes = 5, totalSegments = 25, updateInterval = 1e3, phase: phaseProp, running: runningProp, style, ...props }, ref) => {
+function Pomodoro({ className, workMinutes = 25, breakMinutes = 5, totalSegments = 25, updateInterval = 1e3, phase: phaseProp, running: runningProp, style, ref, ...props }) {
 	const [isWorkPhase, setIsWorkPhase] = useState(true);
 	const [isRunning, setIsRunning] = useState(false);
 	const [timeRemaining, setTimeRemaining] = useState(workMinutes * 60);
@@ -74,54 +56,76 @@ const Pomodoro = React.forwardRef(({ className, workMinutes = 25, breakMinutes =
 			running
 		}), className),
 		style,
+		"data-slot": "pomodoro",
 		"data-phase": dataAttr(phase),
 		"data-state": dataAttr(running ? "running" : "paused"),
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "pomodoro-header",
+				"data-slot": "pomodoro-header",
+				className: "mb-6 flex w-full items-baseline justify-between",
 				children: [/* @__PURE__ */ jsx("div", {
-					className: "pomodoro-title",
+					"data-slot": "pomodoro-title",
+					className: cn(pomodoroTitleVariants()),
 					children: "Pomodoro"
 				}), /* @__PURE__ */ jsxs("div", {
-					className: "pomodoro-count",
+					"data-slot": "pomodoro-count",
+					className: cn(pomodoroCountVariants()),
 					children: [completedCount, " completed"]
 				})]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "pomodoro-timer-wrapper",
+				"data-slot": "pomodoro-timer-wrapper",
+				className: "mb-6 flex w-full flex-col items-center",
 				children: [
 					/* @__PURE__ */ jsx("div", {
-						className: "pomodoro-timer",
+						"data-slot": "pomodoro-timer",
+						className: cn(pomodoroTimerVariants({ phase })),
 						children: formatTime(timeRemaining)
 					}),
 					/* @__PURE__ */ jsx("div", {
-						className: "pomodoro-status",
-						children: isWorkPhase ? "[WORK]" : "[BREAK]"
+						"data-slot": "pomodoro-status",
+						className: cn(pomodoroStatusVariants({ phase })),
+						children: phase === "work" ? "[WORK]" : "[BREAK]"
 					}),
 					/* @__PURE__ */ jsx("div", {
-						className: "pomodoro-progress",
-						children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", { className: cn("pomodoro-segment", index < filledSegments && "filled") }, index))
+						"data-slot": "pomodoro-progress",
+						className: "mb-6 flex h-3 w-full gap-0.5",
+						children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", {
+							"data-slot": "pomodoro-segment",
+							"data-filled": dataAttr(index < filledSegments),
+							className: cn(pomodoroSegmentVariants({
+								filled: index < filledSegments,
+								phase
+							}))
+						}, index))
 					})
 				]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "pomodoro-controls",
+				"data-slot": "pomodoro-controls",
+				className: "mb-6 flex gap-2",
 				children: [/* @__PURE__ */ jsx("button", {
-					className: "pomodoro-btn primary",
+					type: "button",
+					"data-slot": "pomodoro-button",
+					"data-action": "start-pause",
+					className: cn(pomodoroButtonVariants({ emphasis: "primary" })),
 					onClick: handleStartPause,
 					children: isRunning ? "Pause" : "Start"
 				}), /* @__PURE__ */ jsx("button", {
-					className: "pomodoro-btn",
+					type: "button",
+					"data-slot": "pomodoro-button",
+					"data-action": "reset",
+					className: cn(pomodoroButtonVariants()),
 					onClick: handleReset,
 					children: "Reset"
 				})]
 			})
 		]
 	});
-});
+}
 Pomodoro.displayName = "Pomodoro";
 //#endregion
-export { Pomodoro, Pomodoro as default, pomodoroVariants };
+export { Pomodoro as default };
 
 //# sourceMappingURL=Pomodoro.mjs.map

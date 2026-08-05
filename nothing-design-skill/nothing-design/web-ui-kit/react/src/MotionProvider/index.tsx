@@ -58,8 +58,8 @@ export function useMotionComponent(): MotionComponentType {
   if (!motion) {
     throw new Error(
       'useMotionComponent: no motion implementation found. ' +
-      'Wrap your app with <MotionProvider motion={motion}> or <ConfigProvider motion={motion}> ' +
-      'and pass your motion import from "motion/react" or "motion/react-m".'
+        'Wrap your app with <MotionProvider motion={motion}> or <ConfigProvider motion={motion}> ' +
+        'and pass your motion import from "motion/react" or "motion/react-m".',
     )
   }
   return motion
@@ -96,12 +96,10 @@ export interface MotionProviderProps {
  * </MotionProvider>
  * ```
  */
-export const MotionProvider = memo<MotionProviderProps>(
-  ({ children, motion }) => {
-    const value: MotionContextValue = { motion }
-    return <MotionContext value={value}>{children}</MotionContext>
-  },
-)
+export const MotionProvider = memo<MotionProviderProps>(({ children, motion }) => {
+  const value: MotionContextValue = { motion }
+  return <MotionContext value={value}>{children}</MotionContext>
+})
 
 MotionProvider.displayName = 'MotionProvider'
 

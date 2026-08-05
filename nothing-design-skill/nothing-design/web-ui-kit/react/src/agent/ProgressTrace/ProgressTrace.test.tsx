@@ -15,7 +15,10 @@ const steps = [
 describe('ProgressTrace', () => {
   it('renders with data-slot', () => {
     render(<ProgressTrace steps={steps} />)
-    expect(screen.getByText('TRACE').closest('[data-slot]')).toHaveAttribute('data-slot', 'progress-trace')
+    expect(screen.getByText('TRACE').closest('[data-slot]')).toHaveAttribute(
+      'data-slot',
+      'progress-trace',
+    )
   })
 
   it('renders title and completion count', () => {

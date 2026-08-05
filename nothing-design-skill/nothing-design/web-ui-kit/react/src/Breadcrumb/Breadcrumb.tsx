@@ -1,6 +1,10 @@
 import * as React from 'react'
-import { cn } from '@/lib/utils'
-import './Breadcrumb.css'
+import { cn, dataAttr } from '@/lib/utils'
+import {
+  breadcrumbLinkVariants,
+  breadcrumbVariants,
+  type BreadcrumbSize,
+} from './breadcrumb-variants'
 
 export type BreadcrumbItem = {
   label: string
@@ -8,31 +12,47 @@ export type BreadcrumbItem = {
   onClick?: () => void
 }
 
-export type BreadcrumbProps = React.HTMLAttributes<HTMLElement> & {
+export type BreadcrumbProps = React.ComponentPropsWithRef<'nav'> & {
   items: BreadcrumbItem[]
+  /** 字号。 */
+  size?: BreadcrumbSize
+  /** 层级之间的分隔符。 */
   separator?: string
 }
 
-export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
-  ({ className, items, separator = '/', ...props }, ref) => (
+export function Breadcrumb({
+  className,
+  items,
+  size = 'md',
+  separator = '/',
+  ...props
+}: BreadcrumbProps) {
+  return (
     <nav
-      ref={ref}
-      className={cn('nothing-breadcrumb', className)}
+      className={cn(breadcrumbVariants({ size }), className)}
+      data-slot="breadcrumb"
+      data-size={dataAttr(size)}
       aria-label="Breadcrumb"
       {...props}
     >
-      <ol className="nothing-breadcrumb__list">
+      <ol
+        data-slot="breadcrumb-list"
+        className="m-0 flex list-none flex-wrap items-center gap-0 p-0"
+      >
         {items.map((item, index) => {
           const isLast = index === items.length - 1
           return (
             <li
               key={index}
-              className="nothing-breadcrumb__item"
+              data-slot="breadcrumb-item"
+              data-current={dataAttr(isLast)}
+              className="inline-flex items-center gap-1"
               aria-current={isLast ? 'page' : undefined}
             >
               {!isLast && item.href && (
                 <a
-                  className="nothing-breadcrumb__link"
+                  data-slot="breadcrumb-link"
+                  className={breadcrumbLinkVariants({ current: false })}
                   href={item.href}
                   onClick={
                     item.onClick
@@ -48,7 +68,8 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
               )}
               {!isLast && !item.href && item.onClick && (
                 <button
-                  className="nothing-breadcrumb__link"
+                  data-slot="breadcrumb-link"
+                  className={breadcrumbLinkVariants({ current: false })}
                   onClick={item.onClick}
                   type="button"
                 >
@@ -56,15 +77,27 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                 </button>
               )}
               {!isLast && !item.href && !item.onClick && (
-                <span className="nothing-breadcrumb__link">{item.label}</span>
+                <span
+                  data-slot="breadcrumb-link"
+                  className={breadcrumbLinkVariants({ current: false })}
+                >
+                  {item.label}
+                </span>
               )}
               {isLast && (
-                <span className="nothing-breadcrumb__link nothing-breadcrumb__link--current">
+                <span
+                  data-slot="breadcrumb-link"
+                  className={breadcrumbLinkVariants({ current: true })}
+                >
                   {item.label}
                 </span>
               )}
               {!isLast && (
-                <span className="nothing-breadcrumb__separator" aria-hidden="true">
+                <span
+                  data-slot="breadcrumb-separator"
+                  className="mx-1 select-none text-foreground-disabled"
+                  aria-hidden="true"
+                >
                   {separator}
                 </span>
               )}
@@ -74,7 +107,9 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
       </ol>
     </nav>
   )
-)
+}
+
 Breadcrumb.displayName = 'Breadcrumb'
 
+export { breadcrumbVariants }
 export default Breadcrumb

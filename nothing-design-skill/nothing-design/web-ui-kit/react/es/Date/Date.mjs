@@ -1,30 +1,8 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { dateDualRingDayVariants, dateDualRingInnerVariants, dateDualRingOuterVariants, dateDualRingVariants, dateDualRingWeekdayVariants, dateRectDayVariants, dateRectMonthVariants, dateRectRingBgVariants, dateRectRingProgressVariants, dateRectVariants, dateRectWeekdayVariants, dateSerifDayVariants, dateSerifNumberVariants, dateSerifPeelVariants, dateSerifVariants } from "./date-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Date.css";
 //#region src/Date/Date.tsx
-const dateSerifVariants = cva("nothing-date--serif", {
-	variants: { theme: {
-		light: "nothing-date--serif-light",
-		dark: "nothing-date--serif-dark"
-	} },
-	defaultVariants: { theme: "light" }
-});
-const dateRectVariants = cva("nothing-date-rect", {
-	variants: { theme: {
-		light: "nothing-date-rect--light",
-		dark: "nothing-date-rect--dark"
-	} },
-	defaultVariants: { theme: "light" }
-});
-const dateDualRingVariants = cva("nothing-date-dual-ring", {
-	variants: { theme: {
-		light: "nothing-date-dual-ring--light",
-		dark: "nothing-date-dual-ring--dark"
-	} },
-	defaultVariants: { theme: "light" }
-});
 const RING_RADIUS = 25;
 const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
 const MONTHS = [
@@ -50,7 +28,7 @@ const WEEKDAYS = [
 	"FRI",
 	"SAT"
 ];
-const DateWidgetImpl = ({ type = "rect", theme = "light", updateInterval = 6e4, className, showPeel = false, onPeelClick }) => {
+function DateWidget({ type = "rect", theme = "light", updateInterval = 6e4, className, showPeel = false, onPeelClick, ref, ...props }) {
 	const [now, setNow] = React.useState(/* @__PURE__ */ new Date());
 	React.useEffect(() => {
 		const timer = setInterval(() => {
@@ -61,22 +39,29 @@ const DateWidgetImpl = ({ type = "rect", theme = "light", updateInterval = 6e4, 
 	const day = now.getDate();
 	const month = MONTHS[now.getMonth()];
 	const weekday = WEEKDAYS[now.getDay()];
-	const progress = now.getHours() + now.getMinutes() / 60;
-	const offset = RING_CIRCUMFERENCE - progress / 24 * RING_CIRCUMFERENCE;
+	const offset = RING_CIRCUMFERENCE - (now.getHours() + now.getMinutes() / 60) / 24 * RING_CIRCUMFERENCE;
 	if (type === "serif") return /* @__PURE__ */ jsxs("div", {
+		ref,
 		className: cn(dateSerifVariants({ theme }), className),
+		"data-slot": "date-widget",
+		"data-type": "serif",
+		"data-widget-theme": dataAttr(theme),
 		"data-state": dataAttr("serif"),
+		...props,
 		children: [
 			/* @__PURE__ */ jsx("span", {
-				className: "nothing-date__serif-day",
+				"data-slot": "date-widget-weekday",
+				className: cn(dateSerifDayVariants()),
 				children: weekday
 			}),
 			/* @__PURE__ */ jsx("span", {
-				className: "nothing-date__serif-number",
+				"data-slot": "date-widget-day",
+				className: cn(dateSerifNumberVariants()),
 				children: day
 			}),
 			showPeel && /* @__PURE__ */ jsx("div", {
-				className: "nothing-date__peel",
+				"data-slot": "date-widget-peel",
+				className: cn(dateSerifPeelVariants()),
 				onClick: onPeelClick,
 				role: onPeelClick ? "button" : void 0,
 				tabIndex: onPeelClick ? 0 : void 0,
@@ -88,20 +73,30 @@ const DateWidgetImpl = ({ type = "rect", theme = "light", updateInterval = 6e4, 
 		]
 	});
 	if (type === "rect") return /* @__PURE__ */ jsxs("div", {
+		ref,
 		className: cn(dateRectVariants({ theme }), className),
+		"data-slot": "date-widget",
+		"data-type": "rect",
+		"data-widget-theme": dataAttr(theme),
 		"data-state": dataAttr("rect"),
+		...props,
 		children: [/* @__PURE__ */ jsx("div", {
-			className: "nothing-date-rect__ring",
+			"data-slot": "date-widget-ring",
+			className: "size-16 shrink-0",
 			children: /* @__PURE__ */ jsxs("svg", {
-				className: "nothing-date-rect__ring-svg",
+				"data-slot": "date-widget-ring-svg",
+				className: "size-full -rotate-90",
 				viewBox: "0 0 64 64",
+				"aria-hidden": "true",
 				children: [/* @__PURE__ */ jsx("circle", {
-					className: "nothing-date-rect__ring-bg",
+					"data-slot": "date-widget-ring-track",
+					className: cn(dateRectRingBgVariants({ theme })),
 					cx: "32",
 					cy: "32",
 					r: RING_RADIUS
 				}), /* @__PURE__ */ jsx("circle", {
-					className: "nothing-date-rect__ring-progress",
+					"data-slot": "date-widget-ring-progress",
+					className: cn(dateRectRingProgressVariants()),
 					cx: "32",
 					cy: "32",
 					r: RING_RADIUS,
@@ -112,61 +107,70 @@ const DateWidgetImpl = ({ type = "rect", theme = "light", updateInterval = 6e4, 
 				})]
 			})
 		}), /* @__PURE__ */ jsxs("div", {
-			className: "nothing-date-rect__info",
+			"data-slot": "date-widget-info",
+			className: "flex flex-col gap-0.5",
 			children: [
 				/* @__PURE__ */ jsx("div", {
-					className: "nothing-date-rect__day",
+					"data-slot": "date-widget-day",
+					className: cn(dateRectDayVariants({ theme })),
 					children: day
 				}),
 				/* @__PURE__ */ jsx("div", {
-					className: "nothing-date-rect__month",
+					"data-slot": "date-widget-month",
+					className: cn(dateRectMonthVariants({ theme })),
 					children: month
 				}),
 				/* @__PURE__ */ jsx("div", {
-					className: "nothing-date-rect__weekday",
+					"data-slot": "date-widget-weekday",
+					className: cn(dateRectWeekdayVariants()),
 					children: weekday
 				})
 			]
 		})]
 	});
 	return /* @__PURE__ */ jsxs("div", {
+		ref,
 		className: cn(dateDualRingVariants({ theme }), className),
+		"data-slot": "date-widget",
+		"data-type": "dual-ring",
+		"data-widget-theme": dataAttr(theme),
 		"data-state": dataAttr("dual-ring"),
+		...props,
 		children: [/* @__PURE__ */ jsxs("svg", {
-			className: "nothing-date-dual-ring__svg",
+			"data-slot": "date-widget-ring-svg",
+			className: "absolute inset-0 size-full",
 			viewBox: "0 0 200 200",
+			"aria-hidden": "true",
 			children: [/* @__PURE__ */ jsx("circle", {
-				className: "nothing-date-dual-ring__outer",
+				"data-slot": "date-widget-ring-outer",
+				className: cn(dateDualRingOuterVariants({ theme })),
 				cx: "100",
 				cy: "100",
 				r: "95"
 			}), /* @__PURE__ */ jsx("circle", {
-				className: "nothing-date-dual-ring__inner",
+				"data-slot": "date-widget-ring-inner",
+				className: cn(dateDualRingInnerVariants({ theme })),
 				cx: "100",
 				cy: "100",
 				r: "85"
 			})]
 		}), /* @__PURE__ */ jsxs("div", {
-			className: "nothing-date-dual-ring__content",
+			"data-slot": "date-widget-content",
+			className: "relative z-[1] flex flex-col items-center justify-center gap-0.5",
 			children: [/* @__PURE__ */ jsx("div", {
-				className: "nothing-date-dual-ring__day",
+				"data-slot": "date-widget-day",
+				className: cn(dateDualRingDayVariants({ theme })),
 				children: day
 			}), /* @__PURE__ */ jsx("div", {
-				className: "nothing-date-dual-ring__weekday",
+				"data-slot": "date-widget-weekday",
+				className: cn(dateDualRingWeekdayVariants()),
 				children: weekday
 			})]
 		})]
 	});
-};
-const DateWidget = React.forwardRef((props, ref) => {
-	return /* @__PURE__ */ jsx("div", {
-		ref,
-		style: { display: "contents" },
-		children: /* @__PURE__ */ jsx(DateWidgetImpl, { ...props })
-	});
-});
+}
 DateWidget.displayName = "DateWidget";
 //#endregion
-export { DateWidget, DateWidget as default, dateDualRingVariants, dateRectVariants, dateSerifVariants };
+export { DateWidget as default };
 
 //# sourceMappingURL=Date.mjs.map

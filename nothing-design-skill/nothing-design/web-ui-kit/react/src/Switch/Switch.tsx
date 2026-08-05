@@ -1,71 +1,76 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
 import { Switch as BaseSwitch } from '@base-ui/react/switch'
 import { cn, dataAttr } from '@/lib/utils'
-import './Switch.css'
+import {
+  switchLabelVariants,
+  switchThumbVariants,
+  switchTrackVariants,
+  switchVariants,
+  type SwitchSize,
+} from './switch-variants'
 
-const switchVariants = cva('nothing-switch', {
-  variants: {
-    checked: {
-      true: 'nothing-switch--on',
-      false: '',
-    },
-    disabled: {
-      true: 'nothing-switch--disabled',
-      false: '',
-    },
-    size: {
-      sm: 'nothing-switch--sm',
-      md: '',
-      lg: 'nothing-switch--lg',
-    },
-  },
-  defaultVariants: { checked: false, disabled: false, size: 'md' },
-})
-
-export type SwitchProps = Omit<React.HTMLAttributes<HTMLLabelElement>, 'onChange'> & {
-  on?: boolean
+export type SwitchProps = Omit<React.ComponentPropsWithRef<'label'>, 'onChange'> & {
+  /** 受控开关状态。不传则组件自己维护。 */
+  checked?: boolean
+  /** 非受控时的初始状态。 */
+  defaultChecked?: boolean
   label?: string
   disabled?: boolean
-  onChange?: (on: boolean) => void
-} & VariantProps<typeof switchVariants>
+  /** 轨道与行高阶梯。 */
+  size?: SwitchSize
+  onChange?: (checked: boolean) => void
+}
 
-export const Switch = React.forwardRef<HTMLLabelElement, SwitchProps>(
-  ({ className, on: controlledOn, label, disabled, onChange, checked, size = 'md', ...props }, ref) => {
-    const [internalOn, setInternalOn] = React.useState(false)
-    const isOn = controlledOn !== undefined ? controlledOn : (checked ?? internalOn)
-    const isDisabled = !!disabled
+export function Switch({
+  className,
+  label,
+  disabled,
+  onChange,
+  checked,
+  defaultChecked = false,
+  size = 'md',
+  ref,
+  ...props
+}: SwitchProps) {
+  const [internalOn, setInternalOn] = React.useState(defaultChecked)
+  const isOn = checked ?? internalOn
+  const isDisabled = !!disabled
 
-    const handleCheckedChange = (newValue: boolean) => {
-      if (controlledOn === undefined) {
-        setInternalOn(newValue)
-      }
-      onChange?.(newValue)
+  const handleCheckedChange = (nextValue: boolean) => {
+    if (checked === undefined) {
+      setInternalOn(nextValue)
     }
+    onChange?.(nextValue)
+  }
 
-    return (
-      <label
-        ref={ref}
-        className={cn(switchVariants({ checked: isOn, disabled: isDisabled, size }), className)}
-        data-slot="switch"
-        data-state={dataAttr(isOn ? 'on' : 'off')}
-        data-disabled={dataAttr(isDisabled)}
-        data-size={dataAttr(size)}
-        {...props}
+  return (
+    <label
+      ref={ref}
+      className={cn(switchVariants({ size, checked: isOn, disabled: isDisabled }), className)}
+      data-slot="switch"
+      data-state={dataAttr(isOn ? 'on' : 'off')}
+      data-disabled={dataAttr(isDisabled)}
+      data-size={dataAttr(size)}
+      {...props}
+    >
+      <BaseSwitch.Root
+        className={switchTrackVariants({ size })}
+        data-slot="switch-track"
+        checked={isOn}
+        onCheckedChange={handleCheckedChange}
+        disabled={isDisabled}
       >
-        <BaseSwitch.Root
-          className="nothing-switch__track"
-          checked={isOn}
-          onCheckedChange={handleCheckedChange}
-          disabled={isDisabled}
-        >
-          <BaseSwitch.Thumb className="nothing-switch__thumb" />
-        </BaseSwitch.Root>
-        {label && <span className="nothing-switch__label">{label}</span>}
-      </label>
-    )
-  },
-)
+        <BaseSwitch.Thumb className={switchThumbVariants({ size })} data-slot="switch-thumb" />
+      </BaseSwitch.Root>
+      {label && (
+        <span className={switchLabelVariants({ size })} data-slot="switch-label">
+          {label}
+        </span>
+      )}
+    </label>
+  )
+}
+
 Switch.displayName = 'Switch'
 
 export { switchVariants }

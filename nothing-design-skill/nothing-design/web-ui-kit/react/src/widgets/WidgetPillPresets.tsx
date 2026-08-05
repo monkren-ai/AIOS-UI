@@ -23,23 +23,23 @@ export interface WidgetPillPreset {
 }
 
 export const WIDGET_PILL_PRESETS = {
-  mobileData:    { iconPath: 'p2bea2300',  label: 'Mobile Data',     theme: 'dark'  },
-  batteryShare:  { iconPath: 'p105235f0',  label: 'Battery Share',   theme: 'dark'  },
-  calculator:    { iconPath: 'p13cd59f0',  label: 'Calculator',      theme: 'dark'  },
-  batterySaver:  { iconPath: 'p19d8a940',  label: 'Battery Saver',   theme: 'dark'  },
-  homeControls:  { iconPath: 'p17852172',  label: 'Home Controls',   theme: 'dark'  },
-  nfc:           { iconPath: 'p1183f380',  label: 'NFC',             theme: 'dark'  },
-  bedtime:       { iconPath: 'p289138c0',  label: 'Bedtime Mode',    theme: 'dark'  },
-  darkMode:      { iconPath: 'p6adc900',   label: 'Dark Mode',       theme: 'dark'  },
-  weather:       {                              label: 'Sunny',          theme: 'dark',  dots: true  },
-  tvRemote:      { iconPath: 'p143d3df0',  label: 'TV Remote',       theme: 'dark'  },
-  storage:       { iconPath: 'p394c4300',  label: 'Storage',         theme: 'dark'  },
-  hotspot:       { iconPath: 'p2cbe2200',  label: 'Hotspot',         theme: 'dark'  },
-  nearbyShare:   { iconPath: 'p30a92a00',  label: 'Nearby Share',    theme: 'dark'  },
-  extraDim:      { iconPath: 'p2174f00',   label: 'Extra Dim',       theme: 'dark'  },
-  dataSaver:     { iconPath: 'p216ccf00',  label: 'Data Saver',      theme: 'dark'  },
-  torch:         { iconPath: 'p28fe7100',  label: 'Torch',           theme: 'dark'  },
-  bluetooth:     { iconPath: 'p192dc300',  label: 'Bluetooth',       theme: 'dark'  },
+  mobileData: { iconPath: 'p2bea2300', label: 'Mobile Data', theme: 'dark' },
+  batteryShare: { iconPath: 'p105235f0', label: 'Battery Share', theme: 'dark' },
+  calculator: { iconPath: 'p13cd59f0', label: 'Calculator', theme: 'dark' },
+  batterySaver: { iconPath: 'p19d8a940', label: 'Battery Saver', theme: 'dark' },
+  homeControls: { iconPath: 'p17852172', label: 'Home Controls', theme: 'dark' },
+  nfc: { iconPath: 'p1183f380', label: 'NFC', theme: 'dark' },
+  bedtime: { iconPath: 'p289138c0', label: 'Bedtime Mode', theme: 'dark' },
+  darkMode: { iconPath: 'p6adc900', label: 'Dark Mode', theme: 'dark' },
+  weather: { label: 'Sunny', theme: 'dark', dots: true },
+  tvRemote: { iconPath: 'p143d3df0', label: 'TV Remote', theme: 'dark' },
+  storage: { iconPath: 'p394c4300', label: 'Storage', theme: 'dark' },
+  hotspot: { iconPath: 'p2cbe2200', label: 'Hotspot', theme: 'dark' },
+  nearbyShare: { iconPath: 'p30a92a00', label: 'Nearby Share', theme: 'dark' },
+  extraDim: { iconPath: 'p2174f00', label: 'Extra Dim', theme: 'dark' },
+  dataSaver: { iconPath: 'p216ccf00', label: 'Data Saver', theme: 'dark' },
+  torch: { iconPath: 'p28fe7100', label: 'Torch', theme: 'dark' },
+  bluetooth: { iconPath: 'p192dc300', label: 'Bluetooth', theme: 'dark' },
 } as const satisfies Record<string, WidgetPillPreset>
 
 export type WidgetPillPresetName = keyof typeof WIDGET_PILL_PRESETS
@@ -47,7 +47,13 @@ export type WidgetPillPresetName = keyof typeof WIDGET_PILL_PRESETS
 export function renderPillPresetIcon(preset: WidgetPillPreset): React.ReactNode {
   if (preset.dots) {
     return (
-      <svg className="nothing-widget-icon-svg" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" aria-hidden="true">
+      <svg
+        className="nothing-widget-icon-svg"
+        fill="none"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
         <circle cx="6.58064" cy="9.67743" r="1.16129" />
         <circle cx="6.58064" cy="12" r="1.16129" />
         <circle cx="6.58064" cy="14.3225" r="1.16129" />
@@ -83,7 +89,13 @@ export function renderPillPresetIcon(preset: WidgetPillPreset): React.ReactNode 
   if (!preset.iconPath) return null
   const pathData = svgPaths[preset.iconPath] as string
   return (
-    <svg className="nothing-widget-icon-svg" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" aria-hidden="true">
+    <svg
+      className="nothing-widget-icon-svg"
+      fill="none"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
       <path d={pathData} />
     </svg>
   )

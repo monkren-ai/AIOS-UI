@@ -18,7 +18,12 @@ const commandPaletteVariants = cva('', {
 
 export type CommandPaletteProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
-  'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'
+  | 'onDrag'
+  | 'onDragStart'
+  | 'onDragEnd'
+  | 'onAnimationStart'
+  | 'onAnimationEnd'
+  | 'onAnimationIteration'
 >
 
 export const CommandPalette = React.forwardRef<HTMLDivElement, CommandPaletteProps>(
@@ -34,12 +39,18 @@ export const CommandPalette = React.forwardRef<HTMLDivElement, CommandPalettePro
         { label: `Focus mode · ${ctl.focus ? 'off' : 'on'}`, run: () => ctl.setFocus(!ctl.focus) },
         { label: 'Trigger sync sweep', run: () => bus.sync() },
         { label: 'Reroll clock', run: () => bus.reroll() },
-        { label: `Motion FX · ${ctl.motionOff ? 'on' : 'off'}`, run: () => ctl.setMotionOff(!ctl.motionOff) },
-        { label: `Auto sweep · ${ctl.autoSweep ? 'off' : 'on'}`, run: () => ctl.setAutoSweep(!ctl.autoSweep) },
+        {
+          label: `Motion FX · ${ctl.motionOff ? 'on' : 'off'}`,
+          run: () => ctl.setMotionOff(!ctl.motionOff),
+        },
+        {
+          label: `Auto sweep · ${ctl.autoSweep ? 'off' : 'on'}`,
+          run: () => ctl.setAutoSweep(!ctl.autoSweep),
+        },
       ],
       [ctl],
     )
-    const list = cmds.filter(c => c.label.toLowerCase().includes(q.toLowerCase()))
+    const list = cmds.filter((c) => c.label.toLowerCase().includes(q.toLowerCase()))
 
     useEffect(() => inputRef.current?.focus(), [])
     useEffect(() => setSel(0), [q])
@@ -50,10 +61,10 @@ export const CommandPalette = React.forwardRef<HTMLDivElement, CommandPalettePro
       if (e.key === 'Escape') close()
       else if (e.key === 'ArrowDown') {
         e.preventDefault()
-        setSel(s => Math.min(list.length - 1, s + 1))
+        setSel((s) => Math.min(list.length - 1, s + 1))
       } else if (e.key === 'ArrowUp') {
         e.preventDefault()
-        setSel(s => Math.max(0, s - 1))
+        setSel((s) => Math.max(0, s - 1))
       } else if (e.key === 'Enter' && list[sel]) {
         list[sel].run()
         close()
@@ -92,7 +103,7 @@ export const CommandPalette = React.forwardRef<HTMLDivElement, CommandPalettePro
           <input
             ref={inputRef}
             value={q}
-            onChange={e => setQ(e.target.value)}
+            onChange={(e) => setQ(e.target.value)}
             placeholder="RUN COMMAND…"
             spellCheck={false}
             aria-label="Run command"
@@ -118,7 +129,7 @@ export const CommandPalette = React.forwardRef<HTMLDivElement, CommandPalettePro
         </MotionDiv>
       </MotionDiv>
     )
-  }
+  },
 )
 CommandPalette.displayName = 'CommandPalette'
 

@@ -11,7 +11,9 @@ interface NullframeSectionProps {
 export function NullframeSection({ t }: NullframeSectionProps) {
   return (
     <CategorySection id="nullframe" title={t('Nullframe 仪表盘', 'Nullframe Dashboard')}>
-      <Suspense fallback={<div className="showcase-suspense-fallback">{t('加载中…', 'Loading...')}</div>}>
+      <Suspense
+        fallback={<div className="showcase-suspense-fallback">{t('加载中…', 'Loading...')}</div>}
+      >
         <NullframeDashboard />
       </Suspense>
     </CategorySection>

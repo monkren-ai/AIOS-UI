@@ -16,11 +16,11 @@ type AnyComponent = React.ComponentType<Record<string, unknown>>
  * 自动把 ref 透传给原始组件。
  */
 export function withWidgetCard<P extends object>(
-  Component: React.ForwardRefExoticComponent<P & React.RefAttributes<unknown>>
+  Component: React.ForwardRefExoticComponent<P & React.RefAttributes<unknown>>,
 ): React.ForwardRefExoticComponent<P & WithCardProps & React.RefAttributes<unknown>>
 
 export function withWidgetCard<P extends object>(
-  Component: React.FC<P>
+  Component: React.FC<P>,
 ): React.ForwardRefExoticComponent<P & WithCardProps & React.RefAttributes<unknown>>
 
 export function withWidgetCard<P extends object>(Component: AnyComponent) {

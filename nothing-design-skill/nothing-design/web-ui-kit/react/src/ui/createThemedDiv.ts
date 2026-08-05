@@ -39,9 +39,7 @@ type PropsFromVariants<V extends Variants> = {
 export type ThemedDivProps<V extends Variants> = PropsFromVariants<V> &
   Omit<React.HTMLAttributes<HTMLElement>, keyof PropsFromVariants<V>>
 
-export function createThemedDiv<V extends Variants>(
-  opts: CreateThemedDivOptions<V>
-) {
+export function createThemedDiv<V extends Variants>(opts: CreateThemedDivOptions<V>) {
   const { name, baseClass, variants, defaultVariants, as: Tag = 'div' } = opts
 
   const variantFn = cva(baseClass ?? '', {
@@ -57,20 +55,15 @@ export function createThemedDiv<V extends Variants>(
     for (const k of Object.keys(variants)) {
       ;(variantValues as Record<string, unknown>)[k] = (rest as Record<string, unknown>)[k]
     }
-    const dataEntries = Object.entries(variantValues).filter(
-      ([, v]) => v !== undefined
-    )
+    const dataEntries = Object.entries(variantValues).filter(([, v]) => v !== undefined)
 
-    return React.createElement(
-      Tag,
-      {
-        ref,
-        className: cn(variantFn(variantValues as Parameters<typeof variantFn>[0]), className),
-        'data-name': name,
-        ...Object.fromEntries(dataEntries.map(([k, v]) => [`data-${k}`, dataAttr(v as string)])),
-        ...rest,
-      }
-    )
+    return React.createElement(Tag, {
+      ref,
+      className: cn(variantFn(variantValues as Parameters<typeof variantFn>[0]), className),
+      'data-name': name,
+      ...Object.fromEntries(dataEntries.map(([k, v]) => [`data-${k}`, dataAttr(v as string)])),
+      ...rest,
+    })
   })
   Component.displayName = name
   return Component

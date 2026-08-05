@@ -1,2 +1,3 @@
-import { Collapsible, collapsibleVariants } from "./Collapsible/Collapsible.mjs";
-export { Collapsible, collapsibleVariants, Collapsible as default };
+import { collapsibleContentInnerVariants, collapsibleContentVariants, collapsibleTriggerVariants, collapsibleVariants } from "./Collapsible/collapsible-variants.mjs";
+import Collapsible from "./Collapsible/Collapsible.mjs";
+export { Collapsible, collapsibleContentInnerVariants, collapsibleContentVariants, collapsibleTriggerVariants, collapsibleVariants, Collapsible as default };

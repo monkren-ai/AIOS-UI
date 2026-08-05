@@ -1,54 +1,36 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { checkboxBoxVariants, checkboxCheckVariants, checkboxDashVariants, checkboxIndicatorVariants, checkboxLabelVariants, checkboxVariants } from "./checkbox-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import { Checkbox } from "@base-ui/react/checkbox";
-import "./Checkbox.css";
 //#region src/Checkbox/Checkbox.tsx
-const checkboxVariants = cva("nothing-checkbox", {
-	variants: {
-		isChecked: {
-			true: "nothing-checkbox--checked",
-			false: ""
-		},
-		indeterminate: {
-			true: "nothing-checkbox--indeterminate",
-			false: ""
-		},
-		disabled: {
-			true: "nothing-checkbox--disabled",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		isChecked: false,
-		indeterminate: false,
-		disabled: false
-	}
-});
-const Checkbox$1 = React.forwardRef(({ className, checked: controlledChecked, defaultChecked = false, onCheckedChange, disabled, label, id, ...props }, ref) => {
+function Checkbox$1({ className, checked: controlledChecked, defaultChecked = false, onCheckedChange, disabled, label, size = "md", id, ref, ...props }) {
 	const [internalChecked, setInternalChecked] = React.useState(defaultChecked);
 	const isControlled = controlledChecked !== void 0;
 	const isChecked = isControlled ? controlledChecked : internalChecked;
 	const isDisabled = !!disabled;
 	const isIndeterminate = isChecked === "indeterminate";
 	const handleCheckedChange = React.useCallback((nextChecked) => {
-		const nextValue = nextChecked;
-		if (!isControlled) setInternalChecked(nextValue);
-		onCheckedChange?.(nextValue);
+		if (!isControlled) setInternalChecked(nextChecked);
+		onCheckedChange?.(nextChecked);
 	}, [isControlled, onCheckedChange]);
+	const state = isIndeterminate ? "indeterminate" : isChecked ? "checked" : "unchecked";
 	return /* @__PURE__ */ jsxs("label", {
 		ref,
 		className: cn(checkboxVariants({
+			size,
 			isChecked: !!isChecked,
 			indeterminate: isIndeterminate,
 			disabled: isDisabled
 		}), className),
-		"data-state": dataAttr(isIndeterminate ? "indeterminate" : isChecked ? "checked" : "unchecked"),
+		"data-slot": "checkbox",
+		"data-size": dataAttr(size),
+		"data-state": dataAttr(state),
 		"data-disabled": dataAttr(isDisabled),
 		...props,
 		children: [/* @__PURE__ */ jsx(Checkbox.Root, {
-			className: "nothing-checkbox__box",
+			className: checkboxBoxVariants({ size }),
+			"data-slot": "checkbox-box",
 			checked: isIndeterminate ? false : !!isChecked,
 			indeterminate: isIndeterminate,
 			defaultChecked: isControlled ? void 0 : defaultChecked,
@@ -56,10 +38,12 @@ const Checkbox$1 = React.forwardRef(({ className, checked: controlledChecked, de
 			disabled: isDisabled,
 			id,
 			children: /* @__PURE__ */ jsxs(Checkbox.Indicator, {
-				className: "nothing-checkbox__indicator",
+				className: checkboxIndicatorVariants(),
+				"data-slot": "checkbox-indicator",
 				keepMounted: true,
 				children: [/* @__PURE__ */ jsx("svg", {
-					className: "nothing-checkbox__check",
+					className: checkboxCheckVariants({ size }),
+					"data-slot": "checkbox-check",
 					viewBox: "0 0 14 14",
 					fill: "none",
 					"aria-hidden": "true",
@@ -71,7 +55,8 @@ const Checkbox$1 = React.forwardRef(({ className, checked: controlledChecked, de
 						strokeLinejoin: "round"
 					})
 				}), /* @__PURE__ */ jsx("svg", {
-					className: "nothing-checkbox__dash",
+					className: checkboxDashVariants({ size }),
+					"data-slot": "checkbox-dash",
 					viewBox: "0 0 14 14",
 					fill: "none",
 					"aria-hidden": "true",
@@ -84,13 +69,14 @@ const Checkbox$1 = React.forwardRef(({ className, checked: controlledChecked, de
 				})]
 			})
 		}), label && /* @__PURE__ */ jsx("span", {
-			className: "nothing-checkbox__label",
+			className: checkboxLabelVariants({ size }),
+			"data-slot": "checkbox-label",
 			children: label
 		})]
 	});
-});
+}
 Checkbox$1.displayName = "Checkbox";
 //#endregion
-export { Checkbox$1 as Checkbox, Checkbox$1 as default, checkboxVariants };
+export { Checkbox$1 as default };
 
 //# sourceMappingURL=Checkbox.mjs.map

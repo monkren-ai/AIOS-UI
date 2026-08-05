@@ -1,2 +1,3 @@
-import { QuickToggle, quickToggleVariants } from "./QuickToggle/QuickToggle.mjs";
+import { quickToggleVariants } from "./QuickToggle/quick-toggle-variants.mjs";
+import QuickToggle from "./QuickToggle/QuickToggle.mjs";
 export { QuickToggle, QuickToggle as default, quickToggleVariants };

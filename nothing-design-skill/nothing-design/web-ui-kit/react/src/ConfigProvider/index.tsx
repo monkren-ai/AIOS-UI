@@ -3,6 +3,8 @@
 import { createContext, memo, type ReactNode, useContext, useMemo } from 'react'
 import { MotionProvider, type MotionComponentType } from '@/MotionProvider'
 import { ThemeProvider, type Theme } from '@/ThemeProvider'
+import { DirectionProvider, type Direction } from '@/DirectionProvider'
+import { ReducedMotionProvider } from '@/ReducedMotionProvider'
 
 /**
  * CDN 代理类型
@@ -127,6 +129,14 @@ export interface ConfigProviderProps {
    */
   onThemeChange?: (theme: Theme) => void
   /**
+   * 布局方向，默认 'ltr'。会同步写到 `<html dir>` 上，让 CSS 逻辑属性正确镜像。
+   */
+  dir?: Direction
+  /**
+   * 覆盖 `prefers-reduced-motion`。不传则跟随系统。
+   */
+  reducedMotion?: boolean
+  /**
    * Motion 组件集合，必传。
    * 从 `motion/react` 或 `motion/react-m` 导入后传入。
    *
@@ -164,7 +174,16 @@ export interface ConfigProviderProps {
  * ```
  */
 export const ConfigProvider = memo<ConfigProviderProps>(
-  ({ children, config, defaultTheme, enableSystem = true, onThemeChange, motion }) => {
+  ({
+    children,
+    config,
+    defaultTheme,
+    enableSystem = true,
+    onThemeChange,
+    dir = 'ltr',
+    reducedMotion,
+    motion,
+  }) => {
     const configValue = useMemo(() => config ?? null, [config])
 
     return (
@@ -174,7 +193,11 @@ export const ConfigProvider = memo<ConfigProviderProps>(
           enableSystem={enableSystem}
           onThemeChange={onThemeChange}
         >
-          <MotionProvider motion={motion}>{children}</MotionProvider>
+          <DirectionProvider dir={dir}>
+            <ReducedMotionProvider force={reducedMotion}>
+              <MotionProvider motion={motion}>{children}</MotionProvider>
+            </ReducedMotionProvider>
+          </DirectionProvider>
         </ThemeProvider>
       </ConfigContext>
     )

@@ -1,118 +1,86 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { resolveToggleVariant, toggleGroupVariants, toggleVariants } from "./toggle-variants.mjs";
 import * as React from "react";
 import { jsx } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Toggle.css";
 //#region src/Toggle/Toggle.tsx
-const toggleVariants = cva("nothing-toggle", {
-	variants: {
-		variant: {
-			default: "nothing-toggle--default",
-			outline: "nothing-toggle--outline"
-		},
-		size: {
-			sm: "nothing-toggle--sm",
-			md: "nothing-toggle--md",
-			lg: "nothing-toggle--lg"
-		},
-		pressed: {
-			true: "nothing-toggle--pressed",
-			false: ""
-		},
-		disabled: {
-			true: "nothing-toggle--disabled",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		variant: "default",
-		size: "md",
-		pressed: false,
-		disabled: false
-	}
-});
-const toggleGroupVariants = cva("nothing-toggle-group", {
-	variants: { variant: {
-		default: "nothing-toggle-group--default",
-		outline: "nothing-toggle-group--outline"
-	} },
-	defaultVariants: { variant: "default" }
-});
 const ToggleGroupContext = React.createContext(null);
-const Toggle = React.forwardRef(({ className, pressed: controlledPressed, defaultPressed, onPressedChange, disabled = false, variant = "default", size = "md", value, children, onClick, ...props }, ref) => {
+function Toggle({ className, pressed: controlledPressed, defaultPressed, onPressedChange, disabled = false, variant, size, value, children, onClick, ref, ...props }) {
 	const [internalPressed, setInternalPressed] = React.useState(defaultPressed ?? false);
 	const group = React.useContext(ToggleGroupContext);
 	const isPressed = group ? group.value.includes(value ?? "") : controlledPressed !== void 0 ? controlledPressed : internalPressed;
-	const activeVariant = group?.variant ?? variant;
-	const activeSize = group?.size ?? size;
-	const handleClick = (e) => {
+	const activeVariant = group?.variant ?? resolveToggleVariant(variant) ?? "soft";
+	const activeSize = group?.size ?? size ?? "md";
+	const handleClick = (event) => {
 		if (disabled) return;
 		if (group && value !== void 0) group.onToggle(value);
 		else {
-			const newValue = !isPressed;
-			if (controlledPressed === void 0) setInternalPressed(newValue);
-			onPressedChange?.(newValue);
+			const nextPressed = !isPressed;
+			if (controlledPressed === void 0) setInternalPressed(nextPressed);
+			onPressedChange?.(nextPressed);
 		}
-		onClick?.(e);
-	};
-	const handleKeyDown = (e) => {
-		if (e.key === " " || e.key === "Enter") {
-			e.preventDefault();
-			handleClick(e);
-		}
+		onClick?.(event);
 	};
 	return /* @__PURE__ */ jsx("button", {
 		ref,
+		type: "button",
 		className: cn(toggleVariants({
 			variant: activeVariant,
-			size: activeSize,
-			pressed: isPressed,
-			disabled
+			size: activeSize
 		}), className),
 		onClick: handleClick,
-		onKeyDown: handleKeyDown,
 		disabled,
-		role: "button",
 		"aria-pressed": isPressed,
-		type: "button",
+		"data-slot": "toggle",
+		"data-variant": dataAttr(activeVariant),
+		"data-size": dataAttr(activeSize),
+		"data-pressed": dataAttr(isPressed),
 		"data-state": dataAttr(isPressed ? "pressed" : "unpressed"),
 		"data-disabled": dataAttr(disabled),
 		...props,
 		children
 	});
-});
+}
 Toggle.displayName = "Toggle";
-const ToggleGroup = React.forwardRef(({ className, value: controlledValue, defaultValue, onValueChange, variant = "default", size = "md", children, ...props }, ref) => {
+function ToggleGroup({ className, value: controlledValue, defaultValue, onValueChange, variant, size = "md", children, ref, ...props }) {
 	const [internalValue, setInternalValue] = React.useState(defaultValue ?? []);
 	const activeValue = controlledValue !== void 0 ? controlledValue : internalValue;
+	const resolvedVariant = resolveToggleVariant(variant) ?? "soft";
 	const handleToggle = React.useCallback((itemValue) => {
-		const newValue = activeValue.includes(itemValue) ? activeValue.filter((v) => v !== itemValue) : [...activeValue, itemValue];
-		if (controlledValue === void 0) setInternalValue(newValue);
-		onValueChange?.(newValue);
+		const nextValue = activeValue.includes(itemValue) ? activeValue.filter((entry) => entry !== itemValue) : [...activeValue, itemValue];
+		if (controlledValue === void 0) setInternalValue(nextValue);
+		onValueChange?.(nextValue);
 	}, [
 		activeValue,
 		controlledValue,
 		onValueChange
 	]);
+	const context = React.useMemo(() => ({
+		value: activeValue,
+		onToggle: handleToggle,
+		variant: resolvedVariant,
+		size
+	}), [
+		activeValue,
+		handleToggle,
+		resolvedVariant,
+		size
+	]);
 	return /* @__PURE__ */ jsx(ToggleGroupContext.Provider, {
-		value: {
-			value: activeValue,
-			onToggle: handleToggle,
-			variant: variant ?? "default",
-			size: size ?? "md"
-		},
+		value: context,
 		children: /* @__PURE__ */ jsx("div", {
 			ref,
-			className: cn(toggleGroupVariants({ variant }), className),
+			className: cn(toggleGroupVariants({ variant: resolvedVariant }), className),
 			role: "group",
-			"data-variant": dataAttr(variant),
+			"data-slot": "toggle-group",
+			"data-variant": dataAttr(resolvedVariant),
+			"data-size": dataAttr(size),
 			...props,
 			children
 		})
 	});
-});
+}
 ToggleGroup.displayName = "ToggleGroup";
 //#endregion
-export { Toggle, Toggle as default, ToggleGroup, toggleGroupVariants, toggleVariants };
+export { ToggleGroup, Toggle as default };
 
 //# sourceMappingURL=Toggle.mjs.map

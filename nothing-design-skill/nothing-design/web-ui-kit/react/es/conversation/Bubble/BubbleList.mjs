@@ -1,5 +1,5 @@
 import { cn, mergeSemanticProps } from "../../lib/utils.mjs";
-import { Bubble } from "./Bubble.mjs";
+import Bubble from "./Bubble.mjs";
 import * as React from "react";
 import { jsx } from "react/jsx-runtime";
 //#region src/conversation/Bubble/BubbleList.tsx
@@ -76,6 +76,6 @@ const BubbleList = React.forwardRef(({ items, role, autoScroll = true, className
 });
 BubbleList.displayName = "BubbleList";
 //#endregion
-export { BubbleList, BubbleList as default };
+export { BubbleList as default };
 
 //# sourceMappingURL=BubbleList.mjs.map

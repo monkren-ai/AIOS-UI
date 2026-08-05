@@ -1,0 +1,18 @@
+.nothing-widget-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--widget-gap);
+  background: var(--widget-bg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-2xl);
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+
+.nothing-widget-grid--dense {
+  gap: calc(var(--widget-gap) / 2);
+}
+
+.nothing-widget-grid--compact {
+  gap: calc(var(--widget-gap) / 2);
+}

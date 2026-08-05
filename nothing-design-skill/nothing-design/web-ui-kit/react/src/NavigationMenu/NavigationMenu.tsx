@@ -1,11 +1,19 @@
 import * as React from 'react'
 import { useState, useRef, useCallback } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
 import { useClickOutside } from '@/hooks/useClickOutside'
 import { cn, dataAttr } from '@/lib/utils'
-import './NavigationMenu.css'
+import {
+  navigationMenuCaretVariants,
+  navigationMenuItemVariants,
+  navigationMenuLinkVariants,
+  navigationMenuListVariants,
+  navigationMenuSubmenuItemVariants,
+  navigationMenuSubmenuLinkVariants,
+  navigationMenuSubmenuVariants,
+  navigationMenuVariants,
+} from './navigation-menu-variants'
 
-interface NavMenuItem {
+export interface NavMenuItem {
   label: string
   href?: string
   onClick?: () => void
@@ -15,214 +23,246 @@ interface NavMenuItem {
 
 export type NavigationMenuOrientation = 'horizontal' | 'vertical'
 
-const navigationMenuVariants = cva('nothing-nav-menu', {
-  variants: {
-    orientation: {
-      horizontal: 'nothing-nav-menu--horizontal',
-      vertical: 'nothing-nav-menu--vertical',
-    },
-  },
-  defaultVariants: { orientation: 'horizontal' },
-})
-
-export interface NavigationMenuProps
-  extends Omit<React.HTMLAttributes<HTMLElement>, 'children'>,
-    Omit<VariantProps<typeof navigationMenuVariants>, 'orientation'> {
+export interface NavigationMenuProps extends Omit<React.ComponentPropsWithRef<'nav'>, 'children'> {
   items: NavMenuItem[]
   orientation?: NavigationMenuOrientation
 }
 
-export const NavigationMenu = React.forwardRef<HTMLElement, NavigationMenuProps>(
-  ({ className, items, orientation = 'horizontal', style, ...props }, ref) => {
-    const [openIndex, setOpenIndex] = useState<number | null>(null)
-    const [focusIndex, setFocusIndex] = useState<number | null>(null)
-    const containerRef = useRef<HTMLDivElement>(null)
-    const itemRefs = useRef<(HTMLElement | null)[]>([])
+const LINK_SELECTOR = '[data-slot="navigation-menu-link"]'
 
-    useClickOutside(containerRef, () => {
-      setOpenIndex(null)
-    })
+/** 方向键在 RTL 下要整体翻面，否则「右」会走向列表的开头。 */
+function isRtlElement(element: Element): boolean {
+  return getComputedStyle(element).direction === 'rtl'
+}
 
-    const handleTriggerClick = useCallback((index: number) => {
-      setOpenIndex((prev) => (prev === index ? null : index))
-    }, [])
+export function NavigationMenu({
+  className,
+  items,
+  orientation = 'horizontal',
+  style,
+  ...props
+}: NavigationMenuProps) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [focusIndex, setFocusIndex] = useState<number | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const itemRefs = useRef<(HTMLElement | null)[]>([])
 
-    const handleTriggerKeyDown = useCallback(
-      (index: number, e: React.KeyboardEvent) => {
-        const isHorizontal = orientation === 'horizontal'
+  useClickOutside(containerRef, () => {
+    setOpenIndex(null)
+  })
 
-        switch (e.key) {
-          case 'ArrowRight':
-            e.preventDefault()
-            if (isHorizontal) {
-              const next = (index + 1) % items.length
-              itemRefs.current[next]?.querySelector<HTMLElement>('.nothing-nav-menu__link')?.focus()
-            } else if (items[index].children) {
-              setOpenIndex(index)
-            }
-            break
-          case 'ArrowLeft':
-            e.preventDefault()
-            if (isHorizontal) {
-              const prev = (index - 1 + items.length) % items.length
-              itemRefs.current[prev]?.querySelector<HTMLElement>('.nothing-nav-menu__link')?.focus()
-            }
-            break
-          case 'ArrowDown':
-            e.preventDefault()
-            if (!isHorizontal) {
-              const next = (index + 1) % items.length
-              itemRefs.current[next]?.querySelector<HTMLElement>('.nothing-nav-menu__link')?.focus()
-            } else if (items[index].children) {
-              setOpenIndex(index)
-              setFocusIndex(0)
-            }
-            break
-          case 'ArrowUp':
-            e.preventDefault()
-            if (!isHorizontal) {
-              const prev = (index - 1 + items.length) % items.length
-              itemRefs.current[prev]?.querySelector<HTMLElement>('.nothing-nav-menu__link')?.focus()
-            }
-            break
-          case 'Enter':
-          case ' ':
-            e.preventDefault()
-            if (items[index].children) {
-              setOpenIndex((prev) => (prev === index ? null : index))
-            } else {
-              items[index].onClick?.()
-            }
-            break
-          case 'Escape':
-            e.preventDefault()
+  const focusItem = useCallback((index: number) => {
+    itemRefs.current[index]?.querySelector<HTMLElement>(LINK_SELECTOR)?.focus()
+  }, [])
+
+  const handleTriggerClick = useCallback((index: number) => {
+    setOpenIndex((prev) => (prev === index ? null : index))
+  }, [])
+
+  const handleTriggerKeyDown = useCallback(
+    (index: number, e: React.KeyboardEvent) => {
+      const isHorizontal = orientation === 'horizontal'
+      const rtl = isRtlElement(e.currentTarget)
+      // 「朝向列表末尾」的那个横向按键
+      const forwardKey = rtl ? 'ArrowLeft' : 'ArrowRight'
+      const backwardKey = rtl ? 'ArrowRight' : 'ArrowLeft'
+
+      const step = (delta: number) => {
+        const next = (index + delta + items.length) % items.length
+        focusItem(next)
+      }
+
+      switch (e.key) {
+        case forwardKey:
+          e.preventDefault()
+          if (isHorizontal) {
+            step(1)
+          } else if (items[index].children) {
+            setOpenIndex(index)
+          }
+          break
+        case backwardKey:
+          e.preventDefault()
+          if (isHorizontal) {
+            step(-1)
+          }
+          break
+        case 'ArrowDown':
+          e.preventDefault()
+          if (!isHorizontal) {
+            step(1)
+          } else if (items[index].children) {
+            setOpenIndex(index)
+            setFocusIndex(0)
+          }
+          break
+        case 'ArrowUp':
+          e.preventDefault()
+          if (!isHorizontal) {
+            step(-1)
+          }
+          break
+        case 'Enter':
+        case ' ':
+          e.preventDefault()
+          if (items[index].children) {
+            setOpenIndex((prev) => (prev === index ? null : index))
+          } else {
+            items[index].onClick?.()
+          }
+          break
+        case 'Escape':
+          e.preventDefault()
+          setOpenIndex(null)
+          break
+      }
+    },
+    [orientation, items, focusItem],
+  )
+
+  const handleSubmenuKeyDown = useCallback(
+    (itemIndex: number, e: React.KeyboardEvent) => {
+      const subItems = items[itemIndex].children ?? []
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault()
+          setFocusIndex((prev) => (prev !== null ? Math.min(prev + 1, subItems.length - 1) : 0))
+          break
+        case 'ArrowUp':
+          e.preventDefault()
+          setFocusIndex((prev) => (prev !== null ? Math.max(prev - 1, 0) : 0))
+          break
+        case 'Escape':
+          e.preventDefault()
+          setOpenIndex(null)
+          focusItem(itemIndex)
+          break
+        case 'Enter':
+        case ' ':
+          e.preventDefault()
+          if (focusIndex !== null) {
+            subItems[focusIndex]?.onClick?.()
             setOpenIndex(null)
-            break
-        }
-      },
-      [orientation, items]
-    )
+          }
+          break
+      }
+    },
+    [items, focusIndex, focusItem],
+  )
 
-    const handleSubmenuKeyDown = useCallback(
-      (itemIndex: number, e: React.KeyboardEvent) => {
-        const subItems = items[itemIndex].children ?? []
-        switch (e.key) {
-          case 'ArrowDown':
-            e.preventDefault()
-            setFocusIndex((prev) => (prev !== null ? Math.min(prev + 1, subItems.length - 1) : 0))
-            break
-          case 'ArrowUp':
-            e.preventDefault()
-            setFocusIndex((prev) => (prev !== null ? Math.max(prev - 1, 0) : 0))
-            break
-          case 'Escape':
-            e.preventDefault()
-            setOpenIndex(null)
-            itemRefs.current[itemIndex]?.querySelector<HTMLElement>('.nothing-nav-menu__link')?.focus()
-            break
-          case 'Enter':
-          case ' ':
-            e.preventDefault()
-            if (focusIndex !== null) {
-              subItems[focusIndex]?.onClick?.()
-              setOpenIndex(null)
-            }
-            break
-        }
-      },
-      [items, focusIndex]
-    )
+  return (
+    <nav
+      className={cn(navigationMenuVariants({ orientation }), className)}
+      style={style}
+      data-slot="navigation-menu"
+      data-orientation={dataAttr(orientation)}
+      {...props}
+    >
+      <div ref={containerRef}>
+        <ul
+          className={navigationMenuListVariants({ orientation })}
+          data-slot="navigation-menu-list"
+          role={orientation === 'horizontal' ? 'menubar' : 'menu'}
+        >
+          {items.map((item, index) => {
+            const hasChildren = item.children && item.children.length > 0
+            const isOpen = openIndex === index
 
-    return (
-      <nav
-        ref={ref as React.Ref<HTMLElement>}
-        className={cn(navigationMenuVariants({ orientation }), className)}
-        style={style}
-        data-orientation={dataAttr(orientation)}
-        {...props}
-      >
-        <div ref={containerRef}>
-          <ul className="nothing-nav-menu__list" role={orientation === 'horizontal' ? 'menubar' : 'menu'}>
-            {items.map((item, index) => {
-              const hasChildren = item.children && item.children.length > 0
-              const isOpen = openIndex === index
-
-              return (
-                <li
-                  key={index}
-                  className={cn(
-                    'nothing-nav-menu__item',
-                    item.active && 'nothing-nav-menu__item--active',
-                    hasChildren && 'nothing-nav-menu__item--has-children'
-                  )}
-                  data-active={dataAttr(item.active)}
-                  data-has-children={dataAttr(hasChildren)}
-                  data-open={dataAttr(isOpen)}
-                  ref={(el) => {
-                    itemRefs.current[index] = el
+            return (
+              <li
+                key={index}
+                className={navigationMenuItemVariants()}
+                data-slot="navigation-menu-item"
+                data-active={dataAttr(item.active)}
+                data-has-children={dataAttr(hasChildren)}
+                data-open={dataAttr(isOpen)}
+                ref={(el) => {
+                  itemRefs.current[index] = el
+                }}
+              >
+                <a
+                  className={navigationMenuLinkVariants({ active: item.active })}
+                  data-slot="navigation-menu-link"
+                  href={item.href ?? undefined}
+                  role="menuitem"
+                  aria-expanded={hasChildren ? isOpen : undefined}
+                  aria-haspopup={hasChildren ? 'menu' : undefined}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    if (hasChildren) {
+                      handleTriggerClick(index)
+                    } else {
+                      item.onClick?.()
+                    }
                   }}
+                  onKeyDown={(e) => handleTriggerKeyDown(index, e)}
                 >
-                  <a
-                    className="nothing-nav-menu__link"
-                    href={item.href ?? undefined}
-                    role="menuitem"
-                    aria-expanded={hasChildren ? isOpen : undefined}
-                    aria-haspopup={hasChildren ? 'menu' : undefined}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      if (hasChildren) {
-                        handleTriggerClick(index)
-                      } else {
-                        item.onClick?.()
-                      }
-                    }}
-                    onKeyDown={(e) => handleTriggerKeyDown(index, e)}
-                  >
-                    {item.label}
-                  </a>
+                  {item.label}
                   {hasChildren && (
-                    <div
-                      className={cn(
-                        'nothing-nav-menu__submenu',
-                        isOpen && 'nothing-nav-menu__submenu--visible'
-                      )}
-                      role="menu"
-                      onKeyDown={(e) => handleSubmenuKeyDown(index, e)}
-                    >
-                      {item.children!.map((subItem, subIndex) => (
-                        <div key={subIndex} className="nothing-nav-menu__submenu-item" role="none">
-                          <a
-                            className="nothing-nav-menu__submenu-link"
-                            href={subItem.href ?? undefined}
-                            role="menuitem"
-                            tabIndex={isOpen ? (focusIndex === subIndex ? 0 : -1) : -1}
-                            onClick={(e) => {
-                              e.preventDefault()
-                              subItem.onClick?.()
-                              setOpenIndex(null)
-                            }}
-                            ref={(el) => {
-                              if (isOpen && focusIndex === subIndex) {
-                                el?.focus()
-                              }
-                            }}
-                          >
-                            {subItem.label}
-                          </a>
-                        </div>
-                      ))}
-                    </div>
+                    <span
+                      className={navigationMenuCaretVariants()}
+                      data-slot="navigation-menu-caret"
+                      aria-hidden="true"
+                    />
                   )}
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      </nav>
-    )
-  }
-)
+                </a>
+                {hasChildren && (
+                  <div
+                    className={navigationMenuSubmenuVariants({ orientation })}
+                    data-slot="navigation-menu-submenu"
+                    data-open={dataAttr(isOpen)}
+                    role="menu"
+                    onKeyDown={(e) => handleSubmenuKeyDown(index, e)}
+                  >
+                    {item.children!.map((subItem, subIndex) => (
+                      <div
+                        key={subIndex}
+                        className={navigationMenuSubmenuItemVariants()}
+                        data-slot="navigation-menu-submenu-item"
+                        role="none"
+                      >
+                        <a
+                          className={navigationMenuSubmenuLinkVariants()}
+                          data-slot="navigation-menu-submenu-link"
+                          href={subItem.href ?? undefined}
+                          role="menuitem"
+                          tabIndex={isOpen ? (focusIndex === subIndex ? 0 : -1) : -1}
+                          onClick={(e) => {
+                            e.preventDefault()
+                            subItem.onClick?.()
+                            setOpenIndex(null)
+                          }}
+                          ref={(el) => {
+                            if (isOpen && focusIndex === subIndex) {
+                              el?.focus()
+                            }
+                          }}
+                        >
+                          {subItem.label}
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    </nav>
+  )
+}
+
 NavigationMenu.displayName = 'NavigationMenu'
 
-export { navigationMenuVariants }
+export {
+  navigationMenuVariants,
+  navigationMenuListVariants,
+  navigationMenuItemVariants,
+  navigationMenuLinkVariants,
+  navigationMenuCaretVariants,
+  navigationMenuSubmenuVariants,
+  navigationMenuSubmenuItemVariants,
+  navigationMenuSubmenuLinkVariants,
+}
 export default NavigationMenu

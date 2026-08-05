@@ -1,2 +1,3 @@
-import { Breadcrumb } from "./Breadcrumb/Breadcrumb.mjs";
-export { Breadcrumb, Breadcrumb as default };
+import { breadcrumbLinkVariants, breadcrumbVariants } from "./Breadcrumb/breadcrumb-variants.mjs";
+import Breadcrumb from "./Breadcrumb/Breadcrumb.mjs";
+export { Breadcrumb, breadcrumbLinkVariants, breadcrumbVariants, Breadcrumb as default };

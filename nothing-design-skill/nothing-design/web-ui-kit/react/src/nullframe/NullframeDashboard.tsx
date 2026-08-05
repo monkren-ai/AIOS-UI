@@ -35,8 +35,10 @@ const nullframeDashboardVariants = cva('', {
   defaultVariants: { focus: false, motion: 'on' },
 })
 
-export interface NullframeDashboardProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface NullframeDashboardProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'children'
+> {
   children?: React.ReactNode
 }
 
@@ -56,7 +58,7 @@ export const NullframeDashboard = React.forwardRef<HTMLDivElement, NullframeDash
       const h = (e: KeyboardEvent) => {
         if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
           e.preventDefault()
-          setPaletteOpen(o => !o)
+          setPaletteOpen((o) => !o)
         }
       }
       window.addEventListener('keydown', h)
@@ -111,7 +113,7 @@ export const NullframeDashboard = React.forwardRef<HTMLDivElement, NullframeDash
         </div>
       </CtlCtx.Provider>
     )
-  }
+  },
 )
 NullframeDashboard.displayName = 'NullframeDashboard'
 

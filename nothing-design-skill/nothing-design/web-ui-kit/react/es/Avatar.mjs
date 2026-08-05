@@ -1,2 +1,3 @@
-import { Avatar, avatarVariants } from "./Avatar/Avatar.mjs";
-export { Avatar, avatarVariants, Avatar as default };
+import { avatarFallbackVariants, avatarVariants } from "./Avatar/avatar-variants.mjs";
+import Avatar from "./Avatar/Avatar.mjs";
+export { Avatar, avatarFallbackVariants, avatarVariants, Avatar as default };

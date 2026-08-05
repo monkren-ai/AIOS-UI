@@ -1,7 +1,30 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { cva } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
+import {
+  blinkingSeparatorVariants,
+  musicPlayerVariants,
+  playerAlbumArtVariants,
+  playerArtistVariants,
+  playerButtonVariants,
+  playerCompactAlbumVariants,
+  playerCompactInfoTextVariants,
+  playerCompactInfoVariants,
+  playerCompactProgressFillVariants,
+  playerCompactProgressVariants,
+  playerCompactSourceVariants,
+  playerCompactTopVariants,
+  playerControlsVariants,
+  playerInfoVariants,
+  playerProgressBarVariants,
+  playerProgressSegmentVariants,
+  playerProgressVariants,
+  playerRecordingIndicatorVariants,
+  playerTimeVariants,
+  playerTitleVariants,
+  type MusicPlayerVariant,
+} from './music-player-variants'
 import './MusicPlayer.css'
 
 interface Track {
@@ -19,41 +42,22 @@ interface BlinkingSeparatorProps {
 export const BlinkingSeparator: React.FC<BlinkingSeparatorProps> = ({
   active = true,
   speed = 1000,
-  className
+  className,
 }) => {
   return (
     <span
-      className={cn(
-        'nothing-blinking-separator',
-        active && 'nothing-blinking-separator--active',
-        className
-      )}
+      className={cn(blinkingSeparatorVariants({ active }), className)}
+      data-slot="blinking-separator"
+      data-active={dataAttr(active)}
       style={active ? { animationDuration: `${speed}ms` } : undefined}
       aria-hidden="true"
     />
   )
 }
 
-const musicPlayerVariants = cva('nothing-music-player', {
-  variants: {
-    variant: {
-      default: '',
-      compact: 'nothing-music-player--compact',
-      mini: 'nothing-music-player--mini',
-    },
-    recording: {
-      true: 'nothing-music-player--recording',
-      false: '',
-    },
-  },
-  defaultVariants: { variant: 'default', recording: false },
-})
+export type { MusicPlayerVariant }
 
-export type MusicPlayerVariant = 'default' | 'compact' | 'mini'
-
-export interface MusicPlayerProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
-    Omit<VariantProps<typeof musicPlayerVariants>, 'variant' | 'recording'> {
+export interface MusicPlayerProps extends Omit<React.ComponentPropsWithRef<'div'>, 'children'> {
   totalSegments?: number
   updateInterval?: number
   tracks?: Track[]
@@ -80,27 +84,64 @@ const SPOTIFY_PATH =
 const widgetSubVariants = cva('', {
   variants: {
     theme: { light: 'widget-theme--light', dark: 'widget-theme--dark' },
-    size: { small: 'widget-size--small', medium: 'widget-size--medium', large: 'widget-size--large' },
+    size: {
+      small: 'widget-size--small',
+      medium: 'widget-size--medium',
+      large: 'widget-size--large',
+    },
   },
   defaultVariants: { theme: 'dark', size: 'medium' },
 })
 
 const miniGroupCircles: Array<[number, number]> = [
-  [12.9226, 1.60976], [5.36586, 23.9268], [24.1915, 23.9268], [20.4351, 1.60976],
-  [27.9476, 1.60976], [12.9226, 9.04878], [20.4351, 9.04878], [27.9476, 9.04878],
-  [12.9226, 5.32927], [5.36586, 27.6463], [24.1915, 27.6463], [20.4351, 5.32927],
-  [27.9476, 5.32927], [9.16646, 1.60976], [1.60976, 23.9268], [20.4354, 23.9268],
-  [16.679, 1.60976], [24.1915, 1.60976], [9.16646, 12.7683], [27.9476, 12.7683],
-  [9.16646, 9.04878], [16.679, 9.04878], [24.1915, 9.04878], [9.16646, 20.2073],
-  [27.9476, 20.2073], [9.16646, 23.9268], [27.9476, 23.9268], [9.16646, 5.32927],
-  [1.60976, 27.6463], [20.4354, 27.6463], [16.679, 5.32927], [24.1915, 5.32927],
-  [9.16646, 16.4878], [27.9476, 16.4878],
+  [12.9226, 1.60976],
+  [5.36586, 23.9268],
+  [24.1915, 23.9268],
+  [20.4351, 1.60976],
+  [27.9476, 1.60976],
+  [12.9226, 9.04878],
+  [20.4351, 9.04878],
+  [27.9476, 9.04878],
+  [12.9226, 5.32927],
+  [5.36586, 27.6463],
+  [24.1915, 27.6463],
+  [20.4351, 5.32927],
+  [27.9476, 5.32927],
+  [9.16646, 1.60976],
+  [1.60976, 23.9268],
+  [20.4354, 23.9268],
+  [16.679, 1.60976],
+  [24.1915, 1.60976],
+  [9.16646, 12.7683],
+  [27.9476, 12.7683],
+  [9.16646, 9.04878],
+  [16.679, 9.04878],
+  [24.1915, 9.04878],
+  [9.16646, 20.2073],
+  [27.9476, 20.2073],
+  [9.16646, 23.9268],
+  [27.9476, 23.9268],
+  [9.16646, 5.32927],
+  [1.60976, 27.6463],
+  [20.4354, 27.6463],
+  [16.679, 5.32927],
+  [24.1915, 5.32927],
+  [9.16646, 16.4878],
+  [27.9476, 16.4878],
 ]
 
 function MiniGroup() {
   return (
-    <div className="widget-col-1 h-[29.256px] ml-[17px] mt-[17px] widget-relative widget-row-1 w-[29.557px]" aria-hidden="true">
-      <svg className="nothing-widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 29.5574 29.2561">
+    <div
+      className="widget-col-1 h-[29.256px] ms-[17px] mt-[17px] widget-relative widget-row-1 w-[29.557px]"
+      aria-hidden="true"
+    >
+      <svg
+        className="nothing-widget-icon-svg"
+        fill="none"
+        preserveAspectRatio="none"
+        viewBox="0 0 29.5574 29.2561"
+      >
         <g id="Group 1">
           {miniGroupCircles.map(([cx, cy], idx) => (
             <circle
@@ -120,14 +161,29 @@ function MiniGroup() {
 
 function MiniIcons() {
   return (
-    <div className="content-stretch flex items-start justify-between widget-relative widget-shrink-0 w-full" data-name="Icons">
+    <div
+      className="content-stretch flex items-start justify-between widget-relative widget-shrink-0 w-full"
+      data-name="Icons"
+    >
       <div className="widget-grid-auto" data-name="Icon" aria-hidden="true">
-        <div className="widget-bg-grey widget-col-1 ml-0 mt-0 widget-relative widget-rounded-6 widget-card__svg--64" />
+        <div className="widget-bg-grey widget-col-1 ms-0 mt-0 widget-relative widget-rounded-6 widget-card__svg--64" />
         <MiniGroup />
       </div>
-      <div className="widget-relative widget-shrink-0 widget-card__svg--24" data-name="Spotify - Negative">
-        <svg className="nothing-widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
-          <path d={SPOTIFY_PATH} fill="var(--fill-0, var(--widget-white))" style={{ fill: 'var(--widget-white)', fillOpacity: 1 }} />
+      <div
+        className="widget-relative widget-shrink-0 widget-card__svg--24"
+        data-name="Spotify - Negative"
+      >
+        <svg
+          className="nothing-widget-icon-svg"
+          fill="none"
+          preserveAspectRatio="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d={SPOTIFY_PATH}
+            fill="var(--fill-0, var(--widget-white))"
+            style={{ fill: 'var(--widget-white)', fillOpacity: 1 }}
+          />
         </svg>
       </div>
     </div>
@@ -137,16 +193,22 @@ function MiniIcons() {
 function MiniLoadingBar() {
   return (
     <div className="widget-grid-loading" data-name="Loading Bar">
-      <div className="widget-bg-grey widget-col-1 h-[2px] ml-0 mt-0 widget-relative widget-row-1 w-full" />
-      <div className="widget-bg-light widget-col-1 h-[2px] ml-0 mt-0 widget-relative widget-row-1 w-[26.23%]" />
+      <div className="widget-bg-grey widget-col-1 h-[2px] ms-0 mt-0 widget-relative widget-row-1 w-full" />
+      <div className="widget-bg-light widget-col-1 h-[2px] ms-0 mt-0 widget-relative widget-row-1 w-[26.23%]" />
     </div>
   )
 }
 
 function MiniInfo() {
   return (
-    <div className="content-stretch flex flex-col gap-[12px] items-start widget-relative widget-shrink-0 w-full" data-name="Info">
-      <p className="widget-relative widget-shrink-0 widget-text widget-text--14 widget-text--grey widget-text--nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+    <div
+      className="content-stretch flex flex-col gap-[12px] items-start widget-relative widget-shrink-0 w-full"
+      data-name="Info"
+    >
+      <p
+        className="widget-relative widget-shrink-0 widget-text widget-text--14 widget-text--grey widget-text--nowrap"
+        style={{ fontVariationSettings: "'wdth' 100" }}
+      >
         Jim Hall - Concierto
       </p>
       <MiniLoadingBar />
@@ -156,281 +218,334 @@ function MiniInfo() {
 
 function MiniBullet() {
   return (
-    <div className="-translate-y-1/2 absolute h-[13px] right-[16px] top-[calc(50%-0.5px)] w-[4px]" data-name="Bullet">
-      <svg className="nothing-widget-icon-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 4 13">
+    <div
+      className="-translate-y-1/2 absolute h-[13px] end-[16px] top-[calc(50%-0.5px)] w-[4px]"
+      data-name="Bullet"
+    >
+      <svg
+        className="nothing-widget-icon-svg"
+        fill="none"
+        preserveAspectRatio="none"
+        viewBox="0 0 4 13"
+      >
         <g id="Bullet">
-          <circle cx="2" cy="2" r="2" style={{ fill: 'color(display-p3 0.2314 0.2235 0.2431)', fillOpacity: 1 }} />
-          <circle cx="2" cy="11" r="2" style={{ fill: 'color(display-p3 0.8824 0.8980 0.9176)', fillOpacity: 1 }} />
+          <circle
+            cx="2"
+            cy="2"
+            r="2"
+            style={{ fill: 'color(display-p3 0.2314 0.2235 0.2431)', fillOpacity: 1 }}
+          />
+          <circle
+            cx="2"
+            cy="11"
+            r="2"
+            style={{ fill: 'color(display-p3 0.8824 0.8980 0.9176)', fillOpacity: 1 }}
+          />
         </g>
       </svg>
     </div>
   )
 }
 
-interface MusicPlayerMiniProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+interface MusicPlayerMiniProps extends Omit<React.ComponentPropsWithRef<'div'>, 'children'> {
   theme?: 'light' | 'dark'
   size?: 'small' | 'medium' | 'large'
 }
 
-const MusicPlayerMini = React.forwardRef<HTMLDivElement, MusicPlayerMiniProps>(
-  ({ theme = 'dark', size = 'medium', className, style, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        style={style}
-        className={cn(
-          widgetSubVariants({ theme, size }),
-          `widget-card widget-card--152 widget-card--rounded widget-card--dark ${className || ''}`.trim()
-        )}
-        data-theme={dataAttr(theme)}
-        data-size={dataAttr(size)}
-        data-name="Music Player"
-        data-variant="mini"
-        aria-label="Music Player"
-        {...props}
-      >
-        <div className="flex flex-col justify-center size-full">
-          <div className="content-stretch flex flex-col items-start justify-between p-[16px] widget-relative size-full">
-            <MiniIcons />
-            <MiniInfo />
-            <MiniBullet />
-          </div>
+function MusicPlayerMini({
+  theme = 'dark',
+  size = 'medium',
+  className,
+  style,
+  ...props
+}: MusicPlayerMiniProps) {
+  return (
+    <div
+      style={style}
+      className={cn(
+        widgetSubVariants({ theme, size }),
+        'widget-card widget-card--152 widget-card--rounded widget-card--dark',
+        className,
+      )}
+      data-slot="music-player"
+      data-theme={dataAttr(theme)}
+      data-size={dataAttr(size)}
+      data-name="Music Player"
+      data-variant="mini"
+      aria-label="Music Player"
+      {...props}
+    >
+      <div className="flex flex-col justify-center size-full">
+        <div className="content-stretch flex flex-col items-start justify-between p-[16px] widget-relative size-full">
+          <MiniIcons />
+          <MiniInfo />
+          <MiniBullet />
         </div>
       </div>
-    )
-  }
-)
+    </div>
+  )
+}
+
 MusicPlayerMini.displayName = 'MusicPlayerMini'
 
-const MusicPlayerDefault = React.forwardRef<HTMLDivElement, MusicPlayerProps>(
-  (
-    {
-      className,
-      totalSegments = 20,
-      updateInterval = 1000,
-      tracks: tracksProp,
-      variant = 'default',
-      showRecordingIndicator = false,
-      sourceIcon,
-      recording = false,
-      style,
-      ...props
-    },
-    ref
-  ) => {
-    const safeTracks = tracksProp && tracksProp.length > 0 ? tracksProp : defaultTracks
-    const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
-    const [isPlaying, setIsPlaying] = useState(false)
-    const [currentTime, setCurrentTime] = useState(0)
+function MusicPlayerDefault({
+  className,
+  totalSegments = 20,
+  updateInterval = 1000,
+  tracks: tracksProp,
+  variant = 'default',
+  showRecordingIndicator = false,
+  sourceIcon,
+  recording = false,
+  style,
+  // theme / size 只对 mini 版型有意义，这里接住是为了不让它们漏到 DOM 上
+  theme: _theme,
+  size: _size,
+  ...props
+}: MusicPlayerProps) {
+  const safeTracks = tracksProp && tracksProp.length > 0 ? tracksProp : defaultTracks
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
 
-    const currentTrack = safeTracks[currentTrackIndex]
-    const percent = (currentTime / currentTrack.duration) * 100
-    const filledSegments = Math.round((percent / 100) * totalSegments)
+  const currentTrack = safeTracks[currentTrackIndex]
+  const percent = (currentTime / currentTrack.duration) * 100
+  const filledSegments = Math.round((percent / 100) * totalSegments)
 
-    const formatTime = (seconds: number) => {
-      const mins = Math.floor(seconds / 60)
-      const secs = seconds % 60
-      return `${mins}:${String(secs).padStart(2, '0')}`
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins}:${String(secs).padStart(2, '0')}`
+  }
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>
+
+    if (isPlaying) {
+      timer = setInterval(() => {
+        setCurrentTime((prev) => {
+          if (prev >= currentTrack.duration) {
+            setCurrentTrackIndex((p) => (p + 1) % safeTracks.length)
+            return 0
+          }
+          return prev + 1
+        })
+      }, updateInterval)
     }
 
-    useEffect(() => {
-      let timer: ReturnType<typeof setTimeout>
+    return () => clearInterval(timer)
+  }, [isPlaying, currentTrackIndex, updateInterval, currentTrack.duration, safeTracks.length])
 
-      if (isPlaying) {
-        timer = setInterval(() => {
-          setCurrentTime((prev) => {
-            if (prev >= currentTrack.duration) {
-              setCurrentTrackIndex((p) => (p + 1) % safeTracks.length)
-              return 0
-            }
-            return prev + 1
-          })
-        }, updateInterval)
-      }
+  const handleTogglePlay = () => {
+    setIsPlaying(!isPlaying)
+  }
 
-      return () => clearInterval(timer)
-    }, [isPlaying, currentTrackIndex, updateInterval, currentTrack.duration, safeTracks.length])
+  const handlePrev = () => {
+    setCurrentTrackIndex((prev) => (prev - 1 + safeTracks.length) % safeTracks.length)
+    setCurrentTime(0)
+  }
 
-    const handleTogglePlay = () => {
-      setIsPlaying(!isPlaying)
-    }
+  const handleNext = () => {
+    setCurrentTrackIndex((prev) => (prev + 1) % safeTracks.length)
+    setCurrentTime(0)
+  }
 
-    const handlePrev = () => {
-      setCurrentTrackIndex((prev) => (prev - 1 + safeTracks.length) % safeTracks.length)
-      setCurrentTime(0)
-    }
-
-    const handleNext = () => {
-      setCurrentTrackIndex((prev) => (prev + 1) % safeTracks.length)
-      setCurrentTime(0)
-    }
-
-    if (variant === 'compact') {
-      return (
-        <div
-          ref={ref}
-          className={cn(musicPlayerVariants({ variant, recording }), className)}
-          style={style}
-          data-variant={dataAttr(variant)}
-          data-state={dataAttr(isPlaying ? 'playing' : 'paused')}
-          data-recording={dataAttr(recording)}
-          {...props}
-        >
-          <div className="nothing-music-player__compact-top">
-            <div className="nothing-music-player__compact-album">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                  className="nothing-music-player__compact-album-icon"
-                  d="M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            {sourceIcon && (
-              <div className="nothing-music-player__compact-source">{sourceIcon}</div>
-            )}
-          </div>
-
-          <div className="nothing-music-player__compact-info">
-            <span className="nothing-music-player__compact-info-text">
-              {currentTrack.artist} - {currentTrack.title}
-            </span>
-            {showRecordingIndicator && <BlinkingSeparator active={isPlaying} />}
-          </div>
-
-          <div
-            className="nothing-music-player__compact-progress"
-            role="progressbar"
-            aria-valuenow={Math.round(percent)}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-label={`Playback progress: ${formatTime(currentTime)} of ${formatTime(currentTrack.duration)}`}
-          >
-            <div
-              className="nothing-music-player__compact-progress-fill"
-              style={{ width: `${percent}%` }}
-            />
-          </div>
-        </div>
-      )
-    }
-
+  if (variant === 'compact') {
     return (
       <div
-        ref={ref}
         className={cn(musicPlayerVariants({ variant, recording }), className)}
         style={style}
+        data-slot="music-player"
         data-variant={dataAttr(variant)}
         data-state={dataAttr(isPlaying ? 'playing' : 'paused')}
         data-recording={dataAttr(recording)}
         {...props}
       >
-        <div className="player-album-art">
-          <svg viewBox="0 0 24 24" fill="none">
-            <circle className="player-album-icon" cx="12" cy="12" r="10" strokeWidth="2" />
-            <circle className="player-album-icon" cx="12" cy="12" r="3" strokeWidth="2" />
-          </svg>
-        </div>
-
-        <div className="player-info">
-          <div className="player-title">{currentTrack.title}</div>
-          <div className="player-artist">{currentTrack.artist}</div>
-          {showRecordingIndicator && (
-            <div className="player-recording-indicator">
-              <BlinkingSeparator active={isPlaying} />
+        <div data-slot="music-player-compact-top" className={playerCompactTopVariants()}>
+          <div data-slot="music-player-album" className={playerCompactAlbumVariants()}>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M12 3v10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          {sourceIcon && (
+            <div data-slot="music-player-source" className={playerCompactSourceVariants()}>
+              {sourceIcon}
             </div>
           )}
         </div>
 
-        <div className="player-progress">
-          <div className="player-progress-bar">
-            {Array.from({ length: totalSegments }).map((_, index) => (
-              <div
-                key={index}
-                className={cn('player-progress-segment', index < filledSegments && 'filled')}
-              />
-            ))}
-          </div>
-          <div className="player-time">
-            <span>{formatTime(currentTime)}</span>
-            <span>{formatTime(currentTrack.duration)}</span>
-          </div>
+        <div data-slot="music-player-info" className={playerCompactInfoVariants()}>
+          <span data-slot="music-player-info-text" className={playerCompactInfoTextVariants()}>
+            {currentTrack.artist} - {currentTrack.title}
+          </span>
+          {showRecordingIndicator && <BlinkingSeparator active={isPlaying} />}
         </div>
 
-        <div className="player-controls">
-          <button className="player-btn" onClick={handlePrev} aria-label="Previous track">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                className="player-btn-icon"
-                d="M6 6h2v12H6zm3.5 6l8.5 6V6z"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <button
-            className="player-btn primary"
-            onClick={handleTogglePlay}
-            aria-label={isPlaying ? 'Pause' : 'Play'}
-          >
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              {isPlaying ? (
-                <path
-                  className="player-btn-icon"
-                  d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              ) : (
-                <path
-                  className="player-btn-icon"
-                  d="M8 5v14l11-7z"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              )}
-            </svg>
-          </button>
-          <button className="player-btn" onClick={handleNext} aria-label="Next track">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                className="player-btn-icon"
-                d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+        <div
+          data-slot="music-player-progress"
+          className={playerCompactProgressVariants()}
+          role="progressbar"
+          aria-valuenow={Math.round(percent)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={`Playback progress: ${formatTime(currentTime)} of ${formatTime(currentTrack.duration)}`}
+        >
+          <div
+            data-slot="music-player-progress-fill"
+            className={playerCompactProgressFillVariants()}
+            style={{ width: `${percent}%` }}
+          />
         </div>
       </div>
     )
   }
-)
+
+  return (
+    <div
+      className={cn(musicPlayerVariants({ variant, recording }), className)}
+      style={style}
+      data-slot="music-player"
+      data-variant={dataAttr(variant)}
+      data-state={dataAttr(isPlaying ? 'playing' : 'paused')}
+      data-recording={dataAttr(recording)}
+      {...props}
+    >
+      <div data-slot="music-player-album" className={playerAlbumArtVariants()}>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" strokeWidth="2" />
+          <circle cx="12" cy="12" r="3" strokeWidth="2" />
+        </svg>
+      </div>
+
+      <div data-slot="music-player-info" className={playerInfoVariants()}>
+        <div data-slot="music-player-title" className={playerTitleVariants()}>
+          {currentTrack.title}
+        </div>
+        <div data-slot="music-player-artist" className={playerArtistVariants()}>
+          {currentTrack.artist}
+        </div>
+        {showRecordingIndicator && (
+          <div data-slot="music-player-recording" className={playerRecordingIndicatorVariants()}>
+            <BlinkingSeparator active={isPlaying} />
+          </div>
+        )}
+      </div>
+
+      <div data-slot="music-player-progress" className={playerProgressVariants()}>
+        <div data-slot="music-player-progress-bar" className={playerProgressBarVariants()}>
+          {Array.from({ length: totalSegments }).map((_, index) => (
+            <div
+              key={index}
+              data-slot="music-player-progress-segment"
+              data-filled={dataAttr(index < filledSegments)}
+              className={playerProgressSegmentVariants({ filled: index < filledSegments })}
+            />
+          ))}
+        </div>
+        <div data-slot="music-player-time" className={playerTimeVariants()}>
+          <span>{formatTime(currentTime)}</span>
+          <span>{formatTime(currentTrack.duration)}</span>
+        </div>
+      </div>
+
+      <div data-slot="music-player-controls" className={playerControlsVariants()}>
+        <button
+          data-slot="music-player-prev"
+          className={playerButtonVariants()}
+          onClick={handlePrev}
+          aria-label="Previous track"
+        >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M6 6h2v12H6zm3.5 6l8.5 6V6z"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        <button
+          data-slot="music-player-toggle"
+          className={playerButtonVariants({ primary: true })}
+          onClick={handleTogglePlay}
+          aria-label={isPlaying ? 'Pause' : 'Play'}
+        >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            {isPlaying ? (
+              <path
+                d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            ) : (
+              <path
+                d="M8 5v14l11-7z"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            )}
+          </svg>
+        </button>
+        <button
+          data-slot="music-player-next"
+          className={playerButtonVariants()}
+          onClick={handleNext}
+          aria-label="Next track"
+        >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  )
+}
+
 MusicPlayerDefault.displayName = 'MusicPlayerDefault'
 
-export const MusicPlayer = React.forwardRef<HTMLDivElement, MusicPlayerProps>(
-  ({ variant = 'default', theme, size, className, style, ...props }, ref) => {
-    if (variant === 'mini') {
-      return (
-        <MusicPlayerMini
-          ref={ref}
-          theme={theme ?? 'dark'}
-          size={size ?? 'medium'}
-          className={className}
-          style={style}
-          {...props}
-        />
-      )
-    }
-    return <MusicPlayerDefault ref={ref} variant={variant} theme={theme} size={size} className={className} style={style} {...props} />
+export function MusicPlayer({
+  variant = 'default',
+  theme,
+  size,
+  className,
+  style,
+  ...props
+}: MusicPlayerProps) {
+  if (variant === 'mini') {
+    return (
+      <MusicPlayerMini
+        theme={theme ?? 'dark'}
+        size={size ?? 'medium'}
+        className={className}
+        style={style}
+        {...props}
+      />
+    )
   }
-)
+  return (
+    <MusicPlayerDefault
+      variant={variant}
+      theme={theme}
+      size={size}
+      className={className}
+      style={style}
+      {...props}
+    />
+  )
+}
+
 MusicPlayer.displayName = 'MusicPlayer'
 
 export { musicPlayerVariants }

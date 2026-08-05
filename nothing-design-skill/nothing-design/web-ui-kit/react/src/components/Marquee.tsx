@@ -2,8 +2,7 @@ import * as React from 'react'
 import { cn } from '../lib/utils'
 import '../styles/marquee.css'
 
-export interface MarqueeProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface MarqueeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /** 主显示文字（重复 3 次形成无缝循环） */
   text: string
   /** 滚动周期（秒），默认 12 */
@@ -38,7 +37,7 @@ export const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
       style,
       ...props
     },
-    ref
+    ref,
   ) => {
     const cssVars: React.CSSProperties = {
       ...(width ? { ['--mq-width' as string]: width } : null),
@@ -64,7 +63,7 @@ export const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
         </div>
       </div>
     )
-  }
+  },
 )
 Marquee.displayName = 'Marquee'
 

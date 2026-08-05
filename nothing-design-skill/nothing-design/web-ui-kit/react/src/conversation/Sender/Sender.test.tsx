@@ -49,7 +49,12 @@ describe('Sender', () => {
   })
 
   it('renders prefix and suffix slots', () => {
-    render(<Sender prefix={<span data-testid="prefix">Prefix</span>} suffix={<span data-testid="suffix">Suffix</span>} />)
+    render(
+      <Sender
+        prefix={<span data-testid="prefix">Prefix</span>}
+        suffix={<span data-testid="suffix">Suffix</span>}
+      />,
+    )
     expect(screen.getByTestId('prefix')).toBeInTheDocument()
     expect(screen.getByTestId('suffix')).toBeInTheDocument()
   })

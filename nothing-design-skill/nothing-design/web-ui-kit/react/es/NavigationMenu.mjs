@@ -1,2 +1,3 @@
-import { NavigationMenu, navigationMenuVariants } from "./NavigationMenu/NavigationMenu.mjs";
-export { NavigationMenu, NavigationMenu as default, navigationMenuVariants };
+import { navigationMenuCaretVariants, navigationMenuItemVariants, navigationMenuLinkVariants, navigationMenuListVariants, navigationMenuSubmenuItemVariants, navigationMenuSubmenuLinkVariants, navigationMenuSubmenuVariants, navigationMenuVariants } from "./NavigationMenu/navigation-menu-variants.mjs";
+import NavigationMenu from "./NavigationMenu/NavigationMenu.mjs";
+export { NavigationMenu, NavigationMenu as default, navigationMenuCaretVariants, navigationMenuItemVariants, navigationMenuLinkVariants, navigationMenuListVariants, navigationMenuSubmenuItemVariants, navigationMenuSubmenuLinkVariants, navigationMenuSubmenuVariants, navigationMenuVariants };

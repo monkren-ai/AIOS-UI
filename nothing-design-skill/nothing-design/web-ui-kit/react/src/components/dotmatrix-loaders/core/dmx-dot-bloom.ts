@@ -1,12 +1,17 @@
-import { clampHalo, opacityToBloomLevel, remapOpacityToTriplet, remappedOpacityQualifiesForBloom } from "./opacity-triplet";
+import {
+  clampHalo,
+  opacityToBloomLevel,
+  remapOpacityToTriplet,
+  remappedOpacityQualifiesForBloom,
+} from './opacity-triplet'
 
 export function dmxBloomRootActive(bloom: boolean, halo: number | undefined): boolean {
-  return bloom || clampHalo(halo) > 0;
+  return bloom || clampHalo(halo) > 0
 }
 
 /** Root class when `halo` > 0 — CSS widens drop-shadow falloff for a softer, more diffuse glow. */
-export function dmxBloomHaloSpreadClass(halo: number | undefined): "dmx-bloom-halo" | false {
-  return clampHalo(halo) > 0 ? "dmx-bloom-halo" : false;
+export function dmxBloomHaloSpreadClass(halo: number | undefined): 'dmx-bloom-halo' | false {
+  return clampHalo(halo) > 0 ? 'dmx-bloom-halo' : false
 }
 
 /**
@@ -20,16 +25,16 @@ export function dmxDotBloomParts(
   halo: number | undefined,
   ob: number | undefined,
   om: number | undefined,
-  op: number | undefined
+  op: number | undefined,
 ): { level: number; bloomDot: boolean } {
-  const haloN = clampHalo(halo);
+  const haloN = clampHalo(halo)
   if (!isActive) {
-    return { level: 0, bloomDot: false };
+    return { level: 0, bloomDot: false }
   }
-  const remapped = remapOpacityToTriplet(curveOpacity, ob, om, op);
-  const fromBloom = bloom ? opacityToBloomLevel(remapped) : 0;
+  const remapped = remapOpacityToTriplet(curveOpacity, ob, om, op)
+  const fromBloom = bloom ? opacityToBloomLevel(remapped) : 0
   return {
     level: fromBloom,
-    bloomDot: haloN > 0 || (bloom && remappedOpacityQualifiesForBloom(remapped))
-  };
+    bloomDot: haloN > 0 || (bloom && remappedOpacityQualifiesForBloom(remapped)),
+  }
 }

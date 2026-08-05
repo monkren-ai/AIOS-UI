@@ -1,8 +1,22 @@
 import * as React from 'react'
 import { useState, useEffect, useMemo } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
-import './AgeMotion.css'
+import {
+  type AgeDecadeState,
+  ageDecadeFillVariants,
+  ageDecadeLabelVariants,
+  ageDecadeSegmentVariants,
+  ageInputFieldVariants,
+  ageInputLabelVariants,
+  ageMotionVariants,
+  ageSecondaryVariants,
+  ageSectionLabelVariants,
+  ageUnitLabelVariants,
+  ageValueVariants,
+  ageYearPercentVariants,
+  ageYearSegmentVariants,
+} from './age-motion-variants'
 
 export type AgeMotionSize = 'sm' | 'md' | 'lg'
 export type AgeMotionTheme = 'light' | 'dark'
@@ -45,7 +59,8 @@ function computeAge(birthDate: Date, now: Date): AgeData {
 
   const startOfYear = new Date(now.getFullYear(), 0, 1)
   const endOfYear = new Date(now.getFullYear() + 1, 0, 1)
-  const yearProgress = (now.getTime() - startOfYear.getTime()) / (endOfYear.getTime() - startOfYear.getTime())
+  const yearProgress =
+    (now.getTime() - startOfYear.getTime()) / (endOfYear.getTime() - startOfYear.getTime())
 
   return {
     years,
@@ -60,23 +75,9 @@ function computeAge(birthDate: Date, now: Date): AgeData {
   }
 }
 
-const ageMotionVariants = cva('nothing-age-motion', {
-  variants: {
-    size: {
-      sm: 'nothing-age-motion--sm',
-      md: 'nothing-age-motion--md',
-      lg: 'nothing-age-motion--lg',
-    },
-    theme: {
-      light: 'nothing-age-motion--light',
-      dark: 'nothing-age-motion--dark',
-    },
-  },
-  defaultVariants: { size: 'md', theme: 'dark' },
-})
-
 export interface AgeMotionProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.ComponentPropsWithRef<'div'>, 'children'>,
     Omit<VariantProps<typeof ageMotionVariants>, 'size' | 'theme'> {
   birthDate?: string
   lifespan?: number
@@ -86,140 +87,174 @@ export interface AgeMotionProps
   theme?: AgeMotionTheme
 }
 
-export const AgeMotion = React.forwardRef<HTMLDivElement, AgeMotionProps>(
-  (
-    {
-      className,
-      birthDate: initialBirthDate,
-      lifespan = 80,
-      updateInterval = 1000,
-      yearSegments = 20,
-      size = 'md',
-      theme = 'dark',
-      style,
-      ...props
-    },
-    ref
-  ) => {
-    const [birthDateStr, setBirthDateStr] = useState(initialBirthDate ?? '')
-    const [now, setNow] = useState(new Date())
+export function AgeMotion({
+  className,
+  birthDate: initialBirthDate,
+  lifespan = 80,
+  updateInterval = 1000,
+  yearSegments = 20,
+  size = 'md',
+  theme = 'dark',
+  style,
+  ref,
+  ...props
+}: AgeMotionProps) {
+  const [birthDateStr, setBirthDateStr] = useState(initialBirthDate ?? '')
+  const [now, setNow] = useState(new Date())
 
-    const birthDate = useMemo(
-      () => (birthDateStr ? new Date(birthDateStr + 'T00:00:00') : null),
-      [birthDateStr],
-    )
+  const birthDate = useMemo(
+    () => (birthDateStr ? new Date(birthDateStr + 'T00:00:00') : null),
+    [birthDateStr],
+  )
 
-    useEffect(() => {
-      if (!birthDate) return
-      const timer = setInterval(() => setNow(new Date()), updateInterval)
-      return () => clearInterval(timer)
-    }, [birthDate, updateInterval])
+  useEffect(() => {
+    if (!birthDate) return
+    const timer = setInterval(() => setNow(new Date()), updateInterval)
+    return () => clearInterval(timer)
+  }, [birthDate, updateInterval])
 
-    const ageData = useMemo(() => {
-      if (!birthDate) return null
-      return computeAge(birthDate, now)
-    }, [birthDate, now])
+  const ageData = useMemo(() => {
+    if (!birthDate) return null
+    return computeAge(birthDate, now)
+  }, [birthDate, now])
 
-    const totalSegments = lifespan / 10
+  const totalSegments = lifespan / 10
 
-    const filledYearSegments = ageData ? Math.round(ageData.yearProgress * yearSegments) : 0
+  const filledYearSegments = ageData ? Math.round(ageData.yearProgress * yearSegments) : 0
 
-    return (
-      <div
-        ref={ref}
-        className={cn(ageMotionVariants({ size, theme }), className)}
-        style={style}
-        data-size={dataAttr(size)}
-        data-theme={dataAttr(theme)}
-        {...props}
-      >
-        <div className="age-input-area">
-          <div className="age-input">
-            <label className="age-input__label" htmlFor="birthDateInput">
-              Date of Birth
-            </label>
-            <input
-              className="age-input__field"
-              type="date"
-              id="birthDateInput"
-              placeholder="YYYY-MM-DD"
-              value={birthDateStr}
-              onChange={(e) => setBirthDateStr(e.target.value)}
-            />
-          </div>
+  return (
+    <div
+      ref={ref}
+      className={cn(ageMotionVariants({ size, theme }), className)}
+      style={style}
+      data-slot="age-motion"
+      data-size={dataAttr(size)}
+      data-widget-theme={dataAttr(theme)}
+      data-state={dataAttr(ageData ? 'ready' : 'empty')}
+      {...props}
+    >
+      <div data-slot="age-motion-input-area" className="mb-6">
+        <div className="relative flex flex-col gap-1">
+          <label
+            data-slot="age-motion-input-label"
+            className={cn(ageInputLabelVariants())}
+            htmlFor="birthDateInput"
+          >
+            Date of Birth
+          </label>
+          <input
+            data-slot="age-motion-input"
+            className={cn(ageInputFieldVariants())}
+            type="date"
+            id="birthDateInput"
+            placeholder="YYYY-MM-DD"
+            value={birthDateStr}
+            onChange={(e) => setBirthDateStr(e.target.value)}
+          />
         </div>
+      </div>
 
-        {ageData && (
-          <>
-            <div className="age-display">
-              <div className="age-display__primary">
-                <div className="age-display__unit">
-                  <div className="age-display__value">{ageData.years}</div>
-                  <div className="age-display__label">Years</div>
+      {ageData && (
+        <>
+          <div data-slot="age-motion-display" className="mb-6">
+            <div className="mb-2 flex items-baseline gap-4">
+              {(
+                [
+                  ['years', ageData.years, 'Years'],
+                  ['months', ageData.months, 'Months'],
+                  ['days', ageData.days, 'Days'],
+                ] as const
+              ).map(([unit, value, label]) => (
+                <div
+                  key={unit}
+                  data-slot="age-motion-unit"
+                  data-unit={dataAttr(unit)}
+                  className="flex flex-col items-center"
+                >
+                  <div data-slot="age-motion-value" className={cn(ageValueVariants())}>
+                    {value}
+                  </div>
+                  <div data-slot="age-motion-unit-label" className={cn(ageUnitLabelVariants())}>
+                    {label}
+                  </div>
                 </div>
-                <div className="age-display__unit">
-                  <div className="age-display__value">{ageData.months}</div>
-                  <div className="age-display__label">Months</div>
-                </div>
-                <div className="age-display__unit">
-                  <div className="age-display__value">{ageData.days}</div>
-                  <div className="age-display__label">Days</div>
-                </div>
-              </div>
-              <div className="age-display__secondary">
-                {ageData.totalHours.toLocaleString()}h {ageData.totalMinutes.toLocaleString()}m{' '}
-                {ageData.totalSeconds.toLocaleString()}s
-              </div>
+              ))}
             </div>
-
-            <div className="age-progress">
-              <div className="age-progress__label">Life Progress</div>
-              <div className="age-progress__segments">
-                {Array.from({ length: totalSegments }).map((_, i) => {
-                  let segClass = 'age-progress__segment'
-                  if (i < ageData.currentSegment) segClass += ' completed'
-                  else if (i === ageData.currentSegment) segClass += ' current'
-
-                  return (
-                    <div key={i} className={segClass}>
-                      {i === ageData.currentSegment && (
-                        <div
-                          className="age-progress__segment-fill"
-                          style={{ width: `${ageData.segmentProgress * 100}%` }}
-                        />
-                      )}
-                      <span className="age-progress__segment-label">
-                        {i * 10}-{(i + 1) * 10}
-                      </span>
-                    </div>
-                  )
-                })}
-              </div>
+            <div data-slot="age-motion-secondary" className={cn(ageSecondaryVariants())}>
+              {ageData.totalHours.toLocaleString()}h {ageData.totalMinutes.toLocaleString()}m{' '}
+              {ageData.totalSeconds.toLocaleString()}s
             </div>
+          </div>
 
-            <div className="age-year-progress">
-              <div className="age-year-progress__label">Year Progress</div>
-              <div className="age-year-progress__bar">
-                {Array.from({ length: yearSegments }).map((_, i) => (
+          <div data-slot="age-motion-life-progress" className="mb-6">
+            <div
+              data-slot="age-motion-life-progress-label"
+              className={cn(ageSectionLabelVariants(), 'mb-2 block')}
+            >
+              Life Progress
+            </div>
+            <div className="mb-1 flex w-full gap-0.5">
+              {Array.from({ length: totalSegments }).map((_, i) => {
+                const state: AgeDecadeState =
+                  i < ageData.currentSegment
+                    ? 'completed'
+                    : i === ageData.currentSegment
+                      ? 'current'
+                      : 'upcoming'
+
+                return (
                   <div
                     key={i}
-                    className={cn(
-                      'age-year-progress__segment',
-                      i < filledYearSegments && 'filled'
+                    data-slot="age-motion-decade"
+                    data-state={dataAttr(state)}
+                    className={cn(ageDecadeSegmentVariants({ state }))}
+                  >
+                    {state === 'current' && (
+                      <div
+                        data-slot="age-motion-decade-fill"
+                        className={cn(ageDecadeFillVariants())}
+                        style={{ width: `${ageData.segmentProgress * 100}%` }}
+                      />
                     )}
-                  />
-                ))}
-              </div>
-              <div className="age-year-progress__percent">
-                {(ageData.yearProgress * 100).toFixed(1)}%
-              </div>
+                    <span
+                      data-slot="age-motion-decade-label"
+                      className={cn(ageDecadeLabelVariants({ state }))}
+                    >
+                      {i * 10}-{(i + 1) * 10}
+                    </span>
+                  </div>
+                )
+              })}
             </div>
-          </>
-        )}
-      </div>
-    )
-  }
-)
+          </div>
+
+          <div data-slot="age-motion-year-progress" className="mb-4">
+            <div
+              data-slot="age-motion-year-progress-label"
+              className={cn(ageSectionLabelVariants(), 'mb-1 block')}
+            >
+              Year Progress
+            </div>
+            <div className="flex h-2 w-full gap-0.5">
+              {Array.from({ length: yearSegments }).map((_, i) => (
+                <div
+                  key={i}
+                  data-slot="age-motion-year-segment"
+                  data-filled={dataAttr(i < filledYearSegments)}
+                  className={cn(ageYearSegmentVariants({ filled: i < filledYearSegments }))}
+                />
+              ))}
+            </div>
+            <div data-slot="age-motion-year-percent" className={cn(ageYearPercentVariants())}>
+              {(ageData.yearProgress * 100).toFixed(1)}%
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+
 AgeMotion.displayName = 'AgeMotion'
 
 export { ageMotionVariants }

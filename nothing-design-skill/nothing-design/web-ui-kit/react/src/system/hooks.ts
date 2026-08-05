@@ -34,7 +34,9 @@ function tweenValue(
   }
   raf = requestAnimationFrame(tick)
   return {
-    stop() { cancelAnimationFrame(raf) },
+    stop() {
+      cancelAnimationFrame(raf)
+    },
   }
 }
 

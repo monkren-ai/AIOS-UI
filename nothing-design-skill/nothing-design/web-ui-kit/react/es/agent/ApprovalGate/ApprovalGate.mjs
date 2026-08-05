@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
-import { Button } from "../../Button/Button.mjs";
-import { AgentOrb } from "../AgentOrb/AgentOrb.mjs";
+import Button from "../../Button/Button.mjs";
+import AgentOrb from "../AgentOrb/AgentOrb.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
@@ -77,6 +77,6 @@ const ApprovalGate = React.forwardRef(({ action, impact, reversible = true, risk
 });
 ApprovalGate.displayName = "ApprovalGate";
 //#endregion
-export { ApprovalGate, ApprovalGate as default, approvalGateVariants };
+export { approvalGateVariants, ApprovalGate as default };
 
 //# sourceMappingURL=ApprovalGate.mjs.map

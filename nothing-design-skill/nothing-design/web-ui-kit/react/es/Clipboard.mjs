@@ -1,2 +1,3 @@
-import { Clipboard, clipboardVariants } from "./Clipboard/Clipboard.mjs";
-export { Clipboard, clipboardVariants, Clipboard as default };
+import { clipboardClearVariants, clipboardCopiedVariants, clipboardCountVariants, clipboardDeleteVariants, clipboardHeaderVariants, clipboardItemContentVariants, clipboardItemVariants, clipboardListVariants, clipboardTextVariants, clipboardTimeVariants, clipboardTitleVariants, clipboardVariants } from "./Clipboard/clipboard-variants.mjs";
+import Clipboard from "./Clipboard/Clipboard.mjs";
+export { Clipboard, clipboardClearVariants, clipboardCopiedVariants, clipboardCountVariants, clipboardDeleteVariants, clipboardHeaderVariants, clipboardItemContentVariants, clipboardItemVariants, clipboardListVariants, clipboardTextVariants, clipboardTimeVariants, clipboardTitleVariants, clipboardVariants, Clipboard as default };

@@ -33,7 +33,8 @@ const markerVariants = cva('nothing-activity-widget__marker', {
 })
 
 export interface ActivityWidgetProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     Omit<VariantProps<typeof activityWidgetVariants>, 'variant'> {
   days?: ActivityDay[]
   variant?: 'default' | 'compact' | 'detailed'
@@ -52,7 +53,10 @@ const defaultDays: ActivityDay[] = [
 ]
 
 const ActivityWidgetInner = React.forwardRef<HTMLDivElement, ActivityWidgetProps>(
-  ({ className, days: daysProp, variant, storageKey = 'nothing-ui:activity', style, ...props }, ref) => {
+  (
+    { className, days: daysProp, variant, storageKey = 'nothing-ui:activity', style, ...props },
+    ref,
+  ) => {
     const [persisted, setPersisted] = useLocalStorageState<ActivityDay[]>(storageKey, defaultDays)
     const days = daysProp ?? persisted
     const real = !daysProp && persisted !== defaultDays
@@ -70,7 +74,7 @@ const ActivityWidgetInner = React.forwardRef<HTMLDivElement, ActivityWidgetProps
 
     const rotate = (idx: number) => {
       const next = draft.map((d, i) =>
-        i === idx ? { ...d, markers: d.markers.map((m) => (m ? 0 : 1) as 0 | 1) } : d
+        i === idx ? { ...d, markers: d.markers.map((m) => (m ? 0 : 1) as 0 | 1) } : d,
       )
       setDraft(next)
     }
@@ -110,13 +114,17 @@ const ActivityWidgetInner = React.forwardRef<HTMLDivElement, ActivityWidgetProps
         ))}
         {editing && (
           <div className="nothing-activity-widget__edit-actions">
-            <button type="button" onClick={commit}>Save</button>
-            <button type="button" onClick={() => setEditing(false)}>Cancel</button>
+            <button type="button" onClick={commit}>
+              Save
+            </button>
+            <button type="button" onClick={() => setEditing(false)}>
+              Cancel
+            </button>
           </div>
         )}
       </div>
     )
-  }
+  },
 )
 ActivityWidgetInner.displayName = 'ActivityWidget'
 

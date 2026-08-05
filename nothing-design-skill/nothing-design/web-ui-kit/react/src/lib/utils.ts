@@ -1,20 +1,58 @@
 import { clsx, type ClassValue } from 'clsx'
+import { extendTailwindMerge } from 'tailwind-merge'
 
 import type { SemanticClassNames, SemanticStyles } from './types'
 
 /**
- * 合并 className（替代 [...].filter(Boolean).join(' ')）。
+ * tailwind-merge 需要知道 theme.css 里那些自定义刻度，
+ * 否则 `text-heading` 之类的具名字号会被误判成文字颜色而不参与去重。
+ */
+const twMerge = extendTailwindMerge({
+  extend: {
+    theme: {
+      text: [
+        'display-xl',
+        'display-lg',
+        'display-md',
+        'display-sm',
+        'heading',
+        'subheading',
+        'caption',
+        'label',
+        'micro',
+      ],
+      radius: [
+        'pill',
+        'button',
+        'button-technical',
+        'card',
+        'card-compact',
+        'card-technical',
+        'input',
+        'tag',
+        'tooltip',
+        'segment',
+      ],
+      spacing: ['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
+      font: ['display', 'body', 'sans', 'mono', 'ndot'],
+    },
+  },
+})
+
+/**
+ * 合并 className。
  *
- * Nothing UI 基于 CSS（而非 Tailwind），所以无需 tailwind-merge。
- * 单纯用 clsx 即可处理条件类名、对象语法、数组语法。
+ * 走 tailwind-merge，后写的工具类会覆盖前面同组的：
+ * `cn('px-4', 'px-6')` → `'px-6'`。未知类名（如遗留的 `nothing-btn--primary`）
+ * 原样保留，所以 Tailwind 组件与尚未迁移的 BEM 组件可以共存。
  *
  * @example
  * ```tsx
- * <div className={cn('nothing-btn', isActive && 'nothing-btn--active', className)} />
+ * <div className={cn('rounded-card px-4', isActive && 'bg-surface-raised', className)} />
  * ```
  */
 export function cn(...inputs: ClassValue[]): string {
-  return clsx(inputs)
+  return twMerge(clsx(inputs))
 }
 
 /**
@@ -33,10 +71,14 @@ export function cn(...inputs: ClassValue[]): string {
  * ```
  */
 export function mergeSemanticProps<T extends string>(
-  ...sources: ({
-    classNames?: SemanticClassNames<T>
-    styles?: SemanticStyles<T>
-  } | null | undefined)[]
+  ...sources: (
+    | {
+        classNames?: SemanticClassNames<T>
+        styles?: SemanticStyles<T>
+      }
+    | null
+    | undefined
+  )[]
 ): { classNames: SemanticClassNames<T>; styles: SemanticStyles<T> } {
   return sources.reduce<{ classNames: SemanticClassNames<T>; styles: SemanticStyles<T> }>(
     (acc, source) => {

@@ -44,9 +44,11 @@ export function useDeviceOrientation(autoStart = true): DeviceOrientationState {
       return
     }
 
-    const cls = (window as unknown as {
-      DeviceOrientationEvent?: { requestPermission?: () => Promise<'granted' | 'denied'> }
-    }).DeviceOrientationEvent
+    const cls = (
+      window as unknown as {
+        DeviceOrientationEvent?: { requestPermission?: () => Promise<'granted' | 'denied'> }
+      }
+    ).DeviceOrientationEvent
 
     const start = () => {
       const handler = (e: Event) => {
@@ -60,7 +62,8 @@ export function useDeviceOrientation(autoStart = true): DeviceOrientationState {
 
     let cleanup: (() => void) | null = null
     if (cls?.requestPermission) {
-      cls.requestPermission()
+      cls
+        .requestPermission()
         .then((res) => {
           if (res === 'granted') {
             cleanup = start()

@@ -1,18 +1,9 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import { Input } from "../Input/Input.mjs";
+import Input from "../Input/Input.mjs";
+import { colorPickerCustomLabelVariants, colorPickerHeaderVariants, colorPickerInputVariants, colorPickerNativeVariants, colorPickerPreviewVariants, colorPickerSwatchVariants, colorPickerSwatchesVariants, colorPickerTitleVariants, colorPickerValueVariants, colorPickerVariants, resolveColorPickerSize } from "./color-picker-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./ColorPicker.css";
 //#region src/ColorPicker/ColorPicker.tsx
-const colorPickerVariants = cva("nothing-color-picker", {
-	variants: { size: {
-		sm: "nothing-color-picker--sm",
-		md: "nothing-color-picker--md",
-		lg: "nothing-color-picker--lg"
-	} },
-	defaultVariants: { size: "md" }
-});
 const defaultPresets = [
 	"#000000",
 	"#FFFFFF",
@@ -24,11 +15,12 @@ const defaultPresets = [
 	"#E8E8E8"
 ];
 const isValidHex = (value) => /^#([0-9A-Fa-f]{3}){1,2}$/.test(value);
-const ColorPicker = React.forwardRef(({ value: valueProp, defaultValue = defaultPresets[0], onChange, presets = defaultPresets, title = "COLOR", showInput = true, inputLabel = "HEX", customLabel = "Custom", size = "md", className, ...props }, ref) => {
+function ColorPicker({ value: valueProp, defaultValue = defaultPresets[0], onChange, presets = defaultPresets, title = "COLOR", showInput = true, inputLabel = "HEX", customLabel = "Custom", size = "md", className, ref, ...props }) {
 	const isControlled = valueProp !== void 0;
 	const [internalValue, setInternalValue] = React.useState(defaultValue);
 	const value = isControlled ? valueProp : internalValue;
 	const nativeInputRef = React.useRef(null);
+	const resolvedSize = resolveColorPickerSize(size) ?? "md";
 	const handleChange = React.useCallback((color) => {
 		if (!isControlled) setInternalValue(color);
 		onChange?.(color);
@@ -42,44 +34,66 @@ const ColorPicker = React.forwardRef(({ value: valueProp, defaultValue = default
 	};
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
-		className: cn(colorPickerVariants({ size }), className),
+		className: cn(colorPickerVariants({ size: resolvedSize }), className),
 		"data-slot": "color-picker",
-		"data-size": dataAttr(size),
+		"data-size": dataAttr(resolvedSize),
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-color-picker__header",
+				className: colorPickerHeaderVariants(),
+				"data-slot": "color-picker-header",
 				children: [/* @__PURE__ */ jsx("span", {
-					className: "nothing-color-picker__title",
+					className: colorPickerTitleVariants(),
+					"data-slot": "color-picker-title",
 					children: title
 				}), /* @__PURE__ */ jsx("span", {
-					className: "nothing-color-picker__value",
+					className: colorPickerValueVariants(),
+					"data-slot": "color-picker-value",
 					children: value.toUpperCase()
 				})]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-color-picker__swatches",
+				className: colorPickerSwatchesVariants(),
+				"data-slot": "color-picker-swatches",
 				role: "group",
 				"aria-label": "Color presets",
-				children: [presets.map((color) => /* @__PURE__ */ jsx("button", {
+				children: [presets.map((color) => {
+					const isActive = value.toUpperCase() === color.toUpperCase();
+					return /* @__PURE__ */ jsx("button", {
+						type: "button",
+						className: colorPickerSwatchVariants({
+							size: resolvedSize,
+							active: isActive
+						}),
+						"data-slot": "color-picker-swatch",
+						"data-active": dataAttr(isActive),
+						"data-color": color,
+						style: {
+							"--swatch-color": color,
+							backgroundColor: "var(--swatch-color)"
+						},
+						"aria-label": `Select color ${color}`,
+						"aria-pressed": isActive,
+						onClick: () => handleChange(color)
+					}, color);
+				}), /* @__PURE__ */ jsxs("button", {
 					type: "button",
-					className: cn("nothing-color-picker__swatch", value.toUpperCase() === color.toUpperCase() && "nothing-color-picker__swatch--active"),
-					style: { "--swatch-color": color },
-					"aria-label": `Select color ${color}`,
-					"aria-pressed": value.toUpperCase() === color.toUpperCase(),
-					onClick: () => handleChange(color)
-				}, color)), /* @__PURE__ */ jsxs("button", {
-					type: "button",
-					className: "nothing-color-picker__swatch nothing-color-picker__swatch--custom",
+					className: colorPickerSwatchVariants({
+						size: resolvedSize,
+						custom: true
+					}),
+					"data-slot": "color-picker-swatch-custom",
 					"aria-label": customLabel,
 					onClick: openNativePicker,
 					children: [/* @__PURE__ */ jsx("span", {
-						className: "nothing-color-picker__custom-label",
+						className: colorPickerCustomLabelVariants(),
+						"data-slot": "color-picker-custom-label",
 						children: customLabel
 					}), /* @__PURE__ */ jsx("input", {
 						ref: nativeInputRef,
 						type: "color",
-						className: "nothing-color-picker__native",
+						className: colorPickerNativeVariants(),
+						"data-slot": "color-picker-native",
 						value,
 						onChange: (e) => handleChange(e.target.value.toUpperCase()),
 						"aria-hidden": "true",
@@ -88,14 +102,17 @@ const ColorPicker = React.forwardRef(({ value: valueProp, defaultValue = default
 				})]
 			}),
 			showInput && /* @__PURE__ */ jsx("div", {
-				className: "nothing-color-picker__input",
+				className: colorPickerInputVariants(),
+				"data-slot": "color-picker-input",
 				children: /* @__PURE__ */ jsx(Input, {
-					variant: "bordered",
+					variant: "soft",
+					size: resolvedSize,
 					label: inputLabel,
 					value: value.replace("#", "").toUpperCase(),
-					onChange: handleHexChange,
+					onValueChange: handleHexChange,
 					leadingIcon: /* @__PURE__ */ jsx("span", {
-						className: "nothing-color-picker__preview",
+						className: colorPickerPreviewVariants(),
+						"data-slot": "color-picker-preview",
 						style: { backgroundColor: value },
 						"aria-hidden": "true"
 					})
@@ -103,9 +120,9 @@ const ColorPicker = React.forwardRef(({ value: valueProp, defaultValue = default
 			})
 		]
 	});
-});
+}
 ColorPicker.displayName = "ColorPicker";
 //#endregion
-export { ColorPicker, ColorPicker as default, colorPickerVariants };
+export { ColorPicker as default };
 
 //# sourceMappingURL=ColorPicker.mjs.map

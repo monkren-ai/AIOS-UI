@@ -1,8 +1,24 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { useReducedMotion } from '@/ReducedMotionProvider'
 import { cn, dataAttr } from '@/lib/utils'
-import './PhotoCarousel.css'
+import {
+  carouselContainerVariants,
+  carouselControlsVariants,
+  carouselCounterVariants,
+  carouselIndicatorVariants,
+  carouselIndicatorsVariants,
+  carouselInfoVariants,
+  carouselNavButtonVariants,
+  carouselNavButtonsVariants,
+  carouselSlideIconVariants,
+  carouselSlideSubtitleVariants,
+  carouselSlideTextVariants,
+  carouselSlideTitleVariants,
+  carouselSlideVariants,
+  photoCarouselVariants,
+  type PhotoCarouselOrientation,
+} from './photo-carousel-variants'
 
 interface Slide {
   title: string
@@ -15,25 +31,9 @@ interface Slide {
   pattern?: number
 }
 
-export type PhotoCarouselOrientation = 'horizontal' | 'vertical'
+export type { PhotoCarouselOrientation }
 
-const photoCarouselVariants = cva('nothing-photo-carousel', {
-  variants: {
-    orientation: {
-      horizontal: 'nothing-photo-carousel--horizontal',
-      vertical: 'nothing-photo-carousel--vertical',
-    },
-    autoplay: {
-      true: 'nothing-photo-carousel--autoplay',
-      false: '',
-    },
-  },
-  defaultVariants: { orientation: 'horizontal', autoplay: false },
-})
-
-export interface PhotoCarouselProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
-    Omit<VariantProps<typeof photoCarouselVariants>, 'orientation' | 'autoplay'> {
+export interface PhotoCarouselProps extends Omit<React.ComponentPropsWithRef<'div'>, 'children'> {
   autoPlay?: boolean
   autoPlayInterval?: number
   slides?: Slide[]
@@ -48,138 +48,180 @@ const defaultSlides: Slide[] = [
   { title: 'Ember', subtitle: 'Magma flow', pattern: 3 },
 ]
 
-export const PhotoCarousel = React.forwardRef<HTMLDivElement, PhotoCarouselProps>(
-  (
-    {
-      className,
-      autoPlay = true,
-      autoPlayInterval = 4000,
-      slides = defaultSlides,
-      orientation = 'horizontal',
-      autoplay: autoplayProp,
-      style,
-      ...props
-    },
-    ref
-  ) => {
-    const [currentIndex, setCurrentIndex] = useState(0)
-    const autoplay = autoplayProp ?? autoPlay
-    const hasImages = slides.some((s) => !!s.image)
+export function PhotoCarousel({
+  className,
+  autoPlay = true,
+  autoPlayInterval = 4000,
+  slides = defaultSlides,
+  orientation = 'horizontal',
+  autoplay: autoplayProp,
+  style,
+  ...props
+}: PhotoCarouselProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const reducedMotion = useReducedMotion()
+  const autoplay = autoplayProp ?? autoPlay
+  // 自动轮播是「不请自来的动效」，降级偏好下一律不启动，只留手动翻页。
+  const autoplayActive = autoplay && !reducedMotion
+  const hasImages = slides.some((s) => !!s.image)
 
-    useEffect(() => {
-      if (!autoplay) return
-      const timer = setInterval(() => {
-        if (typeof document !== 'undefined' && document.hidden) return
-        setCurrentIndex((prev) => (prev + 1) % slides.length)
-      }, autoPlayInterval)
-      return () => clearInterval(timer)
-    }, [autoplay, autoPlayInterval, slides.length])
-
-    const handlePrev = () => {
-      setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length)
-    }
-
-    const handleNext = () => {
+  useEffect(() => {
+    if (!autoplayActive) return
+    const timer = setInterval(() => {
+      if (typeof document !== 'undefined' && document.hidden) return
       setCurrentIndex((prev) => (prev + 1) % slides.length)
-    }
+    }, autoPlayInterval)
+    return () => clearInterval(timer)
+  }, [autoplayActive, autoPlayInterval, slides.length])
 
-    const handleGoToSlide = (index: number) => {
-      setCurrentIndex(index)
-    }
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length)
+  }
 
-    return (
-      <div
-        ref={ref}
-        className={cn(photoCarouselVariants({ orientation, autoplay }), className)}
-        style={style}
-        data-orientation={dataAttr(orientation)}
-        data-autoplay={dataAttr(autoplay)}
-        data-index={dataAttr(currentIndex)}
-        data-real={dataAttr(hasImages)}
-        {...props}
-      >
-        <div className="carousel-container">
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={cn('carousel-slide', index === currentIndex && 'active')}
-              data-active={dataAttr(index === currentIndex)}
-              style={
-                slide.image
-                  ? { backgroundImage: `url(${slide.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }
-                  : { background: slide.gradient ?? defaultSlides[index % defaultSlides.length].gradient }
-              }
-            >
-              {slide.image ? null : (
-                <svg
-                  className="carousel-slide-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  width="48"
-                  height="48"
-                  aria-hidden="true"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" stroke="currentColor" />
-                  <circle cx="8.5" cy="8.5" r="1.5" strokeWidth="2" stroke="currentColor" />
-                  <path d="M21 15l-5-5L5 21" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" stroke="currentColor" />
-                </svg>
-              )}
-              <div className="carousel-slide-text">
-                <div className="carousel-slide-title">{slide.title}</div>
-                {slide.subtitle && <div className="carousel-slide-subtitle">{slide.subtitle}</div>}
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % slides.length)
+  }
+
+  const handleGoToSlide = (index: number) => {
+    setCurrentIndex(index)
+  }
+
+  return (
+    <div
+      className={cn(photoCarouselVariants({ orientation, autoplay }), className)}
+      style={style}
+      data-slot="photo-carousel"
+      data-orientation={dataAttr(orientation)}
+      data-autoplay={dataAttr(autoplay)}
+      data-autoplay-active={dataAttr(autoplayActive)}
+      data-index={dataAttr(currentIndex)}
+      data-real={dataAttr(hasImages)}
+      {...props}
+    >
+      <div data-slot="photo-carousel-track" className={carouselContainerVariants()}>
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            data-slot="photo-carousel-slide"
+            className={carouselSlideVariants({ active: index === currentIndex })}
+            data-active={dataAttr(index === currentIndex)}
+            style={
+              slide.image
+                ? {
+                    backgroundImage: `url(${slide.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }
+                : {
+                    background:
+                      slide.gradient ?? defaultSlides[index % defaultSlides.length].gradient,
+                  }
+            }
+          >
+            {slide.image ? null : (
+              <svg
+                data-slot="photo-carousel-slide-icon"
+                className={carouselSlideIconVariants()}
+                viewBox="0 0 24 24"
+                fill="none"
+                width="48"
+                height="48"
+                aria-hidden="true"
+              >
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="2"
+                  strokeWidth="2"
+                  stroke="currentColor"
+                />
+                <circle cx="8.5" cy="8.5" r="1.5" strokeWidth="2" stroke="currentColor" />
+                <path
+                  d="M21 15l-5-5L5 21"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  stroke="currentColor"
+                />
+              </svg>
+            )}
+            <div data-slot="photo-carousel-slide-text" className={carouselSlideTextVariants()}>
+              <div data-slot="photo-carousel-slide-title" className={carouselSlideTitleVariants()}>
+                {slide.title}
               </div>
+              {slide.subtitle && (
+                <div
+                  data-slot="photo-carousel-slide-subtitle"
+                  className={carouselSlideSubtitleVariants()}
+                >
+                  {slide.subtitle}
+                </div>
+              )}
             </div>
+          </div>
+        ))}
+      </div>
+
+      <div data-slot="photo-carousel-controls" className={carouselControlsVariants()}>
+        <div data-slot="photo-carousel-nav" className={carouselNavButtonsVariants()}>
+          <button
+            data-slot="photo-carousel-prev"
+            className={carouselNavButtonVariants()}
+            onClick={handlePrev}
+            aria-label="Previous slide"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M15 18l-6-6 6-6"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+          <button
+            data-slot="photo-carousel-next"
+            className={carouselNavButtonVariants()}
+            onClick={handleNext}
+            aria-label="Next slide"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M9 18l6-6-6-6"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div data-slot="photo-carousel-indicators" className={carouselIndicatorsVariants()}>
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              data-slot="photo-carousel-indicator"
+              className={carouselIndicatorVariants({ active: index === currentIndex })}
+              data-active={dataAttr(index === currentIndex)}
+              onClick={() => handleGoToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              aria-current={index === currentIndex}
+            />
           ))}
         </div>
 
-        <div className="carousel-controls">
-          <div className="carousel-nav-buttons">
-            <button className="carousel-nav-btn" onClick={handlePrev} aria-label="Previous slide">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  className="carousel-nav-icon"
-                  d="M15 18l-6-6 6-6"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-            <button className="carousel-nav-btn" onClick={handleNext} aria-label="Next slide">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  className="carousel-nav-icon"
-                  d="M9 18l6-6-6-6"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-
-          <div className="carousel-indicators">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                className={cn('carousel-indicator', index === currentIndex && 'active')}
-                onClick={() => handleGoToSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
-                aria-current={index === currentIndex}
-              />
-            ))}
-          </div>
-
-          <div className="carousel-info">
-            <div className="carousel-counter">
-              {String(currentIndex + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
-            </div>
+        <div data-slot="photo-carousel-info" className={carouselInfoVariants()}>
+          <div data-slot="photo-carousel-counter" className={carouselCounterVariants()}>
+            {String(currentIndex + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
           </div>
         </div>
       </div>
-    )
-  }
-)
+    </div>
+  )
+}
+
 PhotoCarousel.displayName = 'PhotoCarousel'
 
 export { photoCarouselVariants }

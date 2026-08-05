@@ -29,10 +29,7 @@ export type AsProp<E extends ElementType> = {
 /**
  * 多态 props 联合类型：asChild 或 as 二选一（asChild 优先）。
  */
-export type PolymorphicProps<
-  E extends ElementType,
-  P = Record<string, unknown>,
-> = AsProp<E> &
+export type PolymorphicProps<E extends ElementType, P = Record<string, unknown>> = AsProp<E> &
   AsChildProps &
   P & {
     children?: ReactNode

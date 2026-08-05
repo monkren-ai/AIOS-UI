@@ -1,37 +1,31 @@
 import { lazy, Suspense, useCallback, useMemo, useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ShowcaseProvider } from '@/showcase/ShowcaseContext'
+import { SiteLayout } from '@/site/SiteLayout'
+import { ScrollToTop } from '@/site/components/ScrollToTop'
+
+const LandingPage = lazy(() => import('@/site/pages/LandingPage'))
+const ComponentsLayout = lazy(() => import('@/site/pages/ComponentsLayout'))
+const ComponentsIndexPage = lazy(() => import('@/site/pages/ComponentsIndexPage'))
+const ComponentDetailPage = lazy(() => import('@/site/pages/ComponentDetailPage'))
+const DocsLayout = lazy(() => import('@/site/pages/DocsLayout'))
+const DocPage = lazy(() => import('@/site/pages/DocPage'))
+const IconsPage = lazy(() => import('@/site/pages/icons/IconsPage'))
 
 const Showcase = lazy(() => import('@/showcase'))
-const ProjectIntroPage = lazy(
-  () => import('@/showcase/ProjectIntroPage').then((m) => ({ default: m.ProjectIntroPage })),
+const ProjectIntroPage = lazy(() =>
+  import('@/showcase/ProjectIntroPage').then((m) => ({ default: m.ProjectIntroPage })),
 )
-const AIPocPage = lazy(
-  () => import('@/showcase/AIPocPage').then((m) => ({ default: m.AIPocPage })),
-)
+const AIPocPage = lazy(() => import('@/showcase/AIPocPage').then((m) => ({ default: m.AIPocPage })))
 
 export type Lang = 'zh' | 'en'
 export type T = (zh: string, en: string) => string
 
 function RouteFallback() {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'grid',
-        placeItems: 'center',
-        background: 'var(--surface, #111111)',
-        color: 'var(--text-primary, #E8E8E8)',
-      }}
-    >
-      <span
-        style={{
-          fontFamily: 'var(--font-mono, monospace)',
-          fontSize: '0.75rem',
-          letterSpacing: '0.1em',
-        }}
-      >
-        LOADING...
+    <div className="grid min-h-[60vh] place-items-center bg-background text-foreground">
+      <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
+        Loading…
       </span>
     </div>
   )
@@ -68,11 +62,29 @@ export function App() {
   return (
     <BrowserRouter basename="/Nothing-UI">
       <ShowcaseProvider value={contextValue}>
+        <ScrollToTop />
         <Suspense fallback={<RouteFallback />}>
           <Routes>
-            <Route path="/" element={<Showcase />} />
-            <Route path="/project-intro" element={<ProjectIntroPage />} />
-            <Route path="/ai-poc" element={<AIPocPage />} />
+            <Route element={<SiteLayout />}>
+              <Route path="/" element={<LandingPage />} />
+
+              <Route path="/docs" element={<DocsLayout />}>
+                <Route index element={<Navigate to="/docs/installation" replace />} />
+                <Route path=":slug" element={<DocPage />} />
+              </Route>
+
+              <Route path="/components" element={<ComponentsLayout />}>
+                <Route index element={<ComponentsIndexPage />} />
+                <Route path=":slug" element={<ComponentDetailPage />} />
+              </Route>
+
+              <Route path="/icons" element={<IconsPage />} />
+
+              <Route path="/showcase" element={<Showcase />} />
+              <Route path="/project-intro" element={<ProjectIntroPage />} />
+              <Route path="/ai-poc" element={<AIPocPage />} />
+            </Route>
+
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>

@@ -27,10 +27,7 @@ export const Slot = React.forwardRef<HTMLElement, SlotProps>(
     if (!React.isValidElement(children)) {
       // 降级：单子节点不是 element 时使用 span
       return (
-        <span
-          {...slotProps}
-          ref={forwardedRef}
-        >
+        <span {...slotProps} ref={forwardedRef}>
           {children}
         </span>
       )
@@ -56,12 +53,10 @@ export const Slot = React.forwardRef<HTMLElement, SlotProps>(
     // 合并 ref（子元素的 ref 通过 props.ref 访问）
     const childRef = (childProps as { ref?: React.Ref<HTMLElement> }).ref
     if (forwardedRef || childRef) {
-      mergedProps.ref = forwardedRef
-        ? mergeRefs(forwardedRef, childRef)
-        : childRef
+      mergedProps.ref = forwardedRef ? mergeRefs(forwardedRef, childRef) : childRef
     }
 
     return React.cloneElement(children, mergedProps)
-  }
+  },
 )
 Slot.displayName = 'Slot'

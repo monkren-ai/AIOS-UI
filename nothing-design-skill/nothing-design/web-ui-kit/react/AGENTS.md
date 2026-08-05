@@ -1,6 +1,8 @@
 # AGENTS.md — Nothing UI 开发规范
 
 > 本规范基于对 `appica-dev/appica-ui` 的调研，结合 Nothing 设计语言制定。所有贡献者（包括 AI Agent 与人类开发者）在修改本仓库前必须阅读并遵循。
+>
+> **组件重构请先读 [REFACTOR-SPEC.md](./REFACTOR-SPEC.md)** —— 它是 v2（Tailwind + 统一 API）的完整规范，与本文冲突时以它为准。
 
 ---
 
@@ -24,8 +26,9 @@ Nothing UI 是一个基于 **Nothing 设计语言**的 React 组件库：
 | 类型 | TypeScript ^6.0.3 | 严格模式 |
 | 底层组件 | @base-ui/react ^1.6.0 | 优先复用其可访问性与焦点管理 |
 | 动画 | motion（peerDependency） | 通过 `MotionProvider` 注入，库不直接依赖 |
-| 样式 | 纯 CSS + CSS Variables | 不使用 Tailwind、Styled-components、CSS-in-JS |
-| 变体 | class-variance-authority | CVA 定义集中放在 `*-variants.ts` |
+| 样式 | Tailwind CSS ^4.3 + CSS Variables | v4 CSS-first 配置，无 `tailwind.config.js`；令牌在 `styles/theme.css` 的 `@theme` 里 |
+| 类名合并 | tailwind-merge | `cn()` = `clsx` + `twMerge`，调用方传入的类能覆盖变体默认值 |
+| 变体 | class-variance-authority | CVA 定义集中放在 `*-variants.ts`，值是 Tailwind 工具类 |
 | 构建 | Vite + tsdown | `build:showcase`（Vite）与 `build`（tsdown） |
 | 测试 | Vitest + @testing-library/react | 新增组件必须伴随测试 |
 

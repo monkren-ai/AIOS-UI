@@ -110,6 +110,6 @@ const Conversations = React.forwardRef(({ items, activeKey, defaultActiveKey, on
 });
 Conversations.displayName = "Conversations";
 //#endregion
-export { Conversations, Conversations as default };
+export { Conversations as default };
 
 //# sourceMappingURL=Conversations.mjs.map

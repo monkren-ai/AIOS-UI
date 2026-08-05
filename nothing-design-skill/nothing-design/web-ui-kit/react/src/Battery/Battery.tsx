@@ -1,57 +1,30 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
 import DotMatrixIcon from '../components/DotMatrixIcon'
 import { componentIconSvg } from '../widgets/icon-svg-registry'
-import './Battery.css'
-
-const batteryVariants = cva('nothing-battery', {
-  variants: {
-    variant: {
-      segmented: 'nothing-battery--segmented',
-      ring: 'nothing-battery-ring',
-    },
-    theme: {
-      light: 'nothing-battery--light',
-      dark: 'nothing-battery--dark',
-    },
-    level: {
-      critical: 'critical',
-      low: 'low',
-      medium: 'medium',
-      high: 'high',
-    },
-    widgetMode: {
-      none: '',
-      card: 'nothing-battery--widget-card',
-      ring: 'nothing-battery-ring--widget-card',
-    },
-  },
-  defaultVariants: { variant: 'segmented', theme: 'dark', level: 'high', widgetMode: 'none' },
-})
-
-const batteryRingVariants = cva('nothing-battery-ring', {
-  variants: {
-    theme: {
-      light: 'nothing-battery-ring--light',
-      dark: 'nothing-battery-ring--dark',
-    },
-    status: {
-      charging: 'charging',
-      low: 'low',
-      mid: 'mid',
-      full: 'full',
-    },
-  },
-  defaultVariants: { theme: 'dark', status: 'full' },
-})
-
-const batteryDeviceVariants = cva('nothing-battery__device', {
-  variants: {
-    clickable: { true: 'nothing-battery__device--clickable', false: '' },
-  },
-  defaultVariants: { clickable: false },
-})
+import {
+  batteryDeviceIconVariants,
+  batteryDeviceNameVariants,
+  batteryDevicePercentVariants,
+  batteryDeviceVariants,
+  batteryDevicesVariants,
+  batteryPercentVariants,
+  batteryProgressVariants,
+  batteryRingContentVariants,
+  batteryRingIconVariants,
+  batteryRingInnerVariants,
+  batteryRingOuterVariants,
+  batteryRingPercentVariants,
+  batteryRingProgressVariants,
+  batteryRingSvgVariants,
+  batteryRingVariants,
+  batterySegmentVariants,
+  batteryStatusVariants,
+  batteryVariants,
+  batteryWidgetPercentVariants,
+  batteryWidgetStatusVariants,
+} from './battery-variants'
 
 export interface BatteryDevice {
   name: string
@@ -61,7 +34,8 @@ export interface BatteryDevice {
 }
 
 export interface BatteryProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'onClick'>,
+  extends
+    Omit<React.ComponentPropsWithRef<'div'>, 'children' | 'onClick'>,
     Omit<VariantProps<typeof batteryVariants>, 'level' | 'widgetMode'> {
   updateInterval?: number
   totalSegments?: number
@@ -74,7 +48,15 @@ export interface BatteryProps
 
 const CIRCUMFERENCE = 2 * Math.PI * 95
 
-const BatteryIcon = ({ percent, isCharging, variant }: { percent: number; isCharging: boolean; variant?: 'solid' | 'dot' }) => {
+const BatteryIcon = ({
+  percent,
+  isCharging,
+  variant,
+}: {
+  percent: number
+  isCharging: boolean
+  variant?: 'solid' | 'dot'
+}) => {
   const svgKey = isCharging ? 'batteryCharging' : percent <= 30 ? 'batteryLow' : 'batteryNormal'
 
   if (variant === 'dot') {
@@ -95,7 +77,14 @@ const BatteryIcon = ({ percent, isCharging, variant }: { percent: number; isChar
   if (isCharging) {
     return (
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     )
   }
@@ -103,7 +92,17 @@ const BatteryIcon = ({ percent, isCharging, variant }: { percent: number; isChar
   if (percent <= 30) {
     return (
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="6" width="18" height="14" rx="2" ry="2" fill="none" stroke="currentColor" strokeWidth="2" />
+        <rect
+          x="2"
+          y="6"
+          width="18"
+          height="14"
+          rx="2"
+          ry="2"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
         <rect x="20" y="10" width="2" height="6" rx="1" fill="currentColor" />
         <rect x="6" y="12" width="4" height="4" rx="1" fill="currentColor" />
       </svg>
@@ -112,16 +111,30 @@ const BatteryIcon = ({ percent, isCharging, variant }: { percent: number; isChar
 
   return (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="6" width="18" height="14" rx="2" ry="2" fill="none" stroke="currentColor" strokeWidth="2" />
+      <rect
+        x="2"
+        y="6"
+        width="18"
+        height="14"
+        rx="2"
+        ry="2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
       <rect x="20" y="10" width="2" height="6" rx="1" fill="currentColor" />
       <rect x="6" y="10" width="8" height="6" rx="1" fill="currentColor" />
     </svg>
   )
 }
 
-const DeviceTypeIcon: React.FC<{ type: BatteryDevice['type']; variant?: 'solid' | 'dot' }> = ({ type, variant }) => {
+const DeviceTypeIcon: React.FC<{ type: BatteryDevice['type']; variant?: 'solid' | 'dot' }> = ({
+  type,
+  variant,
+}) => {
   if (variant === 'dot') {
-    const key = `device${type.charAt(0).toUpperCase() + type.slice(1)}` as keyof typeof componentIconSvg
+    const key =
+      `device${type.charAt(0).toUpperCase() + type.slice(1)}` as keyof typeof componentIconSvg
     return (
       <DotMatrixIcon
         svg={componentIconSvg[key]}
@@ -140,19 +153,77 @@ const DeviceTypeIcon: React.FC<{ type: BatteryDevice['type']; variant?: 'solid' 
     case 'mouse':
       return (
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <rect x="6" y="2" width="12" height="20" rx="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          <rect
+            x="6"
+            y="2"
+            width="12"
+            height="20"
+            rx="6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
           <line x1="12" y1="2" x2="12" y2="10" stroke="currentColor" strokeWidth="1.5" />
         </svg>
       )
     case 'keyboard':
       return (
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="6" width="22" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5" />
-          <line x1="5" y1="10" x2="7" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <line x1="9" y1="10" x2="11" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <line x1="13" y1="10" x2="15" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <line x1="17" y1="10" x2="19" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <line x1="7" y1="14" x2="17" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <rect
+            x="1"
+            y="6"
+            width="22"
+            height="12"
+            rx="2"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+          <line
+            x1="5"
+            y1="10"
+            x2="7"
+            y2="10"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <line
+            x1="9"
+            y1="10"
+            x2="11"
+            y2="10"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <line
+            x1="13"
+            y1="10"
+            x2="15"
+            y2="10"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <line
+            x1="17"
+            y1="10"
+            x2="19"
+            y2="10"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <line
+            x1="7"
+            y1="14"
+            x2="17"
+            y2="14"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
         </svg>
       )
     case 'earbuds':
@@ -160,23 +231,64 @@ const DeviceTypeIcon: React.FC<{ type: BatteryDevice['type']; variant?: 'solid' 
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <circle cx="7" cy="7" r="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
           <circle cx="17" cy="7" r="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M7 11v5a4 4 0 0 0 4 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M17 11v5a4 4 0 0 1-4 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path
+            d="M7 11v5a4 4 0 0 0 4 4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M17 11v5a4 4 0 0 1-4 4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
         </svg>
       )
     case 'phone':
       return (
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <rect x="5" y="2" width="14" height="20" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5" />
-          <line x1="10" y1="18" x2="14" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <rect
+            x="5"
+            y="2"
+            width="14"
+            height="20"
+            rx="2"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+          <line
+            x1="10"
+            y1="18"
+            x2="14"
+            y2="18"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
         </svg>
       )
     case 'watch':
       return (
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M9 2h6l-1 4H10L9 2z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-          <path d="M9 22h6l-1-4H10L9 22z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+          <path
+            d="M9 2h6l-1 4H10L9 2z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9 22h6l-1-4H10L9 22z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+          />
         </svg>
       )
   }
@@ -185,8 +297,22 @@ const DeviceTypeIcon: React.FC<{ type: BatteryDevice['type']; variant?: 'solid' 
 const SmallBatteryIcon: React.FC<{ percent: number }> = ({ percent }) => {
   const fillWidth = Math.max(1, Math.round((percent / 100) * 8))
   return (
-    <svg viewBox="0 0 16 10" xmlns="http://www.w3.org/2000/svg" className="nothing-battery__device-battery-icon">
-      <rect x="0.5" y="0.5" width="13" height="9" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1" />
+    <svg
+      viewBox="0 0 16 10"
+      xmlns="http://www.w3.org/2000/svg"
+      data-slot="battery-device-battery-icon"
+      className="h-2.5 w-4 text-[var(--widget-dark-4)]"
+    >
+      <rect
+        x="0.5"
+        y="0.5"
+        width="13"
+        height="9"
+        rx="1.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+      />
       <rect x="14" y="3" width="2" height="4" rx="0.5" fill="currentColor" />
       <rect x="2" y="2" width={fillWidth} height="6" rx="0.5" fill="currentColor" />
     </svg>
@@ -194,7 +320,12 @@ const SmallBatteryIcon: React.FC<{ percent: number }> = ({ percent }) => {
 }
 
 const ChargingIcon = () => (
-  <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" className="nothing-battery__device-charging-icon">
+  <svg
+    viewBox="0 0 12 12"
+    xmlns="http://www.w3.org/2000/svg"
+    data-slot="battery-device-charging-icon"
+    className="size-2.5 text-success"
+  >
     <path d="M7 1L2 7h4l-1 4 5-6H6l1-4z" fill="currentColor" />
   </svg>
 )
@@ -202,30 +333,42 @@ const ChargingIcon = () => (
 const DeviceList: React.FC<{
   devices: BatteryDevice[]
   onDeviceClick?: (device: BatteryDevice) => void
-}> = ({ devices, onDeviceClick }) => (
-  <div className="nothing-battery__devices">
+  widgetCard?: boolean
+}> = ({ devices, onDeviceClick, widgetCard = false }) => (
+  <div data-slot="battery-devices" className={cn(batteryDevicesVariants({ widgetCard }))}>
     {devices.map((device, idx) => (
       <div
         key={idx}
+        data-slot="battery-device"
         className={cn(batteryDeviceVariants({ clickable: !!onDeviceClick }))}
         onClick={onDeviceClick ? () => onDeviceClick(device) : undefined}
         role={onDeviceClick ? 'button' : undefined}
         tabIndex={onDeviceClick ? 0 : undefined}
-        onKeyDown={onDeviceClick ? (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault()
-            onDeviceClick(device)
-          }
-        } : undefined}
-        data-state={dataAttr(device.isCharging ? 'charging' : device.percent <= 20 ? 'low' : 'normal')}
+        onKeyDown={
+          onDeviceClick
+            ? (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  onDeviceClick(device)
+                }
+              }
+            : undefined
+        }
+        data-state={dataAttr(
+          device.isCharging ? 'charging' : device.percent <= 20 ? 'low' : 'normal',
+        )}
       >
-        <div className="nothing-battery__device-icon">
+        <div data-slot="battery-device-icon" className={cn(batteryDeviceIconVariants())}>
           <DeviceTypeIcon type={device.type} />
         </div>
-        <div className="nothing-battery__device-name">{device.name}</div>
-        <div className="nothing-battery__device-level">
+        <div data-slot="battery-device-name" className={cn(batteryDeviceNameVariants())}>
+          {device.name}
+        </div>
+        <div data-slot="battery-device-level" className="flex shrink-0 items-center gap-1">
           {device.isCharging && <ChargingIcon />}
-          <span className="nothing-battery__device-percent">{device.percent}%</span>
+          <span data-slot="battery-device-percent" className={cn(batteryDevicePercentVariants())}>
+            {device.percent}%
+          </span>
           <SmallBatteryIcon percent={device.percent} />
         </div>
       </div>
@@ -233,7 +376,7 @@ const DeviceList: React.FC<{
   </div>
 )
 
-const BatteryImpl: React.FC<BatteryProps> = ({
+export function Battery({
   updateInterval = 5000,
   totalSegments = 10,
   percent: initialPercent,
@@ -242,8 +385,11 @@ const BatteryImpl: React.FC<BatteryProps> = ({
   theme = 'dark',
   widgetMode = 'none',
   devices,
-  onDeviceClick
-}) => {
+  onDeviceClick,
+  className,
+  ref,
+  ...props
+}: BatteryProps) {
   const [internalPercent, setInternalPercent] = React.useState(initialPercent ?? 75)
   const [internalIsCharging, setInternalIsCharging] = React.useState(initialIsCharging ?? false)
 
@@ -296,35 +442,113 @@ const BatteryImpl: React.FC<BatteryProps> = ({
   const ringStatus: 'charging' | 'low' | 'mid' | 'full' = isCharging
     ? 'charging'
     : percent <= 30
-    ? 'low'
-    : percent <= 80
-    ? 'mid'
-    : 'full'
+      ? 'low'
+      : percent <= 80
+        ? 'mid'
+        : 'full'
+
+  const meterProps = {
+    role: 'meter' as const,
+    'aria-valuenow': percent,
+    'aria-valuemin': 0,
+    'aria-valuemax': 100,
+    'aria-label': `Battery at ${percent}%, ${isCharging ? 'charging' : 'discharging'}`,
+  }
+
+  const renderSegments = (widgetCard: boolean) =>
+    Array.from({ length: totalSegments }).map((_, index) => (
+      <div
+        key={index}
+        data-slot="battery-segment"
+        data-filled={dataAttr(index < filledSegments)}
+        className={cn(
+          batterySegmentVariants({
+            filled: index < filledSegments,
+            level: batteryLevel,
+            widgetCard,
+          }),
+        )}
+      />
+    ))
+
+  const renderRing = (widgetCard: boolean) => (
+    <>
+      <svg
+        data-slot="battery-ring-svg"
+        className={cn(batteryRingSvgVariants({ widgetCard }))}
+        viewBox="0 0 200 200"
+        aria-hidden="true"
+      >
+        <circle
+          data-slot="battery-ring-outer"
+          className={cn(batteryRingOuterVariants({ theme }))}
+          cx="100"
+          cy="100"
+          r="95"
+        />
+        <circle
+          data-slot="battery-ring-inner"
+          className={cn(batteryRingInnerVariants({ theme }))}
+          cx="100"
+          cy="100"
+          r="85"
+        />
+        <circle
+          data-slot="battery-ring-progress"
+          className={cn(batteryRingProgressVariants({ status: ringStatus }))}
+          cx="100"
+          cy="100"
+          r="95"
+          strokeDasharray={`${CIRCUMFERENCE} ${CIRCUMFERENCE}`}
+          strokeDashoffset={ringDashOffset}
+        />
+      </svg>
+      <div
+        data-slot="battery-ring-content"
+        className={cn(batteryRingContentVariants({ widgetCard }))}
+      >
+        <div data-slot="battery-ring-icon" className={cn(batteryRingIconVariants({ theme }))}>
+          <BatteryIcon percent={percent} isCharging={isCharging} />
+        </div>
+        <div data-slot="battery-ring-percent" className={cn(batteryRingPercentVariants({ theme }))}>
+          {percent}%
+        </div>
+      </div>
+    </>
+  )
 
   // --- Widget Card mode (segmented) ---
   if (widgetMode === 'card') {
     return (
       <div
-        ref={undefined}
-        className={cn(batteryVariants({ variant: 'segmented', theme, level: batteryLevel, widgetMode: 'card' }))}
-        role="meter"
-        aria-valuenow={percent}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label={`Battery at ${percent}%, ${isCharging ? 'charging' : 'discharging'}`}
+        ref={ref}
+        className={cn(
+          batteryVariants({ variant: 'segmented', theme, level: batteryLevel, widgetMode: 'card' }),
+          className,
+        )}
+        {...meterProps}
+        data-slot="battery"
+        data-variant="segmented"
+        data-widget-mode="card"
+        data-widget-theme={dataAttr(theme)}
         data-state={dataAttr(isCharging ? 'charging' : batteryLevel)}
+        {...props}
       >
-        <div className="nothing-battery__widget-percent">{percent}%</div>
-        <div className={`nothing-battery__widget-status ${isCharging ? 'charging' : 'discharging'}`}>
+        <div data-slot="battery-widget-percent" className={cn(batteryWidgetPercentVariants())}>
+          {percent}%
+        </div>
+        <div
+          data-slot="battery-widget-status"
+          data-charging={dataAttr(isCharging)}
+          className={cn(batteryWidgetStatusVariants({ charging: isCharging }))}
+        >
           {isCharging ? 'Charging' : 'Discharging'}
         </div>
-        <div className="nothing-battery__progress">
-          {Array.from({ length: totalSegments }).map((_, index) => (
-            <div
-              key={index}
-              className={`nothing-battery__segment ${index < filledSegments ? 'nothing-battery__segment--filled' : ''}`}
-            />
-          ))}
+        <div
+          data-slot="battery-progress"
+          className={cn(batteryProgressVariants({ widgetCard: true }))}
+        >
+          {renderSegments(true)}
         </div>
         {devices && devices.length > 0 && (
           <DeviceList devices={devices} onDeviceClick={onDeviceClick} />
@@ -337,35 +561,23 @@ const BatteryImpl: React.FC<BatteryProps> = ({
   if (widgetMode === 'ring') {
     return (
       <div
-        ref={undefined}
-        className={cn(batteryRingVariants({ theme, status: ringStatus }), batteryVariants({ widgetMode: 'ring' }))}
-        role="meter"
-        aria-valuenow={percent}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label={`Battery at ${percent}%, ${isCharging ? 'charging' : 'discharging'}`}
+        ref={ref}
+        className={cn(
+          batteryRingVariants({ theme, status: ringStatus }),
+          batteryVariants({ widgetMode: 'ring' }),
+          className,
+        )}
+        {...meterProps}
+        data-slot="battery"
+        data-variant="ring"
+        data-widget-mode="ring"
+        data-widget-theme={dataAttr(theme)}
         data-state={dataAttr(ringStatus)}
+        {...props}
       >
-        <svg className="nothing-battery-ring__svg" viewBox="0 0 200 200">
-          <circle className="nothing-battery-ring__outer" cx="100" cy="100" r="95" />
-          <circle className="nothing-battery-ring__inner" cx="100" cy="100" r="85" />
-          <circle
-            className="nothing-battery-ring__progress"
-            cx="100"
-            cy="100"
-            r="95"
-            strokeDasharray={`${CIRCUMFERENCE} ${CIRCUMFERENCE}`}
-            strokeDashoffset={ringDashOffset}
-          />
-        </svg>
-        <div className="nothing-battery-ring__content">
-          <div className="nothing-battery-ring__icon">
-            <BatteryIcon percent={percent} isCharging={isCharging} />
-          </div>
-          <div className="nothing-battery-ring__percent">{percent}%</div>
-        </div>
+        {renderRing(true)}
         {devices && devices.length > 0 && (
-          <DeviceList devices={devices} onDeviceClick={onDeviceClick} />
+          <DeviceList devices={devices} onDeviceClick={onDeviceClick} widgetCard />
         )}
       </div>
     )
@@ -375,28 +587,16 @@ const BatteryImpl: React.FC<BatteryProps> = ({
   if (variant === 'ring') {
     return (
       <div
-        ref={undefined}
-        className={cn(batteryRingVariants({ theme, status: ringStatus }))}
+        ref={ref}
+        className={cn(batteryRingVariants({ theme, status: ringStatus }), className)}
+        data-slot="battery"
+        data-variant="ring"
+        data-widget-mode="none"
+        data-widget-theme={dataAttr(theme)}
         data-state={dataAttr(ringStatus)}
+        {...props}
       >
-        <svg className="nothing-battery-ring__svg" viewBox="0 0 200 200">
-          <circle className="nothing-battery-ring__outer" cx="100" cy="100" r="95" />
-          <circle className="nothing-battery-ring__inner" cx="100" cy="100" r="85" />
-          <circle
-            className="nothing-battery-ring__progress"
-            cx="100"
-            cy="100"
-            r="95"
-            strokeDasharray={`${CIRCUMFERENCE} ${CIRCUMFERENCE}`}
-            strokeDashoffset={ringDashOffset}
-          />
-        </svg>
-        <div className="nothing-battery-ring__content">
-          <div className="nothing-battery-ring__icon">
-            <BatteryIcon percent={percent} isCharging={isCharging} />
-          </div>
-          <div className="nothing-battery-ring__percent">{percent}%</div>
-        </div>
+        {renderRing(false)}
       </div>
     )
   }
@@ -404,37 +604,38 @@ const BatteryImpl: React.FC<BatteryProps> = ({
   // --- Original segmented variant (no widgetMode) ---
   return (
     <div
-      ref={undefined}
-      className={cn(batteryVariants({ variant: 'segmented', theme, level: batteryLevel }))}
-      role="meter"
-      aria-valuenow={percent}
-      aria-valuemin={0}
-      aria-valuemax={100}
-      aria-label={`Battery at ${percent}%, ${isCharging ? 'charging' : 'discharging'}`}
+      ref={ref}
+      className={cn(
+        batteryVariants({ variant: 'segmented', theme, level: batteryLevel }),
+        className,
+      )}
+      {...meterProps}
+      data-slot="battery"
+      data-variant="segmented"
+      data-widget-mode="none"
+      data-widget-theme={dataAttr(theme)}
       data-state={dataAttr(batteryLevel)}
+      {...props}
     >
-      <div className="nothing-battery__header">
-        <div className="nothing-battery__percent">{percent}%</div>
-        <div className={`nothing-battery__status ${isCharging ? 'charging' : 'discharging'}`}>
+      <div data-slot="battery-header" className="mb-4 flex w-full items-baseline justify-between">
+        <div data-slot="battery-percent" className={cn(batteryPercentVariants())}>
+          {percent}%
+        </div>
+        <div
+          data-slot="battery-status"
+          data-charging={dataAttr(isCharging)}
+          className={cn(batteryStatusVariants({ charging: isCharging }))}
+        >
           {isCharging ? 'Charging' : 'Discharging'}
         </div>
       </div>
-      <div className="nothing-battery__progress">
-        {Array.from({ length: totalSegments }).map((_, index) => (
-          <div
-            key={index}
-            className={`nothing-battery__segment ${index < filledSegments ? 'nothing-battery__segment--filled' : ''}`}
-          />
-        ))}
+      <div data-slot="battery-progress" className={cn(batteryProgressVariants())}>
+        {renderSegments(false)}
       </div>
     </div>
   )
 }
 
-export const Battery = React.forwardRef<HTMLDivElement, BatteryProps>((props, ref) => {
-  // Wrap with a forwardRef-friendly outer div
-  return <div ref={ref} style={{ display: 'contents' }}><BatteryImpl {...props} /></div>
-})
 Battery.displayName = 'Battery'
 
 export { batteryVariants, batteryRingVariants, batteryDeviceVariants }

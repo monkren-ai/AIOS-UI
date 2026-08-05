@@ -1,19 +1,15 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useClickOutside } from "../hooks/useClickOutside.mjs";
-import * as React from "react";
+import { navigationMenuCaretVariants, navigationMenuItemVariants, navigationMenuLinkVariants, navigationMenuListVariants, navigationMenuSubmenuItemVariants, navigationMenuSubmenuLinkVariants, navigationMenuSubmenuVariants, navigationMenuVariants } from "./navigation-menu-variants.mjs";
 import { useCallback, useRef, useState } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./NavigationMenu.css";
 //#region src/NavigationMenu/NavigationMenu.tsx
-const navigationMenuVariants = cva("nothing-nav-menu", {
-	variants: { orientation: {
-		horizontal: "nothing-nav-menu--horizontal",
-		vertical: "nothing-nav-menu--vertical"
-	} },
-	defaultVariants: { orientation: "horizontal" }
-});
-const NavigationMenu = React.forwardRef(({ className, items, orientation = "horizontal", style, ...props }, ref) => {
+const LINK_SELECTOR = "[data-slot=\"navigation-menu-link\"]";
+/** 方向键在 RTL 下要整体翻面，否则「右」会走向列表的开头。 */
+function isRtlElement(element) {
+	return getComputedStyle(element).direction === "rtl";
+}
+function NavigationMenu({ className, items, orientation = "horizontal", style, ...props }) {
 	const [openIndex, setOpenIndex] = useState(null);
 	const [focusIndex, setFocusIndex] = useState(null);
 	const containerRef = useRef(null);
@@ -21,42 +17,41 @@ const NavigationMenu = React.forwardRef(({ className, items, orientation = "hori
 	useClickOutside(containerRef, () => {
 		setOpenIndex(null);
 	});
+	const focusItem = useCallback((index) => {
+		itemRefs.current[index]?.querySelector(LINK_SELECTOR)?.focus();
+	}, []);
 	const handleTriggerClick = useCallback((index) => {
 		setOpenIndex((prev) => prev === index ? null : index);
 	}, []);
 	const handleTriggerKeyDown = useCallback((index, e) => {
 		const isHorizontal = orientation === "horizontal";
+		const rtl = isRtlElement(e.currentTarget);
+		const forwardKey = rtl ? "ArrowLeft" : "ArrowRight";
+		const backwardKey = rtl ? "ArrowRight" : "ArrowLeft";
+		const step = (delta) => {
+			focusItem((index + delta + items.length) % items.length);
+		};
 		switch (e.key) {
-			case "ArrowRight":
+			case forwardKey:
 				e.preventDefault();
-				if (isHorizontal) {
-					const next = (index + 1) % items.length;
-					itemRefs.current[next]?.querySelector(".nothing-nav-menu__link")?.focus();
-				} else if (items[index].children) setOpenIndex(index);
+				if (isHorizontal) step(1);
+				else if (items[index].children) setOpenIndex(index);
 				break;
-			case "ArrowLeft":
+			case backwardKey:
 				e.preventDefault();
-				if (isHorizontal) {
-					const prev = (index - 1 + items.length) % items.length;
-					itemRefs.current[prev]?.querySelector(".nothing-nav-menu__link")?.focus();
-				}
+				if (isHorizontal) step(-1);
 				break;
 			case "ArrowDown":
 				e.preventDefault();
-				if (!isHorizontal) {
-					const next = (index + 1) % items.length;
-					itemRefs.current[next]?.querySelector(".nothing-nav-menu__link")?.focus();
-				} else if (items[index].children) {
+				if (!isHorizontal) step(1);
+				else if (items[index].children) {
 					setOpenIndex(index);
 					setFocusIndex(0);
 				}
 				break;
 			case "ArrowUp":
 				e.preventDefault();
-				if (!isHorizontal) {
-					const prev = (index - 1 + items.length) % items.length;
-					itemRefs.current[prev]?.querySelector(".nothing-nav-menu__link")?.focus();
-				}
+				if (!isHorizontal) step(-1);
 				break;
 			case "Enter":
 			case " ":
@@ -69,7 +64,11 @@ const NavigationMenu = React.forwardRef(({ className, items, orientation = "hori
 				setOpenIndex(null);
 				break;
 		}
-	}, [orientation, items]);
+	}, [
+		orientation,
+		items,
+		focusItem
+	]);
 	const handleSubmenuKeyDown = useCallback((itemIndex, e) => {
 		const subItems = items[itemIndex].children ?? [];
 		switch (e.key) {
@@ -84,7 +83,7 @@ const NavigationMenu = React.forwardRef(({ className, items, orientation = "hori
 			case "Escape":
 				e.preventDefault();
 				setOpenIndex(null);
-				itemRefs.current[itemIndex]?.querySelector(".nothing-nav-menu__link")?.focus();
+				focusItem(itemIndex);
 				break;
 			case "Enter":
 			case " ":
@@ -95,31 +94,38 @@ const NavigationMenu = React.forwardRef(({ className, items, orientation = "hori
 				}
 				break;
 		}
-	}, [items, focusIndex]);
+	}, [
+		items,
+		focusIndex,
+		focusItem
+	]);
 	return /* @__PURE__ */ jsx("nav", {
-		ref,
 		className: cn(navigationMenuVariants({ orientation }), className),
 		style,
+		"data-slot": "navigation-menu",
 		"data-orientation": dataAttr(orientation),
 		...props,
 		children: /* @__PURE__ */ jsx("div", {
 			ref: containerRef,
 			children: /* @__PURE__ */ jsx("ul", {
-				className: "nothing-nav-menu__list",
+				className: navigationMenuListVariants({ orientation }),
+				"data-slot": "navigation-menu-list",
 				role: orientation === "horizontal" ? "menubar" : "menu",
 				children: items.map((item, index) => {
 					const hasChildren = item.children && item.children.length > 0;
 					const isOpen = openIndex === index;
 					return /* @__PURE__ */ jsxs("li", {
-						className: cn("nothing-nav-menu__item", item.active && "nothing-nav-menu__item--active", hasChildren && "nothing-nav-menu__item--has-children"),
+						className: navigationMenuItemVariants(),
+						"data-slot": "navigation-menu-item",
 						"data-active": dataAttr(item.active),
 						"data-has-children": dataAttr(hasChildren),
 						"data-open": dataAttr(isOpen),
 						ref: (el) => {
 							itemRefs.current[index] = el;
 						},
-						children: [/* @__PURE__ */ jsx("a", {
-							className: "nothing-nav-menu__link",
+						children: [/* @__PURE__ */ jsxs("a", {
+							className: navigationMenuLinkVariants({ active: item.active }),
+							"data-slot": "navigation-menu-link",
 							href: item.href ?? void 0,
 							role: "menuitem",
 							"aria-expanded": hasChildren ? isOpen : void 0,
@@ -130,16 +136,24 @@ const NavigationMenu = React.forwardRef(({ className, items, orientation = "hori
 								else item.onClick?.();
 							},
 							onKeyDown: (e) => handleTriggerKeyDown(index, e),
-							children: item.label
+							children: [item.label, hasChildren && /* @__PURE__ */ jsx("span", {
+								className: navigationMenuCaretVariants(),
+								"data-slot": "navigation-menu-caret",
+								"aria-hidden": "true"
+							})]
 						}), hasChildren && /* @__PURE__ */ jsx("div", {
-							className: cn("nothing-nav-menu__submenu", isOpen && "nothing-nav-menu__submenu--visible"),
+							className: navigationMenuSubmenuVariants({ orientation }),
+							"data-slot": "navigation-menu-submenu",
+							"data-open": dataAttr(isOpen),
 							role: "menu",
 							onKeyDown: (e) => handleSubmenuKeyDown(index, e),
 							children: item.children.map((subItem, subIndex) => /* @__PURE__ */ jsx("div", {
-								className: "nothing-nav-menu__submenu-item",
+								className: navigationMenuSubmenuItemVariants(),
+								"data-slot": "navigation-menu-submenu-item",
 								role: "none",
 								children: /* @__PURE__ */ jsx("a", {
-									className: "nothing-nav-menu__submenu-link",
+									className: navigationMenuSubmenuLinkVariants(),
+									"data-slot": "navigation-menu-submenu-link",
 									href: subItem.href ?? void 0,
 									role: "menuitem",
 									tabIndex: isOpen ? focusIndex === subIndex ? 0 : -1 : -1,
@@ -160,9 +174,9 @@ const NavigationMenu = React.forwardRef(({ className, items, orientation = "hori
 			})
 		})
 	});
-});
+}
 NavigationMenu.displayName = "NavigationMenu";
 //#endregion
-export { NavigationMenu, NavigationMenu as default, navigationMenuVariants };
+export { NavigationMenu as default };
 
 //# sourceMappingURL=NavigationMenu.mjs.map

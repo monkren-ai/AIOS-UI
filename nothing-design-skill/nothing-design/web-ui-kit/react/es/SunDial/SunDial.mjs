@@ -1,26 +1,8 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import { sunDialArcDayVariants, sunDialArcNightVariants, sunDialCurrentTimeVariants, sunDialLocationVariants, sunDialRemainingVariants, sunDialStatusVariants, sunDialSunCoreVariants, sunDialSunGlowVariants, sunDialSunMarkerVariants, sunDialTimeBlockVariants, sunDialTimeLabelVariants, sunDialTimeValueVariants, sunDialVariants } from "./sun-dial-variants.mjs";
 import { useEffect, useMemo, useState } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./SunDial.css";
 //#region src/SunDial/SunDial.tsx
-const sunDialVariants = cva("nothing-sun-dial", {
-	variants: {
-		time: {
-			day: "nothing-sun-dial--day",
-			night: "nothing-sun-dial--night"
-		},
-		theme: {
-			light: "nothing-sun-dial--light",
-			dark: "nothing-sun-dial--dark"
-		}
-	},
-	defaultVariants: {
-		time: "day",
-		theme: "dark"
-	}
-});
 function getDayOfYear(date) {
 	const start = new Date(date.getFullYear(), 0, 0);
 	const diff = date.getTime() - start.getTime();
@@ -57,7 +39,7 @@ function describeArc(cx, cy, r, startAngle, endAngle) {
 	const endY = cy - r * Math.sin(endAngle);
 	return `M ${startX} ${startY} A ${r} ${r} 0 0 ${startAngle > endAngle ? 0 : 1} ${endX} ${endY}`;
 }
-const SunDial = React.forwardRef(({ className, latitude: propLat, longitude: propLng, updateInterval = 6e4, time: timeProp, theme = "dark", style, ...props }, ref) => {
+function SunDial({ className, latitude: propLat, longitude: propLng, updateInterval = 6e4, time: timeProp, theme = "dark", style, ref, ...props }) {
 	const [location, setLocation] = useState(null);
 	const [now, setNow] = useState(/* @__PURE__ */ new Date());
 	useEffect(() => {
@@ -131,44 +113,52 @@ const SunDial = React.forwardRef(({ className, latitude: propLat, longitude: pro
 			theme
 		}), className),
 		style,
+		"data-slot": "sun-dial",
 		"data-time": dataAttr(time),
-		"data-theme": dataAttr(theme),
+		"data-widget-theme": dataAttr(theme),
+		"data-located": dataAttr(location !== null),
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "sundial-header",
+				"data-slot": "sun-dial-header",
+				className: "mb-4 flex w-full items-center justify-between",
 				children: [/* @__PURE__ */ jsx("div", {
-					className: cn("sundial-status", isDay ? "day" : "night"),
+					"data-slot": "sun-dial-status",
+					className: cn(sunDialStatusVariants({ time: isDay ? "day" : "night" })),
 					children: sunTimes ? isDay ? "[DAY]" : "[NIGHT]" : "[--]"
 				}), /* @__PURE__ */ jsx("div", {
-					className: "sundial-location",
+					"data-slot": "sun-dial-location",
+					className: cn(sunDialLocationVariants()),
 					children: location ? `${location.lat.toFixed(2)}°, ${location.lng.toFixed(2)}°` : "LOCATING..."
 				})]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "sundial-arc-container",
+				"data-slot": "sun-dial-arc",
+				className: "relative mb-18 w-full max-w-80",
 				children: [
 					/* @__PURE__ */ jsxs("svg", {
-						className: "sundial-arc-svg",
+						className: "block w-full overflow-visible",
 						viewBox: "0 0 300 170",
+						"aria-hidden": "true",
 						children: [
 							/* @__PURE__ */ jsx("path", {
-								className: "sundial-arc-night",
+								className: cn(sunDialArcNightVariants()),
 								d: nightArc
 							}),
 							/* @__PURE__ */ jsx("path", {
-								className: "sundial-arc-day",
+								className: cn(sunDialArcDayVariants()),
 								d: dayArc
 							}),
 							sunPos && /* @__PURE__ */ jsxs("g", {
-								className: "sundial-sun-marker",
+								"data-slot": "sun-dial-sun",
+								className: cn(sunDialSunMarkerVariants()),
 								children: [/* @__PURE__ */ jsx("circle", {
-									className: "sundial-sun-glow",
+									className: cn(sunDialSunGlowVariants()),
 									cx: sunPos.x,
 									cy: sunPos.y,
 									r: "16"
 								}), /* @__PURE__ */ jsx("circle", {
-									className: "sundial-sun-core",
+									className: cn(sunDialSunCoreVariants()),
 									cx: sunPos.x,
 									cy: sunPos.y,
 									r: "7"
@@ -177,29 +167,32 @@ const SunDial = React.forwardRef(({ className, latitude: propLat, longitude: pro
 						]
 					}),
 					/* @__PURE__ */ jsxs("div", {
-						className: "sundial-time-block sundial-time-block--sunrise",
+						"data-slot": "sun-dial-sunrise",
+						className: cn(sunDialTimeBlockVariants({ edge: "sunrise" })),
 						children: [/* @__PURE__ */ jsx("div", {
-							className: "sundial-time-label",
+							className: cn(sunDialTimeLabelVariants()),
 							children: "Sunrise"
 						}), /* @__PURE__ */ jsx("div", {
-							className: "sundial-time-value",
+							className: cn(sunDialTimeValueVariants()),
 							children: sunTimes?.sunriseStr ?? "--:--"
 						})]
 					}),
 					/* @__PURE__ */ jsxs("div", {
-						className: "sundial-time-block sundial-time-block--sunset",
+						"data-slot": "sun-dial-sunset",
+						className: cn(sunDialTimeBlockVariants({ edge: "sunset" })),
 						children: [/* @__PURE__ */ jsx("div", {
-							className: "sundial-time-label",
+							className: cn(sunDialTimeLabelVariants()),
 							children: "Sunset"
 						}), /* @__PURE__ */ jsx("div", {
-							className: "sundial-time-value",
+							className: cn(sunDialTimeValueVariants()),
 							children: sunTimes?.sunsetStr ?? "--:--"
 						})]
 					})
 				]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "sundial-current-time",
+				"data-slot": "sun-dial-current-time",
+				className: cn(sunDialCurrentTimeVariants()),
 				children: [
 					hours,
 					":",
@@ -207,14 +200,15 @@ const SunDial = React.forwardRef(({ className, latitude: propLat, longitude: pro
 				]
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "sundial-remaining",
+				"data-slot": "sun-dial-remaining",
+				className: cn(sunDialRemainingVariants()),
 				children: remaining
 			})
 		]
 	});
-});
+}
 SunDial.displayName = "SunDial";
 //#endregion
-export { SunDial, SunDial as default, sunDialVariants };
+export { SunDial as default };
 
 //# sourceMappingURL=SunDial.mjs.map

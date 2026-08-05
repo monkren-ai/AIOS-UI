@@ -1,27 +1,10 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useClickOutside } from "../hooks/useClickOutside.mjs";
+import { commandEmptyVariants, commandGroupHeadingVariants, commandGroupVariants, commandInputVariants, commandItemIconVariants, commandItemLabelVariants, commandItemShortcutVariants, commandItemVariants, commandListVariants, commandVariants, resolveCommandSize } from "./command-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Command.css";
 //#region src/Command/Command.tsx
-const commandItemVariants = cva("nothing-command__item", {
-	variants: {
-		selected: {
-			true: "nothing-command__item--selected",
-			false: ""
-		},
-		disabled: {
-			true: "nothing-command__item--disabled",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		selected: false,
-		disabled: false
-	}
-});
-const Command = React.forwardRef(({ className, groups, placeholder = "Type a command...", emptyMessage = "No results found.", open: controlledOpen, onOpenChange, ...props }, ref) => {
+function Command({ className, groups, placeholder = "Type a command...", emptyMessage = "No results found.", open: controlledOpen, onOpenChange, size = "md", ref, ...props }) {
 	const [internalOpen, setInternalOpen] = React.useState(false);
 	const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
 	const [query, setQuery] = React.useState("");
@@ -31,10 +14,11 @@ const Command = React.forwardRef(({ className, groups, placeholder = "Type a com
 	const listRef = React.useRef(null);
 	const generatedId = React.useId();
 	const listId = `${generatedId}-list`;
+	const resolvedSize = resolveCommandSize(size) ?? "md";
 	const setContainerRefs = React.useCallback((node) => {
 		containerRef.current = node;
 		if (typeof ref === "function") ref(node);
-		else if (ref && "current" in ref) ref.current = node;
+		else if (ref) ref.current = node;
 	}, [ref]);
 	const filteredGroups = groups.map((g) => ({
 		...g,
@@ -93,14 +77,17 @@ const Command = React.forwardRef(({ className, groups, placeholder = "Type a com
 	let itemIndex = -1;
 	return /* @__PURE__ */ jsxs("div", {
 		ref: setContainerRefs,
-		className: cn("nothing-command", className),
+		className: cn(commandVariants(), className),
 		role: "dialog",
 		"aria-label": "Command palette",
 		onKeyDown: handleKeyDown,
+		"data-slot": "command",
+		"data-size": dataAttr(resolvedSize),
 		"data-state": dataAttr(isOpen ? "open" : "closed"),
 		...props,
 		children: [/* @__PURE__ */ jsx("input", {
-			className: "nothing-command__input",
+			className: commandInputVariants({ size: resolvedSize }),
+			"data-slot": "command-input",
 			ref: inputRef,
 			type: "text",
 			value: query,
@@ -114,17 +101,21 @@ const Command = React.forwardRef(({ className, groups, placeholder = "Type a com
 			"aria-activedescendant": isOpen && flatFilteredItems[selectedIndex] ? `${generatedId}-item-${flatFilteredItems[selectedIndex].id}` : void 0,
 			"aria-label": placeholder
 		}), /* @__PURE__ */ jsxs("div", {
-			className: "nothing-command__list",
+			className: commandListVariants(),
+			"data-slot": "command-list",
 			id: listId,
 			ref: listRef,
 			role: "listbox",
 			children: [filteredGroups.length === 0 && /* @__PURE__ */ jsx("div", {
-				className: "nothing-command__empty",
+				className: commandEmptyVariants(),
+				"data-slot": "command-empty",
 				children: emptyMessage
 			}), filteredGroups.map((group) => /* @__PURE__ */ jsxs("div", {
-				className: "nothing-command__group",
+				className: commandGroupVariants(),
+				"data-slot": "command-group",
 				children: [group.heading && /* @__PURE__ */ jsx("div", {
-					className: "nothing-command__group-heading",
+					className: commandGroupHeadingVariants(),
+					"data-slot": "command-group-heading",
 					children: group.heading
 				}), group.items.map((item) => {
 					itemIndex++;
@@ -132,28 +123,34 @@ const Command = React.forwardRef(({ className, groups, placeholder = "Type a com
 					const isSelected = currentIndex === selectedIndex;
 					return /* @__PURE__ */ jsxs("div", {
 						id: `${generatedId}-item-${item.id}`,
-						className: cn(commandItemVariants({
+						className: commandItemVariants({
+							size: resolvedSize,
 							selected: isSelected,
 							disabled: !!item.disabled
-						})),
+						}),
 						role: "option",
 						"aria-selected": isSelected,
 						"aria-disabled": item.disabled || void 0,
 						onClick: () => handleSelect(item),
 						onMouseEnter: () => setSelectedIndex(currentIndex),
+						"data-slot": "command-item",
 						"data-state": dataAttr(isSelected ? "selected" : "idle"),
+						"data-selected": dataAttr(isSelected),
 						"data-disabled": dataAttr(item.disabled),
 						children: [
 							item.icon && /* @__PURE__ */ jsx("span", {
-								className: "nothing-command__item-icon",
+								className: commandItemIconVariants(),
+								"data-slot": "command-item-icon",
 								children: item.icon
 							}),
 							/* @__PURE__ */ jsx("span", {
-								className: "nothing-command__item-label",
+								className: commandItemLabelVariants(),
+								"data-slot": "command-item-label",
 								children: item.label
 							}),
 							item.shortcut && /* @__PURE__ */ jsx("span", {
-								className: "nothing-command__item-shortcut",
+								className: commandItemShortcutVariants(),
+								"data-slot": "command-item-shortcut",
 								children: item.shortcut
 							})
 						]
@@ -162,9 +159,9 @@ const Command = React.forwardRef(({ className, groups, placeholder = "Type a com
 			}, group.heading ?? "default"))]
 		})]
 	});
-});
+}
 Command.displayName = "Command";
 //#endregion
-export { Command, Command as default, commandItemVariants };
+export { Command as default };
 
 //# sourceMappingURL=Command.mjs.map

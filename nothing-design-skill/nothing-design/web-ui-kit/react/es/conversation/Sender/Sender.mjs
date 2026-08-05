@@ -1,5 +1,5 @@
 import { cn, dataAttr, mergeSemanticProps } from "../../lib/utils.mjs";
-import { Button } from "../../Button/Button.mjs";
+import Button from "../../Button/Button.mjs";
 import { senderVariants } from "./sender-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
@@ -154,6 +154,6 @@ const Sender = React.forwardRef(({ value: controlledValue, defaultValue = "", pl
 });
 Sender.displayName = "Sender";
 //#endregion
-export { Sender, Sender as default };
+export { Sender as default };
 
 //# sourceMappingURL=Sender.mjs.map

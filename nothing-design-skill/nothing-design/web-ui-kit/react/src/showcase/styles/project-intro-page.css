@@ -54,7 +54,7 @@
   min-height: 100vh;
 }
 
-[data-theme="light"] .project-intro-page {
+[data-theme='light'] .project-intro-page {
   --pi-surface: #f5f5f5;
   --pi-surface-raised: #ffffff;
   --pi-surface-sunken: #eeeeee;
@@ -426,7 +426,9 @@ html {
   font-size: var(--pi-body-sm);
   font-weight: 500;
   cursor: pointer;
-  transition: background var(--pi-duration-micro) var(--pi-easing), border-color var(--pi-duration-micro) var(--pi-easing);
+  transition:
+    background var(--pi-duration-micro) var(--pi-easing),
+    border-color var(--pi-duration-micro) var(--pi-easing);
   border: 1px solid transparent;
 }
 

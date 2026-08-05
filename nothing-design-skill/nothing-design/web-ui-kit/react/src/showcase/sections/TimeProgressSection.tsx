@@ -11,12 +11,14 @@ import type { T } from '../hooks/useShowcaseState'
 interface TimeProgressSectionProps {
   t: T
   spinnerItems: string[]
-  setSpinnerItems: (
-    updater: string[] | ((prev: string[]) => string[]),
-  ) => void
+  setSpinnerItems: (updater: string[] | ((prev: string[]) => string[])) => void
 }
 
-export function TimeProgressSection({ t, spinnerItems, setSpinnerItems }: TimeProgressSectionProps) {
+export function TimeProgressSection({
+  t,
+  spinnerItems,
+  setSpinnerItems,
+}: TimeProgressSectionProps) {
   return (
     <CategorySection id="time-progress" title={t('时间与进度', 'Time & Progress')}>
       <DemoCard title={t('日晷', 'Sun Dial')}>
@@ -34,8 +36,29 @@ export function TimeProgressSection({ t, spinnerItems, setSpinnerItems }: TimePr
       <DemoCard title={t('旋转器', 'Spinner')}>
         <Spinner items={spinnerItems} style={{ maxWidth: '400px', margin: '0 auto' }} />
         <div className="showcase-row">
-          <Button variant="secondary" size="sm" onClick={() => setSpinnerItems((prev) => [...prev.slice(1), prev[0]])}>{t('旋转条目', 'Rotate Items')}</Button>
-          <Button variant="ghost" size="sm" onClick={() => setSpinnerItems([t('是', 'YES'), t('否', 'NO'), t('可能', 'MAYBE'), t('稍后', 'LATER'), t('跳过', 'SKIP'), t('尝试', 'TRY')])}>{t('重置', 'Reset')}</Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => setSpinnerItems((prev) => [...prev.slice(1), prev[0]])}
+          >
+            {t('旋转条目', 'Rotate Items')}
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() =>
+              setSpinnerItems([
+                t('是', 'YES'),
+                t('否', 'NO'),
+                t('可能', 'MAYBE'),
+                t('稍后', 'LATER'),
+                t('跳过', 'SKIP'),
+                t('尝试', 'TRY'),
+              ])
+            }
+          >
+            {t('重置', 'Reset')}
+          </Button>
         </div>
       </DemoCard>
 

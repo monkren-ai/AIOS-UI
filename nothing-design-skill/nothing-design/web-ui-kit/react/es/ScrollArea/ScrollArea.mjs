@@ -1,9 +1,9 @@
-import { cn } from "../lib/utils.mjs";
+import { cn, dataAttr } from "../lib/utils.mjs";
+import { scrollAreaScrollbarVariants, scrollAreaThumbVariants, scrollAreaVariants, scrollAreaViewportVariants } from "./scroll-area-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import "./ScrollArea.css";
 //#region src/ScrollArea/ScrollArea.tsx
-const ScrollArea = React.forwardRef(({ className, height, style, children, ...props }, ref) => {
+function ScrollArea({ className, height, style, children, viewportProps, ...props }) {
 	const viewportRef = React.useRef(null);
 	const thumbRef = React.useRef(null);
 	const [thumbHeight, setThumbHeight] = React.useState(0);
@@ -34,9 +34,20 @@ const ScrollArea = React.forwardRef(({ className, height, style, children, ...pr
 		observer.observe(viewport);
 		return () => observer.disconnect();
 	}, [updateThumb, children]);
-	const handleScroll = React.useCallback(() => {
+	const { className: viewportClassName, ref: callerViewportRef, onScroll: callerOnScroll, ...restViewportProps } = viewportProps ?? {};
+	const setViewportRef = React.useCallback((node) => {
+		viewportRef.current = node;
+		if (typeof callerViewportRef === "function") callerViewportRef(node);
+		else if (callerViewportRef) callerViewportRef.current = node;
+	}, [callerViewportRef]);
+	const handleScroll = React.useCallback((event) => {
 		if (!isDragging) updateThumb();
-	}, [updateThumb, isDragging]);
+		callerOnScroll?.(event);
+	}, [
+		updateThumb,
+		isDragging,
+		callerOnScroll
+	]);
 	const handleThumbMouseDown = React.useCallback((e) => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -72,25 +83,31 @@ const ScrollArea = React.forwardRef(({ className, height, style, children, ...pr
 		updateThumb();
 	}, [updateThumb]);
 	return /* @__PURE__ */ jsxs("div", {
-		ref,
-		className: cn("nothing-scroll-area", className),
+		className: cn(scrollAreaVariants(), className),
 		style: height ? {
 			height,
 			...style
 		} : style,
-		"data-dragging": isDragging || void 0,
+		"data-slot": "scroll-area",
+		"data-dragging": dataAttr(isDragging),
 		...props,
 		children: [/* @__PURE__ */ jsx("div", {
-			ref: viewportRef,
-			className: "nothing-scroll-area__viewport",
+			ref: setViewportRef,
+			className: cn(scrollAreaViewportVariants(), viewportClassName),
+			"data-slot": "scroll-area-viewport",
+			tabIndex: 0,
+			role: restViewportProps["aria-label"] || restViewportProps["aria-labelledby"] ? "region" : void 0,
+			...restViewportProps,
 			onScroll: handleScroll,
 			children
 		}), /* @__PURE__ */ jsx("div", {
-			className: "nothing-scroll-area__scrollbar",
+			className: scrollAreaScrollbarVariants(),
+			"data-slot": "scroll-area-scrollbar",
 			onClick: handleTrackClick,
 			children: /* @__PURE__ */ jsx("div", {
 				ref: thumbRef,
-				className: "nothing-scroll-area__thumb",
+				className: scrollAreaThumbVariants(),
+				"data-slot": "scroll-area-thumb",
 				style: {
 					height: thumbHeight > 0 ? thumbHeight : 0,
 					top: thumbTop
@@ -99,9 +116,9 @@ const ScrollArea = React.forwardRef(({ className, height, style, children, ...pr
 			})
 		})]
 	});
-});
+}
 ScrollArea.displayName = "ScrollArea";
 //#endregion
-export { ScrollArea, ScrollArea as default };
+export { ScrollArea as default };
 
 //# sourceMappingURL=ScrollArea.mjs.map

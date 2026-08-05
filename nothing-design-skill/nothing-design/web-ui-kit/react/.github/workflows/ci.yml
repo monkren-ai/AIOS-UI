@@ -27,6 +27,9 @@ jobs:
       - name: Check exports sync
         run: npm run sync:exports -- --check
 
+      - name: Check subpath entries sync
+        run: npm run sync:subpaths -- --check
+
       - name: Type check
         run: npm run type-check
 

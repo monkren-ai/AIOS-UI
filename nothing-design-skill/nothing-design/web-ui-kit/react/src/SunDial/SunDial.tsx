@@ -1,28 +1,29 @@
 import * as React from 'react'
 import { useState, useEffect, useMemo } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
-import './SunDial.css'
+import {
+  sunDialArcDayVariants,
+  sunDialArcNightVariants,
+  sunDialCurrentTimeVariants,
+  sunDialLocationVariants,
+  sunDialRemainingVariants,
+  sunDialStatusVariants,
+  sunDialSunCoreVariants,
+  sunDialSunGlowVariants,
+  sunDialSunMarkerVariants,
+  sunDialTimeBlockVariants,
+  sunDialTimeLabelVariants,
+  sunDialTimeValueVariants,
+  sunDialVariants,
+} from './sun-dial-variants'
 
 export type SunDialTime = 'day' | 'night'
 export type SunDialTheme = 'light' | 'dark'
 
-const sunDialVariants = cva('nothing-sun-dial', {
-  variants: {
-    time: {
-      day: 'nothing-sun-dial--day',
-      night: 'nothing-sun-dial--night',
-    },
-    theme: {
-      light: 'nothing-sun-dial--light',
-      dark: 'nothing-sun-dial--dark',
-    },
-  },
-  defaultVariants: { time: 'day', theme: 'dark' },
-})
-
 export interface SunDialProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.ComponentPropsWithRef<'div'>, 'children'>,
     Omit<VariantProps<typeof sunDialVariants>, 'time' | 'theme'> {
   latitude?: number
   longitude?: number
@@ -53,7 +54,7 @@ function formatHourMinute(h: number): string {
 function calculateSunTimes(lat: number, lng: number): SunTimes {
   const now = new Date()
   const dayOfYear = getDayOfYear(now)
-  const declination = 23.45 * Math.sin((2 * Math.PI / 365) * (dayOfYear - 81))
+  const declination = 23.45 * Math.sin(((2 * Math.PI) / 365) * (dayOfYear - 81))
   const decRad = (declination * Math.PI) / 180
   const latRad = (lat * Math.PI) / 180
 
@@ -79,7 +80,13 @@ function calculateSunTimes(lat: number, lng: number): SunTimes {
   }
 }
 
-function describeArc(cx: number, cy: number, r: number, startAngle: number, endAngle: number): string {
+function describeArc(
+  cx: number,
+  cy: number,
+  r: number,
+  startAngle: number,
+  endAngle: number,
+): string {
   const startX = cx + r * Math.cos(startAngle)
   const startY = cy - r * Math.sin(startAngle)
   const endX = cx + r * Math.cos(endAngle)
@@ -88,141 +95,150 @@ function describeArc(cx: number, cy: number, r: number, startAngle: number, endA
   return `M ${startX} ${startY} A ${r} ${r} 0 0 ${sweep} ${endX} ${endY}`
 }
 
-export const SunDial = React.forwardRef<HTMLDivElement, SunDialProps>(
-  (
-    {
-      className,
-      latitude: propLat,
-      longitude: propLng,
-      updateInterval = 60000,
-      time: timeProp,
-      theme = 'dark',
-      style,
-      ...props
-    },
-    ref
-  ) => {
-    const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null)
-    const [now, setNow] = useState(new Date())
+export function SunDial({
+  className,
+  latitude: propLat,
+  longitude: propLng,
+  updateInterval = 60000,
+  time: timeProp,
+  theme = 'dark',
+  style,
+  ref,
+  ...props
+}: SunDialProps) {
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null)
+  const [now, setNow] = useState(new Date())
 
-    useEffect(() => {
-      if (propLat !== undefined && propLng !== undefined) {
-        setLocation({ lat: propLat, lng: propLng })
-        return
-      }
+  useEffect(() => {
+    if (propLat !== undefined && propLng !== undefined) {
+      setLocation({ lat: propLat, lng: propLng })
+      return
+    }
 
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (pos) => setLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-          () => setLocation({ lat: 39.9042, lng: 116.4074 })
-        )
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => setLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+        () => setLocation({ lat: 39.9042, lng: 116.4074 }),
+      )
+    } else {
+      setLocation({ lat: 39.9042, lng: 116.4074 })
+    }
+  }, [propLat, propLng])
+
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), updateInterval)
+    return () => clearInterval(timer)
+  }, [updateInterval])
+
+  const sunTimes = location ? calculateSunTimes(location.lat, location.lng) : null
+
+  const currentMinutes = now.getHours() * 60 + now.getMinutes()
+  const isDay = sunTimes
+    ? currentMinutes >= sunTimes.sunrise && currentMinutes <= sunTimes.sunset
+    : false
+
+  const time: SunDialTime = timeProp ?? (isDay ? 'day' : 'night')
+
+  const remaining = useMemo(() => {
+    if (!sunTimes) return ''
+    if (isDay) {
+      const rem = sunTimes.sunset - currentMinutes
+      const h = Math.floor(rem / 60)
+      const m = rem % 60
+      return `${h}H ${m}M OF DAYLIGHT REMAINING`
+    } else {
+      let nextSunrise: number
+      if (currentMinutes < sunTimes.sunrise) {
+        nextSunrise = sunTimes.sunrise - currentMinutes
       } else {
-        setLocation({ lat: 39.9042, lng: 116.4074 })
+        nextSunrise = 24 * 60 - currentMinutes + sunTimes.sunrise
       }
-    }, [propLat, propLng])
+      const h = Math.floor(nextSunrise / 60)
+      const m = nextSunrise % 60
+      return `${h}H ${m}M UNTIL SUNRISE`
+    }
+  }, [sunTimes, isDay, currentMinutes])
 
-    useEffect(() => {
-      const timer = setInterval(() => setNow(new Date()), updateInterval)
-      return () => clearInterval(timer)
-    }, [updateInterval])
+  const sunPosition = useMemo(() => {
+    if (!sunTimes || !isDay) return null
+    const progress = (currentMinutes - sunTimes.sunrise) / (sunTimes.sunset - sunTimes.sunrise)
+    const angle = Math.PI - progress * Math.PI
+    const cx = 150
+    const cy = 150
+    const r = 130
+    return {
+      x: cx + r * Math.cos(angle),
+      y: cy - r * Math.sin(angle),
+    }
+  }, [sunTimes, isDay, currentMinutes])
 
-    const sunTimes = location ? calculateSunTimes(location.lat, location.lng) : null
+  const sunPos = sunPosition
 
-    const currentMinutes = now.getHours() * 60 + now.getMinutes()
-    const isDay = sunTimes
-      ? currentMinutes >= sunTimes.sunrise && currentMinutes <= sunTimes.sunset
-      : false
+  const hours = String(now.getHours()).padStart(2, '0')
+  const minutes = String(now.getMinutes()).padStart(2, '0')
 
-    const time: SunDialTime = timeProp ?? (isDay ? 'day' : 'night')
+  const dayArc = describeArc(150, 150, 130, Math.PI, 0)
+  const nightArc = describeArc(150, 150, 130, 0, Math.PI)
 
-    const remaining = useMemo(() => {
-      if (!sunTimes) return ''
-      if (isDay) {
-        const rem = sunTimes.sunset - currentMinutes
-        const h = Math.floor(rem / 60)
-        const m = rem % 60
-        return `${h}H ${m}M OF DAYLIGHT REMAINING`
-      } else {
-        let nextSunrise: number
-        if (currentMinutes < sunTimes.sunrise) {
-          nextSunrise = sunTimes.sunrise - currentMinutes
-        } else {
-          nextSunrise = 24 * 60 - currentMinutes + sunTimes.sunrise
-        }
-        const h = Math.floor(nextSunrise / 60)
-        const m = nextSunrise % 60
-        return `${h}H ${m}M UNTIL SUNRISE`
-      }
-    }, [sunTimes, isDay, currentMinutes])
-
-    const sunPosition = useMemo(() => {
-      if (!sunTimes || !isDay) return null
-      const progress = (currentMinutes - sunTimes.sunrise) / (sunTimes.sunset - sunTimes.sunrise)
-      const angle = Math.PI - progress * Math.PI
-      const cx = 150
-      const cy = 150
-      const r = 130
-      return {
-        x: cx + r * Math.cos(angle),
-        y: cy - r * Math.sin(angle),
-      }
-    }, [sunTimes, isDay, currentMinutes])
-
-    const sunPos = sunPosition
-
-    const hours = String(now.getHours()).padStart(2, '0')
-    const minutes = String(now.getMinutes()).padStart(2, '0')
-
-    const dayArc = describeArc(150, 150, 130, Math.PI, 0)
-    const nightArc = describeArc(150, 150, 130, 0, Math.PI)
-
-    return (
-      <div
-        ref={ref}
-        className={cn(sunDialVariants({ time, theme }), className)}
-        style={style}
-        data-time={dataAttr(time)}
-        data-theme={dataAttr(theme)}
-        {...props}
-      >
-        <div className="sundial-header">
-          <div className={cn('sundial-status', isDay ? 'day' : 'night')}>
-            {sunTimes ? (isDay ? '[DAY]' : '[NIGHT]') : '[--]'}
-          </div>
-          <div className="sundial-location">
-            {location ? `${location.lat.toFixed(2)}°, ${location.lng.toFixed(2)}°` : 'LOCATING...'}
-          </div>
+  return (
+    <div
+      ref={ref}
+      className={cn(sunDialVariants({ time, theme }), className)}
+      style={style}
+      data-slot="sun-dial"
+      data-time={dataAttr(time)}
+      data-widget-theme={dataAttr(theme)}
+      data-located={dataAttr(location !== null)}
+      {...props}
+    >
+      <div data-slot="sun-dial-header" className="mb-4 flex w-full items-center justify-between">
+        <div
+          data-slot="sun-dial-status"
+          className={cn(sunDialStatusVariants({ time: isDay ? 'day' : 'night' }))}
+        >
+          {sunTimes ? (isDay ? '[DAY]' : '[NIGHT]') : '[--]'}
         </div>
-
-        <div className="sundial-arc-container">
-          <svg className="sundial-arc-svg" viewBox="0 0 300 170">
-            <path className="sundial-arc-night" d={nightArc} />
-            <path className="sundial-arc-day" d={dayArc} />
-            {sunPos && (
-              <g className="sundial-sun-marker">
-                <circle className="sundial-sun-glow" cx={sunPos.x} cy={sunPos.y} r="16" />
-                <circle className="sundial-sun-core" cx={sunPos.x} cy={sunPos.y} r="7" />
-              </g>
-            )}
-          </svg>
-          <div className="sundial-time-block sundial-time-block--sunrise">
-            <div className="sundial-time-label">Sunrise</div>
-            <div className="sundial-time-value">{sunTimes?.sunriseStr ?? '--:--'}</div>
-          </div>
-          <div className="sundial-time-block sundial-time-block--sunset">
-            <div className="sundial-time-label">Sunset</div>
-            <div className="sundial-time-value">{sunTimes?.sunsetStr ?? '--:--'}</div>
-          </div>
+        <div data-slot="sun-dial-location" className={cn(sunDialLocationVariants())}>
+          {location ? `${location.lat.toFixed(2)}°, ${location.lng.toFixed(2)}°` : 'LOCATING...'}
         </div>
-
-        <div className="sundial-current-time">
-          {hours}:{minutes}
-        </div>
-        <div className="sundial-remaining">{remaining}</div>
       </div>
-    )
-  }
-)
+
+      <div data-slot="sun-dial-arc" className="relative mb-18 w-full max-w-80">
+        <svg className="block w-full overflow-visible" viewBox="0 0 300 170" aria-hidden="true">
+          <path className={cn(sunDialArcNightVariants())} d={nightArc} />
+          <path className={cn(sunDialArcDayVariants())} d={dayArc} />
+          {sunPos && (
+            <g data-slot="sun-dial-sun" className={cn(sunDialSunMarkerVariants())}>
+              <circle className={cn(sunDialSunGlowVariants())} cx={sunPos.x} cy={sunPos.y} r="16" />
+              <circle className={cn(sunDialSunCoreVariants())} cx={sunPos.x} cy={sunPos.y} r="7" />
+            </g>
+          )}
+        </svg>
+        <div
+          data-slot="sun-dial-sunrise"
+          className={cn(sunDialTimeBlockVariants({ edge: 'sunrise' }))}
+        >
+          <div className={cn(sunDialTimeLabelVariants())}>Sunrise</div>
+          <div className={cn(sunDialTimeValueVariants())}>{sunTimes?.sunriseStr ?? '--:--'}</div>
+        </div>
+        <div
+          data-slot="sun-dial-sunset"
+          className={cn(sunDialTimeBlockVariants({ edge: 'sunset' }))}
+        >
+          <div className={cn(sunDialTimeLabelVariants())}>Sunset</div>
+          <div className={cn(sunDialTimeValueVariants())}>{sunTimes?.sunsetStr ?? '--:--'}</div>
+        </div>
+      </div>
+
+      <div data-slot="sun-dial-current-time" className={cn(sunDialCurrentTimeVariants())}>
+        {hours}:{minutes}
+      </div>
+      <div data-slot="sun-dial-remaining" className={cn(sunDialRemainingVariants())}>
+        {remaining}
+      </div>
+    </div>
+  )
+}
 SunDial.displayName = 'SunDial'
 
 export { sunDialVariants }

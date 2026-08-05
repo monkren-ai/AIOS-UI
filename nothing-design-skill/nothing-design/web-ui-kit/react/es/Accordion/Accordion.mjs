@@ -1,32 +1,14 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { accordionContentVariants, accordionHeaderVariants, accordionItemVariants, accordionLeadingIconVariants, accordionPanelVariants, accordionTriggerIconVariants, accordionTriggerTextVariants, accordionTriggerVariants, accordionVariants } from "./accordion-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import { Accordion } from "@base-ui/react/accordion";
-import "./Accordion.css";
 //#region src/Accordion/Accordion.tsx
-const accordionVariants = cva("nothing-accordion", {
-	variants: {
-		type: {
-			single: "nothing-accordion--single",
-			multiple: "nothing-accordion--multiple"
-		},
-		variant: {
-			default: "nothing-accordion--default",
-			flush: "nothing-accordion--flush"
-		}
-	},
-	defaultVariants: {
-		type: "single",
-		variant: "default"
-	}
-});
-const Accordion$1 = React.forwardRef(({ className, items, type = "single", variant = "default", defaultOpen, defaultValue, value: controlledValue, onValueChange, ...props }, ref) => {
+function Accordion$1({ className, items, type = "single", variant = "default", defaultOpen, defaultValue, value: controlledValue, onValueChange, ...props }) {
 	const handleValueChange = React.useCallback((value) => {
 		onValueChange?.(value);
 	}, [onValueChange]);
 	return /* @__PURE__ */ jsx(Accordion.Root, {
-		ref,
 		className: cn(accordionVariants({
 			type,
 			variant
@@ -42,40 +24,48 @@ const Accordion$1 = React.forwardRef(({ className, items, type = "single", varia
 		children: items.map((item) => /* @__PURE__ */ jsxs(Accordion.Item, {
 			value: item.id,
 			disabled: item.disabled,
-			className: "nothing-accordion__item",
+			className: accordionItemVariants({ variant }),
+			"data-slot": "accordion-item",
 			"data-disabled": dataAttr(item.disabled),
 			children: [/* @__PURE__ */ jsx(Accordion.Header, {
-				className: "nothing-accordion__heading",
+				className: accordionHeaderVariants(),
+				"data-slot": "accordion-header",
 				children: /* @__PURE__ */ jsxs(Accordion.Trigger, {
-					className: "nothing-accordion__trigger",
+					className: accordionTriggerVariants(),
+					"data-slot": "accordion-trigger",
 					children: [
 						item.leadingIcon && /* @__PURE__ */ jsx("span", {
-							className: "nothing-accordion__trigger-icon-leading",
+							className: accordionLeadingIconVariants(),
+							"data-slot": "accordion-leading-icon",
 							"aria-hidden": "true",
 							children: item.leadingIcon
 						}),
 						/* @__PURE__ */ jsx("span", {
-							className: "nothing-accordion__trigger-text",
+							className: accordionTriggerTextVariants(),
+							"data-slot": "accordion-trigger-text",
 							children: item.title
 						}),
 						/* @__PURE__ */ jsx("span", {
-							className: "nothing-accordion__trigger-icon",
+							className: accordionTriggerIconVariants(),
+							"data-slot": "accordion-trigger-icon",
 							"aria-hidden": "true"
 						})
 					]
 				})
 			}), /* @__PURE__ */ jsx(Accordion.Panel, {
-				className: "nothing-accordion__panel",
+				className: accordionPanelVariants(),
+				"data-slot": "accordion-panel",
 				children: /* @__PURE__ */ jsx("div", {
-					className: "nothing-accordion__content-inner",
+					className: accordionContentVariants(),
+					"data-slot": "accordion-content",
 					children: item.content
 				})
 			})]
 		}, item.id))
 	});
-});
+}
 Accordion$1.displayName = "Accordion";
 //#endregion
-export { Accordion$1 as Accordion, Accordion$1 as default, accordionVariants };
+export { Accordion$1 as default };
 
 //# sourceMappingURL=Accordion.mjs.map

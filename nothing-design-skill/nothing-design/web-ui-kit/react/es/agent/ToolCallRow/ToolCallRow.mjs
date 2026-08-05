@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
-import { AgentOrb } from "../AgentOrb/AgentOrb.mjs";
+import AgentOrb from "../AgentOrb/AgentOrb.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
@@ -96,6 +96,6 @@ const ToolCallRow = React.forwardRef(({ tool, args, status = "pending", elapsedM
 });
 ToolCallRow.displayName = "ToolCallRow";
 //#endregion
-export { ToolCallRow, ToolCallRow as default, toolCallRowVariants };
+export { ToolCallRow as default, toolCallRowVariants };
 
 //# sourceMappingURL=ToolCallRow.mjs.map

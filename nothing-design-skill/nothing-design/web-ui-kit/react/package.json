@@ -1,6 +1,6 @@
 {
-  "name": "nothing-ui-kit-react",
-  "version": "1.0.0",
+  "name": "nothing-ui",
+  "version": "2.0.0",
   "description": "Nothing UI Kit Web - A web component library based on Nothing design system",
   "author": "Nothing UI",
   "license": "MIT",
@@ -14,13 +14,15 @@
       "import": "./es/index.mjs",
       "default": "./es/index.mjs"
     },
-    "./styles": {
-      "types": "./es/styles/index.d.mts",
-      "import": "./es/styles/index.mjs"
-    },
+    "./styles.css": "./es/styles/index.css",
+    "./styles/*": "./es/styles/*",
     "./es/*": {
       "types": "./es/*.d.mts",
       "import": "./es/*.mjs"
+    },
+    "./*": {
+      "types": "./es/subpath/*.d.mts",
+      "import": "./es/subpath/*.mjs"
     }
   },
   "main": "es/index.mjs",
@@ -31,10 +33,11 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsdown",
+    "build": "tsdown && node ./scripts/copy-styles.mjs",
     "build:packages": "tsx ./scripts/build.ts",
     "build:showcase": "vite build",
     "sync:exports": "tsx ./scripts/sync-exports.ts",
+    "sync:subpaths": "tsx ./scripts/generate-subpaths.ts",
     "build:watch": "tsdown --watch",
     "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx",
@@ -49,11 +52,15 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
+    "@tabler/icons-react": "^3.46.0",
+    "@tailwindcss/vite": "^4.3.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-router-dom": "^7.18.1"
+    "react-router-dom": "^7.18.1",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.3"
   },
   "peerDependencies": {
     "motion": ">=12.0.0"

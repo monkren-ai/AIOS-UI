@@ -4,8 +4,7 @@ import '../styles/dot-matrix-icon.css'
 
 const MAX_DIM = 96
 
-export interface DotMatrixIconProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface DotMatrixIconProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /** Full <svg>...</svg> markup to rasterize into a dot mask. */
   svg: string
   /** Grid resolution — number of rows. Default 24. */
@@ -60,7 +59,7 @@ export const DotMatrixIcon = React.forwardRef<HTMLDivElement, DotMatrixIconProps
       style,
       ...props
     },
-    ref
+    ref,
   ) => {
     // Clamp grid dimensions to protect against DOM explosion on low-end devices.
     const safeRows = Math.min(Math.max(1, Math.floor(rows)), MAX_DIM)
@@ -69,7 +68,7 @@ export const DotMatrixIcon = React.forwardRef<HTMLDivElement, DotMatrixIconProps
     if (import.meta.env.DEV) {
       if (rows > MAX_DIM || cols > MAX_DIM) {
         console.warn(
-          `[DotMatrixIcon] rows/cols exceed ${MAX_DIM} and were clamped. Very high grid sizes increase render cost.`
+          `[DotMatrixIcon] rows/cols exceed ${MAX_DIM} and were clamped. Very high grid sizes increase render cost.`,
         )
       }
     }
@@ -207,9 +206,12 @@ export const DotMatrixIcon = React.forwardRef<HTMLDivElement, DotMatrixIconProps
         cells.push(
           <div
             key={key}
-            className={cn('nothing-dot-matrix-icon__dot', isPulsing && 'nothing-dot-matrix-icon__dot--pulse')}
+            className={cn(
+              'nothing-dot-matrix-icon__dot',
+              isPulsing && 'nothing-dot-matrix-icon__dot--pulse',
+            )}
             style={{ width: dotSize, height: dotSize, backgroundColor: bg }}
-          />
+          />,
         )
       }
     }
@@ -237,7 +239,7 @@ export const DotMatrixIcon = React.forwardRef<HTMLDivElement, DotMatrixIconProps
         {cells}
       </div>
     )
-  }
+  },
 )
 DotMatrixIcon.displayName = 'DotMatrixIcon'
 

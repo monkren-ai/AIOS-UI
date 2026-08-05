@@ -59,7 +59,9 @@ describe('Conversations', () => {
   })
 
   it('applies semantic classNames', () => {
-    render(<Conversations items={items} classNames={{ root: 'custom-root', item: 'custom-item' }} />)
+    render(
+      <Conversations items={items} classNames={{ root: 'custom-root', item: 'custom-item' }} />,
+    )
     expect(document.querySelector('[data-slot="conversations"]')).toHaveClass('custom-root')
     expect(document.querySelector('[data-slot="conversations-item"]')).toHaveClass('custom-item')
   })

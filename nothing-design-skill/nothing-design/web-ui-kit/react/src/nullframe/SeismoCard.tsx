@@ -95,7 +95,7 @@ export const SeismoCard = React.forwardRef<HTMLElement, SeismoCardProps>(
         </div>
       </NfCard>
     )
-  }
+  },
 )
 SeismoCard.displayName = 'SeismoCard'
 

@@ -1,27 +1,9 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useNow } from "../system/hooks.mjs";
+import { nextEventCountdownVariants, nextEventDateVariants, nextEventLabelVariants, nextEventMonthVariants, nextEventTitleVariants, nextEventVariants } from "./next-event-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./NextEvent.css";
 //#region src/NextEvent/NextEvent.tsx
-const nextEventVariants = cva("nothing-next-event", {
-	variants: {
-		theme: {
-			light: "nothing-next-event--light",
-			dark: "nothing-next-event--dark"
-		},
-		priority: {
-			low: "nothing-next-event--low",
-			normal: "nothing-next-event--normal",
-			high: "nothing-next-event--high"
-		}
-	},
-	defaultVariants: {
-		theme: "dark",
-		priority: "normal"
-	}
-});
 const MONTHS = [
 	"JAN",
 	"FEB",
@@ -71,7 +53,7 @@ function formatCountdown(ms) {
 function pad2(n) {
 	return String(n).padStart(2, "0");
 }
-const NextEvent = React.forwardRef(({ className, theme = "dark", priority: priorityProp, event, events, ...props }, ref) => {
+function NextEvent({ className, theme = "dark", priority: priorityProp, event, events, ref, ...props }) {
 	const now = useNow(6e4);
 	const defaultEvents = React.useMemo(makeDefaultEvents, []);
 	let displayEvent;
@@ -95,40 +77,49 @@ const NextEvent = React.forwardRef(({ className, theme = "dark", priority: prior
 		ref,
 		className: cn(nextEventVariants({
 			theme,
-			priority
+			priority,
+			real
 		}), className),
+		"data-slot": "next-event",
+		"data-widget-theme": dataAttr(theme),
 		"data-state": dataAttr(real ? "has-event" : "demo"),
 		"data-priority": dataAttr(priority),
 		"data-real": dataAttr(real),
 		...props,
 		children: [/* @__PURE__ */ jsx("span", {
-			className: "nothing-next-event__label",
+			"data-slot": "next-event-label",
+			className: cn(nextEventLabelVariants({ theme })),
 			children: "Next Event:"
 		}), /* @__PURE__ */ jsxs("div", {
-			className: "nothing-next-event__content",
+			"data-slot": "next-event-content",
+			className: "flex items-baseline gap-1",
 			children: [
 				/* @__PURE__ */ jsx("span", {
-					className: "nothing-next-event__title",
+					"data-slot": "next-event-title",
+					className: cn(nextEventTitleVariants({ theme })),
 					children: displayEvent.title
 				}),
 				/* @__PURE__ */ jsx("span", {
-					className: "nothing-next-event__date",
+					"data-slot": "next-event-date",
+					className: cn(nextEventDateVariants()),
 					children: day
 				}),
 				/* @__PURE__ */ jsx("span", {
-					className: "nothing-next-event__month",
+					"data-slot": "next-event-month",
+					className: cn(nextEventMonthVariants()),
 					children: monthStr
 				}),
 				/* @__PURE__ */ jsx("span", {
-					className: "nothing-next-event__countdown",
+					"data-slot": "next-event-countdown",
+					className: cn(nextEventCountdownVariants({ priority })),
 					children: countdown
 				})
 			]
 		})]
 	});
-});
+}
 NextEvent.displayName = "NextEvent";
 //#endregion
-export { NextEvent, NextEvent as default, nextEventVariants };
+export { NextEvent as default };
 
 //# sourceMappingURL=NextEvent.mjs.map

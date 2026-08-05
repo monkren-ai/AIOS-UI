@@ -1,24 +1,80 @@
 import { NfCard } from '@/nullframe/NfCard'
 import { CtlCtx, type Ctl } from '../../system/hooks'
 import {
-  Home, DarkMode, Remote, Subtitle, Wallet, Location,
-  DarkModeLight, NoSignal, DownArrow, DoNotDisturb, QrCode,
-  Storage, Share, NoConnection, Record, FullNetwork, Shield,
-  Glyphs, Aeroplane, Chart, Video, Temp, AutoRotate, Info,
-  MicOff, NoSim, Watch, RecordAlt, AccessCamera, Dots, Filter,
-  HomeLight, Cast, DoNotDisturbLight, ArrowDownAlt, QrCodeLight,
-  SubtitleLight, Scan, CastAlt, BatteryPlus,
+  Home,
+  DarkMode,
+  Remote,
+  Subtitle,
+  Wallet,
+  Location,
+  DarkModeLight,
+  NoSignal,
+  DownArrow,
+  DoNotDisturb,
+  QrCode,
+  Storage,
+  Share,
+  NoConnection,
+  Record,
+  FullNetwork,
+  Shield,
+  Glyphs,
+  Aeroplane,
+  Chart,
+  Video,
+  Temp,
+  AutoRotate,
+  Info,
+  MicOff,
+  NoSim,
+  Watch,
+  RecordAlt,
+  AccessCamera,
+  Dots,
+  Filter,
+  HomeLight,
+  Cast,
+  DoNotDisturbLight,
+  ArrowDownAlt,
+  QrCodeLight,
+  SubtitleLight,
+  Scan,
+  CastAlt,
+  BatteryPlus,
 } from '@/widgets/WidgetIcons'
 import WidgetPill from '@/widgets/WidgetPill'
 import {
-  LocationAccess, Compass as FigmaCompass, TempControl,
-  AutoRotate1, Active, Watch as FigmaWatch, Recording,
-  Glyphs as FigmaGlyphs, Campus, Location1, Flash,
-  Weather as FigmaWeather, MicAccess, PairNewDevice,
-  Overlimit, MusicPlayer as FigmaMusicPlayer, StepsCounter,
-  OverLimit, LoadingBar1, Card as FigmaCard, Dots3, Play,
-  NothingEar, Date as FigmaDate, Counter, Music, Device,
-  Mode, DoubleDown, SelectDevice, ActivityTracker,
+  LocationAccess,
+  Compass as FigmaCompass,
+  TempControl,
+  AutoRotate1,
+  Active,
+  Watch as FigmaWatch,
+  Recording,
+  Glyphs as FigmaGlyphs,
+  Campus,
+  Location1,
+  Flash,
+  Weather as FigmaWeather,
+  MicAccess,
+  PairNewDevice,
+  Overlimit,
+  MusicPlayer as FigmaMusicPlayer,
+  StepsCounter,
+  OverLimit,
+  LoadingBar1,
+  Card as FigmaCard,
+  Dots3,
+  Play,
+  NothingEar,
+  Date as FigmaDate,
+  Counter,
+  Music,
+  Device,
+  Mode,
+  DoubleDown,
+  SelectDevice,
+  ActivityTracker,
 } from '@/widgets/WidgetSubComponents'
 import { Time as FigmaTime } from '@/widgets/Time'
 import { Date1 } from '@/widgets/sub/Date'
@@ -92,60 +148,155 @@ export function Figma20Showcase() {
           <NfCard index={39} label="Battery Plus" tag="LIVE" body={<BatteryPlus />} />
 
           {/* Pills — Light */}
-          <NfCard index={40} label="Mobile Data" tag="LIVE" body={<WidgetPill preset="mobileData" />} />
-          <NfCard index={41} label="Battery Share" tag="LIVE" body={<WidgetPill preset="batteryShare" />} />
-          <NfCard index={42} label="Calculator" tag="LIVE" body={<WidgetPill preset="calculator" />} />
-          <NfCard index={43} label="Battery Saver" tag="LIVE" body={<WidgetPill preset="batterySaver" />} />
+          <NfCard
+            index={40}
+            label="Mobile Data"
+            tag="LIVE"
+            body={<WidgetPill preset="mobileData" />}
+          />
+          <NfCard
+            index={41}
+            label="Battery Share"
+            tag="LIVE"
+            body={<WidgetPill preset="batteryShare" />}
+          />
+          <NfCard
+            index={42}
+            label="Calculator"
+            tag="LIVE"
+            body={<WidgetPill preset="calculator" />}
+          />
+          <NfCard
+            index={43}
+            label="Battery Saver"
+            tag="LIVE"
+            body={<WidgetPill preset="batterySaver" />}
+          />
 
           {/* Pills — Dark */}
-          <NfCard index={44} label="Home Controls" tag="LIVE" body={<WidgetPill preset="homeControls" />} />
+          <NfCard
+            index={44}
+            label="Home Controls"
+            tag="LIVE"
+            body={<WidgetPill preset="homeControls" />}
+          />
           <NfCard index={45} label="NFC" tag="LIVE" body={<WidgetPill preset="nfc" />} />
           <NfCard index={46} label="Bedtime" tag="LIVE" body={<WidgetPill preset="bedtime" />} />
-          <NfCard index={47} label="Dark Mode Pill" tag="LIVE" body={<WidgetPill preset="darkMode" />} />
+          <NfCard
+            index={47}
+            label="Dark Mode Pill"
+            tag="LIVE"
+            body={<WidgetPill preset="darkMode" />}
+          />
 
           {/* Pills — Accent */}
-          <NfCard index={48} label="Weather Pill" tag="LIVE" body={<WidgetPill preset="weather" />} />
+          <NfCard
+            index={48}
+            label="Weather Pill"
+            tag="LIVE"
+            body={<WidgetPill preset="weather" />}
+          />
           <NfCard index={49} label="TV Remote" tag="LIVE" body={<WidgetPill preset="tvRemote" />} />
-          <NfCard index={50} label="Storage Pill" tag="LIVE" body={<WidgetPill preset="storage" />} />
+          <NfCard
+            index={50}
+            label="Storage Pill"
+            tag="LIVE"
+            body={<WidgetPill preset="storage" />}
+          />
           <NfCard index={51} label="Hotspot" tag="LIVE" body={<WidgetPill preset="hotspot" />} />
 
           {/* Pills — More */}
-          <NfCard index={52} label="Nearby Share" tag="LIVE" body={<WidgetPill preset="nearbyShare" />} />
+          <NfCard
+            index={52}
+            label="Nearby Share"
+            tag="LIVE"
+            body={<WidgetPill preset="nearbyShare" />}
+          />
           <NfCard index={53} label="Extra Dim" tag="LIVE" body={<WidgetPill preset="extraDim" />} />
-          <NfCard index={54} label="Data Saver" tag="LIVE" body={<WidgetPill preset="dataSaver" />} />
+          <NfCard
+            index={54}
+            label="Data Saver"
+            tag="LIVE"
+            body={<WidgetPill preset="dataSaver" />}
+          />
           <NfCard index={55} label="Torch" tag="LIVE" body={<WidgetPill preset="torch" />} />
-          <NfCard index={56} label="Bluetooth" tag="LIVE" body={<WidgetPill preset="bluetooth" />} />
+          <NfCard
+            index={56}
+            label="Bluetooth"
+            tag="LIVE"
+            body={<WidgetPill preset="bluetooth" />}
+          />
 
           {/* Circular Widgets */}
           <NfCard index={57} label="Recording" tag="LIVE" body={<Recording variant="rec" />} />
           <NfCard index={58} label="Location Access" tag="LIVE" body={<LocationAccess />} />
-          <NfCard index={59} label="Watch · Lg" tag="LIVE" body={<FigmaWatch variant="analog-large" />} />
+          <NfCard
+            index={59}
+            label="Watch · Lg"
+            tag="LIVE"
+            body={<FigmaWatch variant="analog-large" />}
+          />
           <NfCard index={60} label="Compass" tag="LIVE" body={<FigmaCompass />} />
           <NfCard index={61} label="Temp Control" tag="LIVE" body={<TempControl />} />
           <NfCard index={62} label="Auto Rotate" tag="LIVE" body={<AutoRotate1 />} />
 
           {/* Location Widgets */}
           <NfCard index={63} label="Location" tag="LIVE" body={<LocationAccess />} />
-          <NfCard index={64} label="Location · Light" tag="LIVE" body={<LocationAccess theme="light" />} />
+          <NfCard
+            index={64}
+            label="Location · Light"
+            tag="LIVE"
+            body={<LocationAccess theme="light" />}
+          />
 
           {/* Watch Widgets */}
-          <NfCard index={65} label="Watch · Lg" tag="LIVE" body={<FigmaWatch variant="analog-large" />} />
-          <NfCard index={66} label="Watch · Analog" tag="LIVE" body={<FigmaWatch variant="analog" />} />
+          <NfCard
+            index={65}
+            label="Watch · Lg"
+            tag="LIVE"
+            body={<FigmaWatch variant="analog-large" />}
+          />
+          <NfCard
+            index={66}
+            label="Watch · Analog"
+            tag="LIVE"
+            body={<FigmaWatch variant="analog" />}
+          />
 
           {/* Active Widgets */}
           <NfCard index={67} label="Active" tag="LIVE" body={<Active />} />
-          <NfCard index={68} label="Watch · Analog" tag="LIVE" body={<FigmaWatch variant="analog" />} />
+          <NfCard
+            index={68}
+            label="Watch · Analog"
+            tag="LIVE"
+            body={<FigmaWatch variant="analog" />}
+          />
           <NfCard index={69} label="Aeroplane" tag="LIVE" body={<Active variant="aeroplane" />} />
           <NfCard index={70} label="Recording" tag="LIVE" body={<Recording />} />
           <NfCard index={71} label="Glyphs" tag="LIVE" body={<FigmaGlyphs />} />
-          <NfCard index={72} label="Loc · Light" tag="LIVE" body={<LocationAccess theme="light" />} />
+          <NfCard
+            index={72}
+            label="Loc · Light"
+            tag="LIVE"
+            body={<LocationAccess theme="light" />}
+          />
 
           {/* Glyph Widgets */}
-          <NfCard index={73} label="Glyphs · B" tag="LIVE" body={<FigmaGlyphs variant="pattern-b" />} />
+          <NfCard
+            index={73}
+            label="Glyphs · B"
+            tag="LIVE"
+            body={<FigmaGlyphs variant="pattern-b" />}
+          />
           <NfCard index={74} label="Campus" tag="LIVE" body={<Campus />} />
           <NfCard index={75} label="Location" tag="LIVE" body={<Location1 />} />
           <NfCard index={76} label="Flash" tag="LIVE" body={<Flash />} />
-          <NfCard index={77} label="Weather Icon" tag="LIVE" body={<FigmaWeather variant="icon" />} />
+          <NfCard
+            index={77}
+            label="Weather Icon"
+            tag="LIVE"
+            body={<FigmaWeather variant="icon" />}
+          />
           <NfCard index={78} label="Mic Access" tag="LIVE" body={<MicAccess />} />
 
           {/* Pair & Limit */}
@@ -156,7 +307,12 @@ export function Figma20Showcase() {
 
           {/* Counter Widgets */}
           <NfCard index={83} label="Steps" tag="LIVE" body={<StepsCounter />} />
-          <NfCard index={84} label="Overlimit" tag="LIVE" body={<OverLimit theme="dark" minutes={40} />} />
+          <NfCard
+            index={84}
+            label="Overlimit"
+            tag="LIVE"
+            body={<OverLimit theme="dark" minutes={40} />}
+          />
           <NfCard index={85} label="Loading Bar" tag="LIVE" body={<LoadingBar1 />} />
           <NfCard index={86} label="Card" tag="LIVE" body={<FigmaCard />} />
 
@@ -180,16 +336,34 @@ export function Figma20Showcase() {
           <NfCard index={99} label="Select Device" tag="LIVE" body={<SelectDevice />} />
 
           {/* Wide Widgets */}
-          <NfCard index={100} label="Activity · Pill" tag="LIVE" className="card-wide" body={
-            <FigmaCard variant="pill" image="d" />
-          } />
-          <NfCard index={101} label="Activity Tracker" tag="LIVE" className="card-wide" body={<ActivityTracker />} />
-          <NfCard index={102} label="Time · Compact" tag="LIVE" className="card-wide" body={
-            <FigmaTime variant="compact" />
-          } />
-          <NfCard index={103} label="Weather · Forecast" tag="LIVE" className="card-wide" body={
-            <FigmaWeather variant="forecast" />
-          } />
+          <NfCard
+            index={100}
+            label="Activity · Pill"
+            tag="LIVE"
+            className="card-wide"
+            body={<FigmaCard variant="pill" image="d" />}
+          />
+          <NfCard
+            index={101}
+            label="Activity Tracker"
+            tag="LIVE"
+            className="card-wide"
+            body={<ActivityTracker />}
+          />
+          <NfCard
+            index={102}
+            label="Time · Compact"
+            tag="LIVE"
+            className="card-wide"
+            body={<FigmaTime variant="compact" />}
+          />
+          <NfCard
+            index={103}
+            label="Weather · Forecast"
+            tag="LIVE"
+            className="card-wide"
+            body={<FigmaWeather variant="forecast" />}
+          />
         </main>
       </div>
     </CtlCtx.Provider>

@@ -1,42 +1,16 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { dotMatrixRowVariants, dotMatrixVariants, dotVariants } from "../DotMatrix/dot-matrix-variants.mjs";
 import * as React from "react";
 import { jsx } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import "../DotMatrix/DotMatrix.css";
 //#region src/components/StaticDotMatrix.tsx
-const dotMatrixVariants = cva("nothing-dot-matrix", {
-	variants: {
-		dotSize: {
-			sm: "nothing-dot-matrix--sm",
-			md: "nothing-dot-matrix--md",
-			lg: "nothing-dot-matrix--lg"
-		},
-		theme: {
-			light: "nothing-dot-matrix--light",
-			dark: "nothing-dot-matrix--dark"
-		},
-		pattern: {
-			grid: "nothing-dot-matrix--grid",
-			glyph: "nothing-dot-matrix--glyph",
-			pulse: "nothing-dot-matrix--pulse",
-			custom: ""
-		}
-	},
-	defaultVariants: {
-		dotSize: "md",
-		theme: "light",
-		pattern: "grid"
-	}
-});
-const dotVariants = cva("nothing-dot-matrix__dot", {
-	variants: { state: {
-		idle: "",
-		active: "nothing-dot-matrix__dot--active",
-		dim: "nothing-dot-matrix__dot--dim"
-	} },
-	defaultVariants: { state: "idle" }
-});
-const StaticDotMatrix = React.forwardRef(({ className, rows, cols, dotSize = "md", theme = "light", pattern = "grid", activeDots = [], dimDots = [], style, ...props }, ref) => {
+/**
+* 点阵渲染原语。
+*
+* 主题走 `data-dot-theme` 而不是 `data-theme`：后者是 theme.css 里 `dark:` /
+* `light:` 变体的选择器，挂在这里会把整棵子树的主题令牌一起翻掉。
+*/
+function StaticDotMatrix({ className, rows, cols, dotSize = "md", theme = "light", pattern = "grid", activeDots = [], dimDots = [], style, ...props }) {
 	const activeSet = React.useMemo(() => {
 		const set = /* @__PURE__ */ new Set();
 		activeDots.forEach(([r, c]) => set.add(`${r}-${c}`));
@@ -58,7 +32,13 @@ const StaticDotMatrix = React.forwardRef(({ className, rows, cols, dotSize = "md
 				else if (dimSet.has(key)) state = "dim";
 				row.push({
 					key,
-					className: dotVariants({ state })
+					state,
+					className: cn(dotVariants({
+						dotSize,
+						theme,
+						pattern,
+						state
+					}))
 				});
 			}
 			result.push(row);
@@ -68,26 +48,37 @@ const StaticDotMatrix = React.forwardRef(({ className, rows, cols, dotSize = "md
 		rows,
 		cols,
 		activeSet,
-		dimSet
+		dimSet,
+		dotSize,
+		theme,
+		pattern
 	]);
 	return /* @__PURE__ */ jsx("div", {
-		ref,
 		className: cn(dotMatrixVariants({
 			dotSize,
 			theme,
-			pattern: pattern === "custom" ? "custom" : pattern
+			pattern
 		}), className),
 		style,
+		"data-slot": "dot-matrix",
 		"data-state": dataAttr(pattern),
+		"data-pattern": dataAttr(pattern),
+		"data-dot-size": dataAttr(dotSize),
+		"data-dot-theme": dataAttr(theme),
 		...props,
 		children: grid.map((row, r) => /* @__PURE__ */ jsx("div", {
-			className: "nothing-dot-matrix__row",
-			children: row.map((dot) => /* @__PURE__ */ jsx("div", { className: dot.className }, dot.key))
+			"data-slot": "dot-matrix-row",
+			className: dotMatrixRowVariants({ dotSize }),
+			children: row.map((dot) => /* @__PURE__ */ jsx("div", {
+				"data-slot": "dot-matrix-dot",
+				"data-dot-state": dataAttr(dot.state),
+				className: dot.className
+			}, dot.key))
 		}, r))
 	});
-});
+}
 StaticDotMatrix.displayName = "StaticDotMatrix";
 //#endregion
-export { StaticDotMatrix, StaticDotMatrix as default, dotMatrixVariants, dotVariants };
+export { StaticDotMatrix as default };
 
 //# sourceMappingURL=StaticDotMatrix.mjs.map

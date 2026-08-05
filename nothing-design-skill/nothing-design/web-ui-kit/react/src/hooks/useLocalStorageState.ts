@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 export function useLocalStorageState<T>(
   key: string,
-  defaultValue: T
+  defaultValue: T,
 ): [T, (v: T | ((prev: T) => T)) => void] {
   const [value, setValue] = useState<T>(() => {
     if (typeof window === 'undefined') return defaultValue
@@ -30,7 +30,7 @@ export function useLocalStorageState<T>(
         return next
       })
     },
-    [key]
+    [key],
   )
 
   // Cross-tab sync

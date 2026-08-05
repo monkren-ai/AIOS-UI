@@ -25,7 +25,8 @@ export interface ThoughtChainItem {
 }
 
 export interface ThoughtChainProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
     VariantProps<typeof thoughtChainVariants> {
   items: ThoughtChainItem[]
   defaultExpandedKeys?: string[]
@@ -86,14 +87,11 @@ export const ThoughtChain = React.forwardRef<HTMLDivElement, ThoughtChainProps>(
     },
     ref,
   ) => {
-    const { classNames, styles } = mergeSemanticProps<ThoughtChainSemanticType>(
-      { classNames: userClassNames, styles: userStyles },
-    )
-    const { expanded, toggle } = useExpandedKeys(
-      defaultExpandedKeys,
-      expandedKeys,
-      onExpand,
-    )
+    const { classNames, styles } = mergeSemanticProps<ThoughtChainSemanticType>({
+      classNames: userClassNames,
+      styles: userStyles,
+    })
+    const { expanded, toggle } = useExpandedKeys(defaultExpandedKeys, expandedKeys, onExpand)
 
     return (
       <div
@@ -144,9 +142,7 @@ export const ThoughtChain = React.forwardRef<HTMLDivElement, ThoughtChainProps>(
                   </span>
                 )}
                 <span className="nothing-thought-chain__title-wrap">
-                  {item.title && (
-                    <span className="nothing-thought-chain__title">{item.title}</span>
-                  )}
+                  {item.title && <span className="nothing-thought-chain__title">{item.title}</span>}
                   {item.description && (
                     <span className="nothing-thought-chain__description">{item.description}</span>
                   )}

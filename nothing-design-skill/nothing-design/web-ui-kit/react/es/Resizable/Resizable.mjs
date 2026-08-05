@@ -1,17 +1,9 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { resizableHandleVariants, resizablePanelVariants, resizableVariants } from "./resizable-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Resizable.css";
 //#region src/Resizable/Resizable.tsx
-const resizableVariants = cva("nothing-resizable", {
-	variants: { direction: {
-		horizontal: "nothing-resizable--horizontal",
-		vertical: "nothing-resizable--vertical"
-	} },
-	defaultVariants: { direction: "horizontal" }
-});
-const Resizable = React.forwardRef(({ className, direction = "horizontal", initialSizes, minSizes, maxSizes, children, ...props }, ref) => {
+function Resizable({ className, direction = "horizontal", initialSizes, minSizes, maxSizes, children, ref, ...props }) {
 	const childArray = React.Children.toArray(children);
 	const panelCount = childArray.length;
 	const defaultSizes = initialSizes ?? Array(panelCount).fill(100 / panelCount);
@@ -23,6 +15,21 @@ const Resizable = React.forwardRef(({ className, direction = "horizontal", initi
 	const startPos = React.useRef(0);
 	const startSizes = React.useRef([]);
 	const isHorizontal = direction === "horizontal";
+	const setRefs = React.useCallback((node) => {
+		containerRef.current = node;
+		if (typeof ref === "function") ref(node);
+		else if (ref) ref.current = node;
+	}, [ref]);
+	/**
+	* 横向分栏在 `dir="rtl"` 下由 flex 镜像过：视觉上的「第一个面板」在右侧，
+	* 所以指针 / 方向键的位移要取反，拖拽方向才跟手。
+	*/
+	const getFlowSign = React.useCallback(() => {
+		if (!isHorizontal) return 1;
+		const node = containerRef.current;
+		if (!node || typeof window === "undefined") return 1;
+		return window.getComputedStyle(node).direction === "rtl" ? -1 : 1;
+	}, [isHorizontal]);
 	const handleMouseDown = React.useCallback((index, e) => {
 		e.preventDefault();
 		setActiveHandle(index);
@@ -35,6 +42,7 @@ const Resizable = React.forwardRef(({ className, direction = "horizontal", initi
 		if (isHorizontal) {
 			if (e.key === "ArrowLeft") delta = -2;
 			else if (e.key === "ArrowRight") delta = step;
+			delta *= getFlowSign();
 		} else if (e.key === "ArrowUp") delta = -2;
 		else if (e.key === "ArrowDown") delta = step;
 		if (delta === 0) return;
@@ -54,7 +62,8 @@ const Resizable = React.forwardRef(({ className, direction = "horizontal", initi
 	}, [
 		isHorizontal,
 		mins,
-		maxs
+		maxs,
+		getFlowSign
 	]);
 	React.useEffect(() => {
 		if (activeHandle === null) return;
@@ -63,7 +72,8 @@ const Resizable = React.forwardRef(({ className, direction = "horizontal", initi
 			const containerEl = containerRef.current;
 			if (!containerEl) return;
 			const containerSize = isHorizontal ? containerEl.offsetWidth : containerEl.offsetHeight;
-			const diffPercent = (currentPos - startPos.current) / containerSize * 100;
+			if (!containerSize) return;
+			const diffPercent = (currentPos - startPos.current) * getFlowSign() / containerSize * 100;
 			setSizes(() => {
 				const next = [...startSizes.current];
 				const leftIdx = activeHandle;
@@ -88,19 +98,29 @@ const Resizable = React.forwardRef(({ className, direction = "horizontal", initi
 		activeHandle,
 		isHorizontal,
 		mins,
-		maxs
+		maxs,
+		getFlowSign
 	]);
 	return /* @__PURE__ */ jsx("div", {
-		ref,
+		ref: setRefs,
 		className: cn(resizableVariants({ direction }), className),
+		"data-slot": "resizable",
 		"data-direction": dataAttr(direction),
 		...props,
 		children: childArray.map((child, index) => /* @__PURE__ */ jsxs(React.Fragment, { children: [/* @__PURE__ */ jsx("div", {
-			className: "nothing-resizable__panel",
+			className: resizablePanelVariants(),
+			"data-slot": "resizable-panel",
+			"data-index": index,
 			style: { flex: `0 0 ${sizes[index]}%` },
 			children: child
 		}), index < panelCount - 1 && /* @__PURE__ */ jsx("div", {
-			className: cn("nothing-resizable__handle", `nothing-resizable__handle--${direction}`, activeHandle === index && "nothing-resizable__handle--active"),
+			className: resizableHandleVariants({
+				direction,
+				active: activeHandle === index
+			}),
+			"data-slot": "resizable-handle",
+			"data-direction": dataAttr(direction),
+			"data-active": dataAttr(activeHandle === index),
 			role: "separator",
 			"aria-orientation": isHorizontal ? "vertical" : "horizontal",
 			"aria-valuenow": Math.round(sizes[index]),
@@ -111,9 +131,9 @@ const Resizable = React.forwardRef(({ className, direction = "horizontal", initi
 			onKeyDown: (e) => handleKeyDown(index, e)
 		})] }, index))
 	});
-});
+}
 Resizable.displayName = "Resizable";
 //#endregion
-export { Resizable, Resizable as default, resizableVariants };
+export { Resizable as default };
 
 //# sourceMappingURL=Resizable.mjs.map

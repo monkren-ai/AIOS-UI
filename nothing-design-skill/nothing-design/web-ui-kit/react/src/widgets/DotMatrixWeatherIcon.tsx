@@ -5,8 +5,10 @@ import { cn } from '@/lib/utils'
 
 export type WeatherIconName = keyof typeof weatherSvg
 
-export interface DotMatrixWeatherIconProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface DotMatrixWeatherIconProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'children'
+> {
   /** Weather icon name — must match a key in weatherSvg registry. */
   name: WeatherIconName
   /** Total size in px (square). Default 120. */
@@ -51,7 +53,7 @@ export const DotMatrixWeatherIcon = React.forwardRef<HTMLDivElement, DotMatrixWe
       style,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <DotMatrixIcon
@@ -74,7 +76,7 @@ export const DotMatrixWeatherIcon = React.forwardRef<HTMLDivElement, DotMatrixWe
         {...props}
       />
     )
-  }
+  },
 )
 DotMatrixWeatherIcon.displayName = 'DotMatrixWeatherIcon'
 export default DotMatrixWeatherIcon

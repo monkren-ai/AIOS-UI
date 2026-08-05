@@ -1,2 +1,3 @@
-import { InputOTP, inputOTPSlotVariants, inputOTPVariants } from "./InputOTP/InputOTP.mjs";
-export { InputOTP, InputOTP as default, inputOTPSlotVariants, inputOTPVariants };
+import { inputOTPInputVariants, inputOTPSlotVariants, inputOTPVariants } from "./InputOTP/input-otp-variants.mjs";
+import InputOTP from "./InputOTP/InputOTP.mjs";
+export { InputOTP, InputOTP as default, inputOTPInputVariants, inputOTPSlotVariants, inputOTPVariants };

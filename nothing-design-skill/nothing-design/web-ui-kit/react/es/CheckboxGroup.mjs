@@ -1,2 +1,3 @@
-import { CheckboxGroup, checkboxGroupVariants } from "./CheckboxGroup/CheckboxGroup.mjs";
-export { CheckboxGroup, checkboxGroupVariants, CheckboxGroup as default };
+import { checkboxGroupItemVariants, checkboxGroupMergeBgVariants, checkboxGroupVariants } from "./CheckboxGroup/checkbox-group-variants.mjs";
+import CheckboxGroup from "./CheckboxGroup/CheckboxGroup.mjs";
+export { CheckboxGroup, checkboxGroupItemVariants, checkboxGroupMergeBgVariants, checkboxGroupVariants, CheckboxGroup as default };

@@ -1,2 +1,3 @@
-import { ColorPicker, colorPickerVariants } from "./ColorPicker/ColorPicker.mjs";
-export { ColorPicker, colorPickerVariants, ColorPicker as default };
+import { colorPickerCustomLabelVariants, colorPickerHeaderVariants, colorPickerNativeVariants, colorPickerPreviewVariants, colorPickerSwatchVariants, colorPickerSwatchesVariants, colorPickerTitleVariants, colorPickerValueVariants, colorPickerVariants } from "./ColorPicker/color-picker-variants.mjs";
+import ColorPicker from "./ColorPicker/ColorPicker.mjs";
+export { ColorPicker, colorPickerCustomLabelVariants, colorPickerHeaderVariants, colorPickerNativeVariants, colorPickerPreviewVariants, colorPickerSwatchVariants, colorPickerSwatchesVariants, colorPickerTitleVariants, colorPickerValueVariants, colorPickerVariants, ColorPicker as default };

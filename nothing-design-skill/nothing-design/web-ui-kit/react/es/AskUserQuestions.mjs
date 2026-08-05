@@ -1,2 +1,3 @@
-import { AskUserQuestions, askUserQuestionsVariants } from "./AskUserQuestions/AskUserQuestions.mjs";
+import { askUserQuestionsVariants } from "./AskUserQuestions/ask-user-questions-variants.mjs";
+import AskUserQuestions from "./AskUserQuestions/AskUserQuestions.mjs";
 export { AskUserQuestions, askUserQuestionsVariants, AskUserQuestions as default };

@@ -1,23 +1,16 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { inputCopyButtonTextVariants, inputCopyButtonVariants, inputCopyControlVariants, inputCopyFieldVariants, inputCopyLabelVariants, inputCopyVariants, resolveInputCopySize } from "./input-copy-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import "./InputCopy.css";
 //#region src/InputCopy/InputCopy.tsx
-const inputCopyVariants = cva("nothing-input-copy", {
-	variants: { size: {
-		sm: "nothing-input-copy--sm",
-		md: "nothing-input-copy--md",
-		lg: "nothing-input-copy--lg"
-	} },
-	defaultVariants: { size: "md" }
-});
-const InputCopy = React.forwardRef(({ value: valueProp, defaultValue = "", label, placeholder, size = "md", copyLabel = "COPY", copiedLabel = "COPIED", copiedDuration = 2e3, onCopy, readOnly = true, className, ...props }, ref) => {
+function InputCopy({ value: valueProp, defaultValue = "", label, placeholder, size = "md", copyLabel = "COPY", copiedLabel = "COPIED", copiedDuration = 2e3, onCopy, readOnly = true, className, ref, ...props }) {
 	const isControlled = valueProp !== void 0;
 	const [internalValue, setInternalValue] = React.useState(defaultValue);
 	const value = isControlled ? valueProp : internalValue;
 	const [copied, setCopied] = React.useState(false);
 	const inputId = React.useId();
+	const resolvedSize = resolveInputCopySize(size) ?? "md";
 	React.useEffect(() => {
 		if (!copied) return;
 		const timer = setTimeout(() => setCopied(false), copiedDuration);
@@ -41,20 +34,26 @@ const InputCopy = React.forwardRef(({ value: valueProp, defaultValue = "", label
 	};
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
-		className: cn(inputCopyVariants({ size }), className),
+		className: cn(inputCopyVariants({
+			size: resolvedSize,
+			copied
+		}), className),
 		"data-slot": "input-copy",
-		"data-size": dataAttr(size),
+		"data-size": dataAttr(resolvedSize),
 		"data-copied": dataAttr(copied),
 		...props,
 		children: [label && /* @__PURE__ */ jsx("label", {
-			className: "nothing-input-copy__label",
+			className: inputCopyLabelVariants(),
+			"data-slot": "input-copy-label",
 			htmlFor: inputId,
 			children: label
 		}), /* @__PURE__ */ jsxs("div", {
-			className: "nothing-input-copy__control",
+			className: inputCopyControlVariants({ size: resolvedSize }),
+			"data-slot": "input-copy-control",
 			children: [/* @__PURE__ */ jsx("input", {
 				id: inputId,
-				className: "nothing-input-copy__field",
+				className: inputCopyFieldVariants({ size: resolvedSize }),
+				"data-slot": "input-copy-field",
 				type: "text",
 				value,
 				placeholder,
@@ -62,21 +61,27 @@ const InputCopy = React.forwardRef(({ value: valueProp, defaultValue = "", label
 				onChange: handleChange
 			}), /* @__PURE__ */ jsx("button", {
 				type: "button",
-				className: cn("nothing-input-copy__button", copied && "nothing-input-copy__button--copied"),
+				className: inputCopyButtonVariants({
+					size: resolvedSize,
+					copied
+				}),
+				"data-slot": "input-copy-button",
+				"data-copied": dataAttr(copied),
 				onClick: handleCopy,
 				onKeyDown: handleKeyDown,
 				"aria-live": "polite",
 				"aria-label": copied ? copiedLabel : copyLabel,
 				children: /* @__PURE__ */ jsx("span", {
-					className: "nothing-input-copy__button-text",
+					className: inputCopyButtonTextVariants(),
+					"data-slot": "input-copy-button-text",
 					children: copied ? copiedLabel : copyLabel
 				})
 			})]
 		})]
 	});
-});
+}
 InputCopy.displayName = "InputCopy";
 //#endregion
-export { InputCopy, InputCopy as default, inputCopyVariants };
+export { InputCopy as default };
 
 //# sourceMappingURL=InputCopy.mjs.map

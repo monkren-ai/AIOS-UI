@@ -37,7 +37,8 @@ export const toolCallRowVariants = cva('nothing-tool-call-row', {
 })
 
 export interface ToolCallRowProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     VariantProps<typeof toolCallRowVariants> {
   tool: string
   args?: Record<string, unknown>

@@ -1,8 +1,18 @@
 import * as React from 'react'
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
-import './Chrono.css'
+import {
+  chronoButtonVariants,
+  chronoDisplayVariants,
+  chronoLapDeltaVariants,
+  chronoLapItemVariants,
+  chronoLapNumberVariants,
+  chronoLapTotalVariants,
+  chronoLapsVariants,
+  chronoTitleVariants,
+  chronoVariants,
+} from './chrono-variants'
 
 export type ChronoState = 'idle' | 'running' | 'paused'
 export type ChronoSize = 'sm' | 'md' | 'lg'
@@ -13,24 +23,9 @@ interface LapData {
   total: number
 }
 
-const chronoVariants = cva('nothing-chrono', {
-  variants: {
-    state: {
-      idle: 'nothing-chrono--idle',
-      running: 'nothing-chrono--running',
-      paused: 'nothing-chrono--paused',
-    },
-    size: {
-      sm: 'nothing-chrono--sm',
-      md: 'nothing-chrono--md',
-      lg: 'nothing-chrono--lg',
-    },
-  },
-  defaultVariants: { state: 'idle', size: 'md' },
-})
-
 export interface ChronoProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.ComponentPropsWithRef<'div'>, 'children'>,
     Omit<VariantProps<typeof chronoVariants>, 'state' | 'size'> {
   maxLaps?: number
   state?: ChronoState
@@ -46,164 +41,188 @@ const formatTime = (ms: number): string => {
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(centiseconds).padStart(2, '0')}`
 }
 
-export const Chrono = React.forwardRef<HTMLDivElement, ChronoProps>(
-  (
-    { className, maxLaps = 10, state: stateProp, size = 'md', style, ...props },
-    ref
-  ) => {
-    const [elapsed, setElapsed] = useState(0)
-    const [running, setRunning] = useState(false)
-    const [laps, setLaps] = useState<LapData[]>([])
-    const startTimeRef = useRef(0)
-    const elapsedRef = useRef(0)
-    const lastLapTimeRef = useRef(0)
-    const animationFrameRef = useRef<number | null>(null)
+export function Chrono({
+  className,
+  maxLaps = 10,
+  state: stateProp,
+  size = 'md',
+  style,
+  ref,
+  ...props
+}: ChronoProps) {
+  const [elapsed, setElapsed] = useState(0)
+  const [running, setRunning] = useState(false)
+  const [laps, setLaps] = useState<LapData[]>([])
+  const startTimeRef = useRef(0)
+  const elapsedRef = useRef(0)
+  const lastLapTimeRef = useRef(0)
+  const animationFrameRef = useRef<number | null>(null)
 
-    const derivedState: ChronoState = stateProp ?? (running ? 'running' : elapsed > 0 ? 'paused' : 'idle')
+  const derivedState: ChronoState =
+    stateProp ?? (running ? 'running' : elapsed > 0 ? 'paused' : 'idle')
 
-    const tick = useCallback(() => {
-      const now = performance.now()
-      const current = now - startTimeRef.current
-      elapsedRef.current = current
-      setElapsed(current)
+  const tick = useCallback(() => {
+    const now = performance.now()
+    const current = now - startTimeRef.current
+    elapsedRef.current = current
+    setElapsed(current)
+    animationFrameRef.current = requestAnimationFrame(tick)
+  }, [])
+
+  useEffect(() => {
+    if (running) {
+      startTimeRef.current = performance.now() - elapsedRef.current
       animationFrameRef.current = requestAnimationFrame(tick)
-    }, [])
+    } else if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current)
+      animationFrameRef.current = null
+    }
 
-    useEffect(() => {
-      if (running) {
-        startTimeRef.current = performance.now() - elapsedRef.current
-        animationFrameRef.current = requestAnimationFrame(tick)
-      } else if (animationFrameRef.current) {
+    return () => {
+      if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current)
-        animationFrameRef.current = null
-      }
-
-      return () => {
-        if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current)
-        }
-      }
-    }, [running, tick])
-
-    const handleStartPause = () => {
-      if (running) {
-        elapsedRef.current = performance.now() - startTimeRef.current
-        setRunning(false)
-      } else {
-        setRunning(true)
       }
     }
+  }, [running, tick])
 
-    const handleReset = () => {
+  const handleStartPause = () => {
+    if (running) {
+      elapsedRef.current = performance.now() - startTimeRef.current
       setRunning(false)
-      setElapsed(0)
-      setLaps([])
-      elapsedRef.current = 0
-      startTimeRef.current = 0
-      lastLapTimeRef.current = 0
+    } else {
+      setRunning(true)
     }
+  }
 
-    const handleLap = () => {
-      if (!running) return
+  const handleReset = () => {
+    setRunning(false)
+    setElapsed(0)
+    setLaps([])
+    elapsedRef.current = 0
+    startTimeRef.current = 0
+    lastLapTimeRef.current = 0
+  }
 
-      const currentElapsed = performance.now() - startTimeRef.current
-      const delta = currentElapsed - lastLapTimeRef.current
-      lastLapTimeRef.current = currentElapsed
+  const handleLap = () => {
+    if (!running) return
 
-      setLaps((prev) => [
-        ...prev,
-        { number: prev.length + 1, delta, total: currentElapsed },
-      ])
-    }
+    const currentElapsed = performance.now() - startTimeRef.current
+    const delta = currentElapsed - lastLapTimeRef.current
+    lastLapTimeRef.current = currentElapsed
 
-    let fastestIndex = -1
-    let slowestIndex = -1
+    setLaps((prev) => [...prev, { number: prev.length + 1, delta, total: currentElapsed }])
+  }
 
-    if (laps.length > 1) {
-      let minDelta = Infinity
-      let maxDelta = -Infinity
-      laps.forEach((lap, index) => {
-        if (lap.delta < minDelta) {
-          minDelta = lap.delta
-          fastestIndex = index
-        }
-        if (lap.delta > maxDelta) {
-          maxDelta = lap.delta
-          slowestIndex = index
-        }
-      })
-    }
+  let fastestIndex = -1
+  let slowestIndex = -1
 
-    const lapsRef = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-      if (lapsRef.current && laps.length > maxLaps) {
-        lapsRef.current.scrollTop = 0
+  if (laps.length > 1) {
+    let minDelta = Infinity
+    let maxDelta = -Infinity
+    laps.forEach((lap, index) => {
+      if (lap.delta < minDelta) {
+        minDelta = lap.delta
+        fastestIndex = index
       }
-    }, [laps.length, maxLaps])
+      if (lap.delta > maxDelta) {
+        maxDelta = lap.delta
+        slowestIndex = index
+      }
+    })
+  }
 
-    return (
-      <div
-        ref={ref}
-        className={cn(chronoVariants({ state: derivedState, size }), className)}
-        style={style}
-        data-state={dataAttr(derivedState)}
-        data-size={dataAttr(size)}
-        {...props}
-      >
-        <div className="chrono-header">
-          <div className="chrono-title">Chrono</div>
-        </div>
-        <div className="chrono-display">{formatTime(elapsed)}</div>
-        <div className="chrono-controls">
-          <div className="chrono-controls-main">
-            <button
-              className={cn('chrono-btn', running ? 'chrono-btn--pause' : 'chrono-btn--start')}
-              onClick={handleStartPause}
-              type="button"
-            >
-              {running ? 'PAUSE' : 'START'}
-            </button>
-            <button
-              className="chrono-btn chrono-btn--lap"
-              onClick={handleLap}
-              type="button"
-              disabled={!running}
-            >
-              LAP
-            </button>
-          </div>
-        </div>
-        <button
-          className="chrono-btn chrono-btn--reset"
-          onClick={handleReset}
-          type="button"
-          disabled={running || elapsed === 0}
-        >
-          RESET
-        </button>
-        <div className="chrono-laps" ref={lapsRef}>
-          {[...laps].reverse().map((lap) => {
-            const originalIndex = lap.number - 1
-            let lapClass = 'chrono-lap-item'
-            if (laps.length > 1) {
-              if (originalIndex === fastestIndex) lapClass += ' fastest'
-              if (originalIndex === slowestIndex) lapClass += ' slowest'
-            }
+  const lapsRef = useRef<HTMLDivElement>(null)
 
-            return (
-              <div key={lap.number} className={lapClass}>
-                <div className="chrono-lap-number">LAP {String(lap.number).padStart(2, '0')}</div>
-                <div className="chrono-lap-delta">{formatTime(lap.delta)}</div>
-                <div className="chrono-lap-total">{formatTime(lap.total)}</div>
-              </div>
-            )
-          })}
+  useEffect(() => {
+    if (lapsRef.current && laps.length > maxLaps) {
+      lapsRef.current.scrollTop = 0
+    }
+  }, [laps.length, maxLaps])
+
+  return (
+    <div
+      ref={ref}
+      className={cn(chronoVariants({ state: derivedState, size }), className)}
+      style={style}
+      data-slot="chrono"
+      data-state={dataAttr(derivedState)}
+      data-size={dataAttr(size)}
+      {...props}
+    >
+      <div data-slot="chrono-header" className="mb-6 flex w-full items-baseline justify-between">
+        <div data-slot="chrono-title" className={cn(chronoTitleVariants())}>
+          Chrono
         </div>
       </div>
-    )
-  }
-)
+      <div data-slot="chrono-display" className={cn(chronoDisplayVariants({ size }))}>
+        {formatTime(elapsed)}
+      </div>
+      <div data-slot="chrono-controls" className="mb-4 flex gap-2">
+        <div data-slot="chrono-controls-main" className="flex flex-1 gap-2">
+          <button
+            data-slot="chrono-button"
+            data-action={running ? 'pause' : 'start'}
+            className={cn(chronoButtonVariants({ action: running ? 'pause' : 'start' }))}
+            onClick={handleStartPause}
+            type="button"
+          >
+            {running ? 'PAUSE' : 'START'}
+          </button>
+          <button
+            data-slot="chrono-button"
+            data-action="lap"
+            className={cn(chronoButtonVariants({ action: 'lap' }))}
+            onClick={handleLap}
+            type="button"
+            disabled={!running}
+          >
+            LAP
+          </button>
+        </div>
+      </div>
+      <button
+        data-slot="chrono-button"
+        data-action="reset"
+        className={cn(chronoButtonVariants({ action: 'reset' }))}
+        onClick={handleReset}
+        type="button"
+        disabled={running || elapsed === 0}
+      >
+        RESET
+      </button>
+      <div data-slot="chrono-laps" className={cn(chronoLapsVariants())} ref={lapsRef}>
+        {[...laps].reverse().map((lap) => {
+          const originalIndex = lap.number - 1
+          let pace: 'normal' | 'fastest' | 'slowest' = 'normal'
+          if (laps.length > 1) {
+            if (originalIndex === fastestIndex) pace = 'fastest'
+            if (originalIndex === slowestIndex) pace = 'slowest'
+          }
+
+          return (
+            <div
+              key={lap.number}
+              data-slot="chrono-lap"
+              data-pace={dataAttr(pace)}
+              className={cn(chronoLapItemVariants())}
+            >
+              <div data-slot="chrono-lap-number" className={cn(chronoLapNumberVariants())}>
+                LAP {String(lap.number).padStart(2, '0')}
+              </div>
+              <div data-slot="chrono-lap-delta" className={cn(chronoLapDeltaVariants({ pace }))}>
+                {formatTime(lap.delta)}
+              </div>
+              <div data-slot="chrono-lap-total" className={cn(chronoLapTotalVariants())}>
+                {formatTime(lap.total)}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 Chrono.displayName = 'Chrono'
 
 export { chronoVariants }

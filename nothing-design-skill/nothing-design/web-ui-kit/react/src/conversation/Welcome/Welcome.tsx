@@ -4,16 +4,11 @@ import { cn, dataAttr, mergeSemanticProps } from '@/lib/utils'
 import { welcomeVariants } from './welcome-variants'
 import './Welcome.css'
 
-export type WelcomeSemanticType =
-  | 'root'
-  | 'icon'
-  | 'title'
-  | 'description'
-  | 'actions'
-  | 'extra'
+export type WelcomeSemanticType = 'root' | 'icon' | 'title' | 'description' | 'actions' | 'extra'
 
 export interface WelcomeProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
     VariantProps<typeof welcomeVariants> {
   title?: React.ReactNode
   description?: React.ReactNode
@@ -42,9 +37,10 @@ export const Welcome = React.forwardRef<HTMLDivElement, WelcomeProps>(
     },
     ref,
   ) => {
-    const { classNames, styles } = mergeSemanticProps<WelcomeSemanticType>(
-      { classNames: userClassNames, styles: userStyles },
-    )
+    const { classNames, styles } = mergeSemanticProps<WelcomeSemanticType>({
+      classNames: userClassNames,
+      styles: userStyles,
+    })
 
     return (
       <div

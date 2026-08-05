@@ -24,7 +24,8 @@ const widgetPillVariants = cva('nothing-widget-pill', {
 })
 
 export interface WidgetPillProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'>,
     Omit<VariantProps<typeof widgetPillVariants>, 'theme' | 'pressed'> {
   theme?: WidgetPillTheme
   children?: React.ReactNode
@@ -55,19 +56,21 @@ export const WidgetPill = React.forwardRef<HTMLDivElement, WidgetPillProps>(
       preset,
       ...props
     },
-    ref
+    ref,
   ) => {
     const presetConfig = preset ? WIDGET_PILL_PRESETS[preset] : undefined
     const theme = themeProp ?? presetConfig?.theme ?? 'dark'
     const icon = iconProp ?? (presetConfig ? renderPillPresetIcon(presetConfig) : undefined)
     const label = labelProp ?? presetConfig?.label
 
-    const handleKeyDown = onClick ? (e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault()
-        onClick(e as unknown as React.MouseEvent<HTMLDivElement>)
-      }
-    } : undefined
+    const handleKeyDown = onClick
+      ? (e: React.KeyboardEvent<HTMLDivElement>) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            onClick(e as unknown as React.MouseEvent<HTMLDivElement>)
+          }
+        }
+      : undefined
 
     return (
       <div
@@ -84,17 +87,11 @@ export const WidgetPill = React.forwardRef<HTMLDivElement, WidgetPillProps>(
         data-state={dataAttr(pressed ? 'pressed' : 'idle')}
         {...props}
       >
-        {(icon || children) && (
-          <div className="nothing-widget-pill__icon">
-            {icon || children}
-          </div>
-        )}
-        {label && (
-          <div className="nothing-widget-pill__label">{label}</div>
-        )}
+        {(icon || children) && <div className="nothing-widget-pill__icon">{icon || children}</div>}
+        {label && <div className="nothing-widget-pill__label">{label}</div>}
       </div>
     )
-  }
+  },
 )
 WidgetPill.displayName = 'WidgetPill'
 

@@ -1,2 +1,3 @@
-import { Separator, separatorVariants } from "./Separator/Separator.mjs";
-export { Separator, Separator as default, separatorVariants };
+import { separatorLabelVariants, separatorLineVariants, separatorVariants } from "./Separator/separator-variants.mjs";
+import Separator from "./Separator/Separator.mjs";
+export { Separator, Separator as default, separatorLabelVariants, separatorLineVariants, separatorVariants };

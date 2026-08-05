@@ -50,7 +50,4 @@ export interface WithSemanticProps<T extends string> {
  *
  * 目前只包括 classNames 与 styles，后续可扩展 size、variant 等。
  */
-export type ComponentConfig<T extends string> = Pick<
-  WithSemanticProps<T>,
-  'classNames' | 'styles'
->
+export type ComponentConfig<T extends string> = Pick<WithSemanticProps<T>, 'classNames' | 'styles'>

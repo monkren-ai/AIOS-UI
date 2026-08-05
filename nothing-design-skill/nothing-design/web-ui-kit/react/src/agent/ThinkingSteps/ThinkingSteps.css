@@ -47,8 +47,7 @@
   padding: var(--space-sm) 0;
   opacity: 0;
   transform: translateY(4px);
-  animation:
-    nothing-thinking-steps-enter 0.35s var(--ease-spring-moderate) forwards;
+  animation: nothing-thinking-steps-enter 0.35s var(--ease-spring-moderate) forwards;
   animation-delay: calc(var(--step-index) * 80ms);
 }
 

@@ -1,0 +1,8 @@
+/**
+ * 文档站（showcase / docs / components / icons）的样式入口。
+ *
+ * 组件库消费方不会用到这个文件 —— 他们导入 `styles/index.css` 并自备 Tailwind。
+ */
+
+@import 'tailwindcss';
+@import './styles/index.css';

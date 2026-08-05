@@ -48,7 +48,8 @@
   font-size: var(--body);
   text-align: left;
   cursor: pointer;
-  transition: border-color var(--duration-micro) var(--easing),
+  transition:
+    border-color var(--duration-micro) var(--easing),
     background-color var(--duration-micro) var(--easing);
   outline: none;
 }

@@ -1,28 +1,11 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import { DotMatrixIcon } from "../components/DotMatrixIcon.mjs";
+import DotMatrixIcon from "../components/DotMatrixIcon.mjs";
 import { componentIconSvg } from "../widgets/icon-svg-registry.mjs";
 import { useNow, useTelemetry } from "../system/hooks.mjs";
-import * as React from "react";
+import { taskbarAppIconVariants, taskbarAppVariants, taskbarBatteryFillVariants, taskbarBatteryPercentVariants, taskbarBatteryVariants, taskbarSearchVariants, taskbarStartVariants, taskbarTimeVariants, taskbarTrayIconVariants, taskbarVariants } from "./taskbar-variants.mjs";
+import "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Taskbar.css";
 //#region src/Taskbar/Taskbar.tsx
-const taskbarVariants = cva("nothing-taskbar", {
-	variants: {
-		theme: {
-			light: "nothing-taskbar--light",
-			dark: "nothing-taskbar--dark"
-		},
-		fixed: {
-			true: "nothing-taskbar--fixed",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		theme: "dark",
-		fixed: false
-	}
-});
 const formatTime = (date) => {
 	return `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
 };
@@ -123,7 +106,8 @@ const TaskbarBatteryIcon = ({ percent, charging }) => {
 	return /* @__PURE__ */ jsxs("svg", {
 		viewBox: "0 0 24 24",
 		"aria-hidden": "true",
-		className: "nothing-taskbar__battery-svg",
+		"data-slot": "taskbar-battery-icon",
+		className: "h-4 w-[22px] shrink-0",
 		children: [
 			/* @__PURE__ */ jsx("rect", {
 				x: "2",
@@ -150,7 +134,8 @@ const TaskbarBatteryIcon = ({ percent, charging }) => {
 				width: 12 * (Math.max(0, Math.min(100, percent ?? 0)) / 100),
 				height: "8",
 				rx: "1",
-				fill: "currentColor",
+				"data-slot": "taskbar-battery-fill",
+				className: cn(taskbarBatteryFillVariants({ charging: Boolean(charging) })),
 				"data-charging": dataAttr(charging)
 			})
 		]
@@ -171,7 +156,7 @@ const DefaultAppIcon = ({ name }) => {
 		})
 	});
 };
-const Taskbar = React.forwardRef(({ className, theme = "dark", apps = [], showSearch = true, showTime = true, showBattery = true, fixed = false, ...props }, ref) => {
+function Taskbar({ className, theme = "dark", apps = [], showSearch = true, showTime = true, showBattery = true, fixed = false, ref, ...props }) {
 	const time = useNow(1e3);
 	const snap = useTelemetry();
 	const batteryReal = snap.batteryReal;
@@ -185,6 +170,8 @@ const Taskbar = React.forwardRef(({ className, theme = "dark", apps = [], showSe
 		}), className),
 		role: "toolbar",
 		"aria-label": "Taskbar",
+		"data-slot": "taskbar",
+		"data-widget-theme": dataAttr(theme),
 		"data-state": dataAttr(fixed ? "fixed" : "inline"),
 		"data-battery": dataAttr(batteryReal),
 		"data-battery-percent": dataAttr(batteryPercent),
@@ -193,36 +180,44 @@ const Taskbar = React.forwardRef(({ className, theme = "dark", apps = [], showSe
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-taskbar__left",
+				"data-slot": "taskbar-left",
+				className: "flex shrink-0 items-center gap-4",
 				children: [/* @__PURE__ */ jsx("button", {
-					className: "nothing-taskbar__start",
+					"data-slot": "taskbar-start",
+					className: cn(taskbarStartVariants({ theme })),
 					type: "button",
 					"aria-label": "Start",
 					children: /* @__PURE__ */ jsx(StartIcon, {})
 				}), showSearch && /* @__PURE__ */ jsxs("button", {
-					className: "nothing-taskbar__search",
+					"data-slot": "taskbar-search",
+					className: cn(taskbarSearchVariants({ theme })),
 					type: "button",
 					"aria-label": "Search",
 					children: [/* @__PURE__ */ jsx("span", {
-						className: "nothing-taskbar__search-icon",
+						"data-slot": "taskbar-search-icon",
+						className: "flex size-4 shrink-0 items-center justify-center [&_svg]:size-full [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round] [&_svg]:[stroke-width:2]",
 						children: /* @__PURE__ */ jsx(SearchIcon, {})
 					}), /* @__PURE__ */ jsx("span", {
-						className: "nothing-taskbar__search-text",
+						"data-slot": "taskbar-search-text",
+						className: "truncate",
 						children: "Search"
 					})]
 				})]
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "nothing-taskbar__center",
+				"data-slot": "taskbar-center",
+				className: "flex flex-1 items-center justify-center gap-1 overflow-x-auto px-2 md:gap-2 md:px-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
 				children: apps.map((app, index) => /* @__PURE__ */ jsx("button", {
-					className: "nothing-taskbar__app",
+					"data-slot": "taskbar-app",
+					className: cn(taskbarAppVariants({ theme })),
 					type: "button",
 					"aria-label": app.name,
 					title: app.name,
 					onClick: app.onClick,
 					"data-state": dataAttr("app"),
 					children: /* @__PURE__ */ jsx("span", {
-						className: "nothing-taskbar__app-icon",
+						"data-slot": "taskbar-app-icon",
+						className: cn(taskbarAppIconVariants({ theme })),
 						children: app.icon ? /* @__PURE__ */ jsx("img", {
 							src: app.icon,
 							alt: app.name,
@@ -232,35 +227,45 @@ const Taskbar = React.forwardRef(({ className, theme = "dark", apps = [], showSe
 				}, index))
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-taskbar__right",
+				"data-slot": "taskbar-right",
+				className: "flex shrink-0 items-center gap-2 md:gap-4",
 				children: [
 					/* @__PURE__ */ jsx("span", {
-						className: "nothing-taskbar__tray-icon",
+						"data-slot": "taskbar-tray-icon",
+						className: cn(taskbarTrayIconVariants({ theme })),
 						"aria-label": "Volume",
 						children: /* @__PURE__ */ jsx(VolumeIcon, {})
 					}),
 					showBattery && /* @__PURE__ */ jsxs("span", {
-						className: "nothing-taskbar__battery",
+						"data-slot": "taskbar-battery",
+						className: cn(taskbarBatteryVariants({
+							theme,
+							real: batteryReal
+						})),
+						"data-real": dataAttr(batteryReal),
+						"data-state": dataAttr(batteryReal ? "real" : "simulated"),
 						"aria-label": `Battery ${batteryPercent ?? 0}%`,
 						children: [/* @__PURE__ */ jsx(TaskbarBatteryIcon, {
 							percent: batteryPercent,
 							charging: batteryCharging
 						}), batteryPercent !== void 0 && /* @__PURE__ */ jsxs("span", {
-							className: "nothing-taskbar__battery-percent",
+							"data-slot": "taskbar-battery-percent",
+							className: cn(taskbarBatteryPercentVariants()),
 							children: [batteryPercent, "%"]
 						})]
 					}),
 					showTime && /* @__PURE__ */ jsx("span", {
-						className: "nothing-taskbar__time",
+						"data-slot": "taskbar-time",
+						className: cn(taskbarTimeVariants({ theme })),
 						children: formatTime(time)
 					})
 				]
 			})
 		]
 	});
-});
+}
 Taskbar.displayName = "Taskbar";
 //#endregion
-export { Taskbar, Taskbar as default, taskbarVariants };
+export { Taskbar as default };
 
 //# sourceMappingURL=Taskbar.mjs.map

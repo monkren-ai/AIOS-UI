@@ -1,27 +1,8 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import { caffeinateDecayVariants, caffeinateDrinkButtonVariants, caffeinateDrinkMgVariants, caffeinateLevelVariants, caffeinateLogItemVariants, caffeinateLogTitleVariants, caffeinateSegmentVariants, caffeinateUnitVariants, caffeinateVariants } from "./caffeinate-variants.mjs";
 import { useEffect, useMemo, useState } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./Caffeinate.css";
 //#region src/Caffeinate/Caffeinate.tsx
-const caffeinateVariants = cva("nothing-caffeinate", {
-	variants: {
-		status: {
-			low: "nothing-caffeinate--low",
-			medium: "nothing-caffeinate--medium",
-			high: "nothing-caffeinate--high"
-		},
-		disabled: {
-			true: "nothing-caffeinate--disabled",
-			false: ""
-		}
-	},
-	defaultVariants: {
-		status: "low",
-		disabled: false
-	}
-});
 const drinkOptions = [
 	{
 		type: "Espresso",
@@ -40,7 +21,7 @@ const drinkOptions = [
 		mg: 80
 	}
 ];
-const Caffeinate = React.forwardRef(({ className, updateInterval = 6e4, totalSegments = 10, maxCaffeine = 400, halfLifeMinutes = 300, thresholdMg = 50, status: statusProp, disabled = false, style, ...props }, ref) => {
+function Caffeinate({ className, updateInterval = 6e4, totalSegments = 10, maxCaffeine = 400, halfLifeMinutes = 300, thresholdMg = 50, status: statusProp, disabled = false, style, ref, ...props }) {
 	const [drinks, setDrinks] = useState([]);
 	const [now, setNow] = useState(Date.now());
 	useEffect(() => {
@@ -106,59 +87,83 @@ const Caffeinate = React.forwardRef(({ className, updateInterval = 6e4, totalSeg
 			disabled
 		}), className),
 		style,
+		"data-slot": "caffeinate",
 		"data-state": dataAttr(derivedStatus),
 		"data-disabled": dataAttr(disabled),
 		"aria-disabled": disabled,
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "caffeinate-header",
+				"data-slot": "caffeinate-header",
+				className: "mb-4 flex w-full items-baseline justify-between",
 				children: [/* @__PURE__ */ jsx("div", {
-					className: "caffeinate-level",
+					"data-slot": "caffeinate-level",
+					className: cn(caffeinateLevelVariants({ status: derivedStatus })),
 					children: caffeine
 				}), /* @__PURE__ */ jsx("div", {
-					className: "caffeinate-unit",
+					"data-slot": "caffeinate-unit",
+					className: cn(caffeinateUnitVariants()),
 					children: "mg"
 				})]
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "caffeinate-decay",
+				"data-slot": "caffeinate-decay",
+				className: cn(caffeinateDecayVariants()),
 				children: minutesToThreshold !== null ? `${formatMinutes(minutesToThreshold)} below ${thresholdMg}mg` : `Below ${thresholdMg}mg`
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "caffeinate-progress",
-				children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", { className: cn("caffeinate-segment", index < filledSegments && "filled") }, index))
+				"data-slot": "caffeinate-progress",
+				className: "mb-6 flex h-4 w-full gap-0.5",
+				children: Array.from({ length: totalSegments }).map((_, index) => /* @__PURE__ */ jsx("div", {
+					"data-slot": "caffeinate-segment",
+					"data-filled": dataAttr(index < filledSegments),
+					className: cn(caffeinateSegmentVariants({
+						filled: index < filledSegments,
+						status: derivedStatus
+					}))
+				}, index))
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "caffeinate-drinks",
+				"data-slot": "caffeinate-drinks",
+				className: "mb-6 flex flex-wrap gap-2",
 				children: drinkOptions.map((opt) => /* @__PURE__ */ jsxs("button", {
-					className: "caffeinate-drink-btn",
+					type: "button",
+					"data-slot": "caffeinate-drink-button",
+					className: cn(caffeinateDrinkButtonVariants()),
 					disabled,
 					onClick: () => handleAddDrink(opt.type, opt.mg),
 					children: [opt.type, /* @__PURE__ */ jsxs("span", {
-						className: "caffeinate-drink-mg",
+						"data-slot": "caffeinate-drink-mg",
+						className: cn(caffeinateDrinkMgVariants()),
 						children: [opt.mg, "mg"]
 					})]
 				}, opt.type))
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "caffeinate-log",
+				"data-slot": "caffeinate-log",
+				className: "flex flex-col gap-2",
 				children: [/* @__PURE__ */ jsx("div", {
-					className: "caffeinate-log-title",
+					"data-slot": "caffeinate-log-title",
+					className: cn(caffeinateLogTitleVariants()),
 					children: "Intake Log"
 				}), drinks.slice(-5).reverse().map((drink, index) => /* @__PURE__ */ jsxs("div", {
-					className: "caffeinate-log-item",
+					"data-slot": "caffeinate-log-item",
+					className: cn(caffeinateLogItemVariants()),
 					children: [/* @__PURE__ */ jsxs("div", {
-						className: "caffeinate-log-info",
+						"data-slot": "caffeinate-log-info",
+						className: "flex flex-col gap-0.5",
 						children: [/* @__PURE__ */ jsx("div", {
-							className: "caffeinate-log-type",
+							"data-slot": "caffeinate-log-type",
+							className: "font-body text-sm text-foreground transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
 							children: drink.type
 						}), /* @__PURE__ */ jsx("div", {
-							className: "caffeinate-log-time",
+							"data-slot": "caffeinate-log-time",
+							className: "font-mono text-caption tabular-nums text-foreground-disabled transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
 							children: formatTime(drink.time)
 						})]
 					}), /* @__PURE__ */ jsxs("div", {
-						className: "caffeinate-log-amount",
+						"data-slot": "caffeinate-log-amount",
+						className: "font-mono text-sm tabular-nums text-foreground-muted transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
 						children: [
 							"+",
 							drink.mg,
@@ -169,9 +174,9 @@ const Caffeinate = React.forwardRef(({ className, updateInterval = 6e4, totalSeg
 			})
 		]
 	});
-});
+}
 Caffeinate.displayName = "Caffeinate";
 //#endregion
-export { Caffeinate, Caffeinate as default, caffeinateVariants };
+export { Caffeinate as default };
 
 //# sourceMappingURL=Caffeinate.mjs.map

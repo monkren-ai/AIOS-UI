@@ -1,25 +1,21 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
+import { inputMessageControlVariants, inputMessageCountVariants, inputMessageFieldVariants, inputMessageHintVariants, inputMessageMetaVariants, inputMessageSendIconVariants, inputMessageSendLabelVariants, inputMessageSendVariants, inputMessageVariants, resolveInputMessageSize } from "./input-message-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
-import "./InputMessage.css";
 //#region src/InputMessage/InputMessage.tsx
-const inputMessageVariants = cva("nothing-input-message", {
-	variants: { size: {
-		sm: "nothing-input-message--sm",
-		md: "nothing-input-message--md",
-		lg: "nothing-input-message--lg"
-	} },
-	defaultVariants: { size: "md" }
-});
-const InputMessage = React.forwardRef(({ value: valueProp, defaultValue = "", onChange, onSend, placeholder, disabled = false, minRows = 1, maxRows = 6, maxLength, submitOnEnter = true, sendLabel = "SEND", countLabel, hideCount = false, size = "md", className, onKeyDown, ...textareaProps }, ref) => {
+function InputMessage({ value: valueProp, defaultValue = "", onChange, onSend, placeholder, disabled = false, minRows = 1, maxRows = 6, maxLength, submitOnEnter = true, sendLabel = "SEND", countLabel, hideCount = false, size = "md", className, onKeyDown, ref, ...textareaProps }) {
 	const isControlled = valueProp !== void 0;
 	const [internalValue, setInternalValue] = React.useState(defaultValue);
 	const value = isControlled ? valueProp : internalValue;
 	const textareaRef = React.useRef(null);
 	const generatedId = React.useId();
 	const inputId = textareaProps.id || generatedId;
-	React.useImperativeHandle(ref, () => textareaRef.current, []);
+	const resolvedSize = resolveInputMessageSize(size) ?? "md";
+	const setRefs = React.useCallback((node) => {
+		textareaRef.current = node;
+		if (typeof ref === "function") ref(node);
+		else if (ref) ref.current = node;
+	}, [ref]);
 	const resize = React.useCallback(() => {
 		const textarea = textareaRef.current;
 		if (!textarea) return;
@@ -62,16 +58,21 @@ const InputMessage = React.forwardRef(({ value: valueProp, defaultValue = "", on
 	const canSend = !disabled && value.trim().length > 0;
 	const countText = countLabel ? `${value.length}${maxLength ? `/${maxLength}` : ""} ${countLabel}` : `${value.length}${maxLength ? `/${maxLength}` : ""}`;
 	return /* @__PURE__ */ jsxs("div", {
-		className: cn(inputMessageVariants({ size }), className),
+		className: cn(inputMessageVariants({
+			size: resolvedSize,
+			disabled
+		}), className),
 		"data-slot": "input-message",
-		"data-size": dataAttr(size),
+		"data-size": dataAttr(resolvedSize),
 		"data-disabled": dataAttr(disabled),
 		children: [/* @__PURE__ */ jsxs("div", {
-			className: "nothing-input-message__control",
+			className: inputMessageControlVariants({ size: resolvedSize }),
+			"data-slot": "input-message-control",
 			children: [/* @__PURE__ */ jsx("textarea", {
-				ref: textareaRef,
+				ref: setRefs,
 				id: inputId,
-				className: "nothing-input-message__field",
+				className: inputMessageFieldVariants({ size: resolvedSize }),
+				"data-slot": "input-message-field",
 				value,
 				placeholder,
 				disabled,
@@ -83,15 +84,20 @@ const InputMessage = React.forwardRef(({ value: valueProp, defaultValue = "", on
 				...textareaProps
 			}), /* @__PURE__ */ jsxs("button", {
 				type: "button",
-				className: "nothing-input-message__send",
+				className: inputMessageSendVariants({ size: resolvedSize }),
+				"data-slot": "input-message-send",
+				"data-disabled": dataAttr(!canSend),
 				onClick: handleSend,
 				disabled: !canSend,
 				"aria-label": sendLabel,
 				children: [/* @__PURE__ */ jsx("span", {
-					className: "nothing-input-message__send-label",
+					className: inputMessageSendLabelVariants(),
+					"data-slot": "input-message-send-label",
 					children: sendLabel
 				}), /* @__PURE__ */ jsx("svg", {
-					className: "nothing-input-message__send-icon",
+					className: inputMessageSendIconVariants({ size: resolvedSize }),
+					"data-slot": "input-message-send-icon",
+					"data-icon": "end",
 					viewBox: "0 0 16 16",
 					fill: "none",
 					stroke: "currentColor",
@@ -101,19 +107,22 @@ const InputMessage = React.forwardRef(({ value: valueProp, defaultValue = "", on
 				})]
 			})]
 		}), !hideCount && /* @__PURE__ */ jsxs("div", {
-			className: "nothing-input-message__meta",
+			className: inputMessageMetaVariants(),
+			"data-slot": "input-message-meta",
 			children: [/* @__PURE__ */ jsx("span", {
-				className: "nothing-input-message__hint",
+				className: inputMessageHintVariants(),
+				"data-slot": "input-message-hint",
 				children: submitOnEnter ? "Enter to send, Shift+Enter for new line" : ""
 			}), /* @__PURE__ */ jsx("span", {
-				className: "nothing-input-message__count",
+				className: inputMessageCountVariants(),
+				"data-slot": "input-message-count",
 				children: countText
 			})]
 		})]
 	});
-});
+}
 InputMessage.displayName = "InputMessage";
 //#endregion
-export { InputMessage, InputMessage as default, inputMessageVariants };
+export { InputMessage as default };
 
 //# sourceMappingURL=InputMessage.mjs.map

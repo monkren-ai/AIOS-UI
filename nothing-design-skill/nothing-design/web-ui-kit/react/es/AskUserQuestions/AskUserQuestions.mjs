@@ -1,21 +1,13 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import { Button } from "../Button/Button.mjs";
-import { Input } from "../Input/Input.mjs";
-import { Switch } from "../Switch/Switch.mjs";
-import { CheckboxGroup } from "../CheckboxGroup/CheckboxGroup.mjs";
+import Button from "../Button/Button.mjs";
+import Input from "../Input/Input.mjs";
+import Switch from "../Switch/Switch.mjs";
+import CheckboxGroup from "../CheckboxGroup/CheckboxGroup.mjs";
+import { askBodyVariants, askCountVariants, askDescriptionVariants, askFooterVariants, askHeaderVariants, askInputVariants, askOptionsVariants, askQuestionTitleVariants, askQuestionVariants, askRequiredHintVariants, askRequiredVariants, askStepVariants, askTitleVariants, askUserQuestionsVariants } from "./ask-user-questions-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { cva } from "class-variance-authority";
 import "./AskUserQuestions.css";
 //#region src/AskUserQuestions/AskUserQuestions.tsx
-const askUserQuestionsVariants = cva("nothing-ask-user-questions", {
-	variants: { size: {
-		sm: "nothing-ask-user-questions--sm",
-		md: "nothing-ask-user-questions--md",
-		lg: "nothing-ask-user-questions--lg"
-	} },
-	defaultVariants: { size: "md" }
-});
 const isAnswerEmpty = (question, answer) => {
 	if (answer === void 0) return true;
 	if (question.type === "text") return typeof answer !== "string" || answer.trim() === "";
@@ -24,7 +16,7 @@ const isAnswerEmpty = (question, answer) => {
 	if (question.type === "confirm") return answer !== true;
 	return false;
 };
-const AskUserQuestions = React.forwardRef(({ questions, value: valueProp, defaultValue = {}, onChange, onSubmit, title = "QUESTIONS", submitLabel = "SUBMIT", nextLabel = "NEXT", backLabel = "BACK", requiredHint = "Required", size = "md", className, ...props }, ref) => {
+function AskUserQuestions({ questions, value: valueProp, defaultValue = {}, onChange, onSubmit, title = "QUESTIONS", submitLabel = "SUBMIT", nextLabel = "NEXT", backLabel = "BACK", requiredHint = "Required", size = "md", className, ...props }) {
 	const isControlled = valueProp !== void 0;
 	const [internalAnswers, setInternalAnswers] = React.useState(defaultValue);
 	const answers = isControlled ? valueProp : internalAnswers;
@@ -65,13 +57,14 @@ const AskUserQuestions = React.forwardRef(({ questions, value: valueProp, defaul
 		if (question.type === "text") return /* @__PURE__ */ jsx(Input, {
 			variant: "bordered",
 			value: typeof answer === "string" ? answer : "",
-			onChange: (value) => updateAnswer(question.id, value),
+			onValueChange: (value) => updateAnswer(question.id, value),
 			placeholder: "Type your answer"
 		});
 		if (question.type === "single") {
 			const selected = typeof answer === "string" ? answer : "";
 			return /* @__PURE__ */ jsx("div", {
-				className: "nothing-ask-user-questions__options",
+				"data-slot": "ask-user-questions-options",
+				className: askOptionsVariants(),
 				role: "radiogroup",
 				children: question.options?.map((option) => /* @__PURE__ */ jsx(Button, {
 					variant: selected === option ? "primary" : "secondary",
@@ -95,25 +88,28 @@ const AskUserQuestions = React.forwardRef(({ questions, value: valueProp, defaul
 		}
 		if (question.type === "confirm") return /* @__PURE__ */ jsx(Switch, {
 			label: question.title,
-			on: typeof answer === "boolean" ? answer : false,
+			checked: typeof answer === "boolean" ? answer : false,
 			onChange: (value) => updateAnswer(question.id, value)
 		});
 		return null;
 	};
 	return /* @__PURE__ */ jsxs("div", {
-		ref,
 		className: cn(askUserQuestionsVariants({ size }), className),
 		"data-slot": "ask-user-questions",
 		"data-size": dataAttr(size),
+		"data-step": dataAttr(currentStep),
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-ask-user-questions__header",
+				"data-slot": "ask-user-questions-header",
+				className: askHeaderVariants(),
 				children: [/* @__PURE__ */ jsx("span", {
-					className: "nothing-ask-user-questions__title",
+					"data-slot": "ask-user-questions-title",
+					className: askTitleVariants({ size }),
 					children: title
 				}), /* @__PURE__ */ jsxs("span", {
-					className: "nothing-ask-user-questions__count",
+					"data-slot": "ask-user-questions-count",
+					className: askCountVariants({ size }),
 					children: [
 						String(currentStep + 1).padStart(2, "0"),
 						"/",
@@ -122,38 +118,47 @@ const AskUserQuestions = React.forwardRef(({ questions, value: valueProp, defaul
 				})]
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: "nothing-ask-user-questions__body",
+				"data-slot": "ask-user-questions-body",
+				className: askBodyVariants(),
 				children: currentQuestion && /* @__PURE__ */ jsxs("div", {
-					className: "nothing-ask-user-questions__step",
+					"data-slot": "ask-user-questions-step",
+					className: askStepVariants({ direction: direction === 1 ? "forward" : "back" }),
 					"data-direction": dataAttr(direction === 1 ? "forward" : "back"),
 					children: [/* @__PURE__ */ jsxs("div", {
-						className: "nothing-ask-user-questions__question",
+						"data-slot": "ask-user-questions-question",
+						className: askQuestionVariants(),
 						children: [
 							/* @__PURE__ */ jsxs("span", {
-								className: "nothing-ask-user-questions__question-title",
+								"data-slot": "ask-user-questions-question-title",
+								className: askQuestionTitleVariants({ size }),
 								children: [currentQuestion.title, currentQuestion.required && /* @__PURE__ */ jsx("span", {
-									className: "nothing-ask-user-questions__required",
+									"data-slot": "ask-user-questions-required",
+									className: askRequiredVariants(),
 									"aria-hidden": "true",
 									children: "*"
 								})]
 							}),
 							currentQuestion.description && /* @__PURE__ */ jsx("span", {
-								className: "nothing-ask-user-questions__description",
+								"data-slot": "ask-user-questions-description",
+								className: askDescriptionVariants({ size }),
 								children: currentQuestion.description
 							}),
 							currentQuestion.required && /* @__PURE__ */ jsx("span", {
-								className: "nothing-ask-user-questions__required-hint",
+								"data-slot": "ask-user-questions-required-hint",
+								className: askRequiredHintVariants({ size }),
 								children: requiredHint
 							})
 						]
 					}), /* @__PURE__ */ jsx("div", {
-						className: "nothing-ask-user-questions__input",
+						"data-slot": "ask-user-questions-input",
+						className: askInputVariants(),
 						children: renderInput(currentQuestion)
 					})]
 				}, currentQuestion.id)
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-ask-user-questions__footer",
+				"data-slot": "ask-user-questions-footer",
+				className: askFooterVariants(),
 				children: [/* @__PURE__ */ jsx(Button, {
 					variant: "secondary",
 					onClick: goBack,
@@ -168,9 +173,9 @@ const AskUserQuestions = React.forwardRef(({ questions, value: valueProp, defaul
 			})
 		]
 	});
-});
+}
 AskUserQuestions.displayName = "AskUserQuestions";
 //#endregion
-export { AskUserQuestions, AskUserQuestions as default, askUserQuestionsVariants };
+export { AskUserQuestions as default };
 
 //# sourceMappingURL=AskUserQuestions.mjs.map

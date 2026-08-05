@@ -16,7 +16,8 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "nothing-ui/*": ["./src/subpath/*"]
     }
   },
   "include": ["src", "tests/setup.ts"]

@@ -29,17 +29,9 @@ export interface ThemeScriptOptions {
  * ```
  */
 export function getThemeScript(options: ThemeScriptOptions = {}): string {
-  const {
-    storageKey = 'nothing-theme',
-    defaultTheme = 'dark',
-    enableSystem = true,
-  } = options
+  const { storageKey = 'nothing-theme', defaultTheme = 'dark', enableSystem = true } = options
 
-  const script = function (
-    storageKey: string,
-    defaultTheme: string,
-    enableSystem: boolean,
-  ) {
+  const script = function (storageKey: string, defaultTheme: string, enableSystem: boolean) {
     const el = document.documentElement
     try {
       const stored = localStorage.getItem(storageKey) || defaultTheme

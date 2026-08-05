@@ -1,6 +1,7 @@
+export { Breadcrumb, type BreadcrumbItem, type BreadcrumbProps } from './Breadcrumb'
 export {
-  Breadcrumb,
-  type BreadcrumbItem,
-  type BreadcrumbProps,
-} from './Breadcrumb'
+  breadcrumbVariants,
+  breadcrumbLinkVariants,
+  type BreadcrumbSize,
+} from './breadcrumb-variants'
 export { default } from './Breadcrumb'

@@ -1,109 +1,79 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
-import './Card.css'
-
-/* ────────────────────────────────────────────────────────────
-   ContentCard variants
-   ──────────────────────────────────────────────────────────── */
-export const contentCardVariants = cva('nothing-card', {
-  variants: {
-    variant: {
-      default: '',
-      raised: 'nothing-card--raised',
-      compact: 'nothing-card--compact',
-      technical: 'nothing-card--technical',
-      borderless: 'nothing-card--borderless',
-    },
-    interactive: { true: 'nothing-card--interactive', false: '' },
-    disabled: { true: 'nothing-card--disabled', false: '' },
-  },
-  defaultVariants: {
-    variant: 'default',
-    interactive: false,
-    disabled: false,
-  },
-})
-
-/* ────────────────────────────────────────────────────────────
-   WidgetCard variants
-   ──────────────────────────────────────────────────────────── */
-export const widgetCardVariants = cva('nothing-widget-card', {
-  variants: {
-    size: {
-      square: 'nothing-widget-card--square',
-      wide: 'nothing-widget-card--wide',
-      tall: 'nothing-widget-card--tall',
-      auto: 'nothing-widget-card--auto',
-    },
-    shape: {
-      rounded: 'nothing-widget-card--rounded',
-      pill: 'nothing-widget-card--pill',
-      circle: 'nothing-widget-card--circle',
-    },
-    theme: {
-      light: 'nothing-widget-card--light',
-      dark: 'nothing-widget-card--dark',
-      accent: 'nothing-widget-card--accent',
-    },
-    variant: {
-      default: '',
-      compact: 'nothing-widget-card--compact',
-    },
-    align: {
-      left: 'nothing-widget-card--align-left',
-      center: 'nothing-widget-card--align-center',
-      right: 'nothing-widget-card--align-right',
-    },
-    iconPosition: {
-      top: 'nothing-widget-card--icon-top',
-      left: 'nothing-widget-card--icon-left',
-      right: 'nothing-widget-card--icon-right',
-      bottom: 'nothing-widget-card--icon-bottom',
-    },
-  },
-  defaultVariants: {
-    size: 'square',
-    shape: 'rounded',
-    theme: 'dark',
-    variant: 'default',
-    align: 'center',
-    iconPosition: 'top',
-  },
-})
+import {
+  contentCardVariants,
+  resolveCardShape,
+  resolveCardSize,
+  resolveCardVariant,
+  resolveWidgetCardDensity,
+  resolveWidgetCardSize,
+  widgetCardSubtitleVariants,
+  widgetCardTitleVariants,
+  widgetCardValueVariants,
+  widgetCardVariants,
+  type CardShape,
+  type CardSize,
+  type CardVariant,
+  type WidgetCardAlign,
+  type WidgetCardDensity,
+  type WidgetCardIconPosition,
+  type WidgetCardShape,
+  type WidgetCardSize,
+  type WidgetCardTheme,
+} from './card-variants'
 
 /* ────────────────────────────────────────────────────────────
    Types
    ──────────────────────────────────────────────────────────── */
-type ContentCardProps = React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof contentCardVariants> & {
-    title?: string
-    action?: string
-    onAction?: (e: React.MouseEvent<HTMLElement>) => void
-    footer?: React.ReactNode
-    media?: React.ReactNode
-    logo?: React.ReactNode
-    feature?: React.ReactNode
-  }
 
-export type WidgetCardProps = React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof widgetCardVariants> & {
-    title?: string
-    value?: string | number
-    subtitle?: string
-    icon?: React.ReactNode
-    onClick?: () => void
-  }
+export type ContentCardProps = React.ComponentPropsWithRef<'div'> & {
+  /** 视觉样式。 */
+  variant?: CardVariant
+  /** 内边距密度。 */
+  size?: CardSize
+  /** 圆角或工业风方角。 */
+  shape?: CardShape
+  /** 整卡可点击，带 button 语义与键盘激活。 */
+  interactive?: boolean
+  disabled?: boolean
+  title?: string
+  action?: string
+  onAction?: (e: React.MouseEvent<HTMLElement>) => void
+  footer?: React.ReactNode
+  media?: React.ReactNode
+  logo?: React.ReactNode
+  feature?: React.ReactNode
+}
+
+export type WidgetCardProps = Omit<React.ComponentPropsWithRef<'div'>, 'onClick' | 'title'> & {
+  /** 版型。也接受 sm|md|lg 作为 tall|square|wide 的别名。 */
+  size?: WidgetCardSize
+  shape?: WidgetCardShape
+  /** Widget 自己的配色，与全局 `[data-theme]` 无关。 */
+  theme?: WidgetCardTheme
+  /** 内边距密度。 */
+  variant?: WidgetCardDensity
+  align?: WidgetCardAlign
+  iconPosition?: WidgetCardIconPosition
+  title?: string
+  value?: string | number
+  subtitle?: string
+  icon?: React.ReactNode
+  onClick?: () => void
+}
 
 export type CardProps =
   | (ContentCardProps & { mode?: 'content' })
   | (WidgetCardProps & { mode: 'widget' })
 
 /* ────────────────────────────────────────────────────────────
-   ContentCard renderer
+   ContentCard
    ──────────────────────────────────────────────────────────── */
-const ContentCard: React.FC<ContentCardProps> = ({
+
+function ContentCard({
   variant,
+  size,
+  shape,
   interactive,
   disabled,
   title,
@@ -116,13 +86,17 @@ const ContentCard: React.FC<ContentCardProps> = ({
   feature,
   children,
   className,
-  style,
   ...props
-}) => {
+}: ContentCardProps) {
+  const resolvedVariant = (resolveCardVariant(variant) ?? 'soft') as never
+  const resolvedSize = (resolveCardSize(variant, size) ?? 'md') as never
+  const resolvedShape = (resolveCardShape(variant, shape) ?? 'rounded') as never
+
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     if (disabled) return
     onClick?.(e as unknown as React.MouseEvent<HTMLDivElement>)
   }
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault()
@@ -132,77 +106,124 @@ const ContentCard: React.FC<ContentCardProps> = ({
 
   return (
     <div
-      className={cn(contentCardVariants({ variant, interactive, disabled }), className)}
+      className={cn(
+        contentCardVariants({
+          variant: resolvedVariant,
+          size: resolvedSize,
+          shape: resolvedShape,
+          interactive,
+          disabled,
+        }),
+        className,
+      )}
       role={interactive ? 'button' : undefined}
       tabIndex={interactive && !disabled ? 0 : undefined}
       onClick={interactive ? handleClick : undefined}
       onKeyDown={interactive ? handleKeyDown : undefined}
-      style={style}
-      data-variant={dataAttr(variant)}
-      data-state={dataAttr(disabled ? 'disabled' : interactive ? 'interactive' : 'default')}
       data-slot="card"
+      data-variant={dataAttr(resolveCardVariant(variant) ?? 'soft')}
+      data-size={dataAttr(resolveCardSize(variant, size) ?? 'md')}
+      data-shape={dataAttr(resolveCardShape(variant, shape) ?? 'rounded')}
+      data-interactive={dataAttr(interactive)}
+      data-disabled={dataAttr(disabled)}
+      data-state={dataAttr(disabled ? 'disabled' : interactive ? 'interactive' : 'default')}
       {...props}
     >
-      {logo && <div className="nothing-card__logo">{logo}</div>}
+      {logo && (
+        <div
+          data-slot="card-logo"
+          className="mb-2 inline-flex items-center justify-center text-foreground-muted [&_svg]:size-6"
+        >
+          {logo}
+        </div>
+      )}
       {(title || action || feature) && (
-        <div className="nothing-card__header">
-          <div className="nothing-card__header-main">
-            {title && <div className="nothing-card__title">{title}</div>}
-            {feature && <span className="nothing-card__feature">{feature}</span>}
+        <div data-slot="card-header" className="mb-4 flex items-center justify-between gap-2">
+          <div data-slot="card-header-main" className="flex flex-wrap items-center gap-2">
+            {title && (
+              <div
+                data-slot="card-title"
+                className="font-mono text-caption uppercase tracking-wider text-foreground-muted"
+              >
+                {title}
+              </div>
+            )}
+            {feature && (
+              <span
+                data-slot="card-feature"
+                className="rounded-pill border border-border-visible px-2 py-0.5 font-mono text-micro uppercase tracking-wider text-foreground-muted"
+              >
+                {feature}
+              </span>
+            )}
           </div>
           {action && (
-            <button className="nothing-card__action" onClick={onAction}>
+            <button
+              type="button"
+              data-slot="card-action"
+              className={cn(
+                'cursor-pointer border-none bg-transparent p-0',
+                'font-mono text-label uppercase tracking-wider text-foreground-muted',
+                'transition-colors duration-200 ease-nothing motion-reduce:transition-none',
+                'hover:text-foreground-display',
+                'outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2',
+              )}
+              onClick={onAction}
+            >
               {action}
             </button>
           )}
         </div>
       )}
-      {media && <div className="nothing-card__media">{media}</div>}
-      <div className="nothing-card__body">{children}</div>
-      {footer && <div className="nothing-card__footer">{footer}</div>}
+      {media && (
+        <div
+          data-slot="card-media"
+          className="mb-4 overflow-hidden rounded-md [&_img]:block [&_img]:h-auto [&_img]:w-full [&_video]:block [&_video]:h-auto [&_video]:w-full"
+        >
+          {media}
+        </div>
+      )}
+      <div data-slot="card-body" className="text-foreground">
+        {children}
+      </div>
+      {footer && (
+        <div
+          data-slot="card-footer"
+          className="mt-4 flex items-center gap-2 border-t border-border pt-4"
+        >
+          {footer}
+        </div>
+      )}
     </div>
   )
 }
 
+ContentCard.displayName = 'ContentCard'
+
 /* ────────────────────────────────────────────────────────────
-   WidgetCard renderer
+   WidgetCard
    ──────────────────────────────────────────────────────────── */
-const WidgetCardRenderer: React.FC<WidgetCardProps> = ({
+
+export function WidgetCard({
   size,
-  shape,
-  theme,
+  shape = 'rounded',
+  theme = 'dark',
   variant,
   title,
   value,
   subtitle,
   icon,
-  iconPosition,
-  align,
+  iconPosition = 'top',
+  align = 'center',
   className,
   children,
   onClick,
-  style,
   ...props
-}) => {
+}: WidgetCardProps) {
   const hasChildren = Boolean(children)
   const hasOwnContent = title || value !== undefined || subtitle || icon
-  const cardRef = React.useRef<HTMLDivElement>(null)
-  const [hoverStyle, setHoverStyle] = React.useState<React.CSSProperties>({})
-
-  const handleMouseMove = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = cardRef.current?.getBoundingClientRect()
-    if (!rect) return
-    const x = ((e.clientX - rect.left) / rect.width) * 100
-    const y = ((e.clientY - rect.top) / rect.height) * 100
-    setHoverStyle({
-      '--widget-card-hover-x': `${x}%`,
-      '--widget-card-hover-y': `${y}%`,
-    } as React.CSSProperties)
-  }, [])
-
-  const handleMouseLeave = React.useCallback(() => {
-    setHoverStyle({})
-  }, [])
+  const resolvedSize = (resolveWidgetCardSize(size) ?? 'square') as never
+  const density = (resolveWidgetCardDensity(variant) ?? 'default') as WidgetCardDensity
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (onClick && (e.key === 'Enter' || e.key === ' ')) {
@@ -211,39 +232,58 @@ const WidgetCardRenderer: React.FC<WidgetCardProps> = ({
     }
   }
 
+  const alignItems =
+    align === 'left' ? 'items-start' : align === 'right' ? 'items-end' : 'items-center'
+
   const renderOwnContent = () => {
     if (!hasOwnContent) return null
-    const content = (
-      <>{value !== undefined && <div className="nothing-widget-card__value">{value}</div>}</>
-    )
+    const content =
+      value !== undefined ? (
+        <div data-slot="widget-card-value" className={widgetCardValueVariants({ theme, density })}>
+          {value}
+        </div>
+      ) : null
+
     if (!icon) return content
+
+    const iconEl = (
+      <div data-slot="widget-card-icon" className="flex shrink-0 items-center justify-center">
+        {icon}
+      </div>
+    )
+    const textEl = (
+      <div data-slot="widget-card-text" className="flex flex-1 flex-col gap-1">
+        {content}
+      </div>
+    )
+
     switch (iconPosition) {
       case 'left':
         return (
-          <div className="nothing-widget-card__row">
-            <div className="nothing-widget-card__icon">{icon}</div>
-            <div className="nothing-widget-card__text-content">{content}</div>
+          <div data-slot="widget-card-row" className={cn('flex flex-row gap-2', alignItems)}>
+            {iconEl}
+            {textEl}
           </div>
         )
       case 'right':
         return (
-          <div className="nothing-widget-card__row">
-            <div className="nothing-widget-card__text-content">{content}</div>
-            <div className="nothing-widget-card__icon">{icon}</div>
+          <div data-slot="widget-card-row" className={cn('flex flex-row gap-2', alignItems)}>
+            {textEl}
+            {iconEl}
           </div>
         )
       case 'bottom':
         return (
-          <div className="nothing-widget-card__column">
+          <div data-slot="widget-card-column" className={cn('flex flex-col gap-2', alignItems)}>
             {content}
-            <div className="nothing-widget-card__icon">{icon}</div>
+            {iconEl}
           </div>
         )
       case 'top':
       default:
         return (
-          <div className="nothing-widget-card__column">
-            <div className="nothing-widget-card__icon">{icon}</div>
+          <div data-slot="widget-card-column" className={cn('flex flex-col gap-2', alignItems)}>
+            {iconEl}
             {content}
           </div>
         )
@@ -252,48 +292,72 @@ const WidgetCardRenderer: React.FC<WidgetCardProps> = ({
 
   return (
     <div
-      ref={cardRef}
       className={cn(
-        widgetCardVariants({ size, shape, theme, variant, align, iconPosition }),
-        hasChildren && 'nothing-widget-card--has-children',
-        onClick && 'nothing-widget-card--clickable',
+        widgetCardVariants({
+          size: resolvedSize,
+          shape,
+          theme,
+          density,
+          align,
+          clickable: Boolean(onClick),
+          hasChildren,
+        }),
         className,
       )}
       onClick={onClick}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
       onKeyDown={onClick ? handleKeyDown : undefined}
-      data-size={dataAttr(size)}
-      data-shape={dataAttr(shape)}
-      data-theme={dataAttr(theme)}
-      data-variant={dataAttr(variant)}
       data-slot="widget-card"
-      style={{ ...style, ...hoverStyle }}
+      data-size={dataAttr(resolveWidgetCardSize(size) ?? 'square')}
+      data-shape={dataAttr(shape)}
+      data-widget-theme={dataAttr(theme)}
+      data-variant={dataAttr(density)}
+      data-align={dataAttr(align)}
+      data-has-children={dataAttr(hasChildren)}
       {...props}
     >
-      {title && <div className="nothing-widget-card__title">{title}</div>}
-      <div className="nothing-widget-card__content">
+      {title && (
+        <div data-slot="widget-card-title" className={widgetCardTitleVariants({ theme })}>
+          {title}
+        </div>
+      )}
+      <div
+        data-slot="widget-card-content"
+        className={cn(
+          'flex min-h-0 grow flex-col justify-center',
+          hasChildren &&
+            'justify-stretch p-0 [&>*]:size-full [&>*]:rounded-[inherit] [&>*:first-child]:grow',
+        )}
+      >
         {renderOwnContent()}
         {children}
       </div>
-      {subtitle && <div className="nothing-widget-card__subtitle">{subtitle}</div>}
+      {subtitle && (
+        <div data-slot="widget-card-subtitle" className={widgetCardSubtitleVariants({ theme })}>
+          {subtitle}
+        </div>
+      )}
     </div>
   )
 }
 
+WidgetCard.displayName = 'WidgetCard'
+
 /* ────────────────────────────────────────────────────────────
    Unified Card dispatcher
    ──────────────────────────────────────────────────────────── */
-const Card: React.FC<CardProps> = (props) => {
+
+export function Card(props: CardProps) {
   if (props.mode === 'widget') {
     const { mode: _mode, ...rest } = props
-    return <WidgetCardRenderer {...(rest as WidgetCardProps)} />
+    return <WidgetCard {...(rest as WidgetCardProps)} />
   }
   const { mode: _mode, ...rest } = props
   return <ContentCard {...(rest as ContentCardProps)} />
 }
 
-export { Card, WidgetCardRenderer as WidgetCard }
+Card.displayName = 'Card'
+
+export { ContentCard, contentCardVariants, widgetCardVariants }
 export default Card

@@ -66,7 +66,42 @@ describe('CheckboxGroup', () => {
 
   it('renders horizontal orientation', () => {
     render(<CheckboxGroup options={options} orientation="horizontal" />)
-    expect(screen.getByRole('group')).toHaveClass('nothing-checkbox-group--horizontal')
     expect(screen.getByRole('group')).toHaveAttribute('data-orientation', 'horizontal')
+  })
+
+  it('renders with data-slot', () => {
+    render(<CheckboxGroup options={options} />)
+    const group = screen.getByRole('group')
+    expect(group).toHaveAttribute('data-slot', 'checkbox-group')
+    expect(group.querySelectorAll('[data-slot="checkbox-group-item"]')).toHaveLength(3)
+    expect(group.querySelector('[data-slot="checkbox-group-merge-bg"]')).not.toBeNull()
+  })
+
+  it('reflects selection on the item through data-state', () => {
+    render(<CheckboxGroup options={options} value={['a']} />)
+    const items = screen.getByRole('group').querySelectorAll('[data-slot="checkbox-group-item"]')
+    expect(items[0]).toHaveAttribute('data-state', 'checked')
+    expect(items[1]).toHaveAttribute('data-state', 'unchecked')
+  })
+
+  it('marks disabled options through data-disabled', () => {
+    render(
+      <CheckboxGroup
+        options={[
+          { value: 'a', label: 'Option A' },
+          { value: 'b', label: 'Option B', disabled: true },
+        ]}
+      />,
+    )
+    const items = screen.getByRole('group').querySelectorAll('[data-slot="checkbox-group-item"]')
+    expect(items[0]).not.toHaveAttribute('data-disabled')
+    expect(items[1]).toHaveAttribute('data-disabled', '')
+  })
+
+  it('lets the caller override variant defaults', () => {
+    render(<CheckboxGroup options={options} className="gap-6" />)
+    const group = screen.getByRole('group')
+    expect(group.className).toContain('gap-6')
+    expect(group.className).not.toContain('gap-xs')
   })
 })

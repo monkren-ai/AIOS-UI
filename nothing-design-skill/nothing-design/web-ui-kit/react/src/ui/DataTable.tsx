@@ -75,8 +75,7 @@ const dataTableVariants = cva('nothing-data-table', {
 
 export type DataTableVariant = 'table' | 'grid' | 'rows'
 
-export interface DataTableProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface DataTableProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   variant?: DataTableVariant
   /** variant='table' */
   columns?: DataTableColumn[]
@@ -132,7 +131,10 @@ function TableView({
         {rows.map((row, rowIndex) => (
           <tr
             key={row.id ?? rowIndex}
-            className={cn('nothing-table__row', striped && rowIndex % 2 === 1 && 'nothing-table__row--even')}
+            className={cn(
+              'nothing-table__row',
+              striped && rowIndex % 2 === 1 && 'nothing-table__row--even',
+            )}
           >
             {columns.map((col) => (
               <td
@@ -176,7 +178,10 @@ function GridView({
       handleRowClick(index)
     }
   }
-  const getCellStatus = (row: DataTableGridRow, columnKey: string): DataTableCellStatus['status'] => {
+  const getCellStatus = (
+    row: DataTableGridRow,
+    columnKey: string,
+  ): DataTableCellStatus['status'] => {
     return row.cellStatuses?.find((cs) => cs.columnKey === columnKey)?.status
   }
 
@@ -197,7 +202,10 @@ function GridView({
       </div>
       {rows.length === 0 ? (
         <div className="nothing-data-grid__empty">
-          <div className="nothing-data-grid__empty-cell" style={{ gridColumn: `1 / ${columns.length + 1}` }}>
+          <div
+            className="nothing-data-grid__empty-cell"
+            style={{ gridColumn: `1 / ${columns.length + 1}` }}
+          >
             {emptyMessage}
           </div>
         </div>
@@ -321,7 +329,7 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
       hoverable = false,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
@@ -333,7 +341,7 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
             compact: variant === 'table' ? compact : false,
             hoverable: variant === 'table' ? hoverable : false,
           }),
-          className
+          className,
         )}
         data-state={dataAttr(hoverable ? 'hoverable' : 'static')}
         data-variant={dataAttr(variant)}
@@ -344,12 +352,17 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
           <TableView columns={columns} rows={rows} caption={caption} striped={striped} />
         )}
         {variant === 'grid' && columns && (
-          <GridView columns={columns} rows={rows} emptyMessage={emptyMessage} onRowClick={onRowClick} />
+          <GridView
+            columns={columns}
+            rows={rows}
+            emptyMessage={emptyMessage}
+            onRowClick={onRowClick}
+          />
         )}
         {variant === 'rows' && <RowsView items={items} onRowClick={onRowClick} />}
       </div>
     )
-  }
+  },
 )
 DataTable.displayName = 'DataTable'
 

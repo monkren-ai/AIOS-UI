@@ -1,13 +1,13 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import { selectItemVariants, selectTriggerVariants, selectVariants } from "./select-variants.mjs";
+import { resolveSelectSize, selectContentVariants, selectErrorVariants, selectItemIndicatorVariants, selectItemVariants, selectLabelVariants, selectListVariants, selectPlaceholderVariants, selectPositionerVariants, selectSearchInputVariants, selectSearchVariants, selectTriggerIconVariants, selectTriggerVariants, selectValueVariants, selectVariants } from "./select-variants.mjs";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Select } from "@base-ui/react/select";
-import "./Select.css";
 //#region src/Select/Select.tsx
-const Select$1 = React.forwardRef(({ className, options, value: controlledValue, defaultValue, onValueChange, placeholder = "Select an option", disabled = false, label, error, searchable = false, ...props }, ref) => {
+function Select$1({ className, options, value: controlledValue, defaultValue, onValueChange, placeholder = "Select an option", disabled = false, label, error, size = "md", searchable = false, ref, ...props }) {
 	const [open, setOpen] = React.useState(false);
 	const [searchQuery, setSearchQuery] = React.useState("");
+	const resolvedSize = resolveSelectSize(size) ?? "md";
 	const handleValueChange = React.useCallback((value) => {
 		if (value !== null) onValueChange?.(value);
 	}, [onValueChange]);
@@ -28,13 +28,17 @@ const Select$1 = React.forwardRef(({ className, options, value: controlledValue,
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(selectVariants({
+			size: resolvedSize,
 			disabled,
-			hasError
+			hasError,
+			open
 		}), className),
 		"data-slot": "select",
+		"data-size": dataAttr(resolvedSize),
 		"data-state": dataAttr(open ? "open" : "closed"),
 		"data-disabled": dataAttr(disabled),
 		"data-error": dataAttr(hasError),
+		"data-invalid": dataAttr(hasError),
 		...props,
 		children: [/* @__PURE__ */ jsxs(Select.Root, {
 			value: controlledValue,
@@ -45,71 +49,86 @@ const Select$1 = React.forwardRef(({ className, options, value: controlledValue,
 			disabled,
 			children: [
 				label && /* @__PURE__ */ jsx(Select.Label, {
-					className: "nothing-select__label",
+					className: selectLabelVariants(),
 					"data-slot": "select-label",
 					children: label
 				}),
 				/* @__PURE__ */ jsxs(Select.Trigger, {
-					className: (state) => cn(selectTriggerVariants({ open: state.open })),
+					className: (state) => selectTriggerVariants({
+						size: resolvedSize,
+						hasError,
+						open: state.open
+					}),
 					"data-slot": "select-trigger",
+					"data-size": dataAttr(resolvedSize),
+					"data-invalid": dataAttr(hasError),
 					"data-state": dataAttr(open ? "open" : "closed"),
 					children: [/* @__PURE__ */ jsx(Select.Value, {
-						className: "nothing-select__trigger-value",
+						className: selectValueVariants(),
 						"data-slot": "select-value",
 						children: (value) => {
 							if (value === null) return /* @__PURE__ */ jsx("span", {
-								className: "nothing-select__trigger-placeholder",
+								className: selectPlaceholderVariants(),
+								"data-slot": "select-placeholder",
 								children: placeholder
 							});
 							return options.find((opt) => opt.value === value)?.label ?? value;
 						}
 					}), /* @__PURE__ */ jsx("span", {
-						className: "nothing-select__trigger-icon",
+						className: selectTriggerIconVariants({ open }),
+						"data-slot": "select-trigger-icon",
 						"aria-hidden": "true",
 						children: "▾"
 					})]
 				}),
 				/* @__PURE__ */ jsx(Select.Portal, { children: /* @__PURE__ */ jsx(Select.Positioner, {
-					className: "nothing-select__positioner",
+					className: selectPositionerVariants(),
 					"data-slot": "select-positioner",
 					sideOffset: 4,
 					align: "start",
 					children: /* @__PURE__ */ jsxs(Select.Popup, {
-						className: "nothing-select__content",
+						className: selectContentVariants(),
 						"data-slot": "select-content",
 						"data-state": dataAttr(open ? "open" : "closed"),
 						children: [searchable && /* @__PURE__ */ jsx("div", {
-							className: "nothing-select__search",
+							className: selectSearchVariants(),
 							"data-slot": "select-search",
 							children: /* @__PURE__ */ jsx("input", {
 								type: "text",
 								value: searchQuery,
 								onChange: (e) => setSearchQuery(e.target.value),
 								placeholder: "Search...",
-								className: "nothing-select__search-input",
+								className: selectSearchInputVariants(),
+								"data-slot": "select-search-input",
 								"aria-label": "Search options",
 								autoFocus: open
 							})
 						}), /* @__PURE__ */ jsx(Select.List, {
-							className: "nothing-select__list",
+							className: selectListVariants(),
 							"data-slot": "select-list",
 							children: filteredOptions.length === 0 ? /* @__PURE__ */ jsx("div", {
-								className: "nothing-select__item nothing-select__item--disabled",
+								className: selectItemVariants({
+									size: resolvedSize,
+									disabled: true
+								}),
+								"data-slot": "select-empty",
+								"data-disabled": "",
 								children: "No results found"
 							}) : filteredOptions.map((option) => /* @__PURE__ */ jsxs(Select.Item, {
 								value: option.value,
 								disabled: option.disabled,
-								className: (state) => cn(selectItemVariants({
+								className: (state) => selectItemVariants({
+									size: resolvedSize,
 									selected: state.selected,
 									disabled: state.disabled,
 									highlighted: state.highlighted
-								})),
+								}),
 								"data-slot": "select-item",
 								"data-state": dataAttr(option.value === controlledValue ? "selected" : "idle"),
 								"data-disabled": dataAttr(option.disabled),
 								children: [/* @__PURE__ */ jsx(Select.ItemText, { children: option.label }), /* @__PURE__ */ jsx(Select.ItemIndicator, {
 									keepMounted: true,
-									className: "nothing-select__item-indicator",
+									className: selectItemIndicatorVariants(),
 									"data-slot": "select-item-indicator",
 									children: "✓"
 								})]
@@ -119,13 +138,15 @@ const Select$1 = React.forwardRef(({ className, options, value: controlledValue,
 				}) })
 			]
 		}), error && /* @__PURE__ */ jsx("div", {
-			className: "nothing-select__error",
+			className: selectErrorVariants(),
+			"data-slot": "select-error",
+			role: "alert",
 			children: error
 		})]
 	});
-});
+}
 Select$1.displayName = "Select";
 //#endregion
-export { Select$1 as Select, Select$1 as default, selectItemVariants, selectTriggerVariants, selectVariants };
+export { Select$1 as default };
 
 //# sourceMappingURL=Select.mjs.map

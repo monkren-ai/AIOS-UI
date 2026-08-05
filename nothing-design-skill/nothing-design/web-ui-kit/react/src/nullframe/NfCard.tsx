@@ -28,7 +28,17 @@ const nfCardVariants = cva('card', {
 })
 
 export interface NfCardProps
-  extends Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'>,
+  extends
+    Omit<
+      React.HTMLAttributes<HTMLElement>,
+      | 'children'
+      | 'onDrag'
+      | 'onDragStart'
+      | 'onDragEnd'
+      | 'onAnimationStart'
+      | 'onAnimationEnd'
+      | 'onAnimationIteration'
+    >,
     Omit<VariantProps<typeof nfCardVariants>, 'essential' | 'sweep' | 'tag'> {
   index: number
   label: string
@@ -60,7 +70,7 @@ export const NfCard = React.forwardRef<HTMLElement, NfCardProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [sweepState, setSweep] = useState(false)
     const ctl = useCtl()
@@ -87,7 +97,9 @@ export const NfCard = React.forwardRef<HTMLElement, NfCardProps>(
     const MotionSection = (motionModule.section ??
       motionModule.div ??
       motionModule.article ??
-      ((props: React.HTMLAttributes<HTMLElement>) => <section {...props} />)) as React.FC<Record<string, unknown>>
+      ((props: React.HTMLAttributes<HTMLElement>) => <section {...props} />)) as React.FC<
+      Record<string, unknown>
+    >
 
     return (
       <MotionSection
@@ -95,7 +107,12 @@ export const NfCard = React.forwardRef<HTMLElement, NfCardProps>(
         className={cn(nfCardVariants({ essential, sweep, tag: tag ?? 'none' }), className)}
         initial={reduced ? { opacity: 0 } : { opacity: 0, y: 22, scale: 0.93 }}
         animate={reduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-        transition={{ type: 'tween', ease: [0.25, 0.1, 0.25, 1], duration: 0.3, delay: index * 0.07 }}
+        transition={{
+          type: 'tween',
+          ease: [0.25, 0.1, 0.25, 1],
+          duration: 0.3,
+          delay: index * 0.07,
+        }}
         data-state={dataAttr(sweep ? 'sweeping' : 'idle')}
         data-tag={dataAttr(tag)}
         data-essential={dataAttr(essential)}
@@ -110,7 +127,7 @@ export const NfCard = React.forwardRef<HTMLElement, NfCardProps>(
         {body ?? children}
       </MotionSection>
     )
-  }
+  },
 )
 NfCard.displayName = 'NfCard'
 

@@ -24,7 +24,8 @@ export const thinkingStepsVariants = cva('nothing-thinking-steps', {
 })
 
 export interface ThinkingStepsProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     VariantProps<typeof thinkingStepsVariants> {
   steps: ThinkingStep[]
   title?: string

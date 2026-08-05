@@ -1,2 +1,3 @@
-import { WalkieTalkie, walkieTalkieVariants } from "./WalkieTalkie/WalkieTalkie.mjs";
+import { walkieTalkieVariants } from "./WalkieTalkie/walkie-talkie-variants.mjs";
+import WalkieTalkie from "./WalkieTalkie/WalkieTalkie.mjs";
 export { WalkieTalkie, WalkieTalkie as default, walkieTalkieVariants };

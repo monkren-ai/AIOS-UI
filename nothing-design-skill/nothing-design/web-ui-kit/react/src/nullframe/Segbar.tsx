@@ -14,7 +14,8 @@ const segbarVariants = cva('segbar', {
 })
 
 export interface SegbarProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     Omit<VariantProps<typeof segbarVariants>, 'color'> {
   total: number
   on: number
@@ -43,7 +44,7 @@ export const Segbar = React.forwardRef<HTMLDivElement, SegbarProps>(
         ))}
       </div>
     )
-  }
+  },
 )
 Segbar.displayName = 'Segbar'
 

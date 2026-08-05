@@ -1,2 +1,3 @@
-import { Toggle, ToggleGroup, toggleGroupVariants, toggleVariants } from "./Toggle/Toggle.mjs";
-export { Toggle, ToggleGroup, Toggle as default, toggleGroupVariants, toggleVariants };
+import { resolveToggleVariant, toggleGroupVariants, toggleVariants } from "./Toggle/toggle-variants.mjs";
+import Toggle, { ToggleGroup } from "./Toggle/Toggle.mjs";
+export { Toggle, ToggleGroup, Toggle as default, resolveToggleVariant, toggleGroupVariants, toggleVariants };
