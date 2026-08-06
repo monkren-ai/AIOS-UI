@@ -38,6 +38,13 @@ const EXCLUDED = new Set([
 /** 这些目录导出的是一组组件，用目录名整体转发。 */
 const GROUPED = new Set(['agent', 'conversation'])
 
+/**
+ * 只有 default export、没有 named export 的目录。
+ * 对它们写 `export *` 会得到一个空模块——TypeScript 的 `export *`
+ * 不转发 default，消费方写 `import X from 'nothing-ui/…'` 就会报错。
+ */
+const DEFAULT_ONLY = new Set(['ErrorBoundary'])
+
 function toKebab(name: string): string {
   return name
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
@@ -61,6 +68,10 @@ function collect(): { subpath: string; target: string }[] {
 }
 
 function render(target: string): string {
+  if (DEFAULT_ONLY.has(target)) {
+    // 同时给出 default 和同名 named，两种导入方式都能用。
+    return `export { default, default as ${target} } from '@/${target}'\n`
+  }
   return `export * from '@/${target}'\n`
 }
 

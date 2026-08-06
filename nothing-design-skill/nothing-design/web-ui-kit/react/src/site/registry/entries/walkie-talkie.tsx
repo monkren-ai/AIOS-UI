@@ -60,12 +60,18 @@ export const walkieTalkieDoc: ComponentDoc = {
           name: 'volumeLevel',
           type: 'number',
           default: '3',
-          description: { zh: '当前音量格（亮起的格数）。', en: 'Current volume level (lit segments).' },
+          description: {
+            zh: '当前音量格（亮起的格数）。',
+            en: 'Current volume level (lit segments).',
+          },
         },
         {
           name: 'status',
           type: `'ready' | 'transmitting' | 'sent'`,
-          description: { zh: '受控状态。不传则内部根据 PTT 推导。', en: 'Controlled status. Derived from PTT when omitted.' },
+          description: {
+            zh: '受控状态。不传则内部根据 PTT 推导。',
+            en: 'Controlled status. Derived from PTT when omitted.',
+          },
         },
       ],
     },

@@ -54,7 +54,7 @@ export const surfacesDoc: ComponentDoc = {
         },
         {
           name: 'border',
-          type: `'none' | 'default' | 'strong'`,
+          type: `'none' | 'default' | 'visible'`,
           default: `'default'`,
           description: { zh: '边框强度。', en: 'Border weight.' },
         },

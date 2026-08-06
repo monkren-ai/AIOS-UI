@@ -3,10 +3,19 @@ import { cn } from '@/lib/utils'
 import { IconVisual } from './IconVisual'
 import type { IconEntry } from './types'
 
-const TILE_BLOCK_SIZE = 96
-const TILE_MIN_INLINE_SIZE = 104
 /** 视口上下各多渲染几行，滚动时不会看到空洞。 */
 const OVERSCAN_ROWS = 2
+
+/**
+ * 瓦片尺寸跟着图标尺寸走：72px 图标还要给标签和内边距留空，
+ * 写死 96 会把图标挤扁或裁切。
+ */
+function tileMetrics(iconSize: number) {
+  return {
+    blockSize: Math.max(96, iconSize + 40),
+    minInlineSize: Math.max(104, iconSize + 32),
+  }
+}
 
 export interface VirtualIconGridProps {
   entries: IconEntry[]
@@ -40,6 +49,8 @@ export function VirtualIconGrid({
   const [activeIndex, setActiveIndex] = React.useState(0)
   const [focusRequest, setFocusRequest] = React.useState(0)
 
+  const { blockSize: tileBlockSize, minInlineSize: tileMinInlineSize } = tileMetrics(size)
+
   React.useEffect(() => {
     const node = scrollRef.current
     if (!node) return
@@ -57,19 +68,19 @@ export function VirtualIconGrid({
     return () => observer.disconnect()
   }, [])
 
-  // 结果集变了就回到顶部，否则会停在一段空白上。
+  // 结果集或瓦片高度变了就回到顶部，否则会停在一段空白上。
   React.useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = 0
     setScrollTop(0)
     setActiveIndex(0)
-  }, [entries])
+  }, [entries, tileBlockSize])
 
-  const columns = Math.max(1, Math.floor(viewport.inlineSize / TILE_MIN_INLINE_SIZE) || 1)
+  const columns = Math.max(1, Math.floor(viewport.inlineSize / tileMinInlineSize) || 1)
   const rowCount = Math.ceil(entries.length / columns)
-  const totalBlockSize = rowCount * TILE_BLOCK_SIZE
+  const totalBlockSize = rowCount * tileBlockSize
 
-  const firstRow = Math.max(0, Math.floor(scrollTop / TILE_BLOCK_SIZE) - OVERSCAN_ROWS)
-  const visibleRows = Math.ceil((viewport.blockSize || TILE_BLOCK_SIZE) / TILE_BLOCK_SIZE)
+  const firstRow = Math.max(0, Math.floor(scrollTop / tileBlockSize) - OVERSCAN_ROWS)
+  const visibleRows = Math.ceil((viewport.blockSize || tileBlockSize) / tileBlockSize)
   const lastRow = Math.min(rowCount, firstRow + visibleRows + OVERSCAN_ROWS * 2)
 
   const startIndex = firstRow * columns
@@ -94,15 +105,15 @@ export function VirtualIconGrid({
       const node = scrollRef.current
       if (!node) return
       const row = Math.floor(index / columns)
-      const top = row * TILE_BLOCK_SIZE
-      const bottom = top + TILE_BLOCK_SIZE
+      const top = row * tileBlockSize
+      const bottom = top + tileBlockSize
       if (top < node.scrollTop) node.scrollTop = top
       else if (bottom > node.scrollTop + node.clientHeight) {
         node.scrollTop = bottom - node.clientHeight
       }
       setScrollTop(node.scrollTop)
     },
-    [columns],
+    [columns, tileBlockSize],
   )
 
   const moveActive = React.useCallback(
@@ -173,7 +184,7 @@ export function VirtualIconGrid({
           className="grid"
           style={{
             gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-            transform: `translateY(${firstRow * TILE_BLOCK_SIZE}px)`,
+            transform: `translateY(${firstRow * tileBlockSize}px)`,
           }}
         >
           {windowed.map((entry, offset) => {
@@ -195,7 +206,7 @@ export function VirtualIconGrid({
                   'hover:bg-muted focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-interactive',
                   'selected:bg-muted selected:text-foreground-display',
                 )}
-                style={{ blockSize: TILE_BLOCK_SIZE }}
+                style={{ blockSize: tileBlockSize }}
               >
                 <IconVisual entry={entry} size={size} dotMatrix={dotMatrix} />
                 <span className="w-full truncate font-mono text-micro text-foreground-subtle">

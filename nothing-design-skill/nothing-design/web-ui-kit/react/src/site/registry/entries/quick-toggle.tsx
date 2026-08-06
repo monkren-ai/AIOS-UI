@@ -69,13 +69,19 @@ export const quickToggleDoc: ComponentDoc = {
           name: 'variant',
           type: `'circle' | 'pill'`,
           default: `'circle'`,
-          description: { zh: '外形：圆形磁贴还是横向胶囊。', en: 'Shape: a round tile or a horizontal pill.' },
+          description: {
+            zh: '外形：圆形磁贴还是横向胶囊。',
+            en: 'Shape: a round tile or a horizontal pill.',
+          },
         },
         {
           name: 'theme',
           type: `'light' | 'dark' | 'accent'`,
           default: `'light'`,
-          description: { zh: '底色与文字/图标配色的组合。', en: 'The background paired with matching icon/label colours.' },
+          description: {
+            zh: '底色与文字/图标配色的组合。',
+            en: 'The background paired with matching icon/label colours.',
+          },
         },
         {
           name: 'active',
@@ -88,17 +94,26 @@ export const quickToggleDoc: ComponentDoc = {
         {
           name: 'icon',
           type: 'ReactNode',
-          description: { zh: '图标插槽，`24px` 见方，`fill-current` 跟随文字颜色。', en: 'The icon slot, 24px square, filled with `fill-current` to follow the text colour.' },
+          description: {
+            zh: '图标插槽，`24px` 见方，`fill-current` 跟随文字颜色。',
+            en: 'The icon slot, 24px square, filled with `fill-current` to follow the text colour.',
+          },
         },
         {
           name: 'label',
           type: 'string',
-          description: { zh: '文字插槽，超长时 `truncate` 省略。', en: 'The label slot; overly long text is truncated.' },
+          description: {
+            zh: '文字插槽，超长时 `truncate` 省略。',
+            en: 'The label slot; overly long text is truncated.',
+          },
         },
         {
           name: 'className',
           type: 'string',
-          description: { zh: '追加类名。经 `tailwind-merge` 合并，可覆盖变体自带的工具类。', en: 'Extra classes, merged via `tailwind-merge` so they override the variant’s own utilities.' },
+          description: {
+            zh: '追加类名。经 `tailwind-merge` 合并，可覆盖变体自带的工具类。',
+            en: 'Extra classes, merged via `tailwind-merge` so they override the variant’s own utilities.',
+          },
         },
       ],
     },

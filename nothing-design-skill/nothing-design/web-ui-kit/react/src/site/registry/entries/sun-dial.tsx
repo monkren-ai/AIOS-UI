@@ -16,9 +16,7 @@ export const sunDialDoc: ComponentDoc = {
     zh: '日出日落弧线，按经纬度算出太阳位置与剩余日照时长。',
     en: 'A sunrise-to-sunset arc that places the sun by latitude and counts the daylight left.',
   },
-  preview: () => (
-    <SunDial latitude={35.6762} longitude={139.6503} className="w-full max-w-sm" />
-  ),
+  preview: () => <SunDial latitude={35.6762} longitude={139.6503} className="w-full max-w-sm" />,
   importStatement: `import { SunDial } from 'nothing-ui/sun-dial'`,
   usageSnippet: `<SunDial latitude={35.6762} longitude={139.6503} />`,
   examples: [

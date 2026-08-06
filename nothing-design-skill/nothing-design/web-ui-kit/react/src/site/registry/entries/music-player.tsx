@@ -41,7 +41,10 @@ export const musicPlayerDoc: ComponentDoc = {
         {
           name: 'tracks',
           type: '{ title: string; artist: string; duration: number }[]',
-          description: { zh: '曲目列表。不传则用内置演示曲目。', en: 'Track list. Built-in demo tracks when omitted.' },
+          description: {
+            zh: '曲目列表。不传则用内置演示曲目。',
+            en: 'Track list. Built-in demo tracks when omitted.',
+          },
         },
         {
           name: 'totalSegments',
@@ -51,7 +54,10 @@ export const musicPlayerDoc: ComponentDoc = {
         {
           name: 'updateInterval',
           type: 'number',
-          description: { zh: '播放进度刷新间隔（毫秒）。', en: 'Playback progress refresh interval in ms.' },
+          description: {
+            zh: '播放进度刷新间隔（毫秒）。',
+            en: 'Playback progress refresh interval in ms.',
+          },
         },
         {
           name: 'showRecordingIndicator',
@@ -61,7 +67,10 @@ export const musicPlayerDoc: ComponentDoc = {
         {
           name: 'recording',
           type: 'boolean',
-          description: { zh: '录音指示是否激活。', en: 'Whether the recording indicator is active.' },
+          description: {
+            zh: '录音指示是否激活。',
+            en: 'Whether the recording indicator is active.',
+          },
         },
         {
           name: 'theme',

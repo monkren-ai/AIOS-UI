@@ -48,12 +48,18 @@ export const clipboardDoc: ComponentDoc = {
           name: 'copiedDuration',
           type: 'number',
           default: '2000',
-          description: { zh: 'copied 态持续时间（毫秒）。', en: 'How long the copied state lasts, in ms.' },
+          description: {
+            zh: 'copied 态持续时间（毫秒）。',
+            en: 'How long the copied state lasts, in ms.',
+          },
         },
         {
           name: 'demoItems',
           type: '{ text: string; time: Date }[]',
-          description: { zh: '初始条目。不传则用内置演示数据。', en: 'Initial entries. Built-in demo data when omitted.' },
+          description: {
+            zh: '初始条目。不传则用内置演示数据。',
+            en: 'Initial entries. Built-in demo data when omitted.',
+          },
         },
         {
           name: 'size',
@@ -64,7 +70,10 @@ export const clipboardDoc: ComponentDoc = {
         {
           name: 'state',
           type: `'idle' | 'copied'`,
-          description: { zh: '受控态。不传则内部根据复制动作推导。', en: 'Controlled state. Derived internally from copy actions when omitted.' },
+          description: {
+            zh: '受控态。不传则内部根据复制动作推导。',
+            en: 'Controlled state. Derived internally from copy actions when omitted.',
+          },
         },
       ],
     },

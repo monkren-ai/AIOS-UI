@@ -36,7 +36,10 @@ export const caffeinateDoc: ComponentDoc = {
           name: 'updateInterval',
           type: 'number',
           default: '60000',
-          description: { zh: '衰减重算间隔（毫秒）。', en: 'How often, in ms, to recalculate decay.' },
+          description: {
+            zh: '衰减重算间隔（毫秒）。',
+            en: 'How often, in ms, to recalculate decay.',
+          },
         },
         {
           name: 'totalSegments',
@@ -48,7 +51,10 @@ export const caffeinateDoc: ComponentDoc = {
           name: 'maxCaffeine',
           type: 'number',
           default: '400',
-          description: { zh: '分段条满格对应的毫克上限。', en: 'Mg ceiling that fills the segment bar.' },
+          description: {
+            zh: '分段条满格对应的毫克上限。',
+            en: 'Mg ceiling that fills the segment bar.',
+          },
         },
         {
           name: 'halfLifeMinutes',
@@ -60,7 +66,10 @@ export const caffeinateDoc: ComponentDoc = {
           name: 'thresholdMg',
           type: 'number',
           default: '50',
-          description: { zh: '「降到安全线以下」的阈值（毫克）。', en: 'Mg threshold for “below safe line”.' },
+          description: {
+            zh: '「降到安全线以下」的阈值（毫克）。',
+            en: 'Mg threshold for “below safe line”.',
+          },
         },
         {
           name: 'status',

@@ -41,7 +41,10 @@ export const photoCarouselDoc: ComponentDoc = {
           name: 'autoPlay',
           type: 'boolean',
           default: 'true',
-          description: { zh: '是否自动轮播（可被 reduced motion 覆盖）。', en: 'Whether to autoplay (overridden by reduced motion).' },
+          description: {
+            zh: '是否自动轮播（可被 reduced motion 覆盖）。',
+            en: 'Whether to autoplay (overridden by reduced motion).',
+          },
         },
         {
           name: 'autoplay',

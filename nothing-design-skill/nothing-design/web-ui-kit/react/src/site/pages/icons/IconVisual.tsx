@@ -71,7 +71,7 @@ function TablerDotIcon({ entry, size }: { entry: IconEntry; size: number }) {
 
   const Component = entry.Component
   if (!Component) return null
-  return <Component size={size} aria-hidden ref={capture} />
+  return <Component size={size} aria-hidden className="size-full" ref={capture} />
 }
 
 export interface IconVisualProps {
@@ -118,12 +118,17 @@ export function IconVisual({ entry, size, dotMatrix, className }: IconVisualProp
     )
   } else if (entry.Component) {
     const Component = entry.Component
-    content = <Component size={size} aria-hidden />
+    // size 属性负责 Tabler 的 width/height；再钉一层 size-full，避免全局 svg
+    // 规则把属性尺寸冲掉。Nothing / Tabler 共用这个出口。
+    content = <Component size={size} aria-hidden className="size-full" />
   }
 
   return (
     <span
-      className={cn('inline-flex items-center justify-center text-foreground-display', className)}
+      className={cn(
+        'inline-flex items-center justify-center text-foreground-display [&_svg]:size-full',
+        className,
+      )}
       style={{ inlineSize: size, blockSize: size }}
     >
       {content}

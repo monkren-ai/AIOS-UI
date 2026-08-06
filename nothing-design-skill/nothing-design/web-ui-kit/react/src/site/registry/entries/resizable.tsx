@@ -95,13 +95,19 @@ export const resizableDoc: ComponentDoc = {
           name: 'minSizes',
           type: 'number[]',
           default: '10',
-          description: { zh: '每个面板的最小占比，省略项按面板数补 10。', en: 'The minimum percentage per panel; missing entries default to 10.' },
+          description: {
+            zh: '每个面板的最小占比，省略项按面板数补 10。',
+            en: 'The minimum percentage per panel; missing entries default to 10.',
+          },
         },
         {
           name: 'maxSizes',
           type: 'number[]',
           default: '90',
-          description: { zh: '每个面板的最大占比，省略项按面板数补 90。', en: 'The maximum percentage per panel; missing entries default to 90.' },
+          description: {
+            zh: '每个面板的最大占比，省略项按面板数补 90。',
+            en: 'The maximum percentage per panel; missing entries default to 90.',
+          },
         },
         {
           name: 'children',
@@ -114,7 +120,10 @@ export const resizableDoc: ComponentDoc = {
         {
           name: 'className',
           type: 'string',
-          description: { zh: '追加类名。经 `tailwind-merge` 合并，可覆盖默认的 `flex h-full w-full`。', en: 'Extra classes, merged via `tailwind-merge`, overriding the default `flex h-full w-full`.' },
+          description: {
+            zh: '追加类名。经 `tailwind-merge` 合并，可覆盖默认的 `flex h-full w-full`。',
+            en: 'Extra classes, merged via `tailwind-merge`, overriding the default `flex h-full w-full`.',
+          },
         },
       ],
     },

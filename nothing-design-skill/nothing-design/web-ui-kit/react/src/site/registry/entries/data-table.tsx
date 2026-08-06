@@ -40,8 +40,8 @@ export const dataTableDoc: ComponentDoc = {
       id: 'table',
       title: { zh: 'Table 形态', en: 'Table variant' },
       description: {
-        zh: '默认值，渲染真正的 `<table>` / `<thead>` / `<tbody>`。`striped`、`compact`、`hoverable` 三个布尔量只在这个形态下生效——传给 `grid` 或 `rows` 会被直接忽略（组件在内部按 `variant === \'table\'` 判断才应用）。`caption` 同理，只有这里认。',
-        en: 'The default, rendering a real `<table>` / `<thead>` / `<tbody>`. The three booleans — `striped`, `compact`, `hoverable` — only take effect in this variant; passing them under `grid` or `rows` is silently ignored, since the component only applies them when `variant === \'table\'`. `caption` is the same story.',
+        zh: "默认值，渲染真正的 `<table>` / `<thead>` / `<tbody>`。`striped`、`compact`、`hoverable` 三个布尔量只在这个形态下生效——传给 `grid` 或 `rows` 会被直接忽略（组件在内部按 `variant === 'table'` 判断才应用）。`caption` 同理，只有这里认。",
+        en: "The default, rendering a real `<table>` / `<thead>` / `<tbody>`. The three booleans — `striped`, `compact`, `hoverable` — only take effect in this variant; passing them under `grid` or `rows` is silently ignored, since the component only applies them when `variant === 'table'`. `caption` is the same story.",
       },
       code: tableSource,
       render: () => <DataTableTable />,
@@ -79,7 +79,10 @@ export const dataTableDoc: ComponentDoc = {
           name: 'variant',
           type: `'table' | 'grid' | 'rows'`,
           default: `'table'`,
-          description: { zh: '选择渲染路径，见上方组成说明。', en: 'Picks the rendering path; see the composition note above.' },
+          description: {
+            zh: '选择渲染路径，见上方组成说明。',
+            en: 'Picks the rendering path; see the composition note above.',
+          },
         },
         {
           name: 'columns',
@@ -94,38 +97,53 @@ export const dataTableDoc: ComponentDoc = {
           type: 'DataTableGridRow[]',
           default: '[]',
           description: {
-            zh: '`table` 与 `grid` 用。每行 `{ cells, active?, interactive?, cellStatuses?, id? }`，`cells` 是 `{ [columnKey]: ReactNode }`。排序按列的 `type`（`\'numeric\'` 走数值比较，其余按小写字符串比较）作用在这份数据上，生成的是一份新数组，不会改动你传入的 `rows`。',
-            en: 'Used by `table` and `grid`. Each row is `{ cells, active?, interactive?, cellStatuses?, id? }`, where `cells` is `{ [columnKey]: ReactNode }`. Sorting compares values per the column’s `type` (`\'numeric\'` does numeric comparison, everything else compares lower-cased strings) and produces a new array — your `rows` is never mutated.',
+            zh: "`table` 与 `grid` 用。每行 `{ cells, active?, interactive?, cellStatuses?, id? }`，`cells` 是 `{ [columnKey]: ReactNode }`。排序按列的 `type`（`'numeric'` 走数值比较，其余按小写字符串比较）作用在这份数据上，生成的是一份新数组，不会改动你传入的 `rows`。",
+            en: "Used by `table` and `grid`. Each row is `{ cells, active?, interactive?, cellStatuses?, id? }`, where `cells` is `{ [columnKey]: ReactNode }`. Sorting compares values per the column’s `type` (`'numeric'` does numeric comparison, everything else compares lower-cased strings) and produces a new array — your `rows` is never mutated.",
           },
         },
         {
           name: 'caption',
           type: 'string',
-          description: { zh: '`table` 用。渲染成 `<caption>`。', en: 'Used by `table`. Renders as a `<caption>`.' },
+          description: {
+            zh: '`table` 用。渲染成 `<caption>`。',
+            en: 'Used by `table`. Renders as a `<caption>`.',
+          },
         },
         {
           name: 'striped',
           type: 'boolean',
           default: 'false',
-          description: { zh: '`table` 用。奇偶行加背景条纹。', en: 'Used by `table`. Alternates a background stripe by row parity.' },
+          description: {
+            zh: '`table` 用。奇偶行加背景条纹。',
+            en: 'Used by `table`. Alternates a background stripe by row parity.',
+          },
         },
         {
           name: 'compact',
           type: 'boolean',
           default: 'false',
-          description: { zh: '`table` 用。收紧行高与内边距。', en: 'Used by `table`. Tightens row height and padding.' },
+          description: {
+            zh: '`table` 用。收紧行高与内边距。',
+            en: 'Used by `table`. Tightens row height and padding.',
+          },
         },
         {
           name: 'hoverable',
           type: 'boolean',
           default: 'false',
-          description: { zh: '`table` 用。悬停行加高亮背景。', en: 'Used by `table`. Highlights a row’s background on hover.' },
+          description: {
+            zh: '`table` 用。悬停行加高亮背景。',
+            en: 'Used by `table`. Highlights a row’s background on hover.',
+          },
         },
         {
           name: 'emptyMessage',
           type: 'string',
           default: `'No data'`,
-          description: { zh: '`grid` 用。`rows` 为空数组时显示的占位文案。', en: 'Used by `grid`. Placeholder text shown when `rows` is an empty array.' },
+          description: {
+            zh: '`grid` 用。`rows` 为空数组时显示的占位文案。',
+            en: 'Used by `grid`. Placeholder text shown when `rows` is an empty array.',
+          },
         },
         {
           name: 'items',
@@ -164,7 +182,10 @@ export const dataTableDoc: ComponentDoc = {
         {
           name: 'className',
           type: 'string',
-          description: { zh: '追加类名。经 `tailwind-merge` 合并。', en: 'Extra classes, merged via `tailwind-merge`.' },
+          description: {
+            zh: '追加类名。经 `tailwind-merge` 合并。',
+            en: 'Extra classes, merged via `tailwind-merge`.',
+          },
         },
       ],
     },

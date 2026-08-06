@@ -57,7 +57,10 @@ export const agentDoc: ComponentDoc = {
         {
           name: 'label',
           type: 'string',
-          description: { zh: '自定义标签，同时用作 `aria-label`。', en: 'Custom label, also used as `aria-label`.' },
+          description: {
+            zh: '自定义标签，同时用作 `aria-label`。',
+            en: 'Custom label, also used as `aria-label`.',
+          },
         },
       ],
     },
@@ -74,7 +77,10 @@ export const agentDoc: ComponentDoc = {
           name: 'editable',
           type: 'boolean',
           default: 'false',
-          description: { zh: '是否显示逐步审批控件。', en: 'Whether to show per-step approval controls.' },
+          description: {
+            zh: '是否显示逐步审批控件。',
+            en: 'Whether to show per-step approval controls.',
+          },
         },
         {
           name: 'onApprove',

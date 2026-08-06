@@ -7,7 +7,12 @@ export default function InputOTPControlled() {
 
   return (
     <div className="flex flex-col items-start gap-2">
-      <InputOTP length={4} value={value} onValueChange={setValue} error={isComplete && value !== '2606'} />
+      <InputOTP
+        length={4}
+        value={value}
+        onValueChange={setValue}
+        error={isComplete && value !== '2606'}
+      />
       <p className="font-mono text-label uppercase tracking-wider text-foreground-muted">
         {isComplete
           ? value === '2606'

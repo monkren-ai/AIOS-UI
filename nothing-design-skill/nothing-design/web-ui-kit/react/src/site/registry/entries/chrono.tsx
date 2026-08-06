@@ -62,7 +62,10 @@ export const chronoDoc: ComponentDoc = {
           name: 'size',
           type: `'sm' | 'md' | 'lg'`,
           default: `'md'`,
-          description: { zh: '数字读数字号与容器内边距。', en: 'Readout type size and container padding.' },
+          description: {
+            zh: '数字读数字号与容器内边距。',
+            en: 'Readout type size and container padding.',
+          },
         },
         {
           name: 'state',

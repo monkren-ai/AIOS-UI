@@ -114,7 +114,10 @@ export const inputOTPDoc: ComponentDoc = {
         {
           name: 'className',
           type: 'string',
-          description: { zh: '追加到最外层容器的类名，经 `tailwind-merge` 合并。', en: 'Extra classes on the outer container, merged via `tailwind-merge`.' },
+          description: {
+            zh: '追加到最外层容器的类名，经 `tailwind-merge` 合并。',
+            en: 'Extra classes on the outer container, merged via `tailwind-merge`.',
+          },
         },
       ],
     },

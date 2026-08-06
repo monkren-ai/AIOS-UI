@@ -35,7 +35,10 @@ export const quotesDoc: ComponentDoc = {
         {
           name: 'quotes',
           type: '{ text: string; author: string }[]',
-          description: { zh: '名言列表。不传则用内置默认集。', en: 'Quote list. Built-in defaults when omitted.' },
+          description: {
+            zh: '名言列表。不传则用内置默认集。',
+            en: 'Quote list. Built-in defaults when omitted.',
+          },
         },
         {
           name: 'interval',

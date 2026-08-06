@@ -11,7 +11,7 @@ import { useDebouncedValue } from './useDebouncedValue'
 import { VirtualIconGrid } from './VirtualIconGrid'
 import type { IconEntry, IconGroup, IconSource } from './types'
 
-const SIZES = [16, 20, 24, 32] as const
+const SIZES = [24, 32, 48, 72] as const
 const ALL_GROUPS = '__all__'
 
 /** 工具条上的小分段控件——比 SegmentedControl 更贴合这里的密度。 */
@@ -115,7 +115,7 @@ export function IconsPage() {
   const [source, setSource] = React.useState<IconSource>('nothing')
   const [query, setQuery] = React.useState('')
   const [group, setGroup] = React.useState<string>(ALL_GROUPS)
-  const [size, setSize] = React.useState<number>(24)
+  const [size, setSize] = React.useState<number>(72)
   const [dotMatrix, setDotMatrix] = React.useState(false)
   const [selected, setSelected] = React.useState<IconEntry | null>(null)
 
@@ -126,15 +126,22 @@ export function IconsPage() {
   const debouncedQuery = useDebouncedValue(query)
 
   // Tabler 整包只在真的切到这个标签页时才下载。
+  //
+  // 注意：不要把 `tablerLoading` 放进依赖或前置守卫里。React Strict Mode
+  // 会 mount → cleanup → remount：第一次 setLoading(true) 之后 cleanup
+  // 把这次请求标成 cancelled，第二次如果看到 loading 还是 true 就直接
+  // return，结果永远卡在「正在加载」——图标一个都不出。
   React.useEffect(() => {
-    if (source !== 'tabler' || tablerIcons || tablerLoading) return
-    setTablerLoading(true)
+    if (source !== 'tabler' || tablerIcons) return
+
     let cancelled = false
+    setTablerLoading(true)
+    setTablerError(false)
+
     loadTablerIcons()
       .then((entries) => {
         if (cancelled) return
         setTablerIcons(entries)
-        setTablerError(false)
       })
       .catch(() => {
         if (!cancelled) setTablerError(true)
@@ -142,10 +149,11 @@ export function IconsPage() {
       .finally(() => {
         if (!cancelled) setTablerLoading(false)
       })
+
     return () => {
       cancelled = true
     }
-  }, [source, tablerIcons, tablerLoading])
+  }, [source, tablerIcons])
 
   // 换来源就重置分组与选中，避免筛出一个空集合。
   const changeSource = React.useCallback((next: IconSource) => {
@@ -180,7 +188,7 @@ export function IconsPage() {
   const sizeOptions = SIZES.map((value) => ({ value, label: `${value}` }))
 
   return (
-    <div className="mx-auto flex max-w-page-widget flex-col gap-8 px-4 py-8 md:px-6">
+    <div className="mx-auto flex w-full flex-col gap-8 px-4 py-8 md:px-6">
       <header className="flex flex-col gap-3">
         <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
           {t('资源', 'Resources')}

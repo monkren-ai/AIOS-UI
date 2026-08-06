@@ -42,9 +42,17 @@ export function Popover({
     [controlledOpen, onOpenChange],
   )
 
+  // 触发器经常是 `Button` / `<a>` / 自定义元素，不是原生 `<button>`。
+  // Base UI 默认 nativeButton=true，套错会丢语义并打控制台警告。
+  const childIsNativeButton =
+    React.isValidElement(children) &&
+    (children.type === 'button' ||
+      (typeof children.type === 'string' && children.type.toLowerCase() === 'button'))
+
   return (
     <PopoverPrimitive.Root open={isOpen} onOpenChange={handleOpenChange}>
       <PopoverPrimitive.Trigger
+        nativeButton={childIsNativeButton}
         data-slot="popover-trigger"
         render={(triggerProps) => {
           if (React.isValidElement(children)) {

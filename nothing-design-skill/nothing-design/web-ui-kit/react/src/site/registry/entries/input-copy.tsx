@@ -86,7 +86,10 @@ export const inputCopyDoc: ComponentDoc = {
         {
           name: 'label',
           type: 'string',
-          description: { zh: '字段标签，自动 `htmlFor` 关联到输入框。', en: 'A field label, wired to the input via `htmlFor`.' },
+          description: {
+            zh: '字段标签，自动 `htmlFor` 关联到输入框。',
+            en: 'A field label, wired to the input via `htmlFor`.',
+          },
         },
         {
           name: 'placeholder',
@@ -103,24 +106,36 @@ export const inputCopyDoc: ComponentDoc = {
           name: 'copyLabel',
           type: 'string',
           default: `'COPY'`,
-          description: { zh: '默认状态下按钮的文案与 `aria-label`。', en: 'The button’s text and `aria-label` in the default state.' },
+          description: {
+            zh: '默认状态下按钮的文案与 `aria-label`。',
+            en: 'The button’s text and `aria-label` in the default state.',
+          },
         },
         {
           name: 'copiedLabel',
           type: 'string',
           default: `'COPIED'`,
-          description: { zh: '复制成功后按钮短暂显示的文案与 `aria-label`。', en: 'The button’s text and `aria-label` for the brief post-copy state.' },
+          description: {
+            zh: '复制成功后按钮短暂显示的文案与 `aria-label`。',
+            en: 'The button’s text and `aria-label` for the brief post-copy state.',
+          },
         },
         {
           name: 'copiedDuration',
           type: 'number',
           default: '2000',
-          description: { zh: '「已复制」状态维持的毫秒数，之后自动恢复。', en: 'Milliseconds the “copied” state stays before reverting.' },
+          description: {
+            zh: '「已复制」状态维持的毫秒数，之后自动恢复。',
+            en: 'Milliseconds the “copied” state stays before reverting.',
+          },
         },
         {
           name: 'onCopy',
           type: '(value: string) => void',
-          description: { zh: '复制成功后调用，参数是当前值。', en: 'Called after a successful copy, with the current value.' },
+          description: {
+            zh: '复制成功后调用，参数是当前值。',
+            en: 'Called after a successful copy, with the current value.',
+          },
         },
         {
           name: 'readOnly',
@@ -134,7 +149,10 @@ export const inputCopyDoc: ComponentDoc = {
         {
           name: 'className',
           type: 'string',
-          description: { zh: '追加到最外层容器的类名，经 `tailwind-merge` 合并。', en: 'Extra classes on the outer container, merged via `tailwind-merge`.' },
+          description: {
+            zh: '追加到最外层容器的类名，经 `tailwind-merge` 合并。',
+            en: 'Extra classes on the outer container, merged via `tailwind-merge`.',
+          },
         },
       ],
     },
@@ -155,7 +173,10 @@ export const inputCopyDoc: ComponentDoc = {
           name: 'copied',
           type: 'boolean',
           default: 'false',
-          description: { zh: '同上，控制闪光与文案切换。', en: 'Same as above; drives the flash and label swap.' },
+          description: {
+            zh: '同上，控制闪光与文案切换。',
+            en: 'Same as above; drives the flash and label swap.',
+          },
         },
       ],
     },

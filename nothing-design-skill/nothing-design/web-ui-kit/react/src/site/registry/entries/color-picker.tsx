@@ -103,7 +103,10 @@ export const colorPickerDoc: ComponentDoc = {
           name: 'title',
           type: 'string',
           default: `'COLOR'`,
-          description: { zh: '标题行左侧文案，等宽大写。', en: 'The header label, monospaced and uppercase.' },
+          description: {
+            zh: '标题行左侧文案，等宽大写。',
+            en: 'The header label, monospaced and uppercase.',
+          },
         },
         {
           name: 'showInput',
@@ -118,7 +121,10 @@ export const colorPickerDoc: ComponentDoc = {
           name: 'inputLabel',
           type: 'string',
           default: `'HEX'`,
-          description: { zh: '手动输入框的字段标签。', en: 'The field label on the manual hex input.' },
+          description: {
+            zh: '手动输入框的字段标签。',
+            en: 'The field label on the manual hex input.',
+          },
         },
         {
           name: 'customLabel',

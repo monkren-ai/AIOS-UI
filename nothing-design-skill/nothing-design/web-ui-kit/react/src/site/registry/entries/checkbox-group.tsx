@@ -101,7 +101,10 @@ export const checkboxGroupDoc: ComponentDoc = {
           name: 'defaultValue',
           type: 'string[]',
           default: '[]',
-          description: { zh: '非受控时的初始选中集合。', en: 'The initial selection when uncontrolled.' },
+          description: {
+            zh: '非受控时的初始选中集合。',
+            en: 'The initial selection when uncontrolled.',
+          },
         },
         {
           name: 'onValueChange',

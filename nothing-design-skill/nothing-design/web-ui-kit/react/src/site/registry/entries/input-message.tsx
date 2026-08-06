@@ -72,7 +72,10 @@ export const inputMessageDoc: ComponentDoc = {
         {
           name: 'value',
           type: 'string',
-          description: { zh: '受控值。传了它就完全由你控制。', en: 'The controlled value. Once passed, you own it.' },
+          description: {
+            zh: '受控值。传了它就完全由你控制。',
+            en: 'The controlled value. Once passed, you own it.',
+          },
         },
         {
           name: 'defaultValue',
@@ -83,7 +86,10 @@ export const inputMessageDoc: ComponentDoc = {
         {
           name: 'onChange',
           type: '(value: string) => void',
-          description: { zh: '值变化回调，参数是新字符串（不是原生事件）。', en: 'Called with the new string, not a native event.' },
+          description: {
+            zh: '值变化回调，参数是新字符串（不是原生事件）。',
+            en: 'Called with the new string, not a native event.',
+          },
         },
         {
           name: 'onSend',
@@ -114,46 +120,70 @@ export const inputMessageDoc: ComponentDoc = {
           name: 'maxRows',
           type: 'number',
           default: '6',
-          description: { zh: '自动增高的行数上限，超出后出现内部滚动。', en: 'The row cap before the field auto-grows into internal scrolling.' },
+          description: {
+            zh: '自动增高的行数上限，超出后出现内部滚动。',
+            en: 'The row cap before the field auto-grows into internal scrolling.',
+          },
         },
         {
           name: 'maxLength',
           type: 'number',
-          description: { zh: '透传给原生 `maxLength`，同时驱动计数显示。', en: 'Forwarded to the native `maxLength` and used to drive the count display.' },
+          description: {
+            zh: '透传给原生 `maxLength`，同时驱动计数显示。',
+            en: 'Forwarded to the native `maxLength` and used to drive the count display.',
+          },
         },
         {
           name: 'submitOnEnter',
           type: 'boolean',
           default: 'true',
-          description: { zh: '是否让 Enter（不含 Shift）触发发送；关闭后 Enter 只换行。', en: 'Whether Enter (without Shift) triggers a send; when off, Enter only inserts a newline.' },
+          description: {
+            zh: '是否让 Enter（不含 Shift）触发发送；关闭后 Enter 只换行。',
+            en: 'Whether Enter (without Shift) triggers a send; when off, Enter only inserts a newline.',
+          },
         },
         {
           name: 'sendLabel',
           type: 'string',
           default: `'SEND'`,
-          description: { zh: '发送按钮的文案与 `aria-label`。', en: 'The send button’s text and `aria-label`.' },
+          description: {
+            zh: '发送按钮的文案与 `aria-label`。',
+            en: 'The send button’s text and `aria-label`.',
+          },
         },
         {
           name: 'countLabel',
           type: 'string',
-          description: { zh: '追加在字数后面的单位文案，例如 `"CHARS"`。', en: 'A unit suffix appended after the count, e.g. `"CHARS"`.' },
+          description: {
+            zh: '追加在字数后面的单位文案，例如 `"CHARS"`。',
+            en: 'A unit suffix appended after the count, e.g. `"CHARS"`.',
+          },
         },
         {
           name: 'hideCount',
           type: 'boolean',
           default: 'false',
-          description: { zh: '隐藏底部的提示与字数行。', en: 'Hide the bottom hint-and-count row entirely.' },
+          description: {
+            zh: '隐藏底部的提示与字数行。',
+            en: 'Hide the bottom hint-and-count row entirely.',
+          },
         },
         {
           name: 'size',
           type: `'sm' | 'md' | 'lg'`,
           default: `'md'`,
-          description: { zh: '控件内边距与字号阶梯。', en: 'The control’s padding and type-size step.' },
+          description: {
+            zh: '控件内边距与字号阶梯。',
+            en: 'The control’s padding and type-size step.',
+          },
         },
         {
           name: 'className',
           type: 'string',
-          description: { zh: '追加到最外层容器的类名，经 `tailwind-merge` 合并。', en: 'Extra classes on the outer container, merged via `tailwind-merge`.' },
+          description: {
+            zh: '追加到最外层容器的类名，经 `tailwind-merge` 合并。',
+            en: 'Extra classes on the outer container, merged via `tailwind-merge`.',
+          },
         },
       ],
     },

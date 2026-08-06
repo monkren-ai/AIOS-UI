@@ -26,12 +26,20 @@ export function HoverCard({
   ref,
   ...props
 }: HoverCardProps) {
+  // HoverCard 几乎总是包在链接 / 自定义元素上，不是原生 <button>。
+  // Base UI Trigger 默认 nativeButton=true，套到 <a> 上会丢语义并打警告。
+  const childIsNativeButton =
+    React.isValidElement(children) &&
+    (children.type === 'button' ||
+      (typeof children.type === 'string' && children.type.toLowerCase() === 'button'))
+
   return (
     <PopoverPrimitive.Root>
       <PopoverPrimitive.Trigger
         openOnHover
         delay={delay}
         closeDelay={0}
+        nativeButton={childIsNativeButton}
         data-slot="hover-card-trigger"
         render={(triggerProps) => {
           if (React.isValidElement(children)) {

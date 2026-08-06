@@ -68,7 +68,6 @@ export function Tabs({
   ...props
 }: TabsProps) {
   const listRef = React.useRef<HTMLDivElement>(null)
-  const [indicatorStyle, setIndicatorStyle] = React.useState<React.CSSProperties>({})
   const [hoverStyle, setHoverStyle] = React.useState<React.CSSProperties>({})
 
   const {
@@ -84,23 +83,6 @@ export function Tabs({
       onValueChange?.(value)
     },
     [onValueChange],
-  )
-
-  const updateIndicator = React.useCallback(
-    (activeTabPosition: { left: number; right: number; top: number; bottom: number } | null) => {
-      if (!activeTabPosition) {
-        setIndicatorStyle((prev) => (prev.opacity === 0 ? prev : { opacity: 0 }))
-        return
-      }
-      const width = activeTabPosition.right - activeTabPosition.left
-      const insetInlineStart = toInlineStart(listRef.current, activeTabPosition.left, width)
-      setIndicatorStyle((prev) =>
-        prev.insetInlineStart === insetInlineStart && prev.width === width && prev.opacity === 1
-          ? prev
-          : { insetInlineStart, width, opacity: 1 },
-      )
-    },
-    [],
   )
 
   React.useEffect(() => {
@@ -160,7 +142,18 @@ export function Tabs({
             className={tabsIndicatorVariants({ variant })}
             renderBeforeHydration
             render={(indicatorProps, state) => {
-              updateIndicator(state.activeTabPosition)
+              // 样式直接从 Base UI 的 activeTabPosition 算，绝不能在这里 setState——
+              // render prop 会在 Tabs 渲染中途被调用，setState 会触发
+              // 「Cannot update a component while rendering a different component」。
+              const pos = state.activeTabPosition
+              const width = pos ? pos.right - pos.left : 0
+              const indicatorStyle: React.CSSProperties = pos
+                ? {
+                    insetInlineStart: toInlineStart(listRef.current, pos.left, width),
+                    width,
+                    opacity: 1,
+                  }
+                : { opacity: 0 }
               return (
                 <span
                   {...indicatorProps}

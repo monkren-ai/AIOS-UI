@@ -71,7 +71,10 @@ export const formDoc: ComponentDoc = {
         {
           name: 'children',
           type: 'ReactNode',
-          description: { zh: '表单内容，通常是若干字段与一个提交按钮。', en: 'The form content — typically fields and a submit button.' },
+          description: {
+            zh: '表单内容，通常是若干字段与一个提交按钮。',
+            en: 'The form content — typically fields and a submit button.',
+          },
         },
         {
           name: 'className',

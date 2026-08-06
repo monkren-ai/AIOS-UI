@@ -107,7 +107,10 @@ export const statesDoc: ComponentDoc = {
         {
           name: 'action',
           type: 'ReactNode',
-          description: { zh: '底部操作区，通常放一个 Button。', en: 'Bottom action slot, usually a Button.' },
+          description: {
+            zh: '底部操作区，通常放一个 Button。',
+            en: 'Bottom action slot, usually a Button.',
+          },
         },
         {
           name: 'size',

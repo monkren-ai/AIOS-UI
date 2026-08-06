@@ -47,7 +47,10 @@ export const conversationDoc: ComponentDoc = {
           name: 'placement',
           type: `'start' | 'end'`,
           default: `'start'`,
-          description: { zh: '对齐侧：start 是 assistant，end 是 user。', en: 'Alignment: start for assistant, end for user.' },
+          description: {
+            zh: '对齐侧：start 是 assistant，end 是 user。',
+            en: 'Alignment: start for assistant, end for user.',
+          },
         },
         {
           name: 'variant',
@@ -58,7 +61,10 @@ export const conversationDoc: ComponentDoc = {
         {
           name: 'typing',
           type: 'boolean | { step?: number; interval?: number }',
-          description: { zh: '打字机效果（仅 string content）。', en: 'Typewriter effect (string content only).' },
+          description: {
+            zh: '打字机效果（仅 string content）。',
+            en: 'Typewriter effect (string content only).',
+          },
         },
         {
           name: 'loading',
@@ -74,7 +80,10 @@ export const conversationDoc: ComponentDoc = {
           name: 'items',
           type: 'BubbleItemType[]',
           required: true,
-          description: { zh: '消息列表，每条带 `key`、`role`、`content`。', en: 'Message list; each item has `key`, `role`, and `content`.' },
+          description: {
+            zh: '消息列表，每条带 `key`、`role`、`content`。',
+            en: 'Message list; each item has `key`, `role`, and `content`.',
+          },
         },
         {
           name: 'role',
@@ -88,7 +97,10 @@ export const conversationDoc: ComponentDoc = {
           name: 'autoScroll',
           type: 'boolean',
           default: 'true',
-          description: { zh: '新消息时滚到底部。', en: 'Scroll to bottom when new messages arrive.' },
+          description: {
+            zh: '新消息时滚到底部。',
+            en: 'Scroll to bottom when new messages arrive.',
+          },
         },
       ],
     },
@@ -114,7 +126,10 @@ export const conversationDoc: ComponentDoc = {
           name: 'submitType',
           type: `'enter' | 'shiftEnter'`,
           default: `'enter'`,
-          description: { zh: 'Enter 提交还是 Shift+Enter 提交。', en: 'Whether Enter or Shift+Enter submits.' },
+          description: {
+            zh: 'Enter 提交还是 Shift+Enter 提交。',
+            en: 'Whether Enter or Shift+Enter submits.',
+          },
         },
         {
           name: 'loading',
