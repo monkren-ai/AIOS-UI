@@ -120,7 +120,7 @@ export function NavigationSection({
             { label: t('设置', 'Settings'), icon: <span>⚙</span> },
             { label: t('帮助', 'Help'), icon: <span>?⃝</span> },
           ]}
-          header={<span className="showcase-sidebar-header">Nothing UI</span>}
+          header={<span className="showcase-sidebar-header">AIOS UI</span>}
         />
       </DemoCard>
     </CategorySection>

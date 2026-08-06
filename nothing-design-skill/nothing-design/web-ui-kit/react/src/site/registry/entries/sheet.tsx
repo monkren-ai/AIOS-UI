@@ -1,4 +1,4 @@
-import { Button } from 'nothing-ui/button'
+import { Button } from 'aios-ui-kit/button'
 import type { ComponentDoc } from '../types'
 
 import SheetBasic from '../../examples/sheet/basic'
@@ -22,7 +22,7 @@ export const sheetDoc: ComponentDoc = {
     en: 'A drawer that slides in from any of the four edges; `side="bottom"` together with `sections` switches it to a mobile quick-settings layout.',
   },
   preview: () => <Button variant="outline">Open settings</Button>,
-  importStatement: `import { Sheet } from 'nothing-ui/sheet'`,
+  importStatement: `import { Sheet } from 'aios-ui-kit/sheet'`,
   usageSnippet: `const [open, setOpen] = useState(false)
 
 <Button onClick={() => setOpen(true)}>Settings</Button>

@@ -1,4 +1,4 @@
-import { AspectRatio } from 'nothing-ui/aspect-ratio'
+import { AspectRatio } from 'aios-ui-kit/aspect-ratio'
 
 const ratios = [
   { ratio: 16 / 9, label: '16 / 9' },

@@ -1,4 +1,4 @@
-import { Input } from 'nothing-ui/input'
+import { Input } from 'aios-ui-kit/input'
 import { ArrowRightIcon, SearchIcon } from '../icons'
 
 export default function InputAddons() {

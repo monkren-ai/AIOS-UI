@@ -1,4 +1,4 @@
-import { ColorPicker } from 'nothing-ui/color-picker'
+import { ColorPicker } from 'aios-ui-kit/color-picker'
 import type { ComponentDoc } from '../types'
 
 import ColorPickerBasic from '../../examples/color-picker/basic'
@@ -19,7 +19,7 @@ export const colorPickerDoc: ComponentDoc = {
     en: 'Pick from swatches, open the native picker, or just type a hex value.',
   },
   preview: () => <ColorPicker defaultValue="#D71921" />,
-  importStatement: `import { ColorPicker } from 'nothing-ui/color-picker'`,
+  importStatement: `import { ColorPicker } from 'aios-ui-kit/color-picker'`,
   usageSnippet: `<ColorPicker defaultValue="#D71921" onChange={(color) => console.log(color)} />`,
   composition: {
     zh: '结构分三层：标题行（`title` + 当前值的十六进制回显）、色板行（预设色块 + 一个打开原生 `<input type="color">` 的自定义色块）、以及可选的十六进制 `Input`（内部复用了 `Input` 组件，前面带一个当前色的小方块预览）。',

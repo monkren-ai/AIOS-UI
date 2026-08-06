@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Button } from 'nothing-ui/button'
-import { Sheet } from 'nothing-ui/sheet'
-import { Switch } from 'nothing-ui/switch'
+import { Button } from 'aios-ui-kit/button'
+import { Sheet } from 'aios-ui-kit/sheet'
+import { Switch } from 'aios-ui-kit/switch'
 
 export default function SheetSections() {
   const [open, setOpen] = useState(false)

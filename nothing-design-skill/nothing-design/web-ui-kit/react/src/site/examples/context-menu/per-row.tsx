@@ -1,4 +1,4 @@
-import { ContextMenu } from 'nothing-ui/context-menu'
+import { ContextMenu } from 'aios-ui-kit/context-menu'
 
 const FILES = ['glyph-composer.wav', 'ear-firmware.bin', 'wallpaper-dot.png']
 

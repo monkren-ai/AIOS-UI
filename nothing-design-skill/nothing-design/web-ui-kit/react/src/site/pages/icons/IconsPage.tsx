@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Button } from 'nothing-ui/button'
-import { Input } from 'nothing-ui/input'
+import { Button } from 'aios-ui-kit/button'
+import { Input } from 'aios-ui-kit/input'
 import { cn } from '@/lib/utils'
 import { Prose } from '../../components/Prose'
 import { useT } from '../../i18n'

@@ -1,4 +1,4 @@
-import { Input } from 'nothing-ui/input'
+import { Input } from 'aios-ui-kit/input'
 import type { ComponentDoc } from '../types'
 
 import InputVariants from '../../examples/input/variants'
@@ -27,7 +27,7 @@ export const inputDoc: ComponentDoc = {
       <Input placeholder="Type something" />
     </div>
   ),
-  importStatement: `import { Input } from 'nothing-ui/input'`,
+  importStatement: `import { Input } from 'aios-ui-kit/input'`,
   usageSnippet: `<Input label="Email" placeholder="you@nothing.tech" />`,
   composition: {
     zh: '`Input` 不是裸的 `<input>`，而是一整块字段：外层容器里依次是 label、控件行（图标 + 原生 input + 清除按钮）、以及错误或说明文案。所以它默认 `width: 100%`，宽度由父容器决定。',

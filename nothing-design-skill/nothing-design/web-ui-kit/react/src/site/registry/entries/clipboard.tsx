@@ -1,4 +1,4 @@
-import { Clipboard } from 'nothing-ui/clipboard'
+import { Clipboard } from 'aios-ui-kit/clipboard'
 import type { ComponentDoc } from '../types'
 
 import ClipboardDefault from '../../examples/clipboard/default'
@@ -14,7 +14,7 @@ export const clipboardDoc: ComponentDoc = {
     en: 'Clipboard history — click an entry to copy it again, or drop entries and clear the list.',
   },
   preview: () => <Clipboard className="w-full max-w-sm" />,
-  importStatement: `import { Clipboard } from 'nothing-ui/clipboard'`,
+  importStatement: `import { Clipboard } from 'aios-ui-kit/clipboard'`,
   usageSnippet: `<Clipboard maxItems={5} />`,
   examples: [
     {

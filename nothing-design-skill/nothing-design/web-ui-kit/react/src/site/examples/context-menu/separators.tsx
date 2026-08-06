@@ -1,4 +1,4 @@
-import { ContextMenu } from 'nothing-ui/context-menu'
+import { ContextMenu } from 'aios-ui-kit/context-menu'
 
 export default function ContextMenuSeparators() {
   return (

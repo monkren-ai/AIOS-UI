@@ -1,7 +1,7 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useNow } from "../system/hooks.mjs";
 import { quotesAuthorVariants, quotesContentVariants, quotesRingVariants, quotesSvgVariants, quotesTextVariants, quotesVariants } from "./quotes-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Quotes/Quotes.tsx
 const defaultQuotes = [
@@ -39,13 +39,13 @@ const defaultQuotes = [
 	}
 ];
 function Quotes({ className, theme = "dark", size = "md", quotes = defaultQuotes, interval = 3e4, ...props }) {
-	const [currentIndex, setCurrentIndex] = React.useState(0);
+	const [currentIndex, setCurrentIndex] = React$1.useState(0);
 	const tick = useNow(quotes.length > 1 ? interval : 6e4);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (quotes.length <= 1) return;
 		setCurrentIndex((prev) => (prev + 1) % quotes.length);
 	}, [tick, quotes.length]);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (currentIndex >= quotes.length && quotes.length > 0) setCurrentIndex(0);
 	}, [quotes.length, currentIndex]);
 	const quote = quotes.length > 0 ? quotes[currentIndex] : {

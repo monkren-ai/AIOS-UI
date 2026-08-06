@@ -1,4 +1,4 @@
-import { Avatar } from 'nothing-ui/avatar'
+import { Avatar } from 'aios-ui-kit/avatar'
 
 export default function AvatarSizes() {
   return (

@@ -1,4 +1,4 @@
-import { Chrono } from 'nothing-ui/chrono'
+import { Chrono } from 'aios-ui-kit/chrono'
 import type { ComponentDoc } from '../types'
 
 import ChronoDefault from '../../examples/chrono/default'
@@ -17,7 +17,7 @@ export const chronoDoc: ComponentDoc = {
     en: 'A stopwatch down to hundredths, with laps and the fastest and slowest ones marked.',
   },
   preview: () => <Chrono size="sm" className="w-full max-w-xs" />,
-  importStatement: `import { Chrono } from 'nothing-ui/chrono'`,
+  importStatement: `import { Chrono } from 'aios-ui-kit/chrono'`,
   usageSnippet: `<Chrono />`,
   examples: [
     {

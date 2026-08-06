@@ -1,4 +1,4 @@
-import { QuickToggle } from 'nothing-ui/quick-toggle'
+import { QuickToggle } from 'aios-ui-kit/quick-toggle'
 
 export default function QuickToggleThemes() {
   return (

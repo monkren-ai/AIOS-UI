@@ -1,17 +1,17 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { inputCopyButtonTextVariants, inputCopyButtonVariants, inputCopyControlVariants, inputCopyFieldVariants, inputCopyLabelVariants, inputCopyVariants, resolveInputCopySize } from "./input-copy-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import "./InputCopy.css";
 //#region src/InputCopy/InputCopy.tsx
 function InputCopy({ value: valueProp, defaultValue = "", label, placeholder, size = "md", copyLabel = "COPY", copiedLabel = "COPIED", copiedDuration = 2e3, onCopy, readOnly = true, className, ref, ...props }) {
 	const isControlled = valueProp !== void 0;
-	const [internalValue, setInternalValue] = React.useState(defaultValue);
+	const [internalValue, setInternalValue] = React$1.useState(defaultValue);
 	const value = isControlled ? valueProp : internalValue;
-	const [copied, setCopied] = React.useState(false);
-	const inputId = React.useId();
+	const [copied, setCopied] = React$1.useState(false);
+	const inputId = React$1.useId();
 	const resolvedSize = resolveInputCopySize(size) ?? "md";
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (!copied) return;
 		const timer = setTimeout(() => setCopied(false), copiedDuration);
 		return () => clearTimeout(timer);
@@ -19,7 +19,7 @@ function InputCopy({ value: valueProp, defaultValue = "", label, placeholder, si
 	const handleChange = (e) => {
 		if (!isControlled) setInternalValue(e.target.value);
 	};
-	const handleCopy = React.useCallback(async () => {
+	const handleCopy = React$1.useCallback(async () => {
 		try {
 			await navigator.clipboard.writeText(value);
 		} catch {}

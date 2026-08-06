@@ -1,4 +1,4 @@
-import { Switch } from 'nothing-ui/switch'
+import { Switch } from 'aios-ui-kit/switch'
 import type { ComponentDoc } from '../types'
 
 import SwitchBasic from '../../examples/switch/basic'
@@ -22,7 +22,7 @@ export const switchDoc: ComponentDoc = {
     en: 'A toggle for binary settings that take effect immediately.',
   },
   preview: () => <Switch label="Wi-Fi" />,
-  importStatement: `import { Switch } from 'nothing-ui/switch'`,
+  importStatement: `import { Switch } from 'aios-ui-kit/switch'`,
   usageSnippet: `<Switch label="Wi-Fi" />`,
   composition: {
     zh: '外层是 `<label>`，里面是 Base UI 的 `Switch.Root` 与 `Switch.Thumb`，加上可选的文字。滑块位移用逻辑属性 `inset-inline-start`，所以 RTL 下自动镜像，不需要额外样式。',

@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { dateDualRingDayVariants, dateDualRingInnerVariants, dateDualRingOuterVariants, dateDualRingVariants, dateDualRingWeekdayVariants, dateRectDayVariants, dateRectMonthVariants, dateRectRingBgVariants, dateRectRingProgressVariants, dateRectVariants, dateRectWeekdayVariants, dateSerifDayVariants, dateSerifNumberVariants, dateSerifPeelVariants, dateSerifVariants } from "./date-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Date/Date.tsx
 const RING_RADIUS = 25;
@@ -29,8 +29,8 @@ const WEEKDAYS = [
 	"SAT"
 ];
 function DateWidget({ type = "rect", theme = "light", updateInterval = 6e4, className, showPeel = false, onPeelClick, ref, ...props }) {
-	const [now, setNow] = React.useState(/* @__PURE__ */ new Date());
-	React.useEffect(() => {
+	const [now, setNow] = React$1.useState(/* @__PURE__ */ new Date());
+	React$1.useEffect(() => {
 		const timer = setInterval(() => {
 			setNow(/* @__PURE__ */ new Date());
 		}, updateInterval);

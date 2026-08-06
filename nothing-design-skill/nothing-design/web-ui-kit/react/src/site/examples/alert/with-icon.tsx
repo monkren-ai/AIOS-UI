@@ -1,4 +1,4 @@
-import { Alert } from 'nothing-ui/alert'
+import { Alert } from 'aios-ui-kit/alert'
 import { DownloadIcon } from '../icons'
 
 export default function AlertWithIcon() {

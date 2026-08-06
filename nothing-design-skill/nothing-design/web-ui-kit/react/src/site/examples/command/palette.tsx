@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Command } from 'nothing-ui/command'
+import { Command } from 'aios-ui-kit/command'
 
 export default function CommandPalette() {
   const [open, setOpen] = useState(false)

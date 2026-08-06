@@ -1,4 +1,4 @@
-import { AgentOrb, PlanCard, ThinkingIndicator } from 'nothing-ui/agent'
+import { AgentOrb, PlanCard, ThinkingIndicator } from 'aios-ui-kit/agent'
 
 const steps = [
   { id: '1', description: 'Read project files', status: 'done' as const },

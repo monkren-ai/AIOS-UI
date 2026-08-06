@@ -1,0 +1,3 @@
+import { InputMessageSize, inputMessageControlVariants, inputMessageCountVariants, inputMessageFieldVariants, inputMessageHintVariants, inputMessageMetaVariants, inputMessageSendIconVariants, inputMessageSendVariants, inputMessageVariants } from "./InputMessage/input-message-variants.mjs";
+import { InputMessage, InputMessageProps } from "./InputMessage/InputMessage.mjs";
+export { InputMessage, type InputMessageProps, type InputMessageSize, InputMessage as default, inputMessageControlVariants, inputMessageCountVariants, inputMessageFieldVariants, inputMessageHintVariants, inputMessageMetaVariants, inputMessageSendIconVariants, inputMessageSendVariants, inputMessageVariants };

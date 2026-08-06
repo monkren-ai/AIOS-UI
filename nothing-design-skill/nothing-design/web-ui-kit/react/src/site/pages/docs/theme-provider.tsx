@@ -12,7 +12,7 @@ const IMPORT = `import {
   getThemeScript,
   type Theme,
   type ThemeAppearance,
-} from 'nothing-ui/theme-provider'`
+} from 'aios-ui-kit/theme-provider'`
 
 const USAGE = `<ThemeProvider defaultTheme="dark" enableSystem>
   <App />

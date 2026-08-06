@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Sidebar } from 'nothing-ui/sidebar'
+import { Sidebar } from 'aios-ui-kit/sidebar'
 
 const ITEMS = [{ label: 'Overview' }, { label: 'Devices' }, { label: 'Settings' }]
 

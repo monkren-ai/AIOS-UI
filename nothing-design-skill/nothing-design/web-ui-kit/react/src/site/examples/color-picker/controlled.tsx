@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ColorPicker } from 'nothing-ui/color-picker'
+import { ColorPicker } from 'aios-ui-kit/color-picker'
 
 export default function ColorPickerControlled() {
   const [color, setColor] = useState('#5B9BF6')

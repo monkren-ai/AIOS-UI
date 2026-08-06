@@ -1,4 +1,4 @@
-import { ProgressBar } from 'nothing-ui/progress-bar'
+import { ProgressBar } from 'aios-ui-kit/progress-bar'
 import type { ComponentDoc } from '../types'
 
 import ProgressBarReadout from '../../examples/progress-bar/readout'
@@ -31,7 +31,7 @@ export const progressBarDoc: ComponentDoc = {
       aria-label="Storage used"
     />
   ),
-  importStatement: `import { ProgressBar } from 'nothing-ui/progress-bar'`,
+  importStatement: `import { ProgressBar } from 'aios-ui-kit/progress-bar'`,
   usageSnippet: `<ProgressBar value={64} label="Storage" unit="%" aria-label="Storage used" />`,
   examples: [
     {

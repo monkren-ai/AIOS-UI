@@ -1,4 +1,4 @@
-import { Quotes } from 'nothing-ui/quotes'
+import { Quotes } from 'aios-ui-kit/quotes'
 import type { ComponentDoc } from '../types'
 
 import QuotesDefault from '../../examples/quotes/default'
@@ -14,7 +14,7 @@ export const quotesDoc: ComponentDoc = {
     en: 'A quote card that rotates on a timer, with an outer ring showing where you are in the set.',
   },
   preview: () => <Quotes className="w-full max-w-sm" />,
-  importStatement: `import { Quotes } from 'nothing-ui/quotes'`,
+  importStatement: `import { Quotes } from 'aios-ui-kit/quotes'`,
   usageSnippet: `<Quotes quotes={[{ text: 'Less, but better.', author: 'Dieter Rams' }]} />`,
   examples: [
     {

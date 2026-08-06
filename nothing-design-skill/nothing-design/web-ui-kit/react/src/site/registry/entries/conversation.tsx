@@ -1,4 +1,4 @@
-import { Bubble } from 'nothing-ui/conversation'
+import { Bubble } from 'aios-ui-kit/conversation'
 import type { ComponentDoc } from '../types'
 
 import ConversationChat from '../../examples/conversation/chat'
@@ -16,11 +16,11 @@ export const conversationDoc: ComponentDoc = {
   preview: () => (
     <Bubble placement="start" variant="outlined" content="How can I help you today?" />
   ),
-  importStatement: `import { Bubble, BubbleList, Sender } from 'nothing-ui/conversation'`,
+  importStatement: `import { Bubble, BubbleList, Sender } from 'aios-ui-kit/conversation'`,
   usageSnippet: `<Bubble placement="start" content="Hello" />\n<Sender onSubmit={send} />`,
   composition: {
-    zh: '`nothing-ui/conversation` 导出六件：`Sender`（输入框）、`Bubble` / `BubbleList`（消息气泡）、`ThoughtChain`（思考链）、`Prompts`（快捷提示）、`Welcome`（欢迎屏）、`Conversations`（会话列表）。典型布局是 BubbleList + Sender，侧边挂 Conversations。',
-    en: '`nothing-ui/conversation` exports six pieces: `Sender` (input), `Bubble` / `BubbleList` (message bubbles), `ThoughtChain` (thought chain), `Prompts` (quick prompts), `Welcome` (welcome screen), and `Conversations` (session list). The usual layout is BubbleList + Sender, with Conversations on the side.',
+    zh: '`aios-ui-kit/conversation` 导出六件：`Sender`（输入框）、`Bubble` / `BubbleList`（消息气泡）、`ThoughtChain`（思考链）、`Prompts`（快捷提示）、`Welcome`（欢迎屏）、`Conversations`（会话列表）。典型布局是 BubbleList + Sender，侧边挂 Conversations。',
+    en: '`aios-ui-kit/conversation` exports six pieces: `Sender` (input), `Bubble` / `BubbleList` (message bubbles), `ThoughtChain` (thought chain), `Prompts` (quick prompts), `Welcome` (welcome screen), and `Conversations` (session list). The usual layout is BubbleList + Sender, with Conversations on the side.',
   },
   examples: [
     {

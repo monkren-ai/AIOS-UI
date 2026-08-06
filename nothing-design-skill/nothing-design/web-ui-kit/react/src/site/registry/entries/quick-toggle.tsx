@@ -1,4 +1,4 @@
-import { QuickToggle } from 'nothing-ui/quick-toggle'
+import { QuickToggle } from 'aios-ui-kit/quick-toggle'
 import type { ComponentDoc } from '../types'
 
 import QuickToggleBasic from '../../examples/quick-toggle/basic'
@@ -19,7 +19,7 @@ export const quickToggleDoc: ComponentDoc = {
     en: 'A control-centre style icon toggle, either round or square.',
   },
   preview: () => <QuickToggle label="Wi-Fi" active theme="accent" />,
-  importStatement: `import { QuickToggle } from 'nothing-ui/quick-toggle'`,
+  importStatement: `import { QuickToggle } from 'aios-ui-kit/quick-toggle'`,
   usageSnippet: `<QuickToggle icon={<WifiIcon />} label="Wi-Fi" active={on} onClick={() => setOn((v) => !v)} />`,
   composition: {
     zh: '渲染为一个原生 `<button>`，`icon` 与 `label` 都是可选插槽——只给图标就是纯图标块，只给文字就是纯文字块。组件本身不维护开关状态，`active` 完全由外部传入，点击只触发 `onClick`。',

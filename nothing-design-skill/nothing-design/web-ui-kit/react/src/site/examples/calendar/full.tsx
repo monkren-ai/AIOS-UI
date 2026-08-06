@@ -1,4 +1,4 @@
-import { Calendar } from 'nothing-ui/calendar'
+import { Calendar } from 'aios-ui-kit/calendar'
 
 export default function CalendarFull() {
   return (

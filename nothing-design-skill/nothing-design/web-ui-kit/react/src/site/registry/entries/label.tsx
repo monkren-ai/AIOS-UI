@@ -1,4 +1,4 @@
-import { Label } from 'nothing-ui/label'
+import { Label } from 'aios-ui-kit/label'
 import type { ComponentDoc } from '../types'
 
 import LabelBasic from '../../examples/label/basic'
@@ -21,7 +21,7 @@ export const labelDoc: ComponentDoc = {
     en: 'A form label that hands focus to the control it names.',
   },
   preview: () => <Label required>Serial number</Label>,
-  importStatement: `import { Label } from 'nothing-ui/label'`,
+  importStatement: `import { Label } from 'aios-ui-kit/label'`,
   usageSnippet: `<Label htmlFor="email">Email</Label>`,
   composition: {
     zh: '这是个原生 `<label>`，只是把 Nothing 的标签排版（等宽字体、全大写、宽字距、`foreground-muted`）固化下来。`Input`、`Textarea`、`Select`、`Slider` 都自带 `label` 属性，日常表单用那个就够；当你需要自己决定标签的位置——放在控件右侧、和别的元素同一行、或者标注一组控件——才轮到 `Label` 出场。',

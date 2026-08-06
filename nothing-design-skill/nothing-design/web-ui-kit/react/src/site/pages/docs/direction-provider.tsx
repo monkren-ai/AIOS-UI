@@ -10,7 +10,7 @@ const IMPORT = `import {
   useDirection,
   type Direction,
   type DirectionContextValue,
-} from 'nothing-ui/direction-provider'`
+} from 'aios-ui-kit/direction-provider'`
 
 const USAGE = `<DirectionProvider dir="rtl">
   <App />

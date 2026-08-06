@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Button } from 'nothing-ui/button'
-import { Tabs, TabPanel } from 'nothing-ui/tabs'
+import { Button } from 'aios-ui-kit/button'
+import { Tabs, TabPanel } from 'aios-ui-kit/tabs'
 
 const STEPS = [
   { value: 'address', label: 'Address' },

@@ -1,4 +1,4 @@
-import { ScrollArea } from 'nothing-ui/scroll-area'
+import { ScrollArea } from 'aios-ui-kit/scroll-area'
 
 const DEVICES = [
   'Phone (1)',

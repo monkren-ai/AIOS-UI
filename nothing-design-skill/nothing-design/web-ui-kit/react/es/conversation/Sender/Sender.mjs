@@ -1,7 +1,7 @@
 import { cn, dataAttr, mergeSemanticProps } from "../../lib/utils.mjs";
 import Button from "../../Button/Button.mjs";
 import { senderVariants } from "./sender-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import "./Sender.css";
 //#region src/conversation/Sender/Sender.tsx
@@ -22,8 +22,8 @@ function getAutoSizeRows(autoSize) {
 function calculateHeight(rows) {
 	return rows * 24 + 24;
 }
-const Sender = React.forwardRef(({ value: controlledValue, defaultValue = "", placeholder, loading = false, submitType = "enter", readOnly = false, disabled = false, autoSize = false, prefix, suffix, header, footer, onSubmit, onCancel, onChange, onKeyDown, className, style, classNames: userClassNames, styles: userStyles, variant, size, rows, ...rest }, ref) => {
-	const [internalValue, setInternalValue] = React.useState(defaultValue);
+const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", placeholder, loading = false, submitType = "enter", readOnly = false, disabled = false, autoSize = false, prefix, suffix, header, footer, onSubmit, onCancel, onChange, onKeyDown, className, style, classNames: userClassNames, styles: userStyles, variant, size, rows, ...rest }, ref) => {
+	const [internalValue, setInternalValue] = React$1.useState(defaultValue);
 	const isControlled = controlledValue !== void 0;
 	const value = isControlled ? controlledValue : internalValue;
 	const { classNames, styles } = mergeSemanticProps({

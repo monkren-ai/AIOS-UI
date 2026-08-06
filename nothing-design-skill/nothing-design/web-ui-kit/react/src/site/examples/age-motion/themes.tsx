@@ -1,4 +1,4 @@
-import { AgeMotion } from 'nothing-ui/age-motion'
+import { AgeMotion } from 'aios-ui-kit/age-motion'
 
 export default function AgeMotionThemes() {
   return (

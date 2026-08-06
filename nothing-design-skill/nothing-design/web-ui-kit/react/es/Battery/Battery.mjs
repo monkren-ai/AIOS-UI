@@ -2,7 +2,7 @@ import { cn, dataAttr } from "../lib/utils.mjs";
 import DotMatrixIcon from "../components/DotMatrixIcon.mjs";
 import { componentIconSvg } from "../widgets/icon-svg-registry.mjs";
 import { batteryDeviceIconVariants, batteryDeviceNameVariants, batteryDevicePercentVariants, batteryDeviceVariants, batteryDevicesVariants, batteryPercentVariants, batteryProgressVariants, batteryRingContentVariants, batteryRingIconVariants, batteryRingInnerVariants, batteryRingOuterVariants, batteryRingPercentVariants, batteryRingProgressVariants, batteryRingSvgVariants, batteryRingVariants, batterySegmentVariants, batteryStatusVariants, batteryVariants, batteryWidgetPercentVariants, batteryWidgetStatusVariants } from "./battery-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 //#region src/Battery/Battery.tsx
 const CIRCUMFERENCE = 2 * Math.PI * 95;
@@ -370,11 +370,11 @@ const DeviceList = ({ devices, onDeviceClick, widgetCard = false }) => /* @__PUR
 	}, idx))
 });
 function Battery({ updateInterval = 5e3, totalSegments = 10, percent: initialPercent, isCharging: initialIsCharging, variant = "segmented", theme = "dark", widgetMode = "none", devices, onDeviceClick, className, ref, ...props }) {
-	const [internalPercent, setInternalPercent] = React.useState(initialPercent ?? 75);
-	const [internalIsCharging, setInternalIsCharging] = React.useState(initialIsCharging ?? false);
+	const [internalPercent, setInternalPercent] = React$1.useState(initialPercent ?? 75);
+	const [internalIsCharging, setInternalIsCharging] = React$1.useState(initialIsCharging ?? false);
 	const percent = initialPercent ?? internalPercent;
 	const isCharging = initialIsCharging ?? internalIsCharging;
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (initialPercent !== void 0 || initialIsCharging !== void 0) return;
 		const updateBattery = async () => {
 			try {
@@ -398,7 +398,7 @@ function Battery({ updateInterval = 5e3, totalSegments = 10, percent: initialPer
 		initialPercent,
 		initialIsCharging
 	]);
-	const ringDashOffset = React.useMemo(() => {
+	const ringDashOffset = React$1.useMemo(() => {
 		return CIRCUMFERENCE - percent / 100 * CIRCUMFERENCE;
 	}, [percent]);
 	const filledSegments = Math.round(percent / 100 * totalSegments);

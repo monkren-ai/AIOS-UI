@@ -1,10 +1,10 @@
 import { cn, dataAttr, mergeSemanticProps } from "../../lib/utils.mjs";
 import { promptsItemVariants, promptsVariants } from "./prompts-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import "./Prompts.css";
 //#region src/conversation/Prompts/Prompts.tsx
-const Prompts = React.forwardRef(({ items, title, layout = "grid", onItemClick, className, style, classNames: userClassNames, styles: userStyles, variant, size, ...rest }, ref) => {
+const Prompts = React$1.forwardRef(({ items, title, layout = "grid", onItemClick, className, style, classNames: userClassNames, styles: userStyles, variant, size, ...rest }, ref) => {
 	const { classNames, styles } = mergeSemanticProps({
 		classNames: userClassNames,
 		styles: userStyles

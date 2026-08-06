@@ -1,4 +1,4 @@
-import { Taskbar } from 'nothing-ui/taskbar'
+import { Taskbar } from 'aios-ui-kit/taskbar'
 import type { ComponentDoc } from '../types'
 
 import TaskbarDefault from '../../examples/taskbar/default'
@@ -16,7 +16,7 @@ export const taskbarDoc: ComponentDoc = {
     en: 'A desktop taskbar — start, search, app slots, and a clock-and-battery tray on the end.',
   },
   preview: () => <Taskbar className="w-full" apps={[{ name: 'Files' }, { name: 'Mail' }]} />,
-  importStatement: `import { Taskbar } from 'nothing-ui/taskbar'`,
+  importStatement: `import { Taskbar } from 'aios-ui-kit/taskbar'`,
   usageSnippet: `<Taskbar apps={[{ name: 'Files' }, { name: 'Mail' }]} />`,
   examples: [
     {

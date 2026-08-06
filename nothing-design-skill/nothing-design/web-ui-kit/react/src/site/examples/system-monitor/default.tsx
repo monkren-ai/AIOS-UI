@@ -1,4 +1,4 @@
-import { SystemMonitor } from 'nothing-ui/system-monitor'
+import { SystemMonitor } from 'aios-ui-kit/system-monitor'
 
 export default function SystemMonitorDefault() {
   return (

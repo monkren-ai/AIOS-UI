@@ -1,9 +1,9 @@
 import MotionProvider, { useMotionComponent } from "./MotionProvider/index.mjs";
-import ThemeProvider, { DEFAULT_STORAGE_KEY, useTheme } from "./ThemeProvider/index.mjs";
+import ThemeProvider, { DEFAULT_STORAGE_KEY, useTheme } from "./ThemeProvider/ThemeProvider.mjs";
+import { ThemeScript, getThemeScript } from "./ThemeProvider/ThemeScript.mjs";
 import DirectionProvider, { useDirection } from "./DirectionProvider/DirectionProvider.mjs";
 import ReducedMotionProvider, { useReducedMotion } from "./ReducedMotionProvider/ReducedMotionProvider.mjs";
 import ConfigProvider, { useCdnFn, useConfig } from "./ConfigProvider/index.mjs";
-import { ThemeScript, getThemeScript } from "./ThemeProvider/ThemeScript.mjs";
 import { cn, dataAttr, mergeSemanticProps } from "./lib/utils.mjs";
 import { mergeRefs } from "./lib/refs.mjs";
 import { Slot } from "./lib/slot.mjs";

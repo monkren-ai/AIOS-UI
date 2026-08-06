@@ -1,5 +1,5 @@
-import { Button } from 'nothing-ui/button'
-import { Tooltip } from 'nothing-ui/tooltip'
+import { Button } from 'aios-ui-kit/button'
+import { Tooltip } from 'aios-ui-kit/tooltip'
 import type { ComponentDoc } from '../types'
 
 import TooltipBasic from '../../examples/tooltip/basic'
@@ -27,7 +27,7 @@ export const tooltipDoc: ComponentDoc = {
       <Button variant="outline">Sync now</Button>
     </Tooltip>
   ),
-  importStatement: `import { Tooltip } from 'nothing-ui/tooltip'`,
+  importStatement: `import { Tooltip } from 'aios-ui-kit/tooltip'`,
   usageSnippet: `<Tooltip content="Syncs every 15 minutes">
   <Button variant="outline">Sync now</Button>
 </Tooltip>`,

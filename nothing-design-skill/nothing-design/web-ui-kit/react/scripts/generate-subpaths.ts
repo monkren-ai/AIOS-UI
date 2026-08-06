@@ -5,7 +5,7 @@
  * 入口，打包器不必先把整个 barrel 拉进来再摇树。这里为 `src/` 下每个组件目录生成一个
  * kebab-case 的转发文件。
  *
- * 顺带一个好处：文档站的示例代码可以照着真实的包路径写（`nothing-ui/button`），
+ * 顺带一个好处：文档站的示例代码可以照着真实的包路径写（`aios-ui-kit/button`），
  * 靠一条 alias 指到这里，于是「文档里贴的代码」和「能跑的代码」是同一份。
  *
  *   npx tsx scripts/generate-subpaths.ts
@@ -41,7 +41,7 @@ const GROUPED = new Set(['agent', 'conversation'])
 /**
  * 只有 default export、没有 named export 的目录。
  * 对它们写 `export *` 会得到一个空模块——TypeScript 的 `export *`
- * 不转发 default，消费方写 `import X from 'nothing-ui/…'` 就会报错。
+ * 不转发 default，消费方写 `import X from 'aios-ui-kit/…'` 就会报错。
  */
 const DEFAULT_ONLY = new Set(['ErrorBoundary'])
 

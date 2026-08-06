@@ -1,7 +1,7 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
 import Button from "../../Button/Button.mjs";
 import AgentOrb from "../AgentOrb/AgentOrb.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "./ApprovalGate.css";
@@ -19,8 +19,8 @@ const approvalGateVariants = cva("nothing-approval-gate", {
 	} },
 	defaultVariants: { risk: "medium" }
 });
-const ApprovalGate = React.forwardRef(({ action, impact, reversible = true, risk = "medium", allowLabel = "ALLOW", denyLabel = "DENY", onAllow, onDeny, className, ...props }, ref) => {
-	const actionId = `${React.useId()}-action`;
+const ApprovalGate = React$1.forwardRef(({ action, impact, reversible = true, risk = "medium", allowLabel = "ALLOW", denyLabel = "DENY", onAllow, onDeny, className, ...props }, ref) => {
+	const actionId = `${React$1.useId()}-action`;
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(approvalGateVariants({ risk }), className),

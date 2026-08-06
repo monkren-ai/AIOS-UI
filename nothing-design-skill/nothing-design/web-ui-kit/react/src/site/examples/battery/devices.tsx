@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Battery, type BatteryDevice } from 'nothing-ui/battery'
+import { Battery, type BatteryDevice } from 'aios-ui-kit/battery'
 
 const DEVICES: BatteryDevice[] = [
   { name: 'Magic Mouse', type: 'mouse', percent: 84 },

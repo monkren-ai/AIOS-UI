@@ -1,4 +1,4 @@
-import { Card } from 'nothing-ui/card'
+import { Card } from 'aios-ui-kit/card'
 import type { ComponentDoc } from '../types'
 
 import CardVariants from '../../examples/card/variants'
@@ -27,7 +27,7 @@ export const cardDoc: ComponentDoc = {
       128 GB of 256 GB used.
     </Card>
   ),
-  importStatement: `import { Card, ContentCard, WidgetCard } from 'nothing-ui/card'`,
+  importStatement: `import { Card, ContentCard, WidgetCard } from 'aios-ui-kit/card'`,
   usageSnippet: `<Card title="Storage">128 GB of 256 GB used.</Card>`,
   composition: {
     zh: '`Card` 是个分发器：默认渲染 `ContentCard`，传 `mode="widget"` 时渲染 `WidgetCard`。两者的 props 几乎不重叠——ContentCard 是普通内容容器，WidgetCard 是固定版型的桌面小组件——所以下面分成两张表。真的知道自己要哪个时，直接导入 `ContentCard` / `WidgetCard` 更清楚，也省掉联合类型带来的类型收窄。内部插槽（`card-header`、`card-media`、`card-footer` …）由 props 驱动生成，不需要你手写子组件，但都带 `data-slot`，需要时可以精确选到。',

@@ -1,4 +1,4 @@
-import { DataTable } from 'nothing-ui/data-table'
+import { DataTable } from 'aios-ui-kit/data-table'
 import type { ComponentDoc } from '../types'
 
 import DataTableTable from '../../examples/data-table/table'
@@ -29,7 +29,7 @@ export const dataTableDoc: ComponentDoc = {
       rows={[{ cells: { device: 'Phone (2a)', battery: '87%' } }]}
     />
   ),
-  importStatement: `import { DataTable } from 'nothing-ui/data-table'`,
+  importStatement: `import { DataTable } from 'aios-ui-kit/data-table'`,
   usageSnippet: `<DataTable\n  variant="table"\n  columns={[{ key: 'name', label: 'Name' }]}\n  rows={[{ cells: { name: 'Alice' } }]}\n/>`,
   composition: {
     zh: 'DataTable 不是复合组件——它是单个组件，`variant` 决定内部渲染路径与哪些 props 生效。三种形态的 props 几乎不重叠：`table` 用 `columns` + `rows` + `caption`，走真正的 `<table>`；`grid` 也用 `columns` + `rows`，但渲染成 CSS grid，支持整行可点击与逐格状态色；`rows` 用完全不同的 `items`，是一列 label/value 读数，不接受 `columns`。排序状态（`sortKey` / `sortDirection`）只对 `table` 与 `grid` 有意义，且是组件内部状态——`onSortChange` 只是旁路通知，不受控。',

@@ -75,7 +75,7 @@ export function ProjectIntroPage() {
     <div className="project-intro-page">
       <header className="pi-topbar">
         <Link to="/" className="pi-logo">
-          Nothing UI
+          AIOS UI
         </Link>
         <nav className="pi-topbar__links" aria-label="Project navigation">
           <a className="pi-topbar__link" href="#philosophy">
@@ -305,8 +305,8 @@ export function ProjectIntroPage() {
             </header>
             <p className="pi-body">
               {t(
-                'Nothing UI 从瑞士字体排印、Braun 与 Teenage Engineering 中汲取灵感。我们相信界面应该像仪器面板一样清晰：每一个元素都有功能，每一种灰度都在传递层级，而非装饰。',
-                'Nothing UI draws inspiration from Swiss typography, Braun, and Teenage Engineering. We believe interfaces should read like instrument panels: every element has a function, every gray value carries hierarchy, not decoration.',
+                'AIOS UI 从瑞士字体排印、Braun 与 Teenage Engineering 中汲取灵感。我们相信界面应该像仪器面板一样清晰：每一个元素都有功能，每一种灰度都在传递层级，而非装饰。',
+                'AIOS UI draws inspiration from Swiss typography, Braun, and Teenage Engineering. We believe interfaces should read like instrument panels: every element has a function, every gray value carries hierarchy, not decoration.',
               )}
             </p>
             <div className="pi-grid">
@@ -736,7 +736,7 @@ export function ProjectIntroPage() {
                 <div className="pi-agent-demo__content pi-agent-demo__content--col">
                   <ToolCallRow
                     tool="Search"
-                    args={{ query: 'Nothing UI design system' }}
+                    args={{ query: 'AIOS UI design system' }}
                     status="done"
                     elapsedMs={240}
                     result={t('找到 12 条相关结果', 'Found 12 relevant results')}
@@ -785,8 +785,8 @@ export function ProjectIntroPage() {
             <h2 className="pi-closing__title">{t('开始构建', 'Start Building')}</h2>
             <p className="pi-body">
               {t(
-                '查看组件库展示页，或直接在项目中引入 Nothing UI 开始构建你的 AI OS 界面。',
-                'Explore the component showcase or import Nothing UI directly into your project to start building your AI OS interface.',
+                '查看组件库展示页，或直接在项目中引入 AIOS UI 开始构建你的 AI OS 界面。',
+                'Explore the component showcase or import AIOS UI directly into your project to start building your AI OS interface.',
               )}
             </p>
             <div className="pi-closing__actions">
@@ -802,7 +802,7 @@ export function ProjectIntroPage() {
       </main>
 
       <footer className="pi-container pi-footer">
-        <span>Nothing UI · v1.0</span>
+        <span>AIOS UI · v1.0</span>
         <span>Monochrome Design System for AI OS</span>
       </footer>
     </div>

@@ -1,4 +1,4 @@
-import { Caffeinate } from 'nothing-ui/caffeinate'
+import { Caffeinate } from 'aios-ui-kit/caffeinate'
 import type { ComponentDoc } from '../types'
 
 import CaffeinateDefault from '../../examples/caffeinate/default'
@@ -14,7 +14,7 @@ export const caffeinateDoc: ComponentDoc = {
     en: 'Log each drink and see how much caffeine is left in you, decaying by half-life.',
   },
   preview: () => <Caffeinate className="w-full max-w-xs" />,
-  importStatement: `import { Caffeinate } from 'nothing-ui/caffeinate'`,
+  importStatement: `import { Caffeinate } from 'aios-ui-kit/caffeinate'`,
   usageSnippet: `<Caffeinate />`,
   examples: [
     {

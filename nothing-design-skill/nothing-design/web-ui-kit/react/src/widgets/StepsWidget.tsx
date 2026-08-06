@@ -28,7 +28,7 @@ export interface StepsWidgetProps
   editable?: boolean
 }
 
-const STORAGE_KEY = 'nothing-ui:steps'
+const STORAGE_KEY = 'aios-ui-kit:steps'
 
 const StepsWidgetInner = React.forwardRef<HTMLDivElement, StepsWidgetProps>(
   (

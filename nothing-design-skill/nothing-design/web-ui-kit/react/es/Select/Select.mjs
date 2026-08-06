@@ -1,21 +1,21 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { resolveSelectSize, selectContentVariants, selectErrorVariants, selectItemIndicatorVariants, selectItemVariants, selectLabelVariants, selectListVariants, selectPlaceholderVariants, selectPositionerVariants, selectSearchInputVariants, selectSearchVariants, selectTriggerIconVariants, selectTriggerVariants, selectValueVariants, selectVariants } from "./select-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Select } from "@base-ui/react/select";
 //#region src/Select/Select.tsx
 function Select$1({ className, options, value: controlledValue, defaultValue, onValueChange, placeholder = "Select an option", disabled = false, label, error, size = "md", searchable = false, ref, ...props }) {
-	const [open, setOpen] = React.useState(false);
-	const [searchQuery, setSearchQuery] = React.useState("");
+	const [open, setOpen] = React$1.useState(false);
+	const [searchQuery, setSearchQuery] = React$1.useState("");
 	const resolvedSize = resolveSelectSize(size) ?? "md";
-	const handleValueChange = React.useCallback((value) => {
+	const handleValueChange = React$1.useCallback((value) => {
 		if (value !== null) onValueChange?.(value);
 	}, [onValueChange]);
-	const handleOpenChange = React.useCallback((nextOpen) => {
+	const handleOpenChange = React$1.useCallback((nextOpen) => {
 		setOpen(nextOpen);
 		if (!nextOpen) setSearchQuery("");
 	}, [setOpen, setSearchQuery]);
-	const filteredOptions = React.useMemo(() => {
+	const filteredOptions = React$1.useMemo(() => {
 		if (!searchable || !searchQuery) return options;
 		const query = searchQuery.toLowerCase();
 		return options.filter((opt) => opt.label.toLowerCase().includes(query));

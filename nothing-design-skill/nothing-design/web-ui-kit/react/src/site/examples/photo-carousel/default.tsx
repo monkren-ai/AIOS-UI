@@ -1,4 +1,4 @@
-import { PhotoCarousel } from 'nothing-ui/photo-carousel'
+import { PhotoCarousel } from 'aios-ui-kit/photo-carousel'
 
 export default function PhotoCarouselDefault() {
   return (

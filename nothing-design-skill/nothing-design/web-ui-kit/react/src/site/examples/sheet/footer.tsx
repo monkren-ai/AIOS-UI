@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Button } from 'nothing-ui/button'
-import { Input } from 'nothing-ui/input'
-import { Sheet } from 'nothing-ui/sheet'
+import { Button } from 'aios-ui-kit/button'
+import { Input } from 'aios-ui-kit/input'
+import { Sheet } from 'aios-ui-kit/sheet'
 
 export default function SheetFooter() {
   const [open, setOpen] = useState(false)

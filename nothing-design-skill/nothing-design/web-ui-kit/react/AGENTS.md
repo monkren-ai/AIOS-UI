@@ -1,4 +1,4 @@
-# AGENTS.md — Nothing UI 开发规范
+# AGENTS.md — AIOS UI 开发规范
 
 > 本规范基于对 `appica-dev/appica-ui` 的调研，结合 Nothing 设计语言制定。所有贡献者（包括 AI Agent 与人类开发者）在修改本仓库前必须阅读并遵循。
 >
@@ -8,7 +8,7 @@
 
 ## 1. 项目定位
 
-Nothing UI 是一个基于 **Nothing 设计语言**的 React 组件库：
+AIOS UI 是一个基于 **Nothing 设计语言**的 React 组件库：
 
 - 单色工业美学（monochrome industrial）
 - 零阴影、零 blur、零渐变
@@ -214,7 +214,7 @@ describe('Button', () => {
 
 - [PROJECT_PROGRESS.md](./PROJECT_PROGRESS.md) — 项目进度与里程碑追踪
 - [design.md](../design.md) — Nothing 设计原则
-- [SKILL.md](../../SKILL.md) — Nothing UI Skill 使用指南（含 AI OS 扩展）
+- [SKILL.md](../../SKILL.md) — AIOS UI Skill 使用指南（含 AI OS 扩展）
 - [COMPONENTS.md](./COMPONENTS.md) — 组件目录与 API 参考
 - [src/styles/tokens.css](src/styles/tokens.css) — 设计令牌
 - [appica-ui](https://github.com/appica-dev/appica-ui) — 参考项目

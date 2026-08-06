@@ -1,15 +1,15 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { radioGroupCircleVariants, radioGroupDotVariants, radioGroupItemVariants, radioGroupLabelVariants, radioGroupVariants } from "./radio-group-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { RadioGroup } from "@base-ui/react/radio-group";
 import { Radio } from "@base-ui/react/radio";
 //#region src/RadioGroup/RadioGroup.tsx
 function RadioGroup$1({ className, options, value: controlledValue, defaultValue, onValueChange, disabled, orientation = "vertical", size = "md", name, ref, ...props }) {
-	const [internalValue, setInternalValue] = React.useState(defaultValue ?? "");
+	const [internalValue, setInternalValue] = React$1.useState(defaultValue ?? "");
 	const selectedValue = controlledValue !== void 0 ? controlledValue : internalValue;
 	const isDisabled = !!disabled;
-	const handleValueChange = React.useCallback((nextValue) => {
+	const handleValueChange = React$1.useCallback((nextValue) => {
 		if (controlledValue === void 0) setInternalValue(nextValue);
 		onValueChange?.(nextValue);
 	}, [controlledValue, onValueChange]);

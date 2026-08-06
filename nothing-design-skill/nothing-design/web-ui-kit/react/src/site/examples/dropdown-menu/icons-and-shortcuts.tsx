@@ -1,4 +1,4 @@
-import { DropdownMenu } from 'nothing-ui/dropdown-menu'
+import { DropdownMenu } from 'aios-ui-kit/dropdown-menu'
 import { BookmarkIcon, DownloadIcon, SearchIcon } from '../icons'
 
 export default function DropdownMenuIconsAndShortcuts() {

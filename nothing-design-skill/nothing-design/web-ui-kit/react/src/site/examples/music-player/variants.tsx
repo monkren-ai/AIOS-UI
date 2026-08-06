@@ -1,4 +1,4 @@
-import { MusicPlayer } from 'nothing-ui/music-player'
+import { MusicPlayer } from 'aios-ui-kit/music-player'
 
 export default function MusicPlayerVariants() {
   return (

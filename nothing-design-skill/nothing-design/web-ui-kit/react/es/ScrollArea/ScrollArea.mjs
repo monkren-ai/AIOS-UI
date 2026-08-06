@@ -1,17 +1,17 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { scrollAreaScrollbarVariants, scrollAreaThumbVariants, scrollAreaVariants, scrollAreaViewportVariants } from "./scroll-area-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/ScrollArea/ScrollArea.tsx
 function ScrollArea({ className, height, style, children, viewportProps, ...props }) {
-	const viewportRef = React.useRef(null);
-	const thumbRef = React.useRef(null);
-	const [thumbHeight, setThumbHeight] = React.useState(0);
-	const [thumbTop, setThumbTop] = React.useState(0);
-	const [isDragging, setIsDragging] = React.useState(false);
-	const dragStartY = React.useRef(0);
-	const dragStartScrollTop = React.useRef(0);
-	const updateThumb = React.useCallback(() => {
+	const viewportRef = React$1.useRef(null);
+	const thumbRef = React$1.useRef(null);
+	const [thumbHeight, setThumbHeight] = React$1.useState(0);
+	const [thumbTop, setThumbTop] = React$1.useState(0);
+	const [isDragging, setIsDragging] = React$1.useState(false);
+	const dragStartY = React$1.useRef(0);
+	const dragStartScrollTop = React$1.useRef(0);
+	const updateThumb = React$1.useCallback(() => {
 		const viewport = viewportRef.current;
 		if (!viewport) return;
 		const { scrollHeight, clientHeight, scrollTop } = viewport;
@@ -26,7 +26,7 @@ function ScrollArea({ className, height, style, children, viewportProps, ...prop
 		setThumbHeight(newThumbHeight);
 		setThumbTop(newThumbTop);
 	}, []);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		updateThumb();
 		const viewport = viewportRef.current;
 		if (!viewport) return;
@@ -35,12 +35,12 @@ function ScrollArea({ className, height, style, children, viewportProps, ...prop
 		return () => observer.disconnect();
 	}, [updateThumb, children]);
 	const { className: viewportClassName, ref: callerViewportRef, onScroll: callerOnScroll, ...restViewportProps } = viewportProps ?? {};
-	const setViewportRef = React.useCallback((node) => {
+	const setViewportRef = React$1.useCallback((node) => {
 		viewportRef.current = node;
 		if (typeof callerViewportRef === "function") callerViewportRef(node);
 		else if (callerViewportRef) callerViewportRef.current = node;
 	}, [callerViewportRef]);
-	const handleScroll = React.useCallback((event) => {
+	const handleScroll = React$1.useCallback((event) => {
 		if (!isDragging) updateThumb();
 		callerOnScroll?.(event);
 	}, [
@@ -48,14 +48,14 @@ function ScrollArea({ className, height, style, children, viewportProps, ...prop
 		isDragging,
 		callerOnScroll
 	]);
-	const handleThumbMouseDown = React.useCallback((e) => {
+	const handleThumbMouseDown = React$1.useCallback((e) => {
 		e.preventDefault();
 		e.stopPropagation();
 		setIsDragging(true);
 		dragStartY.current = e.clientY;
 		dragStartScrollTop.current = viewportRef.current?.scrollTop ?? 0;
 	}, []);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (!isDragging) return;
 		const handleMouseMove = (e) => {
 			const viewport = viewportRef.current;
@@ -74,7 +74,7 @@ function ScrollArea({ className, height, style, children, viewportProps, ...prop
 			window.removeEventListener("mouseup", handleMouseUp);
 		};
 	}, [isDragging, updateThumb]);
-	const handleTrackClick = React.useCallback((e) => {
+	const handleTrackClick = React$1.useCallback((e) => {
 		const viewport = viewportRef.current;
 		const scrollbar = e.currentTarget;
 		if (!viewport) return;

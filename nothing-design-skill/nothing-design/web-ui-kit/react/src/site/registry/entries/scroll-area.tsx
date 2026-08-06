@@ -1,4 +1,4 @@
-import { ScrollArea } from 'nothing-ui/scroll-area'
+import { ScrollArea } from 'aios-ui-kit/scroll-area'
 import type { ComponentDoc } from '../types'
 
 import ScrollAreaBasic from '../../examples/scroll-area/basic'
@@ -27,7 +27,7 @@ export const scrollAreaDoc: ComponentDoc = {
       </div>
     </ScrollArea>
   ),
-  importStatement: `import { ScrollArea } from 'nothing-ui/scroll-area'`,
+  importStatement: `import { ScrollArea } from 'aios-ui-kit/scroll-area'`,
   usageSnippet: `<ScrollArea height="240px">
   <YourLongContent />
 </ScrollArea>`,

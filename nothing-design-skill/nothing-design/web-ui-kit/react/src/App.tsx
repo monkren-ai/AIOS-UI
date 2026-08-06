@@ -60,7 +60,7 @@ export function App() {
   )
 
   return (
-    <BrowserRouter basename="/Nothing-UI">
+    <BrowserRouter basename="/AIOS-UI">
       <ShowcaseProvider value={contextValue}>
         <ScrollToTop />
         <Suspense fallback={<RouteFallback />}>

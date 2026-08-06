@@ -59,8 +59,8 @@ export function ComponentDetailPage() {
       <Notice
         title={t('文档撰写中', 'Documentation in progress')}
         body={t(
-          `${entry.name} 已经可以使用，但这一页还没写完。组件本身可以直接从 nothing-ui/${slug} import。`,
-          `${entry.name} already ships, but this page isn't written yet. You can import the component from nothing-ui/${slug} today.`,
+          `${entry.name} 已经可以使用，但这一页还没写完。组件本身可以直接从 aios-ui-kit/${slug} import。`,
+          `${entry.name} already ships, but this page isn't written yet. You can import the component from aios-ui-kit/${slug} today.`,
         )}
       />
     )
@@ -128,7 +128,7 @@ export function ComponentDetailPage() {
         <ComponentPreview
           dir="rtl"
           minHeight={140}
-          code={`import { DirectionProvider } from 'nothing-ui/direction-provider'\n\n<DirectionProvider dir="rtl">\n  <App />\n</DirectionProvider>`}
+          code={`import { DirectionProvider } from 'aios-ui-kit/direction-provider'\n\n<DirectionProvider dir="rtl">\n  <App />\n</DirectionProvider>`}
         >
           {doc.preview()}
         </ComponentPreview>

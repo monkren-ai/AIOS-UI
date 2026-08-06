@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { calendarNavButtonVariants, calendarVariants, calendarWeekdayVariants, dayVariants } from "./calendar-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Calendar/Calendar.tsx
 const days = [
@@ -36,7 +36,7 @@ const weekdays = [
 	"S"
 ];
 function Calendar({ className, type = "compact", initialDate = /* @__PURE__ */ new Date(), ref, ...props }) {
-	const [currentDate, setCurrentDate] = React.useState(initialDate);
+	const [currentDate, setCurrentDate] = React$1.useState(initialDate);
 	const dayName = days[currentDate.getDay()];
 	const date = currentDate.getDate();
 	const monthName = months[currentDate.getMonth()];

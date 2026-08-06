@@ -24,8 +24,8 @@ export const DOC_PAGES: DocPageMeta[] = [
     group: 'getting-started',
     title: { zh: '安装', en: 'Installation' },
     description: {
-      zh: '把 Nothing UI 接进你的 React 项目。',
-      en: 'Add Nothing UI to your React project.',
+      zh: '把 AIOS UI 接进你的 React 项目。',
+      en: 'Add AIOS UI to your React project.',
     },
   },
   {

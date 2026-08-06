@@ -1,4 +1,4 @@
-import { SunDial } from 'nothing-ui/sun-dial'
+import { SunDial } from 'aios-ui-kit/sun-dial'
 import type { ComponentDoc } from '../types'
 
 import SunDialDefault from '../../examples/sun-dial/default'
@@ -17,7 +17,7 @@ export const sunDialDoc: ComponentDoc = {
     en: 'A sunrise-to-sunset arc that places the sun by latitude and counts the daylight left.',
   },
   preview: () => <SunDial latitude={35.6762} longitude={139.6503} className="w-full max-w-sm" />,
-  importStatement: `import { SunDial } from 'nothing-ui/sun-dial'`,
+  importStatement: `import { SunDial } from 'aios-ui-kit/sun-dial'`,
   usageSnippet: `<SunDial latitude={35.6762} longitude={139.6503} />`,
   examples: [
     {

@@ -1,4 +1,4 @@
-import { DotMatrix } from 'nothing-ui/dot-matrix'
+import { DotMatrix } from 'aios-ui-kit/dot-matrix'
 import type { ComponentDoc } from '../types'
 
 import DotMatrixPattern from '../../examples/dot-matrix/pattern'
@@ -25,7 +25,7 @@ export const dotMatrixDoc: ComponentDoc = {
       ]}
     />
   ),
-  importStatement: `import { DotMatrix } from 'nothing-ui/dot-matrix'`,
+  importStatement: `import { DotMatrix } from 'aios-ui-kit/dot-matrix'`,
   usageSnippet: `<DotMatrix rows={8} cols={16} activeDots={[[1, 2], [2, 2]]} />`,
   composition: {
     zh: '公开 API 是 `StaticDotMatrix` 的 re-export，名字叫 `DotMatrix`。坐标是 `[row, col]`，从 0 起算。',

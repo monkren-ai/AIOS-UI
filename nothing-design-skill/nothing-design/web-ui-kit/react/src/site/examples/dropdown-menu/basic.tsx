@@ -1,4 +1,4 @@
-import { DropdownMenu } from 'nothing-ui/dropdown-menu'
+import { DropdownMenu } from 'aios-ui-kit/dropdown-menu'
 
 export default function DropdownMenuBasic() {
   return (

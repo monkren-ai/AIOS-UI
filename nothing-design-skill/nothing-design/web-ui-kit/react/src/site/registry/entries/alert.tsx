@@ -1,4 +1,4 @@
-import { Alert } from 'nothing-ui/alert'
+import { Alert } from 'aios-ui-kit/alert'
 import type { ComponentDoc } from '../types'
 
 import AlertVariants from '../../examples/alert/variants'
@@ -25,7 +25,7 @@ export const alertDoc: ComponentDoc = {
       Installs on the next restart.
     </Alert>
   ),
-  importStatement: `import { Alert } from 'nothing-ui/alert'`,
+  importStatement: `import { Alert } from 'aios-ui-kit/alert'`,
   usageSnippet: `<Alert title="Firmware 2.6.1">Installs on the next restart.</Alert>`,
   examples: [
     {

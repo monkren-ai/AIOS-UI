@@ -1,4 +1,4 @@
-import { Collapsible } from 'nothing-ui/collapsible'
+import { Collapsible } from 'aios-ui-kit/collapsible'
 
 const LINES = Array.from({ length: 14 }, (_, i) => `Changelog entry ${i + 1}`)
 

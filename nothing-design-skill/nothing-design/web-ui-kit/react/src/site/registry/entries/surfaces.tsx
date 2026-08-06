@@ -1,4 +1,4 @@
-import { Surfaces } from 'nothing-ui/surfaces'
+import { Surfaces } from 'aios-ui-kit/surfaces'
 import type { ComponentDoc } from '../types'
 
 import SurfacesElevations from '../../examples/surfaces/elevations'
@@ -18,7 +18,7 @@ export const surfacesDoc: ComponentDoc = {
       <p className="font-mono text-xs text-foreground-muted">Surface content</p>
     </Surfaces>
   ),
-  importStatement: `import { Surfaces } from 'nothing-ui/surfaces'`,
+  importStatement: `import { Surfaces } from 'aios-ui-kit/surfaces'`,
   usageSnippet: `<Surfaces elevation={1} padding="md">\n  …\n</Surfaces>`,
   examples: [
     {

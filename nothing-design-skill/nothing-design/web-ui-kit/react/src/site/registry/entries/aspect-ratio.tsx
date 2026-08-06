@@ -1,4 +1,4 @@
-import { AspectRatio } from 'nothing-ui/aspect-ratio'
+import { AspectRatio } from 'aios-ui-kit/aspect-ratio'
 import type { ComponentDoc } from '../types'
 
 import AspectRatioRatios from '../../examples/aspect-ratio/ratios'
@@ -23,7 +23,7 @@ export const aspectRatioDoc: ComponentDoc = {
       </div>
     </AspectRatio>
   ),
-  importStatement: `import { AspectRatio } from 'nothing-ui/aspect-ratio'`,
+  importStatement: `import { AspectRatio } from 'aios-ui-kit/aspect-ratio'`,
   usageSnippet: `<AspectRatio ratio={16 / 9}>\n  <img src="/photo.jpg" className="h-full w-full object-cover" />\n</AspectRatio>`,
   examples: [
     {

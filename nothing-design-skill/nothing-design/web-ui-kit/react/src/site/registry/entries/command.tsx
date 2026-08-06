@@ -1,4 +1,4 @@
-import { Command } from 'nothing-ui/command'
+import { Command } from 'aios-ui-kit/command'
 import type { ComponentDoc } from '../types'
 
 import CommandBasic from '../../examples/command/basic'
@@ -31,7 +31,7 @@ export const commandDoc: ComponentDoc = {
       <Command groups={PREVIEW_GROUPS} />
     </div>
   ),
-  importStatement: `import { Command } from 'nothing-ui/command'`,
+  importStatement: `import { Command } from 'aios-ui-kit/command'`,
   usageSnippet: `<Command
   groups={[
     {

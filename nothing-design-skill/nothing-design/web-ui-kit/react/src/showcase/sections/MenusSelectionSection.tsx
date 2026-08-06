@@ -38,7 +38,7 @@ export function MenusSelectionSection({
           items={[
             {
               id: '1',
-              title: t('什么是 Nothing UI？', 'What is Nothing UI?'),
+              title: t('什么是 AIOS UI？', 'What is AIOS UI?'),
               content: t(
                 '一个以克制与精确为核心构建的设计系统。',
                 'A design system built with purposeful restraint and technical precision.',
@@ -48,8 +48,8 @@ export function MenusSelectionSection({
               id: '2',
               title: t('如何安装？', 'How do I install it?'),
               content: t(
-                '通过 npm 安装：npm install nothing-ui-kit',
-                'Install via npm: npm install nothing-ui-kit',
+                '通过 npm 安装：npm install aios-ui-kit',
+                'Install via npm: npm install aios-ui-kit',
               ),
             },
             {

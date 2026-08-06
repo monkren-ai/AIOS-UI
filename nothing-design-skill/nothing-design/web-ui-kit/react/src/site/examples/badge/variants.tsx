@@ -1,4 +1,4 @@
-import { Badge } from 'nothing-ui/badge'
+import { Badge } from 'aios-ui-kit/badge'
 
 const variants = ['primary', 'soft', 'outline', 'destructive'] as const
 

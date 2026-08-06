@@ -1,0 +1,3 @@
+import { SegmentedControlVariant, segmentVariants, segmentedHoverSliderVariants, segmentedSliderVariants, segmentedVariants } from "../SegmentedControl/segmented-control-variants.mjs";
+import { SegmentedControl, SegmentedControlProps } from "../SegmentedControl/SegmentedControl.mjs";
+export { SegmentedControl, type SegmentedControlProps, type SegmentedControlVariant, segmentVariants, segmentedHoverSliderVariants, segmentedSliderVariants, segmentedVariants };

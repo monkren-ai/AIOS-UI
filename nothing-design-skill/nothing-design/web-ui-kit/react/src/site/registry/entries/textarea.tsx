@@ -1,4 +1,4 @@
-import { Textarea } from 'nothing-ui/textarea'
+import { Textarea } from 'aios-ui-kit/textarea'
 import type { ComponentDoc } from '../types'
 
 import TextareaVariants from '../../examples/textarea/variants'
@@ -27,7 +27,7 @@ export const textareaDoc: ComponentDoc = {
       <Textarea placeholder="Write something" />
     </div>
   ),
-  importStatement: `import { Textarea } from 'nothing-ui/textarea'`,
+  importStatement: `import { Textarea } from 'aios-ui-kit/textarea'`,
   usageSnippet: `<Textarea label="Notes" placeholder="Write something" />`,
   composition: {
     zh: '和 `Input` 同构：外层容器里是 label、原生 `<textarea>`、以及错误或说明文案。区别在于边框长在 `<textarea>` 自己身上，因为这里没有图标行要包。',

@@ -1,4 +1,4 @@
-import { Select } from 'nothing-ui/select'
+import { Select } from 'aios-ui-kit/select'
 
 const TIMEZONES = [
   { value: 'utc', label: 'UTC' },

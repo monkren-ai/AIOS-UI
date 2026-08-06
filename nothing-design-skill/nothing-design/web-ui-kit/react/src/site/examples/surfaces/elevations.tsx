@@ -1,4 +1,4 @@
-import { Surfaces } from 'nothing-ui/surfaces'
+import { Surfaces } from 'aios-ui-kit/surfaces'
 
 export default function SurfacesElevations() {
   return (

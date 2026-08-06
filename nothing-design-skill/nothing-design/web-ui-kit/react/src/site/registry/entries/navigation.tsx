@@ -1,4 +1,4 @@
-import { Navigation } from 'nothing-ui/navigation'
+import { Navigation } from 'aios-ui-kit/navigation'
 import type { ComponentDoc } from '../types'
 
 import NavigationBasic from '../../examples/navigation/basic'
@@ -19,7 +19,7 @@ export const navigationDoc: ComponentDoc = {
     en: 'A horizontal nav bar whose indicator slides to the active item and tracks the URL hash.',
   },
   preview: () => <Navigation items={PREVIEW_ITEMS} activeIndex={0} syncWithUrl={false} />,
-  importStatement: `import { Navigation } from 'nothing-ui/navigation'`,
+  importStatement: `import { Navigation } from 'aios-ui-kit/navigation'`,
   usageSnippet: `<Navigation
   items={[{ label: 'Overview' }, { label: 'Devices' }, { label: 'Support' }]}
 />`,

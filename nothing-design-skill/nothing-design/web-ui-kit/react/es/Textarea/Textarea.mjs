@@ -1,13 +1,13 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { resolveTextareaVariant, textareaFieldVariants, textareaLabelVariants, textareaMessageVariants, textareaVariants } from "./textarea-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Textarea/Textarea.tsx
 function Textarea({ className, style, value: controlledValue, defaultValue, onChange, onValueChange, placeholder, label, error, message, disabled, autoResize = false, minRows = 3, maxRows, variant, size, id, onFocus, onBlur, ref, ...textareaProps }) {
-	const [internalValue, setInternalValue] = React.useState(defaultValue ?? "");
-	const [focused, setFocused] = React.useState(false);
-	const internalRef = React.useRef(null);
-	const generatedId = React.useId();
+	const [internalValue, setInternalValue] = React$1.useState(defaultValue ?? "");
+	const [focused, setFocused] = React$1.useState(false);
+	const internalRef = React$1.useRef(null);
+	const generatedId = React$1.useId();
 	const inputId = id || generatedId;
 	const errorId = `${inputId}-error`;
 	const messageId = `${inputId}-message`;
@@ -17,12 +17,12 @@ function Textarea({ className, style, value: controlledValue, defaultValue, onCh
 	const isDisabled = !!disabled;
 	const resolvedVariant = resolveTextareaVariant(variant) ?? "outline";
 	const resolvedSize = size ?? "md";
-	const setRefs = React.useCallback((node) => {
+	const setRefs = React$1.useCallback((node) => {
 		internalRef.current = node;
 		if (typeof ref === "function") ref(node);
 		else if (ref) ref.current = node;
 	}, [ref]);
-	const resizeTextarea = React.useCallback(() => {
+	const resizeTextarea = React$1.useCallback(() => {
 		const textarea = internalRef.current;
 		if (!textarea || !autoResize) return;
 		textarea.style.height = "auto";
@@ -38,7 +38,7 @@ function Textarea({ className, style, value: controlledValue, defaultValue, onCh
 		minRows,
 		maxRows
 	]);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		resizeTextarea();
 	}, [value, resizeTextarea]);
 	const handleChange = (event) => {

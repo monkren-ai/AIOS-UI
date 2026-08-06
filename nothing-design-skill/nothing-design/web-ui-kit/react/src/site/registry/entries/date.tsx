@@ -1,4 +1,4 @@
-import { DateWidget } from 'nothing-ui/date'
+import { DateWidget } from 'aios-ui-kit/date'
 import type { ComponentDoc } from '../types'
 
 import DateTypes from '../../examples/date/types'
@@ -17,7 +17,7 @@ export const dateDoc: ComponentDoc = {
     en: 'A date card in three looks: block with a day-progress ring, dual ring, or serif tear-off.',
   },
   preview: () => <DateWidget type="rect" theme="light" />,
-  importStatement: `import { DateWidget } from 'nothing-ui/date'`,
+  importStatement: `import { DateWidget } from 'aios-ui-kit/date'`,
   usageSnippet: `<DateWidget type="rect" />`,
   examples: [
     {

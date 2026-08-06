@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ContextMenu } from 'nothing-ui/context-menu'
+import { ContextMenu } from 'aios-ui-kit/context-menu'
 
 export default function ContextMenuShortcuts() {
   const [last, setLast] = useState<string | null>(null)

@@ -1,4 +1,4 @@
-# ADR-001：参考 Ant Design X 升级 Nothing-UI
+# ADR-001：参考 Ant Design X 升级 AIOS UI
 
 ## 状态
 
@@ -6,9 +6,9 @@ Accepted
 
 ## 背景
 
-用户提出「全方位参考 `https://github.com/ant-design/x` 对本地 Nothing-UI 项目升级」。Ant Design X 是蚂蚁推出的面向 AI 界面的 React 组件库，提供 `Bubble`、`Sender`、`ThoughtChain`、`Prompts` 等对话式 AI 组件，以及 `XProvider`、`classNames/styles` 语义化 API 等工程实践。
+用户提出「全方位参考 `https://github.com/ant-design/x` 对本地 AIOS UI 项目升级」。Ant Design X 是蚂蚁推出的面向 AI 界面的 React 组件库，提供 `Bubble`、`Sender`、`ThoughtChain`、`Prompts` 等对话式 AI 组件，以及 `XProvider`、`classNames/styles` 语义化 API 等工程实践。
 
-Nothing-UI 当前是一个独立设计系统的 React 组件库，基于：
+AIOS UI 当前是一个独立设计系统的 React 组件库，基于：
 
 - React 19 + TypeScript 6
 - `@base-ui/react` 提供底层交互 primitive
@@ -20,7 +20,7 @@ Nothing-UI 当前是一个独立设计系统的 React 组件库，基于：
 
 ### 1. 不引入 Ant Design 作为依赖
 
-Nothing-UI 的定位是独立设计系统。本次升级只借鉴 Ant Design X 的组件形态、API 设计、工程实践，不引入 `antd`、`@ant-design/cssinjs` 等依赖，保持包体积与独立性。
+AIOS UI 的定位是独立设计系统。本次升级只借鉴 Ant Design X 的组件形态、API 设计、工程实践，不引入 `antd`、`@ant-design/cssinjs` 等依赖，保持包体积与独立性。
 
 ### 2. 保持 Nothing 设计语言
 

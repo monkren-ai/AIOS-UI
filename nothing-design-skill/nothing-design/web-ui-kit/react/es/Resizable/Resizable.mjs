@@ -1,21 +1,21 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { resizableHandleVariants, resizablePanelVariants, resizableVariants } from "./resizable-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Resizable/Resizable.tsx
 function Resizable({ className, direction = "horizontal", initialSizes, minSizes, maxSizes, children, ref, ...props }) {
-	const childArray = React.Children.toArray(children);
+	const childArray = React$1.Children.toArray(children);
 	const panelCount = childArray.length;
 	const defaultSizes = initialSizes ?? Array(panelCount).fill(100 / panelCount);
 	const mins = minSizes ?? Array(panelCount).fill(10);
 	const maxs = maxSizes ?? Array(panelCount).fill(90);
-	const [sizes, setSizes] = React.useState(defaultSizes);
-	const [activeHandle, setActiveHandle] = React.useState(null);
-	const containerRef = React.useRef(null);
-	const startPos = React.useRef(0);
-	const startSizes = React.useRef([]);
+	const [sizes, setSizes] = React$1.useState(defaultSizes);
+	const [activeHandle, setActiveHandle] = React$1.useState(null);
+	const containerRef = React$1.useRef(null);
+	const startPos = React$1.useRef(0);
+	const startSizes = React$1.useRef([]);
 	const isHorizontal = direction === "horizontal";
-	const setRefs = React.useCallback((node) => {
+	const setRefs = React$1.useCallback((node) => {
 		containerRef.current = node;
 		if (typeof ref === "function") ref(node);
 		else if (ref) ref.current = node;
@@ -24,19 +24,19 @@ function Resizable({ className, direction = "horizontal", initialSizes, minSizes
 	* 横向分栏在 `dir="rtl"` 下由 flex 镜像过：视觉上的「第一个面板」在右侧，
 	* 所以指针 / 方向键的位移要取反，拖拽方向才跟手。
 	*/
-	const getFlowSign = React.useCallback(() => {
+	const getFlowSign = React$1.useCallback(() => {
 		if (!isHorizontal) return 1;
 		const node = containerRef.current;
 		if (!node || typeof window === "undefined") return 1;
 		return window.getComputedStyle(node).direction === "rtl" ? -1 : 1;
 	}, [isHorizontal]);
-	const handleMouseDown = React.useCallback((index, e) => {
+	const handleMouseDown = React$1.useCallback((index, e) => {
 		e.preventDefault();
 		setActiveHandle(index);
 		startPos.current = isHorizontal ? e.clientX : e.clientY;
 		startSizes.current = [...sizes];
 	}, [isHorizontal, sizes]);
-	const handleKeyDown = React.useCallback((index, e) => {
+	const handleKeyDown = React$1.useCallback((index, e) => {
 		const step = 2;
 		let delta = 0;
 		if (isHorizontal) {
@@ -65,7 +65,7 @@ function Resizable({ className, direction = "horizontal", initialSizes, minSizes
 		maxs,
 		getFlowSign
 	]);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (activeHandle === null) return;
 		const handleMouseMove = (e) => {
 			const currentPos = isHorizontal ? e.clientX : e.clientY;
@@ -107,7 +107,7 @@ function Resizable({ className, direction = "horizontal", initialSizes, minSizes
 		"data-slot": "resizable",
 		"data-direction": dataAttr(direction),
 		...props,
-		children: childArray.map((child, index) => /* @__PURE__ */ jsxs(React.Fragment, { children: [/* @__PURE__ */ jsx("div", {
+		children: childArray.map((child, index) => /* @__PURE__ */ jsxs(React$1.Fragment, { children: [/* @__PURE__ */ jsx("div", {
 			className: resizablePanelVariants(),
 			"data-slot": "resizable-panel",
 			"data-index": index,

@@ -1,4 +1,4 @@
-import { DateNav } from 'nothing-ui/date-nav'
+import { DateNav } from 'aios-ui-kit/date-nav'
 import type { ComponentDoc } from '../types'
 
 import DateNavBasic from '../../examples/date-nav/basic'
@@ -17,7 +17,7 @@ export const dateNavDoc: ComponentDoc = {
     en: 'A month stepper — arrows on either side of the month you are looking at.',
   },
   preview: () => <DateNav />,
-  importStatement: `import { DateNav } from 'nothing-ui/date-nav'`,
+  importStatement: `import { DateNav } from 'aios-ui-kit/date-nav'`,
   usageSnippet: `<DateNav />`,
   composition: {
     zh: '不是日历——它不渲染任何日期网格，只是一条「‹  文案  ›」的翻页条，文案默认是当前内部日期格式化成的月份（如 `AUGUST 2026`）。它有两套完全独立的状态模型，混着用是最容易踩的坑：非受控模式下箭头点击既触发 `onPrev`/`onNext`，也会在内部把日期真的移动一个月并调用 `onDateChange`；一旦传了 `currentDate`（受控），箭头点击**只**调用 `onPrev`/`onNext`——组件不会替你计算下个月，也不会调 `onDateChange`，你必须在 `onPrev`/`onNext` 里自己算出新日期再传回 `currentDate`。第二个示例演示的就是这个受控写法。',

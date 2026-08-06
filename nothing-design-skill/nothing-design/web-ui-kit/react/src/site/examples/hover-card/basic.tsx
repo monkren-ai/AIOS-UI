@@ -1,5 +1,5 @@
-import { Avatar } from 'nothing-ui/avatar'
-import { HoverCard } from 'nothing-ui/hover-card'
+import { Avatar } from 'aios-ui-kit/avatar'
+import { HoverCard } from 'aios-ui-kit/hover-card'
 
 export default function HoverCardBasic() {
   return (

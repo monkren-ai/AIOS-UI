@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { RadioGroup } from 'nothing-ui/radio-group'
+import { RadioGroup } from 'aios-ui-kit/radio-group'
 
 const OPTIONS = [
   { value: 'ship', label: 'Ship it' },

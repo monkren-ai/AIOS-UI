@@ -1,4 +1,4 @@
-import { Resizable } from 'nothing-ui/resizable'
+import { Resizable } from 'aios-ui-kit/resizable'
 
 export default function ResizableHorizontal() {
   return (

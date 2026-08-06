@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Button } from 'nothing-ui/button'
-import { Popover } from 'nothing-ui/popover'
-import { Slider } from 'nothing-ui/slider'
+import { Button } from 'aios-ui-kit/button'
+import { Popover } from 'aios-ui-kit/popover'
+import { Slider } from 'aios-ui-kit/slider'
 
 export default function PopoverInteractive() {
   const [brightness, setBrightness] = useState(60)

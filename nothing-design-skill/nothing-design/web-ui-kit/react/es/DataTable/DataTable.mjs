@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "@/styles/table.css";
@@ -49,7 +49,7 @@ function getSortValue(cell, type) {
 	return text.toLowerCase();
 }
 function useSortedRows(rows, columns, sortKey, sortDirection) {
-	return React.useMemo(() => {
+	return React$1.useMemo(() => {
 		if (!sortKey || !sortDirection) return rows;
 		const column = columns.find((c) => c.key === sortKey);
 		return [...rows].sort((a, b) => {
@@ -153,7 +153,7 @@ function GridHeader({ columns, sortKey, sortDirection, onSort }) {
 	});
 }
 function GridView({ columns, rows, emptyMessage, onRowClick, sortKey, sortDirection, onSort }) {
-	const [activeRowIndex, setActiveRowIndex] = React.useState(null);
+	const [activeRowIndex, setActiveRowIndex] = React$1.useState(null);
 	const handleRowClick = (index) => {
 		setActiveRowIndex(index);
 		onRowClick?.(index);
@@ -244,10 +244,10 @@ function RowsView({ items, onRowClick }) {
 		}, index);
 	}) });
 }
-const DataTable = React.forwardRef(({ className, variant = "table", columns, rows = [], caption, items = [], emptyMessage = "No data", onRowClick, onSortChange, striped = false, compact = false, hoverable = false, proximity = false, ...props }, ref) => {
-	const [sortKey, setSortKey] = React.useState(null);
-	const [sortDirection, setSortDirection] = React.useState(null);
-	const handleSort = React.useCallback((key) => {
+const DataTable = React$1.forwardRef(({ className, variant = "table", columns, rows = [], caption, items = [], emptyMessage = "No data", onRowClick, onSortChange, striped = false, compact = false, hoverable = false, proximity = false, ...props }, ref) => {
+	const [sortKey, setSortKey] = React$1.useState(null);
+	const [sortDirection, setSortDirection] = React$1.useState(null);
+	const handleSort = React$1.useCallback((key) => {
 		setSortKey((prevKey) => {
 			if (prevKey !== key) {
 				setSortDirection("asc");

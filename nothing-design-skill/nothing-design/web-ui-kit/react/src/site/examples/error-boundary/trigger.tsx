@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import ErrorBoundary from 'nothing-ui/error-boundary'
-import { Button } from 'nothing-ui/button'
+import ErrorBoundary from 'aios-ui-kit/error-boundary'
+import { Button } from 'aios-ui-kit/button'
 
 function BrokenChild({ shouldThrow }: { shouldThrow: boolean }) {
   if (shouldThrow) {

@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Form } from 'nothing-ui/form'
-import { Input } from 'nothing-ui/input'
-import { Button } from 'nothing-ui/button'
+import { Form } from 'aios-ui-kit/form'
+import { Input } from 'aios-ui-kit/input'
+import { Button } from 'aios-ui-kit/button'
 
 export default function FormBasic() {
   const [submitted, setSubmitted] = useState<string | null>(null)

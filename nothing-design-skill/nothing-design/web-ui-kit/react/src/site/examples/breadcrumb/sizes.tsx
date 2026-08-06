@@ -1,4 +1,4 @@
-import { Breadcrumb } from 'nothing-ui/breadcrumb'
+import { Breadcrumb } from 'aios-ui-kit/breadcrumb'
 
 const items = [
   { label: 'Settings', href: '#' },

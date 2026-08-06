@@ -1,4 +1,4 @@
-import { NavigationMenu } from 'nothing-ui/navigation-menu'
+import { NavigationMenu } from 'aios-ui-kit/navigation-menu'
 import type { ComponentDoc } from '../types'
 
 import NavigationMenuBasic from '../../examples/navigation-menu/basic'
@@ -27,7 +27,7 @@ export const navigationMenuDoc: ComponentDoc = {
     en: 'A primary navigation bar with dropdown panels.',
   },
   preview: () => <NavigationMenu items={PREVIEW_ITEMS} />,
-  importStatement: `import { NavigationMenu } from 'nothing-ui/navigation-menu'`,
+  importStatement: `import { NavigationMenu } from 'aios-ui-kit/navigation-menu'`,
   usageSnippet: `<NavigationMenu
   items={[
     { label: 'Home', href: '/', active: true },

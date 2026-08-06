@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
 import ThinkingIndicator from "../ThinkingIndicator/ThinkingIndicator.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "./ThinkingSteps.css";
@@ -18,11 +18,11 @@ const statusLabels = {
 	done: "[DONE]",
 	error: "[ERROR]"
 };
-const ThinkingSteps = React.forwardRef(({ steps, title = "THINKING", activeIndex: activeIndexProp, defaultActiveIndex = 0, autoAdvance = false, interval = 1600, loop = false, onStepChange, compact = false, className, ...props }, ref) => {
+const ThinkingSteps = React$1.forwardRef(({ steps, title = "THINKING", activeIndex: activeIndexProp, defaultActiveIndex = 0, autoAdvance = false, interval = 1600, loop = false, onStepChange, compact = false, className, ...props }, ref) => {
 	const isControlled = activeIndexProp !== void 0;
-	const [internalIndex, setInternalIndex] = React.useState(defaultActiveIndex);
+	const [internalIndex, setInternalIndex] = React$1.useState(defaultActiveIndex);
 	const activeIndex = isControlled ? activeIndexProp : internalIndex;
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (!autoAdvance) return;
 		if (steps.length === 0) return;
 		const timer = setInterval(() => {

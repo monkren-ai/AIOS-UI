@@ -1,4 +1,4 @@
-import { AspectRatio } from 'nothing-ui/aspect-ratio'
+import { AspectRatio } from 'aios-ui-kit/aspect-ratio'
 
 /** 本地 SVG data URI，示例不依赖外部网络图片。 */
 const photo =

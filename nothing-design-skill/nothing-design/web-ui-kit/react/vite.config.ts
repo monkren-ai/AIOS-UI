@@ -5,14 +5,14 @@ import path from 'path'
 import { themeScriptPlugin } from './scripts/vite-theme-script-plugin'
 
 export default defineConfig({
-  base: '/Nothing-UI/',
+  base: '/AIOS-UI/',
   plugins: [themeScriptPlugin(), tailwindcss(), react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      // 文档站示例按真实包名书写（`nothing-ui/button`），本地指回源码，
+      // 文档站示例按真实包名书写（`aios-ui-kit/button`），本地指回源码，
       // 所以代码块里看到的就是使用者该写的，复制出去直接能用。
-      'nothing-ui': path.resolve(__dirname, './src/subpath'),
+      'aios-ui-kit': path.resolve(__dirname, './src/subpath'),
       'figma:asset': path.resolve(__dirname, './src/assets/images'),
     },
   },

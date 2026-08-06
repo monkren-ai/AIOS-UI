@@ -1,4 +1,4 @@
-import { InputOTP } from 'nothing-ui/input-otp'
+import { InputOTP } from 'aios-ui-kit/input-otp'
 
 export default function InputOTPSizes() {
   return (

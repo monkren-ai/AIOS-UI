@@ -1,4 +1,4 @@
-import { Toggle } from 'nothing-ui/toggle'
+import { Toggle } from 'aios-ui-kit/toggle'
 import type { ComponentDoc } from '../types'
 
 import ToggleBasic from '../../examples/toggle/basic'
@@ -23,7 +23,7 @@ export const toggleDoc: ComponentDoc = {
     en: 'A button that stays pressed — for toolbar-style on/off controls.',
   },
   preview: () => <Toggle defaultPressed>Bold</Toggle>,
-  importStatement: `import { Toggle, ToggleGroup } from 'nothing-ui/toggle'`,
+  importStatement: `import { Toggle, ToggleGroup } from 'aios-ui-kit/toggle'`,
   usageSnippet: `<Toggle defaultPressed>Bold</Toggle>`,
   composition: {
     zh: '`Toggle` 是一个带 `aria-pressed` 的原生 `<button>`。`ToggleGroup` 通过 context 把 `variant` 与 `size` 下发给所有子项（子项自己传的会被覆盖），并接管选中状态——所以组内的 `Toggle` 必须有 `value`，`pressed` 那一套此时不再生效。',

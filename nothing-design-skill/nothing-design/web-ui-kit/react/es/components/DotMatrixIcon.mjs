@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx } from "react/jsx-runtime";
 import "../styles/dot-matrix-icon.css";
 //#region src/components/DotMatrixIcon.tsx
@@ -10,15 +10,15 @@ const MAX_DIM = 96;
 * wherever the SVG alpha exceeds the threshold. Optional Random Pulse animation
 * periodically highlights a percentage of dots using the active color.
 */
-const DotMatrixIcon = React.forwardRef(({ svg, rows = 24, cols = 24, alphaThreshold = 128, dotSize = 6, gap = 2, baseColor = "var(--widget-dark-2)", activeColor = "var(--widget-primary)", backgroundColor = "transparent", radius = 0, anim = "none", activePercent = 20, speedMs = 1200, className, style, ...props }, ref) => {
+const DotMatrixIcon = React$1.forwardRef(({ svg, rows = 24, cols = 24, alphaThreshold = 128, dotSize = 6, gap = 2, baseColor = "var(--widget-dark-2)", activeColor = "var(--widget-primary)", backgroundColor = "transparent", radius = 0, anim = "none", activePercent = 20, speedMs = 1200, className, style, ...props }, ref) => {
 	const safeRows = Math.min(Math.max(1, Math.floor(rows)), MAX_DIM);
 	const safeCols = Math.min(Math.max(1, Math.floor(cols)), MAX_DIM);
 	if (import.meta.env.DEV) {
 		if (rows > MAX_DIM || cols > MAX_DIM) console.warn(`[DotMatrixIcon] rows/cols exceed ${MAX_DIM} and were clamped. Very high grid sizes increase render cost.`);
 	}
-	const [alphaMap, setAlphaMap] = React.useState(null);
-	const [error, setError] = React.useState(false);
-	React.useEffect(() => {
+	const [alphaMap, setAlphaMap] = React$1.useState(null);
+	const [error, setError] = React$1.useState(false);
+	React$1.useEffect(() => {
 		if (!svg) {
 			setAlphaMap(null);
 			setError(false);
@@ -72,7 +72,7 @@ const DotMatrixIcon = React.forwardRef(({ svg, rows = 24, cols = 24, alphaThresh
 		safeRows,
 		safeCols
 	]);
-	const onCells = React.useMemo(() => {
+	const onCells = React$1.useMemo(() => {
 		const grid = [];
 		for (let r = 0; r < safeRows; r++) {
 			const row = [];
@@ -89,7 +89,7 @@ const DotMatrixIcon = React.forwardRef(({ svg, rows = 24, cols = 24, alphaThresh
 		safeCols,
 		alphaThreshold
 	]);
-	const onKeys = React.useMemo(() => {
+	const onKeys = React$1.useMemo(() => {
 		const keys = [];
 		for (let r = 0; r < safeRows; r++) for (let c = 0; c < safeCols; c++) if (onCells[r]?.[c]) keys.push(`${r}-${c}`);
 		return keys;
@@ -98,8 +98,8 @@ const DotMatrixIcon = React.forwardRef(({ svg, rows = 24, cols = 24, alphaThresh
 		safeRows,
 		safeCols
 	]);
-	const [pulsing, setPulsing] = React.useState(/* @__PURE__ */ new Set());
-	React.useEffect(() => {
+	const [pulsing, setPulsing] = React$1.useState(/* @__PURE__ */ new Set());
+	React$1.useEffect(() => {
 		if (anim !== "random" || onKeys.length === 0) {
 			setPulsing(/* @__PURE__ */ new Set());
 			return;

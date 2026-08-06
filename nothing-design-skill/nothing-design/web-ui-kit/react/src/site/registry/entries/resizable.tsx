@@ -1,4 +1,4 @@
-import { Resizable } from 'nothing-ui/resizable'
+import { Resizable } from 'aios-ui-kit/resizable'
 import type { ComponentDoc } from '../types'
 
 import ResizableHorizontal from '../../examples/resizable/horizontal'
@@ -28,7 +28,7 @@ export const resizableDoc: ComponentDoc = {
       </div>
     </Resizable>
   ),
-  importStatement: `import { Resizable } from 'nothing-ui/resizable'`,
+  importStatement: `import { Resizable } from 'aios-ui-kit/resizable'`,
   usageSnippet: `<Resizable className="h-64">\n  <div>A</div>\n  <div>B</div>\n</Resizable>`,
   composition: {
     zh: 'Resizable 不是「Resizable + Panel + Handle」这样的复合组件——它只是一个组件，把手是自动生成的。它读取 `children` 的数量（`React.Children.toArray`）决定面板数 N，然后自己在每两个相邻面板之间插入一个把手，一共 N − 1 个。你不需要、也不能手写 `<ResizablePanel>` 之类的子组件；每个直接子元素本身就是一块面板内容。',

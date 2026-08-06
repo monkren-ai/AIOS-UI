@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Toggle, ToggleGroup } from 'nothing-ui/toggle'
+import { Toggle, ToggleGroup } from 'aios-ui-kit/toggle'
 
 const LAYERS = ['grid', 'labels', 'traffic']
 

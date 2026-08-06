@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DateNav } from 'nothing-ui/date-nav'
+import { DateNav } from 'aios-ui-kit/date-nav'
 
 function shiftMonth(date: Date, delta: number): Date {
   const next = new Date(date)

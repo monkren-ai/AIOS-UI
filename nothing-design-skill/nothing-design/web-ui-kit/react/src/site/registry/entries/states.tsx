@@ -1,4 +1,4 @@
-import { LoadingState } from 'nothing-ui/states'
+import { LoadingState } from 'aios-ui-kit/states'
 import type { ComponentDoc } from '../types'
 
 import StatesAll from '../../examples/states/all'
@@ -14,7 +14,7 @@ export const statesDoc: ComponentDoc = {
     en: 'Four block-level placeholders: loading, error, empty, and unavailable.',
   },
   preview: () => <LoadingState progress={42} label="Loading" className="w-full max-w-xs" />,
-  importStatement: `import { LoadingState, ErrorState, EmptyState, DisabledState } from 'nothing-ui/states'`,
+  importStatement: `import { LoadingState, ErrorState, EmptyState, DisabledState } from 'aios-ui-kit/states'`,
   usageSnippet: `<LoadingState progress={72} label="Syncing" />`,
   composition: {
     zh: 'States 不是单一组件，而是四个独立导出：`LoadingState`、`ErrorState`、`EmptyState`、`DisabledState`。按场景选一个，不要嵌套。',

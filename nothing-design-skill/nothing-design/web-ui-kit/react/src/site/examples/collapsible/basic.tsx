@@ -1,4 +1,4 @@
-import { Collapsible } from 'nothing-ui/collapsible'
+import { Collapsible } from 'aios-ui-kit/collapsible'
 
 export default function CollapsibleBasic() {
   return (

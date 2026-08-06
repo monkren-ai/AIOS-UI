@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DateWidget } from 'nothing-ui/date'
+import { DateWidget } from 'aios-ui-kit/date'
 
 export default function DatePeel() {
   const [torn, setTorn] = useState(0)

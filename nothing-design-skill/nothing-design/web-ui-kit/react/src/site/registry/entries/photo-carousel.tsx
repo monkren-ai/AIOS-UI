@@ -1,4 +1,4 @@
-import { PhotoCarousel } from 'nothing-ui/photo-carousel'
+import { PhotoCarousel } from 'aios-ui-kit/photo-carousel'
 import type { ComponentDoc } from '../types'
 
 import PhotoCarouselDefault from '../../examples/photo-carousel/default'
@@ -14,7 +14,7 @@ export const photoCarouselDoc: ComponentDoc = {
     en: 'An image carousel that autoplays — unless the user asked for reduced motion.',
   },
   preview: () => <PhotoCarousel className="w-full max-w-md" autoPlay={false} />,
-  importStatement: `import { PhotoCarousel } from 'nothing-ui/photo-carousel'`,
+  importStatement: `import { PhotoCarousel } from 'aios-ui-kit/photo-carousel'`,
   usageSnippet: `<PhotoCarousel slides={[{ title: 'Slide 1', pattern: 0 }]} />`,
   examples: [
     {

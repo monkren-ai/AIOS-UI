@@ -1,4 +1,4 @@
-import { Tabs, TabPanel } from 'nothing-ui/tabs'
+import { Tabs, TabPanel } from 'aios-ui-kit/tabs'
 import type { ComponentDoc } from '../types'
 
 import TabsBasic from '../../examples/tabs/basic'
@@ -36,7 +36,7 @@ export const tabsDoc: ComponentDoc = {
       </Tabs>
     </div>
   ),
-  importStatement: `import { Tabs, TabPanel } from 'nothing-ui/tabs'`,
+  importStatement: `import { Tabs, TabPanel } from 'aios-ui-kit/tabs'`,
   usageSnippet: `<Tabs
   items={[
     { value: 'overview', label: 'Overview' },

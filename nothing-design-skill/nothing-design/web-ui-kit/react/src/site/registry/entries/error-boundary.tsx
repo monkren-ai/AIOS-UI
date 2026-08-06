@@ -1,4 +1,4 @@
-import ErrorBoundary from 'nothing-ui/error-boundary'
+import ErrorBoundary from 'aios-ui-kit/error-boundary'
 import type { ComponentDoc } from '../types'
 
 import ErrorBoundaryTrigger from '../../examples/error-boundary/trigger'
@@ -18,7 +18,7 @@ export const errorBoundaryDoc: ComponentDoc = {
       <p className="font-mono text-xs text-foreground-muted">Protected content</p>
     </ErrorBoundary>
   ),
-  importStatement: `import ErrorBoundary from 'nothing-ui/error-boundary'`,
+  importStatement: `import ErrorBoundary from 'aios-ui-kit/error-boundary'`,
   usageSnippet: `<ErrorBoundary fallback={<MyFallback />}>\n  <App />\n</ErrorBoundary>`,
   examples: [
     {

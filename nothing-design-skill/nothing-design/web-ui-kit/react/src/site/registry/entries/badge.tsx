@@ -1,4 +1,4 @@
-import { Badge } from 'nothing-ui/badge'
+import { Badge } from 'aios-ui-kit/badge'
 import type { ComponentDoc } from '../types'
 
 import BadgeVariants from '../../examples/badge/variants'
@@ -21,7 +21,7 @@ export const badgeDoc: ComponentDoc = {
     en: 'A compact marker for statuses, counts, and categories.',
   },
   preview: () => <Badge>New</Badge>,
-  importStatement: `import { Badge } from 'nothing-ui/badge'`,
+  importStatement: `import { Badge } from 'aios-ui-kit/badge'`,
   usageSnippet: `<Badge>New</Badge>`,
   examples: [
     {

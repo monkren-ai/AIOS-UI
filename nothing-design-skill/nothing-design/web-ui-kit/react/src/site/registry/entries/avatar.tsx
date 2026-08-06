@@ -1,4 +1,4 @@
-import { Avatar } from 'nothing-ui/avatar'
+import { Avatar } from 'aios-ui-kit/avatar'
 import type { ComponentDoc } from '../types'
 
 import AvatarSizes from '../../examples/avatar/sizes'
@@ -21,7 +21,7 @@ export const avatarDoc: ComponentDoc = {
     en: 'A user avatar that falls back to initials when the image fails.',
   },
   preview: () => <Avatar alt="Ada Lovelace" fallback="AL" />,
-  importStatement: `import { Avatar } from 'nothing-ui/avatar'`,
+  importStatement: `import { Avatar } from 'aios-ui-kit/avatar'`,
   usageSnippet: `<Avatar src={user.avatarUrl} alt={user.name} fallback="AL" />`,
   examples: [
     {

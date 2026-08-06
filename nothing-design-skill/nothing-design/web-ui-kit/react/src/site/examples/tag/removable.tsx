@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Tag, Tags } from 'nothing-ui/tag'
+import { Tag, Tags } from 'aios-ui-kit/tag'
 
 export default function TagRemovable() {
   const [keywords, setKeywords] = React.useState(['monochrome', 'glyph', 'dot-matrix'])

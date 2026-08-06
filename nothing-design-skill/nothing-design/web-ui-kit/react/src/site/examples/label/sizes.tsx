@@ -1,4 +1,4 @@
-import { Label } from 'nothing-ui/label'
+import { Label } from 'aios-ui-kit/label'
 
 export default function LabelSizes() {
   return (

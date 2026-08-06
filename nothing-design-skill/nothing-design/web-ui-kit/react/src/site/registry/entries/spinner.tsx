@@ -1,4 +1,4 @@
-import { Spinner } from 'nothing-ui/spinner'
+import { Spinner } from 'aios-ui-kit/spinner'
 import type { ComponentDoc } from '../types'
 
 import SpinnerVariants from '../../examples/spinner/variants'
@@ -21,7 +21,7 @@ export const spinnerDoc: ComponentDoc = {
     en: 'A random-decision wheel: press SPIN and the pointer lands on a sector. Despite the name it is not a loading indicator — those live in `Button`’s `loading` prop and in `ProgressBar`.',
   },
   preview: () => <Spinner size="sm" items={['YES', 'NO', 'MAYBE']} />,
-  importStatement: `import { Spinner } from 'nothing-ui/spinner'`,
+  importStatement: `import { Spinner } from 'aios-ui-kit/spinner'`,
   usageSnippet: `<Spinner items={['YES', 'NO', 'MAYBE']} />`,
   examples: [
     {

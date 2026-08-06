@@ -1,4 +1,4 @@
-import { Battery } from 'nothing-ui/battery'
+import { Battery } from 'aios-ui-kit/battery'
 
 export default function BatteryVariants() {
   return (

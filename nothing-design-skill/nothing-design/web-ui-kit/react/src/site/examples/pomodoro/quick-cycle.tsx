@@ -1,4 +1,4 @@
-import { Pomodoro } from 'nothing-ui/pomodoro'
+import { Pomodoro } from 'aios-ui-kit/pomodoro'
 
 export default function PomodoroQuickCycle() {
   return (

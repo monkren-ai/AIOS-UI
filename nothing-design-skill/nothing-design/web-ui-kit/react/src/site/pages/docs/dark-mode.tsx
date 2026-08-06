@@ -1,4 +1,4 @@
-import { Button } from 'nothing-ui/button'
+import { Button } from 'aios-ui-kit/button'
 import { useTheme } from '@/ThemeProvider'
 import { CodeBlock } from '../../components/CodeBlock'
 import { ComponentPreview } from '../../components/ComponentPreview'
@@ -7,14 +7,14 @@ import { useT } from '../../i18n'
 import { DocList, DocNote, DocSection, DocSubSection, DocTable } from './_shared'
 
 const SETUP = `import * as motion from 'motion/react'
-import { ConfigProvider } from 'nothing-ui'
+import { ConfigProvider } from 'aios-ui-kit'
 
 <ConfigProvider motion={motion} defaultTheme="dark" enableSystem>
   <App />
 </ConfigProvider>`
 
-const TOGGLE = `import { useTheme } from 'nothing-ui/theme-provider'
-import { Button } from 'nothing-ui/button'
+const TOGGLE = `import { useTheme } from 'aios-ui-kit/theme-provider'
+import { Button } from 'aios-ui-kit/button'
 
 const GLYPH = { dark: '●', light: '○', system: '◐' }
 
@@ -47,7 +47,7 @@ const EXPLICIT = `const { theme, resolvedTheme, systemTheme, setTheme } = useThe
 // 想画一个跟随系统的图标，读 systemTheme。`
 
 const SCRIPT_VITE = `// vite.config.ts
-import { getThemeScript } from 'nothing-ui'
+import { getThemeScript } from 'aios-ui-kit'
 
 export default defineConfig({
   plugins: [
@@ -64,7 +64,7 @@ export default defineConfig({
 })`
 
 const SCRIPT_SSR = `// Next.js app/layout.tsx
-import { ThemeScript } from 'nothing-ui'
+import { ThemeScript } from 'aios-ui-kit'
 
 <html lang="en" suppressHydrationWarning>
   <head>

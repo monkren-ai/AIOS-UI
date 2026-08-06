@@ -1,5 +1,5 @@
-import { Button } from 'nothing-ui/button'
-import { DisabledState, EmptyState, ErrorState, LoadingState } from 'nothing-ui/states'
+import { Button } from 'aios-ui-kit/button'
+import { DisabledState, EmptyState, ErrorState, LoadingState } from 'aios-ui-kit/states'
 
 export default function StatesAll() {
   return (

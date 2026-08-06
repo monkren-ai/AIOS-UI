@@ -1,4 +1,4 @@
-import { WidgetCard } from 'nothing-ui/card'
+import { WidgetCard } from 'aios-ui-kit/card'
 
 export default function CardWidget() {
   return (

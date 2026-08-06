@@ -1,4 +1,4 @@
-import { Accordion } from 'nothing-ui/accordion'
+import { Accordion } from 'aios-ui-kit/accordion'
 
 const ITEMS = [
   { id: 'glyph', title: 'Glyph', content: 'Light patterns for calls, timers, and charging.' },

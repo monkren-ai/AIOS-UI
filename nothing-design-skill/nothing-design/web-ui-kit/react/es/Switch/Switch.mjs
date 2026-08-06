@@ -1,11 +1,11 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { switchLabelVariants, switchThumbVariants, switchTrackVariants, switchVariants } from "./switch-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Switch } from "@base-ui/react/switch";
 //#region src/Switch/Switch.tsx
 function Switch$1({ className, label, disabled, onChange, checked, defaultChecked = false, size = "md", ref, ...props }) {
-	const [internalOn, setInternalOn] = React.useState(defaultChecked);
+	const [internalOn, setInternalOn] = React$1.useState(defaultChecked);
 	const isOn = checked ?? internalOn;
 	const isDisabled = !!disabled;
 	const handleCheckedChange = (nextValue) => {

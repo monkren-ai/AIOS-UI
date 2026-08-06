@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { InputOTP } from 'nothing-ui/input-otp'
+import { InputOTP } from 'aios-ui-kit/input-otp'
 
 export default function InputOTPControlled() {
   const [value, setValue] = useState('')

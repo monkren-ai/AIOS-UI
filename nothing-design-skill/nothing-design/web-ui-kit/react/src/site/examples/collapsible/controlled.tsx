@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Collapsible } from 'nothing-ui/collapsible'
+import { Collapsible } from 'aios-ui-kit/collapsible'
 
 // 两块内容共享一个状态，永远只有一块是展开的
 export default function CollapsibleControlled() {

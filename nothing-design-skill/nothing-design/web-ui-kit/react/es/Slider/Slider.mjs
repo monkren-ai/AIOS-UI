@@ -1,11 +1,11 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { resolveSliderVariant, sliderControlVariants, sliderFillVariants, sliderHeaderVariants, sliderLabelVariants, sliderThumbVariants, sliderTrackVariants, sliderValueVariants, sliderVariants } from "./slider-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Slider } from "@base-ui/react/slider";
 //#region src/Slider/Slider.tsx
 function Slider$1({ className, value: controlledValue, defaultValue, onValueChange, min = 0, max = 100, step = 1, disabled, label, showValue = false, size = "md", variant, ref, ...props }) {
-	const handleValueChange = React.useCallback((value) => {
+	const handleValueChange = React$1.useCallback((value) => {
 		onValueChange?.(value);
 	}, [onValueChange]);
 	const resolvedVariant = resolveSliderVariant(variant) ?? "primary";

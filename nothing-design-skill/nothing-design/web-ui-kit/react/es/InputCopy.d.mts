@@ -1,0 +1,3 @@
+import { InputCopySize, inputCopyButtonTextVariants, inputCopyButtonVariants, inputCopyControlVariants, inputCopyFieldVariants, inputCopyLabelVariants, inputCopyVariants } from "./InputCopy/input-copy-variants.mjs";
+import { InputCopy, InputCopyProps } from "./InputCopy/InputCopy.mjs";
+export { InputCopy, type InputCopyProps, type InputCopySize, InputCopy as default, inputCopyButtonTextVariants, inputCopyButtonVariants, inputCopyControlVariants, inputCopyFieldVariants, inputCopyLabelVariants, inputCopyVariants };

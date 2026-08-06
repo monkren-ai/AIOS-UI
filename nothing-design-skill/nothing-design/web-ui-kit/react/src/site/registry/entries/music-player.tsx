@@ -1,4 +1,4 @@
-import { MusicPlayer } from 'nothing-ui/music-player'
+import { MusicPlayer } from 'aios-ui-kit/music-player'
 import type { ComponentDoc } from '../types'
 
 import MusicPlayerVariants from '../../examples/music-player/variants'
@@ -14,7 +14,7 @@ export const musicPlayerDoc: ComponentDoc = {
     en: 'A music player in three layouts: full card, compact strip, and mini tile.',
   },
   preview: () => <MusicPlayer variant="compact" className="w-full max-w-md" />,
-  importStatement: `import { MusicPlayer } from 'nothing-ui/music-player'`,
+  importStatement: `import { MusicPlayer } from 'aios-ui-kit/music-player'`,
   usageSnippet: `<MusicPlayer variant="default" />`,
   examples: [
     {

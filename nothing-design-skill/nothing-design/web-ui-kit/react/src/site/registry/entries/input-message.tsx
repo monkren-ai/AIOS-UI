@@ -1,4 +1,4 @@
-import { InputMessage } from 'nothing-ui/input-message'
+import { InputMessage } from 'aios-ui-kit/input-message'
 import type { ComponentDoc } from '../types'
 
 import InputMessageBasic from '../../examples/input-message/basic'
@@ -23,7 +23,7 @@ export const inputMessageDoc: ComponentDoc = {
       <InputMessage placeholder="Message the crew..." />
     </div>
   ),
-  importStatement: `import { InputMessage } from 'nothing-ui/input-message'`,
+  importStatement: `import { InputMessage } from 'aios-ui-kit/input-message'`,
   usageSnippet: `<InputMessage placeholder="Message the crew..." onSend={(value) => console.log(value)} />`,
   composition: {
     zh: '控件行是一个 `<textarea>` 加一个反相实心的发送按钮，高度由 JS 在 `useLayoutEffect` 里按 `scrollHeight` 手动写到 `style.height`，在 `minRows` 与 `maxRows` 之间夹紧；行下方是可选的一行元信息（快捷键提示 + 字数）。',

@@ -1,4 +1,4 @@
-import { Tag, Tags } from 'nothing-ui/tag'
+import { Tag, Tags } from 'aios-ui-kit/tag'
 
 const stack = ['React', 'TypeScript', 'Vite', 'Tailwind', 'Base UI', 'Vitest']
 

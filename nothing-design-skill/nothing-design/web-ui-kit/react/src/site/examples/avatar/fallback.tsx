@@ -1,4 +1,4 @@
-import { Avatar } from 'nothing-ui/avatar'
+import { Avatar } from 'aios-ui-kit/avatar'
 
 /** 一张一定能加载成功的本地图片，省去示例对外部网络的依赖。 */
 const portrait =

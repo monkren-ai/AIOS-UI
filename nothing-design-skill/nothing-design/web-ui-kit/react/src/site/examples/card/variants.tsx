@@ -1,4 +1,4 @@
-import { Card } from 'nothing-ui/card'
+import { Card } from 'aios-ui-kit/card'
 
 const variants = ['soft', 'secondary', 'outline', 'ghost'] as const
 

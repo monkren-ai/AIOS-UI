@@ -1,4 +1,4 @@
-import { SegmentedControl } from 'nothing-ui/segmented-control'
+import { SegmentedControl } from 'aios-ui-kit/segmented-control'
 
 export default function SegmentedControlVariants() {
   return (

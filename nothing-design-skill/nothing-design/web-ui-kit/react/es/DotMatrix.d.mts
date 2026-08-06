@@ -1,0 +1,3 @@
+import { DotMatrixPattern, DotMatrixSize, DotMatrixTheme, DotState, dotMatrixRowVariants, dotMatrixVariants, dotVariants } from "./DotMatrix/dot-matrix-variants.mjs";
+import { StaticDotMatrix, StaticDotMatrixProps } from "./components/StaticDotMatrix.mjs";
+export { StaticDotMatrix as DotMatrix, type DotMatrixPattern, type StaticDotMatrixProps as DotMatrixProps, type DotMatrixSize, type DotMatrixTheme, type DotState, StaticDotMatrix as default, dotMatrixRowVariants, dotMatrixVariants, dotVariants };

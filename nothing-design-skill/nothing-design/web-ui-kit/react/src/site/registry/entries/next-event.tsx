@@ -1,4 +1,4 @@
-import { NextEvent } from 'nothing-ui/next-event'
+import { NextEvent } from 'aios-ui-kit/next-event'
 import type { ComponentDoc } from '../types'
 
 import NextEventDefault from '../../examples/next-event/default'
@@ -19,7 +19,7 @@ export const nextEventDoc: ComponentDoc = {
   preview: () => (
     <NextEvent event={{ title: 'Design review', date: Date.now() + 6 * 60 * 60 * 1000 }} />
   ),
-  importStatement: `import { NextEvent } from 'nothing-ui/next-event'`,
+  importStatement: `import { NextEvent } from 'aios-ui-kit/next-event'`,
   usageSnippet: `<NextEvent event={{ title: 'Design review', date: Date.now() + 6 * 60 * 60 * 1000 }} />`,
   examples: [
     {

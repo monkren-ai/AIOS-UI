@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { SegmentedControl } from 'nothing-ui/segmented-control'
+import { SegmentedControl } from 'aios-ui-kit/segmented-control'
 
 const MODES = ['Eco', 'Balanced', 'Performance']
 

@@ -1,5 +1,5 @@
-import { Button } from 'nothing-ui/button'
-import { Tooltip } from 'nothing-ui/tooltip'
+import { Button } from 'aios-ui-kit/button'
+import { Tooltip } from 'aios-ui-kit/tooltip'
 import { BookmarkIcon, DownloadIcon, SearchIcon } from '../icons'
 
 export default function TooltipIconButton() {

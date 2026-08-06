@@ -1,6 +1,6 @@
 "use client";
 import MotionProvider from "../MotionProvider/index.mjs";
-import ThemeProvider from "../ThemeProvider/index.mjs";
+import ThemeProvider from "../ThemeProvider/ThemeProvider.mjs";
 import DirectionProvider from "../DirectionProvider/DirectionProvider.mjs";
 import ReducedMotionProvider from "../ReducedMotionProvider/ReducedMotionProvider.mjs";
 import { createContext, memo, useContext, useMemo } from "react";

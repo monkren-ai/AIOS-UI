@@ -1,4 +1,4 @@
-import { Checkbox } from 'nothing-ui/checkbox'
+import { Checkbox } from 'aios-ui-kit/checkbox'
 import type { ComponentDoc } from '../types'
 
 import CheckboxBasic from '../../examples/checkbox/basic'
@@ -22,7 +22,7 @@ export const checkboxDoc: ComponentDoc = {
     en: 'A checkbox with checked, unchecked, and indeterminate states.',
   },
   preview: () => <Checkbox label="Accept" defaultChecked />,
-  importStatement: `import { Checkbox } from 'nothing-ui/checkbox'`,
+  importStatement: `import { Checkbox } from 'aios-ui-kit/checkbox'`,
   usageSnippet: `<Checkbox label="Accept" defaultChecked />`,
   composition: {
     zh: '组件最外层是一个 `<label>`，里面包着 Base UI 的 `Checkbox.Root` 和文字。这样点标签文字也能切换状态，不需要你手动配 `htmlFor` / `id`。',

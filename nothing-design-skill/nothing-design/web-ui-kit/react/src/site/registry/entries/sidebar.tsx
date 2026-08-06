@@ -1,4 +1,4 @@
-import { Sidebar } from 'nothing-ui/sidebar'
+import { Sidebar } from 'aios-ui-kit/sidebar'
 import type { ComponentDoc } from '../types'
 
 import SidebarBasic from '../../examples/sidebar/basic'
@@ -27,7 +27,7 @@ export const sidebarDoc: ComponentDoc = {
       <Sidebar items={PREVIEW_ITEMS} />
     </div>
   ),
-  importStatement: `import { Sidebar } from 'nothing-ui/sidebar'`,
+  importStatement: `import { Sidebar } from 'aios-ui-kit/sidebar'`,
   usageSnippet: `<Sidebar
   items={[
     { label: 'Overview', active: true },

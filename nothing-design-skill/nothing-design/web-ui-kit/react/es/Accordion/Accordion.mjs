@@ -1,11 +1,11 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { accordionContentVariants, accordionHeaderVariants, accordionItemVariants, accordionLeadingIconVariants, accordionPanelVariants, accordionTriggerIconVariants, accordionTriggerTextVariants, accordionTriggerVariants, accordionVariants } from "./accordion-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Accordion } from "@base-ui/react/accordion";
 //#region src/Accordion/Accordion.tsx
 function Accordion$1({ className, items, type = "single", variant = "default", defaultOpen, defaultValue, value: controlledValue, onValueChange, ...props }) {
-	const handleValueChange = React.useCallback((value) => {
+	const handleValueChange = React$1.useCallback((value) => {
 		onValueChange?.(value);
 	}, [onValueChange]);
 	return /* @__PURE__ */ jsx(Accordion.Root, {

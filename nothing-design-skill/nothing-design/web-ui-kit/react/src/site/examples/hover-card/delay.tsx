@@ -1,4 +1,4 @@
-import { HoverCard } from 'nothing-ui/hover-card'
+import { HoverCard } from 'aios-ui-kit/hover-card'
 
 const LINKS = [
   { delay: 0, label: 'No delay' },

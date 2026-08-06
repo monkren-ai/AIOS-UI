@@ -1,4 +1,4 @@
-import { Spinner } from 'nothing-ui/spinner'
+import { Spinner } from 'aios-ui-kit/spinner'
 
 export default function SpinnerItems() {
   return (

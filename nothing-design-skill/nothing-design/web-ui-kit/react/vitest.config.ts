@@ -5,7 +5,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      'nothing-ui': path.resolve(__dirname, './src/subpath'),
+      'aios-ui-kit': path.resolve(__dirname, './src/subpath'),
     },
   },
   test: {

@@ -1,4 +1,4 @@
-import { Badge } from 'nothing-ui/badge'
+import { Badge } from 'aios-ui-kit/badge'
 
 export default function BadgeStatusDot() {
   return (

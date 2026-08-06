@@ -1,4 +1,4 @@
-import { Select } from 'nothing-ui/select'
+import { Select } from 'aios-ui-kit/select'
 
 const OPTIONS = [
   { value: 'daily', label: 'Daily' },

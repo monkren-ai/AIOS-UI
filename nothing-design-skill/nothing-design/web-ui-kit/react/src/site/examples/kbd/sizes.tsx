@@ -1,4 +1,4 @@
-import { Kbd } from 'nothing-ui/kbd'
+import { Kbd } from 'aios-ui-kit/kbd'
 
 export default function KbdSizes() {
   return (

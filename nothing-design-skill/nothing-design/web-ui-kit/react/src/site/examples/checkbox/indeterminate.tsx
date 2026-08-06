@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Checkbox } from 'nothing-ui/checkbox'
+import { Checkbox } from 'aios-ui-kit/checkbox'
 
 const RADIOS = ['Wi-Fi', 'Bluetooth', 'NFC']
 

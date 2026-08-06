@@ -1,4 +1,4 @@
-import { Taskbar, type TaskbarApp } from 'nothing-ui/taskbar'
+import { Taskbar, type TaskbarApp } from 'aios-ui-kit/taskbar'
 
 const apps: TaskbarApp[] = [{ name: 'Files' }, { name: 'Mail' }]
 

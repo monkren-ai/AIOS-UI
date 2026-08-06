@@ -1,16 +1,16 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { collapsibleContentInnerVariants, collapsibleContentVariants, collapsibleTriggerVariants, collapsibleVariants } from "./collapsible-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Collapsible/Collapsible.tsx
 function Collapsible({ className, open: controlledOpen, defaultOpen = false, onOpenChange, trigger, children, ...props }) {
-	const [internalOpen, setInternalOpen] = React.useState(defaultOpen);
+	const [internalOpen, setInternalOpen] = React$1.useState(defaultOpen);
 	const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
 	const state = isOpen ? "open" : "closed";
-	const baseId = React.useId();
+	const baseId = React$1.useId();
 	const triggerId = `${baseId}-trigger`;
 	const contentId = `${baseId}-content`;
-	const handleToggle = React.useCallback(() => {
+	const handleToggle = React$1.useCallback(() => {
 		const next = !isOpen;
 		if (controlledOpen === void 0) setInternalOpen(next);
 		onOpenChange?.(next);

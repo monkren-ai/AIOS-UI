@@ -1,4 +1,4 @@
-import { Button } from 'nothing-ui/button'
+import { Button } from 'aios-ui-kit/button'
 
 const variants = [
   'primary',

@@ -1,8 +1,8 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "name": "nothing-ui",
+  "name": "aios-ui-kit",
   "version": "1.0.0",
-  "description": "Nothing UI Kit Web - A web component library based on Nothing design system",
+  "description": "AIOS UI Web - A web component library based on Nothing design system",
   "style": "nothing",
   "rsc": false,
   "tsx": true,

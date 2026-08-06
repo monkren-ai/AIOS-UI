@@ -1,19 +1,19 @@
 import { cn, dataAttr, mergeSemanticProps } from "../../lib/utils.mjs";
 import { thoughtChainItemVariants, thoughtChainVariants } from "./thought-chain-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/conversation/ThoughtChain/ThoughtChain.tsx
 function useExpandedKeys(defaultExpandedKeys, expandedKeys, onExpand) {
 	const isControlled = expandedKeys !== void 0;
-	const [internalKeys, setInternalKeys] = React.useState(() => new Set(defaultExpandedKeys ?? []));
-	const expanded = React.useMemo(() => isControlled ? new Set(expandedKeys) : internalKeys, [
+	const [internalKeys, setInternalKeys] = React$1.useState(() => new Set(defaultExpandedKeys ?? []));
+	const expanded = React$1.useMemo(() => isControlled ? new Set(expandedKeys) : internalKeys, [
 		isControlled,
 		expandedKeys,
 		internalKeys
 	]);
 	return {
 		expanded,
-		toggle: React.useCallback((key) => {
+		toggle: React$1.useCallback((key) => {
 			const next = new Set(expanded);
 			if (next.has(key)) next.delete(key);
 			else next.add(key);
@@ -26,7 +26,7 @@ function useExpandedKeys(defaultExpandedKeys, expandedKeys, onExpand) {
 		])
 	};
 }
-const ThoughtChain = React.forwardRef(({ items, defaultExpandedKeys, expandedKeys, onExpand, line = true, className, style, classNames: userClassNames, styles: userStyles, ...rest }, ref) => {
+const ThoughtChain = React$1.forwardRef(({ items, defaultExpandedKeys, expandedKeys, onExpand, line = true, className, style, classNames: userClassNames, styles: userStyles, ...rest }, ref) => {
 	const { classNames, styles } = mergeSemanticProps({
 		classNames: userClassNames,
 		styles: userStyles

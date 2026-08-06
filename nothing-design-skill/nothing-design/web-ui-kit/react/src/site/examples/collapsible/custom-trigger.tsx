@@ -1,5 +1,5 @@
-import { Badge } from 'nothing-ui/badge'
-import { Collapsible } from 'nothing-ui/collapsible'
+import { Badge } from 'aios-ui-kit/badge'
+import { Collapsible } from 'aios-ui-kit/collapsible'
 
 export default function CollapsibleCustomTrigger() {
   return (

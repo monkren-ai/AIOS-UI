@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Input } from 'nothing-ui/input'
+import { Input } from 'aios-ui-kit/input'
 
 export default function InputControlled() {
   const [value, setValue] = useState('')

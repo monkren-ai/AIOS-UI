@@ -1,4 +1,4 @@
-# Nothing UI v2 组件重构规范
+# AIOS UI v2 组件重构规范
 
 > 以 [appica-ui](https://github.com/appica-dev/appica-ui) 的工程约定为基础，配色与形态仍严格服从 Nothing 设计语言。
 > 所有参与重构的人/Agent 必须先读完本文，再动组件。

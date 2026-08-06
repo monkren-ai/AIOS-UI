@@ -1,4 +1,4 @@
-import { Input } from 'nothing-ui/input'
+import { Input } from 'aios-ui-kit/input'
 
 export default function InputSizes() {
   return (

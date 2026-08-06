@@ -1,21 +1,21 @@
 import { cn, dataAttr, mergeSemanticProps } from "../../lib/utils.mjs";
 import { conversationsItemVariants, conversationsVariants } from "./conversations-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import "./Conversations.css";
 //#region src/conversation/Conversations/Conversations.tsx
 function useActiveKey(defaultActiveKey, activeKey, onActiveChange) {
 	const isControlled = activeKey !== void 0;
-	const [internalKey, setInternalKey] = React.useState(defaultActiveKey);
+	const [internalKey, setInternalKey] = React$1.useState(defaultActiveKey);
 	return {
 		current: isControlled ? activeKey : internalKey,
-		set: React.useCallback((key) => {
+		set: React$1.useCallback((key) => {
 			if (!isControlled) setInternalKey(key);
 			onActiveChange?.(key);
 		}, [isControlled, onActiveChange])
 	};
 }
-const Conversations = React.forwardRef(({ items, activeKey, defaultActiveKey, onActiveChange, header, footer, className, style, classNames: userClassNames, styles: userStyles, variant, size, ...rest }, ref) => {
+const Conversations = React$1.forwardRef(({ items, activeKey, defaultActiveKey, onActiveChange, header, footer, className, style, classNames: userClassNames, styles: userStyles, variant, size, ...rest }, ref) => {
 	const { classNames, styles } = mergeSemanticProps({
 		classNames: userClassNames,
 		styles: userStyles

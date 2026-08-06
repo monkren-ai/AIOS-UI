@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Slider } from 'nothing-ui/slider'
+import { Slider } from 'aios-ui-kit/slider'
 
 export default function SliderControlled() {
   const [volume, setVolume] = useState(30)

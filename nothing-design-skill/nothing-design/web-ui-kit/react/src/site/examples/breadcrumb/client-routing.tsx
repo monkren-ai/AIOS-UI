@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Breadcrumb } from 'nothing-ui/breadcrumb'
+import { Breadcrumb } from 'aios-ui-kit/breadcrumb'
 
 const trail = ['Library', 'Albums', 'Ex:Re']
 

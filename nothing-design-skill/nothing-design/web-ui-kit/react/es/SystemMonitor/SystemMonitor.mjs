@@ -1,16 +1,16 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { monitorItemDetailsVariants, monitorItemLabelVariants, monitorItemStatusVariants, monitorItemValueVariants, monitorItemVariants, monitorSegmentVariants, monitorTitleVariants, systemMonitorVariants } from "./system-monitor-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/SystemMonitor/SystemMonitor.tsx
 function SystemMonitor({ className, variant = "default", size = "md", updateInterval = 2e3, totalSegments = 12, cpuPercent: initialCpuPercent, ramPercent: initialRamPercent, storagePercent: initialStoragePercent, ramTotal = 8, storageTotal = 256, netConnected: initialNetConnected, netSpeed: initialNetSpeed, batteryPercent: initialBatteryPercent, batteryCharging: initialBatteryCharging, ref, ...props }) {
-	const [internalCpuPercent, setInternalCpuPercent] = React.useState(initialCpuPercent ?? 42);
-	const [internalRamPercent, setInternalRamPercent] = React.useState(initialRamPercent ?? 67);
-	const [internalStoragePercent, setInternalStoragePercent] = React.useState(initialStoragePercent ?? 54);
-	const [internalNetConnected, setInternalNetConnected] = React.useState(initialNetConnected ?? true);
-	const [internalNetSpeed, setInternalNetSpeed] = React.useState(initialNetSpeed ?? 12.5);
-	const [internalBatteryPercent, setInternalBatteryPercent] = React.useState(initialBatteryPercent ?? 85);
-	const [internalBatteryCharging, setInternalBatteryCharging] = React.useState(initialBatteryCharging ?? false);
+	const [internalCpuPercent, setInternalCpuPercent] = React$1.useState(initialCpuPercent ?? 42);
+	const [internalRamPercent, setInternalRamPercent] = React$1.useState(initialRamPercent ?? 67);
+	const [internalStoragePercent, setInternalStoragePercent] = React$1.useState(initialStoragePercent ?? 54);
+	const [internalNetConnected, setInternalNetConnected] = React$1.useState(initialNetConnected ?? true);
+	const [internalNetSpeed, setInternalNetSpeed] = React$1.useState(initialNetSpeed ?? 12.5);
+	const [internalBatteryPercent, setInternalBatteryPercent] = React$1.useState(initialBatteryPercent ?? 85);
+	const [internalBatteryCharging, setInternalBatteryCharging] = React$1.useState(initialBatteryCharging ?? false);
 	const cpuPercent = initialCpuPercent ?? internalCpuPercent;
 	const ramPercent = initialRamPercent ?? internalRamPercent;
 	const storagePercent = initialStoragePercent ?? internalStoragePercent;
@@ -18,7 +18,7 @@ function SystemMonitor({ className, variant = "default", size = "md", updateInte
 	const netSpeed = initialNetSpeed ?? internalNetSpeed;
 	const batteryPercent = initialBatteryPercent ?? internalBatteryPercent;
 	const batteryCharging = initialBatteryCharging ?? internalBatteryCharging;
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (initialCpuPercent !== void 0 || initialRamPercent !== void 0 || initialStoragePercent !== void 0 || initialNetConnected !== void 0 || initialNetSpeed !== void 0 || initialBatteryPercent !== void 0 || initialBatteryCharging !== void 0) return;
 		const updateDemo = () => {
 			setInternalCpuPercent(35 + Math.floor(Math.random() * 25));

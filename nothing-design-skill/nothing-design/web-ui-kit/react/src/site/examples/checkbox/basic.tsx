@@ -1,4 +1,4 @@
-import { Checkbox } from 'nothing-ui/checkbox'
+import { Checkbox } from 'aios-ui-kit/checkbox'
 
 export default function CheckboxBasic() {
   return (

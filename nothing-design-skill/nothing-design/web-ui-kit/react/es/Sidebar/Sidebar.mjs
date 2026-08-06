@@ -1,14 +1,14 @@
 import { useDirection } from "../DirectionProvider/DirectionProvider.mjs";
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { sidebarFooterVariants, sidebarHeaderVariants, sidebarItemBadgeVariants, sidebarItemIconVariants, sidebarItemLabelVariants, sidebarItemLinkVariants, sidebarItemVariants, sidebarListVariants, sidebarToggleVariants, sidebarVariants } from "./sidebar-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Sidebar/Sidebar.tsx
 function Sidebar({ className, items, collapsed: controlledCollapsed, onCollapsedChange, header, footer, ...props }) {
-	const [internalCollapsed, setInternalCollapsed] = React.useState(false);
+	const [internalCollapsed, setInternalCollapsed] = React$1.useState(false);
 	const isCollapsed = controlledCollapsed !== void 0 ? controlledCollapsed : internalCollapsed;
 	const { dir } = useDirection();
-	const handleToggle = React.useCallback(() => {
+	const handleToggle = React$1.useCallback(() => {
 		const next = !isCollapsed;
 		if (controlledCollapsed === void 0) setInternalCollapsed(next);
 		onCollapsedChange?.(next);

@@ -1,4 +1,4 @@
-import { ProgressBar } from 'nothing-ui/progress-bar'
+import { ProgressBar } from 'aios-ui-kit/progress-bar'
 
 export default function ProgressBarSlim() {
   return (

@@ -1,4 +1,4 @@
-import { Collapsible } from 'nothing-ui/collapsible'
+import { Collapsible } from 'aios-ui-kit/collapsible'
 import type { ComponentDoc } from '../types'
 
 import CollapsibleBasic from '../../examples/collapsible/basic'
@@ -27,7 +27,7 @@ export const collapsibleDoc: ComponentDoc = {
       </Collapsible>
     </div>
   ),
-  importStatement: `import { Collapsible } from 'nothing-ui/collapsible'`,
+  importStatement: `import { Collapsible } from 'aios-ui-kit/collapsible'`,
   usageSnippet: `<Collapsible trigger="Technical details">
   Nothing OS 3.0, 12GB RAM, 256GB storage.
 </Collapsible>`,

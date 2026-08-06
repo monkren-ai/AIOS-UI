@@ -1,4 +1,4 @@
-import { InputCopy } from 'nothing-ui/input-copy'
+import { InputCopy } from 'aios-ui-kit/input-copy'
 import type { ComponentDoc } from '../types'
 
 import InputCopyBasic from '../../examples/input-copy/basic'
@@ -23,7 +23,7 @@ export const inputCopyDoc: ComponentDoc = {
       <InputCopy label="API Key" defaultValue="ntg_sk_9f2a1c7b3e0d4f56" />
     </div>
   ),
-  importStatement: `import { InputCopy } from 'nothing-ui/input-copy'`,
+  importStatement: `import { InputCopy } from 'aios-ui-kit/input-copy'`,
   usageSnippet: `<InputCopy label="API Key" defaultValue="ntg_sk_9f2a1c7b3e0d4f56" />`,
   composition: {
     zh: '结构是「可选 label + 一行控件」，控件行里输入框与复制按钮共享同一圈边框，按钮用 `border-s` 隔开——RTL 下分隔线会自动挪到另一侧。',

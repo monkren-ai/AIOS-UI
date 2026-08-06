@@ -41,7 +41,7 @@ export const MotionContext = createContext<MotionContextValue>({
  * @example
  * ```tsx
  * import { motion } from 'motion/react'
- * import { MotionProvider, useMotionComponent } from 'nothing-ui'
+ * import { MotionProvider, useMotionComponent } from 'aios-ui-kit'
  *
  * // 在根组件注入
  * <MotionProvider motion={motion}>
@@ -89,7 +89,7 @@ export interface MotionProviderProps {
  * @example
  * ```tsx
  * import * as motion from 'motion/react'
- * import { MotionProvider } from 'nothing-ui'
+ * import { MotionProvider } from 'aios-ui-kit'
  *
  * <MotionProvider motion={motion}>
  *   <App />

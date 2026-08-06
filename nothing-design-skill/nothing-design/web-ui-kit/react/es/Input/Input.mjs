@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { inputClearVariants, inputControlVariants, inputFieldVariants, inputHelperVariants, inputIconVariants, inputLabelVariants, inputVariants, resolveInputVariant } from "./input-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Input/Input.tsx
 function InputMessage({ children, variant = "default", className, ...props }) {
@@ -14,16 +14,16 @@ function InputMessage({ children, variant = "default", className, ...props }) {
 }
 InputMessage.displayName = "Input.Message";
 function Input({ variant, size, label, placeholder, value: controlledValue, defaultValue, error, message, disabled = false, id, onChange, onValueChange, className, style, type = "text", name, leadingIcon, trailingIcon, clearable, ref, ...rest }) {
-	const [internalValue, setInternalValue] = React.useState(defaultValue ?? "");
-	const generatedId = React.useId();
+	const [internalValue, setInternalValue] = React$1.useState(defaultValue ?? "");
+	const generatedId = React$1.useId();
 	const inputId = id || generatedId;
 	const errorId = `${inputId}-error`;
 	const value = controlledValue !== void 0 ? controlledValue : internalValue;
 	const hasError = Boolean(error);
-	const inputRef = React.useRef(null);
+	const inputRef = React$1.useRef(null);
 	const resolvedVariant = resolveInputVariant(variant) ?? "outline";
 	const resolvedSize = size ?? "md";
-	const setRefs = React.useCallback((node) => {
+	const setRefs = React$1.useCallback((node) => {
 		inputRef.current = node;
 		if (typeof ref === "function") ref(node);
 		else if (ref) ref.current = node;
@@ -39,7 +39,7 @@ function Input({ variant, size, label, placeholder, value: controlledValue, defa
 	* 再派发一次 `input`：这样 React 会当成一次真实输入，`onChange` 拿到的是货真价实
 	* 的事件对象而不是我们捏的假货，后续状态也全部由 `handleChange` 一条路径处理。
 	*/
-	const handleClear = React.useCallback(() => {
+	const handleClear = React$1.useCallback(() => {
 		const input = inputRef.current;
 		if (!input) return;
 		(Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")?.set)?.call(input, "");

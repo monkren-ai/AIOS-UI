@@ -1,4 +1,4 @@
-import { AskUserQuestions, type AskUserQuestion } from 'nothing-ui/ask-user-questions'
+import { AskUserQuestions, type AskUserQuestion } from 'aios-ui-kit/ask-user-questions'
 import type { ComponentDoc } from '../types'
 
 import AskUserQuestionsDefault from '../../examples/ask-user-questions/default'
@@ -20,7 +20,7 @@ export const askUserQuestionsDoc: ComponentDoc = {
   preview: () => (
     <AskUserQuestions className="w-full max-w-md" questions={previewQuestions} defaultValue={{}} />
   ),
-  importStatement: `import { AskUserQuestions } from 'nothing-ui/ask-user-questions'`,
+  importStatement: `import { AskUserQuestions } from 'aios-ui-kit/ask-user-questions'`,
   usageSnippet: `<AskUserQuestions questions={questions} onSubmit={handleSubmit} />`,
   examples: [
     {

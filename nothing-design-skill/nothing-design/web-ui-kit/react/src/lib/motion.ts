@@ -1,5 +1,5 @@
 /**
- * Nothing UI 动效令牌
+ * AIOS UI 动效令牌
  *
  * 参考 fluid-functionalism 的 spring 阶梯，映射为 motion 可用的 transition 对象。
  * 所有组件通过 useMotionComponent 消费 motion，库本身不直接依赖 motion。

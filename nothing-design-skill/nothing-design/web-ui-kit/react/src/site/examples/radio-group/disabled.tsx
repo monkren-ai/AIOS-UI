@@ -1,4 +1,4 @@
-import { RadioGroup } from 'nothing-ui/radio-group'
+import { RadioGroup } from 'aios-ui-kit/radio-group'
 
 const PLANS = [
   { value: 'free', label: 'Free' },

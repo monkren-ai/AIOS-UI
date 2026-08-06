@@ -1,4 +1,4 @@
-import { NavigationMenu } from 'nothing-ui/navigation-menu'
+import { NavigationMenu } from 'aios-ui-kit/navigation-menu'
 
 // 上排每一项都有 href，键盘可达；下排只给了 onClick，渲染出的 <a> 没有 href，
 // 因此不在 tab 序列里 —— 用键盘完全够不着。

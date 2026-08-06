@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Pagination } from 'nothing-ui/pagination'
+import { Pagination } from 'aios-ui-kit/pagination'
 
 const COUNTS = [0, 1, 2] as const
 

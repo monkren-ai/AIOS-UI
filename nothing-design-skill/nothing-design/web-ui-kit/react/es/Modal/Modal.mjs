@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { modalBackdropVariants, modalBodyVariants, modalCancelVariants, modalCloseVariants, modalConfirmVariants, modalDescriptionVariants, modalFooterVariants, modalHeaderVariants, modalTitleVariants, modalVariants } from "./modal-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Dialog } from "@base-ui/react/dialog";
 import { AlertDialog } from "@base-ui/react/alert-dialog";
@@ -8,14 +8,14 @@ import { AlertDialog } from "@base-ui/react/alert-dialog";
 function Modal({ className, open: isOpen, onClose, title, footer, children, variant = "default", description, confirmLabel = "Confirm", cancelLabel = "Cancel", onConfirm, onCancel, destructive = false, ref, ...props }) {
 	const isAlert = variant === "alert";
 	const noHeader = !title && !isAlert;
-	const handleOpenChange = React.useCallback((nextOpen) => {
+	const handleOpenChange = React$1.useCallback((nextOpen) => {
 		if (!nextOpen) onClose?.();
 	}, [onClose]);
-	const handleConfirm = React.useCallback(() => {
+	const handleConfirm = React$1.useCallback(() => {
 		onConfirm?.();
 		handleOpenChange(false);
 	}, [onConfirm, handleOpenChange]);
-	const handleCancel = React.useCallback(() => {
+	const handleCancel = React$1.useCallback(() => {
 		onCancel?.();
 		handleOpenChange(false);
 	}, [onCancel, handleOpenChange]);

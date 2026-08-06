@@ -1,4 +1,4 @@
-import { DotMatrix } from 'nothing-ui/dot-matrix'
+import { DotMatrix } from 'aios-ui-kit/dot-matrix'
 
 export default function DotMatrixPattern() {
   return (

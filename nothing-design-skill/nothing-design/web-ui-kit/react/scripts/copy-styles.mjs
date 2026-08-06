@@ -2,7 +2,7 @@
  * 把 src/styles/*.css 原样搬到 es/styles/。
  *
  * tsdown 把 `.css` 当外部资源，只保留 import 语句、不产出文件，
- * 所以 `nothing-ui/styles.css` 这个导出得自己填上。
+ * 所以 `aios-ui-kit/styles.css` 这个导出得自己填上。
  * 不做任何编译 —— 消费方的 Tailwind 会负责处理 `@theme`。
  */
 import { cpSync, existsSync, mkdirSync } from 'node:fs'

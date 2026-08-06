@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { tooltipPopupVariants, tooltipPositionerVariants, tooltipTriggerVariants } from "./tooltip-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Tooltip } from "@base-ui/react/tooltip";
 //#region src/Tooltip/Tooltip.tsx
@@ -10,15 +10,15 @@ function Tooltip$1({ className, content, side = "top", delay = 300, children, re
 	* 浮层本身。浮层只在打开时才挂载，而读屏是在焦点落上来的那一刻读描述的——
 	* 隔着 `delay` 毫秒，那时浮层多半还不存在，描述就丢了。这份副本一直在。
 	*/
-	const descriptionId = React.useId();
+	const descriptionId = React$1.useId();
 	return /* @__PURE__ */ jsxs(Tooltip.Root, { children: [
 		/* @__PURE__ */ jsx(Tooltip.Trigger, {
 			delay,
 			"data-slot": "tooltip-trigger",
 			render: (triggerProps) => {
-				if (React.isValidElement(children)) {
+				if (React$1.isValidElement(children)) {
 					const childProps = children.props;
-					return React.cloneElement(children, {
+					return React$1.cloneElement(children, {
 						...triggerProps,
 						className: cn(tooltipTriggerVariants(), childProps.className),
 						"aria-describedby": [childProps["aria-describedby"], descriptionId].filter(Boolean).join(" ")

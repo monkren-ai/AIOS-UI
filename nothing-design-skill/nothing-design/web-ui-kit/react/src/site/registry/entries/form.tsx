@@ -1,5 +1,5 @@
-import { Form } from 'nothing-ui/form'
-import { Input } from 'nothing-ui/input'
+import { Form } from 'aios-ui-kit/form'
+import { Input } from 'aios-ui-kit/input'
 import type { ComponentDoc } from '../types'
 
 import FormBasic from '../../examples/form/basic'
@@ -22,7 +22,7 @@ export const formDoc: ComponentDoc = {
       <Input label="Callsign" placeholder="NOTHING-1" />
     </Form>
   ),
-  importStatement: `import { Form } from 'nothing-ui/form'`,
+  importStatement: `import { Form } from 'aios-ui-kit/form'`,
   usageSnippet: `<Form onSubmit={(e) => console.log(new FormData(e.currentTarget))}>
   <Input name="email" label="Email" />
 </Form>`,

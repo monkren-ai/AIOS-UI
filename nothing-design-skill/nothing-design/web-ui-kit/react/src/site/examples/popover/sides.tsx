@@ -1,5 +1,5 @@
-import { Popover } from 'nothing-ui/popover'
-import { Button } from 'nothing-ui/button'
+import { Popover } from 'aios-ui-kit/popover'
+import { Button } from 'aios-ui-kit/button'
 
 const SIDES = ['top', 'right', 'bottom', 'left'] as const
 

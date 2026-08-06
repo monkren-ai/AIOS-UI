@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Accordion } from 'nothing-ui/accordion'
-import { Button } from 'nothing-ui/button'
+import { Accordion } from 'aios-ui-kit/accordion'
+import { Button } from 'aios-ui-kit/button'
 
 const ITEMS = [
   { id: 'a', title: 'Section A', content: 'First body.' },

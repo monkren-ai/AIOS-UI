@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Navigation } from 'nothing-ui/navigation'
+import { Navigation } from 'aios-ui-kit/navigation'
 
 const ITEMS = [{ label: 'Overview' }, { label: 'Devices' }, { label: 'Support' }]
 

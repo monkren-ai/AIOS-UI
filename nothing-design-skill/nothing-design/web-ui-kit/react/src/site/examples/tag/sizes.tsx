@@ -1,4 +1,4 @@
-import { Tag } from 'nothing-ui/tag'
+import { Tag } from 'aios-ui-kit/tag'
 
 export default function TagSizes() {
   return (

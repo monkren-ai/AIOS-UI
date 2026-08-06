@@ -1,4 +1,4 @@
-import { Slider } from 'nothing-ui/slider'
+import { Slider } from 'aios-ui-kit/slider'
 import type { ComponentDoc } from '../types'
 
 import SliderBasic from '../../examples/slider/basic'
@@ -28,7 +28,7 @@ export const sliderDoc: ComponentDoc = {
       <Slider defaultValue={60} />
     </div>
   ),
-  importStatement: `import { Slider } from 'nothing-ui/slider'`,
+  importStatement: `import { Slider } from 'aios-ui-kit/slider'`,
   usageSnippet: `<Slider label="Brightness" showValue defaultValue={72} />`,
   composition: {
     zh: '根节点是 Base UI 的 `Slider.Root`，下面依次是可选的头部（label + 当前值）、轨道容器、轨道、已完成进度和把手。当前封装只渲染一个 `Slider.Thumb`，所以是单值滑块；要做双端区间请直接组合 Base UI 的 primitive。',

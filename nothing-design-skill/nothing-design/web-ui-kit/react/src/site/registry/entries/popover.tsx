@@ -1,4 +1,4 @@
-import { Button } from 'nothing-ui/button'
+import { Button } from 'aios-ui-kit/button'
 import type { ComponentDoc } from '../types'
 
 import PopoverBasic from '../../examples/popover/basic'
@@ -22,7 +22,7 @@ export const popoverDoc: ComponentDoc = {
     en: 'A click-triggered panel anchored to its trigger, holding whatever interactive content you need.',
   },
   preview: () => <Button variant="outline">What is this?</Button>,
-  importStatement: `import { Popover } from 'nothing-ui/popover'`,
+  importStatement: `import { Popover } from 'aios-ui-kit/popover'`,
   usageSnippet: `<Popover content={<p>Anything can live in here.</p>}>
   <Button variant="outline">Details</Button>
 </Popover>`,

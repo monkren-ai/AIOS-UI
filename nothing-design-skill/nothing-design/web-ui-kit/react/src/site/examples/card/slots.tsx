@@ -1,6 +1,6 @@
-import { Card } from 'nothing-ui/card'
-import { Badge } from 'nothing-ui/badge'
-import { Button } from 'nothing-ui/button'
+import { Card } from 'aios-ui-kit/card'
+import { Badge } from 'aios-ui-kit/badge'
+import { Button } from 'aios-ui-kit/button'
 
 export default function CardSlots() {
   return (

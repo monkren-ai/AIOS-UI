@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Alert } from 'nothing-ui/alert'
-import { Button } from 'nothing-ui/button'
+import { Alert } from 'aios-ui-kit/alert'
+import { Button } from 'aios-ui-kit/button'
 
 export default function AlertDismissible() {
   const [visible, setVisible] = React.useState(true)

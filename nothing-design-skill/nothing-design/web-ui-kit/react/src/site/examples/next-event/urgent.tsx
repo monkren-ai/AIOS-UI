@@ -1,4 +1,4 @@
-import { NextEvent } from 'nothing-ui/next-event'
+import { NextEvent } from 'aios-ui-kit/next-event'
 
 export default function NextEventUrgent() {
   return (

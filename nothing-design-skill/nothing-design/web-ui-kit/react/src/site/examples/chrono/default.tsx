@@ -1,4 +1,4 @@
-import { Chrono } from 'nothing-ui/chrono'
+import { Chrono } from 'aios-ui-kit/chrono'
 
 export default function ChronoDefault() {
   return (

@@ -1,4 +1,4 @@
-import { Toggle } from 'nothing-ui/toggle'
+import { Toggle } from 'aios-ui-kit/toggle'
 import { BoldIcon } from '../icons'
 
 export default function ToggleBasic() {

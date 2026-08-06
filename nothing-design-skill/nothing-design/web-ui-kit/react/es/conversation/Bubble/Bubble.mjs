@@ -1,13 +1,13 @@
 import { cn, dataAttr, mergeSemanticProps } from "../../lib/utils.mjs";
 import { bubbleVariants } from "./bubble-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 //#region src/conversation/Bubble/Bubble.tsx
 function useTypingRender(content, typing) {
-	const [displayedText, setDisplayedText] = React.useState("");
-	const [isTyping, setIsTyping] = React.useState(false);
+	const [displayedText, setDisplayedText] = React$1.useState("");
+	const [isTyping, setIsTyping] = React$1.useState(false);
 	const text = typeof content === "string" ? content : "";
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (!typing || !text) {
 			setDisplayedText(text);
 			setIsTyping(false);
@@ -37,7 +37,7 @@ function useTypingRender(content, typing) {
 		isTyping
 	};
 }
-const Bubble = React.forwardRef(({ content, placement = "start", variant = "filled", shape = "default", loading = false, typing, avatar, header, footer, extra, className, style, classNames: userClassNames, styles: userStyles, ...rest }, ref) => {
+const Bubble = React$1.forwardRef(({ content, placement = "start", variant = "filled", shape = "default", loading = false, typing, avatar, header, footer, extra, className, style, classNames: userClassNames, styles: userStyles, ...rest }, ref) => {
 	const { classNames, styles } = mergeSemanticProps({
 		classNames: userClassNames,
 		styles: userStyles

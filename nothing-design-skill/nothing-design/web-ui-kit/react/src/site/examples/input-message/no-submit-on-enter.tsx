@@ -1,4 +1,4 @@
-import { InputMessage } from 'nothing-ui/input-message'
+import { InputMessage } from 'aios-ui-kit/input-message'
 
 export default function InputMessageNoSubmitOnEnter() {
   return (

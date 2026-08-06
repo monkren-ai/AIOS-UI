@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { QuickToggle } from 'nothing-ui/quick-toggle'
+import { QuickToggle } from 'aios-ui-kit/quick-toggle'
 
 function MoonIcon() {
   return (

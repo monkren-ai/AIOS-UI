@@ -1,4 +1,4 @@
-import { Toggle, ToggleGroup } from 'nothing-ui/toggle'
+import { Toggle, ToggleGroup } from 'aios-ui-kit/toggle'
 import { BoldIcon, ItalicIcon, UnderlineIcon } from '../icons'
 
 export default function ToggleGroupExample() {

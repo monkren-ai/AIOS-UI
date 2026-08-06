@@ -1,4 +1,4 @@
-import { Button } from 'nothing-ui/button'
+import { Button } from 'aios-ui-kit/button'
 import { ArrowUpRightIcon, BookmarkIcon, DownloadIcon } from '../icons'
 
 export default function ButtonWithIcon() {

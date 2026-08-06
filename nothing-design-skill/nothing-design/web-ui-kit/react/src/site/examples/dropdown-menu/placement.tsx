@@ -1,4 +1,4 @@
-import { DropdownMenu } from 'nothing-ui/dropdown-menu'
+import { DropdownMenu } from 'aios-ui-kit/dropdown-menu'
 
 const ITEMS = [
   { label: 'Preview', onClick: () => console.log('preview') },

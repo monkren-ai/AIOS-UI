@@ -1,4 +1,4 @@
-import { InputOTP } from 'nothing-ui/input-otp'
+import { InputOTP } from 'aios-ui-kit/input-otp'
 import type { ComponentDoc } from '../types'
 
 import InputOTPBasic from '../../examples/input-otp/basic'
@@ -19,7 +19,7 @@ export const inputOTPDoc: ComponentDoc = {
     en: 'A one-time-code field of single-character slots, with paste and backspace handled.',
   },
   preview: () => <InputOTP length={6} />,
-  importStatement: `import { InputOTP } from 'nothing-ui/input-otp'`,
+  importStatement: `import { InputOTP } from 'aios-ui-kit/input-otp'`,
   usageSnippet: `<InputOTP length={6} onValueChange={(value) => console.log(value)} />`,
   composition: {
     zh: '每个槽位是一个 `<div>` 边框加一个铺满、完全透明的原生 `<input>`；光标用 `caret-transparent` 隐藏，聚焦态改用槽位边框变色来表达，视觉上看不出「其实是一堆独立的 input」。',

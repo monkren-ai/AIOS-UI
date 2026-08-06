@@ -1,4 +1,4 @@
-import { ScrollArea } from 'nothing-ui/scroll-area'
+import { ScrollArea } from 'aios-ui-kit/scroll-area'
 
 const PARAGRAPHS = [
   'Nothing OS keeps the system font, the grid, and the dot matrix consistent across every surface.',

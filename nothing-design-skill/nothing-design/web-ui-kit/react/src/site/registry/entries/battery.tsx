@@ -1,4 +1,4 @@
-import { Battery } from 'nothing-ui/battery'
+import { Battery } from 'aios-ui-kit/battery'
 import type { ComponentDoc } from '../types'
 
 import BatteryVariants from '../../examples/battery/variants'
@@ -17,7 +17,7 @@ export const batteryDoc: ComponentDoc = {
     en: 'A battery readout as a segment bar or a ring, with an optional list of peripherals.',
   },
   preview: () => <Battery percent={68} isCharging={false} className="w-full max-w-xs" />,
-  importStatement: `import { Battery } from 'nothing-ui/battery'`,
+  importStatement: `import { Battery } from 'aios-ui-kit/battery'`,
   usageSnippet: `<Battery percent={68} isCharging={false} />`,
   examples: [
     {

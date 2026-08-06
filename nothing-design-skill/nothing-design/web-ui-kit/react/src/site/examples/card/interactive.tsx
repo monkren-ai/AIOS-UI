@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Card } from 'nothing-ui/card'
+import { Card } from 'aios-ui-kit/card'
 
 export default function CardInteractive() {
   const [selected, setSelected] = React.useState('daily')

@@ -1,6 +1,6 @@
-# Nothing UI Kit Web
+# AIOS UI Kit Web
 
-基于 Nothing 设计系统的 Web 通用 UI 组件库，提供了时钟、电池、日历、音乐播放器、系统监控、日期、日历事件、名言、任务栏等 30+ 组件，支持 Vanilla JavaScript 和 React。
+**AIOS UI** — 面向 AI OS 的 Web 组件库，视觉基于 Nothing 设计语言。提供时钟、电池、日历、音乐播放器、系统监控、日期、日历事件、名言、任务栏等组件，支持 Vanilla JavaScript 和 React。
 
 ## 设计理念
 
@@ -28,13 +28,42 @@
 
 直接复制 `css/` 和 `js/` 目录到你的项目中即可使用。
 
-### React
+### React（v2 · AIOS UI · `aios-ui-kit`）
+
+```bash
+npm install aios-ui-kit motion
+```
+
+```css
+@import 'tailwindcss';
+@import 'aios-ui-kit/styles.css';
+@source '../node_modules/aios-ui-kit/es';
+```
+
+```tsx
+import * as motion from 'motion/react'
+import { ConfigProvider } from 'aios-ui-kit'
+import { Button } from 'aios-ui-kit/button'
+
+export function App({ children }: { children: React.ReactNode }) {
+  return (
+    <ConfigProvider motion={motion} defaultTheme="dark" enableSystem>
+      <Button variant="primary">Continue</Button>
+      {children}
+    </ConfigProvider>
+  )
+}
+```
+
+本地文档站与开发：
 
 ```bash
 cd react
 npm install
 npm run dev
 ```
+
+详情见 [`react/README.md`](./react/README.md)、[`react/CHANGELOG.md`](./react/CHANGELOG.md)。从 1.x 升级见站点 `/docs/migrating-v2`。
 
 ## 主题切换
 

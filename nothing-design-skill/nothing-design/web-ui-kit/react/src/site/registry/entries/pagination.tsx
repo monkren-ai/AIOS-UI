@@ -1,4 +1,4 @@
-import { Pagination } from 'nothing-ui/pagination'
+import { Pagination } from 'aios-ui-kit/pagination'
 import type { ComponentDoc } from '../types'
 
 import PaginationBasic from '../../examples/pagination/basic'
@@ -21,7 +21,7 @@ export const paginationDoc: ComponentDoc = {
     en: 'Page controls for stepping through a long list.',
   },
   preview: () => <Pagination page={3} totalPages={10} onPageChange={() => {}} />,
-  importStatement: `import { Pagination } from 'nothing-ui/pagination'`,
+  importStatement: `import { Pagination } from 'aios-ui-kit/pagination'`,
   usageSnippet: `const [page, setPage] = useState(1)
 
 <Pagination page={page} totalPages={12} onPageChange={setPage} />`,

@@ -1,5 +1,5 @@
-import { Button } from 'nothing-ui/button'
-import { HoverCard } from 'nothing-ui/hover-card'
+import { Button } from 'aios-ui-kit/button'
+import { HoverCard } from 'aios-ui-kit/hover-card'
 
 export default function HoverCardSides() {
   return (

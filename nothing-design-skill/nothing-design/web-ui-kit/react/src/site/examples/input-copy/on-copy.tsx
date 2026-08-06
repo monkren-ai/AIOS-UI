@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { InputCopy } from 'nothing-ui/input-copy'
+import { InputCopy } from 'aios-ui-kit/input-copy'
 
 export default function InputCopyOnCopy() {
   const [copyCount, setCopyCount] = useState(0)

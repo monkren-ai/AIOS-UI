@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "./AgentOrb.css";
@@ -38,7 +38,7 @@ const ariaLabels = {
 	paused: "Agent is paused",
 	error: "Agent has encountered an error"
 };
-const AgentOrb = React.forwardRef(({ state = "idle", size = "md", showLabel = false, label, className, ...props }, ref) => {
+const AgentOrb = React$1.forwardRef(({ state = "idle", size = "md", showLabel = false, label, className, ...props }, ref) => {
 	const displayLabel = label ?? (showLabel ? stateLabels[state] : void 0);
 	const ariaLabel = label ?? ariaLabels[state];
 	return /* @__PURE__ */ jsxs("div", {

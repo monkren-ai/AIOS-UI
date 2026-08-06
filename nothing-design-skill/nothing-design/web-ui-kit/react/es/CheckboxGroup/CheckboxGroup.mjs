@@ -2,21 +2,21 @@ import { cn, dataAttr } from "../lib/utils.mjs";
 import Checkbox from "../Checkbox/Checkbox.mjs";
 import { useMergeSplit } from "../hooks/useMergeSplit.mjs";
 import { checkboxGroupItemVariants, checkboxGroupMergeBgVariants, checkboxGroupVariants } from "./checkbox-group-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/CheckboxGroup/CheckboxGroup.tsx
 function CheckboxGroup({ className, options, value: controlledValue, defaultValue, onValueChange, disabled, orientation = "vertical", size = "md", ref, ...props }) {
-	const [internalValue, setInternalValue] = React.useState(defaultValue ?? []);
+	const [internalValue, setInternalValue] = React$1.useState(defaultValue ?? []);
 	const selectedValues = controlledValue !== void 0 ? controlledValue : internalValue;
-	const containerRef = React.useRef(null);
-	const setContainerRef = React.useCallback((node) => {
+	const containerRef = React$1.useRef(null);
+	const setContainerRef = React$1.useCallback((node) => {
 		containerRef.current = node;
 		if (typeof ref === "function") ref(node);
 		else if (ref) ref.current = node;
 	}, [ref]);
 	const { calculateMerge, registerItem } = useMergeSplit(containerRef, { axis: orientation === "horizontal" ? "x" : "y" });
-	const [mergeStyle, setMergeStyle] = React.useState({});
-	const toggleValue = React.useCallback((value) => {
+	const [mergeStyle, setMergeStyle] = React$1.useState({});
+	const toggleValue = React$1.useCallback((value) => {
 		const next = selectedValues.includes(value) ? selectedValues.filter((v) => v !== value) : [...selectedValues, value];
 		if (controlledValue === void 0) setInternalValue(next);
 		onValueChange?.(next);
@@ -25,7 +25,7 @@ function CheckboxGroup({ className, options, value: controlledValue, defaultValu
 		onValueChange,
 		selectedValues
 	]);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		const merge = calculateMerge(options.map((option, index) => selectedValues.includes(option.value) ? index : -1).filter((index) => index !== -1));
 		if (!merge.hasSelection) {
 			setMergeStyle({ opacity: 0 });

@@ -1,12 +1,12 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { resolveToggleVariant, toggleGroupVariants, toggleVariants } from "./toggle-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx } from "react/jsx-runtime";
 //#region src/Toggle/Toggle.tsx
-const ToggleGroupContext = React.createContext(null);
+const ToggleGroupContext = React$1.createContext(null);
 function Toggle({ className, pressed: controlledPressed, defaultPressed, onPressedChange, disabled = false, variant, size, value, children, onClick, ref, ...props }) {
-	const [internalPressed, setInternalPressed] = React.useState(defaultPressed ?? false);
-	const group = React.useContext(ToggleGroupContext);
+	const [internalPressed, setInternalPressed] = React$1.useState(defaultPressed ?? false);
+	const group = React$1.useContext(ToggleGroupContext);
 	const isPressed = group ? group.value.includes(value ?? "") : controlledPressed !== void 0 ? controlledPressed : internalPressed;
 	const activeVariant = group?.variant ?? resolveToggleVariant(variant) ?? "soft";
 	const activeSize = group?.size ?? size ?? "md";
@@ -42,10 +42,10 @@ function Toggle({ className, pressed: controlledPressed, defaultPressed, onPress
 }
 Toggle.displayName = "Toggle";
 function ToggleGroup({ className, value: controlledValue, defaultValue, onValueChange, variant, size = "md", children, ref, ...props }) {
-	const [internalValue, setInternalValue] = React.useState(defaultValue ?? []);
+	const [internalValue, setInternalValue] = React$1.useState(defaultValue ?? []);
 	const activeValue = controlledValue !== void 0 ? controlledValue : internalValue;
 	const resolvedVariant = resolveToggleVariant(variant) ?? "soft";
-	const handleToggle = React.useCallback((itemValue) => {
+	const handleToggle = React$1.useCallback((itemValue) => {
 		const nextValue = activeValue.includes(itemValue) ? activeValue.filter((entry) => entry !== itemValue) : [...activeValue, itemValue];
 		if (controlledValue === void 0) setInternalValue(nextValue);
 		onValueChange?.(nextValue);
@@ -54,7 +54,7 @@ function ToggleGroup({ className, value: controlledValue, defaultValue, onValueC
 		controlledValue,
 		onValueChange
 	]);
-	const context = React.useMemo(() => ({
+	const context = React$1.useMemo(() => ({
 		value: activeValue,
 		onToggle: handleToggle,
 		variant: resolvedVariant,

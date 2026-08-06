@@ -28,7 +28,7 @@ export function CoreInteractionSection({
   sliderValue,
   setSliderValue,
 }: CoreInteractionSectionProps) {
-  const [copyValue] = React.useState('npm install nothing-ui')
+  const [copyValue] = React.useState('npm install aios-ui-kit')
   const [messageValue, setMessageValue] = React.useState('')
   const [answers, setAnswers] = React.useState<Record<string, AskUserAnswerValue>>({})
 

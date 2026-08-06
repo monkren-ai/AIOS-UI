@@ -4,7 +4,7 @@ import Input from "../Input/Input.mjs";
 import Switch from "../Switch/Switch.mjs";
 import CheckboxGroup from "../CheckboxGroup/CheckboxGroup.mjs";
 import { askBodyVariants, askCountVariants, askDescriptionVariants, askFooterVariants, askHeaderVariants, askInputVariants, askOptionsVariants, askQuestionTitleVariants, askQuestionVariants, askRequiredHintVariants, askRequiredVariants, askStepVariants, askTitleVariants, askUserQuestionsVariants } from "./ask-user-questions-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import "./AskUserQuestions.css";
 //#region src/AskUserQuestions/AskUserQuestions.tsx
@@ -18,16 +18,16 @@ const isAnswerEmpty = (question, answer) => {
 };
 function AskUserQuestions({ questions, value: valueProp, defaultValue = {}, onChange, onSubmit, title = "QUESTIONS", submitLabel = "SUBMIT", nextLabel = "NEXT", backLabel = "BACK", requiredHint = "Required", size = "md", className, ...props }) {
 	const isControlled = valueProp !== void 0;
-	const [internalAnswers, setInternalAnswers] = React.useState(defaultValue);
+	const [internalAnswers, setInternalAnswers] = React$1.useState(defaultValue);
 	const answers = isControlled ? valueProp : internalAnswers;
-	const [currentStep, setCurrentStep] = React.useState(0);
-	const [direction, setDirection] = React.useState(1);
+	const [currentStep, setCurrentStep] = React$1.useState(0);
+	const [direction, setDirection] = React$1.useState(1);
 	const currentQuestion = questions[currentStep];
 	const isFirst = currentStep === 0;
 	const isLast = currentStep === questions.length - 1;
 	const currentAnswer = currentQuestion ? answers[currentQuestion.id] : void 0;
 	const canProceed = !currentQuestion?.required || !isAnswerEmpty(currentQuestion, currentAnswer);
-	const updateAnswer = React.useCallback((questionId, value) => {
+	const updateAnswer = React$1.useCallback((questionId, value) => {
 		const next = {
 			...answers,
 			[questionId]: value

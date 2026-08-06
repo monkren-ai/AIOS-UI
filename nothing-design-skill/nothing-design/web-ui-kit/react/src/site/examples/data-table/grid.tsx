@@ -1,4 +1,4 @@
-import { DataTable, type DataTableGridRow } from 'nothing-ui/data-table'
+import { DataTable, type DataTableGridRow } from 'aios-ui-kit/data-table'
 
 const columns = [
   { key: 'service', label: 'Service' },

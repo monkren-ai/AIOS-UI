@@ -1,4 +1,4 @@
-import { Select } from 'nothing-ui/select'
+import { Select } from 'aios-ui-kit/select'
 
 const REGIONS = [
   { value: 'eu', label: 'Europe' },

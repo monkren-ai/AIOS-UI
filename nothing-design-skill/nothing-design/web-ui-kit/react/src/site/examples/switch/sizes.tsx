@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Switch } from 'nothing-ui/switch'
+import { Switch } from 'aios-ui-kit/switch'
 
 export default function SwitchSizes() {
   const [on, setOn] = useState(true)

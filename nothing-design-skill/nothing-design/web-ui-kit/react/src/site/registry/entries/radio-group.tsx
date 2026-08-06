@@ -1,4 +1,4 @@
-import { RadioGroup } from 'nothing-ui/radio-group'
+import { RadioGroup } from 'aios-ui-kit/radio-group'
 import type { ComponentDoc } from '../types'
 
 import RadioGroupBasic from '../../examples/radio-group/basic'
@@ -36,7 +36,7 @@ export const radioGroupDoc: ComponentDoc = {
       defaultValue="a"
     />
   ),
-  importStatement: `import { RadioGroup } from 'nothing-ui/radio-group'`,
+  importStatement: `import { RadioGroup } from 'aios-ui-kit/radio-group'`,
   usageSnippet: `<RadioGroup
   name="theme"
   options={[

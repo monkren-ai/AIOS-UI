@@ -3,17 +3,17 @@ import { Prose } from '../../components/Prose'
 import { useT } from '../../i18n'
 import { DocList, DocNote, DocSection, DocSteps, DocTable } from './_shared'
 
-const INSTALL = `npm install nothing-ui motion
+const INSTALL = `npm install aios-ui-kit motion
 # 或 / or
-pnpm add nothing-ui motion`
+pnpm add aios-ui-kit motion`
 
 const CSS_SETUP = `@import 'tailwindcss';
-@import 'nothing-ui/styles.css';
+@import 'aios-ui-kit/styles.css';
 
-@source '../node_modules/nothing-ui/es';`
+@source '../node_modules/aios-ui-kit/es';`
 
 const PROVIDER_SETUP = `import * as motion from 'motion/react'
-import { ConfigProvider } from 'nothing-ui'
+import { ConfigProvider } from 'aios-ui-kit'
 import './app.css'
 
 export function Root({ children }: { children: React.ReactNode }) {
@@ -24,7 +24,7 @@ export function Root({ children }: { children: React.ReactNode }) {
   )
 }`
 
-const FIRST_COMPONENT = `import { Button } from 'nothing-ui/button'
+const FIRST_COMPONENT = `import { Button } from 'aios-ui-kit/button'
 
 export function Example() {
   return <Button variant="primary">Continue</Button>
@@ -36,7 +36,7 @@ const NEXT_SETUP = `// app/providers.tsx
 import * as motion from 'motion/react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ConfigProvider } from 'nothing-ui'
+import { ConfigProvider } from 'aios-ui-kit'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -47,7 +47,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 }
 
 // app/layout.tsx
-import { ThemeScript } from 'nothing-ui'
+import { ThemeScript } from 'aios-ui-kit'
 import './globals.css'
 import { Providers } from './providers'
 
@@ -128,8 +128,8 @@ export default function InstallationPage() {
               "`@import 'tailwindcss'` has to come first. `styles.css` contains `--color-*: initial`, which switches the whole default Tailwind palette off; in the other order that reset has nothing to reset.",
             ),
             t(
-              '`nothing-ui/styles.css` 带进来两层东西：`tokens.css`（随 `[data-theme]` 切换的原始变量）和 `theme.css`（把它们映射成 `bg-surface`、`rounded-card` 这类工具类），另外还有 base 层的 `:focus-visible` 轮廓和 reduced-motion 兜底。',
-              '`nothing-ui/styles.css` brings in two layers: `tokens.css` (the raw variables that switch on `[data-theme]`) and `theme.css` (which maps them into utilities like `bg-surface` and `rounded-card`), plus the base-layer `:focus-visible` outline and the reduced-motion fallback.',
+              '`aios-ui-kit/styles.css` 带进来两层东西：`tokens.css`（随 `[data-theme]` 切换的原始变量）和 `theme.css`（把它们映射成 `bg-surface`、`rounded-card` 这类工具类），另外还有 base 层的 `:focus-visible` 轮廓和 reduced-motion 兜底。',
+              '`aios-ui-kit/styles.css` brings in two layers: `tokens.css` (the raw variables that switch on `[data-theme]`) and `theme.css` (which maps them into utilities like `bg-surface` and `rounded-card`), plus the base-layer `:focus-visible` outline and the reduced-motion fallback.',
             ),
           ]}
         />
@@ -144,8 +144,8 @@ export default function InstallationPage() {
         </Prose>
         <DocNote label={t('容易踩的坑', 'Easy to get wrong')}>
           {t(
-            "`@source` 的路径是**相对于这个样式表文件**解析的，不是相对于项目根目录，也不接受裸包名。样式表在 `src/app.css` 时要写 `'../node_modules/nothing-ui/es'`；在 `app/globals.css` 时同样是 `'../node_modules/…'`；如果样式表在项目根，就去掉 `../`。写成 `@source 'nothing-ui'` 是无效的。",
-            "`@source` paths resolve **relative to the stylesheet that contains them**, not to the project root, and a bare package name is not accepted. From `src/app.css` you write `'../node_modules/nothing-ui/es'`; from `app/globals.css` it is also `'../node_modules/…'`; if the stylesheet sits at the project root, drop the `../`. `@source 'nothing-ui'` does nothing.",
+            "`@source` 的路径是**相对于这个样式表文件**解析的，不是相对于项目根目录，也不接受裸包名。样式表在 `src/app.css` 时要写 `'../node_modules/aios-ui-kit/es'`；在 `app/globals.css` 时同样是 `'../node_modules/…'`；如果样式表在项目根，就去掉 `../`。写成 `@source 'aios-ui-kit'` 是无效的。",
+            "`@source` paths resolve **relative to the stylesheet that contains them**, not to the project root, and a bare package name is not accepted. From `src/app.css` you write `'../node_modules/aios-ui-kit/es'`; from `app/globals.css` it is also `'../node_modules/…'`; if the stylesheet sits at the project root, drop the `../`. `@source 'aios-ui-kit'` does nothing.",
           )}
         </DocNote>
         <Prose>
@@ -176,8 +176,8 @@ export default function InstallationPage() {
         <CodeBlock code={FIRST_COMPONENT} />
         <DocNote label={t('关于导入路径', 'About the import paths')}>
           {t(
-            '本站所有示例里的 `nothing-ui/button` 就是你在自己项目里该写的那一行——站点把这个包名指回了仓库源码，所以代码块和真实用法不会分叉，复制出去即可运行。',
-            'The `nothing-ui/button` you see in every example on this site is exactly the line you write in your own project. The site resolves that package name back to the repository source, so the code blocks cannot drift from real usage — copy them as-is.',
+            '本站所有示例里的 `aios-ui-kit/button` 就是你在自己项目里该写的那一行——站点把这个包名指回了仓库源码，所以代码块和真实用法不会分叉，复制出去即可运行。',
+            'The `aios-ui-kit/button` you see in every example on this site is exactly the line you write in your own project. The site resolves that package name back to the repository source, so the code blocks cannot drift from real usage — copy them as-is.',
           )}
         </DocNote>
       </DocSection>
@@ -230,14 +230,14 @@ export default function InstallationPage() {
       <DocSection title={t('检查清单', 'Checklist')}>
         <DocSteps
           items={[
-            t('`npm install nothing-ui motion` 完成。', '`npm install nothing-ui motion` done.'),
+            t('`npm install aios-ui-kit motion` 完成。', '`npm install aios-ui-kit motion` done.'),
             t(
-              "全局样式里有 `@import 'tailwindcss'` + `@import 'nothing-ui/styles.css'`，顺序不能反。",
-              "The global stylesheet has `@import 'tailwindcss'` followed by `@import 'nothing-ui/styles.css'`, in that order.",
+              "全局样式里有 `@import 'tailwindcss'` + `@import 'aios-ui-kit/styles.css'`，顺序不能反。",
+              "The global stylesheet has `@import 'tailwindcss'` followed by `@import 'aios-ui-kit/styles.css'`, in that order.",
             ),
             t(
-              '`@source` 指向 `node_modules/nothing-ui/es`，路径相对于这个样式表。',
-              '`@source` points at `node_modules/nothing-ui/es`, relative to that stylesheet.',
+              '`@source` 指向 `node_modules/aios-ui-kit/es`，路径相对于这个样式表。',
+              '`@source` points at `node_modules/aios-ui-kit/es`, relative to that stylesheet.',
             ),
             t(
               '应用最外层是 `<ConfigProvider motion={motion}>`。',

@@ -9,7 +9,7 @@ const IMPORT = `import {
   ReducedMotionProvider,
   useReducedMotion,
   type ReducedMotionContextValue,
-} from 'nothing-ui/reduced-motion-provider'`
+} from 'aios-ui-kit/reduced-motion-provider'`
 
 const USAGE = `// 跟随系统
 <ReducedMotionProvider>
@@ -21,8 +21,8 @@ const USAGE = `// 跟随系统
   <App />
 </ReducedMotionProvider>`
 
-const CONSUME = `import { useReducedMotion } from 'nothing-ui/reduced-motion-provider'
-import { useMotionComponent } from 'nothing-ui/motion-provider'
+const CONSUME = `import { useReducedMotion } from 'aios-ui-kit/reduced-motion-provider'
+import { useMotionComponent } from 'aios-ui-kit/motion-provider'
 
 function Orb() {
   const reducedMotion = useReducedMotion()

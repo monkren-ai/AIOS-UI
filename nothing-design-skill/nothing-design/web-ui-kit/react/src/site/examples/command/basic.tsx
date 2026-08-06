@@ -1,4 +1,4 @@
-import { Command } from 'nothing-ui/command'
+import { Command } from 'aios-ui-kit/command'
 
 const GROUPS = [
   {

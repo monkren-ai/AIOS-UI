@@ -1,15 +1,15 @@
 import { cn, mergeSemanticProps } from "../../lib/utils.mjs";
 import Bubble from "./Bubble.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx } from "react/jsx-runtime";
 //#region src/conversation/Bubble/BubbleList.tsx
 function resolveRoleConfig(roleConfig, item) {
 	if (typeof roleConfig === "function") return roleConfig(item);
 	return roleConfig || {};
 }
-const BubbleList = React.forwardRef(({ items, role, autoScroll = true, className, style, classNames: userClassNames, styles: userStyles, ...rest }, ref) => {
-	const rootRef = React.useRef(null);
-	const mergedRef = React.useMemo(() => {
+const BubbleList = React$1.forwardRef(({ items, role, autoScroll = true, className, style, classNames: userClassNames, styles: userStyles, ...rest }, ref) => {
+	const rootRef = React$1.useRef(null);
+	const mergedRef = React$1.useMemo(() => {
 		return (node) => {
 			rootRef.current = node;
 			if (typeof ref === "function") ref(node);
@@ -20,7 +20,7 @@ const BubbleList = React.forwardRef(({ items, role, autoScroll = true, className
 		classNames: userClassNames,
 		styles: userStyles
 	});
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (!autoScroll || !rootRef.current) return;
 		const el = rootRef.current;
 		if (typeof el.scrollTo === "function") el.scrollTo({

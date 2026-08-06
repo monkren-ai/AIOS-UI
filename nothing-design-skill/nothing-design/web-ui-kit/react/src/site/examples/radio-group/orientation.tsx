@@ -1,4 +1,4 @@
-import { RadioGroup } from 'nothing-ui/radio-group'
+import { RadioGroup } from 'aios-ui-kit/radio-group'
 
 const OPTIONS = [
   { value: '1x', label: '1x' },

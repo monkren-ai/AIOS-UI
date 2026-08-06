@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Textarea } from 'nothing-ui/textarea'
+import { Textarea } from 'aios-ui-kit/textarea'
 
 const LIMIT = 140
 

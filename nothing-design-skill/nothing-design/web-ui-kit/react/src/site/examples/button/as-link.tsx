@@ -1,4 +1,4 @@
-import { buttonVariants } from 'nothing-ui/button'
+import { buttonVariants } from 'aios-ui-kit/button'
 import { ArrowUpRightIcon } from '../icons'
 
 export default function ButtonAsLink() {

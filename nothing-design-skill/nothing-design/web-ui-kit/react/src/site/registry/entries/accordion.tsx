@@ -1,4 +1,4 @@
-import { Accordion } from 'nothing-ui/accordion'
+import { Accordion } from 'aios-ui-kit/accordion'
 import type { ComponentDoc } from '../types'
 
 import AccordionBasic from '../../examples/accordion/basic'
@@ -31,7 +31,7 @@ export const accordionDoc: ComponentDoc = {
       <Accordion items={PREVIEW_ITEMS} defaultValue={['shipping']} />
     </div>
   ),
-  importStatement: `import { Accordion } from 'nothing-ui/accordion'`,
+  importStatement: `import { Accordion } from 'aios-ui-kit/accordion'`,
   usageSnippet: `<Accordion
   items={[
     { id: 'shipping', title: 'Shipping', content: 'Dispatched within two days.' },

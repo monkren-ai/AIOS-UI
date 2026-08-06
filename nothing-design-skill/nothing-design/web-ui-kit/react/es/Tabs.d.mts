@@ -1,0 +1,3 @@
+import { TabsIndicator, TabsVariant, tabTriggerVariants, tabsHoverBackgroundVariants, tabsIndicatorVariants, tabsListVariants, tabsPanelVariants, tabsVariants } from "./Tabs/tabs-variants.mjs";
+import { TabItem, TabPanel, TabPanelProps, Tabs, TabsProps } from "./Tabs/Tabs.mjs";
+export { type TabItem, TabPanel, type TabPanelProps, Tabs, type TabsIndicator, type TabsProps, type TabsVariant, Tabs as default, tabTriggerVariants, tabsHoverBackgroundVariants, tabsIndicatorVariants, tabsListVariants, tabsPanelVariants, tabsVariants };

@@ -1,19 +1,19 @@
 import { ArrowRightIcon } from '../../examples/icons'
-import { Button } from 'nothing-ui/button'
+import { Button } from 'aios-ui-kit/button'
 import { CodeBlock } from '../../components/CodeBlock'
 import { ComponentPreview } from '../../components/ComponentPreview'
 import { Prose } from '../../components/Prose'
 import { useT } from '../../i18n'
 import { DocList, DocNote, DocSection, DocSubSection, DocTable } from './_shared'
 
-const SETUP = `import { DirectionProvider } from 'nothing-ui/direction-provider'
+const SETUP = `import { DirectionProvider } from 'aios-ui-kit/direction-provider'
 
 <DirectionProvider dir="rtl">
   <App />
 </DirectionProvider>`
 
 const VIA_CONFIG = `import * as motion from 'motion/react'
-import { ConfigProvider } from 'nothing-ui'
+import { ConfigProvider } from 'aios-ui-kit'
 
 <ConfigProvider motion={motion} dir="rtl">
   <App />
@@ -24,7 +24,7 @@ const SSR = `// 服务端已经渲染出 <html dir="rtl"> 时，关掉同步以�
   <App />
 </DirectionProvider>`
 
-const HOOK = `import { useDirection } from 'nothing-ui/direction-provider'
+const HOOK = `import { useDirection } from 'aios-ui-kit/direction-provider'
 
 function Drawer() {
   const { dir, sign } = useDirection()

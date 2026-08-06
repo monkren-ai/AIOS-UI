@@ -1,4 +1,4 @@
-import { InputCopy } from 'nothing-ui/input-copy'
+import { InputCopy } from 'aios-ui-kit/input-copy'
 
 export default function InputCopyBasic() {
   return (

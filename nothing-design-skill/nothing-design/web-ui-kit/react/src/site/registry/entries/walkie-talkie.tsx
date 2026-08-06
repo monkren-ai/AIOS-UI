@@ -1,4 +1,4 @@
-import { WalkieTalkie } from 'nothing-ui/walkie-talkie'
+import { WalkieTalkie } from 'aios-ui-kit/walkie-talkie'
 import type { ComponentDoc } from '../types'
 
 import WalkieTalkieDefault from '../../examples/walkie-talkie/default'
@@ -14,7 +14,7 @@ export const walkieTalkieDoc: ComponentDoc = {
     en: 'Push-to-talk radio — switch channels, read volume segments, and it actually asks for the microphone.',
   },
   preview: () => <WalkieTalkie className="w-full max-w-xs" />,
-  importStatement: `import { WalkieTalkie } from 'nothing-ui/walkie-talkie'`,
+  importStatement: `import { WalkieTalkie } from 'aios-ui-kit/walkie-talkie'`,
   usageSnippet: `<WalkieTalkie channel={7} volumeLevel={4} />`,
   examples: [
     {

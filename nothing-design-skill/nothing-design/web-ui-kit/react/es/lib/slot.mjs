@@ -1,9 +1,9 @@
 import { mergeRefs } from "./refs.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx } from "react/jsx-runtime";
 //#region src/lib/slot.tsx
-const Slot = React.forwardRef(({ children, ...slotProps }, forwardedRef) => {
-	if (!React.isValidElement(children)) return /* @__PURE__ */ jsx("span", {
+const Slot = React$1.forwardRef(({ children, ...slotProps }, forwardedRef) => {
+	if (!React$1.isValidElement(children)) return /* @__PURE__ */ jsx("span", {
 		...slotProps,
 		ref: forwardedRef,
 		children
@@ -24,7 +24,7 @@ const Slot = React.forwardRef(({ children, ...slotProps }, forwardedRef) => {
 	};
 	const childRef = childProps.ref;
 	if (forwardedRef || childRef) mergedProps.ref = forwardedRef ? mergeRefs(forwardedRef, childRef) : childRef;
-	return React.cloneElement(children, mergedProps);
+	return React$1.cloneElement(children, mergedProps);
 });
 Slot.displayName = "Slot";
 //#endregion

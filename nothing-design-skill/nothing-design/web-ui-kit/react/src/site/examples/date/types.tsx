@@ -1,4 +1,4 @@
-import { DateWidget } from 'nothing-ui/date'
+import { DateWidget } from 'aios-ui-kit/date'
 
 export default function DateTypes() {
   return (

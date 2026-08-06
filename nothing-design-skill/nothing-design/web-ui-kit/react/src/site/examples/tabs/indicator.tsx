@@ -1,4 +1,4 @@
-import { Tabs, TabPanel } from 'nothing-ui/tabs'
+import { Tabs, TabPanel } from 'aios-ui-kit/tabs'
 
 const ITEMS = [
   { value: 'grid', label: 'Grid' },

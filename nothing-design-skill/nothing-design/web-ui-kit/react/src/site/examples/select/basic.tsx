@@ -1,4 +1,4 @@
-import { Select } from 'nothing-ui/select'
+import { Select } from 'aios-ui-kit/select'
 
 const OPTIONS = [
   { value: 'phone-2a', label: 'Phone (2a)' },

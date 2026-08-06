@@ -1,13 +1,13 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { alertIconVariants, alertMessageVariants, alertTitleVariants, alertVariants, resolveAlertVariant } from "./alert-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Alert/Alert.tsx
 const EXIT_DURATION = 220;
 function Alert({ variant, size = "md", title, icon, onClose, className, children, ...props }) {
-	const [exiting, setExiting] = React.useState(false);
-	const timerRef = React.useRef(null);
-	React.useEffect(() => {
+	const [exiting, setExiting] = React$1.useState(false);
+	const timerRef = React$1.useRef(null);
+	React$1.useEffect(() => {
 		return () => {
 			if (timerRef.current) clearTimeout(timerRef.current);
 		};

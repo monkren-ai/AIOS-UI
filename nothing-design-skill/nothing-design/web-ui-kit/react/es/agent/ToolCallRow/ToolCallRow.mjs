@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
 import AgentOrb from "../AgentOrb/AgentOrb.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "./ToolCallRow.css";
@@ -34,8 +34,8 @@ function formatElapsed(ms) {
 	if (ms < 1e3) return `${ms}MS`;
 	return `${(ms / 1e3).toFixed(1)}S`;
 }
-const ToolCallRow = React.forwardRef(({ tool, args, status = "pending", elapsedMs, result, error, showArgs = false, expandLabel = "Show details", collapseLabel = "Hide details", className, ...props }, ref) => {
-	const [expanded, setExpanded] = React.useState(showArgs);
+const ToolCallRow = React$1.forwardRef(({ tool, args, status = "pending", elapsedMs, result, error, showArgs = false, expandLabel = "Show details", collapseLabel = "Hide details", className, ...props }, ref) => {
+	const [expanded, setExpanded] = React$1.useState(showArgs);
 	const hasDetails = args && Object.keys(args).length > 0 || result || error;
 	return /* @__PURE__ */ jsxs("div", {
 		ref,

@@ -1,12 +1,12 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { Slot } from "../lib/slot.mjs";
 import { avatarFallbackVariants, avatarVariants, resolveAvatarSize } from "./avatar-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx } from "react/jsx-runtime";
 //#region src/Avatar/Avatar.tsx
 function Avatar({ className, variant, size, shape, asChild = false, src, alt = "", fallback, children, ...props }) {
 	const Comp = asChild ? Slot : "div";
-	const [imageError, setImageError] = React.useState(false);
+	const [imageError, setImageError] = React$1.useState(false);
 	const showImage = Boolean(src) && !imageError;
 	const resolvedSize = resolveAvatarSize(size) ?? "md";
 	const inner = showImage ? /* @__PURE__ */ jsx("img", {

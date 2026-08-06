@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "./ThinkingIndicator.css";
@@ -29,7 +29,7 @@ const ariaLabels = {
 	done: "Done",
 	error: "Error"
 };
-const ThinkingIndicator = React.forwardRef(({ state = "thinking", size = "md", label, className, ...props }, ref) => {
+const ThinkingIndicator = React$1.forwardRef(({ state = "thinking", size = "md", label, className, ...props }, ref) => {
 	const ariaLabel = label ?? ariaLabels[state];
 	return /* @__PURE__ */ jsxs("span", {
 		ref,

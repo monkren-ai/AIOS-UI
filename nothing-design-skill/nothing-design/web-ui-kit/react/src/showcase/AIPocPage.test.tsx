@@ -111,11 +111,11 @@ describe('AIPocPage', () => {
     const newChatTab = screen.getByRole('tab', { name: /新会话/ })
     await userEvent.click(newChatTab)
 
-    const promptButton = screen.getByRole('button', { name: /介绍一下 Nothing UI/ })
+    const promptButton = screen.getByRole('button', { name: /介绍一下 AIOS UI/ })
     await userEvent.click(promptButton)
 
     const input = screen.getByPlaceholderText('输入消息，按 Enter 发送…') as HTMLTextAreaElement
-    expect(input.value).toBe('介绍一下 Nothing UI')
+    expect(input.value).toBe('介绍一下 AIOS UI')
   })
 
   it('shows welcome with prompts on empty conversation', async () => {

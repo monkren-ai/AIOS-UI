@@ -1,4 +1,4 @@
-import { Breadcrumb } from 'nothing-ui/breadcrumb'
+import { Breadcrumb } from 'aios-ui-kit/breadcrumb'
 import type { ComponentDoc } from '../types'
 
 import BreadcrumbBasic from '../../examples/breadcrumb/basic'
@@ -29,7 +29,7 @@ export const breadcrumbDoc: ComponentDoc = {
       ]}
     />
   ),
-  importStatement: `import { Breadcrumb } from 'nothing-ui/breadcrumb'`,
+  importStatement: `import { Breadcrumb } from 'aios-ui-kit/breadcrumb'`,
   usageSnippet: `<Breadcrumb
   items={[
     { label: 'Home', href: '/' },

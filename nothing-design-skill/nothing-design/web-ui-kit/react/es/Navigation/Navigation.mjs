@@ -1,7 +1,7 @@
 import { useDirection } from "../DirectionProvider/DirectionProvider.mjs";
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { navBackVariants, navIndicatorVariants, navItemVariants, navItemWrapperVariants, navSeparatorVariants, navigationVariants } from "./navigation-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Navigation/Navigation.tsx
 function getItemSlug(item, idx) {
@@ -9,18 +9,18 @@ function getItemSlug(item, idx) {
 	return item.label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || `item-${idx}`;
 }
 function Navigation({ className, items, activeIndex: controlledIndex, variant = "default", showBack = false, onBack, onChange, syncWithUrl = true, scrollIntoView = false, ref, ...props }) {
-	const [internalIndex, setInternalIndex] = React.useState(0);
+	const [internalIndex, setInternalIndex] = React$1.useState(0);
 	const isControlled = controlledIndex !== void 0;
 	const activeIdx = isControlled ? controlledIndex : internalIndex;
-	const navRef = React.useRef(null);
-	const itemRefs = React.useRef([]);
-	const [indicatorStyle, setIndicatorStyle] = React.useState({
+	const navRef = React$1.useRef(null);
+	const itemRefs = React$1.useRef([]);
+	const [indicatorStyle, setIndicatorStyle] = React$1.useState({
 		start: 0,
 		width: 0
 	});
 	const showIndicator = variant !== "bracket";
 	const { dir } = useDirection();
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (!syncWithUrl || isControlled || typeof window === "undefined") return;
 		const hash = window.location.hash.replace(/^#/, "").toLowerCase();
 		if (!hash) return;
@@ -34,7 +34,7 @@ function Navigation({ className, items, activeIndex: controlledIndex, variant = 
 		isControlled,
 		items.length
 	]);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (!syncWithUrl || isControlled || typeof window === "undefined") return;
 		const onHashChange = () => {
 			const hash = window.location.hash.replace(/^#/, "").toLowerCase();
@@ -51,7 +51,7 @@ function Navigation({ className, items, activeIndex: controlledIndex, variant = 
 		isControlled,
 		items.length
 	]);
-	const updateIndicator = React.useCallback(() => {
+	const updateIndicator = React$1.useCallback(() => {
 		if (!showIndicator) return;
 		const nav = navRef.current;
 		const btn = itemRefs.current[activeIdx];
@@ -67,10 +67,10 @@ function Navigation({ className, items, activeIndex: controlledIndex, variant = 
 		showIndicator,
 		dir
 	]);
-	React.useLayoutEffect(() => {
+	React$1.useLayoutEffect(() => {
 		updateIndicator();
 	}, [updateIndicator]);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (typeof window === "undefined" || !showIndicator) return;
 		window.addEventListener("resize", updateIndicator);
 		return () => window.removeEventListener("resize", updateIndicator);
@@ -92,7 +92,7 @@ function Navigation({ className, items, activeIndex: controlledIndex, variant = 
 		}
 	};
 	return /* @__PURE__ */ jsxs("nav", {
-		ref: React.useCallback((node) => {
+		ref: React$1.useCallback((node) => {
 			navRef.current = node;
 			if (typeof ref === "function") ref(node);
 			else if (ref && "current" in ref) ref.current = node;

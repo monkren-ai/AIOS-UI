@@ -2,7 +2,7 @@ import { cn, dataAttr } from "../lib/utils.mjs";
 import { useKeyboardNavigation } from "../hooks/useKeyboardNavigation.mjs";
 import { OverlayPortal, useEscapeKey, useOverlayState } from "../ui/OverlayPortal.mjs";
 import { contextMenuContentVariants, contextMenuItemLabelVariants, contextMenuItemShortcutVariants, contextMenuItemVariants, contextMenuSeparatorVariants, contextMenuTriggerVariants, contextMenuVariants } from "./context-menu-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/ContextMenu/ContextMenu.tsx
 /**
@@ -15,22 +15,22 @@ function isStandaloneSeparator(item) {
 }
 function ContextMenu({ className, items, children, ref, ...props }) {
 	const { isOpen, close, setOpen } = useOverlayState(void 0);
-	const [position, setPosition] = React.useState({
+	const [position, setPosition] = React$1.useState({
 		top: 0,
 		left: 0
 	});
-	const [activeIndex, setActiveIndex] = React.useState(-1);
-	const contentRef = React.useRef(null);
-	const containerRef = React.useRef(null);
-	const triggerRef = React.useRef(null);
-	const previousFocusRef = React.useRef(null);
-	const itemRefs = React.useRef([]);
-	const setContainerRefs = React.useCallback((node) => {
+	const [activeIndex, setActiveIndex] = React$1.useState(-1);
+	const contentRef = React$1.useRef(null);
+	const containerRef = React$1.useRef(null);
+	const triggerRef = React$1.useRef(null);
+	const previousFocusRef = React$1.useRef(null);
+	const itemRefs = React$1.useRef([]);
+	const setContainerRefs = React$1.useCallback((node) => {
 		containerRef.current = node;
 		if (typeof ref === "function") ref(node);
 		else if (ref && "current" in ref) ref.current = node;
 	}, [ref]);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (!isOpen) return;
 		const handler = (event) => {
 			const target = event.target;
@@ -54,7 +54,7 @@ function ContextMenu({ className, items, children, ref, ...props }) {
 	* 依赖里放的是 `firstFocusableIndex` 而不是 `items`——调用方几乎都是内联字面量数组，
 	* 用 `items` 会让这个 effect 每次渲染都重跑一遍，焦点被反复抢走。
 	*/
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (!isOpen) return;
 		const trigger = triggerRef.current;
 		previousFocusRef.current = document.activeElement;
@@ -70,7 +70,7 @@ function ContextMenu({ className, items, children, ref, ...props }) {
 			else trigger?.focus();
 		};
 	}, [isOpen, firstFocusableIndex]);
-	const openAt = React.useCallback((top, left) => {
+	const openAt = React$1.useCallback((top, left) => {
 		setPosition({
 			top,
 			left
@@ -78,7 +78,7 @@ function ContextMenu({ className, items, children, ref, ...props }) {
 		setOpen(true);
 		setActiveIndex(-1);
 	}, [setOpen]);
-	const handleContextMenu = React.useCallback((e) => {
+	const handleContextMenu = React$1.useCallback((e) => {
 		e.preventDefault();
 		if (e.clientX === 0 && e.clientY === 0) {
 			const rect = triggerRef.current?.getBoundingClientRect();
@@ -87,14 +87,14 @@ function ContextMenu({ className, items, children, ref, ...props }) {
 		}
 		openAt(e.clientY, e.clientX);
 	}, [openAt]);
-	const handleTriggerKeyDown = React.useCallback((e) => {
+	const handleTriggerKeyDown = React$1.useCallback((e) => {
 		if (e.key === "ContextMenu" || e.shiftKey && e.key === "F10") {
 			e.preventDefault();
 			const rect = triggerRef.current?.getBoundingClientRect();
 			openAt(rect?.bottom ?? 0, rect?.left ?? 0);
 		}
 	}, [openAt]);
-	const handleItemSelect = React.useCallback((index) => {
+	const handleItemSelect = React$1.useCallback((index) => {
 		const item = items[index];
 		if (!item || isStandaloneSeparator(item) || item.disabled) return;
 		item.onClick?.();
@@ -123,7 +123,7 @@ function ContextMenu({ className, items, children, ref, ...props }) {
 			if (entry) handleItemSelect(entry.index);
 		}
 	});
-	const handleTabCycle = React.useCallback((e) => {
+	const handleTabCycle = React$1.useCallback((e) => {
 		e.preventDefault();
 		if (focusableNodes.length === 0) return;
 		const current = focusableNodes.indexOf(document.activeElement);
@@ -188,7 +188,7 @@ function ContextMenu({ className, items, children, ref, ...props }) {
 					className: cn(contextMenuSeparatorVariants()),
 					role: "separator",
 					"data-slot": "context-menu-separator"
-				}, `sep-${index}`) : /* @__PURE__ */ jsxs(React.Fragment, { children: [/* @__PURE__ */ jsxs("div", {
+				}, `sep-${index}`) : /* @__PURE__ */ jsxs(React$1.Fragment, { children: [/* @__PURE__ */ jsxs("div", {
 					ref: (node) => {
 						itemRefs.current[index] = node;
 					},

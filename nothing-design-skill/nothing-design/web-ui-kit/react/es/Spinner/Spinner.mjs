@@ -1,7 +1,7 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import Button from "../Button/Button.mjs";
 import { resolveSpinnerVariant, spinnerPointerVariants, spinnerSectorVariants, spinnerSvgVariants, spinnerTextVariants, spinnerVariants, spinnerWheelVariants } from "./spinner-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Spinner/Spinner.tsx
 const defaultItems = [
@@ -13,13 +13,13 @@ const defaultItems = [
 	"TRY"
 ];
 function Spinner({ className, items = defaultItems, spinDuration = 3500, size = "md", variant, ...props }) {
-	const [rotation, setRotation] = React.useState(0);
-	const [isSpinning, setIsSpinning] = React.useState(false);
-	const [selectedIndex, setSelectedIndex] = React.useState(null);
-	const [result, setResult] = React.useState("");
-	const rotationRef = React.useRef(0);
-	const pendingIndexRef = React.useRef(null);
-	const transitionEndedRef = React.useRef(false);
+	const [rotation, setRotation] = React$1.useState(0);
+	const [isSpinning, setIsSpinning] = React$1.useState(false);
+	const [selectedIndex, setSelectedIndex] = React$1.useState(null);
+	const [result, setResult] = React$1.useState("");
+	const rotationRef = React$1.useRef(0);
+	const pendingIndexRef = React$1.useRef(null);
+	const transitionEndedRef = React$1.useRef(false);
 	const resolvedVariant = resolveSpinnerVariant(variant) ?? "soft";
 	const n = items.length;
 	const sectorAngle = 2 * Math.PI / n;
@@ -47,7 +47,7 @@ function Spinner({ className, items = defaultItems, spinDuration = 3500, size = 
 			index: i
 		};
 	});
-	const handleSpinEnd = React.useCallback(() => {
+	const handleSpinEnd = React$1.useCallback(() => {
 		if (transitionEndedRef.current) return;
 		transitionEndedRef.current = true;
 		setIsSpinning(false);

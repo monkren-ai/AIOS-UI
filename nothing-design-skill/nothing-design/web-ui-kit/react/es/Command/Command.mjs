@@ -1,21 +1,21 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useClickOutside } from "../hooks/useClickOutside.mjs";
 import { commandEmptyVariants, commandGroupHeadingVariants, commandGroupVariants, commandInputVariants, commandItemIconVariants, commandItemLabelVariants, commandItemShortcutVariants, commandItemVariants, commandListVariants, commandVariants, resolveCommandSize } from "./command-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Command/Command.tsx
 function Command({ className, groups, placeholder = "Type a command...", emptyMessage = "No results found.", open: controlledOpen, onOpenChange, size = "md", ref, ...props }) {
-	const [internalOpen, setInternalOpen] = React.useState(false);
+	const [internalOpen, setInternalOpen] = React$1.useState(false);
 	const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
-	const [query, setQuery] = React.useState("");
-	const [selectedIndex, setSelectedIndex] = React.useState(0);
-	const containerRef = React.useRef(null);
-	const inputRef = React.useRef(null);
-	const listRef = React.useRef(null);
-	const generatedId = React.useId();
+	const [query, setQuery] = React$1.useState("");
+	const [selectedIndex, setSelectedIndex] = React$1.useState(0);
+	const containerRef = React$1.useRef(null);
+	const inputRef = React$1.useRef(null);
+	const listRef = React$1.useRef(null);
+	const generatedId = React$1.useId();
 	const listId = `${generatedId}-list`;
 	const resolvedSize = resolveCommandSize(size) ?? "md";
-	const setContainerRefs = React.useCallback((node) => {
+	const setContainerRefs = React$1.useCallback((node) => {
 		containerRef.current = node;
 		if (typeof ref === "function") ref(node);
 		else if (ref) ref.current = node;
@@ -25,7 +25,7 @@ function Command({ className, groups, placeholder = "Type a command...", emptyMe
 		items: g.items.filter((item) => item.label.toLowerCase().includes(query.toLowerCase()))
 	})).filter((g) => g.items.length > 0);
 	const flatFilteredItems = filteredGroups.flatMap((g) => g.items);
-	const handleClose = React.useCallback(() => {
+	const handleClose = React$1.useCallback(() => {
 		if (controlledOpen === void 0) setInternalOpen(false);
 		onOpenChange?.(false);
 		setQuery("");
@@ -34,20 +34,20 @@ function Command({ className, groups, placeholder = "Type a command...", emptyMe
 	useClickOutside(containerRef, () => {
 		if (isOpen) handleClose();
 	});
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (isOpen) requestAnimationFrame(() => {
 			inputRef.current?.focus();
 		});
 	}, [isOpen]);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		setSelectedIndex(0);
 	}, [query]);
-	const handleSelect = React.useCallback((item) => {
+	const handleSelect = React$1.useCallback((item) => {
 		if (item.disabled) return;
 		item.onSelect?.();
 		handleClose();
 	}, [handleClose]);
-	const handleKeyDown = React.useCallback((e) => {
+	const handleKeyDown = React$1.useCallback((e) => {
 		switch (e.key) {
 			case "ArrowDown":
 				e.preventDefault();

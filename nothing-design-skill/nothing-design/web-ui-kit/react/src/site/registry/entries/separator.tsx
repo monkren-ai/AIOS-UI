@@ -1,4 +1,4 @@
-import { Separator } from 'nothing-ui/separator'
+import { Separator } from 'aios-ui-kit/separator'
 import type { ComponentDoc } from '../types'
 
 import SeparatorSizes from '../../examples/separator/sizes'
@@ -25,7 +25,7 @@ export const separatorDoc: ComponentDoc = {
       <Separator label="or" />
     </div>
   ),
-  importStatement: `import { Separator } from 'nothing-ui/separator'`,
+  importStatement: `import { Separator } from 'aios-ui-kit/separator'`,
   usageSnippet: `<Separator />`,
   examples: [
     {

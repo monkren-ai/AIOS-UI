@@ -1,5 +1,5 @@
-import { Card } from 'nothing-ui/card'
-import { Spinner } from 'nothing-ui/spinner'
+import { Card } from 'aios-ui-kit/card'
+import { Spinner } from 'aios-ui-kit/spinner'
 
 export default function SpinnerInContext() {
   return (

@@ -4,7 +4,7 @@ import { useT } from '../../i18n'
 import { DocList, DocNote, DocSection, DocSubSection, DocTable } from './_shared'
 
 const INJECT = `import * as motion from 'motion/react'
-import { ConfigProvider } from 'nothing-ui'
+import { ConfigProvider } from 'aios-ui-kit'
 
 <ConfigProvider motion={motion}>
   <App />
@@ -14,7 +14,7 @@ const LITE = `// 体积敏感时用精简版：motion/react-m 只带 <m.*> 组�
 // 需要自己在外层挂一个 <MotionConfig> 之类的 feature bundle。
 import * as motion from 'motion/react-m'`
 
-const CONSUME = `import { useMotionComponent } from 'nothing-ui/motion-provider'
+const CONSUME = `import { useMotionComponent } from 'aios-ui-kit/motion-provider'
 
 function Panel() {
   const motion = useMotionComponent() // 没有 provider 时抛错，不静默降级
@@ -37,7 +37,7 @@ const REDUCE = `// 每一处过渡都要有 motion-reduce: 兜底
 // 位移和缩放要退化成「不动」，而不是「动得慢一点」
 <button className="active:scale-[0.97] motion-reduce:active:scale-100" />`
 
-const JS_REDUCE = `import { useReducedMotion } from 'nothing-ui/reduced-motion-provider'
+const JS_REDUCE = `import { useReducedMotion } from 'aios-ui-kit/reduced-motion-provider'
 
 function Orb() {
   const reducedMotion = useReducedMotion()

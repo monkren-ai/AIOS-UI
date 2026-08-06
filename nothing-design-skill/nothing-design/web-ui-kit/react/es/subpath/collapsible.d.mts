@@ -1,0 +1,3 @@
+import { collapsibleContentInnerVariants, collapsibleContentVariants, collapsibleTriggerVariants, collapsibleVariants } from "../Collapsible/collapsible-variants.mjs";
+import { Collapsible, CollapsibleProps } from "../Collapsible/Collapsible.mjs";
+export { Collapsible, type CollapsibleProps, collapsibleContentInnerVariants, collapsibleContentVariants, collapsibleTriggerVariants, collapsibleVariants };

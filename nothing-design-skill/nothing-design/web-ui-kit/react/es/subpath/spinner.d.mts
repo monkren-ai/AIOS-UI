@@ -1,0 +1,3 @@
+import { SpinnerSize, SpinnerVariant, spinnerPointerVariants, spinnerSectorVariants, spinnerSvgVariants, spinnerTextVariants, spinnerVariants, spinnerWheelVariants } from "../Spinner/spinner-variants.mjs";
+import { Spinner, SpinnerProps } from "../Spinner/Spinner.mjs";
+export { Spinner, type SpinnerProps, type SpinnerSize, type SpinnerVariant, spinnerPointerVariants, spinnerSectorVariants, spinnerSvgVariants, spinnerTextVariants, spinnerVariants, spinnerWheelVariants };

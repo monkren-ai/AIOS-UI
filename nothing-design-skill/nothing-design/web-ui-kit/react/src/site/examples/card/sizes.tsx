@@ -1,4 +1,4 @@
-import { Card } from 'nothing-ui/card'
+import { Card } from 'aios-ui-kit/card'
 
 export default function CardSizes() {
   return (

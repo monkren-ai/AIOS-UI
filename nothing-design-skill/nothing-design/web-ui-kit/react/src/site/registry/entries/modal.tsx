@@ -1,4 +1,4 @@
-import { Button } from 'nothing-ui/button'
+import { Button } from 'aios-ui-kit/button'
 import type { ComponentDoc } from '../types'
 
 import ModalBasic from '../../examples/modal/basic'
@@ -24,7 +24,7 @@ export const modalDoc: ComponentDoc = {
     en: 'A modal dialog that traps focus and takes over the page; `variant="alert"` switches it to a confirmation the user has to answer.',
   },
   preview: () => <Button>Open modal</Button>,
-  importStatement: `import { Modal } from 'nothing-ui/modal'`,
+  importStatement: `import { Modal } from 'aios-ui-kit/modal'`,
   usageSnippet: `const [open, setOpen] = useState(false)
 
 <Button onClick={() => setOpen(true)}>Open</Button>

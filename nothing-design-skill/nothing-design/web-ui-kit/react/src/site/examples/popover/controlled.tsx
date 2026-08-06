@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Button } from 'nothing-ui/button'
-import { Popover } from 'nothing-ui/popover'
+import { Button } from 'aios-ui-kit/button'
+import { Popover } from 'aios-ui-kit/popover'
 
 export default function PopoverControlled() {
   const [open, setOpen] = useState(false)

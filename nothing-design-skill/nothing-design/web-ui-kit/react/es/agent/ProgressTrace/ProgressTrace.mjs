@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
 import AgentOrb from "../AgentOrb/AgentOrb.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "./ProgressTrace.css";
@@ -26,8 +26,8 @@ const progressTraceVariants = cva("nothing-progress-trace", {
 	} },
 	defaultVariants: { collapsed: false }
 });
-const ProgressTrace = React.forwardRef(({ steps, defaultCollapsed = false, title = "TRACE", expandLabel = "Expand trace", collapseLabel = "Collapse trace", className, ...props }, ref) => {
-	const [collapsed, setCollapsed] = React.useState(defaultCollapsed);
+const ProgressTrace = React$1.forwardRef(({ steps, defaultCollapsed = false, title = "TRACE", expandLabel = "Expand trace", collapseLabel = "Collapse trace", className, ...props }, ref) => {
+	const [collapsed, setCollapsed] = React$1.useState(defaultCollapsed);
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(progressTraceVariants({ collapsed }), className),

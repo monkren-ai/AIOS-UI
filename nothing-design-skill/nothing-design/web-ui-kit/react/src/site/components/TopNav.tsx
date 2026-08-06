@@ -39,7 +39,7 @@ export function TopNav({ onOpenSearch }: { onOpenSearch: () => void }) {
       <div className="mx-auto flex h-14 w-full items-center gap-4 px-4 md:px-6">
         <Link to="/" className="flex shrink-0 items-baseline gap-2 no-underline">
           <span className="font-display text-subheading uppercase tracking-widest text-foreground-display">
-            Nothing UI
+            AIOS UI
           </span>
           <span className="font-mono text-label text-foreground-subtle">{VERSION}</span>
         </Link>

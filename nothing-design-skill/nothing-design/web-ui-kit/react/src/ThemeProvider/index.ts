@@ -1,3 +1,3 @@
-export { default } from './index.tsx'
-export * from './index.tsx'
+export { default } from './ThemeProvider'
+export * from './ThemeProvider'
 export * from './ThemeScript'

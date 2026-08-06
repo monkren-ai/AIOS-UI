@@ -1,4 +1,4 @@
-import { Calendar } from 'nothing-ui/calendar'
+import { Calendar } from 'aios-ui-kit/calendar'
 import type { ComponentDoc } from '../types'
 
 import CalendarCompact from '../../examples/calendar/compact'
@@ -17,7 +17,7 @@ export const calendarDoc: ComponentDoc = {
     en: 'A read-only calendar: compact highlights today, full shows a month grid you can page.',
   },
   preview: () => <Calendar type="compact" />,
-  importStatement: `import { Calendar } from 'nothing-ui/calendar'`,
+  importStatement: `import { Calendar } from 'aios-ui-kit/calendar'`,
   usageSnippet: `<Calendar type="compact" />`,
   composition: {
     zh: 'Calendar 是只读的：`full` 版型里的月份翻页只改变自己内部显示的月份，不会告诉外部选中了哪一天，组件也没有 `onSelect` 之类的回调。它是用来「看」日期的展示件，不是日期选择器——需要选日期请用 Popover/Modal 包一个原生 `<input type="date">`，或者自己在 Calendar 之外接一套选中态。',

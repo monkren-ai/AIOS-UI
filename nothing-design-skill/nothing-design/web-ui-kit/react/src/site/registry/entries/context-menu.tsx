@@ -24,7 +24,7 @@ export const contextMenuDoc: ComponentDoc = {
       Right-click here
     </div>
   ),
-  importStatement: `import { ContextMenu } from 'nothing-ui/context-menu'`,
+  importStatement: `import { ContextMenu } from 'aios-ui-kit/context-menu'`,
   usageSnippet: `<ContextMenu
   items={[
     { label: 'Open', onClick: open },

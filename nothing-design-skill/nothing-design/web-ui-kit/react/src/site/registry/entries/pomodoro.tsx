@@ -1,4 +1,4 @@
-import { Pomodoro } from 'nothing-ui/pomodoro'
+import { Pomodoro } from 'aios-ui-kit/pomodoro'
 import type { ComponentDoc } from '../types'
 
 import PomodoroDefault from '../../examples/pomodoro/default'
@@ -17,7 +17,7 @@ export const pomodoroDoc: ComponentDoc = {
     en: 'A pomodoro timer that flips between work and break, counting the rounds you finish.',
   },
   preview: () => <Pomodoro className="w-full max-w-xs" />,
-  importStatement: `import { Pomodoro } from 'nothing-ui/pomodoro'`,
+  importStatement: `import { Pomodoro } from 'aios-ui-kit/pomodoro'`,
   usageSnippet: `<Pomodoro />`,
   examples: [
     {

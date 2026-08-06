@@ -1,26 +1,26 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { inputOTPInputVariants, inputOTPSlotVariants, inputOTPVariants, resolveInputOTPSize } from "./input-otp-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx } from "react/jsx-runtime";
 //#region src/InputOTP/InputOTP.tsx
 function InputOTP({ className, length = 6, value: controlledValue, onValueChange, disabled = false, error = false, size = "md", ref, ...props }) {
-	const [internalValue, setInternalValue] = React.useState("");
+	const [internalValue, setInternalValue] = React$1.useState("");
 	const value = controlledValue !== void 0 ? controlledValue : internalValue;
-	const [activeSlot, setActiveSlot] = React.useState(null);
-	const inputRefs = React.useRef([]);
-	const containerRef = React.useRef(null);
+	const [activeSlot, setActiveSlot] = React$1.useState(null);
+	const inputRefs = React$1.useRef([]);
+	const containerRef = React$1.useRef(null);
 	const resolvedSize = resolveInputOTPSize(size) ?? "md";
 	const chars = value.split("").concat(Array(Math.max(0, length - value.length)).fill(""));
-	const setRefs = React.useCallback((node) => {
+	const setRefs = React$1.useCallback((node) => {
 		containerRef.current = node;
 		if (typeof ref === "function") ref(node);
 		else if (ref) ref.current = node;
 	}, [ref]);
-	const updateValue = React.useCallback((newValue) => {
+	const updateValue = React$1.useCallback((newValue) => {
 		if (controlledValue === void 0) setInternalValue(newValue);
 		onValueChange?.(newValue);
 	}, [controlledValue, onValueChange]);
-	const handleInput = React.useCallback((index, e) => {
+	const handleInput = React$1.useCallback((index, e) => {
 		const inputChar = e.target.value.slice(-1);
 		if (!/^\d$/.test(inputChar)) return;
 		const newValue = value.split("");
@@ -36,14 +36,14 @@ function InputOTP({ className, length = 6, value: controlledValue, onValueChange
 	* 槽位在 `dir="rtl"` 下由 flex 镜像过，方向键要跟着镜像，
 	* 否则「往左」会跳到视觉上的右边。
 	*/
-	const getArrowStep = React.useCallback((key) => {
+	const getArrowStep = React$1.useCallback((key) => {
 		const node = containerRef.current;
 		const rtl = typeof window !== "undefined" && node ? window.getComputedStyle(node).direction === "rtl" : false;
 		if (key === "ArrowLeft") return rtl ? 1 : -1;
 		if (key === "ArrowRight") return rtl ? -1 : 1;
 		return 0;
 	}, []);
-	const handleKeyDown = React.useCallback((index, e) => {
+	const handleKeyDown = React$1.useCallback((index, e) => {
 		if (e.key === "Backspace") {
 			e.preventDefault();
 			if (value[index]) {
@@ -70,17 +70,17 @@ function InputOTP({ className, length = 6, value: controlledValue, onValueChange
 		updateValue,
 		getArrowStep
 	]);
-	const handlePaste = React.useCallback((e) => {
+	const handlePaste = React$1.useCallback((e) => {
 		e.preventDefault();
 		const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, length);
 		updateValue(pasted);
 		const focusIndex = Math.min(pasted.length, length - 1);
 		inputRefs.current[focusIndex]?.focus();
 	}, [length, updateValue]);
-	const handleFocus = React.useCallback((index) => {
+	const handleFocus = React$1.useCallback((index) => {
 		setActiveSlot(index);
 	}, []);
-	const handleBlur = React.useCallback(() => {
+	const handleBlur = React$1.useCallback(() => {
 		setActiveSlot(null);
 	}, []);
 	return /* @__PURE__ */ jsx("div", {

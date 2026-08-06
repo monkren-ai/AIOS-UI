@@ -1,4 +1,4 @@
-import { SegmentedControl } from 'nothing-ui/segmented-control'
+import { SegmentedControl } from 'aios-ui-kit/segmented-control'
 import type { ComponentDoc } from '../types'
 
 import SegmentedControlBasic from '../../examples/segmented-control/basic'
@@ -21,7 +21,7 @@ export const segmentedControlDoc: ComponentDoc = {
     en: 'A segmented switch across a small set of mutually exclusive options.',
   },
   preview: () => <SegmentedControl segments={['Day', 'Week', 'Month']} />,
-  importStatement: `import { SegmentedControl } from 'nothing-ui/segmented-control'`,
+  importStatement: `import { SegmentedControl } from 'aios-ui-kit/segmented-control'`,
   usageSnippet: `<SegmentedControl segments={['Day', 'Week', 'Month']} onChange={setIndex} />`,
   composition: {
     zh: '没有子组件，也没有 `value`：选项是一个 `string[]`，选中态用**下标**表达。这让接入变得很短，代价是选项顺序一旦变化，存下来的下标就失去意义——需要持久化选中项时，请自己在下标和业务 id 之间做映射。结构上是一个 `role="radiogroup"` 的容器 + 每段一个 `<button role="radio">`，外加两块绝对定位的装饰层：选中态 slider 和 proximity hover 垫层。它是一组互斥的值选择器，不切换任何面板，所以走的是单选组语义而不是 tabs。整条控件是 `overflow-hidden` 的定位上下文，slider 靠 `inset-inline-start` 定位，所以 RTL 下自动镜像。',

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BubbleList, Sender } from 'nothing-ui/conversation'
+import { BubbleList, Sender } from 'aios-ui-kit/conversation'
 
 const initial = [
   { key: '1', role: 'ai' as const, content: 'How can I help you today?' },

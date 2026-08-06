@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavigationMenu } from 'nothing-ui/navigation-menu'
+import { NavigationMenu } from 'aios-ui-kit/navigation-menu'
 
 export default function NavigationMenuClientRouting() {
   const [route, setRoute] = useState('/home')

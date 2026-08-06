@@ -1,4 +1,4 @@
-import { SystemMonitor } from 'nothing-ui/system-monitor'
+import { SystemMonitor } from 'aios-ui-kit/system-monitor'
 import type { ComponentDoc } from '../types'
 
 import SystemMonitorDefault from '../../examples/system-monitor/default'
@@ -24,7 +24,7 @@ export const systemMonitorDoc: ComponentDoc = {
       className="w-full max-w-sm"
     />
   ),
-  importStatement: `import { SystemMonitor } from 'nothing-ui/system-monitor'`,
+  importStatement: `import { SystemMonitor } from 'aios-ui-kit/system-monitor'`,
   usageSnippet: `<SystemMonitor cpuPercent={38} ramPercent={54} storagePercent={61} />`,
   examples: [
     {

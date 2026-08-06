@@ -25,7 +25,7 @@ export const hoverCardDoc: ComponentDoc = {
       @teenage.engineering
     </button>
   ),
-  importStatement: `import { HoverCard } from 'nothing-ui/hover-card'`,
+  importStatement: `import { HoverCard } from 'aios-ui-kit/hover-card'`,
   usageSnippet: `<HoverCard content={<p>A short preview of what is behind this link.</p>}>
   <button>@teenage.engineering</button>
 </HoverCard>`,

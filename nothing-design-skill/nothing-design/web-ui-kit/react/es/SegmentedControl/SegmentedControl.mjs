@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { segmentVariants, segmentedHoverSliderVariants, segmentedSliderVariants, segmentedVariants } from "./segmented-control-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/SegmentedControl/SegmentedControl.tsx
 /**
@@ -13,30 +13,30 @@ function toInlineStart(container, offsetLeft, width) {
 	return container.clientWidth - offsetLeft - width;
 }
 function SegmentedControl({ className, segments, activeIndex: controlledIndex, variant = "pill", disabled = false, proximity = false, onChange, ref, ...props }) {
-	const [internalIndex, setInternalIndex] = React.useState(0);
-	const [sliderStyle, setSliderStyle] = React.useState({});
-	const [hoverIndex, setHoverIndex] = React.useState(null);
-	const [hoverStyle, setHoverStyle] = React.useState({ opacity: 0 });
-	const rootRef = React.useRef(null);
-	const segmentRefs = React.useRef([]);
+	const [internalIndex, setInternalIndex] = React$1.useState(0);
+	const [sliderStyle, setSliderStyle] = React$1.useState({});
+	const [hoverIndex, setHoverIndex] = React$1.useState(null);
+	const [hoverStyle, setHoverStyle] = React$1.useState({ opacity: 0 });
+	const rootRef = React$1.useRef(null);
+	const segmentRefs = React$1.useRef([]);
 	const activeIdx = controlledIndex !== void 0 ? controlledIndex : internalIndex;
 	const rovingIdx = activeIdx >= 0 && activeIdx < segments.length ? activeIdx : 0;
-	const setRootRef = React.useCallback((node) => {
+	const setRootRef = React$1.useCallback((node) => {
 		rootRef.current = node;
 		if (typeof ref === "function") ref(node);
 		else if (ref) ref.current = node;
 	}, [ref]);
-	const updateSlider = React.useCallback(() => {
+	const updateSlider = React$1.useCallback(() => {
 		const activeSegment = segmentRefs.current[activeIdx];
 		if (activeSegment) setSliderStyle({
 			width: activeSegment.offsetWidth,
 			insetInlineStart: toInlineStart(rootRef.current, activeSegment.offsetLeft, activeSegment.offsetWidth)
 		});
 	}, [activeIdx]);
-	React.useLayoutEffect(() => {
+	React$1.useLayoutEffect(() => {
 		updateSlider();
 	}, [updateSlider]);
-	const updateHoverSlider = React.useCallback((index) => {
+	const updateHoverSlider = React$1.useCallback((index) => {
 		if (index == null) {
 			setHoverStyle((prev) => ({
 				...prev,
@@ -52,7 +52,7 @@ function SegmentedControl({ className, segments, activeIndex: controlledIndex, v
 			opacity: 1
 		});
 	}, []);
-	React.useLayoutEffect(() => {
+	React$1.useLayoutEffect(() => {
 		updateHoverSlider(hoverIndex);
 	}, [hoverIndex, updateHoverSlider]);
 	const handleSelect = (index) => {

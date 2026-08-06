@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AskUserQuestions, type AskUserQuestion } from 'nothing-ui/ask-user-questions'
+import { AskUserQuestions, type AskUserQuestion } from 'aios-ui-kit/ask-user-questions'
 
 const questions: AskUserQuestion[] = [
   {

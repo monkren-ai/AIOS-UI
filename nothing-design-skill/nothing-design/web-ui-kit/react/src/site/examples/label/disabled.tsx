@@ -1,5 +1,5 @@
-import { Input } from 'nothing-ui/input'
-import { Label } from 'nothing-ui/label'
+import { Input } from 'aios-ui-kit/input'
+import { Label } from 'aios-ui-kit/label'
 
 export default function LabelDisabled() {
   return (

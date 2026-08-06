@@ -1,4 +1,4 @@
-import { CheckboxGroup } from 'nothing-ui/checkbox-group'
+import { CheckboxGroup } from 'aios-ui-kit/checkbox-group'
 
 const options = [
   { value: 'mon', label: 'Mon' },

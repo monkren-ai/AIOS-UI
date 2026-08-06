@@ -1,7 +1,7 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useProximityHover } from "../hooks/useProximityHover.mjs";
 import { resolveTagShape, resolveTagVariant, tagVariants, tagsVariants } from "./tag-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Tag/Tag.tsx
 function Tag({ className, variant, size = "md", shape, active = false, removable = false, disabled = false, children, onClick, onRemove, ...props }) {
@@ -67,16 +67,16 @@ function Tag({ className, variant, size = "md", shape, active = false, removable
 }
 Tag.displayName = "Tag";
 function Tags({ className, children, proximity = false, ref, ...props }) {
-	const containerRef = React.useRef(null);
+	const containerRef = React$1.useRef(null);
 	const axis = typeof proximity === "string" ? proximity : "xy";
 	const enabled = !!proximity;
 	const { activeIndex, registerItem, handlers } = useProximityHover(containerRef, { axis });
-	const mergedRef = React.useCallback((node) => {
+	const mergedRef = React$1.useCallback((node) => {
 		containerRef.current = node;
 		if (typeof ref === "function") ref(node);
 		else if (ref && "current" in ref) ref.current = node;
 	}, [ref]);
-	const items = React.Children.toArray(children).filter(React.isValidElement);
+	const items = React$1.Children.toArray(children).filter(React$1.isValidElement);
 	return /* @__PURE__ */ jsx("div", {
 		ref: mergedRef,
 		className: cn(tagsVariants({ proximity: enabled }), className),
@@ -84,7 +84,7 @@ function Tags({ className, children, proximity = false, ref, ...props }) {
 		"data-proximity": dataAttr(enabled),
 		...enabled ? handlers : {},
 		...props,
-		children: enabled ? items.map((child, index) => React.cloneElement(child, {
+		children: enabled ? items.map((child, index) => React$1.cloneElement(child, {
 			ref: (node) => registerItem(index, node),
 			"data-proximity-active": activeIndex === index,
 			"data-index": index

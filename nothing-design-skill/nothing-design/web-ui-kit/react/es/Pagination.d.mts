@@ -1,0 +1,3 @@
+import { paginationArrowVariants, paginationButtonVariants, paginationEllipsisVariants, paginationItemVariants, paginationListVariants, paginationVariants } from "./Pagination/pagination-variants.mjs";
+import { Pagination, PaginationProps } from "./Pagination/Pagination.mjs";
+export { Pagination, type PaginationProps, Pagination as default, paginationArrowVariants, paginationButtonVariants, paginationEllipsisVariants, paginationItemVariants, paginationListVariants, paginationVariants };

@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { paginationArrowVariants, paginationButtonVariants, paginationEllipsisVariants, paginationItemVariants, paginationListVariants, paginationVariants } from "./pagination-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Pagination/Pagination.tsx
 const range = (start, end) => {
@@ -33,7 +33,7 @@ const usePagination = (page, totalPages, siblingCount) => {
 };
 function Pagination({ className, page, totalPages, onPageChange, siblingCount = 1, ...props }) {
 	const pages = usePagination(page, totalPages, siblingCount);
-	const handlePageChange = React.useCallback((p) => {
+	const handlePageChange = React$1.useCallback((p) => {
 		if (p < 1 || p > totalPages || p === page) return;
 		onPageChange(p);
 	}, [
@@ -41,7 +41,7 @@ function Pagination({ className, page, totalPages, onPageChange, siblingCount = 
 		totalPages,
 		onPageChange
 	]);
-	const handleKeyDown = React.useCallback((e) => {
+	const handleKeyDown = React$1.useCallback((e) => {
 		if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
 		e.preventDefault();
 		const forwardKey = getComputedStyle(e.currentTarget).direction === "rtl" ? "ArrowLeft" : "ArrowRight";

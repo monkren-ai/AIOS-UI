@@ -1,7 +1,7 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useProximityHover } from "../hooks/useProximityHover.mjs";
 import { tabTriggerVariants, tabsHoverBackgroundVariants, tabsIndicatorVariants, tabsListVariants, tabsPanelVariants, tabsVariants } from "./tabs-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Tabs } from "@base-ui/react/tabs";
 //#region src/Tabs/Tabs.tsx
@@ -16,27 +16,13 @@ function toInlineStart(container, physicalLeft, width) {
 }
 const TabPanel = () => null;
 function Tabs$1({ className, items, value: controlledValue, defaultValue, onValueChange, variant = "default", indicator = "line", enableProximityHover = true, children, ...props }) {
-	const listRef = React.useRef(null);
-	const [indicatorStyle, setIndicatorStyle] = React.useState({});
-	const [hoverStyle, setHoverStyle] = React.useState({});
+	const listRef = React$1.useRef(null);
+	const [hoverStyle, setHoverStyle] = React$1.useState({});
 	const { activeIndex: hoveredIndex, registerItem, handlers } = useProximityHover(listRef, { axis: "x" });
-	const handleValueChange = React.useCallback((value) => {
+	const handleValueChange = React$1.useCallback((value) => {
 		onValueChange?.(value);
 	}, [onValueChange]);
-	const updateIndicator = React.useCallback((activeTabPosition) => {
-		if (!activeTabPosition) {
-			setIndicatorStyle((prev) => prev.opacity === 0 ? prev : { opacity: 0 });
-			return;
-		}
-		const width = activeTabPosition.right - activeTabPosition.left;
-		const insetInlineStart = toInlineStart(listRef.current, activeTabPosition.left, width);
-		setIndicatorStyle((prev) => prev.insetInlineStart === insetInlineStart && prev.width === width && prev.opacity === 1 ? prev : {
-			insetInlineStart,
-			width,
-			opacity: 1
-		});
-	}, []);
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		if (!enableProximityHover) return;
 		if (hoveredIndex == null || !items[hoveredIndex]) {
 			setHoverStyle({ opacity: 0 });
@@ -57,8 +43,8 @@ function Tabs$1({ className, items, value: controlledValue, defaultValue, onValu
 		enableProximityHover,
 		items
 	]);
-	const panels = React.useMemo(() => {
-		return (children ? Array.isArray(children) ? children : [children] : []).filter((panel) => React.isValidElement(panel) && panel.props.value !== void 0);
+	const panels = React$1.useMemo(() => {
+		return (children ? Array.isArray(children) ? children : [children] : []).filter((panel) => React$1.isValidElement(panel) && panel.props.value !== void 0);
 	}, [children]);
 	return /* @__PURE__ */ jsxs(Tabs.Root, {
 		className: cn(tabsVariants({
@@ -89,7 +75,13 @@ function Tabs$1({ className, items, value: controlledValue, defaultValue, onValu
 					className: tabsIndicatorVariants({ variant }),
 					renderBeforeHydration: true,
 					render: (indicatorProps, state) => {
-						updateIndicator(state.activeTabPosition);
+						const pos = state.activeTabPosition;
+						const width = pos ? pos.right - pos.left : 0;
+						const indicatorStyle = pos ? {
+							insetInlineStart: toInlineStart(listRef.current, pos.left, width),
+							width,
+							opacity: 1
+						} : { opacity: 0 };
 						return /* @__PURE__ */ jsx("span", {
 							...indicatorProps,
 							style: {

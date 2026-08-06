@@ -1,7 +1,7 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { useNow } from "../system/hooks.mjs";
 import { nextEventCountdownVariants, nextEventDateVariants, nextEventLabelVariants, nextEventMonthVariants, nextEventTitleVariants, nextEventVariants } from "./next-event-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/NextEvent/NextEvent.tsx
 const MONTHS = [
@@ -55,7 +55,7 @@ function pad2(n) {
 }
 function NextEvent({ className, theme = "dark", priority: priorityProp, event, events, ref, ...props }) {
 	const now = useNow(6e4);
-	const defaultEvents = React.useMemo(makeDefaultEvents, []);
+	const defaultEvents = React$1.useMemo(makeDefaultEvents, []);
 	let displayEvent;
 	if (event) displayEvent = event;
 	else if (events && events.length > 0) {

@@ -1,7 +1,7 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
 import Button from "../../Button/Button.mjs";
 import AgentOrb from "../AgentOrb/AgentOrb.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "./PlanCard.css";
@@ -28,7 +28,7 @@ const planCardVariants = cva("nothing-plan-card", {
 		compact: false
 	}
 });
-const PlanCard = React.forwardRef(({ title = "AGENT PLAN", steps, editable = false, compact = false, onApprove, onEdit, onStepToggle, onApproveAll, onReset, approveLabel = "ALLOW AGENT", editLabel = "MODIFY", approveAllLabel = "APPROVE ALL", resetLabel = "RESET", approveDisabledHint = "Approve all steps first", className, ...props }, ref) => {
+const PlanCard = React$1.forwardRef(({ title = "AGENT PLAN", steps, editable = false, compact = false, onApprove, onEdit, onStepToggle, onApproveAll, onReset, approveLabel = "ALLOW AGENT", editLabel = "MODIFY", approveAllLabel = "APPROVE ALL", resetLabel = "RESET", approveDisabledHint = "Approve all steps first", className, ...props }, ref) => {
 	const approvedCount = steps.filter((s) => s.status === "approved" || s.status === "done").length;
 	const allApproved = steps.length > 0 && approvedCount === steps.length;
 	return /* @__PURE__ */ jsxs("div", {

@@ -1,10 +1,10 @@
 import { cn, dataAttr, mergeSemanticProps } from "../../lib/utils.mjs";
 import { welcomeVariants } from "./welcome-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import "./Welcome.css";
 //#region src/conversation/Welcome/Welcome.tsx
-const Welcome = React.forwardRef(({ title, description, icon, extra, actions, className, style, classNames: userClassNames, styles: userStyles, variant, size, ...rest }, ref) => {
+const Welcome = React$1.forwardRef(({ title, description, icon, extra, actions, className, style, classNames: userClassNames, styles: userStyles, variant, size, ...rest }, ref) => {
 	const { classNames, styles } = mergeSemanticProps({
 		classNames: userClassNames,
 		styles: userStyles

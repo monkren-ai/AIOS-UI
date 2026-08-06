@@ -1,4 +1,4 @@
-import { DataTable } from 'nothing-ui/data-table'
+import { DataTable } from 'aios-ui-kit/data-table'
 
 const columns = [
   { key: 'device', label: 'Device' },

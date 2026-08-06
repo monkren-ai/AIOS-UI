@@ -1,4 +1,4 @@
-import { CheckboxGroup } from 'nothing-ui/checkbox-group'
+import { CheckboxGroup } from 'aios-ui-kit/checkbox-group'
 import type { ComponentDoc } from '../types'
 
 import CheckboxGroupBasic from '../../examples/checkbox-group/basic'
@@ -28,7 +28,7 @@ export const checkboxGroupDoc: ComponentDoc = {
       defaultValue={['a', 'b']}
     />
   ),
-  importStatement: `import { CheckboxGroup } from 'nothing-ui/checkbox-group'`,
+  importStatement: `import { CheckboxGroup } from 'aios-ui-kit/checkbox-group'`,
   usageSnippet: `<CheckboxGroup
   options={[
     { value: 'a', label: 'Option A' },

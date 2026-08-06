@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/ErrorBoundary/ErrorBoundary.tsx
 const getTokens = () => {
@@ -33,7 +33,7 @@ const getTokens = () => {
 		};
 	}
 };
-var ErrorBoundary = class extends React.Component {
+var ErrorBoundary = class extends React$1.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

@@ -1,22 +1,22 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { inputMessageControlVariants, inputMessageCountVariants, inputMessageFieldVariants, inputMessageHintVariants, inputMessageMetaVariants, inputMessageSendIconVariants, inputMessageSendLabelVariants, inputMessageSendVariants, inputMessageVariants, resolveInputMessageSize } from "./input-message-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/InputMessage/InputMessage.tsx
 function InputMessage({ value: valueProp, defaultValue = "", onChange, onSend, placeholder, disabled = false, minRows = 1, maxRows = 6, maxLength, submitOnEnter = true, sendLabel = "SEND", countLabel, hideCount = false, size = "md", className, onKeyDown, ref, ...textareaProps }) {
 	const isControlled = valueProp !== void 0;
-	const [internalValue, setInternalValue] = React.useState(defaultValue);
+	const [internalValue, setInternalValue] = React$1.useState(defaultValue);
 	const value = isControlled ? valueProp : internalValue;
-	const textareaRef = React.useRef(null);
-	const generatedId = React.useId();
+	const textareaRef = React$1.useRef(null);
+	const generatedId = React$1.useId();
 	const inputId = textareaProps.id || generatedId;
 	const resolvedSize = resolveInputMessageSize(size) ?? "md";
-	const setRefs = React.useCallback((node) => {
+	const setRefs = React$1.useCallback((node) => {
 		textareaRef.current = node;
 		if (typeof ref === "function") ref(node);
 		else if (ref) ref.current = node;
 	}, [ref]);
-	const resize = React.useCallback(() => {
+	const resize = React$1.useCallback(() => {
 		const textarea = textareaRef.current;
 		if (!textarea) return;
 		textarea.style.height = "auto";
@@ -28,7 +28,7 @@ function InputMessage({ value: valueProp, defaultValue = "", onChange, onSend, p
 		textarea.style.height = `${newHeight}px`;
 		textarea.style.overflowY = textarea.scrollHeight > maxHeight ? "auto" : "hidden";
 	}, [minRows, maxRows]);
-	React.useLayoutEffect(() => {
+	React$1.useLayoutEffect(() => {
 		resize();
 	}, [value, resize]);
 	const handleChange = (e) => {
@@ -36,7 +36,7 @@ function InputMessage({ value: valueProp, defaultValue = "", onChange, onSend, p
 		if (!isControlled) setInternalValue(newValue);
 		onChange?.(newValue);
 	};
-	const handleSend = React.useCallback(() => {
+	const handleSend = React$1.useCallback(() => {
 		if (disabled || !value.trim()) return;
 		onSend?.(value);
 		if (!isControlled) setInternalValue("");

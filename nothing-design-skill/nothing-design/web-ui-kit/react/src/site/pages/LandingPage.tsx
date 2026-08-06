@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { buttonVariants } from 'nothing-ui/button'
+import { buttonVariants } from 'aios-ui-kit/button'
 import { VERSION } from '@/version'
 import { useT } from '../i18n'
 import { CATEGORIES } from '../registry/categories'
@@ -161,7 +161,7 @@ export function LandingPage() {
 
         <div className="w-full max-w-xl pt-4">
           <CodeBlock
-            code={`npm install nothing-ui\n\nimport { Button } from 'nothing-ui/button'`}
+            code={`npm install aios-ui-kit\n\nimport { Button } from 'aios-ui-kit/button'`}
           />
         </div>
       </section>

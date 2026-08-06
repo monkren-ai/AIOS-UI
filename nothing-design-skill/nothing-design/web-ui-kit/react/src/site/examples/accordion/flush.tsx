@@ -1,4 +1,4 @@
-import { Accordion } from 'nothing-ui/accordion'
+import { Accordion } from 'aios-ui-kit/accordion'
 import { BookmarkIcon, DownloadIcon, SearchIcon } from '../icons'
 
 const ITEMS = [

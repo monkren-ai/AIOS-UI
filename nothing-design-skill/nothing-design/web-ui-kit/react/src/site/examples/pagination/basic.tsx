@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Pagination } from 'nothing-ui/pagination'
+import { Pagination } from 'aios-ui-kit/pagination'
 
 export default function PaginationBasic() {
   const [page, setPage] = useState(1)

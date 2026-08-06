@@ -1,7 +1,7 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import Input from "../Input/Input.mjs";
 import { colorPickerCustomLabelVariants, colorPickerHeaderVariants, colorPickerInputVariants, colorPickerNativeVariants, colorPickerPreviewVariants, colorPickerSwatchVariants, colorPickerSwatchesVariants, colorPickerTitleVariants, colorPickerValueVariants, colorPickerVariants, resolveColorPickerSize } from "./color-picker-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/ColorPicker/ColorPicker.tsx
 const defaultPresets = [
@@ -17,11 +17,11 @@ const defaultPresets = [
 const isValidHex = (value) => /^#([0-9A-Fa-f]{3}){1,2}$/.test(value);
 function ColorPicker({ value: valueProp, defaultValue = defaultPresets[0], onChange, presets = defaultPresets, title = "COLOR", showInput = true, inputLabel = "HEX", customLabel = "Custom", size = "md", className, ref, ...props }) {
 	const isControlled = valueProp !== void 0;
-	const [internalValue, setInternalValue] = React.useState(defaultValue);
+	const [internalValue, setInternalValue] = React$1.useState(defaultValue);
 	const value = isControlled ? valueProp : internalValue;
-	const nativeInputRef = React.useRef(null);
+	const nativeInputRef = React$1.useRef(null);
 	const resolvedSize = resolveColorPickerSize(size) ?? "md";
-	const handleChange = React.useCallback((color) => {
+	const handleChange = React$1.useCallback((color) => {
 		if (!isControlled) setInternalValue(color);
 		onChange?.(color);
 	}, [isControlled, onChange]);

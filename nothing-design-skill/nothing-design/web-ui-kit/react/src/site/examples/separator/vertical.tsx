@@ -1,4 +1,4 @@
-import { Separator } from 'nothing-ui/separator'
+import { Separator } from 'aios-ui-kit/separator'
 
 export default function SeparatorVertical() {
   return (

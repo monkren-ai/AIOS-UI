@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { dotMatrixRowVariants, dotMatrixVariants, dotVariants } from "../DotMatrix/dot-matrix-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx } from "react/jsx-runtime";
 import "../DotMatrix/DotMatrix.css";
 //#region src/components/StaticDotMatrix.tsx
@@ -11,17 +11,17 @@ import "../DotMatrix/DotMatrix.css";
 * `light:` 变体的选择器，挂在这里会把整棵子树的主题令牌一起翻掉。
 */
 function StaticDotMatrix({ className, rows, cols, dotSize = "md", theme = "light", pattern = "grid", activeDots = [], dimDots = [], style, ...props }) {
-	const activeSet = React.useMemo(() => {
+	const activeSet = React$1.useMemo(() => {
 		const set = /* @__PURE__ */ new Set();
 		activeDots.forEach(([r, c]) => set.add(`${r}-${c}`));
 		return set;
 	}, [activeDots]);
-	const dimSet = React.useMemo(() => {
+	const dimSet = React$1.useMemo(() => {
 		const set = /* @__PURE__ */ new Set();
 		dimDots.forEach(([r, c]) => set.add(`${r}-${c}`));
 		return set;
 	}, [dimDots]);
-	const grid = React.useMemo(() => {
+	const grid = React$1.useMemo(() => {
 		const result = [];
 		for (let r = 0; r < rows; r++) {
 			const row = [];

@@ -1,16 +1,16 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { checkboxBoxVariants, checkboxCheckVariants, checkboxDashVariants, checkboxIndicatorVariants, checkboxLabelVariants, checkboxVariants } from "./checkbox-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Checkbox } from "@base-ui/react/checkbox";
 //#region src/Checkbox/Checkbox.tsx
 function Checkbox$1({ className, checked: controlledChecked, defaultChecked = false, onCheckedChange, disabled, label, size = "md", id, ref, ...props }) {
-	const [internalChecked, setInternalChecked] = React.useState(defaultChecked);
+	const [internalChecked, setInternalChecked] = React$1.useState(defaultChecked);
 	const isControlled = controlledChecked !== void 0;
 	const isChecked = isControlled ? controlledChecked : internalChecked;
 	const isDisabled = !!disabled;
 	const isIndeterminate = isChecked === "indeterminate";
-	const handleCheckedChange = React.useCallback((nextChecked) => {
+	const handleCheckedChange = React$1.useCallback((nextChecked) => {
 		if (!isControlled) setInternalChecked(nextChecked);
 		onCheckedChange?.(nextChecked);
 	}, [isControlled, onCheckedChange]);

@@ -31,7 +31,7 @@ import '@/styles/widget-showcase.css'
 import './styles/showcase.css'
 
 /**
- * Nothing UI 展示页入口。
+ * AIOS UI 展示页入口。
  *
  * 替代原 src/App.tsx，将 1263 行的巨型展示页拆分为
  * showcase/ 下的模块化结构，并以内联样式提取的 CSS 类替代硬编码。
@@ -195,7 +195,7 @@ export function Showcase() {
             </div>
             <div className="showcase-intro-card__content">
               <span className="showcase-intro-card__eyebrow">{t('项目介绍', 'Project Intro')}</span>
-              <h1 className="showcase-intro-card__title">Nothing UI</h1>
+              <h1 className="showcase-intro-card__title">AIOS UI</h1>
               <p className="showcase-intro-card__text">
                 {t(
                   '为 AI OS 构建的单色设计系统。查看完整项目介绍、设计哲学、字体与色彩系统、组件矩阵以及 AI OS Agent 扩展。',

@@ -1,12 +1,32 @@
 {
-  "name": "nothing-ui",
+  "name": "aios-ui-kit",
   "version": "2.0.0",
-  "description": "Nothing UI Kit Web - A web component library based on Nothing design system",
-  "author": "Nothing UI",
+  "description": "AIOS UI — React component kit on the Nothing design language (Tailwind CSS v4 + CVA)",
+  "author": "AIOS UI",
   "license": "MIT",
   "type": "module",
   "sideEffects": [
     "**/*.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monkren-ai/AIOS-UI.git",
+    "directory": "nothing-design-skill/nothing-design/web-ui-kit/react"
+  },
+  "homepage": "https://github.com/monkren-ai/AIOS-UI/tree/main/nothing-design-skill/nothing-design/web-ui-kit/react",
+  "bugs": {
+    "url": "https://github.com/monkren-ai/AIOS-UI/issues"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "design-system",
+    "aios",
+    "aios-ui",
+    "nothing",
+    "tailwindcss",
+    "cva"
   ],
   "exports": {
     ".": {
@@ -29,10 +49,13 @@
   "module": "es/index.mjs",
   "types": "es/index.d.mts",
   "files": [
-    "es"
+    "es",
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "dev": "vite",
+    "prepublishOnly": "npm run sync:exports -- --check && npm run sync:subpaths -- --check && npm run type-check && npm run build",
     "build": "tsdown && node ./scripts/copy-styles.mjs",
     "build:packages": "tsx ./scripts/build.ts",
     "build:showcase": "vite build",
@@ -52,18 +75,14 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
-    "@tabler/icons-react": "^3.46.0",
-    "@tailwindcss/vite": "^4.3.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "react-router-dom": "^7.18.1",
-    "tailwind-merge": "^3.6.0",
-    "tailwindcss": "^4.3.3"
+    "tailwind-merge": "^3.6.0"
   },
   "peerDependencies": {
-    "motion": ">=12.0.0"
+    "motion": ">=12.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "peerDependenciesMeta": {
     "motion": {
@@ -74,6 +93,8 @@
     "@commitlint/cli": "^21.0.2",
     "@commitlint/config-conventional": "^21.0.2",
     "@eslint/js": "^9.0.0",
+    "@tabler/icons-react": "^3.46.0",
+    "@tailwindcss/vite": "^4.3.3",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
@@ -92,11 +113,18 @@
     "motion": "^12.40.0",
     "postcss": "^8.5.15",
     "prettier": "^3.0.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.18.1",
+    "tailwindcss": "^4.3.3",
     "tsdown": "^0.22.3",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.0.0",
     "vite": "^8.0.16",
     "vitest": "^4.1.9"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

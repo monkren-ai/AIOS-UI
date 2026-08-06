@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Select } from 'nothing-ui/select'
+import { Select } from 'aios-ui-kit/select'
 
 const SPEEDS = [
   { value: 'eco', label: 'Eco' },

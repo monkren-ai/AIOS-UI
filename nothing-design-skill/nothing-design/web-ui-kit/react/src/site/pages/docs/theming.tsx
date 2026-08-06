@@ -3,7 +3,7 @@ import { Prose } from '../../components/Prose'
 import { useT } from '../../i18n'
 import { DocList, DocNote, DocSection, DocSubSection, DocTable } from './_shared'
 
-const LAYERS = `nothing-ui/styles.css
+const LAYERS = `aios-ui-kit/styles.css
 ├── tokens.css   // 第一层：原始变量，随 [data-theme] 切换
 └── theme.css    // 第二层：映射进 Tailwind namespace`
 
@@ -53,9 +53,9 @@ const NESTED = `<div data-theme="dark">
 </div>`
 
 const OVERRIDE_TOKEN = `@import 'tailwindcss';
-@import 'nothing-ui/styles.css';
+@import 'aios-ui-kit/styles.css';
 
-@source '../node_modules/nothing-ui/es';
+@source '../node_modules/aios-ui-kit/es';
 
 /* 换掉强调色。因为 theme.css 是 inline 的，bg-accent / text-accent
    / accent-subtle 以及所有引用 --accent 的遗留 CSS 会一起跟着变。 */

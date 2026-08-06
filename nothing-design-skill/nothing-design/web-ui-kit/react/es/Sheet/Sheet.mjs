@@ -1,11 +1,11 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { sheetBackdropVariants, sheetBodyVariants, sheetCloseVariants, sheetDismissVariants, sheetFooterVariants, sheetHandleBarVariants, sheetHandleVariants, sheetHeaderVariants, sheetSectionTitleVariants, sheetSectionVariants, sheetTitleVariants, sheetVariants } from "./sheet-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Dialog } from "@base-ui/react/dialog";
 //#region src/Sheet/Sheet.tsx
 function Sheet({ className, open: isOpen, onOpenChange, side = "right", title, full = false, sections, footer, children, ref, ...props }) {
-	const handleOpenChange = React.useCallback((nextOpen) => {
+	const handleOpenChange = React$1.useCallback((nextOpen) => {
 		onOpenChange?.(nextOpen);
 	}, [onOpenChange]);
 	const isBottomSheetMode = side === "bottom" && Boolean(sections);

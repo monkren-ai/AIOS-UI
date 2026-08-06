@@ -1,4 +1,4 @@
-import { SunDial } from 'nothing-ui/sun-dial'
+import { SunDial } from 'aios-ui-kit/sun-dial'
 
 export default function SunDialNight() {
   return (

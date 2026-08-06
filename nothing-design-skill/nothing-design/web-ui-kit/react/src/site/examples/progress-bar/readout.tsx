@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { ProgressBar } from 'nothing-ui/progress-bar'
-import { Button } from 'nothing-ui/button'
+import { ProgressBar } from 'aios-ui-kit/progress-bar'
+import { Button } from 'aios-ui-kit/button'
 
 export default function ProgressBarReadout() {
   const [value, setValue] = React.useState(64)

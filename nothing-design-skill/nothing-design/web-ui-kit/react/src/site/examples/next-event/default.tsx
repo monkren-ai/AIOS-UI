@@ -1,4 +1,4 @@
-import { NextEvent, type EventData } from 'nothing-ui/next-event'
+import { NextEvent, type EventData } from 'aios-ui-kit/next-event'
 
 const events: EventData[] = [
   { title: 'Sprint planning', date: Date.now() + 3 * 24 * 60 * 60 * 1000 },

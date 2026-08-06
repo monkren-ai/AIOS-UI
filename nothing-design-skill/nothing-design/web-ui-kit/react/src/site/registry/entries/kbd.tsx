@@ -1,4 +1,4 @@
-import { Kbd } from 'nothing-ui/kbd'
+import { Kbd } from 'aios-ui-kit/kbd'
 import type { ComponentDoc } from '../types'
 
 import KbdVariants from '../../examples/kbd/variants'
@@ -21,7 +21,7 @@ export const kbdDoc: ComponentDoc = {
     en: 'A key cap for rendering keyboard shortcuts.',
   },
   preview: () => <Kbd keys={['⌘', 'K']} />,
-  importStatement: `import { Kbd } from 'nothing-ui/kbd'`,
+  importStatement: `import { Kbd } from 'aios-ui-kit/kbd'`,
   usageSnippet: `<Kbd keys={['⌘', 'K']} />`,
   examples: [
     {

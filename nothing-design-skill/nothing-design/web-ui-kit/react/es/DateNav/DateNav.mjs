@@ -1,6 +1,6 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { dateNavArrowVariants, dateNavLabelVariants, dateNavVariants } from "./date-nav-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/DateNav/DateNav.tsx
 const MONTH_NAMES = [
@@ -29,7 +29,7 @@ function shiftMonth(d, delta) {
 function DateNav({ className, label, prevDisabled = false, nextDisabled = false, grotesk = false, disabled = false, onPrev, onNext, initialDate, currentDate: currentDateProp, onDateChange, ref, ...props }) {
 	const isDisabled = !!disabled;
 	const isControlled = currentDateProp !== void 0;
-	const [internalDate, setInternalDate] = React.useState(() => initialDate ?? /* @__PURE__ */ new Date());
+	const [internalDate, setInternalDate] = React$1.useState(() => initialDate ?? /* @__PURE__ */ new Date());
 	const currentDate = isControlled ? currentDateProp : internalDate;
 	const displayLabel = label ?? formatMonth(currentDate);
 	const month = currentDate.getMonth();

@@ -1,4 +1,4 @@
-import { AgeMotion } from 'nothing-ui/age-motion'
+import { AgeMotion } from 'aios-ui-kit/age-motion'
 import type { ComponentDoc } from '../types'
 
 import AgeMotionDefault from '../../examples/age-motion/default'
@@ -17,7 +17,7 @@ export const ageMotionDoc: ComponentDoc = {
     en: 'Enter a birth date and watch the years, months, and days tick up, decade by decade.',
   },
   preview: () => <AgeMotion birthDate="1990-06-15" size="sm" className="w-full max-w-xs" />,
-  importStatement: `import { AgeMotion } from 'nothing-ui/age-motion'`,
+  importStatement: `import { AgeMotion } from 'aios-ui-kit/age-motion'`,
   usageSnippet: `<AgeMotion birthDate="1990-06-15" />`,
   examples: [
     {

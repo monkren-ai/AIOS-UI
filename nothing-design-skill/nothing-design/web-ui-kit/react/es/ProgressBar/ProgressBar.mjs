@@ -1,14 +1,14 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { progressBarVariants, progressIndeterminateVariants, progressSegmentVariants, progressTrackVariants, progressValueVariants, resolveProgressBarSize, resolveProgressBarVariant } from "./progress-bar-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import "./ProgressBar.css";
 //#region src/ProgressBar/ProgressBar.tsx
 function ProgressBar({ className, value, total = 100, segments = 20, size, variant, indeterminate = false, label, unit, status = "default", showReadout = true, disabled = false, ...props }) {
-	const [animatedSegments, setAnimatedSegments] = React.useState(0);
+	const [animatedSegments, setAnimatedSegments] = React$1.useState(0);
 	const hasOwnLabel = Boolean(props["aria-label"] || props["aria-labelledby"]);
 	const ariaLabel = label && !hasOwnLabel ? label : void 0;
-	React.useEffect(() => {
+	React$1.useEffect(() => {
 		const filled = Math.round(value / total * segments);
 		const timer = setTimeout(() => setAnimatedSegments(filled), 50);
 		return () => clearTimeout(timer);

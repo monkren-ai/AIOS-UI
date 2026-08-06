@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button } from 'nothing-ui/button'
+import { Button } from 'aios-ui-kit/button'
 import { CodeBlock } from '../../components/CodeBlock'
 import { useT } from '../../i18n'
 import { IconVisual } from './IconVisual'

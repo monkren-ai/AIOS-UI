@@ -1,8 +1,8 @@
 /**
- * Nothing UI 字重过渡工具
+ * AIOS UI 字重过渡工具
  *
  * fluid-functionalism 使用 Inter variable font 并通过 font-variation-settings 动画字重。
- * Nothing UI 的默认字体是 Space Grotesk / Space Mono / Doto，其中部分字体支持可变字重。
+ * AIOS UI 的默认字体是 Space Grotesk / Space Mono / Doto，其中部分字体支持可变字重。
  * 因此提供两套方案：
  * 1. 可变字体优先：使用 font-variation-settings 动画（最平滑）。
  * 2. 降级：使用 font-weight transition（兼容所有字体）。

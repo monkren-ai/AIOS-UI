@@ -54,7 +54,7 @@ describe('component registry', () => {
       expect(doc!.category).toBe(entry.category)
 
       // 页面会直接渲染这些字段，缺了就是空白区块。
-      expect(doc!.importStatement).toContain('nothing-ui/')
+      expect(doc!.importStatement).toContain('aios-ui-kit/')
       expect(doc!.usageSnippet.length).toBeGreaterThan(0)
       expect(doc!.accessibility.length).toBeGreaterThan(0)
 

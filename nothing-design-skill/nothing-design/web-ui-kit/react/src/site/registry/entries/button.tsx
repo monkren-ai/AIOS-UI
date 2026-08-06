@@ -1,4 +1,4 @@
-import { Button } from 'nothing-ui/button'
+import { Button } from 'aios-ui-kit/button'
 import type { ComponentDoc } from '../types'
 
 import ButtonVariants from '../../examples/button/variants'
@@ -24,7 +24,7 @@ export const buttonDoc: ComponentDoc = {
     en: 'A clickable button for actions, in seven styles and three sizes.',
   },
   preview: () => <Button>Click me</Button>,
-  importStatement: `import { Button } from 'nothing-ui/button'`,
+  importStatement: `import { Button } from 'aios-ui-kit/button'`,
   usageSnippet: `<Button>Click me</Button>`,
   examples: [
     {

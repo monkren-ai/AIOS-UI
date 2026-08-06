@@ -1,4 +1,4 @@
-import { Tag } from 'nothing-ui/tag'
+import { Tag } from 'aios-ui-kit/tag'
 import type { ComponentDoc } from '../types'
 
 import TagVariants from '../../examples/tag/variants'
@@ -23,7 +23,7 @@ export const tagDoc: ComponentDoc = {
     en: 'A removable chip, typically for filters and keywords.',
   },
   preview: () => <Tag>Design</Tag>,
-  importStatement: `import { Tag, Tags } from 'nothing-ui/tag'`,
+  importStatement: `import { Tag, Tags } from 'aios-ui-kit/tag'`,
   usageSnippet: `<Tags>
   <Tag onClick={() => toggle('design')}>Design</Tag>
   <Tag removable onRemove={() => remove('glyph')}>Glyph</Tag>

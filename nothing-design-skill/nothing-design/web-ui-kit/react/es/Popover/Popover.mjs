@@ -1,23 +1,25 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
 import { popoverContentVariants, popoverPositionerVariants, popoverTriggerVariants } from "./popover-variants.mjs";
-import * as React from "react";
+import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Popover } from "@base-ui/react/popover";
 //#region src/Popover/Popover.tsx
 function Popover$1({ className, content, side = "bottom", open: controlledOpen, onOpenChange, children, ref, ...props }) {
-	const [internalOpen, setInternalOpen] = React.useState(false);
+	const [internalOpen, setInternalOpen] = React$1.useState(false);
 	const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
-	const handleOpenChange = React.useCallback((nextOpen) => {
+	const handleOpenChange = React$1.useCallback((nextOpen) => {
 		if (controlledOpen === void 0) setInternalOpen(nextOpen);
 		onOpenChange?.(nextOpen);
 	}, [controlledOpen, onOpenChange]);
+	const childIsNativeButton = React$1.isValidElement(children) && (children.type === "button" || typeof children.type === "string" && children.type.toLowerCase() === "button");
 	return /* @__PURE__ */ jsxs(Popover.Root, {
 		open: isOpen,
 		onOpenChange: handleOpenChange,
 		children: [/* @__PURE__ */ jsx(Popover.Trigger, {
+			nativeButton: childIsNativeButton,
 			"data-slot": "popover-trigger",
 			render: (triggerProps) => {
-				if (React.isValidElement(children)) return React.cloneElement(children, {
+				if (React$1.isValidElement(children)) return React$1.cloneElement(children, {
 					...triggerProps,
 					className: cn(popoverTriggerVariants(), children.props.className)
 				});

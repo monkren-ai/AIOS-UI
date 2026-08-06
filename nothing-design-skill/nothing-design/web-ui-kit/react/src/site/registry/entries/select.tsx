@@ -1,4 +1,4 @@
-import { Select } from 'nothing-ui/select'
+import { Select } from 'aios-ui-kit/select'
 import type { ComponentDoc } from '../types'
 
 import SelectBasic from '../../examples/select/basic'
@@ -33,7 +33,7 @@ export const selectDoc: ComponentDoc = {
       <Select options={PREVIEW_OPTIONS} defaultValue="phone-2a" />
     </div>
   ),
-  importStatement: `import { Select } from 'nothing-ui/select'`,
+  importStatement: `import { Select } from 'aios-ui-kit/select'`,
   usageSnippet: `<Select
   label="Region"
   options={[

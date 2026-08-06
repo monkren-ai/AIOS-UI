@@ -1,4 +1,4 @@
-import { DropdownMenu } from 'nothing-ui/dropdown-menu'
+import { DropdownMenu } from 'aios-ui-kit/dropdown-menu'
 import type { ComponentDoc } from '../types'
 
 import DropdownMenuBasic from '../../examples/dropdown-menu/basic'
@@ -29,7 +29,7 @@ export const dropdownMenuDoc: ComponentDoc = {
       items={[{ label: 'Rename' }, { label: 'Duplicate' }, { label: 'Move to…' }]}
     />
   ),
-  importStatement: `import { DropdownMenu } from 'nothing-ui/dropdown-menu'`,
+  importStatement: `import { DropdownMenu } from 'aios-ui-kit/dropdown-menu'`,
   usageSnippet: `<DropdownMenu
   trigger="Actions ▾"
   items={[

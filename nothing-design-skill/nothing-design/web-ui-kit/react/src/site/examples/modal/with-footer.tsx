@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Button } from 'nothing-ui/button'
-import { Modal } from 'nothing-ui/modal'
+import { Button } from 'aios-ui-kit/button'
+import { Modal } from 'aios-ui-kit/modal'
 
 export default function ModalWithFooter() {
   const [open, setOpen] = useState(false)

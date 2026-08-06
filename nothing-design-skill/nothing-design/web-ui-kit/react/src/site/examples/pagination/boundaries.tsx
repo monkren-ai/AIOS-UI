@@ -1,4 +1,4 @@
-import { Pagination } from 'nothing-ui/pagination'
+import { Pagination } from 'aios-ui-kit/pagination'
 
 const noop = () => {}
 

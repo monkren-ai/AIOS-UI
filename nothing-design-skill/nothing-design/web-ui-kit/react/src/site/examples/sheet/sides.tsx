@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Button } from 'nothing-ui/button'
-import { Sheet } from 'nothing-ui/sheet'
+import { Button } from 'aios-ui-kit/button'
+import { Sheet } from 'aios-ui-kit/sheet'
 
 type Side = 'left' | 'right' | 'top' | 'bottom'
 

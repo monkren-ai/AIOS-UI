@@ -1,4 +1,4 @@
-import { DataTable, type DataTableRowsItem } from 'nothing-ui/data-table'
+import { DataTable, type DataTableRowsItem } from 'aios-ui-kit/data-table'
 
 const items: DataTableRowsItem[] = [
   { label: 'CPU', value: '42', unit: '%', trend: '+3%' },

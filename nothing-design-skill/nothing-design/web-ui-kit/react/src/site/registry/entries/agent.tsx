@@ -1,4 +1,4 @@
-import { AgentOrb } from 'nothing-ui/agent'
+import { AgentOrb } from 'aios-ui-kit/agent'
 import type { ComponentDoc } from '../types'
 
 import AgentWorkflow from '../../examples/agent/workflow'
@@ -14,11 +14,11 @@ export const agentDoc: ComponentDoc = {
     en: 'Seven pieces for agent workflows — AgentOrb, PlanCard, ThinkingSteps, and the rest.',
   },
   preview: () => <AgentOrb state="thinking" showLabel />,
-  importStatement: `import { AgentOrb, PlanCard, ThinkingIndicator } from 'nothing-ui/agent'`,
+  importStatement: `import { AgentOrb, PlanCard, ThinkingIndicator } from 'aios-ui-kit/agent'`,
   usageSnippet: `<AgentOrb state="thinking" showLabel />\n<PlanCard steps={steps} editable onApprove={approve} />`,
   composition: {
-    zh: '`nothing-ui/agent` 导出七件组件：`AgentOrb`（状态球）、`ApprovalGate`（审批门）、`PlanCard`（计划卡片）、`ProgressTrace`（进度轨迹）、`ThinkingIndicator`（思考指示）、`ThinkingSteps`（思考步骤）、`ToolCallRow`（工具调用行）。按流程拼装，不要全部堆在一屏。',
-    en: '`nothing-ui/agent` exports seven pieces: `AgentOrb` (state orb), `ApprovalGate` (approval gate), `PlanCard` (plan card), `ProgressTrace` (progress trace), `ThinkingIndicator` (thinking indicator), `ThinkingSteps` (thinking steps), and `ToolCallRow` (tool-call row). Compose them along a workflow — do not stack all seven on one screen.',
+    zh: '`aios-ui-kit/agent` 导出七件组件：`AgentOrb`（状态球）、`ApprovalGate`（审批门）、`PlanCard`（计划卡片）、`ProgressTrace`（进度轨迹）、`ThinkingIndicator`（思考指示）、`ThinkingSteps`（思考步骤）、`ToolCallRow`（工具调用行）。按流程拼装，不要全部堆在一屏。',
+    en: '`aios-ui-kit/agent` exports seven pieces: `AgentOrb` (state orb), `ApprovalGate` (approval gate), `PlanCard` (plan card), `ProgressTrace` (progress trace), `ThinkingIndicator` (thinking indicator), `ThinkingSteps` (thinking steps), and `ToolCallRow` (tool-call row). Compose them along a workflow — do not stack all seven on one screen.',
   },
   examples: [
     {

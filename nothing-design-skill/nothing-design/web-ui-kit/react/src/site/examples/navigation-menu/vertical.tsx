@@ -1,4 +1,4 @@
-import { NavigationMenu } from 'nothing-ui/navigation-menu'
+import { NavigationMenu } from 'aios-ui-kit/navigation-menu'
 
 const ITEMS = [
   { label: 'Overview', href: '#overview', active: true },

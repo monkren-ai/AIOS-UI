@@ -38,7 +38,7 @@ export interface ActivityWidgetProps
     Omit<VariantProps<typeof activityWidgetVariants>, 'variant'> {
   days?: ActivityDay[]
   variant?: 'default' | 'compact' | 'detailed'
-  /** Persist days to localStorage under this key. Default 'nothing-ui:activity'. */
+  /** Persist days to localStorage under this key. Default 'aios-ui-kit:activity'. */
   storageKey?: string
 }
 
@@ -54,7 +54,7 @@ const defaultDays: ActivityDay[] = [
 
 const ActivityWidgetInner = React.forwardRef<HTMLDivElement, ActivityWidgetProps>(
   (
-    { className, days: daysProp, variant, storageKey = 'nothing-ui:activity', style, ...props },
+    { className, days: daysProp, variant, storageKey = 'aios-ui-kit:activity', style, ...props },
     ref,
   ) => {
     const [persisted, setPersisted] = useLocalStorageState<ActivityDay[]>(storageKey, defaultDays)

@@ -44,7 +44,7 @@ const scanEntries = (): Record<string, string> => {
   }
 
   // subpath 入口 src/subpath/*.ts —— 对应 package.json 的 "./*" 导出，
-  // 让 `import { Button } from 'nothing-ui/button'` 有真实文件可落。
+  // 让 `import { Button } from 'aios-ui-kit/button'` 有真实文件可落。
   const subpathDir = join(srcDir, 'subpath');
   if (existsSync(subpathDir)) {
     for (const file of readdirSync(subpathDir)) {
@@ -60,7 +60,7 @@ export default defineConfig({
   entry: scanEntries(),
   format: ['esm'],
   outDir: 'es',
-  dts: false,
+  dts: true,
   sourcemap: true,
   unbundle: true,
   external: [...external, /\.css$/],

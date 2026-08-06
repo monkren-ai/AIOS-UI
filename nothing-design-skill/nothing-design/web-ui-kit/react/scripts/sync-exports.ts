@@ -21,12 +21,12 @@ const SRC_DIR = resolve(__dirname, '../src')
 const INDEX_PATH = join(SRC_DIR, 'index.ts')
 
 const HEADER = `/**
- * Nothing UI - 基于 Nothing 设计语言的现代 React 组件库
+ * AIOS UI - 基于 Nothing 设计语言的现代 React 组件库
  *
  * @example
  * \`\`\`tsx
  * import * as motion from 'motion/react'
- * import { ConfigProvider, Button, Input } from 'nothing-ui'
+ * import { ConfigProvider, Button, Input } from 'aios-ui-kit'
  *
  * <ConfigProvider motion={motion} defaultTheme="dark">
  *   <Button variant="primary">Click me</Button>

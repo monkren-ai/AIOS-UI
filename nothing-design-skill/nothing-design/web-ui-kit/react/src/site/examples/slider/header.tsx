@@ -1,4 +1,4 @@
-import { Slider } from 'nothing-ui/slider'
+import { Slider } from 'aios-ui-kit/slider'
 
 export default function SliderHeader() {
   return (

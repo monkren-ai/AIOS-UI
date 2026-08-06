@@ -306,7 +306,7 @@ export function AIPocPage() {
     () => [
       {
         key: 'intro',
-        title: t('介绍一下 Nothing UI', 'Introduce Nothing UI'),
+        title: t('介绍一下 AIOS UI', 'Introduce AIOS UI'),
         description: t('了解设计系统与组件库', 'Learn about the design system'),
       },
       {
@@ -354,8 +354,8 @@ export function AIPocPage() {
           <h1 className="ai-poc-title">{t('AI 对话 PoC', 'AI Conversation PoC')}</h1>
           <p className="ai-poc-subtitle">
             {t(
-              '基于 Nothing UI 独立设计系统的对话式 AI 组件演示',
-              'Conversational AI components powered by the Nothing UI design system',
+              '基于 AIOS UI 独立设计系统的对话式 AI 组件演示',
+              'Conversational AI components powered by the AIOS UI design system',
             )}
           </p>
         </div>
