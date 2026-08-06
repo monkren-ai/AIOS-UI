@@ -190,10 +190,10 @@ Nothing UI is **flat by design.** Depth is communicated through surface contrast
 
 ## 3. ANTI-PATTERNS — WHAT TO NEVER DO
 
-- No gradients in UI chrome
+- No gradients in UI chrome. If an ambient background layer is needed, use `GradientGlow` with `data-variant="dotmatrix"` (dot opacity falloff), never a CSS gradient or blur glow.
 - No shadows. No blur. Flat surfaces, border separation.
-- No skeleton loading screens. Use `[LOADING...]` text or segmented spinner.
-- No toast popups. Use inline status text: `[SAVED]`, `[ERROR: ...]`
+- No skeleton loading screens. Use `[LOADING...]` text or segmented spinner. For structural placeholders, use `Skeleton` with `data-variant="dotmatrix"` (dot-matrix breathing), not grey blocks.
+- No toast popups. Use inline status text: `[SAVED]`, `[ERROR: ...]`. For transient status feedback, use `Toast` with `data-placement="inline"` (document-flow status bar), not a floating portal popup.
 - No sad-face illustrations, cute mascots, or multi-paragraph empty states
 - No zebra striping in tables
 - No filled icons, multi-color icons, or emoji as UI
@@ -274,34 +274,43 @@ function App() {
 - **Sidebar** — side navigation panel
 
 **Form Controls**
+- **Autocomplete** — text input with filtering popup that narrows options by label
+- **ButtonGroup** — grouped buttons sharing borders, horizontal or vertical
 - **Buttons** — primary, secondary, ghost, destructive variants
-- **Inputs** — underline and bordered text inputs with validation
-- **Checkbox** — binary selection control
+- **Combobox** — searchable selector with optional free input mode
+- **CopyButton** — standalone copy button that flashes [COPIED] instead of a toast
+- **DateField** — date input split into year/month/day segments that auto-advance
+- **Field** — form field shell for labels, hints, and error text
+- **Fieldset** — field group with a legend and 1px border
 - **Form** — form wrapper with validation and field management
 - **InputOTP** — one-time password input with separate character fields
+- **Inputs** — underline and bordered text inputs with validation
 - **Label** — accessible form label component
+- **NumberField** — numeric input with +/− steppers and optional bounds
 - **RadioGroup** — single-selection radio button group
 - **Slider** — range slider control
 - **Switch** — on/off toggle switch
 - **Textarea** — multi-line text input
+- **TimeField** — time input split into hour/minute/second segments
 - **Toggle** — on/off switch controls (includes ToggleGroup)
+- **Toolbar** — toolbar of buttons, separators, and toggles with arrow-key navigation
 
 **Data Display**
 - **Avatar** — user profile image or initials fallback
 - **Badge** — small status indicator or counter
-- **Clock** — digital and gauge style time display
 - **Battery** — battery level and charging status indicator
 - **Calendar** — compact and full calendar views
-- **DataGrid** — data tables with active row indicator
-- **DataRows** — label-value data rows with status colors
+- **DataTable** — data tables, sortable grids, and label/value rows
 - **DotMatrix** — dot-matrix display for numeric/text data
 - **NextEvent** — upcoming event preview widget
 - **Pagination** — page navigation for data lists
+- **PreviewCard** — media preview card with thumbnail, title, and metadata
 - **ProgressBar** — segmented progress bars in three sizes
 - **Quotes** — inspirational or informational quote display
-- **Skeleton** — content placeholder loading state
-- **Table** — structured data table with sorting and selection
+- **Skeleton** — dot-matrix breathing placeholder (Nothing adaptation, not grey blocks)
+- **Sparkline** — mini trend line, 1.5px stroke, no fill, extremes by opacity
 - **SystemMonitor** — comprehensive system dashboard with CPU, RAM, storage, network speed, and battery level indicators
+- **Thumbnail** — image thumbnail with dot-matrix fallback instead of grey block
 
 **Navigation**
 - **Breadcrumb** — hierarchical navigation trail
@@ -310,18 +319,19 @@ function App() {
 - **NavigationMenu** — multi-level navigation with dropdown menus
 - **SegmentedControl** — multi-option selector with sliding indicator
 - **Tabs** — tabbed content switching
+- **TOC** — table of contents that tracks the active section with a 2px left bar
 
 **Overlay**
 - **Alert** — inline alert message with severity levels
 - **Command** — keyboard-accessible command palette
 - **ContextMenu** — right-click context menu
+- **DatePicker** — date picker that pops a calendar when the field is clicked
 - **DropdownMenu** — dropdown menu (for searchable select, use Select)
 - **HoverCard** — hover-triggered informational card
 - **Modal** — centered dialog overlay
 - **Popover** — click/hover-triggered floating panel
 - **Select** — searchable dropdown select
 - **Sheet** — slide-up panel (supports top/bottom/left/right sides)
-- **Sonner** — toast notification system
 - **Tooltip** — hover-triggered informational tooltip
 
 **Widgets**
@@ -329,20 +339,23 @@ function App() {
 - **PhotoCarousel** — image slideshow with autoplay
 - **Caffeinate** — caffeine intake tracker with half-life decay visualization
 - **Clipboard** — clipboard manager with recent entries and copy support
+- **Countdown** — countdown in Doto display type that turns red as it nears zero
 - **Pomodoro** — pomodoro timer with work/break cycles and segmented progress
 - **WalkieTalkie** — push-to-talk widget with pulse animation
 - **SunDial** — sunrise/sunset tracker with arc visualization
 - **AgeMotion** — life progress visualization with segmented bars
 - **Chrono** — stopwatch with lap tracking
 - **Spinner** — decision wheel with spin animation
-- **WorldClock** — multi-timezone world clock with day/night indicator
 - **Date** — date display widget
 - **Taskbar** — quick-access task bar widget
-- **WidgetGrid** — grid layout for arranging multiple widgets
 
-**Other**
-- **Tags** — pill and technical style chips
+**Feedback & Decoration**
+- **GradientGlow** — dot-matrix ambient background (Nothing adaptation, not a gradient glow)
+- **Meter** — meter for bounded values with threshold regions colored on the value
 - **States** — loading, error, empty, disabled state patterns
+- **TextAnimate** — text revealed by char, word, or line with ease-out and no bounce
+- **Toast** — inline status bar (Nothing adaptation, not a floating popup)
+- **Tags** — pill and technical style chips
 
 All components support dark/light theme switching and follow the Nothing design system tokens. See `web-ui-kit/README.md` for complete documentation and API reference.
 

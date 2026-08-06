@@ -729,6 +729,216 @@ const ENTRIES: ComponentManifestEntry[] = [
       en: 'A grid of dots, lit or dimmed one coordinate at a time.',
     },
   },
+  {
+    slug: 'autocomplete',
+    name: 'Autocomplete',
+    category: 'actions-inputs',
+    status: 'new',
+    description: {
+      zh: '文本输入框配过滤浮层，边输入边按 label 过滤选项。',
+      en: 'A text input with a filtering popup that narrows options by label as you type.',
+    },
+  },
+  {
+    slug: 'button-group',
+    name: 'ButtonGroup',
+    category: 'actions-inputs',
+    status: 'new',
+    description: {
+      zh: '按钮组，相邻按钮共享边框，横竖两种排列。',
+      en: 'A group of buttons that share borders, horizontal or vertical.',
+    },
+  },
+  {
+    slug: 'combobox',
+    name: 'Combobox',
+    category: 'actions-inputs',
+    status: 'new',
+    description: {
+      zh: '可搜索的选择器，开启 freeInput 后也能输入列表外的值。',
+      en: 'A searchable selector that can also accept arbitrary input when freeInput is on.',
+    },
+  },
+  {
+    slug: 'copy-button',
+    name: 'CopyButton',
+    category: 'actions-inputs',
+    status: 'new',
+    description: {
+      zh: '独立复制按钮，复制后短暂显示 [COPIED] 回执，不弹 toast。',
+      en: 'A standalone copy button that flashes [COPIED] for a moment instead of firing a toast.',
+    },
+  },
+  {
+    slug: 'countdown',
+    name: 'Countdown',
+    category: 'time-system',
+    status: 'new',
+    description: {
+      zh: '倒计时，Doto 大数字，临近时数值升为红色。',
+      en: 'A countdown in Doto display type that turns red as it nears zero.',
+    },
+  },
+  {
+    slug: 'date-field',
+    name: 'DateField',
+    category: 'actions-inputs',
+    status: 'beta',
+    description: {
+      zh: '日期分格输入，年月日三段，输满自动跳段。',
+      en: 'A date input split into year/month/day segments that auto-advance.',
+    },
+  },
+  {
+    slug: 'date-picker',
+    name: 'DatePicker',
+    category: 'overlays',
+    status: 'beta',
+    description: {
+      zh: '日期选择浮层，点击输入框弹出日历。',
+      en: 'A date picker that pops a calendar when the field is clicked.',
+    },
+  },
+  {
+    slug: 'field',
+    name: 'Field',
+    category: 'actions-inputs',
+    status: 'new',
+    description: {
+      zh: '表单字段壳，统一 label、说明与错误文案的排版。',
+      en: 'A form field shell that keeps labels, hints, and errors in lockstep.',
+    },
+  },
+  {
+    slug: 'fieldset',
+    name: 'Fieldset',
+    category: 'actions-inputs',
+    status: 'new',
+    description: {
+      zh: '字段分组，带 legend 标题与 1px 边框。',
+      en: 'A field group with a legend and a 1px border.',
+    },
+  },
+  {
+    slug: 'gradient-glow',
+    name: 'GradientGlow',
+    category: 'decoration',
+    status: 'new',
+    description: {
+      zh: '点阵环境背景（Nothing 改造，非渐变光晕），opacity 中心高边缘低。',
+      en: 'A dot-matrix ambient background (Nothing adaptation, not a gradient glow), with opacity fading from center to edge.',
+    },
+  },
+  {
+    slug: 'meter',
+    name: 'Meter',
+    category: 'feedback',
+    status: 'stable',
+    description: {
+      zh: '量规，用于有界数值（如配额、电量），临界区用状态色标在值上。',
+      en: 'A meter for bounded values (quotas, battery), with threshold regions colored on the value itself.',
+    },
+  },
+  {
+    slug: 'number-field',
+    name: 'NumberField',
+    category: 'actions-inputs',
+    status: 'stable',
+    description: {
+      zh: '数值输入框，带 + / − 步进按钮与上下限。',
+      en: 'A numeric input with + / − steppers and optional bounds.',
+    },
+  },
+  {
+    slug: 'preview-card',
+    name: 'PreviewCard',
+    category: 'data-display',
+    status: 'stable',
+    description: {
+      zh: '媒体预览卡，顶部缩略图 + 标题与元数据。',
+      en: 'A preview card with a thumbnail on top and a title and metadata below.',
+    },
+  },
+  {
+    slug: 'skeleton',
+    name: 'Skeleton',
+    category: 'feedback',
+    status: 'new',
+    description: {
+      zh: '点阵呼吸占位（Nothing 改造，非灰色块），text/rect/circle 三种形状。',
+      en: 'A dot-matrix breathing placeholder (Nothing adaptation, not grey blocks) in text, rect, or circle shapes.',
+    },
+  },
+  {
+    slug: 'sparkline',
+    name: 'Sparkline',
+    category: 'data-display',
+    status: 'stable',
+    description: {
+      zh: '迷你趋势线，1.5px 描边、无填充，极值用透明度区分。',
+      en: 'A tiny trend line: 1.5px stroke, no fill, extremes marked by opacity.',
+    },
+  },
+  {
+    slug: 'text-animate',
+    name: 'TextAnimate',
+    category: 'decoration',
+    status: 'new',
+    description: {
+      zh: '文本逐字/逐词/逐行揭示，ease-out 无弹跳。',
+      en: 'Text revealed by char, word, or line, with ease-out and no bounce.',
+    },
+  },
+  {
+    slug: 'thumbnail',
+    name: 'Thumbnail',
+    category: 'data-display',
+    status: 'stable',
+    description: {
+      zh: '图片缩略图，加载失败回退到点阵占位而非灰色块。',
+      en: 'An image thumbnail that falls back to a dot-matrix placeholder instead of a grey block.',
+    },
+  },
+  {
+    slug: 'time-field',
+    name: 'TimeField',
+    category: 'actions-inputs',
+    status: 'beta',
+    description: {
+      zh: '时分秒分格输入，可选秒段。',
+      en: 'A time input split into hour/minute/second segments, seconds optional.',
+    },
+  },
+  {
+    slug: 'toast',
+    name: 'Toast',
+    category: 'feedback',
+    status: 'new',
+    description: {
+      zh: '内联状态条（Nothing 改造，不浮窗不自动消失），[SAVED]/[ERROR] 风格。',
+      en: 'An inline status bar (Nothing adaptation, not a floating popup), in the [SAVED]/[ERROR] idiom.',
+    },
+  },
+  {
+    slug: 'toc',
+    name: 'TOC',
+    category: 'navigation',
+    status: 'stable',
+    description: {
+      zh: '目录导航，当前节用 2px 左条高亮，随滚动追踪。',
+      en: 'A table of contents that tracks the active section with a 2px left bar as you scroll.',
+    },
+  },
+  {
+    slug: 'toolbar',
+    name: 'Toolbar',
+    category: 'actions-inputs',
+    status: 'new',
+    description: {
+      zh: '工具条，组合按钮、分隔与开关，方向键切换焦点。',
+      en: 'A toolbar of buttons, separators, and toggles, navigated with the arrow keys.',
+    },
+  },
 ]
 
 export const COMPONENT_MANIFEST = ENTRIES.sort((a, b) => a.name.localeCompare(b.name))
