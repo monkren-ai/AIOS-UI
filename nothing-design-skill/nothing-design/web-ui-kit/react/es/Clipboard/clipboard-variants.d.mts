@@ -6,7 +6,7 @@
  */
 declare const clipboardVariants: (props?: ({
   size?: "sm" | "md" | "lg" | null | undefined;
-  state?: "idle" | "copied" | null | undefined;
+  state?: "copied" | "idle" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 头部一行：标题在前，计数在后。 */
 declare const clipboardHeaderVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;

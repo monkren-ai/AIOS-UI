@@ -6,7 +6,7 @@
  * 指针与命中扇区用单点红标记，全程没有阴影与渐变。
  */
 declare const spinnerVariants: (props?: ({
-  variant?: "soft" | "outline" | "destructive" | null | undefined;
+  variant?: "outline" | "soft" | "destructive" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 转盘容器。尺寸决定盘面直径。 */

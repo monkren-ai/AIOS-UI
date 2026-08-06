@@ -8,11 +8,12 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "vitest --passWithNoTests"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
-    "aios-ui-kit": "file:../react",
+    "aios-ui-kit": "file:../nothing-design-skill/nothing-design/web-ui-kit/react",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "motion": "^12.40.0",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@tabler/icons-react": "^3.46.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^22.10.5",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",

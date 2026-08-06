@@ -7,7 +7,7 @@ import { themeScriptPlugin } from './scripts/vite-theme-script-plugin'
 import { uiFallbackAlias } from './scripts/vite-ui-fallback-alias'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const uiRoot = path.resolve(__dirname, '../react/src')
+const uiRoot = path.resolve(__dirname, '../nothing-design-skill/nothing-design/web-ui-kit/react/src')
 const docsRoot = path.resolve(__dirname, './src')
 
 export default defineConfig({

@@ -5,9 +5,9 @@
  * 头像本身不承载语义色，只有形状（圆 / 方角工业风）与尺寸两个维度。
  */
 declare const avatarVariants: (props?: ({
-  variant?: "soft" | "outline" | "ghost" | null | undefined;
+  variant?: "outline" | "soft" | "ghost" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
-  shape?: "circle" | "technical" | null | undefined;
+  shape?: "technical" | "circle" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 兜底文字。字号跟着尺寸走。 */
 declare const avatarFallbackVariants: (props?: ({
