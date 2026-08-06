@@ -49,7 +49,7 @@ export function ComponentPreview({
             className={cn(
               'relative -mb-px cursor-pointer border-b-2 border-transparent bg-transparent px-3 py-2',
               'font-mono text-label uppercase tracking-widest',
-              'text-foreground-subtle transition-colors duration-200 ease-nothing motion-reduce:transition-none',
+              'text-foreground-subtle transition-colors duration-200 ease-aios motion-reduce:transition-none',
               'hover:text-foreground',
               'data-active:border-accent data-active:text-foreground-display',
             )}

@@ -17,8 +17,8 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["vite/client"],
     "paths": {
-      "@/*": ["./src/*", "../nothing-design-skill/nothing-design/web-ui-kit/react/src/*"],
-      "aios-ui-kit/*": ["../nothing-design-skill/nothing-design/web-ui-kit/react/src/subpath/*"]
+      "@/*": ["./src/*", "../aios-design-skill/aios-design/web-ui-kit/react/src/*"],
+      "aios-ui-kit/*": ["../aios-design-skill/aios-design/web-ui-kit/react/src/subpath/*"]
     }
   },
   "include": ["src", "scripts"]

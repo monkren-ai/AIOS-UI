@@ -1,0 +1,277 @@
+.aios-clock-digital {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-transition) var(--easing);
+}
+
+.digital-time {
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  line-height: 1;
+  font-weight: 600;
+  color: var(--text-display);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.digital-date {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.aios-clock-gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  transition: all var(--duration-transition) var(--easing);
+}
+
+.gauge-svg {
+  width: 200px;
+  height: 200px;
+  transform: rotate(-90deg);
+}
+
+.gauge-bg {
+  fill: none;
+  stroke: var(--surface-raised);
+  stroke-width: 4;
+}
+
+.gauge-track {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 4;
+  stroke-dasharray: 565.48 565.48;
+  stroke-dashoffset: 565.48;
+  transition: stroke var(--duration-transition) var(--easing);
+}
+
+.gauge-hour {
+  fill: none;
+  stroke: var(--text-secondary);
+  stroke-width: 4;
+  stroke-dasharray: 565.48 565.48;
+  stroke-dashoffset: 565.48;
+  stroke-linecap: round;
+  transition: stroke var(--duration-transition) var(--easing);
+}
+
+.gauge-minute {
+  fill: none;
+  stroke: var(--text-primary);
+  stroke-width: 3;
+  stroke-dasharray: 565.48 565.48;
+  stroke-dashoffset: 565.48;
+  stroke-linecap: round;
+  transition: stroke var(--duration-transition) var(--easing);
+}
+
+.gauge-second {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-dasharray: 565.48 565.48;
+  stroke-dashoffset: 565.48;
+  stroke-linecap: round;
+  transition: stroke var(--duration-transition) var(--easing);
+}
+
+.gauge-center {
+  fill: var(--accent);
+}
+
+.gauge-time {
+  font-family: var(--font-mono);
+  font-size: var(--heading);
+  font-weight: 700;
+  color: var(--text-display);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.gauge-seconds {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  color: var(--accent);
+  position: absolute;
+  top: calc(50% + 28px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.aios-clock-dual-ring {
+  width: var(--widget-size-md);
+  height: var(--widget-size-md);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all var(--duration-transition) var(--easing);
+}
+
+.dual-ring-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dual-ring-outer {
+  transition: fill var(--duration-transition) var(--easing);
+}
+
+.dual-ring-inner {
+  transition: fill var(--duration-transition) var(--easing);
+}
+
+.dual-ring-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.dual-ring-hour {
+  font-family: var(--font-ndot);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.dual-ring-minute {
+  font-family: var(--font-ndot);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--widget-primary);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.aios-clock-dual-ring--light .dual-ring-outer {
+  fill: var(--widget-white);
+}
+
+.aios-clock-dual-ring--light .dual-ring-inner {
+  fill: var(--widget-card-bg);
+}
+
+.aios-clock-dual-ring--light .dual-ring-hour {
+  color: var(--widget-dark-2);
+}
+
+.aios-clock-dual-ring--dark .dual-ring-outer {
+  fill: var(--widget-dark-2);
+}
+
+.aios-clock-dual-ring--dark .dual-ring-inner {
+  fill: var(--widget-dark-bg);
+}
+
+.aios-clock-dual-ring--dark .dual-ring-hour {
+  color: var(--widget-white);
+}
+
+.aios-clock-overlay {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-transition) var(--easing);
+}
+
+.overlay-base {
+  font-family: var(--font-ndot);
+  font-size: 80px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--widget-primary);
+  position: relative;
+  z-index: 1;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.overlay-top {
+  font-family: var(--font-ndot);
+  font-size: 80px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.aios-clock-overlay--light .overlay-top {
+  color: var(--widget-dark-2);
+}
+
+.aios-clock-overlay--dark .overlay-top {
+  color: var(--widget-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aios-clock-digital,
+  .digital-time,
+  .digital-date,
+  .aios-clock-gauge,
+  .gauge-track,
+  .gauge-hour,
+  .gauge-minute,
+  .gauge-second,
+  .gauge-time,
+  .gauge-seconds {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aios-clock-overlay,
+  .overlay-base,
+  .overlay-top {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aios-clock-dual-ring,
+  .dual-ring-outer,
+  .dual-ring-inner,
+  .dual-ring-hour,
+  .dual-ring-minute {
+    transition: none;
+  }
+}

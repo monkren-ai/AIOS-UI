@@ -48,8 +48,8 @@ export const progressBarDoc: ComponentDoc = {
       id: 'status',
       title: { zh: '状态', en: 'Status' },
       description: {
-        zh: '`status` 同时给已填充的刻度和读数上色：`good` 绿、`warning` 黄、`overlimit` 用 Nothing 红、`error` 用错误色。这四档是全库少见的多色场景——进度条的语义就是「量」，量到了什么程度需要颜色帮忙。`disabled` 只是整体压到 40% 不透明度，不改状态色。',
-        en: '`status` tints both the filled ticks and the readout: green for `good`, yellow for `warning`, the Nothing red for `overlimit`, and the error colour for `error`. These four are a rare multi-colour moment in the library, justified because a progress bar is about quantity and how far along it is genuinely benefits from colour. `disabled` just drops the whole thing to 40% opacity without touching the status colour.',
+        zh: '`status` 同时给已填充的刻度和读数上色：`good` 绿、`warning` 黄、`overlimit` 用 AIOS 红、`error` 用错误色。这四档是全库少见的多色场景——进度条的语义就是「量」，量到了什么程度需要颜色帮忙。`disabled` 只是整体压到 40% 不透明度，不改状态色。',
+        en: '`status` tints both the filled ticks and the readout: green for `good`, yellow for `warning`, the AIOS red for `overlimit`, and the error colour for `error`. These four are a rare multi-colour moment in the library, justified because a progress bar is about quantity and how far along it is genuinely benefits from colour. `disabled` just drops the whole thing to 40% opacity without touching the status colour.',
       },
       code: statusSource,
       render: () => <ProgressBarStatus />,

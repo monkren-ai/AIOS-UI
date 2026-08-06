@@ -1,0 +1,18 @@
+.aios-widget-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--widget-gap);
+  background: var(--widget-bg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-2xl);
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+
+.aios-widget-grid--dense {
+  gap: calc(var(--widget-gap) / 2);
+}
+
+.aios-widget-grid--compact {
+  gap: calc(var(--widget-gap) / 2);
+}

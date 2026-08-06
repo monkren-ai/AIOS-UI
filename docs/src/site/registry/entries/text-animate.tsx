@@ -29,8 +29,8 @@ export const textAnimateDoc: ComponentDoc = {
       id: 'basic',
       title: { zh: '基础', en: 'Basic' },
       description: {
-        zh: '默认 `mode="word"`，逐词揭示。每段递增 `delay`（默认 40ms），单段 `duration`（默认 300ms），缓动走 `var(--ease-nothing)`——无弹跳。`once`（默认 true）只播一次。',
-        en: 'Defaults to `mode="word"`, revealing word by word. Each segment is staggered by `delay` (default 40ms) over `duration` (default 300ms), eased with `var(--ease-nothing)` — no bounce. `once` (default true) plays it a single time.',
+        zh: '默认 `mode="word"`，逐词揭示。每段递增 `delay`（默认 40ms），单段 `duration`（默认 300ms），缓动走 `var(--ease-aios)`——无弹跳。`once`（默认 true）只播一次。',
+        en: 'Defaults to `mode="word"`, revealing word by word. Each segment is staggered by `delay` (default 40ms) over `duration` (default 300ms), eased with `var(--ease-aios)` — no bounce. `once` (default true) plays it a single time.',
       },
       code: basicSource,
       render: () => <TextAnimateBasic />,

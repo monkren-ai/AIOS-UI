@@ -41,7 +41,7 @@ export interface WeatherProps extends Omit<WidgetSubProps, 'size'> {
 function WeatherIconSvg() {
   return (
     <svg
-      className="nothing-widget-icon-svg"
+      className="aios-widget-icon-svg"
       fill="none"
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 152 152"
@@ -585,7 +585,7 @@ function ForecastGroup31() {
   return (
     <div className="absolute inset-[10%_0_7.02%_0]" aria-hidden="true">
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 40 33.1915"

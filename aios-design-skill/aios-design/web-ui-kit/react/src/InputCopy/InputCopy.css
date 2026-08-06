@@ -1,0 +1,17 @@
+/**
+ * 只剩 @keyframes —— 其余样式已经迁移到 input-copy-variants.ts 的 Tailwind 工具类。
+ *
+ * 复制成功时按钮闪一下淡绿底。关键帧无法用工具类表达，
+ * 所以保留在这里，由 `animate-[aios-input-copy-flash_...]` 引用。
+ */
+@keyframes aios-input-copy-flash {
+  0% {
+    background: transparent;
+  }
+  50% {
+    background: color-mix(in srgb, var(--success) 15%, transparent);
+  }
+  100% {
+    background: transparent;
+  }
+}

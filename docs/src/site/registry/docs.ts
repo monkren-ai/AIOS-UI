@@ -52,7 +52,7 @@ export const DOC_PAGES: DocPageMeta[] = [
     title: { zh: '设计原则', en: 'Design Principles' },
     description: {
       zh: 'Nothing 设计语言的硬约束，以及它们为什么存在。',
-      en: "The hard constraints of the Nothing design language, and why they're there.",
+      en: "The hard constraints of the AIOS design language, and why they're there.",
     },
   },
   {

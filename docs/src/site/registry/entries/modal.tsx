@@ -70,8 +70,8 @@ export const modalDoc: ComponentDoc = {
       id: 'destructive',
       title: { zh: '危险操作', en: 'Destructive confirmation' },
       description: {
-        zh: '`destructive` 只在 `variant="alert"` 下生效，把标题与确认按钮转成 Nothing 红。用它的门槛应该很高——单色系统里红色是唯一的强信号，每多用一次就贬值一分。判断标准很简单：这个动作能不能撤销？不能，才配得上红。另外记得把 `confirmLabel` 写成具体动词（Erase、Delete）而不是 OK，用户按下去的东西应该自己说明后果。',
-        en: '`destructive` only applies when `variant="alert"`; it turns the title and the confirm button Nothing red. Reach for it rarely — red is the single loud signal in a monochrome system and every extra use devalues it. The test is simple: can the action be undone? Only if it cannot does it deserve the red. Write `confirmLabel` as the actual verb (Erase, Delete) rather than OK, so the button the user presses states its own consequence.',
+        zh: '`destructive` 只在 `variant="alert"` 下生效，把标题与确认按钮转成 AIOS 红。用它的门槛应该很高——单色系统里红色是唯一的强信号，每多用一次就贬值一分。判断标准很简单：这个动作能不能撤销？不能，才配得上红。另外记得把 `confirmLabel` 写成具体动词（Erase、Delete）而不是 OK，用户按下去的东西应该自己说明后果。',
+        en: '`destructive` only applies when `variant="alert"`; it turns the title and the confirm button AIOS red. Reach for it rarely — red is the single loud signal in a monochrome system and every extra use devalues it. The test is simple: can the action be undone? Only if it cannot does it deserve the red. Write `confirmLabel` as the actual verb (Erase, Delete) rather than OK, so the button the user presses states its own consequence.',
       },
       code: destructiveSource,
       render: () => <ModalDestructive />,

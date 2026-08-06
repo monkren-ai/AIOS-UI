@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "name": "aios-ui-kit",
+  "version": "1.0.0",
+  "description": "AIOS UI Web - A web component library based on AIOS design system",
+  "style": "nothing",
+  "rsc": false,
+  "tsx": true,
+  "cssVariables": true,
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components",
+    "lib": "@/lib",
+    "hooks": "@/hooks",
+    "styles": "@/styles"
+  },
+  "tokens": "./src/styles/tokens.css",
+  "iconLibrary": "svg-icon",
+  "frameworks": ["react"],
+  "engines": {
+    "node": ">=18"
+  }
+}

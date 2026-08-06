@@ -74,7 +74,7 @@ export const LocationAccess = React.forwardRef<HTMLDivElement, LocationAccessPro
           data-name="BG"
         >
           <svg
-            className="nothing-widget-icon-svg"
+            className="aios-widget-icon-svg"
             fill="none"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 152 152"
@@ -92,7 +92,7 @@ export const LocationAccess = React.forwardRef<HTMLDivElement, LocationAccessPro
             aria-hidden="true"
           >
             <svg
-              className="nothing-widget-icon-svg"
+              className="aios-widget-icon-svg"
               fill="none"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 24 24"

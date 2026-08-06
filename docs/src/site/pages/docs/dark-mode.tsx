@@ -190,8 +190,8 @@ export default function DarkModePage() {
         <DocList
           items={[
             t(
-              "localStorage 的 key 是 `nothing-theme`，存的是用户选的那个值（可能是字符串 `'system'`），不是解析后的结果。",
-              "The localStorage key is `nothing-theme` and it stores the user’s choice — possibly the literal string `'system'` — not the resolved appearance.",
+              "localStorage 的 key 是 `aios-theme`，存的是用户选的那个值（可能是字符串 `'system'`），不是解析后的结果。",
+              "The localStorage key is `aios-theme` and it stores the user’s choice — possibly the literal string `'system'` — not the resolved appearance.",
             ),
             t(
               "`getInitialTheme()` 只接受 `'light'` / `'dark'` / `'system'` 三个值，其它内容一律忽略并回落到 `defaultTheme`，所以手改 localStorage 弄不出坏状态。",

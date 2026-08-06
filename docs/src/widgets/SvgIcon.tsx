@@ -8,20 +8,20 @@ export type SvgIconTheme = 'light' | 'dark' | 'accent' | 'error'
 export type SvgIconSize = 'sm' | 'md' | 'lg'
 export type SvgIconVariant = 'solid' | 'dot'
 
-const svgIconVariants = cva('nothing-svg-icon', {
+const svgIconVariants = cva('aios-svg-icon', {
   variants: {
     theme: {
-      light: 'nothing-svg-icon--light',
-      dark: 'nothing-svg-icon--dark',
-      accent: 'nothing-svg-icon--accent',
-      error: 'nothing-svg-icon--error',
+      light: 'aios-svg-icon--light',
+      dark: 'aios-svg-icon--dark',
+      accent: 'aios-svg-icon--accent',
+      error: 'aios-svg-icon--error',
     },
     size: {
-      sm: 'nothing-svg-icon--sm',
-      md: 'nothing-svg-icon--md',
-      lg: 'nothing-svg-icon--lg',
+      sm: 'aios-svg-icon--sm',
+      md: 'aios-svg-icon--md',
+      lg: 'aios-svg-icon--lg',
     },
-    labeled: { true: 'nothing-svg-icon--labeled', false: '' },
+    labeled: { true: 'aios-svg-icon--labeled', false: '' },
   },
   defaultVariants: { theme: 'dark', size: 'md', labeled: false },
 })
@@ -167,7 +167,7 @@ export const SvgIcon = React.forwardRef<HTMLDivElement, SvgIconProps>(
           />
         ) : (
           <svg
-            className="nothing-svg-icon__svg"
+            className="aios-svg-icon__svg"
             fill="none"
             preserveAspectRatio="xMidYMid meet"
             viewBox={sizeViewBox[size]}
@@ -182,7 +182,7 @@ export const SvgIcon = React.forwardRef<HTMLDivElement, SvgIconProps>(
             {children}
           </svg>
         )}
-        {label && <span className="nothing-svg-icon__label">{label}</span>}
+        {label && <span className="aios-svg-icon__label">{label}</span>}
       </div>
     )
   },

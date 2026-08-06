@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { Prose } from '../../components/Prose'
 import { useT } from '../../i18n'
 import { IconDetailPanel } from './IconDetailPanel'
-import { NOTHING_GROUPS, NOTHING_GROUP_COUNTS, NOTHING_ICONS } from './nothing-icons'
+import { AIOS_GROUPS, AIOS_GROUP_COUNTS, AIOS_ICONS } from './aios-icons'
 import { TABLER_GROUPS, loadTablerIcons } from './tabler-icons'
 import { useDebouncedValue } from './useDebouncedValue'
 import { VirtualIconGrid } from './VirtualIconGrid'
@@ -40,7 +40,7 @@ function SegmentGroup<T extends string | number>({
           onClick={() => onChange(option.value)}
           className={cn(
             'cursor-pointer rounded-2xs border-0 px-3 py-1 font-mono text-label uppercase tracking-widest',
-            'transition-colors duration-200 ease-nothing motion-reduce:transition-none',
+            'transition-colors duration-200 ease-aios motion-reduce:transition-none',
             'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-interactive',
             option.value === value
               ? 'bg-muted text-foreground-display'
@@ -94,7 +94,7 @@ function GroupFilter({
           onClick={() => onChange(item.id)}
           className={cn(
             'flex cursor-pointer items-center justify-between rounded-card-technical border-0 px-3 py-1.5 text-start text-sm',
-            'transition-colors duration-200 ease-nothing motion-reduce:transition-none',
+            'transition-colors duration-200 ease-aios motion-reduce:transition-none',
             'focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-interactive',
             item.id === value
               ? 'bg-muted text-foreground-display'
@@ -112,7 +112,7 @@ function GroupFilter({
 export function IconsPage() {
   const { t, tb } = useT()
 
-  const [source, setSource] = React.useState<IconSource>('nothing')
+  const [source, setSource] = React.useState<IconSource>('aios')
   const [query, setQuery] = React.useState('')
   const [group, setGroup] = React.useState<string>(ALL_GROUPS)
   const [size, setSize] = React.useState<number>(72)
@@ -163,13 +163,13 @@ export function IconsPage() {
   }, [])
 
   const pool = React.useMemo(
-    () => (source === 'nothing' ? NOTHING_ICONS : (tablerIcons ?? [])),
+    () => (source === 'aios' ? AIOS_ICONS : (tablerIcons ?? [])),
     [source, tablerIcons],
   )
 
-  const groups = source === 'nothing' ? NOTHING_GROUPS : TABLER_GROUPS
+  const groups = source === 'aios' ? AIOS_GROUPS : TABLER_GROUPS
   const counts = React.useMemo(() => {
-    if (source === 'nothing') return NOTHING_GROUP_COUNTS
+    if (source === 'aios') return AIOS_GROUP_COUNTS
     return pool.reduce<Record<string, number>>((acc, icon) => {
       acc[icon.groupId] = (acc[icon.groupId] ?? 0) + 1
       return acc
@@ -209,7 +209,7 @@ export function IconsPage() {
             value={source}
             onChange={changeSource}
             options={[
-              { value: 'nothing', label: 'Nothing' },
+              { value: 'aios', label: 'Nothing' },
               { value: 'tabler', label: 'Tabler' },
             ]}
           />
@@ -312,7 +312,7 @@ export function IconsPage() {
             />
           )}
 
-          {source === 'nothing' && (
+          {source === 'aios' && (
             <p className="font-mono text-micro text-foreground-subtle">
               {t(
                 `分组：${groups.map((entry) => tb(entry.label)).join(' · ')}`,

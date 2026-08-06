@@ -39,7 +39,7 @@ export const Dots7 = React.forwardRef<HTMLDivElement, WidgetSubProps>(
         aria-label={ariaLabel || 'Dots'}
       >
         <svg
-          className="nothing-widget-icon-svg"
+          className="aios-widget-icon-svg"
           fill="none"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 46 75"

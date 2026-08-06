@@ -175,8 +175,8 @@ export const dataTableDoc: ComponentDoc = {
           type: 'boolean',
           default: 'false',
           description: {
-            zh: '所有形态都接受，加一个 `nothing-data-table--proximity` 类。该类没有配套的全局 CSS 随本包发布——如果项目里没有自己定义它的鼠标接近高亮效果，这个开关不会有任何可见变化。',
-            en: 'Accepted by every variant; adds a `nothing-data-table--proximity` class. No global CSS ships with the package for that class — without your own pointer-proximity styling defined for it, flipping this on has no visible effect.',
+            zh: '所有形态都接受，加一个 `aios-data-table--proximity` 类。该类没有配套的全局 CSS 随本包发布——如果项目里没有自己定义它的鼠标接近高亮效果，这个开关不会有任何可见变化。',
+            en: 'Accepted by every variant; adds a `aios-data-table--proximity` class. No global CSS ships with the package for that class — without your own pointer-proximity styling defined for it, flipping this on has no visible effect.',
           },
         },
         {

@@ -70,7 +70,7 @@ export const Recording = React.forwardRef<HTMLDivElement, RecordingProps>(
             data-name="BG"
           >
             <svg
-              className="nothing-widget-icon-svg"
+              className="aios-widget-icon-svg"
               fill="none"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 152 152"
@@ -107,7 +107,7 @@ export const Recording = React.forwardRef<HTMLDivElement, RecordingProps>(
           data-name="Dot"
         >
           <svg
-            className="nothing-widget-icon-svg"
+            className="aios-widget-icon-svg"
             fill="none"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 8 8"

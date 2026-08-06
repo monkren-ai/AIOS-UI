@@ -1,0 +1,160 @@
+@import './tokens.css';
+
+/* ===== Base ===== */
+.aios-photo-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===== Square variant ===== */
+.aios-photo-frame--square {
+  width: var(--widget-size-md);
+  height: var(--widget-size-md);
+  border-radius: var(--radius-xl);
+  padding: var(--space-sm);
+  background: var(--widget-card-bg);
+}
+
+.aios-photo-frame--square .aios-photo-frame__image-wrapper {
+  width: calc(var(--widget-size-md) - 2 * var(--space-sm));
+  height: calc(var(--widget-size-md) - 2 * var(--space-sm));
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===== Pill variant ===== */
+.aios-photo-frame--pill {
+  width: var(--widget-size-sm);
+  height: var(--widget-size-md);
+  border-radius: 250px;
+  padding: var(--space-sm);
+  background: var(--widget-card-bg);
+}
+
+.aios-photo-frame--pill .aios-photo-frame__image-wrapper {
+  width: calc(var(--widget-size-sm) - 2 * var(--space-sm));
+  height: calc(var(--widget-size-md) - 2 * var(--space-sm));
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* When inside WidgetCard, adjust to fill the card properly */
+[data-slot='widget-card'][data-has-children] .aios-photo-frame {
+  width: 100%;
+  height: 100%;
+  padding: var(--space-sm);
+}
+
+/* ===== Theme: dark ===== */
+.aios-photo-frame--dark.aios-photo-frame--square,
+.aios-photo-frame--dark.aios-photo-frame--pill {
+  background: var(--widget-bg);
+}
+
+/* ===== Theme: light ===== */
+.aios-photo-frame--light.aios-photo-frame--square,
+.aios-photo-frame--light.aios-photo-frame--pill {
+  background: var(--widget-card-bg);
+}
+
+/* ===== Image ===== */
+.aios-photo-frame__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity var(--duration-transition) var(--easing);
+}
+
+.aios-photo-frame__image--hidden {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.aios-photo-frame__image--visible {
+  opacity: 1;
+  position: relative;
+}
+
+/* ===== Carousel dots ===== */
+.aios-photo-frame__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--space-xs);
+  width: 100%;
+}
+
+.aios-photo-frame__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--widget-grey);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--duration-micro) var(--easing);
+}
+
+.aios-photo-frame__dot--active {
+  background: var(--widget-white);
+}
+
+.aios-photo-frame__dot:hover {
+  background: var(--widget-dark-4);
+}
+
+/* ===== Carousel slide transition ===== */
+.aios-photo-frame__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--duration-transition) var(--easing);
+}
+
+.aios-photo-frame__slide--active {
+  opacity: 1;
+  position: relative;
+}
+
+.aios-photo-frame__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== Fallback DotMatrix wrapper ===== */
+.aios-photo-frame[data-state='fallback'] .aios-photo-frame__image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--widget-card-bg);
+}
+
+/* ===== SIM label when no real content ===== */
+.aios-photo-frame[data-real='false']::after {
+  content: 'SIM';
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  pointer-events: none;
+}

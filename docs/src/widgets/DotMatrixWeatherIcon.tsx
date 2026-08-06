@@ -71,7 +71,7 @@ export const DotMatrixWeatherIcon = React.forwardRef<HTMLDivElement, DotMatrixWe
         anim={anim}
         activePercent={activePercent}
         speedMs={speedMs}
-        className={cn('nothing-weather-dot-icon', className)}
+        className={cn('aios-weather-dot-icon', className)}
         style={style}
         {...props}
       />

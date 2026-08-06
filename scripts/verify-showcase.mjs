@@ -28,7 +28,7 @@ const OLD_APP_PATH = '/tmp/app_10days_ago.tsx'
 if (!existsSync(OLD_APP_PATH)) {
   // Lazily fetch from git and cache to /tmp
   execSync(
-    `git show df7b910:nothing-design-skill/nothing-design/web-ui-kit/react/src/App.tsx > ${OLD_APP_PATH}`,
+    `git show df7b910:aios-design-skill/aios-design/web-ui-kit/react/src/App.tsx > ${OLD_APP_PATH}`,
     { cwd: REPO_ROOT, stdio: 'inherit' },
   )
 }
@@ -37,7 +37,7 @@ const oldApp = readFileSync(OLD_APP_PATH, 'utf8')
 // ─── 2. Load current section sources ─────────────────────────────────────
 const sectionsDir = resolve(
   REPO_ROOT,
-  'nothing-design-skill/nothing-design/web-ui-kit/react/src/showcase/sections',
+  'aios-design-skill/aios-design/web-ui-kit/react/src/showcase/sections',
 )
 const { readdirSync } = await import('node:fs')
 const sectionFiles = readdirSync(sectionsDir).filter((f) => f.endsWith('Section.tsx'))
@@ -117,7 +117,7 @@ const oldCats = extractCategories(oldApp)
 const newSrc = readFileSync(
   resolve(
     REPO_ROOT,
-    'nothing-design-skill/nothing-design/web-ui-kit/react/src/showcase/components/CategoryNav.tsx',
+    'aios-design-skill/aios-design/web-ui-kit/react/src/showcase/components/CategoryNav.tsx',
   ),
   'utf8',
 )
@@ -206,7 +206,7 @@ const oldFloat = oldApp.match(/onClick=\{toggleLang\}[\s\S]*?切换主题[\s\S]*
 const newFloat = readFileSync(
   resolve(
     REPO_ROOT,
-    'nothing-design-skill/nothing-design/web-ui-kit/react/src/showcase/components/FloatingControls.tsx',
+    'aios-design-skill/aios-design/web-ui-kit/react/src/showcase/components/FloatingControls.tsx',
   ),
   'utf8',
 )

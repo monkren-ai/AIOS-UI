@@ -793,8 +793,8 @@ export function ProjectIntroPage() {
             </header>
             <p className="pi-body">
               {t(
-                'AIOS UI 不只是组件库，还配套了一个 nothing-design Skill：把整套设计哲学、Craft Rules、反模式与工作流封装为 AI Agent 可读、可调用的知识包。说一句 "Nothing style"，Agent 就会按同一套纪律产出界面——人与 AI 共享同一份审美标准。',
-                'AIOS UI is more than a component library. It ships with a nothing-design Skill that packages the design philosophy, craft rules, anti-patterns, and workflows into a knowledge base an AI agent can read and invoke. Say "Nothing style" and the agent produces interfaces under the same discipline — human and AI sharing one aesthetic standard.',
+                'AIOS UI 不只是组件库，还配套了一个 aios-design Skill：把整套设计哲学、Craft Rules、反模式与工作流封装为 AI Agent 可读、可调用的知识包。说一句 "AIOS style"，Agent 就会按同一套纪律产出界面——人与 AI 共享同一份审美标准。',
+                'AIOS UI is more than a component library. It ships with a aios-design Skill that packages the design philosophy, craft rules, anti-patterns, and workflows into a knowledge base an AI agent can read and invoke. Say "AIOS style" and the agent produces interfaces under the same discipline — human and AI sharing one aesthetic standard.',
               )}
             </p>
             <div className="pi-grid">
@@ -853,8 +853,8 @@ export function ProjectIntroPage() {
                 <h3 className="pi-card__title">{t('触发即用', 'Trigger on Demand')}</h3>
                 <p className="pi-card__text">
                   {t(
-                    '说 "Nothing style" 或 "/nothing-design" 即可唤起；工具权限限定为只读与编辑，不随意改动未授权的文件。',
-                    'Invoke with "Nothing style" or "/nothing-design"; tool permissions are scoped to read and edit, so it never touches files it was not asked to.',
+                    '说 "AIOS style" 或 "/aios-design" 即可唤起；工具权限限定为只读与编辑，不随意改动未授权的文件。',
+                    'Invoke with "AIOS style" or "/aios-design"; tool permissions are scoped to read and edit, so it never touches files it was not asked to.',
                   )}
                 </p>
               </article>

@@ -39,7 +39,7 @@ export const Device1 = React.forwardRef<HTMLDivElement, WidgetSubProps>(
         aria-label={ariaLabel || 'Device'}
       >
         <svg
-          className="nothing-widget-icon-svg"
+          className="aios-widget-icon-svg"
           fill="none"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 25.8406 25.4559"

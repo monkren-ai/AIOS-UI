@@ -33,8 +33,8 @@ export default function DesignPrinciplesPage() {
       <DocSection title={t('单色 + 一个红', 'Monochrome, plus one red')}>
         <Prose>
           {t(
-            '`#D71921` 是 Nothing 红，通过 `--accent` 引用，全库只有它一个彩色。它的意思很窄：**这里发生了需要你注意的事**。焦点、告警、当前项、破坏性操作——除此之外都不该出现红色。',
-            '`#D71921` is the Nothing red, referenced through `--accent`, and it is the only chromatic colour in the library. Its meaning is narrow: **something here needs your attention**. Focus, alerts, the current item, destructive actions — nothing else should be red.',
+            '`#D71921` 是 AIOS 红，通过 `--accent` 引用，全库只有它一个彩色。它的意思很窄：**这里发生了需要你注意的事**。焦点、告警、当前项、破坏性操作——除此之外都不该出现红色。',
+            '`#D71921` is the AIOS red, referenced through `--accent`, and it is the only chromatic colour in the library. Its meaning is narrow: **something here needs your attention**. Focus, alerts, the current item, destructive actions — nothing else should be red.',
           )}
         </Prose>
         <Prose>
@@ -103,7 +103,7 @@ export default function DesignPrinciplesPage() {
               '999px',
               t(
                 '胶囊。按钮、Tag、分段控件——这是 Nothing 的签名形状，不要改成方角「以求统一」。',
-                'The pill. Buttons, tags, segmented controls — this is a Nothing signature shape; do not square it off “for consistency”.',
+                'The pill. Buttons, tags, segmented controls — this is a AIOS signature shape; do not square it off “for consistency”.',
               ),
             ],
           ]}
@@ -143,8 +143,8 @@ export default function DesignPrinciplesPage() {
       <DocSection title={t('动效是功能性的', 'Motion is functional')}>
         <Prose>
           {t(
-            '过渡的作用是解释状态之间的关系，不是表演。默认缓动是 `ease-nothing`，时长落在 200ms（`--duration-micro`）到 350ms（`--duration-transition`）之间。所有动效必须带 `motion-reduce:` 兜底。',
-            'A transition exists to explain the relationship between two states, not to perform. The default easing is `ease-nothing` and durations sit between 200ms (`--duration-micro`) and 350ms (`--duration-transition`). Every animation needs a `motion-reduce:` fallback.',
+            '过渡的作用是解释状态之间的关系，不是表演。默认缓动是 `ease-aios`，时长落在 200ms（`--duration-micro`）到 350ms（`--duration-transition`）之间。所有动效必须带 `motion-reduce:` 兜底。',
+            'A transition exists to explain the relationship between two states, not to perform. The default easing is `ease-aios` and durations sit between 200ms (`--duration-micro`) and 350ms (`--duration-transition`). Every animation needs a `motion-reduce:` fallback.',
           )}
         </Prose>
       </DocSection>

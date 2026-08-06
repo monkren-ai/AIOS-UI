@@ -3,10 +3,10 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
 import '@/styles/widget-grid.css'
 
-const widgetGridVariants = cva('nothing-widget-grid', {
+const widgetGridVariants = cva('aios-widget-grid', {
   variants: {
-    dense: { true: 'nothing-widget-grid--dense', false: '' },
-    compact: { true: 'nothing-widget-grid--compact', false: '' },
+    dense: { true: 'aios-widget-grid--dense', false: '' },
+    compact: { true: 'aios-widget-grid--compact', false: '' },
   },
   defaultVariants: { dense: false, compact: false },
 })

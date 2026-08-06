@@ -23,8 +23,8 @@ function Panel() {
 }`
 
 const CSS_TOKENS = `/* 时长与缓动成对使用 */
-transition-colors duration-200 ease-nothing        /* --duration-micro */
-transition-transform duration-[350ms] ease-nothing /* --duration-transition */
+transition-colors duration-200 ease-aios        /* --duration-micro */
+transition-transform duration-[350ms] ease-aios /* --duration-transition */
 
 /* spring 三档：进场用正数时长，退场用更短的那个 */
 ease-spring-fast      /* cubic-bezier(0.16, 1, 0.3, 1)  · 80ms 进 / 60ms 出 */
@@ -32,7 +32,7 @@ ease-spring-moderate  /* cubic-bezier(0.22, 1, 0.36, 1) · 160ms 进 / 120ms 出
 ease-spring-slow      /* cubic-bezier(0.33, 1, 0.68, 1) · 240ms 进 / 160ms 出 */`
 
 const REDUCE = `// 每一处过渡都要有 motion-reduce: 兜底
-<div className="transition-colors duration-200 ease-nothing motion-reduce:transition-none" />
+<div className="transition-colors duration-200 ease-aios motion-reduce:transition-none" />
 
 // 位移和缩放要退化成「不动」，而不是「动得慢一点」
 <button className="active:scale-[0.97] motion-reduce:active:scale-100" />`
@@ -123,7 +123,7 @@ export default function AnimationPage() {
               t('位移、尺寸变化、抽屉进出。', 'Movement, size changes, drawers coming and going.'),
             ],
             [
-              '`ease-nothing`',
+              '`ease-aios`',
               '`cubic-bezier(0.25, 0.1, 0.25, 1)`',
               t(
                 '默认缓动。没有特别理由就用它。',

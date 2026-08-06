@@ -69,8 +69,8 @@ export const sliderDoc: ComponentDoc = {
       id: 'variants',
       title: { zh: '变体', en: 'Variants' },
       description: {
-        zh: '`primary` 用 Nothing 红做已完成进度，`soft` 退回中性灰。一屏里有多个滑块时，把真正重要的那个留给 `primary`，其余用 `soft`——全部标红就等于没有重点。',
-        en: '`primary` fills the completed portion with the Nothing red; `soft` falls back to neutral grey. When a screen has several sliders, keep `primary` for the one that matters and set the rest to `soft` — if everything is red, nothing is.',
+        zh: '`primary` 用 AIOS 红做已完成进度，`soft` 退回中性灰。一屏里有多个滑块时，把真正重要的那个留给 `primary`，其余用 `soft`——全部标红就等于没有重点。',
+        en: '`primary` fills the completed portion with the AIOS red; `soft` falls back to neutral grey. When a screen has several sliders, keep `primary` for the one that matters and set the rest to `soft` — if everything is red, nothing is.',
       },
       code: variantsSource,
       render: () => <SliderVariants />,

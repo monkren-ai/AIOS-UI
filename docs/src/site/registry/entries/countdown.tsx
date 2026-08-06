@@ -37,8 +37,8 @@ export const countdownDoc: ComponentDoc = {
       id: 'urgent',
       title: { zh: '临近变色', en: 'Urgent threshold' },
       description: {
-        zh: '`threshold`（默认 10 秒）定义「临近」区间：剩余秒数落进这个区间，读数就从 display 白升到 Nothing 红（`--accent`），`data-state` 变成 `urgent`。到点后触发 `onComplete` 一次，显示 `onCompleteText`（默认 `DONE`），`data-state` 变成 `done`。',
-        en: '`threshold` (default 10s) defines the “urgent” window: once the remaining seconds fall inside it, the readout climbs from display white to the Nothing red (`--accent`) and `data-state` becomes `urgent`. On zero it fires `onComplete` once, shows `onCompleteText` (default `DONE`), and `data-state` becomes `done`.',
+        zh: '`threshold`（默认 10 秒）定义「临近」区间：剩余秒数落进这个区间，读数就从 display 白升到 AIOS 红（`--accent`），`data-state` 变成 `urgent`。到点后触发 `onComplete` 一次，显示 `onCompleteText`（默认 `DONE`），`data-state` 变成 `done`。',
+        en: '`threshold` (default 10s) defines the “urgent” window: once the remaining seconds fall inside it, the readout climbs from display white to the AIOS red (`--accent`) and `data-state` becomes `urgent`. On zero it fires `onComplete` once, shows `onCompleteText` (default `DONE`), and `data-state` becomes `done`.',
       },
       code: urgentSource,
       render: () => <CountdownUrgent />,

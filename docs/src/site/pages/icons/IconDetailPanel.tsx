@@ -3,7 +3,7 @@ import { Button } from 'aios-ui-kit/button'
 import { CodeBlock } from '../../components/CodeBlock'
 import { useT } from '../../i18n'
 import { IconVisual } from './IconVisual'
-import { nothingImportStatement, nothingJsxSnippet } from './nothing-icons'
+import { nothingImportStatement, nothingJsxSnippet } from './aios-icons'
 import { tablerImportStatement, tablerJsxSnippet } from './tabler-icons'
 import type { IconEntry } from './types'
 
@@ -84,7 +84,7 @@ export function IconDetailPanel({ entry, size, dotMatrix, onClose }: IconDetailP
     )
   }
 
-  const isNothing = entry.source === 'nothing'
+  const isNothing = entry.source === 'aios'
   const jsx = isNothing ? nothingJsxSnippet(entry, dotMatrix) : tablerJsxSnippet(entry, size)
   const importStatement = isNothing ? nothingImportStatement(entry) : tablerImportStatement(entry)
   const rawSvg = entry.svg ?? tablerMarkup

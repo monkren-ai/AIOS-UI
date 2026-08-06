@@ -1,0 +1,116 @@
+.aios-sender {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  font-family: var(--font-mono);
+}
+
+.aios-sender__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--label);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.aios-sender__content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-md);
+  background: transparent;
+  transition: border-color var(--duration-micro) var(--easing);
+}
+
+.aios-sender--focused .aios-sender__content,
+.aios-sender__content:focus-within {
+  border-color: var(--text-primary);
+}
+
+.aios-sender--filled .aios-sender__content {
+  background: var(--surface);
+  border-color: transparent;
+}
+
+.aios-sender--bordered .aios-sender__content {
+  border-style: solid;
+  border-color: var(--border-visible);
+}
+
+.aios-sender--disabled .aios-sender__content {
+  border-color: var(--border);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.aios-sender--loading .aios-sender__content {
+  border-color: var(--text-secondary);
+}
+
+.aios-sender--readonly .aios-sender__content {
+  border-color: var(--border);
+}
+
+.aios-sender__prefix,
+.aios-sender__suffix {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--space-xs);
+}
+
+.aios-sender__input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: var(--body);
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 0;
+  margin: 0;
+}
+
+.aios-sender__input::placeholder {
+  color: var(--text-disabled);
+}
+
+.aios-sender__input:disabled {
+  cursor: not-allowed;
+}
+
+.aios-sender__input:focus-visible {
+  outline: none;
+}
+
+.aios-sender__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  min-height: 36px;
+}
+
+.aios-sender--sm .aios-sender__content {
+  padding: var(--space-xs);
+}
+
+.aios-sender--sm .aios-sender__input {
+  font-size: var(--body-sm);
+}
+
+.aios-sender--lg .aios-sender__content {
+  padding: var(--space-md);
+}
+
+.aios-sender--lg .aios-sender__input {
+  font-size: var(--body-lg);
+}

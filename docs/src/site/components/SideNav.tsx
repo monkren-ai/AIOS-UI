@@ -44,7 +44,7 @@ export function SideNav({ groups, className }: { groups: SideNavGroup[]; classNa
               className={({ isActive }) =>
                 cn(
                   'flex items-center justify-between rounded-card-technical px-3 py-1.5 text-sm no-underline',
-                  'transition-colors duration-200 ease-nothing motion-reduce:transition-none',
+                  'transition-colors duration-200 ease-aios motion-reduce:transition-none',
                   isActive
                     ? 'bg-muted text-foreground-display'
                     : 'text-foreground-muted hover:bg-muted hover:text-foreground',

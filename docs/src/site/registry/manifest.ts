@@ -826,7 +826,7 @@ const ENTRIES: ComponentManifestEntry[] = [
     status: 'new',
     description: {
       zh: '点阵环境背景（Nothing 改造，非渐变光晕），opacity 中心高边缘低。',
-      en: 'A dot-matrix ambient background (Nothing adaptation, not a gradient glow), with opacity fading from center to edge.',
+      en: 'A dot-matrix ambient background (AIOS adaptation, not a gradient glow), with opacity fading from center to edge.',
     },
   },
   {
@@ -866,7 +866,7 @@ const ENTRIES: ComponentManifestEntry[] = [
     status: 'new',
     description: {
       zh: '点阵呼吸占位（Nothing 改造，非灰色块），text/rect/circle 三种形状。',
-      en: 'A dot-matrix breathing placeholder (Nothing adaptation, not grey blocks) in text, rect, or circle shapes.',
+      en: 'A dot-matrix breathing placeholder (AIOS adaptation, not grey blocks) in text, rect, or circle shapes.',
     },
   },
   {
@@ -916,7 +916,7 @@ const ENTRIES: ComponentManifestEntry[] = [
     status: 'new',
     description: {
       zh: '内联状态条（Nothing 改造，不浮窗不自动消失），[SAVED]/[ERROR] 风格。',
-      en: 'An inline status bar (Nothing adaptation, not a floating popup), in the [SAVED]/[ERROR] idiom.',
+      en: 'An inline status bar (AIOS adaptation, not a floating popup), in the [SAVED]/[ERROR] idiom.',
     },
   },
   {

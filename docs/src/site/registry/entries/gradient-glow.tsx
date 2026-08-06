@@ -15,7 +15,7 @@ export const gradientGlowDoc: ComponentDoc = {
   baseUi: '—（自实现，点阵 opacity 阶梯）',
   description: {
     zh: '点阵环境背景（Nothing 改造，非渐变光晕），opacity 中心高边缘低。',
-    en: 'A dot-matrix ambient background (Nothing adaptation, not a gradient glow), with opacity fading from center to edge.',
+    en: 'A dot-matrix ambient background (AIOS adaptation, not a gradient glow), with opacity fading from center to edge.',
   },
   preview: () => (
     <div className="relative flex h-32 w-full max-w-sm items-center justify-center overflow-hidden rounded-card border border-border bg-surface">

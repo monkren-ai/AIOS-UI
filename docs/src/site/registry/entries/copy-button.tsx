@@ -17,9 +17,9 @@ export const copyButtonDoc: ComponentDoc = {
     zh: '独立复制按钮，复制后短暂显示 [COPIED] 回执，不弹 toast。',
     en: 'A standalone copy button that flashes [COPIED] for a moment instead of firing a toast.',
   },
-  preview: () => <CopyButton value="npm i nothing-ui" />,
+  preview: () => <CopyButton value="npm i aios-ui" />,
   importStatement: `import { CopyButton } from 'aios-ui-kit/copy-button'`,
-  usageSnippet: `<CopyButton value="npm i nothing-ui" />`,
+  usageSnippet: `<CopyButton value="npm i aios-ui" />`,
   examples: [
     {
       id: 'basic',

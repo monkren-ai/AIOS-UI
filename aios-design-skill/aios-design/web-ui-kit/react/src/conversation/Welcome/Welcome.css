@@ -1,0 +1,66 @@
+.aios-welcome {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+}
+
+.aios-welcome--centered {
+  align-items: center;
+  text-align: center;
+}
+
+.aios-welcome--compact {
+  gap: var(--space-sm);
+}
+
+.aios-welcome__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-size: var(--heading);
+}
+
+.aios-welcome--centered .aios-welcome__icon {
+  width: 64px;
+  height: 64px;
+  font-size: var(--display-sm);
+}
+
+.aios-welcome__title {
+  font-family: var(--font-display);
+  font-size: var(--heading);
+  color: var(--text-display);
+  line-height: 1.2;
+}
+
+.aios-welcome--lg .aios-welcome__title {
+  font-size: var(--display-sm);
+}
+
+.aios-welcome--sm .aios-welcome__title {
+  font-size: var(--subheading);
+}
+
+.aios-welcome__description {
+  font-size: var(--body);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 560px;
+}
+
+.aios-welcome__actions {
+  width: 100%;
+  margin-top: var(--space-sm);
+}
+
+.aios-welcome__extra {
+  font-size: var(--body-sm);
+  color: var(--text-secondary);
+}

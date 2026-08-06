@@ -11,7 +11,7 @@ function Icon30() {
       aria-hidden="true"
     >
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 24 24"
@@ -83,7 +83,7 @@ export const MicAccess = React.forwardRef<HTMLDivElement, WidgetSubProps>(
           data-name="BG"
         >
           <svg
-            className="nothing-widget-icon-svg"
+            className="aios-widget-icon-svg"
             fill="none"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 152 152"

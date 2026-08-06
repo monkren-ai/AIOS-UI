@@ -146,7 +146,7 @@ const scriptSection: ApiSection = {
     {
       name: 'storageKey',
       type: 'string',
-      default: `'nothing-theme'`,
+      default: `'aios-theme'`,
       description: {
         zh: '要读的 localStorage key。改了这里就要同步改 provider 侧——目前 provider 的 key 是写死的。',
         en: 'The localStorage key to read. If you change it, change the provider side too — the provider’s key is currently hard-coded.',
@@ -209,8 +209,8 @@ export default function ThemeProviderPage() {
         <DocList
           items={[
             t(
-              "初始状态从 `localStorage.getItem('nothing-theme')` 读，只接受 `light` / `dark` / `system`，其它值忽略并回落到 `defaultTheme`。",
-              "Initial state comes from `localStorage['nothing-theme']`, accepting only `'light'` / `'dark'` / `'system'`; anything else is ignored in favour of `defaultTheme`.",
+              "初始状态从 `localStorage.getItem('aios-theme')` 读，只接受 `light` / `dark` / `system`，其它值忽略并回落到 `defaultTheme`。",
+              "Initial state comes from `localStorage['aios-theme']`, accepting only `'light'` / `'dark'` / `'system'`; anything else is ignored in favour of `defaultTheme`.",
             ),
             t(
               '把 `resolvedTheme` 写到 `document.documentElement` 的 `data-theme` 上。注意它写的是**解析后的值**——`<html>` 上只会出现 `dark` 或 `light`，不会出现 `system`。',

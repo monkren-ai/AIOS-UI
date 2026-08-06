@@ -1,0 +1,202 @@
+.aios-plan-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--surface-agent);
+  border: 1px solid var(--border-agent);
+  border-radius: var(--radius-agent-card);
+  font-family: var(--font-body);
+}
+
+.aios-plan-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: var(--touch-target-min);
+}
+
+.aios-plan-card__title {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.aios-plan-card__count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-disabled);
+}
+
+.aios-plan-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aios-plan-card__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  min-height: var(--touch-target-min);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card-compact);
+  transition: border-color var(--duration-micro) var(--easing);
+}
+
+.aios-plan-card__item--approved {
+  border-color: var(--border-visible);
+}
+
+.aios-plan-card__item--rejected {
+  opacity: 0.5;
+}
+
+.aios-plan-card__item--rejected .aios-plan-card__description,
+.aios-plan-card__item--rejected .aios-plan-card__tool {
+  text-decoration: line-through;
+}
+
+.aios-plan-card__item--done {
+  border-color: var(--border-visible);
+}
+
+.aios-plan-card__number {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-disabled);
+}
+
+.aios-plan-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  min-width: 0;
+}
+
+.aios-plan-card__description {
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
+  color: var(--text-primary);
+}
+
+.aios-plan-card__tool {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.aios-plan-card__status {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-secondary);
+}
+
+.aios-plan-card__item--approved .aios-plan-card__status {
+  color: var(--text-primary);
+}
+
+.aios-plan-card__item--rejected .aios-plan-card__status {
+  color: var(--agent-error);
+}
+
+.aios-plan-card__toggle {
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-button);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--body);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-micro) var(--easing),
+    color var(--duration-micro) var(--easing);
+}
+
+.aios-plan-card__toggle:hover {
+  border-color: var(--border-visible);
+  color: var(--text-primary);
+}
+
+.aios-plan-card__toggle:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.aios-plan-card__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border);
+}
+
+.aios-plan-card__actions-bulk {
+  display: flex;
+  gap: var(--space-sm);
+  margin-right: auto;
+}
+
+.aios-plan-card__actions-main {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* Compact variant */
+.aios-plan-card--compact {
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+}
+
+.aios-plan-card--compact .aios-plan-card__header {
+  min-height: auto;
+}
+
+.aios-plan-card--compact .aios-plan-card__title,
+.aios-plan-card--compact .aios-plan-card__count,
+.aios-plan-card--compact .aios-plan-card__status {
+  font-size: var(--caption);
+}
+
+.aios-plan-card--compact .aios-plan-card__list {
+  gap: var(--space-2xs);
+}
+
+.aios-plan-card--compact .aios-plan-card__item {
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  min-height: auto;
+}
+
+.aios-plan-card--compact .aios-plan-card__description {
+  font-size: var(--caption);
+}
+
+.aios-plan-card--compact .aios-plan-card__toggle {
+  width: 32px;
+  height: 32px;
+  font-size: var(--body-sm);
+}
+
+.aios-plan-card--compact .aios-plan-card__actions {
+  padding-top: var(--space-xs);
+}

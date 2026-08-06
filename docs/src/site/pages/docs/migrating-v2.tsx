@@ -56,8 +56,8 @@ export function MigratingV2Page() {
       <DocSection title={t('这一版改了什么', 'What changed')}>
         <Prose className="text-foreground-muted">
           {t(
-            '2.0 是一次样式层的整体重写：所有组件从纯 CSS + BEM 迁到了 Tailwind v4 + CVA。**绝大多数使用方式没有变化**——同样的组件、同样的 prop、同样的视觉。产品名改为 **AIOS UI**，包名统一为 `aios-ui-kit`（旧名 `nothing-ui-kit-react` / `nothing-ui`）。下面列出的是少数几处必须改代码的地方，每一处都能靠 TypeScript 报错定位，不会静默失效。',
-            'Version 2.0 is a rewrite of the styling layer: every component moved from hand-written CSS and BEM to Tailwind v4 and CVA. **Almost nothing about using the library changed** — same components, same props, same look. The product is now **AIOS UI**, and the package is `aios-ui-kit` (was `nothing-ui-kit-react` / `nothing-ui`). What follows is the short list of places you do have to edit, and every one of them surfaces as a TypeScript error rather than failing silently.',
+            '2.0 是一次样式层的整体重写：所有组件从纯 CSS + BEM 迁到了 Tailwind v4 + CVA。**绝大多数使用方式没有变化**——同样的组件、同样的 prop、同样的视觉。产品名改为 **AIOS UI**，包名统一为 `aios-ui-kit`（旧名 `aios-ui-kit-react` / `aios-ui`）。下面列出的是少数几处必须改代码的地方，每一处都能靠 TypeScript 报错定位，不会静默失效。',
+            'Version 2.0 is a rewrite of the styling layer: every component moved from hand-written CSS and BEM to Tailwind v4 and CVA. **Almost nothing about using the library changed** — same components, same props, same look. The product is now **AIOS UI**, and the package is `aios-ui-kit` (was `aios-ui-kit-react` / `aios-ui`). What follows is the short list of places you do have to edit, and every one of them surfaces as a TypeScript error rather than failing silently.',
           )}
         </Prose>
         <DocNote label={t('先做这一步', 'Do this first')}>
@@ -74,7 +74,7 @@ export function MigratingV2Page() {
           rows={[
             [
               t('包名', 'Package'),
-              '`nothing-ui*` → `aios-ui-kit`',
+              '`aios-ui*` → `aios-ui-kit`',
               t(
                 '卸掉旧包，装 `aios-ui-kit motion`，import 改成 `aios-ui-kit/…`',
                 'Uninstall the old package, install `aios-ui-kit motion`, change imports to `aios-ui-kit/…`',

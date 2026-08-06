@@ -1,7 +1,7 @@
 import * as React from 'react'
 import DotMatrixIcon from '@/components/DotMatrixIcon'
 import { cn } from '@/lib/utils'
-import { toCurrentColorSvg } from './nothing-icons'
+import { toCurrentColorSvg } from './aios-icons'
 import type { IconEntry } from './types'
 
 /**

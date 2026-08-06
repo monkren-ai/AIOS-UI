@@ -48,7 +48,7 @@ export function renderPillPresetIcon(preset: WidgetPillPreset): React.ReactNode 
   if (preset.dots) {
     return (
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 24 24"
@@ -90,7 +90,7 @@ export function renderPillPresetIcon(preset: WidgetPillPreset): React.ReactNode 
   const pathData = svgPaths[preset.iconPath] as string
   return (
     <svg
-      className="nothing-widget-icon-svg"
+      className="aios-widget-icon-svg"
       fill="none"
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 24 24"

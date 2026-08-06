@@ -132,7 +132,7 @@
   top: calc(80px + var(--space-xl));
 }
 
-.ai-poc-conversations .nothing-conversations {
+.ai-poc-conversations .aios-conversations {
   max-height: 100%;
   overflow-y: auto;
 }
@@ -170,12 +170,12 @@
     max-height: none;
   }
 
-  .ai-poc-conversations .nothing-conversations__list {
+  .ai-poc-conversations .aios-conversations__list {
     flex-direction: row;
     flex-wrap: wrap;
   }
 
-  .ai-poc-conversations .nothing-conversations__item {
+  .ai-poc-conversations .aios-conversations__item {
     flex: 1 1 160px;
     min-width: 0;
   }
@@ -217,11 +217,11 @@
     padding: var(--space-md);
   }
 
-  .ai-poc-conversations .nothing-conversations__list {
+  .ai-poc-conversations .aios-conversations__list {
     flex-direction: column;
   }
 
-  .ai-poc-conversations .nothing-conversations__item {
+  .ai-poc-conversations .aios-conversations__item {
     flex: none;
   }
 }

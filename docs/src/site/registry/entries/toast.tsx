@@ -15,7 +15,7 @@ export const toastDoc: ComponentDoc = {
   baseUi: '—（自实现，内联状态条）',
   description: {
     zh: '内联状态条（Nothing 改造，不浮窗不自动消失），[SAVED]/[ERROR] 风格。',
-    en: 'An inline status bar (Nothing adaptation, not a floating popup), in the [SAVED]/[ERROR] idiom.',
+    en: 'An inline status bar (AIOS adaptation, not a floating popup), in the [SAVED]/[ERROR] idiom.',
   },
   preview: () => (
     <Toast severity="success" label="SAVED" className="w-full max-w-xs">
@@ -39,8 +39,8 @@ export const toastDoc: ComponentDoc = {
       id: 'severities',
       title: { zh: '严重度', en: 'Severities' },
       description: {
-        zh: '`severity` 决定左侧 3px 粗边与 bracket 文案的颜色：error 落到 Nothing 红，success/warning 用对应状态色，info 回到中性。`onDismiss` 传入后渲染关闭按钮；`duration>0` 时到点回调 `onDismiss`，但组件不会自己卸载。',
-        en: '`severity` sets the colour of the 3px left border and the bracket label: error reaches for the Nothing red, success/warning use the status colours, info stays neutral. Passing `onDismiss` renders a close button; when `duration>0` it fires `onDismiss` on schedule — but the component never unmounts itself.',
+        zh: '`severity` 决定左侧 3px 粗边与 bracket 文案的颜色：error 落到 AIOS 红，success/warning 用对应状态色，info 回到中性。`onDismiss` 传入后渲染关闭按钮；`duration>0` 时到点回调 `onDismiss`，但组件不会自己卸载。',
+        en: '`severity` sets the colour of the 3px left border and the bracket label: error reaches for the AIOS red, success/warning use the status colours, info stays neutral. Passing `onDismiss` renders a close button; when `duration>0` it fires `onDismiss` on schedule — but the component never unmounts itself.',
       },
       code: severitiesSource,
       render: () => <ToastSeverities />,

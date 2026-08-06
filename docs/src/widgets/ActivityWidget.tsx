@@ -11,22 +11,22 @@ interface ActivityDay {
   markers: (0 | 1)[]
 }
 
-const activityWidgetVariants = cva('nothing-activity-widget', {
+const activityWidgetVariants = cva('aios-activity-widget', {
   variants: {
     variant: {
       default: '',
-      compact: 'nothing-activity-widget--compact',
-      detailed: 'nothing-activity-widget--detailed',
+      compact: 'aios-activity-widget--compact',
+      detailed: 'aios-activity-widget--detailed',
     },
   },
   defaultVariants: { variant: 'default' },
 })
 
-const markerVariants = cva('nothing-activity-widget__marker', {
+const markerVariants = cva('aios-activity-widget__marker', {
   variants: {
     active: {
-      true: 'nothing-activity-widget__marker--active',
-      false: 'nothing-activity-widget__marker--inactive',
+      true: 'aios-activity-widget__marker--active',
+      false: 'aios-activity-widget__marker--inactive',
     },
   },
   defaultVariants: { active: false },
@@ -96,10 +96,10 @@ const ActivityWidgetInner = React.forwardRef<HTMLDivElement, ActivityWidgetProps
         {...props}
       >
         {(editing ? draft : days).map((day, di) => (
-          <div key={day.label + di} className="nothing-activity-widget__day">
-            <div className="nothing-activity-widget__day-label">{day.label}</div>
-            <div className="nothing-activity-widget__day-value">{day.value}</div>
-            <div className="nothing-activity-widget__markers">
+          <div key={day.label + di} className="aios-activity-widget__day">
+            <div className="aios-activity-widget__day-label">{day.label}</div>
+            <div className="aios-activity-widget__day-value">{day.value}</div>
+            <div className="aios-activity-widget__markers">
               {day.markers.map((m, mi) => (
                 <span
                   key={mi}
@@ -113,7 +113,7 @@ const ActivityWidgetInner = React.forwardRef<HTMLDivElement, ActivityWidgetProps
           </div>
         ))}
         {editing && (
-          <div className="nothing-activity-widget__edit-actions">
+          <div className="aios-activity-widget__edit-actions">
             <button type="button" onClick={commit}>
               Save
             </button>

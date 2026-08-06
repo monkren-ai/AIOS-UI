@@ -44,7 +44,7 @@ function PatternAIcon() {
         aria-hidden="true"
       >
         <svg
-          className="nothing-widget-icon-svg"
+          className="aios-widget-icon-svg"
           fill="none"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 15 21"
@@ -92,7 +92,7 @@ function PatternBIcon() {
       aria-hidden="true"
     >
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 24 24"

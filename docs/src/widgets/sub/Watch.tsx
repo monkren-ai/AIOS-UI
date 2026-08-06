@@ -39,7 +39,7 @@ export interface WatchProps extends WidgetSubProps {
 function Watch1Content() {
   return (
     <svg
-      className="nothing-widget-icon-svg"
+      className="aios-widget-icon-svg"
       fill="none"
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 152 152"
@@ -1361,7 +1361,7 @@ export const Watch = React.forwardRef<HTMLDivElement, WatchProps>(
         >
           <div className="widget-col-1 ml-0 mt-0 widget-relative widget-row-1 size-[152px]">
             <svg
-              className="nothing-widget-icon-svg"
+              className="aios-widget-icon-svg"
               fill="none"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 152 152"

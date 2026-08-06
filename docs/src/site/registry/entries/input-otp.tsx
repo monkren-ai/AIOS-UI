@@ -40,8 +40,8 @@ export const inputOTPDoc: ComponentDoc = {
       id: 'controlled',
       title: { zh: '受控与错误态', en: 'Controlled and the error state' },
       description: {
-        zh: '`value` / `onValueChange` 是完整字符串，不是逐格状态；`error` 只负责视觉——把边框切成 Nothing 红，聚焦时红色优先于常规的 `interactive` 高亮——校验逻辑（比如判断是否等于服务端下发的验证码）完全交给你自己写。',
-        en: '`value` / `onValueChange` deal in the whole string, not per-slot state; `error` is purely visual — the border switches to Nothing red, winning out over the usual `interactive` focus colour — and the actual validation (matching against a server-issued code, say) is entirely up to you.',
+        zh: '`value` / `onValueChange` 是完整字符串，不是逐格状态；`error` 只负责视觉——把边框切成 AIOS 红，聚焦时红色优先于常规的 `interactive` 高亮——校验逻辑（比如判断是否等于服务端下发的验证码）完全交给你自己写。',
+        en: '`value` / `onValueChange` deal in the whole string, not per-slot state; `error` is purely visual — the border switches to AIOS red, winning out over the usual `interactive` focus colour — and the actual validation (matching against a server-issued code, say) is entirely up to you.',
       },
       code: controlledSource,
       render: () => <InputOTPControlled />,
@@ -101,8 +101,8 @@ export const inputOTPDoc: ComponentDoc = {
           type: 'boolean',
           default: 'false',
           description: {
-            zh: '错误态，槽位边框切为 Nothing 红，同时置上 `aria-invalid`。',
-            en: 'The error state — slot borders turn Nothing red, and `aria-invalid` is set.',
+            zh: '错误态，槽位边框切为 AIOS 红，同时置上 `aria-invalid`。',
+            en: 'The error state — slot borders turn AIOS red, and `aria-invalid` is set.',
           },
         },
         {

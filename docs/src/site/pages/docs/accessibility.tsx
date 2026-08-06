@@ -82,8 +82,8 @@ export default function AccessibilityPage() {
         <CodeBlock code={FOCUS_TOKENS} />
         <Prose>
           {t(
-            '焦点色用的是 `--interactive`（暗色 `#5B9BF6`，亮色 `#007AFF`），刻意**不用** Nothing 红——红色在这套语言里表示「注意/危险」，如果焦点也是红的，用户就无法区分「我现在选中了这个」和「这个操作有破坏性」。',
-            'The ring uses `--interactive` (`#5B9BF6` dark, `#007AFF` light), deliberately **not** the Nothing red: red means “attention/danger” here, and if focus were red too, users could not tell “I have selected this” from “this action is destructive”.',
+            '焦点色用的是 `--interactive`（暗色 `#5B9BF6`，亮色 `#007AFF`），刻意**不用** AIOS 红——红色在这套语言里表示「注意/危险」，如果焦点也是红的，用户就无法区分「我现在选中了这个」和「这个操作有破坏性」。',
+            'The ring uses `--interactive` (`#5B9BF6` dark, `#007AFF` light), deliberately **not** the AIOS red: red means “attention/danger” here, and if focus were red too, users could not tell “I have selected this” from “this action is destructive”.',
           )}
         </Prose>
         <CodeBlock code={FOCUS_BASE} />

@@ -17,8 +17,8 @@ export const alertDoc: ComponentDoc = {
   category: 'feedback',
   status: 'stable',
   description: {
-    zh: '成块的提示信息，顶部有一条状态色粗边；`destructive` 是唯一用 Nothing 红的一档。',
-    en: 'A block-level message with a status rule across the top; `destructive` is the only tone that uses the Nothing red.',
+    zh: '成块的提示信息，顶部有一条状态色粗边；`destructive` 是唯一用 AIOS 红的一档。',
+    en: 'A block-level message with a status rule across the top; `destructive` is the only tone that uses the AIOS red.',
   },
   preview: () => (
     <Alert className="w-full max-w-md" title="Firmware 2.6.1">

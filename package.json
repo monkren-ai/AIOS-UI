@@ -4,7 +4,7 @@
   "description": "AIOS UI monorepo — component library + documentation site",
   "workspaces": [
     "docs",
-    "nothing-design-skill/nothing-design/web-ui-kit/react"
+    "aios-design-skill/aios-design/web-ui-kit/react"
   ],
   "scripts": {
     "dev": "npm run dev -w aios-ui-docs",

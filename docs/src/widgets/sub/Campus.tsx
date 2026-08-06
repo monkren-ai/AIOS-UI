@@ -10,7 +10,7 @@ function Dots2() {
       aria-hidden="true"
     >
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 35 49"
@@ -144,7 +144,7 @@ export const Campus = React.forwardRef<HTMLDivElement, WidgetSubProps>(
           data-name="BG"
         >
           <svg
-            className="nothing-widget-icon-svg"
+            className="aios-widget-icon-svg"
             fill="none"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 152 152"

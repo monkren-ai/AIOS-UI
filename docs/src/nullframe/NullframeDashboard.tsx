@@ -24,12 +24,12 @@ import { cn, dataAttr } from '@/lib/utils'
 const nullframeDashboardVariants = cva('', {
   variants: {
     focus: {
-      true: 'nothing-focus--on',
-      false: 'nothing-focus--off',
+      true: 'aios-focus--on',
+      false: 'aios-focus--off',
     },
     motion: {
-      on: 'nothing-motion--on',
-      off: 'nothing-motion--off',
+      on: 'aios-motion--on',
+      off: 'aios-motion--off',
     },
   },
   defaultVariants: { focus: false, motion: 'on' },

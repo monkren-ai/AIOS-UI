@@ -1,0 +1,129 @@
+.aios-data-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.aios-data-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm-plus) 0;
+  border-bottom: 1px solid var(--border);
+  min-height: 44px;
+}
+
+.aios-data-row:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.aios-data-row:last-child {
+  border-bottom: none;
+}
+
+.aios-data-row__label {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.aios-data-row__value {
+  font-family: var(--font-mono);
+  font-size: var(--body);
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.aios-data-row__unit {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  color: var(--text-secondary);
+  margin-left: var(--space-xs);
+}
+
+.aios-data-row__trend {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  margin-left: var(--space-xs);
+}
+
+.aios-data-row--good .aios-data-row__value,
+.aios-data-row--good .aios-data-row__trend {
+  color: var(--success);
+}
+
+.aios-data-row--warning .aios-data-row__value,
+.aios-data-row--warning .aios-data-row__trend {
+  color: var(--warning);
+}
+
+.aios-data-row--error .aios-data-row__value,
+.aios-data-row--error .aios-data-row__trend {
+  color: var(--accent);
+}
+
+.aios-data-row--info .aios-data-row__value,
+.aios-data-row--info .aios-data-row__trend {
+  color: var(--info);
+}
+
+.aios-data-row--sub {
+  padding-left: var(--space-lg);
+}
+
+.aios-data-row--sub .aios-data-row__label {
+  font-size: var(--caption);
+}
+
+.aios-data-row--sub .aios-data-row__value {
+  font-size: var(--body-sm);
+}
+
+.aios-data-row {
+  transition:
+    opacity var(--duration-micro) var(--easing),
+    background var(--duration-micro) var(--easing);
+}
+
+.aios-data-row--interactive {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.aios-data-row--interactive:hover {
+  background: var(--surface-raised);
+}
+
+.aios-data-table--proximity:hover .aios-data-row:not(:hover) {
+  opacity: 0.55;
+}
+
+.aios-data-row--interactive:active {
+  opacity: 0.85;
+}
+
+.aios-data-row--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.aios-data-row__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.aios-data-row__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aios-data-row {
+    transition: none;
+  }
+}

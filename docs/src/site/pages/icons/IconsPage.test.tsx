@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { ShowcaseProvider, type ShowcaseContextValue } from '@/showcase/ShowcaseContext'
 import { IconsPage } from './IconsPage'
-import { NOTHING_ICONS } from './nothing-icons'
+import { AIOS_ICONS } from './aios-icons'
 
 vi.mock('./tabler-icons', async () => {
   const actual = await vi.importActual<typeof import('./tabler-icons')>('./tabler-icons')
@@ -57,7 +57,7 @@ function renderPage() {
 describe('IconsPage', () => {
   it('renders the Nothing set with a live count', () => {
     renderPage()
-    expect(screen.getByText(`${NOTHING_ICONS.length} icons`)).toBeInTheDocument()
+    expect(screen.getByText(`${AIOS_ICONS.length} icons`)).toBeInTheDocument()
   })
 
   it('renders grid cells as focusable buttons', () => {
@@ -98,7 +98,7 @@ describe('IconsPage', () => {
     expect(toggle).toHaveAttribute('aria-pressed', 'false')
     await user.click(toggle)
     expect(toggle).toHaveAttribute('aria-pressed', 'true')
-    expect(document.querySelector('.nothing-dot-matrix-icon')).not.toBeNull()
+    expect(document.querySelector('.aios-dot-matrix-icon')).not.toBeNull()
   })
 
   it('loads and renders Tabler icons after switching source', async () => {

@@ -50,17 +50,17 @@ export type GlyphType =
   | 'lock'
   | 'unlock'
 
-const glyphVariants = cva('nothing-glyph', {
+const glyphVariants = cva('aios-glyph', {
   variants: {
     size: {
-      sm: 'nothing-glyph--sm',
-      md: 'nothing-glyph--md',
-      lg: 'nothing-glyph--lg',
+      sm: 'aios-glyph--sm',
+      md: 'aios-glyph--md',
+      lg: 'aios-glyph--lg',
     },
     theme: {
-      light: 'nothing-glyph--light',
-      dark: 'nothing-glyph--dark',
-      accent: 'nothing-glyph--accent',
+      light: 'aios-glyph--light',
+      dark: 'aios-glyph--dark',
+      accent: 'aios-glyph--accent',
     },
   },
   defaultVariants: { size: 'md', theme: 'dark' },

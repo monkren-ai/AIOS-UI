@@ -10,7 +10,7 @@ function Frame24() {
       aria-hidden="true"
     >
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 6 48"
@@ -36,7 +36,7 @@ function Frame25() {
       aria-hidden="true"
     >
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 6 34"
@@ -60,7 +60,7 @@ function Frame26() {
       aria-hidden="true"
     >
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 6 20"
@@ -79,7 +79,7 @@ function Frame27() {
   return (
     <div className="widget-relative widget-shrink-0 size-[6px]" aria-hidden="true">
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 6 6"

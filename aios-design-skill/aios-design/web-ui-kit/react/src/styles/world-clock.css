@@ -1,0 +1,110 @@
+.aios-world-clock {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-transition) var(--easing);
+}
+
+.world-clock-header {
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border);
+  transition: all var(--duration-transition) var(--easing);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.world-clock-header-badge {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  border: 1px solid var(--border);
+  padding: 1px 4px;
+}
+
+.world-clock-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+@media (max-width: 640px) {
+  .world-clock-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.world-clock-city {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-md);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-transition) var(--easing);
+}
+
+.world-clock-city-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  margin-bottom: var(--space-xs);
+}
+
+.world-clock-day-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color var(--duration-transition) var(--easing);
+}
+
+.world-clock-day-indicator.day {
+  background-color: var(--text-display);
+}
+
+.world-clock-day-indicator.night {
+  background-color: var(--text-disabled);
+}
+
+.world-clock-city-name {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.world-clock-time {
+  font-family: var(--font-body);
+  font-size: var(--display-md);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-display);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2xs);
+  transition: color var(--duration-transition) var(--easing);
+}
+
+.world-clock-offset {
+  font-family: var(--font-mono);
+  font-size: var(--caption);
+  letter-spacing: 0.05em;
+  color: var(--text-disabled);
+  transition: color var(--duration-transition) var(--easing);
+}

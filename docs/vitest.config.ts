@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { uiFallbackAlias } from './scripts/vite-ui-fallback-alias'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const uiRoot = path.resolve(__dirname, '../nothing-design-skill/nothing-design/web-ui-kit/react/src')
+const uiRoot = path.resolve(__dirname, '../aios-design-skill/aios-design/web-ui-kit/react/src')
 const docsRoot = path.resolve(__dirname, './src')
 
 export default defineConfig({

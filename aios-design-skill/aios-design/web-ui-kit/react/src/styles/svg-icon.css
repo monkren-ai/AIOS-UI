@@ -1,0 +1,82 @@
+.aios-svg-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.aios-svg-icon__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Sizes */
+.aios-svg-icon--sm {
+  width: var(--widget-size-sm, 48px);
+  height: var(--widget-size-sm, 48px);
+}
+
+.aios-svg-icon--md {
+  width: var(--widget-size-icon-md, 68px);
+  height: var(--widget-size-icon-md, 68px);
+}
+
+.aios-svg-icon--lg {
+  width: var(--widget-size-icon-lg, 96px);
+  height: var(--widget-size-icon-lg, 96px);
+}
+
+/* Theme: dark */
+.aios-svg-icon--dark {
+  background: transparent;
+}
+
+/* Theme: light */
+.aios-svg-icon--light {
+  background: transparent;
+}
+
+/* Theme: accent */
+.aios-svg-icon--accent {
+  background: transparent;
+}
+
+/* Theme: error */
+.aios-svg-icon--error {
+  background: transparent;
+}
+
+/* Labeled layout */
+.aios-svg-icon--labeled {
+  flex-direction: column;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.aios-svg-icon__label {
+  margin-top: var(--space-xs);
+  font-size: var(--widget-label, 10px);
+  font-family: var(--font-widget, 'Space Grotesk');
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  line-height: normal;
+}
+
+/* Theme label colors */
+.aios-svg-icon--light .aios-svg-icon__label {
+  color: var(--widget-dark-3);
+}
+.aios-svg-icon--dark .aios-svg-icon__label {
+  color: var(--widget-white-70, rgba(255, 255, 255, 0.7));
+}
+.aios-svg-icon--accent .aios-svg-icon__label {
+  color: var(--widget-text-on-accent);
+}
+.aios-svg-icon--error .aios-svg-icon__label {
+  color: var(--widget-white);
+}

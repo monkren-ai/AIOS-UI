@@ -118,8 +118,8 @@ export default function UsagePage() {
             [
               '`destructive`',
               t(
-                '`border-accent` + `text-accent`——全库唯一动用 Nothing 红的变体。',
-                '`border-accent` and `text-accent` — the only variant that reaches for the Nothing red.',
+                '`border-accent` + `text-accent`——全库唯一动用 AIOS 红的变体。',
+                '`border-accent` and `text-accent` — the only variant that reaches for the AIOS red.',
               ),
             ],
           ]}

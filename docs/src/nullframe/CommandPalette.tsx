@@ -9,8 +9,8 @@ import { cn, dataAttr } from '@/lib/utils'
 const commandPaletteVariants = cva('', {
   variants: {
     state: {
-      open: 'nothing-palette--open',
-      closed: 'nothing-palette--closed',
+      open: 'aios-palette--open',
+      closed: 'aios-palette--closed',
     },
   },
   defaultVariants: { state: 'open' },

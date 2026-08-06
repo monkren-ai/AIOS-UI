@@ -5,11 +5,11 @@ import { useLocalStorageState } from '@/hooks'
 import { cn, dataAttr } from '@/lib/utils'
 import '@/styles/steps-widget.css'
 
-const stepsWidgetVariants = cva('nothing-steps-widget', {
+const stepsWidgetVariants = cva('aios-steps-widget', {
   variants: {
     variant: {
-      compact: 'nothing-steps-widget--compact',
-      full: 'nothing-steps-widget--full',
+      compact: 'aios-steps-widget--compact',
+      full: 'aios-steps-widget--full',
       default: '',
     },
   },
@@ -72,14 +72,14 @@ const StepsWidgetInner = React.forwardRef<HTMLDivElement, StepsWidgetProps>(
         data-real={dataAttr(real)}
         {...props}
       >
-        <div className="nothing-steps-widget__group">
-          <span className="nothing-steps-widget__label">Total Steps</span>
+        <div className="aios-steps-widget__group">
+          <span className="aios-steps-widget__label">Total Steps</span>
           {editing && editable ? (
             <input
               autoFocus
               type="number"
               min={0}
-              className="nothing-steps-widget__input"
+              className="aios-steps-widget__input"
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               onBlur={commit}
@@ -90,7 +90,7 @@ const StepsWidgetInner = React.forwardRef<HTMLDivElement, StepsWidgetProps>(
             />
           ) : (
             <span
-              className={cn('nothing-steps-widget__value', editable && 'is-editable')}
+              className={cn('aios-steps-widget__value', editable && 'is-editable')}
               aria-label={`${formatNumber(effectiveSteps)} steps`}
               onClick={editable ? () => setEditing(true) : undefined}
               role={editable ? 'button' : undefined}
@@ -110,10 +110,10 @@ const StepsWidgetInner = React.forwardRef<HTMLDivElement, StepsWidgetProps>(
             </span>
           )}
         </div>
-        <div className="nothing-steps-widget__group">
-          <span className="nothing-steps-widget__label">Streak</span>
+        <div className="aios-steps-widget__group">
+          <span className="aios-steps-widget__label">Streak</span>
           <span
-            className="nothing-steps-widget__value"
+            className="aios-steps-widget__value"
             aria-label={`${streak} ${streakUnit} streak`}
           >
             {streak} {streakUnit}

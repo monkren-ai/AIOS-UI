@@ -38,7 +38,7 @@ export const Group1 = React.forwardRef<HTMLDivElement, WidgetSubProps>(
         aria-label={ariaLabel || 'Group1'}
       >
         <svg
-          className="nothing-widget-icon-svg"
+          className="aios-widget-icon-svg"
           fill="none"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 48 47.5107"

@@ -1,0 +1,165 @@
+.aios-thought-chain {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: var(--font-mono);
+}
+
+.aios-thought-chain__item {
+  position: relative;
+  padding-left: var(--space-lg);
+}
+
+.aios-thought-chain--line .aios-thought-chain__item::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 28px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border-visible);
+}
+
+.aios-thought-chain--line-solid .aios-thought-chain__item::before {
+  background: var(--border-visible);
+}
+
+.aios-thought-chain--line-dashed .aios-thought-chain__item::before {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-visible) 0,
+    var(--border-visible) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+.aios-thought-chain--line-dotted .aios-thought-chain__item::before {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-visible) 0,
+    var(--border-visible) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+}
+
+.aios-thought-chain__item:last-child::before {
+  display: none;
+}
+
+.aios-thought-chain__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm) 0;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
+  cursor: default;
+  outline: none;
+}
+
+.aios-thought-chain__item--collapsible .aios-thought-chain__header {
+  cursor: pointer;
+}
+
+.aios-thought-chain__header:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.aios-thought-chain__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-visible);
+  border-radius: var(--radius-pill);
+  font-size: var(--label);
+  background: var(--background);
+  color: var(--text-secondary);
+}
+
+.aios-thought-chain__item--active .aios-thought-chain__icon {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  animation: aios-thought-chain-pulse 1.5s ease-in-out infinite;
+}
+
+.aios-thought-chain__item--success .aios-thought-chain__icon {
+  border-color: var(--status-good, var(--text-secondary));
+  color: var(--status-good, var(--text-secondary));
+}
+
+.aios-thought-chain__item--error .aios-thought-chain__icon {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.aios-thought-chain__title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.aios-thought-chain__title {
+  font-size: var(--body);
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.aios-thought-chain__description {
+  font-size: var(--label);
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.aios-thought-chain__arrow {
+  flex-shrink: 0;
+  font-size: var(--body);
+  color: var(--text-secondary);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aios-thought-chain__content {
+  padding: var(--space-sm) 0 var(--space-sm) calc(24px + var(--space-sm));
+  font-size: var(--body);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.aios-thought-chain__footer {
+  padding: 0 0 var(--space-sm) calc(24px + var(--space-sm));
+  font-size: var(--label);
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+@keyframes aios-thought-chain-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aios-thought-chain__item--active .aios-thought-chain__icon {
+    animation: none;
+  }
+}

@@ -35,26 +35,26 @@ interface HourlyForecast {
 export type WeatherWidgetVariant = 'square' | 'wide' | 'circular' | 'grid'
 export type WeatherUnit = 'celsius' | 'fahrenheit'
 
-const weatherWidgetVariants = cva('nothing-weather-widget', {
+const weatherWidgetVariants = cva('aios-weather-widget', {
   variants: {
     variant: {
-      square: 'nothing-weather-widget--square',
-      wide: 'nothing-weather-widget--wide',
-      circular: 'nothing-weather-widget--circular',
-      grid: 'nothing-weather-widget--grid',
+      square: 'aios-weather-widget--square',
+      wide: 'aios-weather-widget--wide',
+      circular: 'aios-weather-widget--circular',
+      grid: 'aios-weather-widget--grid',
     },
     unit: {
       celsius: '',
-      fahrenheit: 'nothing-weather-widget--fahrenheit',
+      fahrenheit: 'aios-weather-widget--fahrenheit',
     },
   },
   defaultVariants: { variant: 'square', unit: 'celsius' },
 })
 
-const gridCellVariants = cva('nothing-weather-widget__grid-cell', {
+const gridCellVariants = cva('aios-weather-widget__grid-cell', {
   variants: {
     current: {
-      true: 'nothing-weather-widget__grid-cell--current',
+      true: 'aios-weather-widget__grid-cell--current',
       false: '',
     },
   },
@@ -526,7 +526,7 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
           {...props}
         >
           <div
-            className="nothing-weather-widget__circular-icon"
+            className="aios-weather-widget__circular-icon"
             role="img"
             aria-label={`${displayCondition} weather icon`}
           >
@@ -540,9 +540,9 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
               dimDots={iconPattern.dimDots || []}
             />
           </div>
-          <div className="nothing-weather-widget__circular-temp">{displayTemp}</div>
-          <div className="nothing-weather-widget__circular-condition">{displayCondition}</div>
-          <div className="nothing-weather-widget__circular-city">{displayCity}</div>
+          <div className="aios-weather-widget__circular-temp">{displayTemp}</div>
+          <div className="aios-weather-widget__circular-condition">{displayCondition}</div>
+          <div className="aios-weather-widget__circular-city">{displayCity}</div>
         </div>
       )
     }
@@ -593,7 +593,7 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
                 data-current={dataAttr(cell.isCurrent)}
               >
                 <div
-                  className="nothing-weather-widget__grid-icon"
+                  className="aios-weather-widget__grid-icon"
                   role="img"
                   aria-label={`${cell.conditionType} weather icon`}
                 >
@@ -607,8 +607,8 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
                     dimDots={cellIcon.dimDots || []}
                   />
                 </div>
-                <div className="nothing-weather-widget__grid-temp">{cell.temp}</div>
-                <div className="nothing-weather-widget__grid-label">{cell.label}</div>
+                <div className="aios-weather-widget__grid-temp">{cell.temp}</div>
+                <div className="aios-weather-widget__grid-label">{cell.label}</div>
               </div>
             )
           })}
@@ -628,7 +628,7 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
         {...props}
       >
         <div
-          className="nothing-weather-widget__dots"
+          className="aios-weather-widget__dots"
           role="img"
           aria-label={`${displayCondition} weather icon`}
         >
@@ -642,27 +642,27 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
             dimDots={iconPattern.dimDots || []}
           />
         </div>
-        <div className="nothing-weather-widget__temp">{displayTemp}</div>
-        <div className="nothing-weather-widget__info">
-          <div className="nothing-weather-widget__hi-lo">
+        <div className="aios-weather-widget__temp">{displayTemp}</div>
+        <div className="aios-weather-widget__info">
+          <div className="aios-weather-widget__hi-lo">
             H {formatTemp(displayHi, unit)} L {formatTemp(displayLo, unit)}
           </div>
-          <div className="nothing-weather-widget__location">{displayCity}</div>
-          <div className="nothing-weather-widget__condition">{displayCondition}</div>
+          <div className="aios-weather-widget__location">{displayCity}</div>
+          <div className="aios-weather-widget__condition">{displayCondition}</div>
         </div>
         {displayForecast.length > 0 && (
-          <div className="nothing-weather-widget__forecast">
+          <div className="aios-weather-widget__forecast">
             {displayForecast.map((day) => {
               const dayConditionType = getConditionType(day.condition)
               const dayIcon = FORECAST_ICONS[dayConditionType] || FORECAST_ICONS.sunny
               return (
                 <div
-                  className="nothing-weather-widget__forecast-day"
+                  className="aios-weather-widget__forecast-day"
                   key={day.day}
                   role="group"
                   aria-label={`${day.day} forecast, ${day.condition || 'sunny'}`}
                 >
-                  <div className="nothing-weather-widget__forecast-label">{day.day}</div>
+                  <div className="aios-weather-widget__forecast-label">{day.day}</div>
                   <StaticDotMatrix
                     rows={dayIcon.rows}
                     cols={dayIcon.cols}
@@ -671,10 +671,10 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
                     pattern="glyph"
                     activeDots={dayIcon.activeDots}
                   />
-                  <div className="nothing-weather-widget__forecast-hi">
+                  <div className="aios-weather-widget__forecast-hi">
                     {formatTemp(day.hi, unit)}
                   </div>
-                  <div className="nothing-weather-widget__forecast-lo">
+                  <div className="aios-weather-widget__forecast-lo">
                     {formatTemp(day.lo, unit)}
                   </div>
                 </div>
@@ -683,18 +683,18 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
           </div>
         )}
         {hourlyForecast.length > 0 && (
-          <div className="nothing-weather-widget__hourly" role="list" aria-label="Hourly forecast">
+          <div className="aios-weather-widget__hourly" role="list" aria-label="Hourly forecast">
             {hourlyForecast.map((hour, index) => {
               const hourConditionType = hour.condition || getConditionType(displayCondition)
               const hourIcon = FORECAST_ICONS[hourConditionType] || FORECAST_ICONS.sunny
               return (
                 <div
-                  className="nothing-weather-widget__hourly-item"
+                  className="aios-weather-widget__hourly-item"
                   key={index}
                   role="listitem"
                   aria-label={`${hour.time}: ${formatTemp(hour.temp, unit)}`}
                 >
-                  <div className="nothing-weather-widget__hourly-time">{hour.time}</div>
+                  <div className="aios-weather-widget__hourly-time">{hour.time}</div>
                   <StaticDotMatrix
                     rows={hourIcon.rows}
                     cols={hourIcon.cols}
@@ -703,7 +703,7 @@ const WeatherWidgetInner = React.forwardRef<HTMLDivElement, WeatherWidgetProps>(
                     pattern="glyph"
                     activeDots={hourIcon.activeDots}
                   />
-                  <div className="nothing-weather-widget__hourly-temp">
+                  <div className="aios-weather-widget__hourly-temp">
                     {formatTemp(hour.temp, unit)}
                   </div>
                 </div>

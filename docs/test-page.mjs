@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 
-async function validateNothingUI() {
+async function validateAIOSUI() {
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext();
   const page = await context.newPage();
@@ -169,7 +169,7 @@ async function validateNothingUI() {
   };
 }
 
-validateNothingUI().then(result => {
+validateAIOSUI().then(result => {
   console.log('\n测试完成');
   process.exit(result.success ? 0 : 1);
 }).catch(err => {

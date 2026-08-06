@@ -28,8 +28,8 @@ export const badgeDoc: ComponentDoc = {
       id: 'variants',
       title: { zh: '变体', en: 'Variants' },
       description: {
-        zh: '四档强调：`primary` 是反相实心，最抓眼；`soft` 用中性灰底，适合大量并置；`outline` 只留一条边，几乎不抢注意力；`destructive` 是唯一用 Nothing 红的一档，留给真的出问题的状态。',
-        en: 'Four levels of emphasis. `primary` is inverted solid and loudest; `soft` uses a neutral fill and survives being repeated many times over; `outline` is just a hairline and barely competes for attention; `destructive` is the only one that reaches for the Nothing red, so save it for states that are actually wrong.',
+        zh: '四档强调：`primary` 是反相实心，最抓眼；`soft` 用中性灰底，适合大量并置；`outline` 只留一条边，几乎不抢注意力；`destructive` 是唯一用 AIOS 红的一档，留给真的出问题的状态。',
+        en: 'Four levels of emphasis. `primary` is inverted solid and loudest; `soft` uses a neutral fill and survives being repeated many times over; `outline` is just a hairline and barely competes for attention; `destructive` is the only one that reaches for the AIOS red, so save it for states that are actually wrong.',
       },
       code: variantsSource,
       render: () => <BadgeVariants />,

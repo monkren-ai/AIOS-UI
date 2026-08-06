@@ -31,8 +31,8 @@ export const buttonDoc: ComponentDoc = {
       id: 'variants',
       title: { zh: '变体', en: 'Variants' },
       description: {
-        zh: '`variant` 决定视觉样式。primary 是反相实心，destructive 是全库唯一使用 Nothing 红的按钮。',
-        en: '`variant` sets the visual style. primary is inverted solid; destructive is the only button that reaches for the Nothing red.',
+        zh: '`variant` 决定视觉样式。primary 是反相实心，destructive 是全库唯一使用 AIOS 红的按钮。',
+        en: '`variant` sets the visual style. primary is inverted solid; destructive is the only button that reaches for the AIOS red.',
       },
       code: variantsSource,
       render: () => <ButtonVariants />,

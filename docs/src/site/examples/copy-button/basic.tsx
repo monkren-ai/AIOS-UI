@@ -1,5 +1,5 @@
 import { CopyButton } from 'aios-ui-kit/copy-button'
 
 export default function CopyButtonBasic() {
-  return <CopyButton value="npm i nothing-ui" />
+  return <CopyButton value="npm i aios-ui" />
 }

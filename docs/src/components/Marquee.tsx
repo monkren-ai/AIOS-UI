@@ -49,13 +49,13 @@ export const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
     return (
       <div
         ref={ref}
-        className={cn('nothing-marquee', className)}
+        className={cn('aios-marquee', className)}
         style={{ ...cssVars, ...style }}
         data-pause-on-hover={pauseOnHover ? 'true' : 'false'}
         {...props}
       >
-        <div className="nothing-marquee-track">
-          <h1 className="nothing-marquee-text" aria-label={text}>
+        <div className="aios-marquee-track">
+          <h1 className="aios-marquee-text" aria-label={text}>
             <span aria-hidden="true">{text}</span>
             <span aria-hidden="true">{text}</span>
             <span aria-hidden="true">{text}</span>

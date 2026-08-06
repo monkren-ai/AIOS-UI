@@ -1,0 +1,36 @@
+.aios-steps-widget {
+  border-radius: var(--radius-xl);
+  background: var(--widget-card-bg);
+  padding: var(--space-md);
+  width: var(--widget-size-md);
+  height: var(--widget-size-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  font-family: var(--font-widget);
+}
+
+.aios-steps-widget__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.aios-steps-widget__label {
+  font-size: var(--widget-label);
+  text-transform: uppercase;
+  color: var(--widget-dark-4);
+  font-family: var(--font-widget);
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+.aios-steps-widget__value {
+  font-size: var(--display-sm);
+  font-weight: 400;
+  color: var(--widget-dark-2);
+  font-family: var(--font-ndot);
+  line-height: var(--widget-leading-27, 27px);
+  letter-spacing: 0;
+}

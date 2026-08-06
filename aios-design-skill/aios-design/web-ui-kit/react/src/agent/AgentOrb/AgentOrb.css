@@ -1,0 +1,70 @@
+.aios-agent-orb {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+
+.aios-agent-orb__dot {
+  display: block;
+  border-radius: var(--radius-agent-orb);
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.aios-agent-orb__label {
+  font-size: var(--label);
+  line-height: var(--leading-label);
+  color: currentColor;
+}
+
+/* Sizes */
+.aios-agent-orb--sm .aios-agent-orb__dot {
+  width: 8px;
+  height: 8px;
+}
+
+.aios-agent-orb--md .aios-agent-orb__dot {
+  width: 12px;
+  height: 12px;
+}
+
+.aios-agent-orb--lg .aios-agent-orb__dot {
+  width: 18px;
+  height: 18px;
+}
+
+/* States */
+.aios-agent-orb--idle {
+  color: var(--agent-idle);
+}
+
+.aios-agent-orb--thinking {
+  color: var(--agent-thinking);
+}
+
+.aios-agent-orb--thinking .aios-agent-orb__dot {
+  animation: var(--animation-agent-breathe);
+}
+
+.aios-agent-orb--acting {
+  color: var(--agent-acting);
+}
+
+.aios-agent-orb--acting .aios-agent-orb__dot {
+  animation: var(--animation-agent-pulse);
+}
+
+.aios-agent-orb--paused {
+  color: var(--agent-paused);
+}
+
+.aios-agent-orb--error {
+  color: var(--agent-error);
+}
+
+.aios-agent-orb--error .aios-agent-orb__dot {
+  border-radius: var(--radius-card-technical);
+}

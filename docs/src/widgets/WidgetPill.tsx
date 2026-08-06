@@ -10,15 +10,15 @@ import '@/styles/widget-pill.css'
 
 type WidgetPillTheme = 'light' | 'dark' | 'accent' | 'error'
 
-const widgetPillVariants = cva('nothing-widget-pill', {
+const widgetPillVariants = cva('aios-widget-pill', {
   variants: {
     theme: {
-      light: 'nothing-widget-pill--light',
-      dark: 'nothing-widget-pill--dark',
-      accent: 'nothing-widget-pill--accent',
-      error: 'nothing-widget-pill--error',
+      light: 'aios-widget-pill--light',
+      dark: 'aios-widget-pill--dark',
+      accent: 'aios-widget-pill--accent',
+      error: 'aios-widget-pill--error',
     },
-    pressed: { true: 'nothing-widget-pill--pressed', false: '' },
+    pressed: { true: 'aios-widget-pill--pressed', false: '' },
   },
   defaultVariants: { theme: 'dark', pressed: false },
 })
@@ -87,8 +87,8 @@ export const WidgetPill = React.forwardRef<HTMLDivElement, WidgetPillProps>(
         data-state={dataAttr(pressed ? 'pressed' : 'idle')}
         {...props}
       >
-        {(icon || children) && <div className="nothing-widget-pill__icon">{icon || children}</div>}
-        {label && <div className="nothing-widget-pill__label">{label}</div>}
+        {(icon || children) && <div className="aios-widget-pill__icon">{icon || children}</div>}
+        {label && <div className="aios-widget-pill__label">{label}</div>}
       </div>
     )
   },

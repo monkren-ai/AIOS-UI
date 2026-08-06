@@ -51,19 +51,19 @@ interface WorldCityResult {
   real: boolean
 }
 
-const timeVariants = cva('nothing-time', {
+const timeVariants = cva('aios-time', {
   variants: {
     variant: {
-      'digital-compact': 'nothing-clock-digital',
-      dial: 'nothing-clock-gauge',
-      'dual-ring': 'nothing-clock-dual-ring',
-      overlay: 'nothing-clock-overlay',
-      analog: 'nothing-analog-clock-widget',
-      'digital-large': 'nothing-digital-clock-large',
-      world: 'nothing-world-clock',
-      compact: 'nothing-time-compact',
-      total: 'nothing-time-total',
-      hero: 'nothing-time-widget',
+      'digital-compact': 'aios-clock-digital',
+      dial: 'aios-clock-gauge',
+      'dual-ring': 'aios-clock-dual-ring',
+      overlay: 'aios-clock-overlay',
+      analog: 'aios-analog-clock-widget',
+      'digital-large': 'aios-digital-clock-large',
+      world: 'aios-world-clock',
+      compact: 'aios-time-compact',
+      total: 'aios-time-total',
+      hero: 'aios-time-widget',
     },
   },
   defaultVariants: { variant: 'digital-compact' },
@@ -231,7 +231,7 @@ function AnalogFace({
     return (
       <g>
         <rect
-          className="nothing-analog-clock-widget__hand--hour"
+          className="aios-analog-clock-widget__hand--hour"
           x={cx - hourW / 2}
           y={cy - hourLen}
           width={hourW}
@@ -240,7 +240,7 @@ function AnalogFace({
           style={{ transform: `rotate(${hourAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
         />
         <rect
-          className="nothing-analog-clock-widget__hand--minute"
+          className="aios-analog-clock-widget__hand--minute"
           x={cx - minW / 2}
           y={cy - minLen}
           width={minW}
@@ -249,7 +249,7 @@ function AnalogFace({
           style={{ transform: `rotate(${minuteAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
         />
         <circle
-          className="nothing-analog-clock-widget__second-dot"
+          className="aios-analog-clock-widget__second-dot"
           cx={secDotX}
           cy={secDotY}
           r={secDotR}
@@ -280,8 +280,8 @@ function AnalogFace({
         strokeLinecap="round"
         className={
           isLarge
-            ? 'nothing-analog-clock-widget__tick--large'
-            : 'nothing-analog-clock-widget__tick--small'
+            ? 'aios-analog-clock-widget__tick--large'
+            : 'aios-analog-clock-widget__tick--small'
         }
       />,
     )
@@ -299,7 +299,7 @@ function AnalogFace({
     <g>
       {ticks}
       <rect
-        className="nothing-analog-clock-widget__hand--hour"
+        className="aios-analog-clock-widget__hand--hour"
         x={cx - hourW / 2}
         y={cy - hourLen}
         width={hourW}
@@ -308,7 +308,7 @@ function AnalogFace({
         style={{ transform: `rotate(${hourAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
       />
       <rect
-        className="nothing-analog-clock-widget__hand--minute"
+        className="aios-analog-clock-widget__hand--minute"
         x={cx - minW / 2}
         y={cy - minLen}
         width={minW}
@@ -317,7 +317,7 @@ function AnalogFace({
         style={{ transform: `rotate(${minuteAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
       />
       <line
-        className="nothing-analog-clock-widget__hand--second"
+        className="aios-analog-clock-widget__hand--second"
         x1={cx}
         y1={cy}
         x2={cx}
@@ -327,13 +327,13 @@ function AnalogFace({
         style={{ transform: `rotate(${secondAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
       />
       <circle
-        className="nothing-analog-clock-widget__hand--second"
+        className="aios-analog-clock-widget__hand--second"
         cx={cx}
         cy={cy - secDotDist}
         r={secDotR}
         style={{ transform: `rotate(${secondAngle}deg)`, transformOrigin: `${cx}px ${cy}px` }}
       />
-      <circle className="nothing-analog-clock-widget__pivot" cx={cx} cy={cy} r={pivotR} />
+      <circle className="aios-analog-clock-widget__pivot" cx={cx} cy={cy} r={pivotR} />
     </g>
   )
 }
@@ -354,8 +354,8 @@ function DigitalLarge({
   const timeString = showSeconds ? `${hours}:${minutes}:${seconds}` : `${hours}:${minutes}`
   return (
     <>
-      <div className="nothing-digital-clock-large__time">{timeString}</div>
-      {showDate && <div className="nothing-digital-clock-large__day">{dayName}</div>}
+      <div className="aios-digital-clock-large__time">{timeString}</div>
+      {showDate && <div className="aios-digital-clock-large__day">{dayName}</div>}
     </>
   )
 }
@@ -631,7 +631,7 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
       return (
         <div
           ref={ref}
-          className={cn('nothing-world-clock', `nothing-world-clock--${size}`, className)}
+          className={cn('aios-world-clock', `aios-world-clock--${size}`, className)}
           style={style}
           data-state={dataAttr('ticking')}
           data-variant={dataAttr(variant)}
@@ -678,10 +678,10 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
         <div
           ref={ref}
           className={cn(
-            'nothing-analog-clock-widget',
-            `nothing-analog-clock-widget--${dial}`,
-            `nothing-analog-clock-widget--${theme}`,
-            smoothSeconds && 'nothing-analog-clock-widget--smooth',
+            'aios-analog-clock-widget',
+            `aios-analog-clock-widget--${dial}`,
+            `aios-analog-clock-widget--${theme}`,
+            smoothSeconds && 'aios-analog-clock-widget--smooth',
             className,
           )}
           style={style}
@@ -692,12 +692,12 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
           {...props}
         >
           <svg
-            className="nothing-analog-clock-widget__svg"
+            className="aios-analog-clock-widget__svg"
             viewBox={`0 0 152 152`}
             xmlns="http://www.w3.org/2000/svg"
           >
             <circle
-              className="nothing-analog-clock-widget__face"
+              className="aios-analog-clock-widget__face"
               cx={radius}
               cy={radius}
               r={radius}
@@ -713,9 +713,9 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
         <div
           ref={ref}
           className={cn(
-            'nothing-digital-clock-large',
-            `nothing-digital-clock-large--${font}`,
-            `nothing-digital-clock-large--${theme}`,
+            'aios-digital-clock-large',
+            `aios-digital-clock-large--${font}`,
+            `aios-digital-clock-large--${theme}`,
             className,
           )}
           style={style}
@@ -736,20 +736,20 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
         <div
           ref={ref}
           className={cn(
-            'nothing-time-widget',
-            `nothing-time-widget--${format ?? '24h'}`,
+            'aios-time-widget',
+            `aios-time-widget--${format ?? '24h'}`,
             className,
           )}
           style={style}
           data-variant={dataAttr('hero')}
           {...props}
         >
-          {label && <div className="nothing-time-widget__label">{label}</div>}
-          <div className="nothing-time-widget__content">
-            <span className="nothing-time-widget__value">{value}</span>
-            {unit && <span className="nothing-time-widget__unit">{unit}</span>}
+          {label && <div className="aios-time-widget__label">{label}</div>}
+          <div className="aios-time-widget__content">
+            <span className="aios-time-widget__value">{value}</span>
+            {unit && <span className="aios-time-widget__unit">{unit}</span>}
           </div>
-          {subtitle && <div className="nothing-time-widget__subtitle">{subtitle}</div>}
+          {subtitle && <div className="aios-time-widget__subtitle">{subtitle}</div>}
         </div>
       )
     }
@@ -758,7 +758,7 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
       return (
         <div
           ref={ref}
-          className={cn('nothing-clock', 'nothing-clock-digital', className)}
+          className={cn('aios-clock', 'aios-clock-digital', className)}
           style={style}
           data-state={dataAttr('digital')}
           data-variant={dataAttr(variant)}
@@ -773,7 +773,7 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
       return (
         <div
           ref={ref}
-          className={cn('nothing-clock', 'nothing-clock-gauge', className)}
+          className={cn('aios-clock', 'aios-clock-gauge', className)}
           style={style}
           data-state={dataAttr('gauge')}
           data-variant={dataAttr(variant)}
@@ -788,7 +788,7 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
       return (
         <div
           ref={ref}
-          className={cn('nothing-clock', 'nothing-clock-dual-ring', className)}
+          className={cn('aios-clock', 'aios-clock-dual-ring', className)}
           style={style}
           data-state={dataAttr('dual-ring')}
           data-variant={dataAttr(variant)}
@@ -803,7 +803,7 @@ const TimeInner = React.forwardRef<HTMLDivElement, TimeProps>(
     return (
       <div
         ref={ref}
-        className={cn('nothing-clock', 'nothing-clock-overlay', className)}
+        className={cn('aios-clock', 'aios-clock-overlay', className)}
         style={style}
         data-state={dataAttr('overlay')}
         data-variant={dataAttr(variant)}

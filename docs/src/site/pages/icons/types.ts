@@ -2,7 +2,7 @@ import type * as React from 'react'
 import type { Bilingual } from '../../registry/types'
 
 /** 图标来源：本地 Nothing 图标 / 动态加载的 Tabler 图标。 */
-export type IconSource = 'nothing' | 'tabler'
+export type IconSource = 'aios' | 'tabler'
 
 /** Tabler 图标组件的最小签名，避免为了类型把整包静态引进来。 */
 export type TablerIconComponent = React.ComponentType<{

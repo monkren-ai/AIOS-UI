@@ -40,7 +40,7 @@ export const Date = React.forwardRef<HTMLDivElement, WidgetSubProps>(
         aria-label={ariaLabel || 'Date'}
       >
         <svg
-          className="nothing-widget-icon-svg"
+          className="aios-widget-icon-svg"
           fill="none"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 152 152"

@@ -1,0 +1,85 @@
+/* === Marquee — 镂空网格滚动文字 (from CodePen EaxdNRo) === */
+
+.aios-marquee {
+  --mq-dur: 12s; /* animation duration */
+  --mq-cell: 0.3; /* mask cell size (ch unit) */
+  --mq-gap: 0.8; /* mask gap ratio (0~1) */
+  --mq-width: min(25rem, 100%);
+
+  display: grid;
+  place-items: center;
+  padding: 1em;
+  width: 100%;
+}
+
+.aios-marquee-track {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  width: var(--mq-width);
+  height: 1em;
+  border-radius: var(--radius-pill, 999em);
+  background: var(--surface);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: inherit;
+  line-height: 1;
+  padding: 0.2em 0.4em;
+  box-sizing: border-box;
+  isolation: isolate;
+
+  /* 镂空网格蒙版：双 linear-gradient + intersect 合成 */
+  -webkit-mask:
+    linear-gradient(to right, #0000 calc(var(--mq-gap) * 100%), #fff 0),
+    linear-gradient(to bottom, #0000 calc(var(--mq-gap) * 100%), #fff 0);
+  mask:
+    linear-gradient(to right, #0000 calc(var(--mq-gap) * 100%), #fff 0),
+    linear-gradient(to bottom, #0000 calc(var(--mq-gap) * 100%), #fff 0);
+  -webkit-mask-size: calc(var(--mq-cell) * 1ch) calc(var(--mq-cell) * 1ch);
+  mask-size: calc(var(--mq-cell) * 1ch) calc(var(--mq-cell) * 1ch);
+  -webkit-mask-composite: intersect;
+  mask-composite: intersect;
+}
+
+.aios-marquee-text {
+  display: inline-flex;
+  gap: 2ch;
+  margin: 0;
+  font-weight: var(--weight-bold, 700);
+  letter-spacing: -0.01em;
+  animation: aios-marquee-scroll var(--mq-dur) linear infinite;
+  animation-play-state: var(--mq-p, running);
+  will-change: transform;
+}
+
+.aios-marquee:hover .aios-marquee-text {
+  --mq-p: paused;
+}
+
+@keyframes aios-marquee-scroll {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+/* 尊重 reduced-motion — 停止动画并降级到无蒙版 */
+@media (prefers-reduced-motion: reduce) {
+  .aios-marquee-text {
+    animation: none;
+  }
+  .aios-marquee-track {
+    -webkit-mask: none;
+    mask: none;
+  }
+}
+
+/* 旧版浏览器降级：mask-composite 不支持时直接显示无蒙版 */
+@supports not (mask-composite: intersect) {
+  .aios-marquee-track {
+    -webkit-mask: none;
+    mask: none;
+  }
+}

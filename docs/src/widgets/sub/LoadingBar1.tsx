@@ -9,7 +9,7 @@ function Frame7() {
       aria-hidden="true"
     >
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 118.5 3"
@@ -205,7 +205,7 @@ function Human() {
       aria-hidden="true"
     >
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 18 23"
@@ -365,7 +365,7 @@ function Frame8() {
   return (
     <div className="h-[25px] widget-relative widget-shrink-0 w-[3px]" aria-hidden="true">
       <svg
-        className="nothing-widget-icon-svg"
+        className="aios-widget-icon-svg"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 3 25"

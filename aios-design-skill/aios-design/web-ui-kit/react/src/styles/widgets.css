@@ -1,0 +1,723 @@
+.widget-bg {
+  background: var(--widget-bg);
+  position: relative;
+  width: 100%;
+  height: var(--widget-bg-height, 1110px);
+}
+
+.widget-icon-wrapper {
+  aspect-ratio: 1/1;
+  justify-self: stretch;
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+}
+
+.widget-card {
+  justify-self: stretch;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.widget-icon-wrapper--68 {
+  width: var(--widget-size-sm, 68px);
+  height: var(--widget-size-sm, 68px);
+  min-width: var(--widget-size-sm, 68px);
+  min-height: var(--widget-size-sm, 68px);
+  flex-shrink: 0;
+}
+
+.aios-widget-icon-svg {
+  position: absolute;
+  display: block;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+
+/* 强制覆盖所有 widget-icon-wrapper 中的 svg 元素的内联样式 */
+.widget-icon-wrapper svg[class*='aios-widget-icon-svg'] {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* 针对特定选择器的更强制覆盖 */
+div[class*='widget-icon-wrapper'] svg.aios-widget-icon-svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* 强制约束所有 SVG 的尺寸 */
+.widget-grid-7x6 svg.aios-widget-icon-svg,
+.widget-icon-wrapper--68 svg.aios-widget-icon-svg {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: var(--widget-size-sm, 68px) !important;
+  max-height: var(--widget-size-sm, 68px) !important;
+}
+
+.widget-pill {
+  aspect-ratio: 152/68;
+  justify-self: stretch;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.widget-pill--light {
+  background: var(--widget-card-bg);
+  border-radius: var(--radius-pill, 250px);
+}
+
+.widget-pill--dark {
+  background: var(--widget-dark-bg);
+  border-radius: var(--radius-pill, 250px);
+}
+
+.widget-pill__bg {
+  position: absolute;
+  display: block;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.widget-pos-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.widget-inner-pos-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.widget-pos-bottom-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.widget-flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.widget-flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.widget-flex-gap-4 {
+  gap: var(--space-xs, 4px);
+}
+
+.widget-flex-gap-12 {
+  gap: var(--space-sm-plus, 12px);
+}
+
+.widget-flex-gap-19 {
+  gap: var(--space-lg-plus, 19px);
+}
+
+.widget-content-stretch {
+  align-content: stretch;
+}
+
+.widget-size-full {
+  width: 100%;
+  height: 100%;
+}
+
+.widget-size-68 {
+  width: var(--widget-size-sm, 68px);
+  height: var(--widget-size-sm, 68px);
+}
+
+.widget-size-152 {
+  width: var(--widget-size-md, 152px);
+  height: var(--widget-size-md, 152px);
+}
+
+.widget-px-20 {
+  padding-left: var(--space-md-plus, 20px);
+  padding-right: var(--space-md-plus, 20px);
+}
+
+.widget-pos-bottom-4 {
+  bottom: var(--widget-pos-bottom-4, -4px);
+}
+
+.widget-pos-bottom-8 {
+  bottom: var(--widget-pos-bottom-8, -8px);
+}
+
+.widget-pos-bottom-10 {
+  bottom: var(--widget-pos-bottom-10, -10px);
+}
+
+.widget-pos-bottom-12 {
+  bottom: var(--widget-pos-bottom-12, -12px);
+}
+
+.widget-pos-left-100 {
+  left: var(--widget-pos-left-100, 100px);
+}
+
+.widget-pos-top-100 {
+  top: var(--widget-pos-top-100, 100px);
+}
+
+.widget-col-1 {
+  grid-column: 1;
+}
+
+.widget-row-1 {
+  grid-row: 1;
+}
+
+.widget-place-start {
+  place-items: start;
+}
+
+.widget-self-start {
+  align-self: flex-start;
+}
+
+.widget-justify-self-stretch {
+  justify-self: stretch;
+}
+
+.widget-not-italic {
+  font-style: normal;
+}
+
+.widget-pointer-events-none {
+  pointer-events: none;
+}
+
+.widget-overflow-hidden {
+  overflow: hidden;
+}
+
+.widget-bg-dark {
+  background: var(--widget-dark-bg);
+}
+
+.widget-bg-light {
+  background: var(--widget-card-bg);
+}
+
+.widget-bg-grey {
+  background: var(--widget-dark-2);
+}
+
+.widget-bg-grey2 {
+  background: var(--widget-dark-3);
+}
+
+.widget-bg-accent {
+  background: var(--widget-primary);
+}
+
+.widget-card--152 {
+  width: var(--widget-size-md, 152px);
+  height: var(--widget-size-md, 152px);
+  min-width: var(--widget-size-md, 152px);
+  min-height: var(--widget-size-md, 152px);
+}
+
+.widget-card--rounded {
+  border-radius: var(--radius-lg);
+}
+
+.widget-card--pill {
+  border-radius: var(--radius-pill, 250px);
+}
+
+.widget-card--light {
+  background: var(--widget-card-bg);
+}
+
+.widget-card--dark {
+  background: var(--widget-dark-bg);
+}
+
+.widget-card--accent {
+  background: var(--widget-primary);
+}
+
+.widget-card--grey {
+  background: var(--widget-dark-2);
+}
+
+.widget-card--grey2 {
+  background: var(--widget-dark-3);
+}
+
+.widget-card__svg {
+  position: absolute;
+  display: block;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+.widget-card__svg--64 {
+  width: var(--widget-icon-64, 64px) !important;
+  height: var(--widget-icon-64, 64px) !important;
+}
+
+.widget-card__svg--24 {
+  width: var(--space-lg, 24px) !important;
+  height: var(--space-lg, 24px) !important;
+}
+
+.widget-card__svg--16 {
+  width: var(--space-md, 16px) !important;
+  height: var(--space-md, 16px) !important;
+}
+
+/* 统一的图标容器: 让子 SVG 继承 color → fill: currentColor */
+.widget-card__icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.widget-card__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* 让内部路径继承 color 属性 */
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* 根据外层主题切换内部 SVG 颜色 */
+.widget-card[data-theme='light'] .widget-card__icon {
+  color: var(--widget-dark-bg);
+}
+
+.widget-card[data-theme='dark'] .widget-card__icon {
+  color: var(--widget-white);
+}
+
+.widget-card[data-theme='accent'] .widget-card__icon {
+  color: var(--widget-white);
+}
+
+.widget-card[data-theme='grey'] .widget-card__icon {
+  color: var(--widget-white);
+}
+
+.widget-card[data-theme='grey2'] .widget-card__icon {
+  color: var(--widget-white);
+}
+
+.widget-grid-7x6 {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  width: var(--widget-grid-width, 716px);
+  height: var(--widget-grid-height, 700px);
+  gap: var(--widget-gap);
+  align-content: stretch;
+}
+
+.widget-grid-4x5 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  width: var(--widget-grid-width, 716px);
+  gap: var(--widget-gap);
+  align-content: stretch;
+}
+
+.widget-grid-4x4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  width: var(--widget-grid-width, 716px);
+  gap: var(--widget-gap);
+  align-content: stretch;
+}
+
+.widget-flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: var(--widget-flex-width, 728px);
+  gap: var(--widget-gap);
+  align-content: flex-start;
+}
+
+.widget-flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.widget-card-wrapper {
+  width: var(--widget-size-md, 152px);
+  height: var(--widget-size-md, 152px);
+  justify-self: stretch;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.widget-grid-auto {
+  display: inline-grid;
+  grid-template-columns: max-content;
+  grid-template-rows: max-content;
+  place-items: flex-start;
+  line-height: 0;
+  position: relative;
+  flex-shrink: 0;
+  justify-self: stretch;
+  align-self: flex-start;
+}
+
+.widget-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.widget-row--gap-8 {
+  gap: var(--space-sm, 8px);
+}
+
+.widget-row--gap-4 {
+  gap: var(--space-xs, 4px);
+}
+
+.widget-row--gap-12 {
+  gap: var(--space-sm-plus, 12px);
+}
+
+.widget-row--center {
+  align-items: center;
+  justify-content: center;
+}
+
+.widget-row--between {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.widget-fit {
+  width: max-content;
+  height: max-content;
+}
+
+.widget-text {
+  font-family: var(--font-widget, 'Space Grotesk');
+  font-weight: 400;
+  line-height: normal;
+}
+
+.widget-text--light {
+  font-weight: 300;
+}
+
+.widget-text--ndot {
+  font-family: var(--font-ndot);
+  font-weight: 400;
+}
+
+.widget-text--7 {
+  font-size: var(--widget-text-7, 7px);
+}
+
+.widget-text--8 {
+  font-size: var(--widget-micro, 8px);
+}
+
+.widget-text--10 {
+  font-size: var(--widget-label, 10px);
+}
+
+.widget-text--12 {
+  font-size: var(--caption, 12px);
+}
+
+.widget-text--14 {
+  font-size: var(--body-sm, 14px);
+}
+
+.widget-text--16 {
+  font-size: var(--body, 16px);
+}
+
+.widget-text--18 {
+  font-size: var(--subheading, 18px);
+}
+
+.widget-text--24 {
+  font-size: var(--heading, 24px);
+}
+
+.widget-text--28 {
+  font-size: var(--widget-text-28, 28px);
+}
+
+.widget-text--30 {
+  font-size: var(--widget-text-30, 30px);
+}
+
+.widget-text--32 {
+  font-size: var(--display-sm, 32px);
+}
+
+.widget-text--center {
+  text-align: center;
+}
+
+.widget-text--nowrap {
+  white-space: nowrap;
+}
+
+.widget-text--uppercase {
+  text-transform: uppercase;
+}
+
+.widget-text--white {
+  color: var(--widget-white);
+}
+
+.widget-text--white-70 {
+  color: var(--widget-white-70, rgba(255, 255, 255, 0.7));
+}
+
+.widget-text--grey {
+  color: var(--widget-dark-4);
+}
+
+.widget-text--grey2 {
+  color: var(--widget-dark-3);
+}
+
+.widget-text--dark {
+  color: var(--widget-dark-bg);
+}
+
+.widget-text--red {
+  color: var(--widget-primary);
+}
+
+.widget-text--grey3 {
+  color: var(--widget-dark-4);
+  opacity: 0.5;
+}
+
+.widget-text--accent {
+  color: var(--widget-primary);
+}
+
+.widget-text--sr {
+  font-size: 0px;
+  line-height: 0;
+}
+
+.widget-overflow-clip {
+  overflow: clip;
+}
+
+.widget-opacity-70 {
+  opacity: 0.7;
+}
+
+.widget-pointer-none {
+  pointer-events: none;
+}
+
+.widget-sr {
+  font-size: 0px;
+  line-height: 0;
+}
+
+.widget-relative {
+  position: relative;
+}
+
+.widget-absolute {
+  position: absolute;
+}
+
+.widget-inset-0 {
+  inset: 0;
+}
+
+.widget-shrink-0 {
+  flex-shrink: 0;
+}
+
+.widget-flex-none {
+  flex: none;
+}
+
+.widget-leading-0 {
+  line-height: 0;
+}
+
+.widget-leading-normal {
+  line-height: normal;
+}
+
+.widget-leading-18 {
+  line-height: var(--widget-leading-18, 18px);
+}
+
+.widget-leading-27 {
+  line-height: var(--widget-leading-27, 27px);
+}
+
+.widget-leading-20 {
+  line-height: var(--widget-leading-20, 20px);
+}
+
+.widget-leading-29 {
+  line-height: var(--widget-leading-29, 29px);
+}
+
+.widget-leading-36 {
+  line-height: var(--widget-leading-36, 36px);
+}
+
+.widget-rotate {
+  display: inline-block;
+}
+
+.widget-rotate--6 {
+  transform: rotate(-6deg);
+}
+.widget-rotate--12 {
+  transform: rotate(-12deg);
+}
+.widget-rotate--18 {
+  transform: rotate(-18deg);
+}
+.widget-rotate--24 {
+  transform: rotate(-24deg);
+}
+.widget-rotate--30 {
+  transform: rotate(-30deg);
+}
+.widget-rotate--36 {
+  transform: rotate(-36deg);
+}
+.widget-rotate--42 {
+  transform: rotate(-42deg);
+}
+.widget-rotate--48 {
+  transform: rotate(-48deg);
+}
+.widget-rotate--54 {
+  transform: rotate(-54deg);
+}
+.widget-rotate--60 {
+  transform: rotate(-60deg);
+}
+.widget-rotate-6 {
+  transform: rotate(6deg);
+}
+.widget-rotate-12 {
+  transform: rotate(12deg);
+}
+.widget-rotate-18 {
+  transform: rotate(18deg);
+}
+.widget-rotate-24 {
+  transform: rotate(24deg);
+}
+.widget-rotate-30 {
+  transform: rotate(30deg);
+}
+.widget-rotate-36 {
+  transform: rotate(36deg);
+}
+.widget-rotate-42 {
+  transform: rotate(42deg);
+}
+.widget-rotate-48 {
+  transform: rotate(48deg);
+}
+.widget-rotate-54 {
+  transform: rotate(54deg);
+}
+.widget-rotate-60 {
+  transform: rotate(60deg);
+}
+.widget-rotate-66 {
+  transform: rotate(66deg);
+}
+.widget-rotate-72 {
+  transform: rotate(72deg);
+}
+.widget-rotate-78 {
+  transform: rotate(78deg);
+}
+.widget-rotate-84 {
+  transform: rotate(84deg);
+}
+.widget-rotate-90 {
+  transform: rotate(90deg);
+}
+.widget-rotate-96 {
+  transform: rotate(96deg);
+}
+.widget-rotate-102 {
+  transform: rotate(102deg);
+}
+.widget-rotate-108 {
+  transform: rotate(108deg);
+}
+.widget-rotate-114 {
+  transform: rotate(114deg);
+}
+
+.widget-ml-0 {
+  margin-left: 0;
+}
+.widget-mt-0 {
+  margin-top: 0;
+}
+.widget-mb-0 {
+  margin-bottom: 0;
+}
+
+.widget-grid-loading {
+  display: inline-grid;
+  grid-template-rows: max-content;
+  line-height: 0;
+  place-items: start;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.widget-rounded-6 {
+  border-radius: var(--radius-sm, 6px);
+}
+
+.widget-rounded-16 {
+  border-radius: var(--radius-2xl, 16px);
+}
+
+.widget-rounded-pill {
+  border-radius: var(--radius-pill, 250px);
+}

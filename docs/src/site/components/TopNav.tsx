@@ -27,7 +27,7 @@ export function TopNav({ onOpenSearch }: { onOpenSearch: () => void }) {
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
       'px-3 py-2 font-mono text-label uppercase tracking-widest',
-      'transition-colors duration-200 ease-nothing motion-reduce:transition-none',
+      'transition-colors duration-200 ease-aios motion-reduce:transition-none',
       isActive ? 'text-foreground-display' : 'text-foreground-subtle hover:text-foreground',
     )
 
@@ -59,7 +59,7 @@ export function TopNav({ onOpenSearch }: { onOpenSearch: () => void }) {
             className={cn(
               'hidden items-center gap-3 rounded-input border border-border bg-surface px-3 py-1.5 sm:flex',
               'cursor-pointer font-mono text-label uppercase tracking-widest text-foreground-subtle',
-              'transition-colors duration-200 ease-nothing motion-reduce:transition-none',
+              'transition-colors duration-200 ease-aios motion-reduce:transition-none',
               'hover:border-border-visible hover:text-foreground',
             )}
           >

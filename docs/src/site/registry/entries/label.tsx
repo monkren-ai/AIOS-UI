@@ -24,7 +24,7 @@ export const labelDoc: ComponentDoc = {
   importStatement: `import { Label } from 'aios-ui-kit/label'`,
   usageSnippet: `<Label htmlFor="email">Email</Label>`,
   composition: {
-    zh: '这是个原生 `<label>`，只是把 Nothing 的标签排版（等宽字体、全大写、宽字距、`foreground-muted`）固化下来。`Input`、`Textarea`、`Select`、`Slider` 都自带 `label` 属性，日常表单用那个就够；当你需要自己决定标签的位置——放在控件右侧、和别的元素同一行、或者标注一组控件——才轮到 `Label` 出场。',
+    zh: '这是个原生 `<label>`，只是把 AIOS 的标签排版（等宽字体、全大写、宽字距、`foreground-muted`）固化下来。`Input`、`Textarea`、`Select`、`Slider` 都自带 `label` 属性，日常表单用那个就够；当你需要自己决定标签的位置——放在控件右侧、和别的元素同一行、或者标注一组控件——才轮到 `Label` 出场。',
     en: 'A native `<label>` that fixes the Nothing label typography in place: monospace, uppercase, wide tracking, `foreground-muted`. `Input`, `Textarea`, `Select`, and `Slider` all have their own `label` prop, which covers ordinary forms. `Label` is for when you need to place the text yourself — beside the control, on a shared row, or naming a group.',
   },
   examples: [

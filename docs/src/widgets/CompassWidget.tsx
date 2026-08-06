@@ -6,14 +6,14 @@ import { useDeviceOrientation } from '@/hooks'
 import { cn, dataAttr } from '@/lib/utils'
 import '@/styles/compass-widget.css'
 
-const compassWidgetVariants = cva('nothing-compass-widget', {
+const compassWidgetVariants = cva('aios-compass-widget', {
   variants: {
     size: {
-      sm: 'nothing-compass-widget--sm',
-      md: 'nothing-compass-widget--md',
-      lg: 'nothing-compass-widget--lg',
+      sm: 'aios-compass-widget--sm',
+      md: 'aios-compass-widget--md',
+      lg: 'aios-compass-widget--lg',
     },
-    dotted: { true: 'nothing-compass-widget--dotted', false: '' },
+    dotted: { true: 'aios-compass-widget--dotted', false: '' },
   },
   defaultVariants: { size: 'md', dotted: true },
 })
@@ -99,38 +99,38 @@ const CompassWidgetInner = React.forwardRef<HTMLDivElement, CompassWidgetProps>(
         {...props}
       >
         <span
-          className="nothing-compass-widget__direction nothing-compass-widget__direction--default"
+          className="aios-compass-widget__direction aios-compass-widget__direction--default"
           style={labelStyle}
         >
           W
         </span>
-        <div className="nothing-compass-widget__center">
+        <div className="aios-compass-widget__center">
           <span
-            className="nothing-compass-widget__direction nothing-compass-widget__direction--north"
+            className="aios-compass-widget__direction aios-compass-widget__direction--north"
             style={labelStyle}
           >
             N
           </span>
           {dotGrid && (
-            <div className="nothing-compass-widget__dots">
+            <div className="aios-compass-widget__dots">
               {dotGrid.map((row, r) => (
-                <div key={r} className="nothing-compass-widget__dots-row">
+                <div key={r} className="aios-compass-widget__dots-row">
                   {row.map((key) => (
-                    <div key={key} className="nothing-compass-widget__dot" />
+                    <div key={key} className="aios-compass-widget__dot" />
                   ))}
                 </div>
               ))}
             </div>
           )}
           <span
-            className="nothing-compass-widget__direction nothing-compass-widget__direction--default"
+            className="aios-compass-widget__direction aios-compass-widget__direction--default"
             style={labelStyle}
           >
             S
           </span>
         </div>
         <span
-          className="nothing-compass-widget__direction nothing-compass-widget__direction--default"
+          className="aios-compass-widget__direction aios-compass-widget__direction--default"
           style={labelStyle}
         >
           E

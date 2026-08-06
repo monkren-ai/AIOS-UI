@@ -12,35 +12,35 @@ export interface PhotoFrameImage {
   alt?: string
 }
 
-const photoFrameVariants = cva('nothing-photo-frame', {
+const photoFrameVariants = cva('aios-photo-frame', {
   variants: {
     variant: {
-      pill: 'nothing-photo-frame--pill',
-      square: 'nothing-photo-frame--square',
+      pill: 'aios-photo-frame--pill',
+      square: 'aios-photo-frame--square',
     },
     theme: {
-      light: 'nothing-photo-frame--light',
-      dark: 'nothing-photo-frame--dark',
+      light: 'aios-photo-frame--light',
+      dark: 'aios-photo-frame--dark',
     },
     aspectRatio: {
-      '1:1': 'nothing-photo-frame--ratio-1x1',
-      '4:5': 'nothing-photo-frame--ratio-4x5',
-      '16:9': 'nothing-photo-frame--ratio-16x9',
+      '1:1': 'aios-photo-frame--ratio-1x1',
+      '4:5': 'aios-photo-frame--ratio-4x5',
+      '16:9': 'aios-photo-frame--ratio-16x9',
     },
   },
   defaultVariants: { variant: 'square', theme: 'dark', aspectRatio: '1:1' },
 })
 
-const slideVariants = cva('nothing-photo-frame__slide', {
+const slideVariants = cva('aios-photo-frame__slide', {
   variants: {
-    active: { true: 'nothing-photo-frame__slide--active', false: '' },
+    active: { true: 'aios-photo-frame__slide--active', false: '' },
   },
   defaultVariants: { active: false },
 })
 
-const dotVariants = cva('nothing-photo-frame__dot', {
+const dotVariants = cva('aios-photo-frame__dot', {
   variants: {
-    active: { true: 'nothing-photo-frame__dot--active', false: '' },
+    active: { true: 'aios-photo-frame__dot--active', false: '' },
   },
   defaultVariants: { active: false },
 })
@@ -148,7 +148,7 @@ const PhotoFrameWidgetInner = React.forwardRef<HTMLDivElement, PhotoFrameWidgetP
         onMouseLeave={handleMouseLeave}
         {...props}
       >
-        <div className="nothing-photo-frame__image-wrapper">
+        <div className="aios-photo-frame__image-wrapper">
           {showFallback ? (
             <StaticDotMatrix
               rows={4}
@@ -168,7 +168,7 @@ const PhotoFrameWidgetInner = React.forwardRef<HTMLDivElement, PhotoFrameWidgetP
                 <img
                   src={image.src}
                   alt={image.alt || ''}
-                  className="nothing-photo-frame__image"
+                  className="aios-photo-frame__image"
                   draggable={false}
                 />
               </div>
@@ -177,14 +177,14 @@ const PhotoFrameWidgetInner = React.forwardRef<HTMLDivElement, PhotoFrameWidgetP
             <img
               src={displayImages[0].src}
               alt={displayImages[0].alt || ''}
-              className="nothing-photo-frame__image"
+              className="aios-photo-frame__image"
               draggable={false}
             />
           )}
         </div>
         {isCarousel && (
           <div
-            className="nothing-photo-frame__dots"
+            className="aios-photo-frame__dots"
             role="tablist"
             aria-label="Carousel navigation"
           >

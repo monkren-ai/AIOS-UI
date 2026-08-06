@@ -202,7 +202,7 @@ export function VirtualIconGrid({
                 title={entry.name}
                 className={cn(
                   'flex cursor-pointer flex-col items-center justify-center gap-2 border-0 bg-transparent p-2',
-                  'transition-colors duration-200 ease-nothing motion-reduce:transition-none',
+                  'transition-colors duration-200 ease-aios motion-reduce:transition-none',
                   'hover:bg-muted focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-interactive',
                   'selected:bg-muted selected:text-foreground-display',
                 )}

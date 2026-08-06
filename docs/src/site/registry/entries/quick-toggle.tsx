@@ -50,8 +50,8 @@ export const quickToggleDoc: ComponentDoc = {
       id: 'themes',
       title: { zh: '配色', en: 'Themes' },
       description: {
-        zh: '`theme` 有三档：`light` 是控制中心默认的浅卡片；`dark` 用于深色磁贴场景；`accent` 是唯一使用 Nothing 红底的一档，通常用来表示「已开启」的强调状态。',
-        en: 'There are three themes: `light` is the default light control-centre tile; `dark` fits a dark-tile context; `accent` is the only one filled with Nothing red, typically standing in for an emphasised “on” state.',
+        zh: '`theme` 有三档：`light` 是控制中心默认的浅卡片；`dark` 用于深色磁贴场景；`accent` 是唯一使用 AIOS 红底的一档，通常用来表示「已开启」的强调状态。',
+        en: 'There are three themes: `light` is the default light control-centre tile; `dark` fits a dark-tile context; `accent` is the only one filled with AIOS red, typically standing in for an emphasised “on” state.',
       },
       code: themesSource,
       render: () => <QuickToggleThemes />,
