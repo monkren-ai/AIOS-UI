@@ -1,0 +1,3 @@
+import { NumberFieldSize, numberFieldErrorVariants, numberFieldGroupVariants, numberFieldInputVariants, numberFieldLabelVariants, numberFieldStepperVariants, numberFieldVariants } from "../NumberField/number-field-variants.mjs";
+import { NumberField, NumberFieldProps } from "../NumberField/NumberField.mjs";
+export { NumberField, type NumberFieldProps, type NumberFieldSize, numberFieldErrorVariants, numberFieldGroupVariants, numberFieldInputVariants, numberFieldLabelVariants, numberFieldStepperVariants, numberFieldVariants };

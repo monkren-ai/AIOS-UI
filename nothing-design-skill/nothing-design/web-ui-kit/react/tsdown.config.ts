@@ -17,8 +17,8 @@ const external = [
   ...Object.keys(pkg.peerDependencies ?? {}),
 ];
 
-// 展示站代码不进包
-const NON_LIBRARY_DIRS = new Set(['showcase', 'site', 'sections']);
+// 文档站已拆至 ../docs，库 build 只扫描组件目录
+const NON_LIBRARY_DIRS = new Set<string>()
 
 // Dynamic scan: src/*/index.ts + src/index.ts + src/subpath/*.ts as multi-entry
 const scanEntries = (): Record<string, string> => {

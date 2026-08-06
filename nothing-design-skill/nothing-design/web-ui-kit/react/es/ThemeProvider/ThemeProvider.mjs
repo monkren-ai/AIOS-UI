@@ -40,7 +40,7 @@ function disableAnimation() {
 /**
 * ThemeProvider
 *
-* 管理 Nothing UI 的明暗主题。
+* 管理 AIOS UI 的明暗主题。
 *
 * - 通过 `data-theme` 属性切换主题（与 `tokens.css` 的 `[data-theme="dark"]` 选择器协同）
 * - 持久化到 `localStorage`（key: `nothing-theme`）

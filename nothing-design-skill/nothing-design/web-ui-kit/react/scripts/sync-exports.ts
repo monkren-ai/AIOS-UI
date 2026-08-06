@@ -59,20 +59,13 @@ const CATEGORIES: Category[] = [
 const EXCLUDED_ENTRIES = new Set([
   'hooks',
   'styles',
-  'assets',
   'components',
   'widgets',
-  'showcase',
-  'sections',
-  'nullframe',
-  'site',
-  'subpath',
   'system',
+  'subpath',
   'types',
   'ui',
-  'App',
   'index',
-  'main',
   'version',
 ])
 

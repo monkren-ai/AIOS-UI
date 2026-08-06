@@ -1,7 +1,7 @@
 /**
- * Nothing UI — 样式入口
+ * AIOS UI — 样式入口
  *
- * 消费方只需 `@import 'nothing-ui/styles.css'`（在 `@import 'tailwindcss'` 之后），
+ * 消费方只需 `@import 'aios-ui-kit/styles.css'`（在 `@import 'tailwindcss'` 之后），
  * 再加一条 `@source` 指向 dist 让 Tailwind 扫描编译产物里的类名。
  * 详见 /docs/installation。
  */

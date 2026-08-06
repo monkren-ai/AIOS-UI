@@ -1,0 +1,21 @@
+{
+  "name": "aios-ui-workspace",
+  "private": true,
+  "description": "AIOS UI monorepo — component library + documentation site",
+  "workspaces": [
+    "react",
+    "docs"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w aios-ui-docs",
+    "dev:docs": "npm run dev -w aios-ui-docs",
+    "build": "npm run build -w aios-ui-kit && npm run build -w aios-ui-docs",
+    "build:lib": "npm run build -w aios-ui-kit",
+    "build:docs": "npm run build -w aios-ui-docs",
+    "type-check": "npm run type-check -w aios-ui-kit",
+    "test": "npm run test -w aios-ui-kit",
+    "lint": "npm run lint -w aios-ui-kit",
+    "sync:exports": "npm run sync:exports -w aios-ui-kit",
+    "sync:subpaths": "npm run sync:subpaths -w aios-ui-kit"
+  }
+}

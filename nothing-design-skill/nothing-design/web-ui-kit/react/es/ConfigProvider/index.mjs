@@ -36,7 +36,7 @@ function useConfig() {
 * @example
 * ```tsx
 * const cdnUrl = useCdnFn()
-* const url = cdnUrl({ pkg: '@nothing-ui/icons', version: '1.0.0', path: '/svg/logo.svg' })
+* const url = cdnUrl({ pkg: '@aios-ui-kit/icons', version: '1.0.0', path: '/svg/logo.svg' })
 * ```
 */
 function useCdnFn() {
@@ -58,7 +58,7 @@ function useCdnFn() {
 /**
 * ConfigProvider
 *
-* Nothing UI 的全局配置 Provider，集成了：
+* AIOS UI 的全局配置 Provider，集成了：
 * - `ThemeProvider`：明暗主题管理
 * - `MotionProvider`：动画组件注入
 * - `ConfigContext`：CDN、自定义元素等配置
@@ -68,7 +68,7 @@ function useCdnFn() {
 * @example
 * ```tsx
 * import * as motion from 'motion/react'
-* import { ConfigProvider } from 'nothing-ui'
+* import { ConfigProvider } from 'aios-ui-kit'
 *
 * <ConfigProvider
 *   motion={motion}

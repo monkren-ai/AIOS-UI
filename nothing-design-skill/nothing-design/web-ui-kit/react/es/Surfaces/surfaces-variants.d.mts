@@ -8,9 +8,9 @@
  * （它们是 elevation 专用的间接层），所以这里用 `var()` 直接引。
  */
 declare const surfaceVariants: (props?: ({
-  elevation?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | null | undefined;
+  elevation?: 2 | 1 | 3 | 4 | 5 | 6 | 7 | 8 | null | undefined;
   padding?: "sm" | "md" | "lg" | "none" | null | undefined;
-  border?: "default" | "visible" | "none" | null | undefined;
+  border?: "default" | "none" | "visible" | null | undefined;
   radius?: "sm" | "md" | "lg" | "none" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 type SurfaceElevation = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;

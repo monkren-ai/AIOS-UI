@@ -3,7 +3,7 @@ import { VariantProps } from "class-variance-authority";
 //#region src/agent/AgentOrb/AgentOrb.d.ts
 type AgentState = 'idle' | 'thinking' | 'acting' | 'paused' | 'error';
 declare const agentOrbVariants: (props?: ({
-  state?: "idle" | "paused" | "error" | "thinking" | "acting" | null | undefined;
+  state?: "error" | "idle" | "paused" | "thinking" | "acting" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 interface AgentOrbProps extends Omit<React$1.HTMLAttributes<HTMLDivElement>, 'children'>, VariantProps<typeof agentOrbVariants> {

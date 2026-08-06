@@ -19,20 +19,12 @@ const OUT = join(SRC, 'subpath')
 
 /** 不是组件目录，不生成入口。 */
 const EXCLUDED = new Set([
-  'assets',
-  'components',
   'hooks',
   'lib',
-  'nullframe',
-  'sections',
-  'showcase',
-  'site',
   'styles',
   'subpath',
-  'system',
   'types',
   'ui',
-  'widgets',
 ])
 
 /** 这些目录导出的是一组组件，用目录名整体转发。 */

@@ -3,7 +3,7 @@ import { VariantProps } from "class-variance-authority";
 //#region src/agent/ToolCallRow/ToolCallRow.d.ts
 type ToolCallStatus = 'pending' | 'running' | 'done' | 'error' | 'skipped';
 declare const toolCallRowVariants: (props?: ({
-  status?: "running" | "error" | "pending" | "done" | "skipped" | null | undefined;
+  status?: "error" | "running" | "done" | "pending" | "skipped" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 interface ToolCallRowProps extends Omit<React$1.HTMLAttributes<HTMLDivElement>, 'children'>, VariantProps<typeof toolCallRowVariants> {
   tool: string;
