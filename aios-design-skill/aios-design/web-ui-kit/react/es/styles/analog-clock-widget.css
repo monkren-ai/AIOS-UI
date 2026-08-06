@@ -1,7 +1,7 @@
 @import './tokens.css';
 
 /* ── Base ── */
-.nothing-analog-clock-widget {
+.aios-analog-clock-widget {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,58 +10,58 @@
   position: relative;
 }
 
-.nothing-analog-clock-widget__svg {
+.aios-analog-clock-widget__svg {
   width: 100%;
   height: 100%;
 }
 
 /* ── Swiss variant ── */
-.nothing-analog-clock-widget--swiss .nothing-analog-clock-widget__tick--large {
+.aios-analog-clock-widget--swiss .aios-analog-clock-widget__tick--large {
   fill: var(--widget-white);
 }
 
-.nothing-analog-clock-widget--swiss .nothing-analog-clock-widget__tick--small {
+.aios-analog-clock-widget--swiss .aios-analog-clock-widget__tick--small {
   fill: var(--widget-dark-4);
 }
 
-.nothing-analog-clock-widget--swiss .nothing-analog-clock-widget__hand--hour,
-.nothing-analog-clock-widget--swiss .nothing-analog-clock-widget__hand--minute {
+.aios-analog-clock-widget--swiss .aios-analog-clock-widget__hand--hour,
+.aios-analog-clock-widget--swiss .aios-analog-clock-widget__hand--minute {
   fill: var(--widget-white);
 }
 
-.nothing-analog-clock-widget--swiss .nothing-analog-clock-widget__hand--second {
+.aios-analog-clock-widget--swiss .aios-analog-clock-widget__hand--second {
   fill: var(--widget-primary);
 }
 
-.nothing-analog-clock-widget--swiss .nothing-analog-clock-widget__pivot {
+.aios-analog-clock-widget--swiss .aios-analog-clock-widget__pivot {
   fill: var(--widget-primary);
 }
 
 /* ── Minimalist variant ── */
-.nothing-analog-clock-widget--minimalist .nothing-analog-clock-widget__hand--hour {
+.aios-analog-clock-widget--minimalist .aios-analog-clock-widget__hand--hour {
   fill: var(--widget-white-70);
 }
 
-.nothing-analog-clock-widget--minimalist .nothing-analog-clock-widget__hand--minute {
+.aios-analog-clock-widget--minimalist .aios-analog-clock-widget__hand--minute {
   fill: var(--widget-grey);
 }
 
-.nothing-analog-clock-widget--minimalist .nothing-analog-clock-widget__second-dot {
+.aios-analog-clock-widget--minimalist .aios-analog-clock-widget__second-dot {
   fill: var(--widget-primary);
 }
 
 /* ── Theme: dark (default) ── */
-.nothing-analog-clock-widget--dark .nothing-analog-clock-widget__face {
+.aios-analog-clock-widget--dark .aios-analog-clock-widget__face {
   fill: var(--widget-dark-bg);
 }
 
 /* ── Theme: light ── */
-.nothing-analog-clock-widget--light .nothing-analog-clock-widget__face {
+.aios-analog-clock-widget--light .aios-analog-clock-widget__face {
   fill: var(--widget-bg);
 }
 
 /* ── Smooth seconds transition ── */
-.nothing-analog-clock-widget--smooth .nothing-analog-clock-widget__hand--second,
-.nothing-analog-clock-widget--smooth .nothing-analog-clock-widget__second-dot {
+.aios-analog-clock-widget--smooth .aios-analog-clock-widget__hand--second,
+.aios-analog-clock-widget--smooth .aios-analog-clock-widget__second-dot {
   transition: transform 50ms linear;
 }

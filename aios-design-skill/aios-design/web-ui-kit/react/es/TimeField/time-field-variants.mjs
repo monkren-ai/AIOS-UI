@@ -31,7 +31,7 @@ const timeFieldVariants = cva(["flex flex-col gap-1"], {
 const timeFieldSegmentVariants = cva([
 	"relative flex items-center justify-center",
 	"rounded-md border border-border-visible bg-transparent",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		size: {

@@ -15,7 +15,7 @@ import * as React$1 from "react";
  * <Button asChild>
  *   <a href="/home">Go Home</a>
  * </Button>
- * // 渲染: <a className="nothing-btn nothing-btn--primary" href="/home">Go Home</a>
+ * // 渲染: <a className="aios-btn aios-btn--primary" href="/home">Go Home</a>
  * ```
  */
 interface SlotProps extends React$1.HTMLAttributes<HTMLElement> {

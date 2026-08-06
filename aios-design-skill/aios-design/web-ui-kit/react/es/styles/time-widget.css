@@ -1,4 +1,4 @@
-.nothing-time-widget {
+.aios-time-widget {
   display: flex;
   flex-direction: column;
   padding: var(--space-md);
@@ -8,30 +8,30 @@
   font-family: var(--font-widget);
 }
 
-.nothing-time-widget--square {
+.aios-time-widget--square {
   border-radius: var(--radius-xl);
   justify-content: space-between;
 }
 
-.nothing-time-widget--circle {
+.aios-time-widget--circle {
   border-radius: 50%;
   justify-content: center;
   align-items: center;
 }
 
-.nothing-time-widget--dark {
+.aios-time-widget--dark {
   background: var(--widget-dark-bg);
 }
 
-.nothing-time-widget--light {
+.aios-time-widget--light {
   background: var(--widget-card-bg);
 }
 
-.nothing-time-widget--accent {
+.aios-time-widget--accent {
   background: var(--widget-primary);
 }
 
-.nothing-time-widget__label {
+.aios-time-widget__label {
   font-size: var(--widget-label);
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -39,19 +39,19 @@
   font-family: var(--font-widget);
 }
 
-.nothing-time-widget--dark .nothing-time-widget__label {
+.aios-time-widget--dark .aios-time-widget__label {
   color: var(--widget-dark-3);
 }
 
-.nothing-time-widget--light .nothing-time-widget__label {
+.aios-time-widget--light .aios-time-widget__label {
   color: var(--widget-dark-4);
 }
 
-.nothing-time-widget--accent .nothing-time-widget__label {
+.aios-time-widget--accent .aios-time-widget__label {
   color: var(--widget-text-on-accent);
 }
 
-.nothing-time-widget__value {
+.aios-time-widget__value {
   font-size: var(--display-sm);
   font-weight: 300;
   font-family: var(--font-mono);
@@ -59,24 +59,24 @@
   letter-spacing: -0.02em;
 }
 
-.nothing-time-widget--dark .nothing-time-widget__value {
+.aios-time-widget--dark .aios-time-widget__value {
   color: var(--widget-white);
 }
 
-.nothing-time-widget--light .nothing-time-widget__value {
+.aios-time-widget--light .aios-time-widget__value {
   color: var(--widget-dark-2);
 }
 
-.nothing-time-widget--accent .nothing-time-widget__value {
+.aios-time-widget--accent .aios-time-widget__value {
   color: var(--widget-white);
 }
 
-.nothing-time-widget__unit {
+.aios-time-widget__unit {
   font-size: var(--body);
   font-weight: 300;
 }
 
-.nothing-time-widget__subtitle {
+.aios-time-widget__subtitle {
   font-size: var(--widget-label);
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -84,35 +84,35 @@
   font-family: var(--font-widget);
 }
 
-.nothing-time-widget--dark .nothing-time-widget__subtitle {
+.aios-time-widget--dark .aios-time-widget__subtitle {
   color: var(--widget-dark-3);
 }
 
-.nothing-time-widget--accent .nothing-time-widget__subtitle {
+.aios-time-widget--accent .aios-time-widget__subtitle {
   color: var(--widget-text-on-accent);
 }
 
-.nothing-time-widget__content {
+.aios-time-widget__content {
   display: flex;
   flex-direction: column;
   gap: var(--space-2xs);
 }
 
-.nothing-time-widget__recording-dot {
+.aios-time-widget__recording-dot {
   width: var(--space-sm);
   height: var(--space-sm);
   border-radius: 50%;
   background: var(--widget-primary);
-  animation: nothing-rec-pulse 1.4s ease infinite;
+  animation: aios-rec-pulse 1.4s ease infinite;
 }
 
-.nothing-time-widget__timer {
+.aios-time-widget__timer {
   font-size: var(--caption);
   font-family: var(--font-mono);
   color: var(--widget-dark-3);
 }
 
-@keyframes nothing-rec-pulse {
+@keyframes aios-rec-pulse {
   0%,
   100% {
     opacity: 1;
@@ -123,7 +123,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nothing-time-widget__recording-dot {
+  .aios-time-widget__recording-dot {
     animation: none;
   }
 }

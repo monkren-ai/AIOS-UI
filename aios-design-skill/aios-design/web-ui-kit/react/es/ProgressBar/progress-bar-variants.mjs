@@ -62,7 +62,7 @@ const progressTrackVariants = cva(["relative flex w-full overflow-hidden"], {
 const progressSegmentVariants = cva([
 	"flex-1 rounded-none",
 	"first:rounded-s-2xs last:rounded-e-2xs",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		state: {
@@ -100,9 +100,9 @@ const progressSegmentVariants = cva([
 */
 const progressIndeterminateVariants = cva([
 	"absolute inset-y-0 start-0 w-2/5 rounded-2xs bg-foreground-display",
-	"motion-safe:animate-[nothing-progress-indeterminate_1.5s_linear_infinite]",
-	"motion-safe:rtl:animate-[nothing-progress-indeterminate-rtl_1.5s_linear_infinite]",
-	"motion-reduce:w-full motion-reduce:animate-[nothing-progress-indeterminate-pulse_1.5s_ease-in-out_infinite]"
+	"motion-safe:animate-[aios-progress-indeterminate_1.5s_linear_infinite]",
+	"motion-safe:rtl:animate-[aios-progress-indeterminate-rtl_1.5s_linear_infinite]",
+	"motion-reduce:w-full motion-reduce:animate-[aios-progress-indeterminate-pulse_1.5s_ease-in-out_infinite]"
 ]);
 /** 读数行的数值。 */
 const progressValueVariants = cva(["font-mono text-base tabular-nums"], {

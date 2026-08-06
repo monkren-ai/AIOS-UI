@@ -9,7 +9,7 @@ import { cva } from "class-variance-authority";
 const calendarVariants = cva([
 	"flex w-full flex-col",
 	"rounded-lg border border-border bg-surface p-8",
-	"transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: { type: {
 		compact: "items-center justify-center",
@@ -20,7 +20,7 @@ const calendarVariants = cva([
 /** 月历里的单个日期格。 */
 const dayVariants = cva([
 	"p-2 text-center font-mono text-sm tabular-nums text-foreground",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:bg-surface-raised"
 ], {
 	variants: {
@@ -39,12 +39,12 @@ const dayVariants = cva([
 	}
 });
 /** 「星期几」的表头格。 */
-const calendarWeekdayVariants = cva(["py-2 text-center font-mono text-label uppercase tracking-widest text-foreground-disabled", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const calendarWeekdayVariants = cva(["py-2 text-center font-mono text-label uppercase tracking-widest text-foreground-disabled", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 上/下月的方形导航按钮。 */
 const calendarNavButtonVariants = cva([
 	"flex size-8 cursor-pointer items-center justify-center",
 	"border border-border bg-surface-raised font-mono text-sm text-foreground",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:border-foreground-muted",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ]);

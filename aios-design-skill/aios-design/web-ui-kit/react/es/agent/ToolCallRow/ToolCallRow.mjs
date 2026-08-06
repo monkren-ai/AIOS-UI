@@ -19,13 +19,13 @@ const statusLabels = {
 	error: "[ERROR]",
 	skipped: "[SKIPPED]"
 };
-const toolCallRowVariants = cva("nothing-tool-call-row", {
+const toolCallRowVariants = cva("aios-tool-call-row", {
 	variants: { status: {
-		pending: "nothing-tool-call-row--pending",
-		running: "nothing-tool-call-row--running",
-		done: "nothing-tool-call-row--done",
-		error: "nothing-tool-call-row--error",
-		skipped: "nothing-tool-call-row--skipped"
+		pending: "aios-tool-call-row--pending",
+		running: "aios-tool-call-row--running",
+		done: "aios-tool-call-row--done",
+		error: "aios-tool-call-row--error",
+		skipped: "aios-tool-call-row--skipped"
 	} },
 	defaultVariants: { status: "pending" }
 });
@@ -45,27 +45,27 @@ const ToolCallRow = React$1.forwardRef(({ tool, args, status = "pending", elapse
 		"aria-busy": status === "running" || void 0,
 		...props,
 		children: [/* @__PURE__ */ jsxs("div", {
-			className: "nothing-tool-call-row__header",
+			className: "aios-tool-call-row__header",
 			children: [
 				/* @__PURE__ */ jsx(AgentOrb, {
 					state: statusToAgentState[status],
 					size: "sm"
 				}),
 				/* @__PURE__ */ jsx("span", {
-					className: "nothing-tool-call-row__tool",
+					className: "aios-tool-call-row__tool",
 					children: tool
 				}),
 				/* @__PURE__ */ jsx("span", {
-					className: "nothing-tool-call-row__status",
+					className: "aios-tool-call-row__status",
 					children: statusLabels[status]
 				}),
 				elapsedMs !== void 0 && /* @__PURE__ */ jsx("span", {
-					className: "nothing-tool-call-row__elapsed",
+					className: "aios-tool-call-row__elapsed",
 					children: formatElapsed(elapsedMs)
 				}),
 				hasDetails && /* @__PURE__ */ jsx("button", {
 					type: "button",
-					className: "nothing-tool-call-row__toggle",
+					className: "aios-tool-call-row__toggle",
 					onClick: () => setExpanded((v) => !v),
 					"aria-expanded": expanded,
 					"aria-label": expanded ? collapseLabel : expandLabel,
@@ -73,21 +73,21 @@ const ToolCallRow = React$1.forwardRef(({ tool, args, status = "pending", elapse
 				})
 			]
 		}), expanded && hasDetails && /* @__PURE__ */ jsxs("div", {
-			className: "nothing-tool-call-row__details",
+			className: "aios-tool-call-row__details",
 			children: [
 				args && Object.keys(args).length > 0 && /* @__PURE__ */ jsx("dl", {
-					className: "nothing-tool-call-row__args",
+					className: "aios-tool-call-row__args",
 					children: Object.entries(args).map(([key, value]) => /* @__PURE__ */ jsxs("div", {
-						className: "nothing-tool-call-row__arg",
+						className: "aios-tool-call-row__arg",
 						children: [/* @__PURE__ */ jsx("dt", { children: key }), /* @__PURE__ */ jsx("dd", { children: typeof value === "string" ? value : JSON.stringify(value) })]
 					}, key))
 				}),
 				result && /* @__PURE__ */ jsx("div", {
-					className: "nothing-tool-call-row__result",
+					className: "aios-tool-call-row__result",
 					children: result
 				}),
 				error && /* @__PURE__ */ jsx("div", {
-					className: "nothing-tool-call-row__error",
+					className: "aios-tool-call-row__error",
 					children: error
 				})
 			]

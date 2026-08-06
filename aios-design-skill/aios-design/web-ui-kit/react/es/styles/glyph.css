@@ -1,56 +1,56 @@
-.nothing-glyph {
+.aios-glyph {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.nothing-glyph--sm {
+.aios-glyph--sm {
   padding: var(--space-xs);
 }
 
-.nothing-glyph--md {
+.aios-glyph--md {
   padding: var(--space-sm);
 }
 
-.nothing-glyph--lg {
+.aios-glyph--lg {
   padding: var(--space-md);
 }
 
-.nothing-glyph--light .nothing-dot-matrix--glyph .nothing-dot-matrix__dot {
+.aios-glyph--light .aios-dot-matrix--glyph .aios-dot-matrix__dot {
   background-color: var(--widget-dark-2);
 }
 
-.nothing-glyph--light .nothing-dot-matrix--glyph .nothing-dot-matrix__dot--active {
+.aios-glyph--light .aios-dot-matrix--glyph .aios-dot-matrix__dot--active {
   background-color: var(--widget-dark-2);
 }
 
-.nothing-glyph--light .nothing-dot-matrix--glyph .nothing-dot-matrix__dot--dim {
+.aios-glyph--light .aios-dot-matrix--glyph .aios-dot-matrix__dot--dim {
   background-color: var(--widget-dark-4);
   opacity: 0.4;
 }
 
-.nothing-glyph--dark .nothing-dot-matrix--glyph .nothing-dot-matrix__dot {
+.aios-glyph--dark .aios-dot-matrix--glyph .aios-dot-matrix__dot {
   background-color: var(--widget-white);
 }
 
-.nothing-glyph--dark .nothing-dot-matrix--glyph .nothing-dot-matrix__dot--active {
+.aios-glyph--dark .aios-dot-matrix--glyph .aios-dot-matrix__dot--active {
   background-color: var(--widget-white);
 }
 
-.nothing-glyph--dark .nothing-dot-matrix--glyph .nothing-dot-matrix__dot--dim {
+.aios-glyph--dark .aios-dot-matrix--glyph .aios-dot-matrix__dot--dim {
   background-color: var(--widget-dark-4);
   opacity: 0.4;
 }
 
-.nothing-glyph--accent .nothing-dot-matrix--glyph .nothing-dot-matrix__dot {
+.aios-glyph--accent .aios-dot-matrix--glyph .aios-dot-matrix__dot {
   background-color: var(--widget-primary);
 }
 
-.nothing-glyph--accent .nothing-dot-matrix--glyph .nothing-dot-matrix__dot--active {
+.aios-glyph--accent .aios-dot-matrix--glyph .aios-dot-matrix__dot--active {
   background-color: var(--widget-primary);
 }
 
-.nothing-glyph--accent .nothing-dot-matrix--glyph .nothing-dot-matrix__dot--dim {
+.aios-glyph--accent .aios-dot-matrix--glyph .aios-dot-matrix__dot--dim {
   background-color: var(--widget-primary);
   opacity: 0.3;
 }

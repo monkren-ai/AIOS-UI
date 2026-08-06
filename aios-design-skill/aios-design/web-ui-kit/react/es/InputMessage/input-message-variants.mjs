@@ -22,7 +22,7 @@ const inputMessageVariants = cva(["flex flex-col gap-xs font-body"], {
 const inputMessageControlVariants = cva([
 	"flex items-end gap-2",
 	"rounded-input border border-border-visible bg-surface",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"focus-within:border-foreground-muted"
 ], {
 	variants: { size: {
@@ -51,7 +51,7 @@ const inputMessageSendVariants = cva([
 	"inline-flex shrink-0 cursor-pointer items-center justify-center gap-1",
 	"rounded-sm border border-transparent bg-foreground text-surface",
 	"font-mono uppercase tracking-widest",
-	"transition-[background-color,color,opacity,transform] duration-200 ease-nothing",
+	"transition-[background-color,color,opacity,transform] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"hover:not-disabled:bg-foreground-display",
 	"active:not-disabled:scale-[0.97] motion-reduce:active:scale-100",

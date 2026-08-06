@@ -90,7 +90,7 @@ function MiniGroup() {
 		className: "widget-col-1 h-[29.256px] ms-[17px] mt-[17px] widget-relative widget-row-1 w-[29.557px]",
 		"aria-hidden": "true",
 		children: /* @__PURE__ */ jsx("svg", {
-			className: "nothing-widget-icon-svg",
+			className: "aios-widget-icon-svg",
 			fill: "none",
 			preserveAspectRatio: "none",
 			viewBox: "0 0 29.5574 29.2561",
@@ -123,7 +123,7 @@ function MiniIcons() {
 			className: "widget-relative widget-shrink-0 widget-card__svg--24",
 			"data-name": "Spotify - Negative",
 			children: /* @__PURE__ */ jsx("svg", {
-				className: "nothing-widget-icon-svg",
+				className: "aios-widget-icon-svg",
 				fill: "none",
 				preserveAspectRatio: "none",
 				viewBox: "0 0 24 24",
@@ -162,7 +162,7 @@ function MiniBullet() {
 		className: "-translate-y-1/2 absolute h-[13px] end-[16px] top-[calc(50%-0.5px)] w-[4px]",
 		"data-name": "Bullet",
 		children: /* @__PURE__ */ jsx("svg", {
-			className: "nothing-widget-icon-svg",
+			className: "aios-widget-icon-svg",
 			fill: "none",
 			preserveAspectRatio: "none",
 			viewBox: "0 0 4 13",

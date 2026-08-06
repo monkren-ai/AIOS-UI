@@ -1,4 +1,4 @@
-.nothing-widget-pill {
+.aios-widget-pill {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -13,55 +13,55 @@
   cursor: pointer;
 }
 
-.nothing-widget-pill--light {
+.aios-widget-pill--light {
   background: var(--widget-card-bg);
 }
 
-.nothing-widget-pill--light .nothing-widget-pill__icon {
+.aios-widget-pill--light .aios-widget-pill__icon {
   color: var(--widget-dark-bg);
 }
 
-.nothing-widget-pill--light .nothing-widget-pill__label {
+.aios-widget-pill--light .aios-widget-pill__label {
   color: var(--widget-dark-3);
 }
 
-.nothing-widget-pill--dark {
+.aios-widget-pill--dark {
   background: var(--widget-dark-bg);
 }
 
-.nothing-widget-pill--dark .nothing-widget-pill__icon {
+.aios-widget-pill--dark .aios-widget-pill__icon {
   color: var(--widget-white);
 }
 
-.nothing-widget-pill--dark .nothing-widget-pill__label {
+.aios-widget-pill--dark .aios-widget-pill__label {
   color: var(--widget-dark-4);
 }
 
-.nothing-widget-pill--accent {
+.aios-widget-pill--accent {
   background: var(--widget-primary);
 }
 
-.nothing-widget-pill--accent .nothing-widget-pill__icon {
+.aios-widget-pill--accent .aios-widget-pill__icon {
   color: var(--widget-white);
 }
 
-.nothing-widget-pill--accent .nothing-widget-pill__label {
+.aios-widget-pill--accent .aios-widget-pill__label {
   color: var(--widget-text-on-accent);
 }
 
-.nothing-widget-pill--error {
+.aios-widget-pill--error {
   background: var(--widget-error, #d71921);
 }
 
-.nothing-widget-pill--error .nothing-widget-pill__icon {
+.aios-widget-pill--error .aios-widget-pill__icon {
   color: var(--widget-white);
 }
 
-.nothing-widget-pill--error .nothing-widget-pill__label {
+.aios-widget-pill--error .aios-widget-pill__label {
   color: var(--widget-white);
 }
 
-.nothing-widget-pill__icon {
+.aios-widget-pill__icon {
   width: var(--space-lg, 24px);
   height: var(--space-lg, 24px);
   display: flex;
@@ -72,7 +72,7 @@
   overflow: hidden;
 }
 
-.nothing-widget-pill__icon svg {
+.aios-widget-pill__icon svg {
   position: relative;
   width: 100% !important;
   height: 100% !important;
@@ -81,7 +81,7 @@
   fill: currentColor;
 }
 
-.nothing-widget-pill__label {
+.aios-widget-pill__label {
   font-size: var(--caption, 12px);
   font-family: var(--font-widget);
   text-transform: uppercase;

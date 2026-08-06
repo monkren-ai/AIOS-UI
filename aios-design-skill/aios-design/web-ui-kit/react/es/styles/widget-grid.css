@@ -1,4 +1,4 @@
-.nothing-widget-grid {
+.aios-widget-grid {
   display: flex;
   flex-wrap: wrap;
   gap: var(--widget-gap);
@@ -9,10 +9,10 @@
   align-items: flex-start;
 }
 
-.nothing-widget-grid--dense {
+.aios-widget-grid--dense {
   gap: calc(var(--widget-gap) / 2);
 }
 
-.nothing-widget-grid--compact {
+.aios-widget-grid--compact {
   gap: calc(var(--widget-gap) / 2);
 }

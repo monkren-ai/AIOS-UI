@@ -28,7 +28,7 @@ const commandGroupHeadingVariants = cva(["pt-2 pb-1 px-6 text-start", "font-mono
 const commandItemVariants = cva([
 	"flex cursor-pointer select-none items-center gap-2",
 	"[-webkit-tap-highlight-color:transparent]",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:bg-muted",
 	"focus-visible:z-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-interactive"
 ], {

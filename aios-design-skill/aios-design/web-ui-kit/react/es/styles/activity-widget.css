@@ -1,4 +1,4 @@
-.nothing-activity-widget {
+.aios-activity-widget {
   border-radius: var(--radius-xl);
   background: var(--widget-card-bg);
   padding: var(--space-md);
@@ -9,53 +9,53 @@
   justify-content: space-between;
 }
 
-.nothing-activity-widget__markers {
+.aios-activity-widget__markers {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin: 0 var(--space-xs, 9px);
 }
 
-.nothing-activity-widget__marker-col {
+.aios-activity-widget__marker-col {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-3xs);
 }
 
-.nothing-activity-widget__marker {
+.aios-activity-widget__marker {
   border-radius: 50%;
   width: var(--widget-dot-md);
   height: var(--widget-dot-md);
 }
 
-.nothing-activity-widget__marker--active {
+.aios-activity-widget__marker--active {
   background: var(--widget-primary);
 }
 
-.nothing-activity-widget__marker--inactive {
+.aios-activity-widget__marker--inactive {
   background: var(--widget-dark-bg);
 }
 
-.nothing-activity-widget__days {
+.aios-activity-widget__days {
   display: flex;
   justify-content: space-between;
 }
 
-.nothing-activity-widget__day {
+.aios-activity-widget__day {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-2xs);
 }
 
-.nothing-activity-widget__day-label {
+.aios-activity-widget__day-label {
   font-size: var(--widget-label);
   color: var(--widget-dark-4);
   font-family: var(--font-widget);
 }
 
-.nothing-activity-widget__day-value {
+.aios-activity-widget__day-value {
   font-size: var(--caption);
   color: var(--widget-dark-4);
   font-family: var(--font-widget);

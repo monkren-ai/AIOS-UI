@@ -6,7 +6,7 @@ import { cva } from "class-variance-authority";
 * 这是「随机决策转盘」而不是 loading 圈：扇区交替填 text-display / surface-raised，
 * 指针与命中扇区用单点红标记，全程没有阴影与渐变。
 */
-const spinnerVariants = cva(["flex flex-col items-center rounded-lg border transition-colors duration-300 ease-nothing", "motion-reduce:transition-none"], {
+const spinnerVariants = cva(["flex flex-col items-center rounded-lg border transition-colors duration-300 ease-aios", "motion-reduce:transition-none"], {
 	variants: {
 		variant: {
 			soft: "border-border bg-surface",
@@ -46,7 +46,7 @@ const spinnerSvgVariants = cva([
 	"motion-reduce:transition-none"
 ]);
 /** 扇区。 */
-const spinnerSectorVariants = cva(["stroke-border [stroke-width:1]", "transition-[fill] duration-300 ease-nothing motion-reduce:transition-none"], {
+const spinnerSectorVariants = cva(["stroke-border [stroke-width:1]", "transition-[fill] duration-300 ease-aios motion-reduce:transition-none"], {
 	variants: {
 		isEven: {
 			true: "fill-foreground-display",

@@ -8,7 +8,7 @@ import { cva } from "class-variance-authority";
 const labelVariants = cva([
 	"inline-flex cursor-default items-center gap-0.5",
 	"font-mono uppercase tracking-wider text-foreground-muted",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		size: {

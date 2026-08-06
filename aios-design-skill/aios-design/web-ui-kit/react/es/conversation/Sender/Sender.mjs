@@ -88,7 +88,7 @@ const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", 
 		className: cn(senderVariants({
 			variant,
 			size
-		}), disabled && "nothing-sender--disabled", loading && "nothing-sender--loading", readOnly && "nothing-sender--readonly", classNames.root, className),
+		}), disabled && "aios-sender--disabled", loading && "aios-sender--loading", readOnly && "aios-sender--readonly", classNames.root, className),
 		style: {
 			...styles.root,
 			...style
@@ -101,25 +101,25 @@ const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", 
 		"data-disabled": dataAttr(disabled),
 		children: [
 			header && /* @__PURE__ */ jsx("div", {
-				className: cn("nothing-sender__header", classNames.header),
+				className: cn("aios-sender__header", classNames.header),
 				style: styles.header,
 				"data-slot": "sender-header",
 				children: header
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: cn("nothing-sender__content", classNames.content),
+				className: cn("aios-sender__content", classNames.content),
 				style: styles.content,
 				"data-slot": "sender-content",
 				children: [
 					prefix && /* @__PURE__ */ jsx("div", {
-						className: cn("nothing-sender__prefix", classNames.prefix),
+						className: cn("aios-sender__prefix", classNames.prefix),
 						style: styles.prefix,
 						"data-slot": "sender-prefix",
 						children: renderNode(prefix)
 					}),
 					/* @__PURE__ */ jsx("textarea", {
 						ref,
-						className: cn("nothing-sender__input", classNames.input),
+						className: cn("aios-sender__input", classNames.input),
 						style: {
 							...styles.input,
 							...computedStyle
@@ -136,7 +136,7 @@ const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", 
 						...rest
 					}),
 					suffix && /* @__PURE__ */ jsx("div", {
-						className: cn("nothing-sender__suffix", classNames.suffix),
+						className: cn("aios-sender__suffix", classNames.suffix),
 						style: styles.suffix,
 						"data-slot": "sender-suffix",
 						children: renderNode(suffix)
@@ -144,7 +144,7 @@ const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", 
 				]
 			}),
 			footer && /* @__PURE__ */ jsx("div", {
-				className: cn("nothing-sender__footer", classNames.footer),
+				className: cn("aios-sender__footer", classNames.footer),
 				style: styles.footer,
 				"data-slot": "sender-footer",
 				children: renderNode(footer)

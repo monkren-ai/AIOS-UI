@@ -25,7 +25,7 @@ const dateNavArrowVariants = cva([
 	"flex size-11 min-h-11 min-w-11 cursor-pointer items-center justify-center p-0",
 	"select-none border-none bg-transparent font-mono text-base text-foreground-muted",
 	"[-webkit-tap-highlight-color:transparent]",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:text-foreground-display active:opacity-70",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ], {

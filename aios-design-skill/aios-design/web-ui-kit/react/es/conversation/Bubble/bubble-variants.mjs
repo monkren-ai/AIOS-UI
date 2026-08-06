@@ -1,23 +1,23 @@
 import { cva } from "class-variance-authority";
 //#region src/conversation/Bubble/bubble-variants.ts
-const bubbleVariants = cva("nothing-bubble", {
+const bubbleVariants = cva("aios-bubble", {
 	variants: {
 		placement: {
-			start: "nothing-bubble--start",
-			end: "nothing-bubble--end"
+			start: "aios-bubble--start",
+			end: "aios-bubble--end"
 		},
 		variant: {
-			filled: "nothing-bubble--filled",
-			outlined: "nothing-bubble--outlined",
-			borderless: "nothing-bubble--borderless"
+			filled: "aios-bubble--filled",
+			outlined: "aios-bubble--outlined",
+			borderless: "aios-bubble--borderless"
 		},
 		shape: {
 			default: "",
-			round: "nothing-bubble--round",
-			corner: "nothing-bubble--corner"
+			round: "aios-bubble--round",
+			corner: "aios-bubble--corner"
 		},
 		loading: {
-			true: "nothing-bubble--loading",
+			true: "aios-bubble--loading",
 			false: ""
 		}
 	},

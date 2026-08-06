@@ -16,13 +16,13 @@ const scrollAreaViewportVariants = cva([
 const scrollAreaScrollbarVariants = cva([
 	"group/scrollbar absolute inset-y-0 end-0 w-2 bg-transparent",
 	"opacity-0 group-hover:opacity-100 group-data-dragging:opacity-100",
-	"transition-opacity duration-200 ease-nothing motion-reduce:transition-none"
+	"transition-opacity duration-200 ease-aios motion-reduce:transition-none"
 ]);
 /** 滚动条滑块。 */
 const scrollAreaThumbVariants = cva([
 	"absolute end-0.5 w-1 cursor-pointer rounded-pill bg-foreground-disabled",
 	"hover:bg-foreground-muted group-hover/scrollbar:bg-foreground-muted",
-	"transition-[background-color] duration-200 ease-nothing motion-reduce:transition-none"
+	"transition-[background-color] duration-200 ease-aios motion-reduce:transition-none"
 ]);
 //#endregion
 export { scrollAreaScrollbarVariants, scrollAreaThumbVariants, scrollAreaVariants, scrollAreaViewportVariants };

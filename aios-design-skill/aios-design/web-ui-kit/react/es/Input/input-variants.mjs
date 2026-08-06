@@ -34,7 +34,7 @@ const inputVariants = cva(["relative flex w-full flex-col gap-1"], {
 	}
 });
 /** 包裹图标 + 原生 input 的一行。边框与背景都长在这里。 */
-const inputControlVariants = cva(["relative flex w-full items-center gap-2", "transition-colors duration-200 ease-nothing motion-reduce:transition-none"], {
+const inputControlVariants = cva(["relative flex w-full items-center gap-2", "transition-colors duration-200 ease-aios motion-reduce:transition-none"], {
 	variants: {
 		variant: {
 			outline: "rounded-input border border-border-visible bg-transparent focus-within:border-foreground",
@@ -65,7 +65,7 @@ const inputControlVariants = cva(["relative flex w-full items-center gap-2", "tr
 const inputFieldVariants = cva([
 	"w-full min-w-0 flex-1 border-0 bg-transparent font-mono text-foreground outline-none",
 	"placeholder:text-foreground-disabled",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"disabled:cursor-not-allowed disabled:text-foreground-disabled"
 ], {
 	variants: { size: {
@@ -76,7 +76,7 @@ const inputFieldVariants = cva([
 	defaultVariants: { size: "md" }
 });
 /** 字段标签。 */
-const inputLabelVariants = cva(["font-mono uppercase tracking-wider text-foreground-muted", "transition-colors duration-200 ease-nothing motion-reduce:transition-none"], {
+const inputLabelVariants = cva(["font-mono uppercase tracking-wider text-foreground-muted", "transition-colors duration-200 ease-aios motion-reduce:transition-none"], {
 	variants: {
 		size: {
 			sm: "text-micro",
@@ -103,7 +103,7 @@ const inputLabelVariants = cva(["font-mono uppercase tracking-wider text-foregro
 *
 * 命名刻意避开 `inputMessageVariants` —— 那是独立组件 `InputMessage`（聊天输入框）的。
 */
-const inputHelperVariants = cva(["font-mono text-label uppercase tracking-wide", "transition-colors duration-200 ease-nothing motion-reduce:transition-none"], {
+const inputHelperVariants = cva(["font-mono text-label uppercase tracking-wide", "transition-colors duration-200 ease-aios motion-reduce:transition-none"], {
 	variants: { variant: {
 		default: "text-foreground-muted",
 		error: "text-accent"
@@ -116,7 +116,7 @@ const inputIconVariants = cva(["inline-flex shrink-0 items-center justify-center
 const inputClearVariants = cva([
 	"inline-flex shrink-0 cursor-pointer items-center justify-center",
 	"m-0 border-0 bg-transparent p-0 text-foreground-muted",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:text-foreground",
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"[&_svg]:size-[1em] [&_svg]:shrink-0"

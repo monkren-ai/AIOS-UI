@@ -9,7 +9,7 @@ import { cva } from "class-variance-authority";
 const systemMonitorVariants = cva([
 	"flex w-full flex-col",
 	"rounded-lg border border-border bg-surface p-8",
-	"transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		variant: {
@@ -29,7 +29,7 @@ const systemMonitorVariants = cva([
 	}
 });
 /** 顶部标题。 */
-const monitorTitleVariants = cva(["font-mono text-label uppercase tracking-widest text-foreground-muted", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const monitorTitleVariants = cva(["font-mono text-label uppercase tracking-widest text-foreground-muted", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /**
 * 单个指标块。
 *
@@ -60,9 +60,9 @@ const monitorItemVariants = cva(["mb-6 last:mb-0"], {
 	}
 });
 /** 指标名。 */
-const monitorItemLabelVariants = cva(["font-mono text-sm uppercase tracking-wider text-foreground-muted", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const monitorItemLabelVariants = cva(["font-mono text-sm uppercase tracking-wider text-foreground-muted", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 指标读数。超过阈值时变黄 / 变红。 */
-const monitorItemValueVariants = cva(["font-display text-base font-semibold tracking-[-0.02em] tabular-nums", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const monitorItemValueVariants = cva(["font-display text-base font-semibold tracking-[-0.02em] tabular-nums", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { status: {
 		none: "text-foreground-display",
 		warning: "text-warning",
@@ -75,7 +75,7 @@ const monitorItemValueVariants = cva(["font-display text-base font-semibold trac
 	defaultVariants: { status: "none" }
 });
 /** 「12.5 / 16 GB」这类补充说明。 */
-const monitorItemDetailsVariants = cva(["mb-2 font-mono text-caption tabular-nums text-foreground-muted", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const monitorItemDetailsVariants = cva(["mb-2 font-mono text-caption tabular-nums text-foreground-muted", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** Connected / Charging 之类的状态标。 */
 const monitorItemStatusVariants = cva(["ms-2 font-mono text-caption uppercase tracking-wider"], {
 	variants: { tone: {
@@ -92,7 +92,7 @@ const monitorItemStatusVariants = cva(["ms-2 font-mono text-caption uppercase tr
 * 填充色优先级与 v1 的 CSS 级联一致：critical / warning / low 的告警色
 * 盖过按指标类型分配的常规色。
 */
-const monitorSegmentVariants = cva(["flex-1 transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const monitorSegmentVariants = cva(["flex-1 transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: {
 		filled: {
 			true: "bg-foreground-display",

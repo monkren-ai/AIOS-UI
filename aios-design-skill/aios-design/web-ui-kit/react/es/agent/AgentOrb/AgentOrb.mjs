@@ -4,19 +4,19 @@ import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "./AgentOrb.css";
 //#region src/agent/AgentOrb/AgentOrb.tsx
-const agentOrbVariants = cva("nothing-agent-orb", {
+const agentOrbVariants = cva("aios-agent-orb", {
 	variants: {
 		state: {
-			idle: "nothing-agent-orb--idle",
-			thinking: "nothing-agent-orb--thinking",
-			acting: "nothing-agent-orb--acting",
-			paused: "nothing-agent-orb--paused",
-			error: "nothing-agent-orb--error"
+			idle: "aios-agent-orb--idle",
+			thinking: "aios-agent-orb--thinking",
+			acting: "aios-agent-orb--acting",
+			paused: "aios-agent-orb--paused",
+			error: "aios-agent-orb--error"
 		},
 		size: {
-			sm: "nothing-agent-orb--sm",
-			md: "nothing-agent-orb--md",
-			lg: "nothing-agent-orb--lg"
+			sm: "aios-agent-orb--sm",
+			md: "aios-agent-orb--md",
+			lg: "aios-agent-orb--lg"
 		}
 	},
 	defaultVariants: {
@@ -56,10 +56,10 @@ const AgentOrb = React$1.forwardRef(({ state = "idle", size = "md", showLabel = 
 		"aria-label": ariaLabel,
 		...props,
 		children: [/* @__PURE__ */ jsx("span", {
-			className: "nothing-agent-orb__dot",
+			className: "aios-agent-orb__dot",
 			"aria-hidden": "true"
 		}), displayLabel && /* @__PURE__ */ jsx("span", {
-			className: "nothing-agent-orb__label",
+			className: "aios-agent-orb__label",
 			children: displayLabel
 		})]
 	});

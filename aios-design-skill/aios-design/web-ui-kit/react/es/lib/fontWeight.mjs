@@ -18,10 +18,10 @@ const fontWeightValues = {
 	bold: "700"
 };
 /**
-* 组件 CSS 中建议使用 `.nothing-font-weight-transition` 类：
+* 组件 CSS 中建议使用 `.aios-font-weight-transition` 类：
 *
 * ```css
-* .nothing-font-weight-transition {
+* .aios-font-weight-transition {
 *   transition: font-weight var(--duration-micro) var(--easing),
 *               font-variation-settings var(--duration-micro) var(--easing);
 * }
@@ -30,7 +30,7 @@ const fontWeightValues = {
 * 这样当父元素 hover 时子元素的字重会平滑过渡。
 */
 const FONT_WEIGHT_TRANSITION_CSS = `
-.nothing-font-weight-transition {
+.aios-font-weight-transition {
   transition:
     font-weight var(--duration-micro) var(--easing),
     font-variation-settings var(--duration-micro) var(--easing);

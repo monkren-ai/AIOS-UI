@@ -16,7 +16,7 @@ declare const inputCopyFieldVariants: (props?: ({
  * 复制按钮。
  *
  * 分隔线用 `border-s`（不是 `border-l`），RTL 下会自动跑到另一侧。
- * 复制成功时的闪光走 `@keyframes nothing-input-copy-flash`（见 InputCopy.css）。
+ * 复制成功时的闪光走 `@keyframes aios-input-copy-flash`（见 InputCopy.css）。
  */
 declare const inputCopyButtonVariants: (props?: ({
   size?: "sm" | "md" | "lg" | null | undefined;

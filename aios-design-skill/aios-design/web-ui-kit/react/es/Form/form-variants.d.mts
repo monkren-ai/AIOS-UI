@@ -4,7 +4,7 @@ declare const formVariants: (props?: import("class-variance-authority/types").Cl
 /**
  * 字段分组：label + 控件 + 说明文字一组，间距 4px。
  *
- * 旧 CSS 里的 `.nothing-form__group` / `--error`，现在以 CVA 形式导出，
+ * 旧 CSS 里的 `.aios-form__group` / `--error`，现在以 CVA 形式导出，
  * 供调用方直接贴到自己的 `<div>` 上。
  */
 declare const formGroupVariants: (props?: ({

@@ -42,7 +42,7 @@ const textareaVariants = cva(["relative flex w-full flex-col gap-1"], {
 const textareaFieldVariants = cva([
 	"w-full font-mono text-foreground outline-none",
 	"placeholder:text-foreground-disabled",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"disabled:cursor-not-allowed disabled:resize-none disabled:text-foreground-disabled"
 ], {
@@ -78,7 +78,7 @@ const textareaFieldVariants = cva([
 	}
 });
 /** 字段标签。focus 时提亮，error 时变红。 */
-const textareaLabelVariants = cva(["font-mono uppercase tracking-wider text-foreground-muted", "transition-colors duration-200 ease-nothing motion-reduce:transition-none"], {
+const textareaLabelVariants = cva(["font-mono uppercase tracking-wider text-foreground-muted", "transition-colors duration-200 ease-aios motion-reduce:transition-none"], {
 	variants: {
 		size: {
 			sm: "text-micro",
@@ -106,7 +106,7 @@ const textareaLabelVariants = cva(["font-mono uppercase tracking-wider text-fore
 	}
 });
 /** 辅助说明 / 错误文案。 */
-const textareaMessageVariants = cva(["font-mono text-label uppercase tracking-wide", "transition-colors duration-200 ease-nothing motion-reduce:transition-none"], {
+const textareaMessageVariants = cva(["font-mono text-label uppercase tracking-wide", "transition-colors duration-200 ease-aios motion-reduce:transition-none"], {
 	variants: { variant: {
 		default: "text-foreground-muted",
 		error: "text-accent"

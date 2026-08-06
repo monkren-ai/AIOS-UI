@@ -13,7 +13,7 @@ const tagVariants = cva([
 	"inline-flex select-none items-center gap-1",
 	"whitespace-nowrap font-mono uppercase tracking-wider",
 	"cursor-pointer border bg-transparent",
-	"transition-[border-color,color,background-color,opacity,transform] duration-200 ease-nothing",
+	"transition-[border-color,color,background-color,opacity,transform] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"data-[proximity-active=true]:z-10 data-[proximity-active=true]:border-foreground data-[proximity-active=true]:text-foreground",

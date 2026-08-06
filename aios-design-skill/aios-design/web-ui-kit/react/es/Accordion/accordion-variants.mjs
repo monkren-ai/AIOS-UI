@@ -38,9 +38,9 @@ const accordionTriggerVariants = cva([
 	"border-none bg-transparent py-4 ps-6 pe-4",
 	"font-mono text-sm uppercase tracking-wide text-foreground",
 	"hover:bg-surface-raised data-panel-open:text-foreground-display",
-	"transition-[background-color,color] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[background-color,color] duration-200 ease-aios motion-reduce:transition-none",
 	"outline-none focus-visible:z-[1] focus-visible:outline-2 focus-visible:outline-interactive focus-visible:-outline-offset-2",
-	"nothing-disabled:pointer-events-none nothing-disabled:cursor-not-allowed nothing-disabled:opacity-40"
+	"aios-disabled:pointer-events-none aios-disabled:cursor-not-allowed aios-disabled:opacity-40"
 ]);
 /** 标题文字，占满剩余宽度并靠行首对齐。 */
 const accordionTriggerTextVariants = cva("flex-1 text-start");
@@ -49,7 +49,7 @@ const accordionLeadingIconVariants = cva("inline-flex shrink-0 items-center just
 /** 末端的展开三角，展开时翻转 180°。 */
 const accordionTriggerIconVariants = cva([
 	"size-0 shrink-0 border-x-5 border-x-transparent border-t-5 border-t-foreground-muted",
-	"transition-transform duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-transform duration-200 ease-aios motion-reduce:transition-none",
 	"group-data-panel-open:rotate-180"
 ]);
 /**

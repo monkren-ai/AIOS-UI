@@ -1,16 +1,16 @@
 import { cva } from "class-variance-authority";
 //#region src/conversation/Sender/sender-variants.ts
-const senderVariants = cva("nothing-sender", {
+const senderVariants = cva("aios-sender", {
 	variants: {
 		variant: {
 			default: "",
-			filled: "nothing-sender--filled",
-			bordered: "nothing-sender--bordered"
+			filled: "aios-sender--filled",
+			bordered: "aios-sender--bordered"
 		},
 		size: {
-			sm: "nothing-sender--sm",
-			md: "nothing-sender--md",
-			lg: "nothing-sender--lg"
+			sm: "aios-sender--sm",
+			md: "aios-sender--md",
+			lg: "aios-sender--lg"
 		}
 	},
 	defaultVariants: {

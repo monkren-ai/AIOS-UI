@@ -9,7 +9,7 @@ import { cva } from "class-variance-authority";
 const dateSerifVariants = cva([
 	"relative box-border flex flex-col items-center justify-center overflow-hidden",
 	"size-[var(--widget-size-md)] rounded-xl font-body",
-	"transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: { theme: {
 		light: "bg-widget-bg",
@@ -41,7 +41,7 @@ const dateSerifPeelVariants = cva([
 const dateRectVariants = cva([
 	"box-border flex items-center gap-2 px-2 py-1",
 	"h-[var(--widget-pill-height)] w-[var(--widget-size-lg)] rounded-pill font-body",
-	"transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: { theme: {
 		light: "bg-widget-card",
@@ -58,7 +58,7 @@ const dateRectRingBgVariants = cva(["fill-none [stroke-width:3]"], {
 	defaultVariants: { theme: "light" }
 });
 /** 进度环走过的那一段。 */
-const dateRectRingProgressVariants = cva(["fill-none stroke-accent [stroke-linecap:round] [stroke-width:3]", "transition-[stroke-dashoffset] duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const dateRectRingProgressVariants = cva(["fill-none stroke-accent [stroke-linecap:round] [stroke-width:3]", "transition-[stroke-dashoffset] duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 日期数字。 */
 const dateRectDayVariants = cva(["font-display text-heading leading-none tabular-nums"], {
 	variants: { theme: {
@@ -80,7 +80,7 @@ const dateRectWeekdayVariants = cva(["font-ndot text-[8px] font-extrabold upperc
 const dateDualRingVariants = cva([
 	"relative box-border flex items-center justify-center",
 	"size-[var(--widget-size-md)] font-body",
-	"transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: { theme: {
 		light: "",

@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 //#region src/Sheet/sheet-variants.ts
 const sheetBackdropVariants = cva([
 	"fixed inset-0 z-[var(--z-modal)] bg-overlay-light",
-	"transition-[opacity,visibility] duration-[var(--duration-transition)] ease-nothing",
+	"transition-[opacity,visibility] duration-[var(--duration-transition)] ease-aios",
 	"motion-reduce:transition-none"
 ], {
 	variants: { visible: {
@@ -47,7 +47,7 @@ const sheetTitleVariants = cva("font-mono text-subheading uppercase tracking-wid
 const SHEET_DISMISS_BASE = [
 	"flex min-h-11 min-w-11 cursor-pointer items-center justify-center p-1",
 	"border-none bg-transparent text-foreground-muted",
-	"transition-colors duration-[var(--duration-micro)] ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-[var(--duration-micro)] ease-aios motion-reduce:transition-none",
 	"hover:text-foreground-display",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ];

@@ -6,7 +6,7 @@ import { cva } from "class-variance-authority";
 * `status` 描述的是对讲机自身的状态机（待机 / 发射中 / 已发送），
 * 不参与 §3 的强调层级词表。
 */
-const walkieTalkieVariants = cva(["flex w-full select-none flex-col items-center rounded-lg border border-border bg-surface p-8", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const walkieTalkieVariants = cva(["flex w-full select-none flex-col items-center rounded-lg border border-border bg-surface p-8", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { status: {
 		ready: "",
 		transmitting: "",
@@ -16,13 +16,13 @@ const walkieTalkieVariants = cva(["flex w-full select-none flex-col items-center
 });
 /** 频道选择行。 */
 const walkieChannelVariants = cva(["mb-6 flex w-full items-center justify-center gap-2"]);
-const walkieChannelLabelVariants = cva(["font-mono text-label uppercase tracking-[0.1em] text-foreground-muted", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
-const walkieChannelNumberVariants = cva(["font-mono text-base font-bold tabular-nums text-foreground-display", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const walkieChannelLabelVariants = cva(["font-mono text-label uppercase tracking-[0.1em] text-foreground-muted", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
+const walkieChannelNumberVariants = cva(["font-mono text-base font-bold tabular-nums text-foreground-display", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 频道加减按钮。 */
 const walkieChannelButtonVariants = cva([
 	"flex size-7 cursor-pointer items-center justify-center",
 	"border border-border bg-transparent text-foreground",
-	"transition-[background-color,border-color,color] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[background-color,border-color,color] duration-200 ease-aios motion-reduce:transition-none",
 	"hover:border-foreground-muted active:bg-surface-raised",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"[&_svg]:size-3.5",
@@ -35,7 +35,7 @@ const walkiePttAreaVariants = cva(["relative mb-6 flex items-center justify-cent
 const walkiePttVariants = cva([
 	"relative z-2 flex size-20 cursor-pointer items-center justify-center rounded-full",
 	"border-2 border-border-visible bg-surface-raised text-foreground",
-	"transition-[background-color,border-color,color,transform] duration-200 ease-nothing",
+	"transition-[background-color,border-color,color,transform] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"hover:border-foreground-muted",
 	"active:scale-95 active:border-accent active:bg-accent motion-reduce:active:scale-100",
@@ -74,7 +74,7 @@ const walkiePulseVariants = cva(["pointer-events-none absolute inset-0 z-1 m-aut
 	}
 });
 /** 状态读数。 */
-const walkieStatusVariants = cva(["mb-6 font-mono text-sm uppercase tracking-[0.1em]", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const walkieStatusVariants = cva(["mb-6 font-mono text-sm uppercase tracking-[0.1em]", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { status: {
 		ready: "text-foreground-muted",
 		transmitting: "text-accent",
@@ -85,14 +85,14 @@ const walkieStatusVariants = cva(["mb-6 font-mono text-sm uppercase tracking-[0.
 /** 音量条容器。 */
 const walkieVolumeVariants = cva(["mb-2 flex h-8 items-end gap-0.5"]);
 /** 单根音量条。 */
-const walkieVolumeSegmentVariants = cva(["w-2 transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const walkieVolumeSegmentVariants = cva(["w-2 transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { filled: {
 		true: "bg-foreground-display",
 		false: "bg-border"
 	} },
 	defaultVariants: { filled: false }
 });
-const walkieVolumeLabelVariants = cva(["font-mono text-label uppercase tracking-widest text-foreground-disabled", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const walkieVolumeLabelVariants = cva(["font-mono text-label uppercase tracking-widest text-foreground-disabled", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 //#endregion
 export { walkieChannelButtonVariants, walkieChannelLabelVariants, walkieChannelNumberVariants, walkieChannelVariants, walkiePttAreaVariants, walkiePttVariants, walkiePulseVariants, walkieStatusVariants, walkieTalkieVariants, walkieVolumeLabelVariants, walkieVolumeSegmentVariants, walkieVolumeVariants };
 

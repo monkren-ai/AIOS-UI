@@ -9,7 +9,7 @@ import { cva } from "class-variance-authority";
 const alertVariants = cva([
 	"flex items-start rounded-md border border-border-visible border-t-[3px]",
 	"font-body text-foreground",
-	"transition-[opacity,transform] duration-200 ease-nothing",
+	"transition-[opacity,transform] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"data-[state=exiting]:-translate-y-1.5 data-[state=exiting]:opacity-0"
 ], {

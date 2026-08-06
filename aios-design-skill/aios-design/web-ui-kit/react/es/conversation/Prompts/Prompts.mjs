@@ -36,12 +36,12 @@ const Prompts = React$1.forwardRef(({ items, title, layout = "grid", onItemClick
 		"data-size": dataAttr(size),
 		...rest,
 		children: [title && /* @__PURE__ */ jsx("div", {
-			className: cn("nothing-prompts__title", classNames.title),
+			className: cn("aios-prompts__title", classNames.title),
 			style: styles.title,
 			"data-slot": "prompts-title",
 			children: title
 		}), /* @__PURE__ */ jsx("div", {
-			className: cn("nothing-prompts__list", classNames.list),
+			className: cn("aios-prompts__list", classNames.list),
 			style: styles.list,
 			"data-slot": "prompts-list",
 			role: "list",
@@ -55,19 +55,19 @@ const Prompts = React$1.forwardRef(({ items, title, layout = "grid", onItemClick
 				onClick: () => handleItemClick(item, index),
 				onKeyDown: (event) => handleKeyDown(event, item, index),
 				children: [item.icon && /* @__PURE__ */ jsx("span", {
-					className: cn("nothing-prompts__item-icon", classNames.itemIcon),
+					className: cn("aios-prompts__item-icon", classNames.itemIcon),
 					style: styles.itemIcon,
 					"data-slot": "prompts-item-icon",
 					children: item.icon
 				}), /* @__PURE__ */ jsxs("span", {
-					className: "nothing-prompts__item-text",
+					className: "aios-prompts__item-text",
 					children: [item.title && /* @__PURE__ */ jsx("span", {
-						className: cn("nothing-prompts__item-title", classNames.itemTitle),
+						className: cn("aios-prompts__item-title", classNames.itemTitle),
 						style: styles.itemTitle,
 						"data-slot": "prompts-item-title",
 						children: item.title
 					}), item.description && /* @__PURE__ */ jsx("span", {
-						className: cn("nothing-prompts__item-description", classNames.itemDescription),
+						className: cn("aios-prompts__item-description", classNames.itemDescription),
 						style: styles.itemDescription,
 						"data-slot": "prompts-item-description",
 						children: item.description

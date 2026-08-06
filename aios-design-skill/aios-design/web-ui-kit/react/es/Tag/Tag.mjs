@@ -56,7 +56,7 @@ function Tag({ className, variant, size = "md", shape, active = false, removable
 		children: [children, removable && /* @__PURE__ */ jsx("button", {
 			type: "button",
 			"data-slot": "tag-remove",
-			className: cn("inline-flex size-3.5 cursor-pointer items-center justify-center", "border-none bg-transparent p-0 text-micro leading-none text-current opacity-60", "transition-opacity duration-200 ease-nothing motion-reduce:transition-none", "hover:opacity-100", "outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"),
+			className: cn("inline-flex size-3.5 cursor-pointer items-center justify-center", "border-none bg-transparent p-0 text-micro leading-none text-current opacity-60", "transition-opacity duration-200 ease-aios motion-reduce:transition-none", "hover:opacity-100", "outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"),
 			onClick: handleRemove,
 			onKeyDown: handleRemoveKeyDown,
 			tabIndex: isDisabled ? -1 : 0,

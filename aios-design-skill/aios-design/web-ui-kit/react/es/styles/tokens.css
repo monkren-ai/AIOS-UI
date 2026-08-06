@@ -293,7 +293,7 @@
 }
 
 /* ===== 字重过渡工具类 ===== */
-.nothing-font-weight-transition {
+.aios-font-weight-transition {
   transition: var(--font-weight-transition);
 }
 

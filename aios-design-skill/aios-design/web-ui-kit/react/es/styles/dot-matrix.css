@@ -1,132 +1,132 @@
-﻿.nothing-dot-matrix {
+﻿.aios-dot-matrix {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
 }
 
-.nothing-dot-matrix__row {
+.aios-dot-matrix__row {
   display: flex;
   align-items: center;
 }
 
-.nothing-dot-matrix__dot {
+.aios-dot-matrix__dot {
   border-radius: 50%;
   transition:
     opacity var(--duration-transition) var(--easing),
     background-color var(--duration-transition) var(--easing);
 }
 
-.nothing-dot-matrix__dot--active {
+.aios-dot-matrix__dot--active {
   background-color: var(--widget-primary);
   opacity: 1;
 }
 
-.nothing-dot-matrix__dot--dim {
+.aios-dot-matrix__dot--dim {
   opacity: 0.2;
 }
 
-.nothing-dot-matrix--sm .nothing-dot-matrix__row {
+.aios-dot-matrix--sm .aios-dot-matrix__row {
   gap: var(--space-3xs);
 }
 
-.nothing-dot-matrix--sm .nothing-dot-matrix__dot {
+.aios-dot-matrix--sm .aios-dot-matrix__dot {
   width: var(--widget-dot-sm);
   height: var(--widget-dot-sm);
 }
 
-.nothing-dot-matrix--sm {
+.aios-dot-matrix--sm {
   gap: var(--space-3xs);
 }
 
-.nothing-dot-matrix--md .nothing-dot-matrix__row {
+.aios-dot-matrix--md .aios-dot-matrix__row {
   gap: 3px;
 }
 
-.nothing-dot-matrix--md .nothing-dot-matrix__dot {
+.aios-dot-matrix--md .aios-dot-matrix__dot {
   width: var(--widget-dot-md);
   height: var(--widget-dot-md);
 }
 
-.nothing-dot-matrix--md {
+.aios-dot-matrix--md {
   gap: var(--space-3xs);
 }
 
-.nothing-dot-matrix--lg .nothing-dot-matrix__row {
+.aios-dot-matrix--lg .aios-dot-matrix__row {
   gap: 3px;
 }
 
-.nothing-dot-matrix--lg .nothing-dot-matrix__dot {
+.aios-dot-matrix--lg .aios-dot-matrix__dot {
   width: var(--widget-dot-lg);
   height: var(--widget-dot-lg);
 }
 
-.nothing-dot-matrix--lg {
+.aios-dot-matrix--lg {
   gap: var(--space-3xs);
 }
 
-.nothing-dot-matrix--light .nothing-dot-matrix__dot {
+.aios-dot-matrix--light .aios-dot-matrix__dot {
   background-color: var(--widget-dark-bg);
 }
 
-.nothing-dot-matrix--light .nothing-dot-matrix__dot--active {
+.aios-dot-matrix--light .aios-dot-matrix__dot--active {
   background-color: var(--widget-primary);
 }
 
-.nothing-dot-matrix--light .nothing-dot-matrix__dot--dim {
+.aios-dot-matrix--light .aios-dot-matrix__dot--dim {
   background-color: var(--widget-dark-2);
   opacity: 0.3;
 }
 
-.nothing-dot-matrix--dark .nothing-dot-matrix__dot {
+.aios-dot-matrix--dark .aios-dot-matrix__dot {
   background-color: var(--widget-white);
 }
 
-.nothing-dot-matrix--dark .nothing-dot-matrix__dot--active {
+.aios-dot-matrix--dark .aios-dot-matrix__dot--active {
   background-color: var(--widget-primary);
 }
 
-.nothing-dot-matrix--dark .nothing-dot-matrix__dot--dim {
+.aios-dot-matrix--dark .aios-dot-matrix__dot--dim {
   background-color: var(--widget-dark-2);
   opacity: 0.3;
 }
 
-.nothing-dot-matrix--glyph .nothing-dot-matrix__dot {
+.aios-dot-matrix--glyph .aios-dot-matrix__dot {
   background-color: var(--widget-dark-2);
 }
 
-.nothing-dot-matrix--glyph .nothing-dot-matrix__dot--active {
+.aios-dot-matrix--glyph .aios-dot-matrix__dot--active {
   background-color: var(--widget-primary);
 }
 
-.nothing-dot-matrix--glyph .nothing-dot-matrix__dot--dim {
+.aios-dot-matrix--glyph .aios-dot-matrix__dot--dim {
   opacity: 0.15;
 }
 
-.nothing-dot-matrix--grid .nothing-dot-matrix__dot {
+.aios-dot-matrix--grid .aios-dot-matrix__dot {
   background-color: var(--widget-dark-2);
   opacity: 0.4;
 }
 
-.nothing-dot-matrix--grid .nothing-dot-matrix__dot--active {
+.aios-dot-matrix--grid .aios-dot-matrix__dot--active {
   background-color: var(--widget-primary);
   opacity: 1;
 }
 
-.nothing-dot-matrix--grid .nothing-dot-matrix__dot--dim {
+.aios-dot-matrix--grid .aios-dot-matrix__dot--dim {
   opacity: 0.1;
 }
 
-.nothing-dot-matrix--pulse .nothing-dot-matrix__dot--active {
-  animation: nothing-dot-pulse 1.4s ease-in-out infinite;
+.aios-dot-matrix--pulse .aios-dot-matrix__dot--active {
+  animation: aios-dot-pulse 1.4s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nothing-dot-matrix--pulse .nothing-dot-matrix__dot--active {
+  .aios-dot-matrix--pulse .aios-dot-matrix__dot--active {
     animation: none;
   }
 }
 
-@keyframes nothing-dot-pulse {
+@keyframes aios-dot-pulse {
   0%,
   100% {
     opacity: 1;

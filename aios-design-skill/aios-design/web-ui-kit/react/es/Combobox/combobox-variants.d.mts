@@ -18,7 +18,7 @@ declare const comboboxLabelVariants: (props?: ({
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 输入框外壳：边框 / 背景都在这里，Input 本体透明。 */
 declare const comboboxControlVariants: (props?: ({
-  variant?: "outline" | "soft" | null | undefined;
+  variant?: "soft" | "outline" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   hasError?: boolean | null | undefined;
   disabled?: boolean | null | undefined;

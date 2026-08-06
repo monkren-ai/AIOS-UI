@@ -22,7 +22,7 @@ const colorPickerSwatchesVariants = cva(["flex flex-wrap gap-sm"]);
 const colorPickerSwatchVariants = cva([
 	"cursor-pointer p-0 [-webkit-tap-highlight-color:transparent]",
 	"rounded-sm border border-border-visible",
-	"transition-transform duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-transform duration-200 ease-aios motion-reduce:transition-none",
 	"hover:scale-108 motion-reduce:hover:scale-100",
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ], {

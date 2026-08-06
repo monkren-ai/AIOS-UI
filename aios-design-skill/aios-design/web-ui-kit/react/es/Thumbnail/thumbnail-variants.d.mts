@@ -9,7 +9,7 @@
 declare const thumbnailVariants: (props?: ({
   size?: "sm" | "md" | "lg" | null | undefined;
   ratio?: "square" | "4:3" | "16:9" | null | undefined;
-  rounded?: "none" | "card" | "input" | null | undefined;
+  rounded?: "card" | "input" | "none" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 type ThumbnailSize = 'sm' | 'md' | 'lg';
 type ThumbnailRatio = 'square' | '4:3' | '16:9';

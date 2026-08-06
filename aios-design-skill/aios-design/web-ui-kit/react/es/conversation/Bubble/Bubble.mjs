@@ -62,46 +62,46 @@ const Bubble = React$1.forwardRef(({ content, placement = "start", variant = "fi
 		"data-loading": dataAttr(loading),
 		...rest,
 		children: [avatar && /* @__PURE__ */ jsx("div", {
-			className: cn("nothing-bubble__avatar", classNames.avatar),
+			className: cn("aios-bubble__avatar", classNames.avatar),
 			style: styles.avatar,
 			"data-slot": "bubble-avatar",
 			children: avatar
 		}), /* @__PURE__ */ jsxs("div", {
-			className: cn("nothing-bubble__body", classNames.body),
+			className: cn("aios-bubble__body", classNames.body),
 			style: styles.body,
 			"data-slot": "bubble-body",
 			children: [
 				header && /* @__PURE__ */ jsx("div", {
-					className: cn("nothing-bubble__header", classNames.header),
+					className: cn("aios-bubble__header", classNames.header),
 					style: styles.header,
 					"data-slot": "bubble-header",
 					children: header
 				}),
 				/* @__PURE__ */ jsx("div", {
-					className: cn("nothing-bubble__content", classNames.content),
+					className: cn("aios-bubble__content", classNames.content),
 					style: styles.content,
 					"data-slot": "bubble-content",
 					children: loading ? /* @__PURE__ */ jsxs("span", {
-						className: "nothing-bubble__loading",
+						className: "aios-bubble__loading",
 						"aria-label": "Loading",
 						children: [
-							/* @__PURE__ */ jsx("span", { className: "nothing-bubble__loading-dot" }),
-							/* @__PURE__ */ jsx("span", { className: "nothing-bubble__loading-dot" }),
-							/* @__PURE__ */ jsx("span", { className: "nothing-bubble__loading-dot" })
+							/* @__PURE__ */ jsx("span", { className: "aios-bubble__loading-dot" }),
+							/* @__PURE__ */ jsx("span", { className: "aios-bubble__loading-dot" }),
+							/* @__PURE__ */ jsx("span", { className: "aios-bubble__loading-dot" })
 						]
 					}) : /* @__PURE__ */ jsxs(Fragment, { children: [displayed, isTyping && /* @__PURE__ */ jsx("span", {
-						className: "nothing-bubble__cursor",
+						className: "aios-bubble__cursor",
 						"aria-hidden": "true"
 					})] })
 				}),
 				footer && /* @__PURE__ */ jsx("div", {
-					className: cn("nothing-bubble__footer", classNames.footer),
+					className: cn("aios-bubble__footer", classNames.footer),
 					style: styles.footer,
 					"data-slot": "bubble-footer",
 					children: footer
 				}),
 				extra && /* @__PURE__ */ jsx("div", {
-					className: cn("nothing-bubble__extra", classNames.extra),
+					className: cn("aios-bubble__extra", classNames.extra),
 					style: styles.extra,
 					"data-slot": "bubble-extra",
 					children: extra

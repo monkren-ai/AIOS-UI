@@ -9,11 +9,11 @@ import { cva } from "class-variance-authority";
 * 直接把返回的类名贴到 `<a>` 上，就能得到一个「长得像按钮的链接」而不丢链接语义。
 */
 const buttonVariants = cva([
-	"nothing-btn",
+	"aios-btn",
 	"relative inline-flex shrink-0 select-none items-center justify-center",
 	"font-mono font-bold uppercase leading-none tracking-wider",
 	"cursor-pointer whitespace-nowrap",
-	"transition-[background-color,border-color,color,opacity,transform] duration-200 ease-nothing",
+	"transition-[background-color,border-color,color,opacity,transform] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"disabled:pointer-events-none disabled:opacity-40 data-disabled:pointer-events-none data-disabled:opacity-40",

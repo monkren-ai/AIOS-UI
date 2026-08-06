@@ -10,7 +10,7 @@ import { cva } from "class-variance-authority";
 const quotesVariants = cva([
 	"relative flex items-center justify-center overflow-hidden rounded-full",
 	"size-[var(--widget-size-md)]",
-	"transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		theme: {
@@ -49,22 +49,22 @@ const quotesSvgVariants = cva(["absolute inset-0 size-full"], {
 const quotesRingVariants = cva(["fill-none stroke-current [stroke-width:2]"], {
 	variants: { kind: {
 		bg: "opacity-15",
-		progress: ["origin-center -rotate-90 opacity-70 [stroke-linecap:round]", "transition-[stroke-dashoffset] duration-[350ms] ease-nothing motion-reduce:transition-none"]
+		progress: ["origin-center -rotate-90 opacity-70 [stroke-linecap:round]", "transition-[stroke-dashoffset] duration-[350ms] ease-aios motion-reduce:transition-none"]
 	} },
 	defaultVariants: { kind: "bg" }
 });
 /** 圆心的文字块。 */
 const quotesContentVariants = cva(["relative z-1 flex w-[130px] flex-col items-center justify-center gap-1 text-center"]);
 /** 语录正文。 */
-const quotesTextVariants = cva(["w-full break-words font-ndot text-micro leading-[1.4] tracking-normal", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const quotesTextVariants = cva(["w-full break-words font-ndot text-micro leading-[1.4] tracking-normal", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { theme: {
 		light: "text-[var(--widget-dark-2)]",
 		dark: "text-[var(--widget-white)]"
 	} },
 	defaultVariants: { theme: "dark" }
 });
-/** 作者署名。恒定用 Nothing 红，不跟 theme 走。 */
-const quotesAuthorVariants = cva(["font-body text-micro font-semibold uppercase tracking-[0.05em] text-[var(--widget-primary)]", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+/** 作者署名。恒定用 AIOS 红，不跟 theme 走。 */
+const quotesAuthorVariants = cva(["font-body text-micro font-semibold uppercase tracking-[0.05em] text-[var(--widget-primary)]", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 //#endregion
 export { quotesAuthorVariants, quotesContentVariants, quotesRingVariants, quotesSvgVariants, quotesTextVariants, quotesVariants };
 

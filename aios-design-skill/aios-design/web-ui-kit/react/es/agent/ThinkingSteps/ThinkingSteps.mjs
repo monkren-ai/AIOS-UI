@@ -5,9 +5,9 @@ import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "./ThinkingSteps.css";
 //#region src/agent/ThinkingSteps/ThinkingSteps.tsx
-const thinkingStepsVariants = cva("nothing-thinking-steps", {
+const thinkingStepsVariants = cva("aios-thinking-steps", {
 	variants: { compact: {
-		true: "nothing-thinking-steps--compact",
+		true: "aios-thinking-steps--compact",
 		false: ""
 	} },
 	defaultVariants: { compact: false }
@@ -61,12 +61,12 @@ const ThinkingSteps = React$1.forwardRef(({ steps, title = "THINKING", activeInd
 		"aria-live": "polite",
 		...props,
 		children: [/* @__PURE__ */ jsxs("div", {
-			className: "nothing-thinking-steps__header",
+			className: "aios-thinking-steps__header",
 			children: [/* @__PURE__ */ jsx("span", {
-				className: "nothing-thinking-steps__title",
+				className: "aios-thinking-steps__title",
 				children: title
 			}), /* @__PURE__ */ jsxs("span", {
-				className: "nothing-thinking-steps__count",
+				className: "aios-thinking-steps__count",
 				children: [
 					String(activeCount).padStart(2, "0"),
 					"/",
@@ -74,36 +74,36 @@ const ThinkingSteps = React$1.forwardRef(({ steps, title = "THINKING", activeInd
 				]
 			})]
 		}), /* @__PURE__ */ jsx("ol", {
-			className: "nothing-thinking-steps__list",
+			className: "aios-thinking-steps__list",
 			"aria-label": `${title} steps`,
 			children: steps.map((step, index) => {
 				const status = computeStatus(index);
 				const isLast = index === steps.length - 1;
 				const indicatorState = status === "pending" ? void 0 : status;
 				return /* @__PURE__ */ jsxs("li", {
-					className: cn("nothing-thinking-steps__item", `nothing-thinking-steps__item--${status}`, isLast && "nothing-thinking-steps__item--last"),
+					className: cn("aios-thinking-steps__item", `aios-thinking-steps__item--${status}`, isLast && "aios-thinking-steps__item--last"),
 					"data-status": dataAttr(status),
 					style: { "--step-index": index },
 					children: [/* @__PURE__ */ jsxs("div", {
-						className: "nothing-thinking-steps__marker",
+						className: "aios-thinking-steps__marker",
 						"aria-hidden": "true",
 						children: [indicatorState ? /* @__PURE__ */ jsx(ThinkingIndicator, {
 							state: indicatorState,
 							size: "sm"
-						}) : /* @__PURE__ */ jsx("span", { className: "nothing-thinking-steps__dot" }), !isLast && /* @__PURE__ */ jsx("span", { className: "nothing-thinking-steps__line" })]
+						}) : /* @__PURE__ */ jsx("span", { className: "aios-thinking-steps__dot" }), !isLast && /* @__PURE__ */ jsx("span", { className: "aios-thinking-steps__line" })]
 					}), /* @__PURE__ */ jsxs("div", {
-						className: "nothing-thinking-steps__content",
+						className: "aios-thinking-steps__content",
 						children: [/* @__PURE__ */ jsxs("div", {
-							className: "nothing-thinking-steps__row",
+							className: "aios-thinking-steps__row",
 							children: [/* @__PURE__ */ jsx("span", {
-								className: "nothing-thinking-steps__label",
+								className: "aios-thinking-steps__label",
 								children: step.title
 							}), /* @__PURE__ */ jsx("span", {
-								className: "nothing-thinking-steps__status",
+								className: "aios-thinking-steps__status",
 								children: statusLabels[status]
 							})]
 						}), step.content && /* @__PURE__ */ jsx("span", {
-							className: "nothing-thinking-steps__description",
+							className: "aios-thinking-steps__description",
 							children: step.content
 						})]
 					})]

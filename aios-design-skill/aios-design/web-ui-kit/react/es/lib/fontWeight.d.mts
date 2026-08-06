@@ -23,10 +23,10 @@ declare const fontVariationWeights: FontWeightSettings;
  */
 declare const fontWeightValues: FontWeightSettings;
 /**
- * 组件 CSS 中建议使用 `.nothing-font-weight-transition` 类：
+ * 组件 CSS 中建议使用 `.aios-font-weight-transition` 类：
  *
  * ```css
- * .nothing-font-weight-transition {
+ * .aios-font-weight-transition {
  *   transition: font-weight var(--duration-micro) var(--easing),
  *               font-variation-settings var(--duration-micro) var(--easing);
  * }
@@ -34,7 +34,7 @@ declare const fontWeightValues: FontWeightSettings;
  *
  * 这样当父元素 hover 时子元素的字重会平滑过渡。
  */
-declare const FONT_WEIGHT_TRANSITION_CSS = "\n.nothing-font-weight-transition {\n  transition:\n    font-weight var(--duration-micro) var(--easing),\n    font-variation-settings var(--duration-micro) var(--easing);\n}\n";
+declare const FONT_WEIGHT_TRANSITION_CSS = "\n.aios-font-weight-transition {\n  transition:\n    font-weight var(--duration-micro) var(--easing),\n    font-variation-settings var(--duration-micro) var(--easing);\n}\n";
 //#endregion
 export { FONT_WEIGHT_TRANSITION_CSS, fontVariationWeights, fontWeightValues };
 //# sourceMappingURL=fontWeight.d.mts.map

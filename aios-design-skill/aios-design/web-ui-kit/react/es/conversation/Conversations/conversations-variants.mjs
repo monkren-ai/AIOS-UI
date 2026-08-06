@@ -1,16 +1,16 @@
 import { cva } from "class-variance-authority";
 //#region src/conversation/Conversations/conversations-variants.ts
-const conversationsVariants = cva("nothing-conversations", {
+const conversationsVariants = cva("aios-conversations", {
 	variants: {
 		variant: {
 			default: "",
-			bordered: "nothing-conversations--bordered",
-			filled: "nothing-conversations--filled"
+			bordered: "aios-conversations--bordered",
+			filled: "aios-conversations--filled"
 		},
 		size: {
-			sm: "nothing-conversations--sm",
-			md: "nothing-conversations--md",
-			lg: "nothing-conversations--lg"
+			sm: "aios-conversations--sm",
+			md: "aios-conversations--md",
+			lg: "aios-conversations--lg"
 		}
 	},
 	defaultVariants: {
@@ -18,14 +18,14 @@ const conversationsVariants = cva("nothing-conversations", {
 		size: "md"
 	}
 });
-const conversationsItemVariants = cva("nothing-conversations__item", {
+const conversationsItemVariants = cva("aios-conversations__item", {
 	variants: {
 		active: {
-			true: "nothing-conversations__item--active",
+			true: "aios-conversations__item--active",
 			false: ""
 		},
 		disabled: {
-			true: "nothing-conversations__item--disabled",
+			true: "aios-conversations__item--disabled",
 			false: ""
 		}
 	},

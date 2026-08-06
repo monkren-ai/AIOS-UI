@@ -6,27 +6,27 @@ import "@/styles/table.css";
 import "@/styles/data-grid.css";
 import "@/styles/data-rows.css";
 //#region src/DataTable/DataTable.tsx
-const dataTableVariants = cva("nothing-data-table", {
+const dataTableVariants = cva("aios-data-table", {
 	variants: {
 		variant: {
-			table: "nothing-table",
-			grid: "nothing-data-grid",
-			rows: "nothing-data-rows"
+			table: "aios-table",
+			grid: "aios-data-grid",
+			rows: "aios-data-rows"
 		},
 		striped: {
-			true: "nothing-table--striped",
+			true: "aios-table--striped",
 			false: ""
 		},
 		compact: {
-			true: "nothing-table--compact",
+			true: "aios-table--compact",
 			false: ""
 		},
 		hoverable: {
-			true: "nothing-table--hoverable",
+			true: "aios-table--hoverable",
 			false: ""
 		},
 		proximity: {
-			true: "nothing-data-table--proximity",
+			true: "aios-data-table--proximity",
 			false: ""
 		}
 	},
@@ -68,7 +68,7 @@ function useSortedRows(rows, columns, sortKey, sortDirection) {
 }
 function SortIcon({ direction }) {
 	return /* @__PURE__ */ jsxs("svg", {
-		className: cn("nothing-sort-icon", direction === "asc" && "nothing-sort-icon--asc", direction === "desc" && "nothing-sort-icon--desc"),
+		className: cn("aios-sort-icon", direction === "asc" && "aios-sort-icon--asc", direction === "desc" && "aios-sort-icon--desc"),
 		viewBox: "0 0 16 16",
 		fill: "none",
 		stroke: "currentColor",
@@ -76,27 +76,27 @@ function SortIcon({ direction }) {
 		"aria-hidden": "true",
 		children: [/* @__PURE__ */ jsx("path", {
 			d: "M4 6l4-4 4 4",
-			className: "nothing-sort-icon__up"
+			className: "aios-sort-icon__up"
 		}), /* @__PURE__ */ jsx("path", {
 			d: "M4 10l4 4 4-4",
-			className: "nothing-sort-icon__down"
+			className: "aios-sort-icon__down"
 		})]
 	});
 }
 function TableHeader({ columns, sortKey, sortDirection, onSort }) {
 	return /* @__PURE__ */ jsx("thead", {
-		className: "nothing-table__head",
+		className: "aios-table__head",
 		children: /* @__PURE__ */ jsx("tr", {
-			className: "nothing-table__row",
+			className: "aios-table__row",
 			children: columns.map((col) => {
 				const active = sortKey === col.key;
 				return /* @__PURE__ */ jsx("th", {
-					className: cn("nothing-table__header", col.align === "center" && "nothing-table__cell--center", col.align === "right" && "nothing-table__cell--right", col.sortable && "nothing-table__header--sortable", active && "nothing-table__header--sorted"),
+					className: cn("aios-table__header", col.align === "center" && "aios-table__cell--center", col.align === "right" && "aios-table__cell--right", col.sortable && "aios-table__header--sortable", active && "aios-table__header--sorted"),
 					style: col.width ? { width: col.width } : void 0,
 					"aria-sort": active ? sortDirection === "asc" ? "ascending" : "descending" : "none",
 					children: col.sortable ? /* @__PURE__ */ jsxs("button", {
 						type: "button",
-						className: "nothing-table__sort-button",
+						className: "aios-table__sort-button",
 						onClick: () => onSort(col.key),
 						"aria-label": `Sort by ${col.label}`,
 						children: [/* @__PURE__ */ jsx("span", { children: col.label }), /* @__PURE__ */ jsx(SortIcon, { direction: active ? sortDirection : null })]
@@ -108,10 +108,10 @@ function TableHeader({ columns, sortKey, sortDirection, onSort }) {
 }
 function TableView({ columns, rows, caption, striped, sortKey, sortDirection, onSort }) {
 	return /* @__PURE__ */ jsxs("table", {
-		className: "nothing-table__table",
+		className: "aios-table__table",
 		children: [
 			caption && /* @__PURE__ */ jsx("caption", {
-				className: "nothing-table__caption",
+				className: "aios-table__caption",
 				children: caption
 			}),
 			/* @__PURE__ */ jsx(TableHeader, {
@@ -121,11 +121,11 @@ function TableView({ columns, rows, caption, striped, sortKey, sortDirection, on
 				onSort
 			}),
 			/* @__PURE__ */ jsx("tbody", {
-				className: "nothing-table__body",
+				className: "aios-table__body",
 				children: rows.map((row, rowIndex) => /* @__PURE__ */ jsx("tr", {
-					className: cn("nothing-table__row", striped && rowIndex % 2 === 1 && "nothing-table__row--even"),
+					className: cn("aios-table__row", striped && rowIndex % 2 === 1 && "aios-table__row--even"),
 					children: columns.map((col) => /* @__PURE__ */ jsx("td", {
-						className: cn("nothing-table__cell", col.align === "center" && "nothing-table__cell--center", col.align === "right" && "nothing-table__cell--right"),
+						className: cn("aios-table__cell", col.align === "center" && "aios-table__cell--center", col.align === "right" && "aios-table__cell--right"),
 						children: row.cells[col.key]
 					}, col.key))
 				}, row.id ?? rowIndex))
@@ -135,15 +135,15 @@ function TableView({ columns, rows, caption, striped, sortKey, sortDirection, on
 }
 function GridHeader({ columns, sortKey, sortDirection, onSort }) {
 	return /* @__PURE__ */ jsx("div", {
-		className: "nothing-data-grid__header",
+		className: "aios-data-grid__header",
 		children: columns.map((col) => {
 			const active = sortKey === col.key;
 			return /* @__PURE__ */ jsx("div", {
-				className: cn("nothing-data-grid__header-cell", col.type === "numeric" && "nothing-data-grid__header-cell--numeric", col.sortable && "nothing-data-grid__header-cell--sortable", active && "nothing-data-grid__header-cell--sorted"),
+				className: cn("aios-data-grid__header-cell", col.type === "numeric" && "aios-data-grid__header-cell--numeric", col.sortable && "aios-data-grid__header-cell--sortable", active && "aios-data-grid__header-cell--sorted"),
 				"aria-sort": active ? sortDirection === "asc" ? "ascending" : "descending" : "none",
 				children: col.sortable ? /* @__PURE__ */ jsxs("button", {
 					type: "button",
-					className: "nothing-data-grid__sort-button",
+					className: "aios-data-grid__sort-button",
 					onClick: () => onSort(col.key),
 					"aria-label": `Sort by ${col.label}`,
 					children: [/* @__PURE__ */ jsx("span", { children: col.label }), /* @__PURE__ */ jsx(SortIcon, { direction: active ? sortDirection : null })]
@@ -173,16 +173,16 @@ function GridView({ columns, rows, emptyMessage, onRowClick, sortKey, sortDirect
 		sortDirection,
 		onSort
 	}), rows.length === 0 ? /* @__PURE__ */ jsx("div", {
-		className: "nothing-data-grid__empty",
+		className: "aios-data-grid__empty",
 		children: /* @__PURE__ */ jsx("div", {
-			className: "nothing-data-grid__empty-cell",
+			className: "aios-data-grid__empty-cell",
 			style: { gridColumn: `1 / ${columns.length + 1}` },
 			children: emptyMessage
 		})
 	}) : rows.map((row, rowIndex) => {
 		const isActive = row.active || activeRowIndex === rowIndex;
 		return /* @__PURE__ */ jsx("div", {
-			className: cn("nothing-data-grid__row", isActive && "nothing-data-grid__row--active", row.interactive && "nothing-data-grid__row--interactive"),
+			className: cn("aios-data-grid__row", isActive && "aios-data-grid__row--active", row.interactive && "aios-data-grid__row--interactive"),
 			role: row.interactive ? "button" : void 0,
 			tabIndex: row.interactive ? 0 : void 0,
 			onClick: row.interactive ? () => handleRowClick(rowIndex) : void 0,
@@ -192,7 +192,7 @@ function GridView({ columns, rows, emptyMessage, onRowClick, sortKey, sortDirect
 			children: columns.map((col) => {
 				const status = getCellStatus(row, col.key);
 				return /* @__PURE__ */ jsx("div", {
-					className: cn("nothing-data-grid__cell", col.type === "text" && "nothing-data-grid__cell--text", col.type === "numeric" && "nothing-data-grid__cell--numeric", status === "good" && "nothing-data-grid__cell--good", status === "warning" && "nothing-data-grid__cell--warning", status === "error" && "nothing-data-grid__cell--error", status === "info" && "nothing-data-grid__cell--info"),
+					className: cn("aios-data-grid__cell", col.type === "text" && "aios-data-grid__cell--text", col.type === "numeric" && "aios-data-grid__cell--numeric", status === "good" && "aios-data-grid__cell--good", status === "warning" && "aios-data-grid__cell--warning", status === "error" && "aios-data-grid__cell--error", status === "info" && "aios-data-grid__cell--info"),
 					children: row.cells[col.key] ?? ""
 				}, col.key);
 			})
@@ -212,31 +212,31 @@ function RowsView({ items, onRowClick }) {
 	return /* @__PURE__ */ jsx(Fragment, { children: items.map((row, index) => {
 		const isInteractive = row.interactive && !row.disabled;
 		return /* @__PURE__ */ jsxs("div", {
-			className: cn("nothing-data-row", row.status === "good" && "nothing-data-row--good", row.status === "warning" && "nothing-data-row--warning", row.status === "error" && "nothing-data-row--error", row.status === "info" && "nothing-data-row--info", row.isSub && "nothing-data-row--sub", row.interactive && "nothing-data-row--interactive", row.disabled && "nothing-data-row--disabled"),
+			className: cn("aios-data-row", row.status === "good" && "aios-data-row--good", row.status === "warning" && "aios-data-row--warning", row.status === "error" && "aios-data-row--error", row.status === "info" && "aios-data-row--info", row.isSub && "aios-data-row--sub", row.interactive && "aios-data-row--interactive", row.disabled && "aios-data-row--disabled"),
 			role: isInteractive ? "button" : void 0,
 			tabIndex: isInteractive ? 0 : void 0,
 			onClick: isInteractive ? () => handleRowClick(index) : void 0,
 			onKeyDown: isInteractive ? (e) => handleRowKeyDown(e, index) : void 0,
 			"data-state": dataAttr(row.disabled ? "disabled" : isInteractive ? "interactive" : "static"),
 			children: [/* @__PURE__ */ jsx("div", {
-				className: "nothing-data-row__left",
+				className: "aios-data-row__left",
 				children: /* @__PURE__ */ jsx("div", {
-					className: "nothing-data-row__label",
+					className: "aios-data-row__label",
 					children: row.label
 				})
 			}), /* @__PURE__ */ jsxs("div", {
-				className: "nothing-data-row__right",
+				className: "aios-data-row__right",
 				children: [
 					/* @__PURE__ */ jsx("div", {
-						className: "nothing-data-row__value",
+						className: "aios-data-row__value",
 						children: row.value
 					}),
 					row.unit && /* @__PURE__ */ jsx("span", {
-						className: "nothing-data-row__unit",
+						className: "aios-data-row__unit",
 						children: row.unit
 					}),
 					row.trend && /* @__PURE__ */ jsx("span", {
-						className: "nothing-data-row__trend",
+						className: "aios-data-row__trend",
 						children: row.trend
 					})
 				]

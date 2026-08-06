@@ -13,7 +13,7 @@ import { cva } from "class-variance-authority";
 const nextEventVariants = cva([
 	"box-border flex flex-col justify-center gap-0.5 overflow-hidden",
 	"h-[var(--widget-pill-height)] w-[var(--widget-size-lg)] rounded-pill px-4 py-2",
-	"transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		theme: {

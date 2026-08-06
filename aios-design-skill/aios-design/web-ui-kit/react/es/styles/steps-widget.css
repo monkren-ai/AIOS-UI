@@ -1,4 +1,4 @@
-.nothing-steps-widget {
+.aios-steps-widget {
   border-radius: var(--radius-xl);
   background: var(--widget-card-bg);
   padding: var(--space-md);
@@ -11,13 +11,13 @@
   font-family: var(--font-widget);
 }
 
-.nothing-steps-widget__group {
+.aios-steps-widget__group {
   display: flex;
   flex-direction: column;
   gap: var(--space-2xs);
 }
 
-.nothing-steps-widget__label {
+.aios-steps-widget__label {
   font-size: var(--widget-label);
   text-transform: uppercase;
   color: var(--widget-dark-4);
@@ -26,7 +26,7 @@
   line-height: 1.4;
 }
 
-.nothing-steps-widget__value {
+.aios-steps-widget__value {
   font-size: var(--display-sm);
   font-weight: 400;
   color: var(--widget-dark-2);

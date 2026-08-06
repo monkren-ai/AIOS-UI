@@ -59,7 +59,7 @@ const ThoughtChain = React$1.forwardRef(({ items, defaultExpandedKeys, expandedK
 				children: [
 					/* @__PURE__ */ jsxs("button", {
 						type: "button",
-						className: cn("nothing-thought-chain__header", classNames.itemHeader),
+						className: cn("aios-thought-chain__header", classNames.itemHeader),
 						style: styles.itemHeader,
 						"data-slot": "thought-chain-item-header",
 						disabled: !isCollapsible,
@@ -67,36 +67,36 @@ const ThoughtChain = React$1.forwardRef(({ items, defaultExpandedKeys, expandedK
 						"aria-expanded": isCollapsible ? isExpanded : void 0,
 						children: [
 							item.icon && /* @__PURE__ */ jsx("span", {
-								className: cn("nothing-thought-chain__icon", classNames.itemIcon),
+								className: cn("aios-thought-chain__icon", classNames.itemIcon),
 								style: styles.itemIcon,
 								"data-slot": "thought-chain-item-icon",
 								children: item.icon
 							}),
 							/* @__PURE__ */ jsxs("span", {
-								className: "nothing-thought-chain__title-wrap",
+								className: "aios-thought-chain__title-wrap",
 								children: [item.title && /* @__PURE__ */ jsx("span", {
-									className: "nothing-thought-chain__title",
+									className: "aios-thought-chain__title",
 									children: item.title
 								}), item.description && /* @__PURE__ */ jsx("span", {
-									className: "nothing-thought-chain__description",
+									className: "aios-thought-chain__description",
 									children: item.description
 								})]
 							}),
 							isCollapsible && /* @__PURE__ */ jsx("span", {
-								className: "nothing-thought-chain__arrow",
+								className: "aios-thought-chain__arrow",
 								"aria-hidden": "true",
 								children: isExpanded ? "−" : "+"
 							})
 						]
 					}),
 					isExpanded && /* @__PURE__ */ jsx("div", {
-						className: cn("nothing-thought-chain__content", classNames.itemContent),
+						className: cn("aios-thought-chain__content", classNames.itemContent),
 						style: styles.itemContent,
 						"data-slot": "thought-chain-item-content",
 						children: item.content
 					}),
 					item.footer && /* @__PURE__ */ jsx("div", {
-						className: cn("nothing-thought-chain__footer", classNames.itemFooter),
+						className: cn("aios-thought-chain__footer", classNames.itemFooter),
 						style: styles.itemFooter,
 						"data-slot": "thought-chain-item-footer",
 						children: item.footer

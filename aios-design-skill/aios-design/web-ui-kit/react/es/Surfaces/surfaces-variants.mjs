@@ -10,7 +10,7 @@ import { cva } from "class-variance-authority";
 */
 const surfaceVariants = cva([
 	"border border-solid",
-	"transition-[background-color,border-color] duration-200 ease-nothing",
+	"transition-[background-color,border-color] duration-200 ease-aios",
 	"motion-reduce:transition-none"
 ], {
 	variants: {

@@ -23,7 +23,7 @@ const navigationMenuLinkVariants = cva([
 	"flex cursor-pointer select-none items-center gap-1 whitespace-nowrap",
 	"border-none bg-transparent px-4 py-2 no-underline",
 	"text-foreground-muted hover:text-interactive",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ], {
 	variants: { active: {
@@ -49,7 +49,7 @@ const navigationMenuSubmenuVariants = cva([
 	"absolute z-[80] min-w-45 py-1",
 	"rounded-sm border border-border-visible bg-popover",
 	"invisible -translate-y-1 opacity-0",
-	"transition-[opacity,transform,visibility] duration-200 ease-nothing",
+	"transition-[opacity,transform,visibility] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"open:visible open:translate-y-0 open:opacity-100"
 ], {
@@ -65,7 +65,7 @@ const navigationMenuSubmenuItemVariants = cva("list-none");
 const navigationMenuSubmenuLinkVariants = cva([
 	"block cursor-pointer select-none whitespace-nowrap px-4 py-2 no-underline",
 	"text-popover-foreground hover:bg-muted",
-	"transition-[background-color] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[background-color] duration-200 ease-aios motion-reduce:transition-none",
 	"outline-none focus-visible:z-[1] focus-visible:outline-2 focus-visible:outline-interactive focus-visible:-outline-offset-2"
 ]);
 //#endregion

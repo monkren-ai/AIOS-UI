@@ -4,18 +4,18 @@ import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
 import "./ThinkingIndicator.css";
 //#region src/agent/ThinkingIndicator/ThinkingIndicator.tsx
-const thinkingIndicatorVariants = cva("nothing-thinking-indicator", {
+const thinkingIndicatorVariants = cva("aios-thinking-indicator", {
 	variants: {
 		state: {
-			thinking: "nothing-thinking-indicator--thinking",
-			acting: "nothing-thinking-indicator--acting",
-			done: "nothing-thinking-indicator--done",
-			error: "nothing-thinking-indicator--error"
+			thinking: "aios-thinking-indicator--thinking",
+			acting: "aios-thinking-indicator--acting",
+			done: "aios-thinking-indicator--done",
+			error: "aios-thinking-indicator--error"
 		},
 		size: {
-			sm: "nothing-thinking-indicator--sm",
-			md: "nothing-thinking-indicator--md",
-			lg: "nothing-thinking-indicator--lg"
+			sm: "aios-thinking-indicator--sm",
+			md: "aios-thinking-indicator--md",
+			lg: "aios-thinking-indicator--lg"
 		}
 	},
 	defaultVariants: {
@@ -46,7 +46,7 @@ const ThinkingIndicator = React$1.forwardRef(({ state = "thinking", size = "md",
 		"aria-label": ariaLabel,
 		...props,
 		children: [/* @__PURE__ */ jsxs("svg", {
-			className: "nothing-thinking-indicator__svg",
+			className: "aios-thinking-indicator__svg",
 			viewBox: "0 0 24 24",
 			fill: "none",
 			stroke: "currentColor",
@@ -56,39 +56,39 @@ const ThinkingIndicator = React$1.forwardRef(({ state = "thinking", size = "md",
 			"aria-hidden": "true",
 			children: [
 				(state === "thinking" || state === "acting") && /* @__PURE__ */ jsxs("g", {
-					className: "nothing-thinking-indicator__dots",
+					className: "aios-thinking-indicator__dots",
 					children: [
 						/* @__PURE__ */ jsx("circle", {
 							cx: "6",
 							cy: "12",
 							r: "2",
-							className: "nothing-thinking-indicator__dot"
+							className: "aios-thinking-indicator__dot"
 						}),
 						/* @__PURE__ */ jsx("circle", {
 							cx: "12",
 							cy: "12",
 							r: "2",
-							className: "nothing-thinking-indicator__dot"
+							className: "aios-thinking-indicator__dot"
 						}),
 						/* @__PURE__ */ jsx("circle", {
 							cx: "18",
 							cy: "12",
 							r: "2",
-							className: "nothing-thinking-indicator__dot"
+							className: "aios-thinking-indicator__dot"
 						})
 					]
 				}),
 				state === "done" && /* @__PURE__ */ jsx("path", {
 					d: "M20 6L9 17l-5-5",
-					className: "nothing-thinking-indicator__mark"
+					className: "aios-thinking-indicator__mark"
 				}),
 				state === "error" && /* @__PURE__ */ jsx("path", {
 					d: "M18 6L6 18M6 6l12 12",
-					className: "nothing-thinking-indicator__mark"
+					className: "aios-thinking-indicator__mark"
 				})
 			]
 		}), label && /* @__PURE__ */ jsx("span", {
-			className: "nothing-thinking-indicator__label",
+			className: "aios-thinking-indicator__label",
 			children: label
 		})]
 	});

@@ -48,8 +48,8 @@ const askBodyVariants = cva(["relative min-h-[120px] overflow-hidden"]);
 */
 const askStepVariants = cva(["flex flex-col gap-4"], {
 	variants: { direction: {
-		forward: ["motion-safe:animate-[nothing-ask-step-enter_0.35s_var(--ease-spring-moderate)_forwards]", "motion-safe:rtl:animate-[nothing-ask-step-enter-back_0.35s_var(--ease-spring-moderate)_forwards]"].join(" "),
-		back: ["motion-safe:animate-[nothing-ask-step-enter-back_0.35s_var(--ease-spring-moderate)_forwards]", "motion-safe:rtl:animate-[nothing-ask-step-enter_0.35s_var(--ease-spring-moderate)_forwards]"].join(" ")
+		forward: ["motion-safe:animate-[aios-ask-step-enter_0.35s_var(--ease-spring-moderate)_forwards]", "motion-safe:rtl:animate-[aios-ask-step-enter-back_0.35s_var(--ease-spring-moderate)_forwards]"].join(" "),
+		back: ["motion-safe:animate-[aios-ask-step-enter-back_0.35s_var(--ease-spring-moderate)_forwards]", "motion-safe:rtl:animate-[aios-ask-step-enter_0.35s_var(--ease-spring-moderate)_forwards]"].join(" ")
 	} },
 	defaultVariants: { direction: "forward" }
 });

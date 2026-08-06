@@ -12,14 +12,14 @@ const statusLabels = {
 	rejected: "[REJECTED]",
 	done: "[DONE]"
 };
-const planCardVariants = cva("nothing-plan-card", {
+const planCardVariants = cva("aios-plan-card", {
 	variants: {
 		editable: {
-			true: "nothing-plan-card--editable",
+			true: "aios-plan-card--editable",
 			false: ""
 		},
 		compact: {
-			true: "nothing-plan-card--compact",
+			true: "aios-plan-card--compact",
 			false: ""
 		}
 	},
@@ -43,18 +43,18 @@ const PlanCard = React$1.forwardRef(({ title = "AGENT PLAN", steps, editable = f
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-plan-card__header",
+				className: "aios-plan-card__header",
 				children: [
 					/* @__PURE__ */ jsx(AgentOrb, {
 						state: allApproved ? "acting" : "thinking",
 						size: "sm"
 					}),
 					/* @__PURE__ */ jsx("span", {
-						className: "nothing-plan-card__title",
+						className: "aios-plan-card__title",
 						children: title
 					}),
 					/* @__PURE__ */ jsxs("span", {
-						className: "nothing-plan-card__count",
+						className: "aios-plan-card__count",
 						children: [
 							approvedCount,
 							"/",
@@ -64,36 +64,36 @@ const PlanCard = React$1.forwardRef(({ title = "AGENT PLAN", steps, editable = f
 				]
 			}),
 			/* @__PURE__ */ jsx("ol", {
-				className: "nothing-plan-card__list",
+				className: "aios-plan-card__list",
 				"aria-label": "Agent plan steps",
 				children: steps.map((step, index) => {
 					const status = step.status ?? "pending";
 					const stepNumber = String(index + 1).padStart(2, "0");
 					return /* @__PURE__ */ jsxs("li", {
-						className: cn("nothing-plan-card__item", `nothing-plan-card__item--${status}`),
+						className: cn("aios-plan-card__item", `aios-plan-card__item--${status}`),
 						"data-status": dataAttr(status),
 						children: [
 							/* @__PURE__ */ jsx("span", {
-								className: "nothing-plan-card__number",
+								className: "aios-plan-card__number",
 								children: stepNumber
 							}),
 							/* @__PURE__ */ jsxs("div", {
-								className: "nothing-plan-card__content",
+								className: "aios-plan-card__content",
 								children: [/* @__PURE__ */ jsx("span", {
-									className: "nothing-plan-card__description",
+									className: "aios-plan-card__description",
 									children: step.description
 								}), step.tool && /* @__PURE__ */ jsx("span", {
-									className: "nothing-plan-card__tool",
+									className: "aios-plan-card__tool",
 									children: step.tool
 								})]
 							}),
 							/* @__PURE__ */ jsx("span", {
-								className: "nothing-plan-card__status",
+								className: "aios-plan-card__status",
 								children: statusLabels[status]
 							}),
 							editable && /* @__PURE__ */ jsx("button", {
 								type: "button",
-								className: "nothing-plan-card__toggle",
+								className: "aios-plan-card__toggle",
 								onClick: () => onStepToggle?.(step.id, status !== "approved"),
 								"aria-pressed": status === "approved",
 								"aria-label": status === "approved" ? `Reject step ${stepNumber}` : `Approve step ${stepNumber}`,
@@ -104,9 +104,9 @@ const PlanCard = React$1.forwardRef(({ title = "AGENT PLAN", steps, editable = f
 				})
 			}),
 			(onApprove || onEdit || onApproveAll || onReset) && /* @__PURE__ */ jsxs("div", {
-				className: "nothing-plan-card__actions",
+				className: "aios-plan-card__actions",
 				children: [(onApproveAll || onReset) && /* @__PURE__ */ jsxs("div", {
-					className: "nothing-plan-card__actions-bulk",
+					className: "aios-plan-card__actions-bulk",
 					children: [onApproveAll && /* @__PURE__ */ jsx(Button, {
 						variant: "secondary",
 						size: "sm",
@@ -119,7 +119,7 @@ const PlanCard = React$1.forwardRef(({ title = "AGENT PLAN", steps, editable = f
 						children: resetLabel
 					})]
 				}), /* @__PURE__ */ jsxs("div", {
-					className: "nothing-plan-card__actions-main",
+					className: "aios-plan-card__actions-main",
 					children: [onEdit && /* @__PURE__ */ jsx(Button, {
 						variant: "secondary",
 						size: "sm",

@@ -13,7 +13,7 @@ import { cva } from "class-variance-authority";
 const batteryVariants = cva([
 	"flex w-full flex-col items-start justify-center",
 	"rounded-lg border border-border bg-surface p-8",
-	"transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		variant: {
@@ -44,9 +44,9 @@ const batteryVariants = cva([
 	}
 });
 /** 「85%」大数字。 */
-const batteryPercentVariants = cva(["font-display text-display-lg font-semibold leading-none tracking-[-0.02em] tabular-nums text-foreground-display", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const batteryPercentVariants = cva(["font-display text-display-lg font-semibold leading-none tracking-[-0.02em] tabular-nums text-foreground-display", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** Charging / Discharging 文案。 */
-const batteryStatusVariants = cva(["font-mono text-sm uppercase tracking-widest", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const batteryStatusVariants = cva(["font-mono text-sm uppercase tracking-widest", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { charging: {
 		true: "text-success",
 		false: "text-foreground-muted"
@@ -62,7 +62,7 @@ const batteryProgressVariants = cva(["flex w-full gap-0.5"], {
 	defaultVariants: { widgetCard: false }
 });
 /** 单个分段。填充色跟着电量档位走。 */
-const batterySegmentVariants = cva(["flex-1 transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const batterySegmentVariants = cva(["flex-1 transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: {
 		filled: {
 			true: "",
@@ -108,9 +108,9 @@ const batterySegmentVariants = cva(["flex-1 transition-colors duration-[350ms] e
 	}
 });
 /** widget 卡片里的大数字。 */
-const batteryWidgetPercentVariants = cva(["font-ndot text-display-lg font-light leading-none tracking-[-0.02em] tabular-nums text-[var(--widget-white)]", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const batteryWidgetPercentVariants = cva(["font-ndot text-display-lg font-light leading-none tracking-[-0.02em] tabular-nums text-[var(--widget-white)]", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** widget 卡片里的充电状态。 */
-const batteryWidgetStatusVariants = cva(["font-mono text-micro uppercase tracking-widest", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const batteryWidgetStatusVariants = cva(["font-mono text-micro uppercase tracking-widest", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { charging: {
 		true: "text-success",
 		false: "text-[var(--widget-dark-3)]"
@@ -118,7 +118,7 @@ const batteryWidgetStatusVariants = cva(["font-mono text-micro uppercase trackin
 	defaultVariants: { charging: false }
 });
 /** 圆环版容器。颜色都落在子元素上，theme/status 在这里只是 API 形状。 */
-const batteryRingVariants = cva(["relative flex size-[var(--widget-size-md)] items-center justify-center overflow-hidden rounded-full", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const batteryRingVariants = cva(["relative flex size-[var(--widget-size-md)] items-center justify-center overflow-hidden rounded-full", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: {
 		theme: {
 			light: "",
@@ -145,7 +145,7 @@ const batteryRingSvgVariants = cva([""], {
 	defaultVariants: { widgetCard: false }
 });
 /** 外圈。 */
-const batteryRingOuterVariants = cva(["transition-[fill] duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const batteryRingOuterVariants = cva(["transition-[fill] duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { theme: {
 		light: "fill-[var(--widget-white)]",
 		dark: "fill-[var(--widget-dark-2)]"
@@ -153,15 +153,15 @@ const batteryRingOuterVariants = cva(["transition-[fill] duration-[350ms] ease-n
 	defaultVariants: { theme: "dark" }
 });
 /** 内圈。 */
-const batteryRingInnerVariants = cva(["transition-[fill] duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const batteryRingInnerVariants = cva(["transition-[fill] duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { theme: {
 		light: "fill-[var(--widget-card-bg)]",
 		dark: "fill-[var(--widget-dark-bg)]"
 	} },
 	defaultVariants: { theme: "dark" }
 });
-/** 电量弧。低电黄、满电/充电绿，其余是 Nothing 红。 */
-const batteryRingProgressVariants = cva(["origin-center -rotate-90 fill-none [stroke-linecap:round] [stroke-width:5]", "transition-[stroke-dashoffset,stroke] duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+/** 电量弧。低电黄、满电/充电绿，其余是 AIOS 红。 */
+const batteryRingProgressVariants = cva(["origin-center -rotate-90 fill-none [stroke-linecap:round] [stroke-width:5]", "transition-[stroke-dashoffset,stroke] duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { status: {
 		charging: "stroke-success",
 		low: "stroke-warning",
@@ -191,7 +191,7 @@ const batteryRingIconVariants = cva(["flex size-6 items-center justify-center [&
 	defaultVariants: { theme: "dark" }
 });
 /** 环心百分比。 */
-const batteryRingPercentVariants = cva(["font-ndot text-display-sm font-light leading-none tracking-[-0.02em] tabular-nums", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const batteryRingPercentVariants = cva(["font-ndot text-display-sm font-light leading-none tracking-[-0.02em] tabular-nums", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { theme: {
 		light: "text-[var(--widget-dark-2)]",
 		dark: "text-[var(--widget-white)]"
@@ -207,7 +207,7 @@ const batteryDevicesVariants = cva(["flex w-full flex-col gap-0.5"], {
 	defaultVariants: { widgetCard: false }
 });
 /** 单个设备行。 */
-const batteryDeviceVariants = cva(["flex items-center gap-1 rounded-sm px-1 py-0.5", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const batteryDeviceVariants = cva(["flex items-center gap-1 rounded-sm px-1 py-0.5", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { clickable: {
 		true: [
 			"cursor-pointer select-none [-webkit-tap-highlight-color:transparent]",

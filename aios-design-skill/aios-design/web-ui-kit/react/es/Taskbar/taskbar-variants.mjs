@@ -9,7 +9,7 @@ import { cva } from "class-variance-authority";
 const taskbarVariants = cva([
 	"sticky bottom-0 z-[var(--z-sticky)] box-border flex h-13 w-full items-center justify-between px-4",
 	"rounded-lg md:h-[57px] md:px-6",
-	"transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		theme: {
@@ -31,7 +31,7 @@ const taskbarStartVariants = cva([
 	"flex size-9 shrink-0 cursor-pointer items-center justify-center p-0",
 	"rounded-sm border-none [-webkit-tap-highlight-color:transparent]",
 	"[&_svg]:size-[18px] [&_svg]:fill-current",
-	"transition-[background-color,color,opacity] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[background-color,color,opacity] duration-200 ease-aios motion-reduce:transition-none",
 	"hover:opacity-80 active:opacity-60",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ], {
@@ -45,7 +45,7 @@ const taskbarStartVariants = cva([
 const taskbarSearchVariants = cva([
 	"flex h-9 min-w-30 cursor-pointer items-center gap-2 px-4 md:min-w-45",
 	"rounded-pill border-none font-body text-xs [-webkit-tap-highlight-color:transparent]",
-	"transition-[background-color,color,opacity] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[background-color,color,opacity] duration-200 ease-aios motion-reduce:transition-none",
 	"hover:opacity-85",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ], {
@@ -59,7 +59,7 @@ const taskbarSearchVariants = cva([
 const taskbarAppVariants = cva([
 	"relative flex size-9 shrink-0 cursor-pointer items-center justify-center p-0 md:size-10",
 	"rounded-md border-none bg-transparent [-webkit-tap-highlight-color:transparent]",
-	"transition-[background-color,color,opacity] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[background-color,color,opacity] duration-200 ease-aios motion-reduce:transition-none",
 	"hover:opacity-70 active:opacity-50",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ], {
@@ -120,7 +120,7 @@ const taskbarBatteryVariants = cva(["flex cursor-default items-center gap-1 [-we
 		real: true
 	}
 });
-/** 电池图标里的电量条。充电时转成 Nothing 红。 */
+/** 电池图标里的电量条。充电时转成 AIOS 红。 */
 const taskbarBatteryFillVariants = cva([], {
 	variants: { charging: {
 		true: "fill-accent",
@@ -131,7 +131,7 @@ const taskbarBatteryFillVariants = cva([], {
 /** 电量百分比。 */
 const taskbarBatteryPercentVariants = cva(["font-mono text-micro tracking-[0.04em] tabular-nums"]);
 /** 时钟。 */
-const taskbarTimeVariants = cva(["whitespace-nowrap font-display text-xs font-semibold tracking-[-0.01em] tabular-nums", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const taskbarTimeVariants = cva(["whitespace-nowrap font-display text-xs font-semibold tracking-[-0.01em] tabular-nums", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { theme: {
 		light: "text-[var(--widget-dark-2)]",
 		dark: "text-[var(--widget-white)]"

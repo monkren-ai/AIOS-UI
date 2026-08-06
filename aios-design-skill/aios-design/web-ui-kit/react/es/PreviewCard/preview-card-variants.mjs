@@ -9,7 +9,7 @@ import { cva } from "class-variance-authority";
 const previewCardVariants = cva([
 	"flex flex-col overflow-hidden",
 	"border border-border-visible rounded-card",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none"
 ], {
 	variants: { variant: {
 		default: "bg-surface",

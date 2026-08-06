@@ -5,7 +5,7 @@ import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Clipboard/Clipboard.tsx
 const defaultDemoItems = [
 	{
-		text: "npm install nothing-design@latest",
+		text: "npm install aios-design@latest",
 		time: /* @__PURE__ */ new Date(Date.now() - 36e5)
 	},
 	{

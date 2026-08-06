@@ -7,7 +7,7 @@
  * `variant` 只决定形状（圆角），不参与配色；颜色统一走点的 `--text-disabled`。
  */
 declare const skeletonVariants: (props?: ({
-  variant?: "circle" | "text" | "rect" | null | undefined;
+  variant?: "text" | "rect" | "circle" | null | undefined;
   animate?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /**
@@ -17,7 +17,7 @@ declare const skeletonVariants: (props?: ({
  * 保留 `variant` 轴为日后按形状微调点尺寸留口子，当前各形状一致。
  */
 declare const skeletonDotVariants: (props?: ({
-  variant?: "circle" | "text" | "rect" | null | undefined;
+  variant?: "text" | "rect" | "circle" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 type SkeletonVariant = 'text' | 'rect' | 'circle';
 //#endregion

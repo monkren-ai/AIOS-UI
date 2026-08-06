@@ -14,7 +14,7 @@ import { cva } from "class-variance-authority";
 const sidebarVariants = cva([
 	"flex h-full flex-col overflow-hidden",
 	"border-e border-border bg-surface text-foreground",
-	"transition-[width] duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-[width] duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: { collapsed: {
 		true: "w-15",
@@ -29,7 +29,7 @@ const sidebarToggleVariants = cva([
 	"flex w-full min-h-11 cursor-pointer select-none items-center justify-center p-2",
 	"border-x-0 border-t-0 border-b border-border bg-transparent text-foreground",
 	"font-mono text-sm",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:bg-muted",
 	"outline-none focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-interactive focus-visible:-outline-offset-2",
 	"[-webkit-tap-highlight-color:transparent]"
@@ -48,7 +48,7 @@ const sidebarItemVariants = cva(["m-0"], {
 const sidebarItemLinkVariants = cva([
 	"flex min-h-11 cursor-pointer select-none items-center gap-2 whitespace-nowrap no-underline",
 	"text-foreground",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:bg-muted",
 	"outline-none focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-interactive focus-visible:-outline-offset-2",
 	"[-webkit-tap-highlight-color:transparent]"

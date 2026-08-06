@@ -52,7 +52,7 @@ const comboboxLabelVariants = cva(["font-mono uppercase tracking-wider text-fore
 	}
 });
 /** 输入框外壳：边框 / 背景都在这里，Input 本体透明。 */
-const comboboxControlVariants = cva(["relative flex w-full items-center gap-2", "transition-colors duration-200 ease-nothing motion-reduce:transition-none"], {
+const comboboxControlVariants = cva(["relative flex w-full items-center gap-2", "transition-colors duration-200 ease-aios motion-reduce:transition-none"], {
 	variants: {
 		variant: {
 			outline: "rounded-input border border-border-visible bg-transparent focus-within:border-foreground",
@@ -83,7 +83,7 @@ const comboboxControlVariants = cva(["relative flex w-full items-center gap-2", 
 const comboboxInputVariants = cva([
 	"w-full min-w-0 flex-1 border-0 bg-transparent font-mono text-foreground outline-none",
 	"placeholder:text-foreground-disabled",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"disabled:cursor-not-allowed disabled:text-foreground-disabled"
 ], {
 	variants: { size: {
@@ -111,7 +111,7 @@ const comboboxListVariants = cva(["max-h-60 overflow-y-auto py-1"]);
 const comboboxItemVariants = cva([
 	"relative flex min-h-9 cursor-pointer select-none items-center justify-between gap-2 px-4",
 	"font-mono text-sm text-foreground [-webkit-tap-highlight-color:transparent]",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:bg-surface",
 	"focus-visible:z-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-interactive"
 ], {
@@ -144,18 +144,18 @@ const comboboxItemVariants = cva([
 /** 选中打勾。默认透明，选中时淡入；`ms-auto` 保证 RTL 下也贴在行尾。 */
 const comboboxItemIndicatorVariants = cva([
 	"ms-auto ps-2 text-caption text-interactive opacity-0",
-	"transition-opacity duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-opacity duration-200 ease-aios motion-reduce:transition-none",
 	"selected:opacity-100"
 ]);
 /** 无结果占位行。 */
 const comboboxEmptyVariants = cva(["flex min-h-9 items-center px-4 font-mono text-sm text-foreground-disabled"]);
 /** 右侧下拉箭头。 */
-const comboboxIconVariants = cva(["shrink-0 select-none text-caption text-foreground-muted", "transition-transform duration-200 ease-nothing motion-reduce:transition-none"]);
+const comboboxIconVariants = cva(["shrink-0 select-none text-caption text-foreground-muted", "transition-transform duration-200 ease-aios motion-reduce:transition-none"]);
 /** 清除按钮。 */
 const comboboxClearVariants = cva([
 	"inline-flex shrink-0 cursor-pointer items-center justify-center",
 	"border-0 bg-transparent text-foreground-muted",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:text-foreground",
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"[&svg]:size-[1em] [&svg]:shrink-0"

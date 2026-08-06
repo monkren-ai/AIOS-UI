@@ -14,7 +14,7 @@ const collapsibleTriggerVariants = cva([
 	"border-none bg-transparent px-6 py-4",
 	"font-mono text-sm uppercase tracking-wide text-foreground",
 	"hover:bg-surface-raised open:text-foreground-display",
-	"transition-[background-color,color] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[background-color,color] duration-200 ease-aios motion-reduce:transition-none",
 	"outline-none focus-visible:z-[1] focus-visible:outline-2 focus-visible:outline-interactive focus-visible:-outline-offset-2"
 ]);
 /**
@@ -26,7 +26,7 @@ const collapsibleTriggerVariants = cva([
 */
 const collapsibleContentVariants = cva([
 	"max-h-0 overflow-hidden",
-	"transition-[max-height,visibility] duration-[350ms] ease-nothing motion-reduce:transition-none",
+	"transition-[max-height,visibility] duration-[350ms] ease-aios motion-reduce:transition-none",
 	"open:max-h-125"
 ]);
 /** 折叠区域的内容排版。 */

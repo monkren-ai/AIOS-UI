@@ -9,7 +9,7 @@ import { cva } from "class-variance-authority";
 const toggleVariants = cva([
 	"inline-flex shrink-0 cursor-pointer select-none items-center justify-center",
 	"whitespace-nowrap font-mono font-medium",
-	"transition-[background-color,border-color,color,font-weight,scale] duration-200 ease-nothing",
+	"transition-[background-color,border-color,color,font-weight,scale] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"active:not-disabled:scale-[0.97] motion-reduce:active:scale-100",

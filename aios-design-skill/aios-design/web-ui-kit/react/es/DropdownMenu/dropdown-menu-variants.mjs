@@ -5,7 +5,7 @@ const dropdownMenuTriggerVariants = cva([
 	"inline-flex cursor-pointer items-center",
 	"rounded-sm border-none bg-transparent px-2 py-1",
 	"font-mono text-sm text-foreground",
-	"transition-colors duration-[var(--duration-micro)] ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-[var(--duration-micro)] ease-aios motion-reduce:transition-none",
 	"hover:bg-muted",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ]);
@@ -35,7 +35,7 @@ const dropdownMenuContentVariants = cva([
 const dropdownMenuItemVariants = cva([
 	"flex cursor-pointer select-none items-center gap-2 whitespace-nowrap px-4 py-1",
 	"font-mono text-sm text-foreground",
-	"transition-colors duration-[var(--duration-micro)] ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-[var(--duration-micro)] ease-aios motion-reduce:transition-none",
 	"hover:bg-muted highlighted:bg-muted",
 	"outline-none focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-interactive focus-visible:-outline-offset-2"
 ], {
@@ -63,7 +63,7 @@ const menubarTriggerVariants = cva([
 	"inline-flex min-h-11 cursor-pointer select-none items-center whitespace-nowrap",
 	"border-none bg-transparent px-4 py-2",
 	"font-mono text-sm text-foreground-muted",
-	"transition-[color,background-color] duration-[var(--duration-micro)] ease-nothing",
+	"transition-[color,background-color] duration-[var(--duration-micro)] ease-aios",
 	"motion-reduce:transition-none",
 	"hover:text-foreground",
 	"outline-none focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-interactive focus-visible:-outline-offset-2"
@@ -89,7 +89,7 @@ const menubarDropdownVariants = cva([
 const menubarItemVariants = cva([
 	"flex cursor-pointer select-none items-center justify-between gap-6 whitespace-nowrap px-4 py-2",
 	"text-popover-foreground",
-	"transition-colors duration-[var(--duration-micro)] ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-[var(--duration-micro)] ease-aios motion-reduce:transition-none",
 	"hover:bg-muted highlighted:bg-muted",
 	"outline-none focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-interactive focus-visible:-outline-offset-2"
 ], {

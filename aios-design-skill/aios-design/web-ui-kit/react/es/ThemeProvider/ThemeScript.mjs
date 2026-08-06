@@ -14,7 +14,7 @@ import { jsx } from "react/jsx-runtime";
 * ```
 */
 function getThemeScript(options = {}) {
-	const { storageKey = "nothing-theme", defaultTheme = "dark", enableSystem = true } = options;
+	const { storageKey = "aios-theme", defaultTheme = "dark", enableSystem = true } = options;
 	const script = function(storageKey, defaultTheme, enableSystem) {
 		const el = document.documentElement;
 		try {

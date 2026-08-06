@@ -84,17 +84,17 @@ function Calendar({ className, type = "compact", initialDate = /* @__PURE__ */ n
 		children: [
 			/* @__PURE__ */ jsx("div", {
 				"data-slot": "calendar-day-name",
-				className: "mb-1 font-mono text-sm uppercase tracking-[0.15em] text-foreground-muted transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
+				className: "mb-1 font-mono text-sm uppercase tracking-[0.15em] text-foreground-muted transition-colors duration-[350ms] ease-aios motion-reduce:transition-none",
 				children: dayName
 			}),
 			/* @__PURE__ */ jsx("div", {
 				"data-slot": "calendar-date",
-				className: "mb-1 font-display text-display-xl font-semibold leading-none tracking-[-0.02em] tabular-nums text-foreground-display transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
+				className: "mb-1 font-display text-display-xl font-semibold leading-none tracking-[-0.02em] tabular-nums text-foreground-display transition-colors duration-[350ms] ease-aios motion-reduce:transition-none",
 				children: String(date).padStart(2, "0")
 			}),
 			/* @__PURE__ */ jsx("div", {
 				"data-slot": "calendar-month",
-				className: "font-mono text-sm uppercase tracking-[0.1em] text-accent transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
+				className: "font-mono text-sm uppercase tracking-[0.1em] text-accent transition-colors duration-[350ms] ease-aios motion-reduce:transition-none",
 				children: monthName
 			})
 		]
@@ -110,7 +110,7 @@ function Calendar({ className, type = "compact", initialDate = /* @__PURE__ */ n
 			className: "mb-6 flex w-full items-baseline justify-between",
 			children: [/* @__PURE__ */ jsx("div", {
 				"data-slot": "calendar-month-year",
-				className: "font-display text-heading font-semibold tracking-[-0.02em] text-foreground-display transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
+				className: "font-display text-heading font-semibold tracking-[-0.02em] text-foreground-display transition-colors duration-[350ms] ease-aios motion-reduce:transition-none",
 				children: monthYear
 			}), /* @__PURE__ */ jsxs("div", {
 				"data-slot": "calendar-nav",

@@ -1,16 +1,16 @@
 import { cva } from "class-variance-authority";
 //#region src/conversation/Welcome/welcome-variants.ts
-const welcomeVariants = cva("nothing-welcome", {
+const welcomeVariants = cva("aios-welcome", {
 	variants: {
 		variant: {
 			default: "",
-			centered: "nothing-welcome--centered",
-			compact: "nothing-welcome--compact"
+			centered: "aios-welcome--centered",
+			compact: "aios-welcome--compact"
 		},
 		size: {
-			sm: "nothing-welcome--sm",
-			md: "nothing-welcome--md",
-			lg: "nothing-welcome--lg"
+			sm: "aios-welcome--sm",
+			md: "aios-welcome--md",
+			lg: "aios-welcome--lg"
 		}
 	},
 	defaultVariants: {

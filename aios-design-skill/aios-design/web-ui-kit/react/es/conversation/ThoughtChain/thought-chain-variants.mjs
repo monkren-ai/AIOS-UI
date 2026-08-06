@@ -1,29 +1,29 @@
 import { cva } from "class-variance-authority";
 //#region src/conversation/ThoughtChain/thought-chain-variants.ts
-const thoughtChainVariants = cva("nothing-thought-chain", {
+const thoughtChainVariants = cva("aios-thought-chain", {
 	variants: { line: {
-		true: "nothing-thought-chain--line",
+		true: "aios-thought-chain--line",
 		false: "",
-		solid: "nothing-thought-chain--line nothing-thought-chain--line-solid",
-		dashed: "nothing-thought-chain--line nothing-thought-chain--line-dashed",
-		dotted: "nothing-thought-chain--line nothing-thought-chain--line-dotted"
+		solid: "aios-thought-chain--line aios-thought-chain--line-solid",
+		dashed: "aios-thought-chain--line aios-thought-chain--line-dashed",
+		dotted: "aios-thought-chain--line aios-thought-chain--line-dotted"
 	} },
 	defaultVariants: { line: true }
 });
-const thoughtChainItemVariants = cva("nothing-thought-chain__item", {
+const thoughtChainItemVariants = cva("aios-thought-chain__item", {
 	variants: {
 		status: {
-			pending: "nothing-thought-chain__item--pending",
-			active: "nothing-thought-chain__item--active",
-			success: "nothing-thought-chain__item--success",
-			error: "nothing-thought-chain__item--error"
+			pending: "aios-thought-chain__item--pending",
+			active: "aios-thought-chain__item--active",
+			success: "aios-thought-chain__item--success",
+			error: "aios-thought-chain__item--error"
 		},
 		collapsible: {
-			true: "nothing-thought-chain__item--collapsible",
+			true: "aios-thought-chain__item--collapsible",
 			false: ""
 		},
 		expanded: {
-			true: "nothing-thought-chain__item--expanded",
+			true: "aios-thought-chain__item--expanded",
 			false: ""
 		}
 	},

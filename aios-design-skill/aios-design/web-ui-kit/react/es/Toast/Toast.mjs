@@ -34,7 +34,7 @@ function Toast({ severity = "info", label, onDismiss, duration = 0, className, c
 			onDismiss && /* @__PURE__ */ jsx("button", {
 				type: "button",
 				"data-slot": "toast-dismiss",
-				className: cn("inline-flex size-5 shrink-0 cursor-pointer items-center justify-center", "-mt-0.5 -me-0.5 border-none bg-transparent p-0 text-foreground-muted", "transition-[color,transform] duration-200 ease-nothing motion-reduce:transition-none", "hover:scale-110 hover:text-foreground motion-reduce:hover:scale-100", "outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"),
+				className: cn("inline-flex size-5 shrink-0 cursor-pointer items-center justify-center", "-mt-0.5 -me-0.5 border-none bg-transparent p-0 text-foreground-muted", "transition-[color,transform] duration-200 ease-aios motion-reduce:transition-none", "hover:scale-110 hover:text-foreground motion-reduce:hover:scale-100", "outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"),
 				onClick: onDismiss,
 				"aria-label": "Dismiss notification / 关闭通知",
 				children: /* @__PURE__ */ jsx("svg", {

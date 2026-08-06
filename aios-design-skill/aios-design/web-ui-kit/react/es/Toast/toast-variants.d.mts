@@ -6,15 +6,15 @@
  * 文档流内的内联状态条：`role="status"` 横条，左侧 bracket 标记 + 消息文案，
  * 不 portal、不 fixed、不自动消失（由调用方控制挂载）。
  *
- * 配色走语义 severity：error 落到 Nothing 红（`--accent`），success/warning 用对应
+ * 配色走语义 severity：error 落到 AIOS 红（`--accent`），success/warning 用对应
  * 状态色，info 回到中性。左侧 3px 粗边是仪表盘状态条的标识。
  */
 declare const toastVariants: (props?: ({
-  severity?: "error" | "warning" | "info" | "success" | null | undefined;
+  severity?: "info" | "success" | "warning" | "error" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 左侧 `[ LABEL ]` bracket 文案。颜色随 severity。 */
 declare const toastLabelVariants: (props?: ({
-  severity?: "error" | "warning" | "info" | "success" | null | undefined;
+  severity?: "info" | "success" | "warning" | "error" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 type ToastSeverity = 'info' | 'success' | 'error' | 'warning';
 //#endregion

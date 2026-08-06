@@ -2,7 +2,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { jsx } from "react/jsx-runtime";
 //#region src/ThemeProvider/ThemeProvider.tsx
-const DEFAULT_STORAGE_KEY = "nothing-theme";
+const DEFAULT_STORAGE_KEY = "aios-theme";
 const MEDIA = "(prefers-color-scheme: dark)";
 const ThemeContext = createContext({
 	theme: "dark",
@@ -43,7 +43,7 @@ function disableAnimation() {
 * 管理 AIOS UI 的明暗主题。
 *
 * - 通过 `data-theme` 属性切换主题（与 `tokens.css` 的 `[data-theme="dark"]` 选择器协同）
-* - 持久化到 `localStorage`（key: `nothing-theme`）
+* - 持久化到 `localStorage`（key: `aios-theme`）
 * - 支持系统主题跟随（prefers-color-scheme）
 * - 支持 forcedTheme 强制主题
 * - 切换时临时禁用 CSS 过渡，避免颜色渐变闪烁

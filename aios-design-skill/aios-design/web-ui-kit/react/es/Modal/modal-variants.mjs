@@ -10,7 +10,7 @@ import { cva } from "class-variance-authority";
 const modalBackdropVariants = cva([
 	"fixed inset-0 z-[var(--z-modal)] bg-overlay",
 	"flex items-center justify-center",
-	"transition-[opacity,visibility] duration-[var(--duration-transition)] ease-nothing",
+	"transition-[opacity,visibility] duration-[var(--duration-transition)] ease-aios",
 	"motion-reduce:transition-none"
 ], {
 	variants: {
@@ -61,7 +61,7 @@ const modalCloseVariants = cva([
 	"absolute z-1 flex min-h-11 min-w-11 items-center justify-center p-1",
 	"cursor-pointer border-none bg-transparent",
 	"font-mono text-sm text-foreground-muted",
-	"transition-colors duration-[var(--duration-micro)] ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-[var(--duration-micro)] ease-aios motion-reduce:transition-none",
 	"hover:text-foreground-display",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ], {
@@ -103,7 +103,7 @@ const MODAL_ACTION_BASE = [
 	"inline-flex min-h-11 cursor-pointer select-none items-center justify-center",
 	"rounded-pill border px-6 py-3",
 	"font-mono text-xs font-bold uppercase tracking-wider",
-	"transition-[background-color,border-color,color,opacity] duration-[var(--duration-micro)] ease-nothing",
+	"transition-[background-color,border-color,color,opacity] duration-[var(--duration-micro)] ease-aios",
 	"motion-reduce:transition-none",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ];

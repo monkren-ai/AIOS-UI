@@ -55,7 +55,7 @@ const radioGroupItemVariants = cva(["group/radio relative inline-flex select-non
 const radioGroupCircleVariants = cva([
 	"group/radio-circle relative flex shrink-0 items-center justify-center",
 	"rounded-full border-2 border-border-visible bg-transparent p-0",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"checked:border-accent",
 	"data-disabled:border-border"
@@ -70,7 +70,7 @@ const radioGroupCircleVariants = cva([
 /** 圆心（Base UI Radio.Indicator，keepMounted）。 */
 const radioGroupDotVariants = cva([
 	"rounded-full bg-accent",
-	"scale-0 transition-transform duration-200 ease-nothing motion-reduce:transition-none",
+	"scale-0 transition-transform duration-200 ease-aios motion-reduce:transition-none",
 	"group-data-[checked]/radio-circle:scale-100",
 	"group-data-[disabled]/radio-circle:bg-foreground-disabled"
 ], {
@@ -84,7 +84,7 @@ const radioGroupDotVariants = cva([
 /** 选项文字。 */
 const radioGroupLabelVariants = cva([
 	"font-mono text-foreground",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"group-data-[disabled]/radio:text-foreground-disabled"
 ], {
 	variants: { size: {

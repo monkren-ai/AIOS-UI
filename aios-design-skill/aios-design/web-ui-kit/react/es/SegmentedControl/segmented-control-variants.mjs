@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority";
 *
 * 选中态由一块绝对定位的 slider 表达，所以外框必须是定位上下文 + 裁切容器。
 */
-const segmentedVariants = cva(["relative inline-flex overflow-hidden border border-border-visible", "transition-[border-color] duration-200 ease-nothing motion-reduce:transition-none"], {
+const segmentedVariants = cva(["relative inline-flex overflow-hidden border border-border-visible", "transition-[border-color] duration-200 ease-aios motion-reduce:transition-none"], {
 	variants: {
 		variant: {
 			pill: "rounded-pill",
@@ -35,7 +35,7 @@ const segmentVariants = cva([
 	"relative z-[1] inline-flex h-10 min-h-9 items-center justify-center whitespace-nowrap",
 	"cursor-pointer select-none border-none bg-transparent px-5",
 	"font-mono text-label uppercase tracking-wider text-foreground-muted",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"outline-none focus-visible:z-[2] focus-visible:outline-2 focus-visible:outline-interactive focus-visible:-outline-offset-2",
 	"pointer-coarse:h-11 pointer-coarse:px-6"
 ], {

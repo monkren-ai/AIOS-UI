@@ -29,7 +29,7 @@
   flex-shrink: 0;
 }
 
-.nothing-widget-icon-svg {
+.aios-widget-icon-svg {
   position: absolute;
   display: block;
   inset: 0;
@@ -41,7 +41,7 @@
 }
 
 /* 强制覆盖所有 widget-icon-wrapper 中的 svg 元素的内联样式 */
-.widget-icon-wrapper svg[class*='nothing-widget-icon-svg'] {
+.widget-icon-wrapper svg[class*='aios-widget-icon-svg'] {
   width: 100% !important;
   height: 100% !important;
   max-width: 100% !important;
@@ -49,14 +49,14 @@
 }
 
 /* 针对特定选择器的更强制覆盖 */
-div[class*='widget-icon-wrapper'] svg.nothing-widget-icon-svg {
+div[class*='widget-icon-wrapper'] svg.aios-widget-icon-svg {
   width: 100% !important;
   height: 100% !important;
 }
 
 /* 强制约束所有 SVG 的尺寸 */
-.widget-grid-7x6 svg.nothing-widget-icon-svg,
-.widget-icon-wrapper--68 svg.nothing-widget-icon-svg {
+.widget-grid-7x6 svg.aios-widget-icon-svg,
+.widget-icon-wrapper--68 svg.aios-widget-icon-svg {
   width: 100% !important;
   height: 100% !important;
   max-width: var(--widget-size-sm, 68px) !important;

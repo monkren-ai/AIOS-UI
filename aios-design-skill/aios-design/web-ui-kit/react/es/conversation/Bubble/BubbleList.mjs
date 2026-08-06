@@ -30,7 +30,7 @@ const BubbleList = React$1.forwardRef(({ items, role, autoScroll = true, classNa
 	}, [items, autoScroll]);
 	return /* @__PURE__ */ jsx("div", {
 		ref: mergedRef,
-		className: cn("nothing-bubble-list", classNames.root, className),
+		className: cn("aios-bubble-list", classNames.root, className),
 		style: {
 			...styles.root,
 			...style
@@ -38,7 +38,7 @@ const BubbleList = React$1.forwardRef(({ items, role, autoScroll = true, classNa
 		"data-slot": "bubble-list",
 		...rest,
 		children: /* @__PURE__ */ jsx("div", {
-			className: cn("nothing-bubble-list__scroll", classNames.scroll),
+			className: cn("aios-bubble-list__scroll", classNames.scroll),
 			style: styles.scroll,
 			"data-slot": "bubble-list-scroll",
 			children: items.map((item) => {
@@ -53,7 +53,7 @@ const BubbleList = React$1.forwardRef(({ items, role, autoScroll = true, classNa
 					styles: itemStyles
 				});
 				return /* @__PURE__ */ jsx("div", {
-					className: cn("nothing-bubble-list__item", classNames.bubble),
+					className: cn("aios-bubble-list__item", classNames.bubble),
 					style: styles.bubble,
 					"data-slot": "bubble-list-item",
 					"data-role": resolvedRole,

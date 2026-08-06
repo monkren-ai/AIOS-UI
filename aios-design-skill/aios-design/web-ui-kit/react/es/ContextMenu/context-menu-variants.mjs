@@ -11,7 +11,7 @@ const contextMenuTriggerVariants = cva("inline-block");
 const contextMenuContentVariants = cva([
 	"fixed z-[var(--z-dropdown)] min-w-[180px]",
 	"rounded-sm border border-border-visible bg-popover py-1 text-popover-foreground",
-	"transition-[opacity,visibility,transform] duration-[var(--duration-micro)] ease-nothing",
+	"transition-[opacity,visibility,transform] duration-[var(--duration-micro)] ease-aios",
 	"motion-reduce:transition-none"
 ], {
 	variants: { visible: {
@@ -23,7 +23,7 @@ const contextMenuContentVariants = cva([
 const contextMenuItemVariants = cva([
 	"flex cursor-pointer select-none items-center justify-between gap-4 whitespace-nowrap px-4 py-1",
 	"font-mono text-sm text-foreground",
-	"transition-colors duration-[var(--duration-micro)] ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-[var(--duration-micro)] ease-aios motion-reduce:transition-none",
 	"hover:bg-muted",
 	"outline-none focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-interactive focus-visible:-outline-offset-2"
 ], {

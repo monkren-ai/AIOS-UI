@@ -161,7 +161,7 @@
   --tracking-widest: 0.08em;
 
   /* ===== 动效 ===== */
-  --ease-nothing: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-aios: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-spring-fast: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring-moderate: cubic-bezier(0.22, 1, 0.36, 1);
@@ -169,7 +169,7 @@
 
   --animate-agent-breathe: agent-breathe 2000ms ease-in-out infinite;
   --animate-agent-pulse: agent-pulse 800ms ease-in-out infinite;
-  --animate-agent-step: agent-step 1200ms var(--ease-nothing) forwards;
+  --animate-agent-step: agent-step 1200ms var(--ease-aios) forwards;
 
   /* ===== 布局容器 ===== */
   --container-narrow: 640px;
@@ -210,4 +210,4 @@
 @custom-variant unchecked (&:where([data-unchecked]));
 @custom-variant pressed (&:where([data-pressed]));
 @custom-variant loading (&:where([data-loading]));
-@custom-variant nothing-disabled (&:where([data-disabled], :disabled));
+@custom-variant aios-disabled (&:where([data-disabled], :disabled));

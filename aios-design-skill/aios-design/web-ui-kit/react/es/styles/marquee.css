@@ -1,6 +1,6 @@
 /* === Marquee — 镂空网格滚动文字 (from CodePen EaxdNRo) === */
 
-.nothing-marquee {
+.aios-marquee {
   --mq-dur: 12s; /* animation duration */
   --mq-cell: 0.3; /* mask cell size (ch unit) */
   --mq-gap: 0.8; /* mask gap ratio (0~1) */
@@ -12,7 +12,7 @@
   width: 100%;
 }
 
-.nothing-marquee-track {
+.aios-marquee-track {
   position: relative;
   overflow: hidden;
   white-space: nowrap;
@@ -41,22 +41,22 @@
   mask-composite: intersect;
 }
 
-.nothing-marquee-text {
+.aios-marquee-text {
   display: inline-flex;
   gap: 2ch;
   margin: 0;
   font-weight: var(--weight-bold, 700);
   letter-spacing: -0.01em;
-  animation: nothing-marquee-scroll var(--mq-dur) linear infinite;
+  animation: aios-marquee-scroll var(--mq-dur) linear infinite;
   animation-play-state: var(--mq-p, running);
   will-change: transform;
 }
 
-.nothing-marquee:hover .nothing-marquee-text {
+.aios-marquee:hover .aios-marquee-text {
   --mq-p: paused;
 }
 
-@keyframes nothing-marquee-scroll {
+@keyframes aios-marquee-scroll {
   from {
     transform: translateX(0%);
   }
@@ -67,10 +67,10 @@
 
 /* 尊重 reduced-motion — 停止动画并降级到无蒙版 */
 @media (prefers-reduced-motion: reduce) {
-  .nothing-marquee-text {
+  .aios-marquee-text {
     animation: none;
   }
-  .nothing-marquee-track {
+  .aios-marquee-track {
     -webkit-mask: none;
     mask: none;
   }
@@ -78,7 +78,7 @@
 
 /* 旧版浏览器降级：mask-composite 不支持时直接显示无蒙版 */
 @supports not (mask-composite: intersect) {
-  .nothing-marquee-track {
+  .aios-marquee-track {
     -webkit-mask: none;
     mask: none;
   }

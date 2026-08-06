@@ -42,7 +42,7 @@ const tabTriggerVariants = cva([
 	"relative z-[1] inline-flex items-center justify-center",
 	"cursor-pointer select-none whitespace-nowrap border-none bg-transparent",
 	"text-foreground-muted hover:text-foreground",
-	"transition-[color,background-color,border-color] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[color,background-color,border-color] duration-200 ease-aios motion-reduce:transition-none",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:-outline-offset-2",
 	"pointer-coarse:min-h-11 pointer-coarse:py-3"
 ], {

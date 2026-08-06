@@ -12,11 +12,11 @@ import { cva } from "class-variance-authority";
 * - `dim` 的透明度层层收窄：基础 0.2 → theme 0.3 → grid 0.1 / glyph 0.15。
 *   compoundVariants 排在最后输出，顺序即优先级。
 *
-* 保留的 BEM 类名（`nothing-dot-matrix`、`nothing-dot-matrix--glyph`、
-* `nothing-dot-matrix__dot{,--active,--dim}`）不再自带样式，只作为
+* 保留的 BEM 类名（`aios-dot-matrix`、`aios-dot-matrix--glyph`、
+* `aios-dot-matrix__dot{,--active,--dim}`）不再自带样式，只作为
 * `src/styles/glyph.css` 的选择器钩子——Glyph 靠它们改写点的配色。
 */
-const dotMatrixVariants = cva(["nothing-dot-matrix", "inline-flex flex-col items-center gap-px"], {
+const dotMatrixVariants = cva(["aios-dot-matrix", "inline-flex flex-col items-center gap-px"], {
 	variants: {
 		dotSize: {
 			sm: "",
@@ -29,7 +29,7 @@ const dotMatrixVariants = cva(["nothing-dot-matrix", "inline-flex flex-col items
 		},
 		pattern: {
 			grid: "",
-			glyph: "nothing-dot-matrix--glyph",
+			glyph: "aios-dot-matrix--glyph",
 			pulse: "",
 			custom: ""
 		}
@@ -51,9 +51,9 @@ const dotMatrixRowVariants = cva(["flex items-center"], {
 });
 /** 单个点。 */
 const dotVariants = cva([
-	"nothing-dot-matrix__dot",
+	"aios-dot-matrix__dot",
 	"rounded-full",
-	"transition-[opacity,background-color] duration-[350ms] ease-nothing",
+	"transition-[opacity,background-color] duration-[350ms] ease-aios",
 	"motion-reduce:transition-none"
 ], {
 	variants: {
@@ -74,8 +74,8 @@ const dotVariants = cva([
 		},
 		state: {
 			idle: "",
-			active: "nothing-dot-matrix__dot--active",
-			dim: "nothing-dot-matrix__dot--dim opacity-20"
+			active: "aios-dot-matrix__dot--active",
+			dim: "aios-dot-matrix__dot--dim opacity-20"
 		}
 	},
 	compoundVariants: [
@@ -106,7 +106,7 @@ const dotVariants = cva([
 		{
 			state: "active",
 			pattern: "pulse",
-			class: "motion-safe:animate-[nothing-dot-pulse_1.4s_ease-in-out_infinite] motion-reduce:animate-none"
+			class: "motion-safe:animate-[aios-dot-pulse_1.4s_ease-in-out_infinite] motion-reduce:animate-none"
 		}
 	],
 	defaultVariants: {

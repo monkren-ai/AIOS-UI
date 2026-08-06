@@ -1,9 +1,9 @@
-.nothing-table {
+.aios-table {
   width: 100%;
   overflow-x: auto;
 }
 
-.nothing-table__table {
+.aios-table__table {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-mono);
@@ -11,7 +11,7 @@
   color: var(--text-primary);
 }
 
-.nothing-table__caption {
+.aios-table__caption {
   font-family: var(--font-mono);
   font-size: var(--caption);
   text-transform: uppercase;
@@ -22,11 +22,11 @@
   border-bottom: 1px solid var(--border);
 }
 
-.nothing-table__head {
+.aios-table__head {
   background: var(--muted-bg);
 }
 
-.nothing-table__header {
+.aios-table__header {
   padding: var(--space-sm) var(--space-md);
   font-size: var(--caption);
   text-transform: uppercase;
@@ -38,19 +38,19 @@
   white-space: nowrap;
 }
 
-.nothing-table__body {
+.aios-table__body {
   background: var(--surface);
 }
 
-.nothing-table__header--sortable {
+.aios-table__header--sortable {
   padding: 0;
 }
 
-.nothing-table__header--sorted {
+.aios-table__header--sorted {
   color: var(--text-primary);
 }
 
-.nothing-table__sort-button {
+.aios-table__sort-button {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
@@ -67,67 +67,67 @@
   transition: color var(--duration-micro) var(--easing);
 }
 
-.nothing-table__sort-button:hover {
+.aios-table__sort-button:hover {
   color: var(--text-primary);
 }
 
-.nothing-table__sort-button:focus-visible {
+.aios-table__sort-button:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset-inset);
 }
 
-.nothing-table__row {
+.aios-table__row {
   border-bottom: 1px solid var(--border);
   transition:
     background var(--duration-micro) var(--easing),
     opacity var(--duration-micro) var(--easing);
 }
 
-.nothing-table__cell {
+.aios-table__cell {
   padding: var(--space-sm) var(--space-md);
   color: var(--text-primary);
   border-bottom: 1px solid var(--border);
 }
 
-.nothing-table__cell--left {
+.aios-table__cell--left {
   text-align: left;
 }
 
-.nothing-table__cell--center {
+.aios-table__cell--center {
   text-align: center;
 }
 
-.nothing-table__cell--right {
+.aios-table__cell--right {
   text-align: right;
 }
 
-.nothing-table--striped .nothing-table__row--even {
+.aios-table--striped .aios-table__row--even {
   background: var(--surface-raised);
 }
 
-.nothing-table--hoverable .nothing-table__row:hover {
+.aios-table--hoverable .aios-table__row:hover {
   background: var(--muted-bg);
 }
 
-.nothing-data-table--proximity:hover .nothing-table__row:not(:hover) {
+.aios-data-table--proximity:hover .aios-table__row:not(:hover) {
   opacity: 0.55;
 }
 
-.nothing-table--compact .nothing-table__header,
-.nothing-table--compact .nothing-table__cell {
+.aios-table--compact .aios-table__header,
+.aios-table--compact .aios-table__cell {
   padding: var(--space-xs) var(--space-sm);
 }
 
-.nothing-table--compact .nothing-table__caption {
+.aios-table--compact .aios-table__caption {
   padding: var(--space-xs) var(--space-sm);
 }
 
-.nothing-table__row:focus-visible {
+.aios-table__row:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: -2px;
 }
 
-.nothing-sort-icon {
+.aios-sort-icon {
   display: inline-flex;
   flex-shrink: 0;
   width: 12px;
@@ -136,34 +136,34 @@
   transition: color var(--duration-micro) var(--easing);
 }
 
-.nothing-sort-icon path {
+.aios-sort-icon path {
   transition:
     opacity var(--duration-micro) var(--easing),
     stroke-width var(--duration-micro) var(--easing);
 }
 
-.nothing-sort-icon__up,
-.nothing-sort-icon__down {
+.aios-sort-icon__up,
+.aios-sort-icon__down {
   opacity: 0.35;
 }
 
-.nothing-sort-icon--asc .nothing-sort-icon__up,
-.nothing-sort-icon--desc .nothing-sort-icon__down {
+.aios-sort-icon--asc .aios-sort-icon__up,
+.aios-sort-icon--desc .aios-sort-icon__down {
   opacity: 1;
   color: var(--text-primary);
   stroke-width: 2;
 }
 
-.nothing-table__header--sorted .nothing-sort-icon,
-.nothing-data-grid__header-cell--sorted .nothing-sort-icon {
+.aios-table__header--sorted .aios-sort-icon,
+.aios-data-grid__header-cell--sorted .aios-sort-icon {
   color: var(--text-primary);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nothing-table__row,
-  .nothing-sort-icon,
-  .nothing-sort-icon path,
-  .nothing-table__sort-button {
+  .aios-table__row,
+  .aios-sort-icon,
+  .aios-sort-icon path,
+  .aios-table__sort-button {
     transition: none;
   }
 }

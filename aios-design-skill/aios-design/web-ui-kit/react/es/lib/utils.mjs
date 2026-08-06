@@ -53,7 +53,7 @@ const twMerge = extendTailwindMerge({ extend: { theme: {
 * 合并 className。
 *
 * 走 tailwind-merge，后写的工具类会覆盖前面同组的：
-* `cn('px-4', 'px-6')` → `'px-6'`。未知类名（如遗留的 `nothing-btn--primary`）
+* `cn('px-4', 'px-6')` → `'px-6'`。未知类名（如遗留的 `aios-btn--primary`）
 * 原样保留，所以 Tailwind 组件与尚未迁移的 BEM 组件可以共存。
 *
 * @example

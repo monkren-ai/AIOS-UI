@@ -6,7 +6,7 @@
  * disabled 没有容器级视觉，只由按钮的 `disabled:` 与 data-* 表达。
  */
 declare const caffeinateVariants: (props?: ({
-  status?: "low" | "medium" | "high" | null | undefined;
+  status?: "low" | "high" | "medium" | null | undefined;
   disabled?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion

@@ -28,7 +28,7 @@ const meterTrackVariants = cva(["relative flex w-full overflow-hidden gap-0.5"],
 const meterSegmentVariants = cva([
 	"flex-1 rounded-none",
 	"first:rounded-s-2xs last:rounded-e-2xs",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		state: {

@@ -61,7 +61,7 @@ function ContentCard({ variant, size, shape, interactive, disabled, title, actio
 				}), action && /* @__PURE__ */ jsx("button", {
 					type: "button",
 					"data-slot": "card-action",
-					className: cn("cursor-pointer border-none bg-transparent p-0", "font-mono text-label uppercase tracking-wider text-foreground-muted", "transition-colors duration-200 ease-nothing motion-reduce:transition-none", "hover:text-foreground-display", "outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"),
+					className: cn("cursor-pointer border-none bg-transparent p-0", "font-mono text-label uppercase tracking-wider text-foreground-muted", "transition-colors duration-200 ease-aios motion-reduce:transition-none", "hover:text-foreground-display", "outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"),
 					onClick: onAction,
 					children: action
 				})]

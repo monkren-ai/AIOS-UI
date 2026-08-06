@@ -154,16 +154,16 @@ function Caffeinate({ className, updateInterval = 6e4, totalSegments = 10, maxCa
 						className: "flex flex-col gap-0.5",
 						children: [/* @__PURE__ */ jsx("div", {
 							"data-slot": "caffeinate-log-type",
-							className: "font-body text-sm text-foreground transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
+							className: "font-body text-sm text-foreground transition-colors duration-[350ms] ease-aios motion-reduce:transition-none",
 							children: drink.type
 						}), /* @__PURE__ */ jsx("div", {
 							"data-slot": "caffeinate-log-time",
-							className: "font-mono text-caption tabular-nums text-foreground-disabled transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
+							className: "font-mono text-caption tabular-nums text-foreground-disabled transition-colors duration-[350ms] ease-aios motion-reduce:transition-none",
 							children: formatTime(drink.time)
 						})]
 					}), /* @__PURE__ */ jsxs("div", {
 						"data-slot": "caffeinate-log-amount",
-						className: "font-mono text-sm tabular-nums text-foreground-muted transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none",
+						className: "font-mono text-sm tabular-nums text-foreground-muted transition-colors duration-[350ms] ease-aios motion-reduce:transition-none",
 						children: [
 							"+",
 							drink.mg,

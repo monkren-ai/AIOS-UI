@@ -9,7 +9,7 @@ import { cva } from "class-variance-authority";
 const quickToggleVariants = cva([
 	"flex cursor-pointer select-none items-center justify-center border-none",
 	"[-webkit-tap-highlight-color:transparent]",
-	"transition-[background-color,color,transform,opacity] duration-200 ease-nothing",
+	"transition-[background-color,color,transform,opacity] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"active:scale-95 motion-reduce:active:scale-100",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"

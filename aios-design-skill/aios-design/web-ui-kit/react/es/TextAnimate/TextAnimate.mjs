@@ -15,17 +15,17 @@ function splitSegments(text, mode) {
 	return text.split(/(\s+)/);
 }
 const isWhitespace = (token) => /^\s+$/.test(token);
-const REVEAL_ONCE = "motion-safe:animate-[nothing-text-reveal_var(--nothing-text-duration,300ms)_var(--ease-nothing)_1_both]";
-const REVEAL_LOOP = "motion-safe:animate-[nothing-text-reveal_var(--nothing-text-duration,300ms)_var(--ease-nothing)_infinite_both]";
+const REVEAL_ONCE = "motion-safe:animate-[aios-text-reveal_var(--aios-text-duration,300ms)_var(--ease-aios)_1_both]";
+const REVEAL_LOOP = "motion-safe:animate-[aios-text-reveal_var(--aios-text-duration,300ms)_var(--ease-aios)_infinite_both]";
 function TextAnimate({ children, mode = "word", delay = 40, duration = 300, as = "p", once = true, className, style, ...props }) {
 	const Tag = TAGS[as];
-	const segmentClass = cn("nothing-text-animate__segment inline-block will-change-[opacity,transform]", once ? REVEAL_ONCE : REVEAL_LOOP, "motion-reduce:animate-none motion-reduce:opacity-100");
+	const segmentClass = cn("aios-text-animate__segment inline-block will-change-[opacity,transform]", once ? REVEAL_ONCE : REVEAL_LOOP, "motion-reduce:animate-none motion-reduce:opacity-100");
 	const tokens = splitSegments(children, mode);
 	let segmentIndex = 0;
 	return /* @__PURE__ */ jsx(Tag, {
 		className: cn(textAnimateVariants({ mode }), className),
 		style: {
-			"--nothing-text-duration": `${duration}ms`,
+			"--aios-text-duration": `${duration}ms`,
 			...style
 		},
 		"data-slot": "text-animate",

@@ -136,7 +136,7 @@ const DotMatrixIcon = React$1.forwardRef(({ svg, rows = 24, cols = 24, alphaThre
 		const isPulsing = pulsing.has(key);
 		const bg = isOn ? isPulsing ? activeColor : baseColor : "transparent";
 		cells.push(/* @__PURE__ */ jsx("div", {
-			className: cn("nothing-dot-matrix-icon__dot", isPulsing && "nothing-dot-matrix-icon__dot--pulse"),
+			className: cn("aios-dot-matrix-icon__dot", isPulsing && "aios-dot-matrix-icon__dot--pulse"),
 			style: {
 				width: dotSize,
 				height: dotSize,
@@ -146,7 +146,7 @@ const DotMatrixIcon = React$1.forwardRef(({ svg, rows = 24, cols = 24, alphaThre
 	}
 	return /* @__PURE__ */ jsx("div", {
 		ref,
-		className: cn("nothing-dot-matrix-icon", className),
+		className: cn("aios-dot-matrix-icon", className),
 		style: {
 			backgroundColor,
 			borderRadius: radius,

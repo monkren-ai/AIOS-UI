@@ -18,7 +18,7 @@ const resizablePanelVariants = cva(["min-h-0 min-w-0 overflow-hidden"]);
 */
 const resizableHandleVariants = cva([
 	"relative z-1 shrink-0 bg-border-visible",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:bg-interactive",
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ], {

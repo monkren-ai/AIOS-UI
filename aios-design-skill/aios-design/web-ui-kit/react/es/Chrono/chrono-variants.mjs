@@ -9,7 +9,7 @@ import { cva } from "class-variance-authority";
 const chronoVariants = cva([
 	"flex w-full flex-col",
 	"rounded-lg border border-border bg-surface",
-	"transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		state: {
@@ -29,13 +29,13 @@ const chronoVariants = cva([
 	}
 });
 /** 顶部标题。 */
-const chronoTitleVariants = cva(["font-mono text-label uppercase tracking-widest text-foreground-muted", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const chronoTitleVariants = cva(["font-mono text-label uppercase tracking-widest text-foreground-muted", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /**
 * 主计时读数。
 *
 * `tabular-nums` 不能省：秒表每帧都在跳，比例宽度的数字会让整行左右抖。
 */
-const chronoDisplayVariants = cva(["text-center font-mono font-bold leading-none tracking-[-0.02em] tabular-nums text-foreground-display", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const chronoDisplayVariants = cva(["text-center font-mono font-bold leading-none tracking-[-0.02em] tabular-nums text-foreground-display", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { size: {
 		sm: "mb-6 text-display-md",
 		md: "mb-8 text-display-lg",
@@ -48,7 +48,7 @@ const chronoButtonVariants = cva([
 	"inline-flex min-h-11 cursor-pointer select-none items-center justify-center",
 	"rounded-pill px-6 py-3 font-mono text-xs font-bold uppercase leading-none tracking-wider",
 	"[-webkit-tap-highlight-color:transparent]",
-	"transition-[background-color,border-color,color,opacity] duration-200 ease-nothing",
+	"transition-[background-color,border-color,color,opacity] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"disabled:cursor-not-allowed disabled:opacity-40"
@@ -70,11 +70,11 @@ const chronoLapsVariants = cva([
 	"[&::-webkit-scrollbar-thumb]:rounded-2xs [&::-webkit-scrollbar-thumb]:bg-border-visible"
 ]);
 /** 单条圈速。 */
-const chronoLapItemVariants = cva(["flex items-baseline border-b border-border py-2 last:border-b-0", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const chronoLapItemVariants = cva(["flex items-baseline border-b border-border py-2 last:border-b-0", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 圈号。 */
-const chronoLapNumberVariants = cva(["min-w-12 font-mono text-caption uppercase tracking-wider tabular-nums text-foreground-muted", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const chronoLapNumberVariants = cva(["min-w-12 font-mono text-caption uppercase tracking-wider tabular-nums text-foreground-muted", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 本圈耗时。最快标绿、最慢标黄。 */
-const chronoLapDeltaVariants = cva(["flex-1 font-mono text-sm tabular-nums", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const chronoLapDeltaVariants = cva(["flex-1 font-mono text-sm tabular-nums", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { pace: {
 		normal: "text-foreground",
 		fastest: "text-success",
@@ -83,7 +83,7 @@ const chronoLapDeltaVariants = cva(["flex-1 font-mono text-sm tabular-nums", "tr
 	defaultVariants: { pace: "normal" }
 });
 /** 累计耗时。 */
-const chronoLapTotalVariants = cva(["font-mono text-sm tabular-nums text-foreground-muted", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const chronoLapTotalVariants = cva(["font-mono text-sm tabular-nums text-foreground-muted", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 //#endregion
 export { chronoButtonVariants, chronoDisplayVariants, chronoLapDeltaVariants, chronoLapItemVariants, chronoLapNumberVariants, chronoLapTotalVariants, chronoLapsVariants, chronoTitleVariants, chronoVariants };
 

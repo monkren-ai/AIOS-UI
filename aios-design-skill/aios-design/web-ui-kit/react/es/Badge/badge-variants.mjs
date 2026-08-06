@@ -9,7 +9,7 @@ const badgeVariants = cva([
 	"inline-flex shrink-0 select-none items-center justify-center gap-1",
 	"whitespace-nowrap font-mono uppercase leading-none tracking-wider",
 	"rounded-pill border border-transparent",
-	"transition-[background-color,border-color,color] duration-200 ease-nothing",
+	"transition-[background-color,border-color,color] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"[&_svg]:size-[1.15em] [&_svg]:shrink-0"

@@ -39,7 +39,7 @@ const selectTriggerVariants = cva([
 	"rounded-sm border border-border-visible bg-transparent",
 	"whitespace-nowrap text-start font-mono text-sm text-foreground",
 	"[-webkit-tap-highlight-color:transparent]",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:border-foreground-muted",
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"open:border-foreground"
@@ -68,7 +68,7 @@ const selectTriggerVariants = cva([
 const selectValueVariants = cva(["flex-1 overflow-hidden text-ellipsis"]);
 const selectPlaceholderVariants = cva(["flex-1 overflow-hidden text-ellipsis text-foreground-disabled"]);
 /** 下拉箭头。展开时翻转 180°。 */
-const selectTriggerIconVariants = cva(["shrink-0 text-caption text-foreground-muted", "transition-transform duration-200 ease-nothing motion-reduce:transition-none"], {
+const selectTriggerIconVariants = cva(["shrink-0 text-caption text-foreground-muted", "transition-transform duration-200 ease-aios motion-reduce:transition-none"], {
 	variants: { open: {
 		true: "rotate-180",
 		false: "rotate-0"
@@ -79,7 +79,7 @@ const selectPositionerVariants = cva(["z-[var(--z-overlay)]"]);
 /**
 * 浮层。
 *
-* 旧实现是 `@keyframes nothing-select-enter`；这里换成 Base UI 的
+* 旧实现是 `@keyframes aios-select-enter`；这里换成 Base UI 的
 * `data-open` / `data-closed` + transition，不再需要关键帧。
 */
 const selectContentVariants = cva([
@@ -93,7 +93,7 @@ const selectSearchInputVariants = cva([
 	"w-full rounded-xs border border-border-visible bg-transparent px-2 py-1",
 	"text-start font-mono text-sm text-foreground outline-none",
 	"placeholder:text-foreground-disabled",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"focus:border-interactive"
 ]);
 const selectListVariants = cva(["max-h-60 overflow-y-auto py-1"]);
@@ -107,7 +107,7 @@ const selectItemVariants = cva([
 	"relative flex cursor-pointer select-none items-center justify-between gap-2",
 	"overflow-hidden whitespace-nowrap text-ellipsis",
 	"font-mono text-sm text-foreground [-webkit-tap-highlight-color:transparent]",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:bg-surface",
 	"focus-visible:z-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-interactive"
 ], {
@@ -140,7 +140,7 @@ const selectItemVariants = cva([
 /** 选中打勾。默认透明，选中时淡入；`ms-auto` 保证 RTL 下也贴在行尾。 */
 const selectItemIndicatorVariants = cva([
 	"ms-auto ps-2 text-caption text-interactive opacity-0",
-	"transition-opacity duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-opacity duration-200 ease-aios motion-reduce:transition-none",
 	"selected:opacity-100"
 ]);
 const selectErrorVariants = cva(["mt-xs font-mono text-caption text-error"]);

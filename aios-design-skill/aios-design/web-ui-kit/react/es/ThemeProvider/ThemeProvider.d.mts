@@ -35,7 +35,7 @@ interface ThemeContextValue {
    */
   toggleTheme: () => void;
 }
-declare const DEFAULT_STORAGE_KEY = "nothing-theme";
+declare const DEFAULT_STORAGE_KEY = "aios-theme";
 interface ThemeProviderProps {
   children: ReactNode;
   /**
@@ -59,7 +59,7 @@ interface ThemeProviderProps {
    */
   onThemeChange?: (theme: Theme) => void;
   /**
-   * localStorage 的 key，默认 `'nothing-theme'`。
+   * localStorage 的 key，默认 `'aios-theme'`。
    *
    * 改了这里，`<ThemeScript>` 的同名属性必须一起改成同一个值，否则首屏内联脚本
    * 读的是另一个 key，会闪一下错误主题再被 provider 纠正。
@@ -72,7 +72,7 @@ interface ThemeProviderProps {
  * 管理 AIOS UI 的明暗主题。
  *
  * - 通过 `data-theme` 属性切换主题（与 `tokens.css` 的 `[data-theme="dark"]` 选择器协同）
- * - 持久化到 `localStorage`（key: `nothing-theme`）
+ * - 持久化到 `localStorage`（key: `aios-theme`）
  * - 支持系统主题跟随（prefers-color-scheme）
  * - 支持 forcedTheme 强制主题
  * - 切换时临时禁用 CSS 过渡，避免颜色渐变闪烁

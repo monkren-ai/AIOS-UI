@@ -11,8 +11,8 @@
  * - `dim` 的透明度层层收窄：基础 0.2 → theme 0.3 → grid 0.1 / glyph 0.15。
  *   compoundVariants 排在最后输出，顺序即优先级。
  *
- * 保留的 BEM 类名（`nothing-dot-matrix`、`nothing-dot-matrix--glyph`、
- * `nothing-dot-matrix__dot{,--active,--dim}`）不再自带样式，只作为
+ * 保留的 BEM 类名（`aios-dot-matrix`、`aios-dot-matrix--glyph`、
+ * `aios-dot-matrix__dot{,--active,--dim}`）不再自带样式，只作为
  * `src/styles/glyph.css` 的选择器钩子——Glyph 靠它们改写点的配色。
  */
 declare const dotMatrixVariants: (props?: ({

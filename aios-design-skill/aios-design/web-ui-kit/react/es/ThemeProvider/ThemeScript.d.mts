@@ -3,7 +3,7 @@ import { ScriptHTMLAttributes } from "react";
 //#region src/ThemeProvider/ThemeScript.d.ts
 interface ThemeScriptOptions {
   /**
-   * localStorage key，默认 'nothing-theme'
+   * localStorage key，默认 'aios-theme'
    */
   storageKey?: string;
   /**

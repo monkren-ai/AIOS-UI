@@ -3,7 +3,7 @@
  * Countdown 的视觉变体。
  *
  * `state` 是读数配色：running 用 display 白，urgent（进入 threshold 区间）升到
- * Nothing 红，done 回到最弱一档。容器只承担布局与过渡，数字配色走 numberVariants。
+ * AIOS 红，done 回到最弱一档。容器只承担布局与过渡，数字配色走 numberVariants。
  */
 declare const countdownVariants: (props?: ({
   state?: "running" | "urgent" | "done" | null | undefined;

@@ -1,21 +1,21 @@
 import { cva } from "class-variance-authority";
 //#region src/conversation/Prompts/prompts-variants.ts
-const promptsVariants = cva("nothing-prompts", {
+const promptsVariants = cva("aios-prompts", {
 	variants: {
 		variant: {
 			default: "",
-			bordered: "nothing-prompts--bordered",
-			filled: "nothing-prompts--filled"
+			bordered: "aios-prompts--bordered",
+			filled: "aios-prompts--filled"
 		},
 		layout: {
-			grid: "nothing-prompts--grid",
-			list: "nothing-prompts--list",
-			wrap: "nothing-prompts--wrap"
+			grid: "aios-prompts--grid",
+			list: "aios-prompts--list",
+			wrap: "aios-prompts--wrap"
 		},
 		size: {
-			sm: "nothing-prompts--sm",
-			md: "nothing-prompts--md",
-			lg: "nothing-prompts--lg"
+			sm: "aios-prompts--sm",
+			md: "aios-prompts--md",
+			lg: "aios-prompts--lg"
 		}
 	},
 	defaultVariants: {
@@ -24,9 +24,9 @@ const promptsVariants = cva("nothing-prompts", {
 		size: "md"
 	}
 });
-const promptsItemVariants = cva("nothing-prompts__item", {
+const promptsItemVariants = cva("aios-prompts__item", {
 	variants: { disabled: {
-		true: "nothing-prompts__item--disabled",
+		true: "aios-prompts__item--disabled",
 		false: ""
 	} },
 	defaultVariants: { disabled: false }

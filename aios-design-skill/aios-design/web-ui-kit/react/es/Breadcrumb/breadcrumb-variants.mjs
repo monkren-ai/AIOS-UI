@@ -13,7 +13,7 @@ const breadcrumbVariants = cva(["font-mono"], {
 const breadcrumbLinkVariants = cva([
 	"border-none bg-transparent p-0 no-underline",
 	"font-mono [font-size:inherit] [line-height:inherit]",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ], {
 	variants: { current: {

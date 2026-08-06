@@ -1,4 +1,4 @@
-.nothing-compass-widget {
+.aios-compass-widget {
   border-radius: 50%;
   background-color: var(--widget-dark-bg);
   background-image: radial-gradient(circle, var(--widget-dark-2) 0.5px, transparent 0.5px);
@@ -16,7 +16,7 @@
   transform: rotate(var(--compass-heading, 0deg));
 }
 
-.nothing-compass-widget__direction {
+.aios-compass-widget__direction {
   font-size: var(--widget-label);
   text-transform: uppercase;
   font-family: var(--font-widget);
@@ -26,22 +26,22 @@
     color var(--duration-transition) var(--easing);
 }
 
-.nothing-compass-widget__direction--north {
+.aios-compass-widget__direction--north {
   color: var(--widget-primary);
 }
 
-.nothing-compass-widget__direction--default {
+.aios-compass-widget__direction--default {
   color: var(--widget-dark-4);
 }
 
-.nothing-compass-widget__center {
+.aios-compass-widget__center {
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 1;
 }
 
-.nothing-compass-widget__dots {
+.aios-compass-widget__dots {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,13 +49,13 @@
   margin-top: var(--space-lg-minus, 31px);
 }
 
-.nothing-compass-widget__dots-row {
+.aios-compass-widget__dots-row {
   display: flex;
   align-items: center;
   gap: 0;
 }
 
-.nothing-compass-widget__dot {
+.aios-compass-widget__dot {
   border-radius: 50%;
   background: var(--widget-card-bg);
   width: var(--widget-dot-lg);

@@ -6,7 +6,7 @@ import { cva } from "class-variance-authority";
 * v1 把「密度」（compact）与「形状」（technical）混在 variant 里，v2 把它们
 * 拆成 `size` 与 `shape` 两个正交维度，variant 只留下强调层级。
 */
-const contentCardVariants = cva(["border transition-colors duration-200 ease-nothing", "motion-reduce:transition-none"], {
+const contentCardVariants = cva(["border transition-colors duration-200 ease-aios", "motion-reduce:transition-none"], {
 	variants: {
 		variant: {
 			soft: "border-border bg-surface",
@@ -85,7 +85,7 @@ function resolveCardShape(variant, shape) {
 const widgetCardVariants = cva([
 	"relative box-border flex flex-col justify-between overflow-hidden",
 	"font-body",
-	"transition-colors duration-300 ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-300 ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		size: {

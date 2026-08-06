@@ -74,7 +74,7 @@ const stateSpinnerVariants = cva(["mb-4 flex h-6 items-end gap-[3px]"]);
 */
 const stateSpinnerSegmentVariants = cva([
 	"w-1 rounded-none bg-foreground-display",
-	"motion-safe:animate-[nothing-spinner-pulse_1.2s_ease-in-out_infinite]",
+	"motion-safe:animate-[aios-spinner-pulse_1.2s_ease-in-out_infinite]",
 	"motion-reduce:animate-none"
 ], {
 	variants: { index: {
@@ -91,7 +91,7 @@ const stateSpinnerSegmentVariants = cva([
 /** 进度条轨道。 */
 const stateLoadingBarVariants = cva(["mb-2 flex w-50 gap-0.5"]);
 /** 进度条的单个刻度。 */
-const loadingSegmentVariants = cva(["h-1 flex-1 rounded-none transition-colors duration-200 ease-nothing motion-reduce:transition-none"], {
+const loadingSegmentVariants = cva(["h-1 flex-1 rounded-none transition-colors duration-200 ease-aios motion-reduce:transition-none"], {
 	variants: { filled: {
 		true: "bg-foreground-display",
 		false: "bg-border"

@@ -41,13 +41,13 @@ const Conversations = React$1.forwardRef(({ items, activeKey, defaultActiveKey, 
 		...rest,
 		children: [
 			header && /* @__PURE__ */ jsx("div", {
-				className: cn("nothing-conversations__header", classNames.header),
+				className: cn("aios-conversations__header", classNames.header),
 				style: styles.header,
 				"data-slot": "conversations-header",
 				children: header
 			}),
 			/* @__PURE__ */ jsx("div", {
-				className: cn("nothing-conversations__list", classNames.list),
+				className: cn("aios-conversations__list", classNames.list),
 				style: styles.list,
 				"data-slot": "conversations-list",
 				role: "tablist",
@@ -70,27 +70,27 @@ const Conversations = React$1.forwardRef(({ items, activeKey, defaultActiveKey, 
 						onClick: () => handleSelect(item),
 						children: [
 							item.icon && /* @__PURE__ */ jsx("span", {
-								className: cn("nothing-conversations__item-icon", classNames.itemIcon),
+								className: cn("aios-conversations__item-icon", classNames.itemIcon),
 								style: styles.itemIcon,
 								"data-slot": "conversations-item-icon",
 								children: item.icon
 							}),
 							/* @__PURE__ */ jsxs("span", {
-								className: "nothing-conversations__item-main",
+								className: "aios-conversations__item-main",
 								children: [/* @__PURE__ */ jsx("span", {
-									className: cn("nothing-conversations__item-label", classNames.itemLabel),
+									className: cn("aios-conversations__item-label", classNames.itemLabel),
 									style: styles.itemLabel,
 									"data-slot": "conversations-item-label",
 									children: item.label
 								}), item.meta && /* @__PURE__ */ jsx("span", {
-									className: cn("nothing-conversations__item-meta", classNames.itemMeta),
+									className: cn("aios-conversations__item-meta", classNames.itemMeta),
 									style: styles.itemMeta,
 									"data-slot": "conversations-item-meta",
 									children: item.meta
 								})]
 							}),
 							actions && /* @__PURE__ */ jsx("span", {
-								className: cn("nothing-conversations__item-actions", classNames.itemActions),
+								className: cn("aios-conversations__item-actions", classNames.itemActions),
 								style: styles.itemActions,
 								"data-slot": "conversations-item-actions",
 								children: actions
@@ -100,7 +100,7 @@ const Conversations = React$1.forwardRef(({ items, activeKey, defaultActiveKey, 
 				})
 			}),
 			footer && /* @__PURE__ */ jsx("div", {
-				className: cn("nothing-conversations__footer", classNames.footer),
+				className: cn("aios-conversations__footer", classNames.footer),
 				style: styles.footer,
 				"data-slot": "conversations-footer",
 				children: footer

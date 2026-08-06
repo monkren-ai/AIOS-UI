@@ -11,11 +11,11 @@ const riskLabels = {
 	medium: "[MEDIUM RISK]",
 	high: "[HIGH RISK]"
 };
-const approvalGateVariants = cva("nothing-approval-gate", {
+const approvalGateVariants = cva("aios-approval-gate", {
 	variants: { risk: {
-		low: "nothing-approval-gate--low",
-		medium: "nothing-approval-gate--medium",
-		high: "nothing-approval-gate--high"
+		low: "aios-approval-gate--low",
+		medium: "aios-approval-gate--medium",
+		high: "aios-approval-gate--high"
 	} },
 	defaultVariants: { risk: "medium" }
 });
@@ -32,34 +32,34 @@ const ApprovalGate = React$1.forwardRef(({ action, impact, reversible = true, ri
 		...props,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-approval-gate__header",
+				className: "aios-approval-gate__header",
 				children: [/* @__PURE__ */ jsx(AgentOrb, {
 					state: risk === "high" ? "error" : "paused",
 					size: "md"
 				}), /* @__PURE__ */ jsxs("div", {
-					className: "nothing-approval-gate__meta",
+					className: "aios-approval-gate__meta",
 					children: [/* @__PURE__ */ jsx("span", {
-						className: "nothing-approval-gate__risk",
+						className: "aios-approval-gate__risk",
 						children: riskLabels[risk]
 					}), /* @__PURE__ */ jsx("span", {
-						className: "nothing-approval-gate__reversible",
+						className: "aios-approval-gate__reversible",
 						children: reversible ? "[REVERSIBLE]" : "[IRREVERSIBLE]"
 					})]
 				})]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-approval-gate__body",
+				className: "aios-approval-gate__body",
 				children: [/* @__PURE__ */ jsx("p", {
 					id: actionId,
-					className: "nothing-approval-gate__action",
+					className: "aios-approval-gate__action",
 					children: action
 				}), impact && /* @__PURE__ */ jsx("p", {
-					className: "nothing-approval-gate__impact",
+					className: "aios-approval-gate__impact",
 					children: impact
 				})]
 			}),
 			/* @__PURE__ */ jsxs("div", {
-				className: "nothing-approval-gate__actions",
+				className: "aios-approval-gate__actions",
 				children: [/* @__PURE__ */ jsx(Button, {
 					variant: "secondary",
 					size: "sm",

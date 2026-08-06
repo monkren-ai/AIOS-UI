@@ -25,31 +25,31 @@ const Welcome = React$1.forwardRef(({ title, description, icon, extra, actions, 
 		...rest,
 		children: [
 			icon && /* @__PURE__ */ jsx("div", {
-				className: cn("nothing-welcome__icon", classNames.icon),
+				className: cn("aios-welcome__icon", classNames.icon),
 				style: styles.icon,
 				"data-slot": "welcome-icon",
 				children: icon
 			}),
 			title && /* @__PURE__ */ jsx("div", {
-				className: cn("nothing-welcome__title", classNames.title),
+				className: cn("aios-welcome__title", classNames.title),
 				style: styles.title,
 				"data-slot": "welcome-title",
 				children: title
 			}),
 			description && /* @__PURE__ */ jsx("div", {
-				className: cn("nothing-welcome__description", classNames.description),
+				className: cn("aios-welcome__description", classNames.description),
 				style: styles.description,
 				"data-slot": "welcome-description",
 				children: description
 			}),
 			actions && /* @__PURE__ */ jsx("div", {
-				className: cn("nothing-welcome__actions", classNames.actions),
+				className: cn("aios-welcome__actions", classNames.actions),
 				style: styles.actions,
 				"data-slot": "welcome-actions",
 				children: actions
 			}),
 			extra && /* @__PURE__ */ jsx("div", {
-				className: cn("nothing-welcome__extra", classNames.extra),
+				className: cn("aios-welcome__extra", classNames.extra),
 				style: styles.extra,
 				"data-slot": "welcome-extra",
 				children: extra

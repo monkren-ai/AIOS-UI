@@ -10,7 +10,7 @@ import { cva } from "class-variance-authority";
 const sunDialVariants = cva([
 	"flex w-full flex-col items-center",
 	"rounded-lg border border-border bg-surface p-8",
-	"transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"
+	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
 		time: {
@@ -28,7 +28,7 @@ const sunDialVariants = cva([
 	}
 });
 /** [DAY] / [NIGHT] 状态标。 */
-const sunDialStatusVariants = cva(["font-mono text-label uppercase tracking-[0.1em]", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"], {
+const sunDialStatusVariants = cva(["font-mono text-label uppercase tracking-[0.1em]", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { time: {
 		day: "text-warning",
 		night: "text-interactive"
@@ -36,17 +36,17 @@ const sunDialStatusVariants = cva(["font-mono text-label uppercase tracking-[0.1
 	defaultVariants: { time: "day" }
 });
 /** 经纬度。 */
-const sunDialLocationVariants = cva(["font-mono text-label uppercase tracking-[0.06em] tabular-nums text-foreground-disabled", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const sunDialLocationVariants = cva(["font-mono text-label uppercase tracking-[0.06em] tabular-nums text-foreground-disabled", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 白天那半段弧。 */
-const sunDialArcDayVariants = cva(["fill-none stroke-foreground-display [stroke-linecap:round] [stroke-width:3]", "transition-[stroke] duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const sunDialArcDayVariants = cva(["fill-none stroke-foreground-display [stroke-linecap:round] [stroke-width:3]", "transition-[stroke] duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 夜里那半段弧，虚线。 */
-const sunDialArcNightVariants = cva(["fill-none stroke-border [stroke-dasharray:6_4] [stroke-linecap:round] [stroke-width:3]", "transition-[stroke] duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const sunDialArcNightVariants = cva(["fill-none stroke-border [stroke-dasharray:6_4] [stroke-linecap:round] [stroke-width:3]", "transition-[stroke] duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 太阳标记。 */
-const sunDialSunMarkerVariants = cva(["transition-[transform,opacity] duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const sunDialSunMarkerVariants = cva(["transition-[transform,opacity] duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 太阳实心点。 */
-const sunDialSunCoreVariants = cva(["fill-warning transition-[fill] duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const sunDialSunCoreVariants = cva(["fill-warning transition-[fill] duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 太阳外圈的淡晕。是一个 20% 不透明度的实心圆，不是 blur。 */
-const sunDialSunGlowVariants = cva(["fill-warning opacity-20", "transition-[fill] duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const sunDialSunGlowVariants = cva(["fill-warning opacity-20", "transition-[fill] duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 日出 / 日落时间块。 */
 const sunDialTimeBlockVariants = cva(["absolute top-full mt-1 flex flex-col gap-0.5"], {
 	variants: { edge: {
@@ -56,13 +56,13 @@ const sunDialTimeBlockVariants = cva(["absolute top-full mt-1 flex flex-col gap-
 	defaultVariants: { edge: "sunrise" }
 });
 /** 「SUNRISE」这类小标签。 */
-const sunDialTimeLabelVariants = cva(["font-mono text-label uppercase tracking-[0.08em] text-foreground-disabled", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const sunDialTimeLabelVariants = cva(["font-mono text-label uppercase tracking-[0.08em] text-foreground-disabled", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 日出 / 日落的具体时刻。 */
-const sunDialTimeValueVariants = cva(["font-mono text-base font-bold tabular-nums text-foreground-display", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const sunDialTimeValueVariants = cva(["font-mono text-base font-bold tabular-nums text-foreground-display", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 当前时刻的大字。 */
-const sunDialCurrentTimeVariants = cva(["mb-2 font-display text-display-md font-semibold tracking-[-0.02em] tabular-nums text-foreground-display", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const sunDialCurrentTimeVariants = cva(["mb-2 font-display text-display-md font-semibold tracking-[-0.02em] tabular-nums text-foreground-display", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** 「还剩几小时天光」。 */
-const sunDialRemainingVariants = cva(["font-mono text-sm uppercase tracking-[0.08em] tabular-nums text-foreground-muted", "transition-colors duration-[350ms] ease-nothing motion-reduce:transition-none"]);
+const sunDialRemainingVariants = cva(["font-mono text-sm uppercase tracking-[0.08em] tabular-nums text-foreground-muted", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 //#endregion
 export { sunDialArcDayVariants, sunDialArcNightVariants, sunDialCurrentTimeVariants, sunDialLocationVariants, sunDialRemainingVariants, sunDialStatusVariants, sunDialSunCoreVariants, sunDialSunGlowVariants, sunDialSunMarkerVariants, sunDialTimeBlockVariants, sunDialTimeLabelVariants, sunDialTimeValueVariants, sunDialVariants };
 

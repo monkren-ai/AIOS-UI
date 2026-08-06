@@ -12,7 +12,7 @@ const paginationButtonVariants = cva([
 	"rounded-sm border border-border-visible bg-transparent",
 	"font-mono text-sm text-foreground-muted",
 	"cursor-pointer select-none",
-	"transition-[background-color,border-color,color,opacity] duration-200 ease-nothing",
+	"transition-[background-color,border-color,color,opacity] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"hover:not-disabled:bg-muted hover:not-disabled:text-foreground"

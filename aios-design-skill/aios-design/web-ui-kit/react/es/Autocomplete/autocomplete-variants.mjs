@@ -52,7 +52,7 @@ const autocompleteLabelVariants = cva(["font-mono uppercase tracking-wider text-
 	}
 });
 /** 输入框外壳：边框 / 背景都在这里，Input 本体透明。 */
-const autocompleteControlVariants = cva(["relative flex w-full items-center gap-2", "transition-colors duration-200 ease-nothing motion-reduce:transition-none"], {
+const autocompleteControlVariants = cva(["relative flex w-full items-center gap-2", "transition-colors duration-200 ease-aios motion-reduce:transition-none"], {
 	variants: {
 		variant: {
 			outline: "rounded-input border border-border-visible bg-transparent focus-within:border-foreground",
@@ -83,7 +83,7 @@ const autocompleteControlVariants = cva(["relative flex w-full items-center gap-
 const autocompleteInputVariants = cva([
 	"w-full min-w-0 flex-1 border-0 bg-transparent font-mono text-foreground outline-none",
 	"placeholder:text-foreground-disabled",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"disabled:cursor-not-allowed disabled:text-foreground-disabled"
 ], {
 	variants: { size: {
@@ -107,7 +107,7 @@ const autocompleteItemVariants = cva([
 	"relative flex min-h-9 cursor-pointer select-none items-center gap-2 px-4",
 	"overflow-hidden whitespace-nowrap text-ellipsis",
 	"font-mono text-sm text-foreground [-webkit-tap-highlight-color:transparent]",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:bg-surface",
 	"focus-visible:z-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-interactive"
 ], {
@@ -135,12 +135,12 @@ const autocompleteItemVariants = cva([
 /** 无结果占位行。 */
 const autocompleteEmptyVariants = cva(["flex min-h-9 items-center px-4 font-mono text-sm text-foreground-disabled"]);
 /** 右侧下拉箭头。 */
-const autocompleteIconVariants = cva(["shrink-0 select-none text-caption text-foreground-muted", "transition-transform duration-200 ease-nothing motion-reduce:transition-none"]);
+const autocompleteIconVariants = cva(["shrink-0 select-none text-caption text-foreground-muted", "transition-transform duration-200 ease-aios motion-reduce:transition-none"]);
 /** 清除按钮。 */
 const autocompleteClearVariants = cva([
 	"inline-flex shrink-0 cursor-pointer items-center justify-center",
 	"border-0 bg-transparent text-foreground-muted",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:text-foreground",
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"[&svg]:size-[1em] [&svg]:shrink-0"

@@ -37,7 +37,7 @@ const checkboxVariants = cva(["group/checkbox inline-flex select-none items-cent
 const checkboxBoxVariants = cva([
 	"group/checkbox-box relative flex shrink-0 items-center justify-center",
 	"rounded-2xs border border-border-visible bg-transparent",
-	"transition-[background-color,border-color] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[background-color,border-color] duration-200 ease-aios motion-reduce:transition-none",
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"checked:border-foreground-display checked:bg-foreground-display",
 	"data-indeterminate:border-foreground-display data-indeterminate:bg-foreground-display",
@@ -55,7 +55,7 @@ const checkboxIndicatorVariants = cva(["pointer-events-none flex items-center ju
 /** 勾选标记。未勾选时缩到 0，靠 group-data 读盒子状态。 */
 const checkboxCheckVariants = cva([
 	"absolute scale-0 opacity-0",
-	"transition-[opacity,transform] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[opacity,transform] duration-200 ease-aios motion-reduce:transition-none",
 	"group-data-[checked]/checkbox-box:scale-100 group-data-[checked]/checkbox-box:opacity-100"
 ], {
 	variants: { size: {
@@ -68,7 +68,7 @@ const checkboxCheckVariants = cva([
 /** 半选横线。 */
 const checkboxDashVariants = cva([
 	"absolute scale-0 opacity-0",
-	"transition-[opacity,transform] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[opacity,transform] duration-200 ease-aios motion-reduce:transition-none",
 	"group-data-[indeterminate]/checkbox-box:scale-100 group-data-[indeterminate]/checkbox-box:opacity-100"
 ], {
 	variants: { size: {
@@ -81,7 +81,7 @@ const checkboxDashVariants = cva([
 /** 文字标签。勾选后提亮到 text-foreground。 */
 const checkboxLabelVariants = cva([
 	"font-mono uppercase tracking-wider text-foreground-muted",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"group-data-[state=checked]/checkbox:text-foreground",
 	"group-data-[state=indeterminate]/checkbox:text-foreground"
 ], {

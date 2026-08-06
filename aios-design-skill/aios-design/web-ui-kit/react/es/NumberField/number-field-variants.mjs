@@ -61,7 +61,7 @@ const numberFieldLabelVariants = cva(["font-mono uppercase tracking-wider text-f
 const numberFieldGroupVariants = cva([
 	"flex w-full items-stretch overflow-hidden",
 	"rounded-input border border-border bg-surface-raised",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"focus-within:border-border-visible"
 ], {
 	variants: {
@@ -90,7 +90,7 @@ const numberFieldInputVariants = cva([
 	"w-full min-w-0 flex-1 border-0 bg-transparent text-center",
 	"font-mono text-foreground outline-none",
 	"placeholder:text-foreground-disabled",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"disabled:cursor-not-allowed disabled:text-foreground-disabled",
 	"focus-visible:outline-none"
 ], {
@@ -110,7 +110,7 @@ const numberFieldInputVariants = cva([
 const numberFieldStepperVariants = cva([
 	"inline-flex h-full shrink-0 cursor-pointer select-none items-center justify-center",
 	"border-0 bg-transparent font-mono leading-none text-foreground-muted",
-	"transition-[background-color,color,scale] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[background-color,color,scale] duration-200 ease-aios motion-reduce:transition-none",
 	"hover:not-disabled:bg-muted hover:not-disabled:text-foreground-display",
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"disabled:pointer-events-none disabled:opacity-40",

@@ -27,7 +27,7 @@ declare const selectPositionerVariants: (props?: import("class-variance-authorit
 /**
  * 浮层。
  *
- * 旧实现是 `@keyframes nothing-select-enter`；这里换成 Base UI 的
+ * 旧实现是 `@keyframes aios-select-enter`；这里换成 Base UI 的
  * `data-open` / `data-closed` + transition，不再需要关键帧。
  */
 declare const selectContentVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;

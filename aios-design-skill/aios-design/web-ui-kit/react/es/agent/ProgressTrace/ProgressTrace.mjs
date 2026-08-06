@@ -19,9 +19,9 @@ const statusLabels = {
 	error: "[ERROR]",
 	skipped: "[SKIPPED]"
 };
-const progressTraceVariants = cva("nothing-progress-trace", {
+const progressTraceVariants = cva("aios-progress-trace", {
 	variants: { collapsed: {
-		true: "nothing-progress-trace--collapsed",
+		true: "aios-progress-trace--collapsed",
 		false: ""
 	} },
 	defaultVariants: { collapsed: false }
@@ -36,14 +36,14 @@ const ProgressTrace = React$1.forwardRef(({ steps, defaultCollapsed = false, tit
 		"aria-live": "polite",
 		...props,
 		children: [/* @__PURE__ */ jsxs("div", {
-			className: "nothing-progress-trace__header",
+			className: "aios-progress-trace__header",
 			children: [
 				/* @__PURE__ */ jsx("span", {
-					className: "nothing-progress-trace__title",
+					className: "aios-progress-trace__title",
 					children: title
 				}),
 				/* @__PURE__ */ jsxs("span", {
-					className: "nothing-progress-trace__count",
+					className: "aios-progress-trace__count",
 					children: [
 						steps.filter((s) => s.status === "done").length,
 						"/",
@@ -52,7 +52,7 @@ const ProgressTrace = React$1.forwardRef(({ steps, defaultCollapsed = false, tit
 				}),
 				/* @__PURE__ */ jsx("button", {
 					type: "button",
-					className: "nothing-progress-trace__toggle",
+					className: "aios-progress-trace__toggle",
 					onClick: () => setCollapsed((v) => !v),
 					"aria-expanded": !collapsed,
 					"aria-label": collapsed ? expandLabel : collapseLabel,
@@ -60,42 +60,42 @@ const ProgressTrace = React$1.forwardRef(({ steps, defaultCollapsed = false, tit
 				})
 			]
 		}), !collapsed && /* @__PURE__ */ jsx("ol", {
-			className: "nothing-progress-trace__list",
+			className: "aios-progress-trace__list",
 			"aria-label": `${title} steps`,
 			children: steps.map((step, index) => {
 				const status = step.status ?? "pending";
 				const isLast = index === steps.length - 1;
 				return /* @__PURE__ */ jsxs("li", {
-					className: cn("nothing-progress-trace__item", `nothing-progress-trace__item--${status}`, isLast && "nothing-progress-trace__item--last"),
+					className: cn("aios-progress-trace__item", `aios-progress-trace__item--${status}`, isLast && "aios-progress-trace__item--last"),
 					"data-status": dataAttr(status),
 					children: [/* @__PURE__ */ jsxs("div", {
-						className: "nothing-progress-trace__marker",
+						className: "aios-progress-trace__marker",
 						children: [/* @__PURE__ */ jsx(AgentOrb, {
 							state: statusToAgentState[status],
 							size: "sm"
 						}), !isLast && /* @__PURE__ */ jsx("span", {
-							className: "nothing-progress-trace__line",
+							className: "aios-progress-trace__line",
 							"aria-hidden": "true"
 						})]
 					}), /* @__PURE__ */ jsxs("div", {
-						className: "nothing-progress-trace__content",
+						className: "aios-progress-trace__content",
 						children: [
 							/* @__PURE__ */ jsxs("div", {
-								className: "nothing-progress-trace__row",
+								className: "aios-progress-trace__row",
 								children: [/* @__PURE__ */ jsx("span", {
-									className: "nothing-progress-trace__label",
+									className: "aios-progress-trace__label",
 									children: step.label
 								}), /* @__PURE__ */ jsx("span", {
-									className: "nothing-progress-trace__status",
+									className: "aios-progress-trace__status",
 									children: statusLabels[status]
 								})]
 							}),
 							step.description && /* @__PURE__ */ jsx("span", {
-								className: "nothing-progress-trace__description",
+								className: "aios-progress-trace__description",
 								children: step.description
 							}),
 							step.timestamp && /* @__PURE__ */ jsx("span", {
-								className: "nothing-progress-trace__timestamp",
+								className: "aios-progress-trace__timestamp",
 								children: step.timestamp
 							})
 						]

@@ -67,7 +67,7 @@ const sliderFillVariants = cva([
 const sliderThumbVariants = cva([
 	"absolute top-1/2 -translate-x-1/2 -translate-y-1/2",
 	"cursor-grab rounded-full border-2 border-accent bg-foreground-display",
-	"transition-[background-color,border-color,scale] duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-[background-color,border-color,scale] duration-200 ease-aios motion-reduce:transition-none",
 	"active:cursor-grabbing",
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"group-data-[variant=soft]/slider:border-foreground-muted group-data-[variant=soft]/slider:bg-surface",

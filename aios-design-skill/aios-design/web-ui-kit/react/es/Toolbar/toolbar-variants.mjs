@@ -21,10 +21,10 @@ const toolbarVariants = cva(["inline-flex items-center gap-1"], {
 * 映射到 `aria-pressed` 与 `data-pressed`，并加粗字重让按下态不只靠颜色表达。
 */
 const toolbarButtonVariants = cva([
-	"nothing-btn",
+	"aios-btn",
 	"inline-flex shrink-0 cursor-pointer select-none items-center justify-center gap-2",
 	"rounded-sm border font-mono font-medium uppercase tracking-wider whitespace-nowrap",
-	"transition-[background-color,border-color,color,font-weight,scale] duration-200 ease-nothing",
+	"transition-[background-color,border-color,color,font-weight,scale] duration-200 ease-aios",
 	"motion-reduce:transition-none",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"active:not-disabled:scale-[0.97] motion-reduce:active:scale-100",
@@ -71,7 +71,7 @@ const toolbarGroupVariants = cva(["inline-flex items-center gap-1"], {
 const toolbarLinkVariants = cva([
 	"inline-flex shrink-0 select-none items-center gap-2 rounded-sm px-2",
 	"font-mono text-sm text-foreground-muted",
-	"transition-colors duration-200 ease-nothing motion-reduce:transition-none",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
 	"hover:text-foreground-display",
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"[&_svg]:size-[1.15em] [&_svg]:shrink-0"

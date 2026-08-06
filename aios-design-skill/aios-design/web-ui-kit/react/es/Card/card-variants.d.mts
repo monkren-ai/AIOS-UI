@@ -6,7 +6,7 @@
  * 拆成 `size` 与 `shape` 两个正交维度，variant 只留下强调层级。
  */
 declare const contentCardVariants: (props?: ({
-  variant?: "outline" | "soft" | "secondary" | "ghost" | null | undefined;
+  variant?: "soft" | "outline" | "secondary" | "ghost" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   shape?: "rounded" | "technical" | null | undefined;
   interactive?: boolean | null | undefined;
@@ -34,7 +34,7 @@ type CardShape = 'rounded' | 'technical';
  */
 declare const widgetCardVariants: (props?: ({
   size?: "square" | "wide" | "tall" | "auto" | null | undefined;
-  shape?: "rounded" | "pill" | "circle" | null | undefined;
+  shape?: "circle" | "pill" | "rounded" | null | undefined;
   theme?: "light" | "dark" | "accent" | null | undefined;
   density?: "default" | "compact" | null | undefined;
   align?: "left" | "center" | "right" | null | undefined;
