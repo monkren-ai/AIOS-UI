@@ -5,4 +5,5 @@
  */
 
 @import 'tailwindcss';
+@source '../../aios-design-skill/aios-design/web-ui-kit/react/src';
 @import '../../aios-design-skill/aios-design/web-ui-kit/react/src/styles/index.css';
