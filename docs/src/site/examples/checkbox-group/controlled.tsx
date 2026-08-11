@@ -16,7 +16,7 @@ export default function CheckboxGroupControlled() {
         onValueChange={setValue}
       />
       <p className="font-mono text-label uppercase tracking-wider text-foreground-muted">
-        {value.length > 0 ? value.join(', ') : 'Nothing selected'}
+        {value.length > 0 ? value.join(', ') : 'None selected'}
       </p>
     </div>
   )

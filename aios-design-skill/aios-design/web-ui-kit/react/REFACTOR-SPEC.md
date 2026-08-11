@@ -1,6 +1,6 @@
 # AIOS UI v2 组件重构规范
 
-> 以 [appica-ui](https://github.com/appica-dev/appica-ui) 的工程约定为基础，配色与形态仍严格服从 Nothing 设计语言。
+> 以 [appica-ui](https://github.com/appica-dev/appica-ui) 的工程约定为基础，配色与形态仍严格服从 AIOS 设计语言。
 > 所有参与重构的人/Agent 必须先读完本文，再动组件。
 
 样板参考实现：`src/Button/`（`Button.tsx` + `button-variants.ts` + `index.ts` + `Button.test.tsx`，**没有 .css 文件**）。
@@ -52,7 +52,7 @@
 
 ### 字体
 
-`font-mono`（控件标签，大写）· `font-body` / `font-sans`（正文）· `font-display`（Doto，大号数字）· `font-ndot`
+`font-mono`（控件标签，大写）· `font-body` / `font-sans`（正文）· `font-display`（Doto，大号数字）· `font-dotmatrix`
 
 ### 圆角
 

@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 /**
  * ProgressBar 的视觉变体。
  *
- * Nothing 的进度条是「分段刻度」而不是连续条：轨道被切成 N 段，填满的用
+ * AIOS 的进度条是「分段刻度」而不是连续条：轨道被切成 N 段，填满的用
  * text-display 色，空的用 border 色。`slim` 是没有读数的 4px 细轨。
  *
  * 注：`variant` 这里描述的是结构（分段 / 细轨）而非 §3 的强调词表——

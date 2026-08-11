@@ -16,7 +16,7 @@ export default function TabsStates() {
           </p>
         </TabPanel>
         <TabPanel value="history">
-          <p className="font-body text-base text-foreground-muted">Nothing recorded yet.</p>
+          <p className="font-body text-base text-foreground-muted">AIOS recorded yet.</p>
         </TabPanel>
       </Tabs>
 
@@ -27,7 +27,7 @@ export default function TabsStates() {
           </p>
         </TabPanel>
         <TabPanel value="history">
-          <p className="font-body text-base text-foreground-muted">Nothing recorded yet.</p>
+          <p className="font-body text-base text-foreground-muted">AIOS recorded yet.</p>
         </TabPanel>
       </Tabs>
     </div>

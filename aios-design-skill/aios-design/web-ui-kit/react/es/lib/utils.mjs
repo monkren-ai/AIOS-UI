@@ -46,7 +46,7 @@ const twMerge = extendTailwindMerge({ extend: { theme: {
 		"body",
 		"sans",
 		"mono",
-		"ndot"
+		"dotmatrix"
 	]
 } } });
 /**

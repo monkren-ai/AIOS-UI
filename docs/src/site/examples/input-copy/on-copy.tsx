@@ -8,7 +8,7 @@ export default function InputCopyOnCopy() {
     <div className="flex w-full max-w-sm flex-col items-start gap-2">
       <InputCopy
         label="Invite link"
-        defaultValue="https://nothing.tech/invite/x8k2"
+        defaultValue="https://example.com/invite/x8k2"
         onCopy={() => setCopyCount((count) => count + 1)}
       />
       <p className="font-mono text-label uppercase tracking-wider text-foreground-muted">

@@ -196,8 +196,8 @@ export function IconsPage() {
         <h1 className="text-display-sm text-foreground-display">{t('图标', 'Icons')}</h1>
         <Prose>
           {t(
-            'Nothing 自带的点阵图标集，外加完整的 `@tabler/icons-react`。点阵预览开关会把整个网格切成 Nothing 的栅格化渲染；Tabler 图标先从 DOM 取回 SVG 再栅格化，所以两边都能用。',
-            'The built-in Nothing icon set plus the complete `@tabler/icons-react` library. The dot-matrix toggle rasterises the whole grid into the Nothing look; Tabler icons are serialised from the DOM first, so the toggle works on both tabs.',
+            'AIOS 自带的点阵图标集，外加完整的 `@tabler/icons-react`。点阵预览开关会把整个网格切成 AIOS 的栅格化渲染；Tabler 图标先从 DOM 取回 SVG 再栅格化，所以两边都能用。',
+            'The built-in AIOS icon set plus the complete `@tabler/icons-react` library. The dot-matrix toggle rasterises the whole grid into the AIOS look; Tabler icons are serialised from the DOM first, so the toggle works on both tabs.',
           )}
         </Prose>
       </header>
@@ -209,7 +209,7 @@ export function IconsPage() {
             value={source}
             onChange={changeSource}
             options={[
-              { value: 'aios', label: 'Nothing' },
+              { value: 'aios', label: 'AIOS' },
               { value: 'tabler', label: 'Tabler' },
             ]}
           />

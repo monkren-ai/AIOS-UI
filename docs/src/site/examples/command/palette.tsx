@@ -26,7 +26,7 @@ export default function CommandPalette() {
         ⌘K / Ctrl+K
       </button>
       <p className="font-mono text-label uppercase tracking-wider text-foreground-muted">
-        {lastRun ? `Ran: ${lastRun}` : 'Nothing run yet'}
+        {lastRun ? `Ran: ${lastRun}` : 'AIOS run yet'}
       </p>
       {open && (
         <div className="absolute inset-0 z-10 flex items-start justify-center bg-overlay pt-4">

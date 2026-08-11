@@ -20,6 +20,46 @@ export interface ComponentManifestEntry {
 
 const ENTRIES: ComponentManifestEntry[] = [
   {
+    slug: 'alert-dialog',
+    name: 'AlertDialog',
+    category: 'overlays',
+    status: 'new',
+    description: {
+      zh: '必须明确确认或取消的高风险对话框。',
+      en: 'A high-stakes dialog that requires an explicit confirm or cancel action.',
+    },
+  },
+  {
+    slug: 'carousel',
+    name: 'Carousel',
+    category: 'data-display',
+    status: 'new',
+    description: {
+      zh: '通用轮播容器，支持受控索引与循环导航。',
+      en: 'A general carousel with controlled indexing and optional looping.',
+    },
+  },
+  {
+    slug: 'menubar',
+    name: 'Menubar',
+    category: 'navigation',
+    status: 'new',
+    description: {
+      zh: '桌面式菜单栏，支持横向与纵向排列。',
+      en: 'A desktop-style menu bar in horizontal or vertical orientation.',
+    },
+  },
+  {
+    slug: 'radio',
+    name: 'Radio',
+    category: 'actions-inputs',
+    status: 'new',
+    description: {
+      zh: '可组合进自定义富内容选项的独立单选原语。',
+      en: 'A standalone radio primitive for composing rich option content.',
+    },
+  },
+  {
     slug: 'button',
     name: 'Button',
     category: 'actions-inputs',
@@ -825,7 +865,7 @@ const ENTRIES: ComponentManifestEntry[] = [
     category: 'decoration',
     status: 'new',
     description: {
-      zh: '点阵环境背景（Nothing 改造，非渐变光晕），opacity 中心高边缘低。',
+      zh: '点阵环境背景（AIOS 改造，非渐变光晕），opacity 中心高边缘低。',
       en: 'A dot-matrix ambient background (AIOS adaptation, not a gradient glow), with opacity fading from center to edge.',
     },
   },
@@ -865,7 +905,7 @@ const ENTRIES: ComponentManifestEntry[] = [
     category: 'feedback',
     status: 'new',
     description: {
-      zh: '点阵呼吸占位（Nothing 改造，非灰色块），text/rect/circle 三种形状。',
+      zh: '点阵呼吸占位（AIOS 改造，非灰色块），text/rect/circle 三种形状。',
       en: 'A dot-matrix breathing placeholder (AIOS adaptation, not grey blocks) in text, rect, or circle shapes.',
     },
   },
@@ -915,7 +955,7 @@ const ENTRIES: ComponentManifestEntry[] = [
     category: 'feedback',
     status: 'new',
     description: {
-      zh: '内联状态条（Nothing 改造，不浮窗不自动消失），[SAVED]/[ERROR] 风格。',
+      zh: '内联状态条（AIOS 改造，不浮窗不自动消失），[SAVED]/[ERROR] 风格。',
       en: 'An inline status bar (AIOS adaptation, not a floating popup), in the [SAVED]/[ERROR] idiom.',
     },
   },

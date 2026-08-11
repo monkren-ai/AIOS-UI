@@ -96,7 +96,7 @@ export const statesDoc: ComponentDoc = {
         {
           name: 'headline',
           type: 'string',
-          default: `'Nothing here'`,
+          default: `'No content here'`,
           description: { zh: '空状态标题。', en: 'Empty-state headline.' },
         },
         {

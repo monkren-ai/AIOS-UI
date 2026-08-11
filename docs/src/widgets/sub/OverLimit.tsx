@@ -235,7 +235,7 @@ export const Overlimit = React.forwardRef<HTMLDivElement, OverLimitProps>(
         <div className="flex flex-col justify-center size-full">
           <div className=" content-stretch flex flex-col items-start justify-between p-[16px] widget-relative size-full text-white whitespace-nowrap">
             <OverLimit minutes={minutes} theme={theme} />
-            <p className="widget-text widget-text--ndot widget-text--sr widget-text--uppercase widget-relative widget-shrink-0">
+            <p className="widget-text widget-text--dotmatrix widget-text--sr widget-text--uppercase widget-relative widget-shrink-0">
               <span className="widget-leading-29 widget-text widget-text--32">16</span>
               <span className="widget-leading-29 widget-text widget-text--16">{`H `}</span>
               <span className="widget-leading-29 widget-text widget-text--32">32</span>

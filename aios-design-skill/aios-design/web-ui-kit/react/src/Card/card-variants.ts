@@ -118,7 +118,7 @@ export function resolveCardShape(
  * 所以额外接受 sm|md|lg 作为 tall|square|wide 的别名。
  *
  * v1 的 hover 用了一层跟随鼠标的 radial-gradient，v2 直接删掉——
- * Nothing 不用渐变表达层级，hover 只换 border 与 background。
+ * AIOS 不用渐变表达层级，hover 只换 border 与 background。
  */
 export const widgetCardVariants = cva(
   [
@@ -187,7 +187,7 @@ export const widgetCardTitleVariants = cva(['text-micro uppercase leading-snug t
 })
 
 /** Widget 主数值。 */
-export const widgetCardValueVariants = cva(['font-ndot font-light leading-tight tracking-tight'], {
+export const widgetCardValueVariants = cva(['font-dotmatrix font-light leading-tight tracking-tight'], {
   variants: {
     theme: {
       light: 'text-[var(--widget-dark-2)]',

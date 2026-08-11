@@ -104,11 +104,23 @@ export function Tabs({
   }, [hoveredIndex, enableProximityHover, items])
 
   const panels = React.useMemo(() => {
-    const arr = children ? (Array.isArray(children) ? children : [children]) : []
-    return arr.filter(
-      (panel): panel is React.ReactElement<TabPanelProps> =>
-        React.isValidElement(panel) && (panel.props as TabPanelProps).value !== undefined,
-    )
+    const result: React.ReactElement<TabPanelProps>[] = []
+
+    const collectPanels = (nodes: React.ReactNode) => {
+      React.Children.forEach(nodes, (node) => {
+        if (!React.isValidElement(node)) return
+        if (node.type === React.Fragment) {
+          collectPanels((node.props as { children?: React.ReactNode }).children)
+          return
+        }
+        if (node.type === TabPanel) {
+          result.push(node as React.ReactElement<TabPanelProps>)
+        }
+      })
+    }
+
+    collectPanels(children)
+    return result
   }, [children])
 
   return (
@@ -146,7 +158,7 @@ export function Tabs({
               // render prop 会在 Tabs 渲染中途被调用，setState 会触发
               // 「Cannot update a component while rendering a different component」。
               const pos = state.activeTabPosition
-              const width = pos ? pos.right - pos.left : 0
+              const width = state.activeTabSize?.width ?? 0
               const indicatorStyle: React.CSSProperties = pos
                 ? {
                     insetInlineStart: toInlineStart(listRef.current, pos.left, width),

@@ -112,7 +112,7 @@ export function ProjectIntroPage() {
         <section className="pi-hero">
           <div className="pi-container pi-hero__content">
             <span className="pi-eyebrow">{t('项目介绍', 'Project Intro')}</span>
-            <h1 className="pi-title">NOTHING UI</h1>
+            <h1 className="pi-title">AIOS UI</h1>
             <p className="pi-subtitle">
               {t(
                 '为 AI OS 构建的单色设计系统。以克制的视觉语言、工业级精确度和可解释的 Agent 界面，重新定义人机协作。',
@@ -778,8 +778,8 @@ export function ProjectIntroPage() {
 
             <p className="pi-body">
               {t(
-                'AI OS 扩展不改变 Nothing 的视觉基因，而是改变交互模型：从“用户操作界面”转向“用户授权 Agent”。PlanCard、ToolCallRow、ProgressTrace 与 ApprovalGate 让 Agent 的每一步都可见、可审查、可撤销。',
-                'The AI OS extension does not alter Nothing\'s visual DNA; it changes the interaction model: from "user operates the interface" to "user authorizes the Agent." PlanCard, ToolCallRow, ProgressTrace, and ApprovalGate make every Agent step visible, reviewable, and reversible.',
+                'AI OS 扩展不改变 AIOS 的视觉基因，而是改变交互模型：从“用户操作界面”转向“用户授权 Agent”。PlanCard、ToolCallRow、ProgressTrace 与 ApprovalGate 让 Agent 的每一步都可见、可审查、可撤销。',
+                'The AI OS extension does not alter AIOS\'s visual DNA; it changes the interaction model: from "user operates the interface" to "user authorizes the Agent." PlanCard, ToolCallRow, ProgressTrace, and ApprovalGate make every Agent step visible, reviewable, and reversible.',
               )}
             </p>
           </section>
@@ -823,7 +823,7 @@ export function ProjectIntroPage() {
                 <h3 className="pi-card__title">{t('反模式守护', 'Anti-Pattern Guards')}</h3>
                 <p className="pi-card__text">
                   {t(
-                    '显式禁止渐变、阴影与模糊；改造的 Skeleton、Toast、GradientGlow 以点阵与内联状态条提供 Nothing 替代，而非照搬常见模式。',
+                    '显式禁止渐变、阴影与模糊；改造的 Skeleton、Toast、GradientGlow 以点阵与内联状态条提供 AIOS 替代，而非照搬常见模式。',
                     'Gradients, shadows, and blur are explicitly banned; the adapted Skeleton, Toast, and GradientGlow ship dot-matrix and inline-status-bar alternatives instead of copying common patterns.',
                   )}
                 </p>

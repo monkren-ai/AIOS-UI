@@ -245,7 +245,7 @@ export function WidgetShowcase() {
                 percent={75}
                 widgetMode="card"
                 devices={[
-                  { name: 'Nothing Ear', type: 'earbuds', percent: 60 },
+                  { name: 'AIOS Ear', type: 'earbuds', percent: 60 },
                   { name: 'MX Master 3', type: 'mouse', percent: 45, isCharging: true },
                 ]}
               />

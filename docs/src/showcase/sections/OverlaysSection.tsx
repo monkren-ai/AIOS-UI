@@ -83,15 +83,15 @@ export function OverlaysSection({
           side="bottom"
           content={
             <div className="showcase-popover-content">
-              <div className="showcase-popover-title">@nothingdesign</div>
+              <div className="showcase-popover-title">@aiosui</div>
               <div>
-                {t('Nothing 生态系统的设计系统。', 'Design system for the Nothing ecosystem.')}
+                {t('AIOS 生态系统的设计系统。', 'Design system for the AIOS ecosystem.')}
               </div>
             </div>
           }
         >
           <a href="#" className="showcase-inline-link" onClick={(e) => e.preventDefault()}>
-            @nothingdesign
+            @aiosui
           </a>
         </HoverCard>
       </DemoCard>

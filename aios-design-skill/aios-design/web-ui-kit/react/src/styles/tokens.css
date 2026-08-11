@@ -28,7 +28,7 @@
   --font-display: 'Doto', 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
   --font-body: 'Space Grotesk', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
-  --font-ndot: 'NDOT 47', 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
+  --font-dotmatrix: 'Doto', 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
   --font-widget: 'Space Grotesk', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
 
   /* ===== 字重 ===== */
@@ -69,7 +69,7 @@
   --radius-pill: 999px;
 
   /* ===== 主题色 =====
-   * #D71921 是 Nothing 标志性红色，统一通过 --accent 引用。
+   * #D71921 是 AIOS 标志性红色，统一通过 --accent 引用。
    */
   --accent: #d71921;
   --accent-subtle: rgba(215, 25, 33, 0.15);
@@ -267,7 +267,7 @@
   --content-width-full: 1120px;
 
   /* ===== Surface Elevation（无阴影，仅通过 background/border 层级区分） =====
-   * 参考 fluid-functionalism 的 surface 系统，映射为 Nothing 的 monochrome 层级。
+   * 参考 fluid-functionalism 的 surface 系统，映射为 AIOS 的 monochrome 层级。
    */
   --surface-elevated-1: var(--surface);
   --surface-elevated-2: var(--surface-raised);

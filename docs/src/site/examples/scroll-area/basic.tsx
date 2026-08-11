@@ -1,7 +1,7 @@
 import { ScrollArea } from 'aios-ui-kit/scroll-area'
 
 const PARAGRAPHS = [
-  'Nothing OS keeps the system font, the grid, and the dot matrix consistent across every surface.',
+  'AIOS OS keeps the system font, the grid, and the dot matrix consistent across every surface.',
   'The Glyph interface turns notifications into light patterns, so the phone can stay face down.',
   'Everything ships unlocked, with two years of warranty and five years of security updates.',
   'Repairs are handled in-region, and the battery is rated for 1000 full charge cycles.',

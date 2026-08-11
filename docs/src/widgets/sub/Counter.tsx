@@ -101,7 +101,7 @@ export const Counter = React.forwardRef<HTMLDivElement, WidgetSubProps>(
       >
         <div className="widget-overflow-clip rounded-[inherit] size-full">
           <div className="content-stretch flex flex-col items-start p-[16px] widget-relative size-full">
-            <p className=" widget-text widget-text--ndot widget-text--20 widget-text--white widget-text--center widget-text--nowrap mb-[-4px]">
+            <p className=" widget-text widget-text--dotmatrix widget-text--20 widget-text--white widget-text--center widget-text--nowrap mb-[-4px]">
               43,465
             </p>
             <Dots6 />

@@ -15,7 +15,7 @@ const variants: Variant[] = [
   {
     id: 'default',
     label: 'DEFAULT',
-    text: 'NOTHING UI · DESIGN SYSTEM',
+    text: 'AIOS UI · DESIGN SYSTEM',
     duration: 14,
     cellSize: 0.3,
     gapRatio: 0.8,

@@ -66,7 +66,7 @@ import {
   Card as FigmaCard,
   Dots3,
   Play,
-  NothingEar,
+  AIOSEar,
   Date as FigmaDate,
   Counter,
   Music,
@@ -320,7 +320,7 @@ export function Figma20Showcase() {
           <NfCard index={87} label="Card · B" tag="LIVE" body={<FigmaCard image="b" />} />
           <NfCard index={88} label="Dots" tag="LIVE" body={<Dots3 />} />
           <NfCard index={89} label="Play" tag="LIVE" body={<Play />} />
-          <NfCard index={90} label="Nothing Ear" tag="LIVE" body={<NothingEar />} />
+          <NfCard index={90} label="AIOS Ear" tag="LIVE" body={<AIOSEar />} />
 
           {/* Date & Music */}
           <NfCard index={91} label="Card · C" tag="LIVE" body={<FigmaCard image="c" />} />

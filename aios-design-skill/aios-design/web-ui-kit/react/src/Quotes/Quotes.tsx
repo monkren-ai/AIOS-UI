@@ -19,7 +19,7 @@ export interface QuoteData {
 
 const defaultQuotes: QuoteData[] = [
   { text: 'Less, but better.', author: 'Dieter Rams' },
-  { text: 'We remove everything that is unnecessary.', author: 'Nothing Design Principles' },
+  { text: 'We remove everything that is unnecessary.', author: 'AIOS Design Principles' },
   { text: 'Weniger, aber besser.', author: 'Dieter Rams' },
   { text: 'Form follows function.', author: 'Louis Sullivan' },
   { text: 'Good design is as little design as possible.', author: 'Dieter Rams' },

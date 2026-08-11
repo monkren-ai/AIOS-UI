@@ -3,7 +3,7 @@
   "name": "aios-ui-kit",
   "version": "1.0.0",
   "description": "AIOS UI Web - A web component library based on AIOS design system",
-  "style": "nothing",
+  "style": "aios",
   "rsc": false,
   "tsx": true,
   "cssVariables": true,

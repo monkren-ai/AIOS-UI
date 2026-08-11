@@ -1,6 +1,6 @@
 # AIOS UI (`aios-ui-kit`)
 
-面向 AI OS 场景的 React 组件库，视觉基于 **Nothing 设计语言**：**单色工业美学**、零阴影 / 零 blur / 零渐变，Tailwind CSS v4 + CVA。
+面向 AI OS 场景的 React 组件库，视觉基于 **AIOS 设计语言**：**单色工业美学**、零阴影 / 零 blur / 零渐变，Tailwind CSS v4 + CVA。
 
 当前版本 **2.0.0**。从 1.x / `aios-ui*` 升级请先看站点 `/docs/migrating-v2`。
 

@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 /**
 * Quotes 的视觉变体。
 *
-* 这是一个圆形 widget：外圈是进度环，圆心是一段 NDot 语录。
+* 这是一个圆形 widget：外圈是进度环，圆心是一段 Dot Matrix 语录。
 * `theme` 决定文字色（widget 色板，不随 [data-theme] 走）；
 * `size` 在 v1 里就没有对应样式，这里保留成空档位只为了不改公开 API。
 */
@@ -56,7 +56,7 @@ const quotesRingVariants = cva(["fill-none stroke-current [stroke-width:2]"], {
 /** 圆心的文字块。 */
 const quotesContentVariants = cva(["relative z-1 flex w-[130px] flex-col items-center justify-center gap-1 text-center"]);
 /** 语录正文。 */
-const quotesTextVariants = cva(["w-full break-words font-ndot text-micro leading-[1.4] tracking-normal", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
+const quotesTextVariants = cva(["w-full break-words font-dotmatrix text-micro leading-[1.4] tracking-normal", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { theme: {
 		light: "text-[var(--widget-dark-2)]",
 		dark: "text-[var(--widget-white)]"

@@ -19,7 +19,7 @@ export const formDoc: ComponentDoc = {
   },
   preview: () => (
     <Form className="w-full max-w-xs">
-      <Input label="Callsign" placeholder="NOTHING-1" />
+      <Input label="Callsign" placeholder="AIOS-1" />
     </Form>
   ),
   importStatement: `import { Form } from 'aios-ui-kit/form'`,

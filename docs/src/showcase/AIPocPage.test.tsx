@@ -38,8 +38,8 @@ describe('AIPocPage', () => {
 
   it('renders initial AI welcome message', () => {
     renderPage()
-    expect(screen.getByText('NOTHING AI')).toBeInTheDocument()
-    expect(screen.getByText(/你好，我是 Nothing AI/)).toBeInTheDocument()
+    expect(screen.getByText('AIOS AI')).toBeInTheDocument()
+    expect(screen.getByText(/你好，我是 AIOS AI/)).toBeInTheDocument()
   })
 
   async function typeAndSubmit(input: HTMLElement, value: string) {
@@ -123,7 +123,7 @@ describe('AIPocPage', () => {
     const newChatTab = screen.getByRole('tab', { name: /新会话/ })
     await userEvent.click(newChatTab)
 
-    expect(screen.getByText(/Nothing AI/)).toBeInTheDocument()
+    expect(screen.getByText(/AIOS AI/)).toBeInTheDocument()
     expect(screen.getByText(/你可以这样问我/)).toBeInTheDocument()
     expect(document.querySelector('[data-slot="prompts"]')).toBeInTheDocument()
   })

@@ -1,7 +1,7 @@
 /**
  * Glyph Dot-Matrix 动画帧数据生成器。
  *
- * 6 种动画模式 (模拟 Nothing Phone Glyph Interface):
+ * 6 种动画模式 (模拟 AIOS Phone Glyph Interface):
  *  - pulse   : 中心向外扩散
  *  - scan    : 从左到右扫描线
  *  - wave    : 正弦波横扫

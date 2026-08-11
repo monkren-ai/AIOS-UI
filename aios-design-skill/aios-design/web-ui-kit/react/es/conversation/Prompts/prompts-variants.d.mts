@@ -1,6 +1,6 @@
 //#region src/conversation/Prompts/prompts-variants.d.ts
 declare const promptsVariants: (props?: ({
-  variant?: "default" | "filled" | "bordered" | null | undefined;
+  variant?: "filled" | "default" | "bordered" | null | undefined;
   layout?: "grid" | "list" | "wrap" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;

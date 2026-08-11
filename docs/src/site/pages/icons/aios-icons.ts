@@ -7,7 +7,7 @@ import {
 import type { IconEntry, IconGroup } from './types'
 
 /**
- * Nothing 图标源。
+ * AIOS 图标源。
  *
  * 真源是 `src/widgets/icon-svg-registry.ts` 的四张子注册表——那里存的是完整的
  * `<svg>…</svg>` 字符串，既能直接内联渲染，也能喂给 DotMatrixIcon 做点阵栅格化。
@@ -42,7 +42,7 @@ function buildGroup(
     .map((key) => {
       const componentName = withComponent ? pascalCase(key) : undefined
       return {
-        id: `nothing/${groupId}/${key}`,
+        id: `aios/${groupId}/${key}`,
         source: 'aios' as const,
         groupId,
         name: key,
@@ -79,7 +79,7 @@ export function toCurrentColorSvg(svg: string): string {
 }
 
 /** 生成该图标的 import 语句。 */
-export function nothingImportStatement(icon: IconEntry): string {
+export function aiosImportStatement(icon: IconEntry): string {
   if (icon.componentName) {
     return `import { ${icon.componentName} } from '@/widgets/WidgetIcons'`
   }
@@ -96,7 +96,7 @@ export function nothingImportStatement(icon: IconEntry): string {
 }
 
 /** 生成该图标的 JSX 片段。 */
-export function nothingJsxSnippet(icon: IconEntry, dotMatrix: boolean): string {
+export function aiosJsxSnippet(icon: IconEntry, dotMatrix: boolean): string {
   if (icon.componentName) {
     return dotMatrix
       ? `<${icon.componentName} variant="dot" size="md" />`

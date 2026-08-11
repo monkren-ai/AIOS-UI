@@ -73,7 +73,7 @@ export const statePrefixVariants = cva([
 /**
  * empty 的点阵占位。
  *
- * radial-gradient 在这里不是「用渐变造深度」，而是 Nothing 的点阵网格本身
+ * radial-gradient 在这里不是「用渐变造深度」，而是 AIOS 的点阵网格本身
  * ——tokens.css 的 `.dot-grid` 工具类用的是同一手法。硬色阶（2px 实心点后
  * 直接 transparent）不产生任何过渡带。
  */

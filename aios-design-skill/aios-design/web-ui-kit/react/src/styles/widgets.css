@@ -434,8 +434,8 @@ div[class*='widget-icon-wrapper'] svg.aios-widget-icon-svg {
   font-weight: 300;
 }
 
-.widget-text--ndot {
-  font-family: var(--font-ndot);
+.widget-text--dotmatrix {
+  font-family: var(--font-dotmatrix);
   font-weight: 400;
 }
 

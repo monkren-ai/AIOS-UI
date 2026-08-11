@@ -108,7 +108,7 @@ export const dateRectDayVariants = cva(['font-display text-heading leading-none 
 
 /** 月份缩写。 */
 export const dateRectMonthVariants = cva(
-  ['font-ndot text-micro uppercase leading-[1.4] tracking-wider'],
+  ['font-dotmatrix text-micro uppercase leading-[1.4] tracking-wider'],
   {
     variants: {
       theme: {
@@ -122,7 +122,7 @@ export const dateRectMonthVariants = cva(
 
 /** 星期缩写，永远是红的。 */
 export const dateRectWeekdayVariants = cva([
-  'font-ndot text-[8px] font-extrabold uppercase leading-[1.4] tracking-wider text-accent',
+  'font-dotmatrix text-[8px] font-extrabold uppercase leading-[1.4] tracking-wider text-accent',
 ])
 
 /* ────────────────────────────────────────────────────────────
@@ -170,7 +170,7 @@ export const dateDualRingInnerVariants = cva(['stroke-none'], {
 
 /** 环心的日期数字。 */
 export const dateDualRingDayVariants = cva(
-  ['font-ndot text-display-sm leading-none tabular-nums'],
+  ['font-dotmatrix text-display-sm leading-none tabular-nums'],
   {
     variants: {
       theme: {

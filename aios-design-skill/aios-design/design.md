@@ -1,6 +1,6 @@
 # DESIGN.md
 
-Nothing Design System
+AIOS Design System
 
 ## Overview
 
@@ -56,7 +56,7 @@ Label
 | **Body / UI** | `"Space Grotesk"` | `"DM Sans", system-ui, sans-serif` | Light 300, Regular 400, Medium 500, Bold 700 |
 | **Data / Labels** | `"Space Mono"` | `"JetBrains Mono", "SF Mono", monospace` | Regular 400, Bold 700 |
 
-**Why these fonts:** Doto = variable dot-matrix (closest to NDot 57). Space Grotesk + Space Mono by Colophon Foundry — same foundry as Nothing's actual typefaces. Shared design DNA.
+**Why these fonts:** Doto provides variable dot-matrix display type; Space Grotesk and Space Mono provide readable UI and metadata typography.
 
 ### Type Scale
 
@@ -301,7 +301,7 @@ Gaps: 8px, 16px
 
 ### Elevation & Depth
 
-Depth is communicated through **surface contrast and border separation** — never through shadows or blur. Nothing rejects glass, blur, and drop shadows entirely. Elevation is read as a material system: background tone shifts communicate hierarchy.
+Depth is communicated through **surface contrast and border separation** — never through shadows or blur. AIOS rejects glass, blur, and drop shadows entirely. Elevation is read as a material system: background tone shifts communicate hierarchy.
 
 Surface
 
@@ -334,7 +334,7 @@ Each step down adds visual weight. Use the lightest tool that works. **Never box
 | Subtle divider | `--border` | `#222222` | — |
 | Intentional border | `--border-visible` | `#333333` | — |
 
-**Contrast with neuform "glass" recipe:** Where neuform uses glass + blur + drop shadows for depth, Nothing uses opaque surface tone shifts + 1px borders. This is a deliberate anti-pattern rejection — depth without atmospheric effects.
+**Contrast with neuform "glass" recipe:** Where neuform uses glass + blur + drop shadows for depth, AIOS uses opaque surface tone shifts + 1px borders. This is a deliberate anti-pattern rejection — depth without atmospheric effects.
 
 ### Shapes
 
@@ -563,7 +563,7 @@ No ThreeJS scene detected. The AIOS design system does not prescribe a ThreeJS r
 
 ## Partner Testimonials — Reference Example
 
-A worked example adapting the neuform `partner-testimonials-1` form into Nothing's monochrome language. The neuform template uses orange `#F47C45` and a glass/bento layout; Nothing adapts the **form** (4 testimonials, quote + attribution, sectioned layout) but replaces the **palette and material** with monochrome + red accent + border separation.
+A worked example adapting the neuform `partner-testimonials-1` form into the AIOS monochrome language. The neuform template uses orange `#F47C45` and a glass/bento layout; the adaptation preserves the **form** (4 testimonials, quote + attribution, sectioned layout) while replacing the **palette and material** with monochrome, a red accent, and border separation.
 
 Tags: `testimonial`, `section`, `monochrome`, `dot-matrix`
 
@@ -582,7 +582,7 @@ Tags: `testimonial`, `section`, `monochrome`, `dot-matrix`
 
 ### Three-Layer Hierarchy Mapping
 
-| Layer | Neuform | Nothing |
+| Layer | Neuform | AIOS |
 |-------|---------|---------|
 | **Primary** | "We've Partnered With" (large heading) | "We've Partnered With" in Doto `--display-lg` 48px, `--text-display`. One per section. |
 | **Secondary** | Quote text + name | Quote in Space Grotesk `--body` 16px, `--text-primary`. Name in Space Grotesk `--subheading` 18px. |

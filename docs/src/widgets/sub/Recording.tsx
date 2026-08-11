@@ -115,7 +115,7 @@ export const Recording = React.forwardRef<HTMLDivElement, RecordingProps>(
             <circle cx="4" cy="4" fill="var(--widget-primary)" fillOpacity="1" id="Dot" r="4" />
           </svg>
         </div>
-        <p className=" widget-text widget-text--ndot widget-text--12 widget-text--grey2 widget-text--center widget-text--nowrap">
+        <p className=" widget-text widget-text--dotmatrix widget-text--12 widget-text--grey2 widget-text--center widget-text--nowrap">
           {time}
         </p>
       </div>

@@ -12,13 +12,13 @@
 declare const batteryVariants: (props?: ({
   variant?: "segmented" | "ring" | null | undefined;
   theme?: "light" | "dark" | null | undefined;
-  level?: "critical" | "low" | "high" | "medium" | null | undefined;
+  level?: "low" | "high" | "critical" | "medium" | null | undefined;
   widgetMode?: "card" | "none" | "ring" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 圆环版容器。颜色都落在子元素上，theme/status 在这里只是 API 形状。 */
 declare const batteryRingVariants: (props?: ({
   theme?: "light" | "dark" | null | undefined;
-  status?: "full" | "charging" | "low" | "mid" | null | undefined;
+  status?: "charging" | "full" | "low" | "mid" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 单个设备行。 */
 declare const batteryDeviceVariants: (props?: ({

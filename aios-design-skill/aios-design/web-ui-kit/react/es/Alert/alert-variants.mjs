@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 /**
 * Alert 的视觉变体。
 *
-* 顶部 3px 的粗边是 Nothing 的「仪表盘状态条」，destructive 时换成单点红。
+* 顶部 3px 的粗边是 AIOS 的「仪表盘状态条」，destructive 时换成单点红。
 * 进出场只用 opacity + translate，没有阴影也没有 blur。
 */
 const alertVariants = cva([

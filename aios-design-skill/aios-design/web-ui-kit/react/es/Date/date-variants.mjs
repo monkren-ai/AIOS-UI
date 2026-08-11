@@ -68,7 +68,7 @@ const dateRectDayVariants = cva(["font-display text-heading leading-none tabular
 	defaultVariants: { theme: "light" }
 });
 /** 月份缩写。 */
-const dateRectMonthVariants = cva(["font-ndot text-micro uppercase leading-[1.4] tracking-wider"], {
+const dateRectMonthVariants = cva(["font-dotmatrix text-micro uppercase leading-[1.4] tracking-wider"], {
 	variants: { theme: {
 		light: "text-[var(--widget-dark-2)]",
 		dark: "text-[var(--widget-white)]"
@@ -76,7 +76,7 @@ const dateRectMonthVariants = cva(["font-ndot text-micro uppercase leading-[1.4]
 	defaultVariants: { theme: "light" }
 });
 /** 星期缩写，永远是红的。 */
-const dateRectWeekdayVariants = cva(["font-ndot text-[8px] font-extrabold uppercase leading-[1.4] tracking-wider text-accent"]);
+const dateRectWeekdayVariants = cva(["font-dotmatrix text-[8px] font-extrabold uppercase leading-[1.4] tracking-wider text-accent"]);
 const dateDualRingVariants = cva([
 	"relative box-border flex items-center justify-center",
 	"size-[var(--widget-size-md)] font-body",
@@ -105,7 +105,7 @@ const dateDualRingInnerVariants = cva(["stroke-none"], {
 	defaultVariants: { theme: "light" }
 });
 /** 环心的日期数字。 */
-const dateDualRingDayVariants = cva(["font-ndot text-display-sm leading-none tabular-nums"], {
+const dateDualRingDayVariants = cva(["font-dotmatrix text-display-sm leading-none tabular-nums"], {
 	variants: { theme: {
 		light: "text-[var(--widget-dark-2)]",
 		dark: "text-[var(--widget-white)]"

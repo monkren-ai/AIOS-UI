@@ -182,7 +182,7 @@ export const navigationDoc: ComponentDoc = {
     },
     {
       zh: '窄屏下导航条会用 `position: fixed` 钉在视口底部，覆盖在页面内容之上（`z-100`）。这段样式目前没有 `env(safe-area-inset-bottom)` 之类的安全区处理，全面屏手机上贴底的 home indicator 可能会和标签栏重叠。',
-      en: 'Below the mobile breakpoint the bar pins to the bottom of the viewport with `position: fixed`, sitting above page content (`z-100`). Nothing here accounts for `env(safe-area-inset-bottom)` yet, so on notched or gesture-bar phones the tab strip can overlap the home indicator.',
+      en: 'Below the mobile breakpoint the bar pins to the bottom of the viewport with `position: fixed`, sitting above page content (`z-100`). It does not account for `env(safe-area-inset-bottom)` yet, so on notched or gesture-bar phones the tab strip can overlap the home indicator.',
     },
   ],
 }

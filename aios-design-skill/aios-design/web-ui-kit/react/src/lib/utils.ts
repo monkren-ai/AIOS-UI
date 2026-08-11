@@ -34,7 +34,7 @@ const twMerge = extendTailwindMerge({
         'segment',
       ],
       spacing: ['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
-      font: ['display', 'body', 'sans', 'mono', 'ndot'],
+      font: ['display', 'body', 'sans', 'mono', 'dotmatrix'],
     },
   },
 })

@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 /**
  * Skeleton 的视觉变体。
  *
- * appica 原版是灰色实心块占位——Nothing 禁止灰色块，所以这里改造成点阵呼吸占位：
+ * appica 原版是灰色实心块占位——AIOS 禁止灰色块，所以这里改造成点阵呼吸占位：
  * 容器内是一组小圆点，整体在 0.4↔0.8 透明度之间循环呼吸（keyframes 见 Skeleton.css）。
  * `variant` 只决定形状（圆角），不参与配色；颜色统一走点的 `--text-disabled`。
  */

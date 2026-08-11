@@ -28,7 +28,7 @@ export const kbdDoc: ComponentDoc = {
       id: 'variants',
       title: { zh: '变体', en: 'Variants' },
       description: {
-        zh: '键帽在 Nothing 的语言里只是一块方角的 surface——一条 border 划出边界，不用阴影去伪造按键的立体感。`soft` 有底色，最像实体键；`outline` 只留边，适合已经在 surface 上；`ghost` 连边都去掉，用在正文里不打断阅读节奏。',
+        zh: '键帽在 AIOS 的语言里只是一块方角的 surface——一条 border 划出边界，不用阴影去伪造按键的立体感。`soft` 有底色，最像实体键；`outline` 只留边，适合已经在 surface 上；`ghost` 连边都去掉，用在正文里不打断阅读节奏。',
         en: 'A key cap here is just a square-cornered surface: one border defines it, and no shadow fakes physical depth. `soft` has a fill and reads most like a real key, `outline` keeps only the hairline for use on an existing surface, and `ghost` drops even that so it does not interrupt running text.',
       },
       code: variantsSource,

@@ -11,7 +11,7 @@
  *               这样把 data-theme 放在任意嵌套节点上也能正确继承。
  */
 
-/* 默认颜色调色板整体关闭：Nothing 是 monochrome + 单点红，
+/* 默认颜色调色板整体关闭：AIOS 是 monochrome + 单点红，
    放行 Tailwind 的 22 组彩色会让设计系统迅速漂移。 */
 @theme {
   --color-*: initial;
@@ -78,7 +78,7 @@
   --font-body: 'Space Grotesk', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Space Grotesk', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
-  --font-ndot: 'NDOT 47', 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
+  --font-dotmatrix: 'Doto', 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
 
   /* ===== 字号阶梯（与 tokens.css 同值） ===== */
   --text-display-xl: 72px;

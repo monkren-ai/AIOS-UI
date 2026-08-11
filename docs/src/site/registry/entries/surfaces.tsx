@@ -25,8 +25,8 @@ export const surfacesDoc: ComponentDoc = {
       id: 'elevations',
       title: { zh: '层级', en: 'Elevations' },
       description: {
-        zh: '`elevation` 从 1 到 8，数值越大背景越靠前、边框越亮。Nothing 系统里层级只靠这两样表达，不用 box-shadow。',
-        en: '`elevation` runs from 1 to 8 — higher values bring the background forward and brighten the border. In the Nothing system, depth is expressed only through those two, never box-shadow.',
+        zh: '`elevation` 从 1 到 8，数值越大背景越靠前、边框越亮。AIOS 系统里层级只靠这两样表达，不用 box-shadow。',
+        en: '`elevation` runs from 1 to 8 — higher values bring the background forward and brighten the border. In the AIOS system, depth is expressed only through those two, never box-shadow.',
       },
       code: elevationsSource,
       render: () => <SurfacesElevations />,

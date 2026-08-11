@@ -30,7 +30,7 @@
   font-size: var(--display-sm);
   font-weight: 400;
   color: var(--widget-dark-2);
-  font-family: var(--font-ndot);
+  font-family: var(--font-dotmatrix);
   line-height: var(--widget-leading-27, 27px);
   letter-spacing: 0;
 }

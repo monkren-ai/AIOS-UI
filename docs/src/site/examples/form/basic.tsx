@@ -14,7 +14,7 @@ export default function FormBasic() {
         setSubmitted(String(data.get('callsign') ?? ''))
       }}
     >
-      <Input name="callsign" label="Callsign" placeholder="NOTHING-1" />
+      <Input name="callsign" label="Callsign" placeholder="AIOS-1" />
       <Button type="submit">Submit</Button>
       {submitted && (
         <p className="font-mono text-label uppercase tracking-wider text-foreground-muted">

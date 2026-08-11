@@ -22,7 +22,7 @@ AIOS UI 当前是一个独立设计系统的 React 组件库，基于：
 
 AIOS UI 的定位是独立设计系统。本次升级只借鉴 Ant Design X 的组件形态、API 设计、工程实践，不引入 `antd`、`@ant-design/cssinjs` 等依赖，保持包体积与独立性。
 
-### 2. 保持 Nothing 设计语言
+### 2. 保持 AIOS 设计语言
 
 所有新增组件必须遵循现有 `tokens.css` 设计令牌：
 

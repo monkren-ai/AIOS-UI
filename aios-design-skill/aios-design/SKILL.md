@@ -113,7 +113,7 @@ This single break IS the design. Without it: sterile grid. With more than one: v
 
 Balance heavy elements with more empty space, not with more heavy elements.
 
-### 2.8 The Nothing Vibe
+### 2.8 The AIOS Vibe
 
 1. **Confidence through emptiness.** Large uninterrupted background areas. Resist filling space.
 2. **Precision in the small things.** Letter-spacing, exact gray values, 4px gaps. Micro-decisions compound into craft.
@@ -503,11 +503,11 @@ See `MIGRATION.md` for a per-component migration table and the exact diff of the
 
 ### Widget Subsystem
 
-The Widget components (QuickToggle, WidgetCard, WidgetPill, WidgetGrid, WeatherWidget, StepsWidget, ActivityWidget, CompassWidget, TimeWidget, SvgIcon, Glyph) follow Nothing Phone's home screen widget aesthetic, which differs intentionally from the main UI system:
+The Widget components (QuickToggle, WidgetCard, WidgetPill, WidgetGrid, WeatherWidget, StepsWidget, ActivityWidget, CompassWidget, TimeWidget, SvgIcon, Glyph) follow AIOS Phone's home screen widget aesthetic, which differs intentionally from the main UI system:
 
 - **Background**: Uses `--widget-bg` (#e1e5ea) / `--widget-dark-bg` (#1a1d1c) instead of `--surface` / `--black` — mimicking the phone's widget panel
-- **Typography**: Uses `--font-widget` (Space Grotesk, same as `--font-body`) for body text and `--font-ndot` (NDOT 47) for large numeric displays
-- **Sizing**: Fixed widget dimensions (`--widget-size-sm/md/lg`) following Nothing Phone's grid system
+- **Typography**: Uses `--font-widget` (Space Grotesk, same as `--font-body`) for body text and `--font-dotmatrix` (Doto) for large numeric displays
+- **Sizing**: Fixed widget dimensions (`--widget-size-sm/md/lg`) following AIOS Phone's grid system
 - **Rounding**: Larger border-radius (`--radius-xl/2xl`) for the softer widget aesthetic
 
 This is a deliberate design choice, not an inconsistency.
@@ -555,11 +555,11 @@ Match scanned project components against `references/component-matching.md` Sect
 **Match dimensions and priority:**
 
 1. **Exact match** (confidence: high) — Project component name/structure directly corresponds to a AIOS component
-   - Example: Project has `<Button>` → Nothing `Button`
+   - Example: Project has `<Button>` → AIOS `Button`
 2. **Functional match** (confidence: medium) — Same purpose, different implementation
-   - Example: Project has custom popup → Nothing `Modal`
+   - Example: Project has custom popup → AIOS `Modal`
 3. **Visual match** (confidence: low) — Similar visual style, different function
-   - Example: Project has rounded card-style list → Nothing `Card` + `DataRows`
+   - Example: Project has rounded card-style list → AIOS `Card` + `DataRows`
 
 **Match decision tree:**
 ```
@@ -585,9 +585,9 @@ Three application strategies, ordered by increasing invasiveness:
 
 **b. Style Migration (moderate disruption)**
 - Import `tokens.css` + component-level CSS files
-- Replace project class names with Nothing BEM class names
+- Replace project class names with AIOS BEM class names
 - May require JSX/HTML structure adjustments to match BEM Element naming
-- Best for: achieving Nothing visual style while keeping own component logic
+- Best for: achieving AIOS visual style while keeping own component logic
 
 **c. Component Replacement (highest consistency)**
 - Import web-ui-kit pre-built React components to replace project components
@@ -705,7 +705,7 @@ Design context references — brands sharing AIOS UI's monochrome, reduction-fir
 | **Vercel** | Black/white/geist aesthetic, minimal chrome, mono typography | Marketing page structure, deployment dashboards |
 | **Teenage Engineering** | "Less, but better" hardware, dot-matrix displays, monochrome product | Dot-matrix aesthetic, hardware-software parity |
 | **Braun (Dieter Rams)** | "Less but better", functional clarity, no decoration | Ten principles for good design — philosophical anchor |
-| **Nothing (Phone)** | Dot-matrix UI, transparent materials, monochrome OS | Direct namesake — dot-matrix widget patterns, glyph font |
+| **AIOS (Phone)** | Dot-matrix UI, transparent materials, monochrome OS | Direct namesake — dot-matrix widget patterns, glyph font |
 
 Use these as mood-board references when extending the system. Do NOT copy component patterns directly — extract the underlying discipline (restraint, hierarchy via contrast, typographic precision).
 

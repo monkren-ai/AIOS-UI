@@ -24,8 +24,8 @@ export default function DesignPrinciplesPage() {
       <DocSection title={t('一句话概括', 'The short version')}>
         <Prose>
           {t(
-            'Nothing 的视觉语言是**单色工业美学**：黑、白、四档灰，加一个红。界面看起来应该像一台仪器的面板，而不是一张海报。这一页列出的约束不是风格偏好，而是这套组件库的编译期规则——默认调色板已经被关掉，很多「不要这么做」在技术上已经做不到了。',
-            'Nothing’s visual language is **monochrome industrial**: black, white, four greys, and one red. The interface should read like an instrument panel, not a poster. The constraints on this page are not style preferences but rules of the library — the default palette is switched off, so a good number of the “don’ts” below are already impossible to write.',
+            'AIOS 的视觉语言是**单色工业美学**：黑、白、四档灰，加一个红。界面看起来应该像一台仪器的面板，而不是一张海报。这一页列出的约束不是风格偏好，而是这套组件库的编译期规则——默认调色板已经被关掉，很多「不要这么做」在技术上已经做不到了。',
+            'AIOS’s visual language is **monochrome industrial**: black, white, four greys, and one red. The interface should read like an instrument panel, not a poster. The constraints on this page are not style preferences but rules of the library — the default palette is switched off, so a good number of the “don’ts” below are already impossible to write.',
           )}
         </Prose>
       </DocSection>
@@ -56,8 +56,8 @@ export default function DesignPrinciplesPage() {
       >
         <Prose>
           {t(
-            '没有阴影，没有 blur，没有渐变。这三样都是在模拟光源和景深——模拟一个物理上并不存在的三维空间。Nothing 的界面不假装自己是纸片浮在光下，它就是一块屏幕，所以层级用**这一层比下一层亮一点**和**一条边**说清楚就够了。',
-            'No shadows, no blur, no gradients. All three simulate a light source and depth of field — a three-dimensional space that is not actually there. A Nothing interface does not pretend to be paper floating under a lamp; it is a screen, so hierarchy is expressed by **this layer being slightly lighter than the one under it** plus **a line**.',
+            '没有阴影，没有 blur，没有渐变。这三样都是在模拟光源和景深——模拟一个物理上并不存在的三维空间。AIOS 的界面不假装自己是纸片浮在光下，它就是一块屏幕，所以层级用**这一层比下一层亮一点**和**一条边**说清楚就够了。',
+            'No shadows, no blur, no gradients. All three simulate a light source and depth of field — a three-dimensional space that is not actually there. A AIOS interface does not pretend to be paper floating under a lamp; it is a screen, so hierarchy is expressed by **this layer being slightly lighter than the one under it** plus **a line**.',
           )}
         </Prose>
         <CodeBlock code={ELEVATION} />
@@ -102,7 +102,7 @@ export default function DesignPrinciplesPage() {
               '`rounded-button` / `rounded-pill` / `rounded-tag`',
               '999px',
               t(
-                '胶囊。按钮、Tag、分段控件——这是 Nothing 的签名形状，不要改成方角「以求统一」。',
+                '胶囊。按钮、Tag、分段控件——这是 AIOS 的签名形状，不要改成方角「以求统一」。',
                 'The pill. Buttons, tags, segmented controls — this is a AIOS signature shape; do not square it off “for consistency”.',
               ),
             ],

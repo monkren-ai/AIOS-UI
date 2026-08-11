@@ -8,7 +8,7 @@
 
 ## 概览
 
-AIOS UI 是面向 AI OS 的 React 组件库，视觉基于 Nothing 设计语言。**v2.0** 已完成样式层重写（Tailwind v4 + CVA）与文档站；组件文档 **71/71**。
+AIOS UI 是面向 AI OS 的 React 组件库，视觉基于 AIOS 设计语言。**v2.0** 已完成样式层重写（Tailwind v4 + CVA）与文档站；组件文档 **71/71**。
 
 | 指标 | 数值 |
 |------|------|

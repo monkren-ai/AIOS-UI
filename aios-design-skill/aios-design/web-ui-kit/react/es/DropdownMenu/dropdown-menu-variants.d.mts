@@ -4,7 +4,7 @@ declare const dropdownMenuTriggerVariants: (props?: import("class-variance-autho
 declare const dropdownMenuPositionerVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;
 declare const dropdownMenuContentVariants: (props?: ({
   visible?: boolean | null | undefined;
-  align?: "center" | "start" | "end" | null | undefined;
+  align?: "start" | "center" | "end" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 declare const dropdownMenuItemVariants: (props?: ({
   disabled?: boolean | null | undefined;

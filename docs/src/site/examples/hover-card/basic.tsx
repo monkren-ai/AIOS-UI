@@ -10,7 +10,7 @@ export default function HoverCardBasic() {
           <div className="text-sm">
             <p className="font-mono text-label uppercase tracking-wider">Teenage Engineering</p>
             <p className="mt-1 text-foreground-muted">
-              Designed the OP-1 and, with Nothing, the Ear (stick) case.
+              Designed the OP-1 and, with AIOS, the Ear (stick) case.
             </p>
           </div>
         </div>

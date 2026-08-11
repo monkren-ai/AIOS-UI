@@ -41,7 +41,7 @@ export const nextEventVariants = cva(
 
 /** 「NEXT EVENT:」提示行。 */
 export const nextEventLabelVariants = cva(
-  ['font-ndot text-micro uppercase leading-[1.4] tracking-normal'],
+  ['font-dotmatrix text-micro uppercase leading-[1.4] tracking-normal'],
   {
     variants: {
       theme: {
@@ -69,7 +69,7 @@ export const nextEventTitleVariants = cva(
 
 /** 日期数字。 */
 export const nextEventDateVariants = cva([
-  'shrink-0 font-ndot text-micro leading-none tracking-normal tabular-nums text-accent',
+  'shrink-0 font-dotmatrix text-micro leading-none tracking-normal tabular-nums text-accent',
 ])
 
 /** 月份缩写。 */

@@ -40,7 +40,7 @@ export const PairNewDevice = React.forwardRef<HTMLDivElement, WidgetSubProps>(
       >
         <div className="flex flex-row items-center justify-center size-full">
           <div className="content-stretch flex items-center justify-center p-[10px] widget-relative size-full">
-            <div className=" widget-text widget-text--ndot widget-text--16 widget-text--grey widget-text--center widget-text--uppercase widget-text--nowrap">
+            <div className=" widget-text widget-text--dotmatrix widget-text--16 widget-text--grey widget-text--center widget-text--uppercase widget-text--nowrap">
               <p className="widget-leading-normal mb-0">Pair</p>
               <p className="widget-leading-normal">New Device</p>
             </div>

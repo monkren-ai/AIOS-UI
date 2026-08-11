@@ -58,7 +58,7 @@ export const progressBarDoc: ComponentDoc = {
       id: 'segments',
       title: { zh: '分段', en: 'Segments' },
       description: {
-        zh: 'Nothing 的进度条是分段刻度而不是连续条，`segments` 决定切成几段（默认 20）。段数应该和你要表达的粒度对上：10 步的向导就用 `segments={10}`，让每一段正好等于一步；段数拉到 60 以上视觉上就接近实心条，反而丢掉了「刻度」这个语言。填充段数按 `value / total` 四舍五入，所以显示的格数可能和读数略有出入。',
+        zh: 'AIOS 的进度条是分段刻度而不是连续条，`segments` 决定切成几段（默认 20）。段数应该和你要表达的粒度对上：10 步的向导就用 `segments={10}`，让每一段正好等于一步；段数拉到 60 以上视觉上就接近实心条，反而丢掉了「刻度」这个语言。填充段数按 `value / total` 四舍五入，所以显示的格数可能和读数略有出入。',
         en: 'The bar is a row of ticks rather than a continuous fill, and `segments` sets how many (20 by default). Match the count to the granularity you are describing: a ten-step wizard wants `segments={10}` so one tick equals one step. Past sixty it reads as a solid bar and loses the tick language entirely. The filled count is `value / total` rounded, so the ticks can be marginally ahead of or behind the printed number.',
       },
       code: segmentsSource,
@@ -107,7 +107,7 @@ export const progressBarDoc: ComponentDoc = {
           default: '100',
           description: {
             zh: '进度上限，同时是 `aria-valuemax`。组件不会做范围校验，超出 `total` 的 `value` 只会把所有刻度填满。',
-            en: 'The upper bound, and the value of `aria-valuemax`. Nothing is clamped: a `value` beyond `total` simply fills every tick.',
+            en: 'The upper bound, and the value of `aria-valuemax`. AIOS is clamped: a `value` beyond `total` simply fills every tick.',
           },
         },
         {

@@ -64,7 +64,7 @@ import {
   Card as FigmaCard,
   Dots3,
   Play,
-  NothingEar,
+  AIOSEar,
   Date as FigmaDate,
   Counter,
   Music,
@@ -449,7 +449,7 @@ function Figma20Section() {
           <Play />
         </div>
         <div style={figmaWidgetWrapStyle}>
-          <NothingEar />
+          <AIOSEar />
         </div>
       </section>
 

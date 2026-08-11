@@ -8,7 +8,7 @@ import { getThemeScript } from '../../aios-design-skill/aios-design/web-ui-kit/r
  */
 export function themeScriptPlugin(): Plugin {
   return {
-    name: 'nothing:theme-script',
+    name: 'aios:theme-script',
     transformIndexHtml: {
       order: 'pre',
       handler(html) {

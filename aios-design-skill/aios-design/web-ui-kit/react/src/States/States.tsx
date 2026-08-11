@@ -150,7 +150,7 @@ export interface EmptyStateProps extends Omit<React.ComponentPropsWithRef<'div'>
 
 export function EmptyState({
   className,
-  headline = 'Nothing here',
+  headline = 'No content here',
   description,
   action,
   size = 'md',

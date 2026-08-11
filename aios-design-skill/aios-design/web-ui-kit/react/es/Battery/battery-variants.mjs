@@ -108,7 +108,7 @@ const batterySegmentVariants = cva(["flex-1 transition-colors duration-[350ms] e
 	}
 });
 /** widget 卡片里的大数字。 */
-const batteryWidgetPercentVariants = cva(["font-ndot text-display-lg font-light leading-none tracking-[-0.02em] tabular-nums text-[var(--widget-white)]", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
+const batteryWidgetPercentVariants = cva(["font-dotmatrix text-display-lg font-light leading-none tracking-[-0.02em] tabular-nums text-[var(--widget-white)]", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);
 /** widget 卡片里的充电状态。 */
 const batteryWidgetStatusVariants = cva(["font-mono text-micro uppercase tracking-widest", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { charging: {
@@ -191,7 +191,7 @@ const batteryRingIconVariants = cva(["flex size-6 items-center justify-center [&
 	defaultVariants: { theme: "dark" }
 });
 /** 环心百分比。 */
-const batteryRingPercentVariants = cva(["font-ndot text-display-sm font-light leading-none tracking-[-0.02em] tabular-nums", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
+const batteryRingPercentVariants = cva(["font-dotmatrix text-display-sm font-light leading-none tracking-[-0.02em] tabular-nums", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {
 	variants: { theme: {
 		light: "text-[var(--widget-dark-2)]",
 		dark: "text-[var(--widget-white)]"

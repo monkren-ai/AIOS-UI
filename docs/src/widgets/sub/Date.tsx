@@ -76,7 +76,7 @@ export const Date1 = React.forwardRef<HTMLDivElement, WidgetSubProps>(
         aria-label={ariaLabel || 'Date'}
       >
         <div className="flex flex-col justify-center size-full">
-          <div className=" content-stretch flex flex-col items-start justify-between p-[16px] widget-relative size-full widget-text widget-text--ndot widget-text--nowrap widget-leading-27">
+          <div className=" content-stretch flex flex-col items-start justify-between p-[16px] widget-relative size-full widget-text widget-text--dotmatrix widget-text--nowrap widget-leading-27">
             <p className="widget-relative widget-shrink-0 widget-text widget-text--16 widget-text--grey2">
               TUESDAY
             </p>

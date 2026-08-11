@@ -137,7 +137,7 @@ export const Widget = React.forwardRef<HTMLDivElement, WidgetSubProps>(
         data-name="Widget"
         aria-label={ariaLabel || 'Widget'}
       >
-        <div className=" widget-text widget-text--ndot widget-text--14 widget-text--grey widget-text--uppercase widget-text--nowrap widget-relative widget-shrink-0">
+        <div className=" widget-text widget-text--dotmatrix widget-text--14 widget-text--grey widget-text--uppercase widget-text--nowrap widget-relative widget-shrink-0">
           <p className="widget-leading-18 mb-0">Stansted airport</p>
           <p className="widget-leading-18 mb-0">Ryanair flight</p>
           <p className="widget-leading-18 mb-0">LDN to BER</p>

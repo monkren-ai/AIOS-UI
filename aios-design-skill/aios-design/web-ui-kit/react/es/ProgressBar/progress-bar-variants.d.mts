@@ -2,7 +2,7 @@
 /**
  * ProgressBar 的视觉变体。
  *
- * Nothing 的进度条是「分段刻度」而不是连续条：轨道被切成 N 段，填满的用
+ * AIOS 的进度条是「分段刻度」而不是连续条：轨道被切成 N 段，填满的用
  * text-display 色，空的用 border 色。`slim` 是没有读数的 4px 细轨。
  *
  * 注：`variant` 这里描述的是结构（分段 / 细轨）而非 §3 的强调词表——
@@ -21,7 +21,7 @@ declare const progressTrackVariants: (props?: ({
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 单个刻度块。首尾两段带外圆角。 */
 declare const progressSegmentVariants: (props?: ({
-  state?: "warning" | "error" | "empty" | "filled" | "good" | "overlimit" | null | undefined;
+  state?: "error" | "empty" | "filled" | "warning" | "good" | "overlimit" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   variant?: "segmented" | "slim" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
@@ -37,7 +37,7 @@ declare const progressSegmentVariants: (props?: ({
 declare const progressIndeterminateVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;
 /** 读数行的数值。 */
 declare const progressValueVariants: (props?: ({
-  status?: "default" | "warning" | "error" | "good" | "overlimit" | null | undefined;
+  status?: "error" | "default" | "warning" | "good" | "overlimit" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** v1 的尺寸名 → 当前尺寸名。 */
 declare const LEGACY_SIZES: {

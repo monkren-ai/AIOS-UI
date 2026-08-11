@@ -14,7 +14,7 @@ export const toastDoc: ComponentDoc = {
   status: 'new',
   baseUi: '—（自实现，内联状态条）',
   description: {
-    zh: '内联状态条（Nothing 改造，不浮窗不自动消失），[SAVED]/[ERROR] 风格。',
+    zh: '内联状态条（AIOS 改造，不浮窗不自动消失），[SAVED]/[ERROR] 风格。',
     en: 'An inline status bar (AIOS adaptation, not a floating popup), in the [SAVED]/[ERROR] idiom.',
   },
   preview: () => (

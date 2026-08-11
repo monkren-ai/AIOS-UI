@@ -1,4 +1,4 @@
-# Nothing Design System — Platform Mapping
+# AIOS Design System — Platform Mapping
 
 ## 1. HTML / CSS / WEB
 
@@ -122,7 +122,7 @@ import Card from './components/Card'
 
 ### Tailwind CSS Integration
 
-Map Nothing tokens to `tailwind.config.js` theme extensions:
+Map AIOS tokens to `tailwind.config.js` theme extensions:
 
 ```js
 theme: {
@@ -144,7 +144,7 @@ theme: {
       display: ['var(--font-display)'],
       body: ['var(--font-body)'],
       mono: ['var(--font-mono)'],
-      ndot: ['var(--font-ndot)'],
+      dotmatrix: ['var(--font-dotmatrix)'],
     },
     borderRadius: {
       'aios-pill': 'var(--radius-pill)',
@@ -175,7 +175,7 @@ theme: {
 
 ### BEM-to-Tailwind Class Mapping
 
-| Nothing BEM Class | Tailwind Equivalent |
+| AIOS BEM Class | Tailwind Equivalent |
 |---|---|
 | `.aios-btn--primary` | `bg-aios-display text-black rounded-aios-pill px-6 py-3 font-mono text-xs uppercase tracking-wider min-h-[44px]` |
 | `.aios-btn--secondary` | `bg-transparent border border-aios-border-visible text-aios-primary rounded-aios-pill px-6 py-3 font-mono text-xs uppercase tracking-wider` |

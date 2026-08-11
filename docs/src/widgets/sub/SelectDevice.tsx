@@ -102,7 +102,7 @@ export const SelectDevice = React.forwardRef<HTMLDivElement, WidgetSubProps>(
         <div className="flex flex-col items-center justify-center size-full">
           <div className="content-stretch flex flex-col gap-[16px] items-center justify-center p-[16px] widget-relative size-full">
             <Device1 />
-            <div className=" widget-text widget-text--ndot widget-text--16 widget-text--grey2 widget-text--center widget-text--nowrap">
+            <div className=" widget-text widget-text--dotmatrix widget-text--16 widget-text--grey2 widget-text--center widget-text--nowrap">
               <p className="widget-leading-20 mb-0 whitespace-pre">{`SELECT THE `}</p>
               <p className="widget-leading-20 whitespace-pre">DEVICE</p>
             </div>

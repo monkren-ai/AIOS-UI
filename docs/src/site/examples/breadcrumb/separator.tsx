@@ -1,6 +1,6 @@
 import { Breadcrumb } from 'aios-ui-kit/breadcrumb'
 
-const items = [{ label: 'Nothing', href: '#' }, { label: 'Phone', href: '#' }, { label: '2a Plus' }]
+const items = [{ label: 'AIOS', href: '#' }, { label: 'Phone', href: '#' }, { label: '2a Plus' }]
 
 export default function BreadcrumbSeparator() {
   return (

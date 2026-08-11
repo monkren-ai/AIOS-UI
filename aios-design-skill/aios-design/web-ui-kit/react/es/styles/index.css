@@ -25,7 +25,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Nothing 不用阴影表达层级，焦点态必须靠 outline 说清楚 */
+  /* AIOS 不用阴影表达层级，焦点态必须靠 outline 说清楚 */
   :focus-visible {
     outline: var(--focus-ring-width) solid var(--focus-ring-color);
     outline-offset: var(--focus-ring-offset);

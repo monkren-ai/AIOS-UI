@@ -38,7 +38,7 @@ export default function SidebarBasic() {
     <div className="h-80 w-full max-w-xs border border-border-visible">
       <Sidebar
         items={items}
-        header={<span className="font-mono text-caption uppercase tracking-wider">Nothing OS</span>}
+        header={<span className="font-mono text-caption uppercase tracking-wider">AIOS OS</span>}
         footer={<span className="font-mono text-caption text-foreground-muted">v2.0</span>}
       />
     </div>

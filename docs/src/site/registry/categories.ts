@@ -3,7 +3,7 @@ import type { ComponentCategory } from './types'
 /**
  * 组件分类。
  *
- * 前五类沿用 appica-ui 的分法，后四类是 Nothing 独有的：
+ * 前五类沿用 appica-ui 的分法，后四类是 AIOS 独有的：
  * 时间与系统 widget、桌面小组件、AI OS 的 Agent 流程组件、以及点阵视觉件。
  */
 export const CATEGORIES: ComponentCategory[] = [
@@ -51,8 +51,8 @@ export const CATEGORIES: ComponentCategory[] = [
     id: 'time-system',
     label: { zh: '时间与系统', en: 'Time & System' },
     description: {
-      zh: 'Nothing 特色的时钟、日历与设备状态组件。',
-      en: "Nothing's signature clock, calendar, and device-status components.",
+      zh: 'AIOS 特色的时钟、日历与设备状态组件。',
+      en: "AIOS's signature clock, calendar, and device-status components.",
     },
   },
   {
@@ -75,8 +75,8 @@ export const CATEGORIES: ComponentCategory[] = [
     id: 'decoration',
     label: { zh: '装饰与效果', en: 'Decoration & Effects' },
     description: {
-      zh: '点阵、字形等构成 Nothing 视觉语言的表现层组件。',
-      en: 'Dot matrix, glyphs, and the other pieces that make the visual language read as Nothing.',
+      zh: '点阵、字形等构成 AIOS 视觉语言的表现层组件。',
+      en: 'Dot matrix, glyphs, and the other pieces that make the visual language read as AIOS.',
     },
   },
 ]

@@ -180,7 +180,7 @@ const groups = {
   'Card': ['Card', 'Card1'],
   'Dots3': ['Dots3', 'Dots4'],
   'Play': ['Play', 'Dots5'],
-  'NothingEar': ['NothingEar', 'Image'],
+  'AIOSEar': ['AIOSEar', 'Image'],
   'Card2': ['Card2'],
   'Date': ['Date', 'Date1'],
   'Counter': ['Counter', 'Dots6'],

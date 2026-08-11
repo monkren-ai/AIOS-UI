@@ -13,7 +13,7 @@ declare const dateFieldVariants: (props?: ({
 /** 单个日期段：边框 + 居中数字，高度走 size，宽度走 kind。 */
 declare const dateFieldSegmentVariants: (props?: ({
   size?: "sm" | "md" | "lg" | null | undefined;
-  kind?: "year" | "month" | "day" | null | undefined;
+  kind?: "day" | "year" | "month" | null | undefined;
   active?: boolean | null | undefined;
   filled?: boolean | null | undefined;
   error?: boolean | null | undefined;

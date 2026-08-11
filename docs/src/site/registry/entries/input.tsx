@@ -28,7 +28,7 @@ export const inputDoc: ComponentDoc = {
     </div>
   ),
   importStatement: `import { Input } from 'aios-ui-kit/input'`,
-  usageSnippet: `<Input label="Email" placeholder="you@nothing.tech" />`,
+  usageSnippet: `<Input label="Email" placeholder="you@example.com" />`,
   composition: {
     zh: '`Input` 不是裸的 `<input>`，而是一整块字段：外层容器里依次是 label、控件行（图标 + 原生 input + 清除按钮）、以及错误或说明文案。所以它默认 `width: 100%`，宽度由父容器决定。',
     en: '`Input` is a whole field, not a bare `<input>`: a wrapper holds the label, the control row (icons, the native input, the clear button), and the error or helper text. It is `width: 100%` by design — let the parent decide how wide it should be.',

@@ -45,7 +45,7 @@
 
 /* ===== Sharp Variant ===== */
 .aios-digital-clock-large--sharp .aios-digital-clock-large__time {
-  font-family: var(--font-ndot);
+  font-family: var(--font-dotmatrix);
   font-weight: var(--weight-bold);
   letter-spacing: -0.03em;
 }

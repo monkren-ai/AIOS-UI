@@ -56,8 +56,8 @@ export const tabsDoc: ComponentDoc = {
       id: 'basic',
       title: { zh: '基本用法', en: 'Basic usage' },
       description: {
-        zh: '`defaultValue` 走非受控，组件自己记住选中项。请务必给一个初始值：不传的话首次渲染没有任何标签被选中，面板区一片空白，直到用户点一下才恢复正常。',
-        en: '`defaultValue` keeps it uncontrolled and the component remembers the selection for you. Do supply one: without it nothing is selected on first render and the panel area sits empty until the user clicks something.',
+        zh: '`defaultValue` 走非受控，组件自己记住选中项。不传时 Base UI 会自动选择第一个可用标签；需要明确初始标签或避免服务端渲染时的禁用项差异，仍建议显式传入。',
+        en: '`defaultValue` keeps it uncontrolled and the component remembers the selection. When omitted, Base UI selects the first enabled tab automatically; pass it explicitly when the initial tab matters or to avoid disabled-tab differences during server rendering.',
       },
       code: basicSource,
       render: () => <TabsBasic />,
@@ -285,10 +285,6 @@ export const tabsDoc: ComponentDoc = {
     {
       zh: 'indicator 与 hover 垫层都是 `aria-hidden` 的纯装饰层，位移走 `inset-inline-start`（RTL 自动镜像），并且都带 `motion-reduce:transition-none`。',
       en: 'The indicator and the hover pad are decorative `aria-hidden` layers positioned with `inset-inline-start` (so RTL mirrors them for free), and both carry `motion-reduce:transition-none`.',
-    },
-    {
-      zh: '一处已知缺陷：触发器上的 `aria-controls` 被组件覆盖成了自己拼的 id，而面板用的是 Base UI 生成的 id，两者对不上——`aria-controls` 目前指向一个不存在的元素。`aria-selected` 与面板的 `aria-labelledby` 不受影响，仍然正确。同理，触发器上的 `data-state` 只在受控模式下准确，非受控时恒为 `inactive`，别拿它写样式。',
-      en: 'One known defect: the component overwrites the trigger’s `aria-controls` with an id it builds itself, while the panel keeps the id Base UI generated — so `aria-controls` currently points at an element that does not exist. `aria-selected` and the panel’s `aria-labelledby` are unaffected and remain correct. In the same vein, the trigger’s `data-state` is only accurate when controlled; uncontrolled it is always `inactive`, so do not style off it.',
     },
   ],
 }

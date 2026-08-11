@@ -139,7 +139,7 @@ export function LandingPage() {
 
         <p className="max-w-2xl text-subheading text-foreground-muted">
           {t(
-            `${COMPONENT_COUNT} 个基于 Nothing 设计语言的 React 组件。单色、几何、克制——把注意力留给内容本身。`,
+            `${COMPONENT_COUNT} 个基于 AIOS 设计语言的 React 组件。单色、几何、克制——把注意力留给内容本身。`,
             `${COMPONENT_COUNT} React components built on the AIOS design language. Monochrome, geometric, restrained — so the content gets the attention instead.`,
           )}
         </p>

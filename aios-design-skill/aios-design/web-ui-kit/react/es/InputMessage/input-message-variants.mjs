@@ -59,18 +59,18 @@ const inputMessageSendVariants = cva([
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ], {
 	variants: { size: {
-		sm: "min-h-9 px-2 py-1 text-micro",
-		md: "min-h-11 px-4 py-2 text-caption",
-		lg: "min-h-13 px-6 py-4 text-sm"
+		sm: "min-h-7 px-2 py-1 text-micro",
+		md: "min-h-9 px-2 py-1 text-micro",
+		lg: "min-h-11 px-4 py-2 text-caption"
 	} },
 	defaultVariants: { size: "md" }
 });
 const inputMessageSendLabelVariants = cva([]);
 const inputMessageSendIconVariants = cva(["shrink-0"], {
 	variants: { size: {
-		sm: "size-3",
-		md: "size-3.5",
-		lg: "size-4"
+		sm: "size-2.5",
+		md: "size-3",
+		lg: "size-3.5"
 	} },
 	defaultVariants: { size: "md" }
 });

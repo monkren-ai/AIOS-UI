@@ -3,7 +3,7 @@ declare const thoughtChainVariants: (props?: ({
   line?: boolean | "solid" | "dashed" | "dotted" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 declare const thoughtChainItemVariants: (props?: ({
-  status?: "active" | "success" | "error" | "pending" | null | undefined;
+  status?: "error" | "success" | "active" | "pending" | null | undefined;
   collapsible?: boolean | null | undefined;
   expanded?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;

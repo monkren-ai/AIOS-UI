@@ -5,7 +5,7 @@
  * 选中态由一块绝对定位的 slider 表达，所以外框必须是定位上下文 + 裁切容器。
  */
 declare const segmentedVariants: (props?: ({
-  variant?: "pill" | "rounded" | null | undefined;
+  variant?: "rounded" | "pill" | null | undefined;
   disabled?: boolean | null | undefined;
   proximity?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
@@ -20,11 +20,11 @@ declare const segmentVariants: (props?: ({
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 选中态 slider。 */
 declare const segmentedSliderVariants: (props?: ({
-  variant?: "pill" | "rounded" | null | undefined;
+  variant?: "rounded" | "pill" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** proximity hover 垫层，压在选中 slider 更下面一层。 */
 declare const segmentedHoverSliderVariants: (props?: ({
-  variant?: "pill" | "rounded" | null | undefined;
+  variant?: "rounded" | "pill" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 type SegmentedControlVariant = 'pill' | 'rounded';
 //#endregion

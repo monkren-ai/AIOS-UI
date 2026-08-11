@@ -7,7 +7,7 @@ interface PreviewCardProps extends React$1.ComponentPropsWithRef<'div'> {
   title?: string;
   /** 描述文字，渲染为 muted 小字。 */
   description?: string;
-  /** 副元数据，渲染为 mono caption（Nothing 标签语言）。 */
+  /** 副元数据，渲染为 mono caption（AIOS 标签语言）。 */
   meta?: string;
   /** 顶部图片地址。不传则不渲染媒体区。 */
   image?: string;

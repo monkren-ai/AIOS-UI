@@ -90,7 +90,7 @@ export function TopNav({ onOpenSearch }: { onOpenSearch: () => void }) {
           </Button>
 
           <a
-            href="https://github.com/appica-dev/appica-ui"
+            href="https://github.com/monkren-ai/AIOS-UI"
             target="_blank"
             rel="noreferrer"
             className="hidden px-2 font-mono text-label uppercase tracking-widest text-foreground-subtle transition-colors duration-200 hover:text-foreground motion-reduce:transition-none sm:block"

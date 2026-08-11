@@ -17,7 +17,7 @@ export default function FormFieldGroup() {
       }}
     >
       <div className={formGroupVariants({ hasError: Boolean(error) })}>
-        <Input name="email" label="Email" placeholder="you@nothing.tech" />
+        <Input name="email" label="Email" placeholder="you@example.com" />
         {error && <p className={formErrorVariants()}>{error}</p>}
       </div>
       <Button type="submit">Continue</Button>

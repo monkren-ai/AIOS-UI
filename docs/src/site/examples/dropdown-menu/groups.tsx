@@ -18,7 +18,7 @@ export default function DropdownMenuGroups() {
         ]}
       />
       <p className="font-mono text-label uppercase tracking-wider text-foreground-muted">
-        {last ?? 'Nothing chosen yet'}
+        {last ?? 'AIOS chosen yet'}
       </p>
     </div>
   )

@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 /**
  * DotMatrix 的视觉变体。
  *
- * 点阵是 Nothing 视觉识别的承重墙，所以这里逐条对齐 v1 CSS 的层叠结果，
+ * 点阵是 AIOS 视觉识别的承重墙，所以这里逐条对齐 v1 CSS 的层叠结果，
  * 而不是「差不多就行」：
  *
  * - 点的底色先由 `theme` 给（light 用 `--widget-dark-bg`，dark 用 `--widget-white`），

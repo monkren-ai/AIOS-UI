@@ -1,6 +1,6 @@
-# Nothing Design Skill
+# AIOS Design Skill
 
-A design system skill for [Claude Code](https://claude.ai/code) inspired by Nothing's visual language. Monochrome, typographic, industrial.
+A design system skill for [Claude Code](https://claude.ai/code) built around the AIOS visual language: monochrome, typographic, and industrial.
 
 I kept describing the same design rules to Claude over and over — Swiss typography, OLED blacks, segmented progress bars, dot-matrix motifs. So I packaged it into a reusable skill.
 

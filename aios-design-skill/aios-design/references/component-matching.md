@@ -1,6 +1,6 @@
-# Nothing Design System — Component Matching & Migration
+# AIOS Design System — Component Matching & Migration
 
-This reference enables the Nothing Design Skill to analyze existing project files, match them to AIOS design components, and apply Nothing styles with precision.
+This reference enables the AIOS Design Skill to analyze existing project files, match them to AIOS design components, and apply AIOS styles with precision.
 
 ---
 
@@ -82,7 +82,7 @@ This reference enables the Nothing Design Skill to analyze existing project file
 
 | Project Component Type | AIOS Component | Variants | CSS File | Key Tokens |
 |---|---|---|---|---|
-| Clock / Time Display | Clock | digital/gauge | clock.css | `--font-ndot`, `--text-display` |
+| Clock / Time Display | Clock | digital/gauge | clock.css | `--font-dotmatrix`, `--text-display` |
 | Battery Indicator | Battery | — | battery.css | `--text-display`, `--success`, `--accent` |
 | Calendar | Calendar | compact/full | calendar.css | `--text-primary`, `--accent` |
 | System Monitor / Dashboard | SystemMonitor | — | system-monitor.css | `--text-display`, `--success`, `--warning` |
@@ -94,7 +94,7 @@ This reference enables the Nothing Design Skill to analyze existing project file
 | Walkie Talkie / PTT | WalkieTalkie | — | walkie-talkie.css | `--accent` |
 | Sunrise/Sunset Tracker | SunDial | — | sun-dial.css | `--text-display`, `--text-secondary` |
 | Life Progress / Age | AgeMotion | — | age-motion.css | `--text-display`, `--success` |
-| Stopwatch / Chrono | Chrono | — | chrono.css | `--font-ndot`, `--text-display` |
+| Stopwatch / Chrono | Chrono | — | chrono.css | `--font-dotmatrix`, `--text-display` |
 | Spinner / Decision Wheel | Spinner | — | spinner.css | `--text-display`, `--accent` |
 | World Clock | WorldClock | — | world-clock.css | `--text-display`, `--text-secondary` |
 | Dot Matrix Display | DotMatrix | — | dot-matrix.css | `--text-display`, `--text-disabled` |
@@ -112,7 +112,7 @@ This reference enables the Nothing Design Skill to analyze existing project file
 | Steps Widget | StepsWidget | — | steps-widget.css | `--widget-card-bg`, `--widget-primary` |
 | Activity Widget | ActivityWidget | — | activity-widget.css | `--widget-card-bg`, `--widget-primary` |
 | Compass Widget | CompassWidget | — | compass-widget.css | `--widget-dark-bg`, `--text-display` |
-| Time Widget | TimeWidget | — | time-widget.css | `--widget-dark-bg`, `--font-ndot` |
+| Time Widget | TimeWidget | — | time-widget.css | `--widget-dark-bg`, `--font-dotmatrix` |
 
 Base styles for Widget 2.0 subsystem: `widgets.css` (provides `.widget-bg`, `.widget-card`, `.widget-icon-wrapper` — import before individual widget CSS files)
 
@@ -181,15 +181,15 @@ Base styles for Widget 2.0 subsystem: `widgets.css` (provides `.widget-bg`, `.wi
 
 ### 3.1 Strategy A: Native CSS / CSS Modules Projects
 
-1. Copy Nothing `tokens.css` CSS variables into project root stylesheet
+1. Copy AIOS `tokens.css` CSS variables into project root stylesheet
 2. Copy target component CSS files into project styles directory
-3. Replace component class names with Nothing BEM class names
+3. Replace component class names with AIOS BEM class names
 4. Replace hardcoded values with `var(--xxx)` token references
 5. Ensure `data-theme="dark|light"` is set on `<html>` element
 
 ### 3.2 Strategy B: Tailwind CSS Projects
 
-Map Nothing tokens to Tailwind custom theme values in `tailwind.config.js`:
+Map AIOS tokens to Tailwind custom theme values in `tailwind.config.js`:
 
 ```js
 theme: {
@@ -211,7 +211,7 @@ theme: {
       display: ['var(--font-display)'],
       body: ['var(--font-body)'],
       mono: ['var(--font-mono)'],
-      ndot: ['var(--font-ndot)'],
+      dotmatrix: ['var(--font-dotmatrix)'],
     },
     borderRadius: {
       'aios-pill': 'var(--radius-pill)',
@@ -225,7 +225,7 @@ theme: {
 
 Key BEM-to-Tailwind mappings:
 
-| Nothing BEM Class | Tailwind Equivalent |
+| AIOS BEM Class | Tailwind Equivalent |
 |---|---|
 | `.aios-btn--primary` | `bg-aios-display text-aios-accent rounded-aios-pill px-6 py-3 font-mono text-xs uppercase tracking-wider min-h-[44px]` |
 | `.aios-btn--secondary` | `bg-transparent border border-aios-border-visible text-aios-primary rounded-aios-pill px-6 py-3 font-mono text-xs uppercase tracking-wider` |
@@ -235,10 +235,10 @@ Key BEM-to-Tailwind mappings:
 
 ### 3.3 Strategy C: CSS-in-JS (Styled Components / Emotion) Projects
 
-Extract Nothing tokens as JS constants:
+Extract AIOS tokens as JS constants:
 
 ```ts
-const nothingTokens = {
+const aiosTokens = {
   colors: {
     textDisplay: 'var(--text-display)',
     textPrimary: 'var(--text-primary)',
@@ -254,7 +254,7 @@ const nothingTokens = {
     display: 'var(--font-display)',
     body: 'var(--font-body)',
     mono: 'var(--font-mono)',
-    ndot: 'var(--font-ndot)',
+    dotmatrix: 'var(--font-dotmatrix)',
   },
   radius: {
     pill: 'var(--radius-pill)',
@@ -283,7 +283,7 @@ Convert BEM structures to styled-components templates, wrapping with a ThemeProv
 
 **Phase 2 — Style Migration (moderate disruption):**
 - Import component-level CSS files
-- Replace project class names with Nothing BEM class names
+- Replace project class names with AIOS BEM class names
 - Adjust JSX/HTML structure to match BEM Element naming where needed
 - Apply variant modifiers via class composition
 
@@ -300,7 +300,7 @@ Convert BEM structures to styled-components templates, wrapping with a ThemeProv
 Every component matching analysis must produce a standard report:
 
 ```markdown
-## Nothing Design — Component Match Report
+## AIOS Design — Component Match Report
 
 ### Project Info
 - Stack: [React / Vue / Angular / HTML]

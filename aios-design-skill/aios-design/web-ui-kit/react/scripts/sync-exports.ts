@@ -21,7 +21,7 @@ const SRC_DIR = resolve(__dirname, '../src')
 const INDEX_PATH = join(SRC_DIR, 'index.ts')
 
 const HEADER = `/**
- * AIOS UI - 基于 Nothing 设计语言的现代 React 组件库
+ * AIOS UI - 基于 AIOS 设计语言的现代 React 组件库
  *
  * @example
  * \`\`\`tsx

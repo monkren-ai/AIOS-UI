@@ -506,7 +506,7 @@
 #### WidgetSubComponents (Figma 2.0)
 **文件**: [WidgetSubComponents.tsx](src/components/widgets/WidgetSubComponents.tsx)  
 **描述**: Figma 2.0 子组件集合  
-**包含**: Record2, LocationAccess, WatchAnalog, Compass, TempControl, AutoRotate1, Active, Watch1, Active1, Recording, Glyphs1, LocationAccess1, Glyphs2, Campus, Location1, Flash, Weather1, MicAccess, PairNewDevice, Overlimit, MusicPlayer, TotalTime, StepsCounter, OverLimit1, LoadingBar1, Card, Card1, Dots3, Play, NothingEar, Card2, Date, Date1, Counter, Music, Device, Mode, DoubleDown, SelectDevice, Card3, ActivityTracker, Time, Weather2, Wedget
+**包含**: Record2, LocationAccess, WatchAnalog, Compass, TempControl, AutoRotate1, Active, Watch1, Active1, Recording, Glyphs1, LocationAccess1, Glyphs2, Campus, Location1, Flash, Weather1, MicAccess, PairNewDevice, Overlimit, MusicPlayer, TotalTime, StepsCounter, OverLimit1, LoadingBar1, Card, Card1, Dots3, Play, AIOSEar, Card2, Date, Date1, Counter, Music, Device, Mode, DoubleDown, SelectDevice, Card3, ActivityTracker, Time, Weather2, Wedget
 
 ---
 
@@ -558,5 +558,5 @@ document.documentElement.setAttribute('data-theme', 'light') // 或 'dark'
 ## 设计原则
 - **有节制的设计**: 避免过度装饰，保持简洁
 - **技术精确**: 像素级对齐和精确的间距
-- **独特视觉**: 采用 Nothing 的标志性设计语言
+- **独特视觉**: 采用 AIOS 的标志性设计语言
 - **无障碍支持**: 所有组件遵循 WCAG 可访问性标准

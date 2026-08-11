@@ -44,7 +44,19 @@ function Tabs$1({ className, items, value: controlledValue, defaultValue, onValu
 		items
 	]);
 	const panels = React$1.useMemo(() => {
-		return (children ? Array.isArray(children) ? children : [children] : []).filter((panel) => React$1.isValidElement(panel) && panel.props.value !== void 0);
+		const result = [];
+		const collectPanels = (nodes) => {
+			React$1.Children.forEach(nodes, (node) => {
+				if (!React$1.isValidElement(node)) return;
+				if (node.type === React$1.Fragment) {
+					collectPanels(node.props.children);
+					return;
+				}
+				if (node.type === TabPanel) result.push(node);
+			});
+		};
+		collectPanels(children);
+		return result;
 	}, [children]);
 	return /* @__PURE__ */ jsxs(Tabs.Root, {
 		className: cn(tabsVariants({
@@ -76,7 +88,7 @@ function Tabs$1({ className, items, value: controlledValue, defaultValue, onValu
 					renderBeforeHydration: true,
 					render: (indicatorProps, state) => {
 						const pos = state.activeTabPosition;
-						const width = pos ? pos.right - pos.left : 0;
+						const width = state.activeTabSize?.width ?? 0;
 						const indicatorStyle = pos ? {
 							insetInlineStart: toInlineStart(listRef.current, pos.left, width),
 							width,

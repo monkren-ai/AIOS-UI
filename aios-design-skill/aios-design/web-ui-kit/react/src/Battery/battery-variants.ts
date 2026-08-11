@@ -116,7 +116,7 @@ export const batterySegmentVariants = cva(
 
 /** widget 卡片里的大数字。 */
 export const batteryWidgetPercentVariants = cva([
-  'font-ndot text-display-lg font-light leading-none tracking-[-0.02em] tabular-nums text-[var(--widget-white)]',
+  'font-dotmatrix text-display-lg font-light leading-none tracking-[-0.02em] tabular-nums text-[var(--widget-white)]',
   'transition-colors duration-[350ms] ease-aios motion-reduce:transition-none',
 ])
 
@@ -257,7 +257,7 @@ export const batteryRingIconVariants = cva(
 /** 环心百分比。 */
 export const batteryRingPercentVariants = cva(
   [
-    'font-ndot text-display-sm font-light leading-none tracking-[-0.02em] tabular-nums',
+    'font-dotmatrix text-display-sm font-light leading-none tracking-[-0.02em] tabular-nums',
     'transition-colors duration-[350ms] ease-aios motion-reduce:transition-none',
   ],
   {

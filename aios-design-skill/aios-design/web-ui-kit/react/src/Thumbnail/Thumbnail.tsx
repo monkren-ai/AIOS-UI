@@ -14,7 +14,7 @@ export interface ThumbnailProps extends React.ComponentPropsWithRef<'div'> {
   alt?: string
   /**
    * 图片缺席或加载失败时展示的内容。不传时使用点阵占位——
-   * 用一个低调的点阵网格而不是灰块来表达「空」，更贴近 Nothing 的视觉语言。
+   * 用一个低调的点阵网格而不是灰块来表达「空」，更贴近 AIOS 的视觉语言。
    */
   fallback?: React.ReactNode
   /** 高度：48 / 64 / 96px。 */

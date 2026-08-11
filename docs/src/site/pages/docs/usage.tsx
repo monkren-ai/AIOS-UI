@@ -204,8 +204,8 @@ export default function UsagePage() {
         <CodeBlock code={MERGE} />
         <DocNote label={t('注意', 'Note')}>
           {t(
-            '`tailwind-merge` 被 `extendTailwindMerge` 扩展过，认得 `theme.css` 里的具名刻度（`text-heading`、`rounded-card`、`p-md`、`font-ndot`…）。没登记过的自定义刻度它会当成未知类名原样保留——不会报错，但也不参与去重。',
-            '`tailwind-merge` is configured through `extendTailwindMerge` so it knows the named scales from `theme.css` (`text-heading`, `rounded-card`, `p-md`, `font-ndot`, …). A custom scale it has not been told about is kept verbatim as an unknown class — no error, but no de-duplication either.',
+            '`tailwind-merge` 被 `extendTailwindMerge` 扩展过，认得 `theme.css` 里的具名刻度（`text-heading`、`rounded-card`、`p-md`、`font-dotmatrix`…）。没登记过的自定义刻度它会当成未知类名原样保留——不会报错，但也不参与去重。',
+            '`tailwind-merge` is configured through `extendTailwindMerge` so it knows the named scales from `theme.css` (`text-heading`, `rounded-card`, `p-md`, `font-dotmatrix`, …). A custom scale it has not been told about is kept verbatim as an unknown class — no error, but no de-duplication either.',
           )}
         </DocNote>
       </DocSection>

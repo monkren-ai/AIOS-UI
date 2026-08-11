@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 /**
  * GradientGlow 的变体。
  *
- * 这是 appica `gradient-glow` 的 Nothing 改造版：不渲染渐变光晕，
+ * 这是 appica `gradient-glow` 的 AIOS 改造版：不渲染渐变光晕，
  * 改用点阵网格 + 中心向外径向衰减的 opacity 阶梯营造氛围。
  * `intensity` 只控制中心点的最大 opacity，不引入色相。
  */

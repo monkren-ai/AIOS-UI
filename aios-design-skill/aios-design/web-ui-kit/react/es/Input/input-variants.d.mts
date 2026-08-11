@@ -34,7 +34,7 @@ declare const inputLabelVariants: (props?: ({
  * 命名刻意避开 `inputMessageVariants` —— 那是独立组件 `InputMessage`（聊天输入框）的。
  */
 declare const inputHelperVariants: (props?: ({
-  variant?: "default" | "error" | null | undefined;
+  variant?: "error" | "default" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 前后缀图标槽位。 */
 declare const inputIconVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;

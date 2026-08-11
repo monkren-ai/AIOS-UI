@@ -1,4 +1,4 @@
-# Nothing Design System — Components
+# AIOS Design System — Components
 
 ## 1. CARDS / SURFACES
 

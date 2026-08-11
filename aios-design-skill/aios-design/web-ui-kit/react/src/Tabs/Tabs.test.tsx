@@ -74,6 +74,35 @@ describe('Tabs', () => {
     expect(screen.getByRole('tabpanel', { name: 'A' })).toHaveTextContent('Panel A')
   })
 
+  it('selects the first enabled tab when defaultValue is omitted', () => {
+    render(
+      <Tabs
+        items={[
+          { value: 'disabled', label: 'Disabled', disabled: true },
+          { value: 'active', label: 'Active' },
+        ]}
+      >
+        <TabPanel value="disabled">Disabled panel</TabPanel>
+        <TabPanel value="active">Active panel</TabPanel>
+      </Tabs>,
+    )
+
+    expect(screen.getByRole('tab', { name: 'Active' })).toHaveAttribute('aria-selected', 'true')
+    expect(screen.getByRole('tabpanel', { name: 'Active' })).toHaveTextContent('Active panel')
+  })
+
+  it('renders panels nested inside fragments', () => {
+    render(
+      <Tabs items={[{ value: 'a', label: 'A' }]} defaultValue="a">
+        <>
+          <TabPanel value="a">Panel A</TabPanel>
+        </>
+      </Tabs>,
+    )
+
+    expect(screen.getByRole('tabpanel', { name: 'A' })).toHaveTextContent('Panel A')
+  })
+
   it('switches active tab on click', async () => {
     render(
       <Tabs

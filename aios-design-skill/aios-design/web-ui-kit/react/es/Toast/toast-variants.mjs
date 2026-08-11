@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 /**
 * Toast 的视觉变体。
 *
-* appica 原版是浮窗 portal + 自动消失——Nothing 禁止浮窗 toast，所以这里改造成
+* appica 原版是浮窗 portal + 自动消失——AIOS 禁止浮窗 toast，所以这里改造成
 * 文档流内的内联状态条：`role="status"` 横条，左侧 bracket 标记 + 消息文案，
 * 不 portal、不 fixed、不自动消失（由调用方控制挂载）。
 *

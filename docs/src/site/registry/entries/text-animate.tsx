@@ -19,7 +19,7 @@ export const textAnimateDoc: ComponentDoc = {
   },
   preview: () => (
     <TextAnimate className="font-body text-base text-foreground">
-      Nothing reveals itself one dot at a time.
+      AIOS reveals itself one dot at a time.
     </TextAnimate>
   ),
   importStatement: `import { TextAnimate } from 'aios-ui-kit/text-animate'`,

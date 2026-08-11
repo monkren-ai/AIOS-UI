@@ -14,7 +14,7 @@ export const skeletonDoc: ComponentDoc = {
   status: 'new',
   baseUi: '—（自实现，基于 DotMatrix）',
   description: {
-    zh: '点阵呼吸占位（Nothing 改造，非灰色块），text/rect/circle 三种形状。',
+    zh: '点阵呼吸占位（AIOS 改造，非灰色块），text/rect/circle 三种形状。',
     en: 'A dot-matrix breathing placeholder (AIOS adaptation, not grey blocks) in text, rect, or circle shapes.',
   },
   preview: () => <Skeleton variant="rect" className="w-full max-w-xs" />,

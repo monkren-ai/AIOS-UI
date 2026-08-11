@@ -20,7 +20,7 @@
 - `DirectionProvider`、`ReducedMotionProvider`
 - ThemeProvider `storageKey` 与 `ThemeScript` 对齐
 - 子路径导出 `aios-ui-kit/<kebab-name>`
-- 文档站：`/docs` · `/components`（71 组件）· `/icons`（Nothing + Tabler）· `/showcase`
+- 文档站：`/docs` · `/components`（71 组件）· `/icons`（AIOS + Tabler）· `/showcase`
 - `/docs/migrating-v2` 升级指南
 
 ### Changed

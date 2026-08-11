@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 /**
  * Button 的视觉变体。
  *
- * 变体/尺寸命名对齐 appica-ui，配色收敛到 Nothing 的 monochrome + 单点红：
+ * 变体/尺寸命名对齐 appica-ui，配色收敛到 AIOS 的 monochrome + 单点红：
  * 没有阴影、没有 blur、没有渐变，层级只靠 background 与 border 表达。
  *
  * 直接把返回的类名贴到 `<a>` 上，就能得到一个「长得像按钮的链接」而不丢链接语义。

@@ -2,7 +2,7 @@
 /**
  * Kbd 的视觉变体。
  *
- * 键帽在 Nothing 的语言里就是一块方角的 surface：一条 border 划出边界，
+ * 键帽在 AIOS 的语言里就是一块方角的 surface：一条 border 划出边界，
  * 不用阴影去伪造按键的立体感。
  */
 declare const kbdVariants: (props?: ({

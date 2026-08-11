@@ -50,7 +50,7 @@ describe('ToolCallRow', () => {
 
   it('expands and collapses details', async () => {
     const user = userEvent.setup()
-    render(<ToolCallRow tool="query" args={{ q: 'nothing ui' }} result="42 results" error="" />)
+    render(<ToolCallRow tool="query" args={{ q: 'aios ui' }} result="42 results" error="" />)
 
     const toggle = screen.getByRole('button', { name: 'Show details' })
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
@@ -60,7 +60,7 @@ describe('ToolCallRow', () => {
     expect(toggle).toHaveAttribute('aria-expanded', 'true')
     expect(toggle).toHaveAttribute('aria-label', 'Hide details')
     expect(screen.getByText('q')).toBeInTheDocument()
-    expect(screen.getByText('nothing ui')).toBeInTheDocument()
+    expect(screen.getByText('aios ui')).toBeInTheDocument()
     expect(screen.getByText('42 results')).toBeInTheDocument()
 
     await user.click(toggle)
@@ -68,7 +68,7 @@ describe('ToolCallRow', () => {
   })
 
   it('expands details by default when showArgs is true', () => {
-    render(<ToolCallRow tool="query" args={{ q: 'nothing ui' }} showArgs />)
+    render(<ToolCallRow tool="query" args={{ q: 'aios ui' }} showArgs />)
     expect(screen.getByRole('button')).toHaveAttribute('aria-expanded', 'true')
     expect(screen.getByText('q')).toBeInTheDocument()
   })

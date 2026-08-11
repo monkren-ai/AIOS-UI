@@ -44,7 +44,7 @@ export const StepsCount = React.forwardRef<HTMLDivElement, WidgetSubProps>(
         >
           Total Steps
         </p>
-        <p className="widget-text widget-text--ndot widget-text--30 widget-text--grey3">5,543</p>
+        <p className="widget-text widget-text--dotmatrix widget-text--30 widget-text--grey3">5,543</p>
       </div>
     )
   },
@@ -73,7 +73,7 @@ export const Streak = React.forwardRef<HTMLDivElement, WidgetSubProps>(
         >
           Streak
         </p>
-        <p className="widget-text widget-text--ndot widget-text--30 widget-text--grey3">3 DAYS</p>
+        <p className="widget-text widget-text--dotmatrix widget-text--30 widget-text--grey3">3 DAYS</p>
       </div>
     )
   },

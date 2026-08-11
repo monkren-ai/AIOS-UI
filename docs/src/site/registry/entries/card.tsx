@@ -274,8 +274,8 @@ export const cardDoc: ComponentDoc = {
           name: 'value',
           type: 'string | number',
           description: {
-            zh: '主数值，用 NDot 字体放大显示。',
-            en: 'The headline value, rendered large in the NDot face.',
+            zh: '主数值，用 Dot Matrix 字体放大显示。',
+            en: 'The headline value, rendered large in the Dot Matrix face.',
           },
         },
         {

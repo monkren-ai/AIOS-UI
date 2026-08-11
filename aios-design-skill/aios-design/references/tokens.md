@@ -1,4 +1,4 @@
-# Nothing Design System — Tokens
+# AIOS Design System — Tokens
 
 ## 1. TYPOGRAPHY
 
@@ -10,7 +10,7 @@
 | **Body / UI** | `"Space Grotesk"` | `"DM Sans", system-ui, sans-serif` | Light 300, Regular 400, Medium 500, Bold 700 |
 | **Data / Labels** | `"Space Mono"` | `"JetBrains Mono", "SF Mono", monospace` | Regular 400, Bold 700 |
 
-**Why these fonts:** Doto = variable dot-matrix (closest to NDot 57). Space Grotesk + Space Mono by Colophon Foundry — same foundry as Nothing's actual typefaces. Shared design DNA.
+**Why these fonts:** Doto provides variable dot-matrix display type; Space Grotesk and Space Mono provide readable UI and metadata typography.
 
 ### Type Scale
 
@@ -327,7 +327,7 @@ Dots 1–2px, uniform 12–16px grid. Opacity 0.1–0.2 for backgrounds, full fo
 
 ## 7. WIDGET SUBSYSTEM TOKENS
 
-The Widget subsystem uses a separate set of tokens that intentionally differ from the main UI system, mimicking Nothing Phone's home screen widget aesthetic.
+The Widget subsystem uses a separate set of tokens that intentionally differ from the main UI system, mimicking AIOS Phone's home screen widget aesthetic.
 
 ### Widget Background Tokens
 
@@ -356,7 +356,7 @@ The Widget subsystem uses a separate set of tokens that intentionally differ fro
 
 | Token | Font | Role |
 |-------|------|------|
-| `--font-ndot` | `"NDOT 47"` | Large numeric displays in widgets |
+| `--font-dotmatrix` | `"Doto"` | Large numeric displays in widgets |
 | `--font-widget` | `"Space Grotesk"` | Widget body text (same as `--font-body`) |
 
 ### Widget Sizing Tokens
@@ -368,7 +368,7 @@ The Widget subsystem uses a separate set of tokens that intentionally differ fro
 | `--widget-size-lg` | `324px` | Large widget size |
 | `--widget-bg-height` | `312px` | Widget background height |
 
-**Note:** Widget tokens are intentionally different from main UI tokens. This is a deliberate design choice to match Nothing Phone's widget panel aesthetic, not an inconsistency.
+**Note:** Widget tokens are intentionally different from main UI tokens. This is a deliberate design choice to match AIOS Phone's widget panel aesthetic, not an inconsistency.
 
 ---
 

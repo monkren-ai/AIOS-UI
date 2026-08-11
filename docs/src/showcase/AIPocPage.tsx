@@ -121,8 +121,8 @@ export function AIPocPage() {
         label: t('默认会话', 'Default'),
         messages: createWelcomeMessages(
           t(
-            '你好，我是 Nothing AI。试试在下方输入框发送消息，或点击推荐提示词开始对话。',
-            'Hello, I am Nothing AI. Send a message below or click a suggested prompt to start.',
+            '你好，我是 AIOS AI。试试在下方输入框发送消息，或点击推荐提示词开始对话。',
+            'Hello, I am AIOS AI. Send a message below or click a suggested prompt to start.',
           ),
         ),
         thoughts: createInitialThoughtChain(),
@@ -192,7 +192,7 @@ export function AIPocPage() {
         key: msg.key,
         role: msg.role,
         content: msg.content,
-        header: msg.role === 'ai' ? 'NOTHING AI' : 'YOU',
+        header: msg.role === 'ai' ? 'AIOS AI' : 'YOU',
       })),
     [activeConversation.messages],
   )
@@ -386,7 +386,7 @@ export function AIPocPage() {
             {isEmpty ? (
               <Welcome
                 variant="centered"
-                title={t('Nothing AI', 'Nothing AI')}
+                title={t('AIOS AI', 'AIOS AI')}
                 description={t(
                   '选择一个推荐提示词开始对话，或在下方输入框直接输入消息。',
                   'Pick a suggested prompt to start, or type a message below.',

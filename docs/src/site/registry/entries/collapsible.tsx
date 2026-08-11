@@ -23,13 +23,13 @@ export const collapsibleDoc: ComponentDoc = {
   preview: () => (
     <div className="w-full max-w-sm">
       <Collapsible trigger="Technical details">
-        Nothing OS 3.0, 12GB RAM, 256GB storage.
+        AIOS OS 3.0, 12GB RAM, 256GB storage.
       </Collapsible>
     </div>
   ),
   importStatement: `import { Collapsible } from 'aios-ui-kit/collapsible'`,
   usageSnippet: `<Collapsible trigger="Technical details">
-  Nothing OS 3.0, 12GB RAM, 256GB storage.
+  AIOS OS 3.0, 12GB RAM, 256GB storage.
 </Collapsible>`,
   composition: {
     zh: '三层结构，全部由组件生成：外框 `<div>`（`data-slot="collapsible"`）里放一个 `<button>` 触发器和一个 `role="region"` 的内容区，内容区里再套一层负责排版的 inner。触发器内容走 `trigger` 属性（可以是任意节点），展开的内容走 `children`——两个入口分得很清楚，不需要记子组件名。虽然名字上是 Accordion 的基础件，但两者并不共享实现：Accordion 走的是 Base UI，这个是手写的，高度过渡也是两套机制。',

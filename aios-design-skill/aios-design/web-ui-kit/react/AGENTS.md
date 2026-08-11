@@ -1,6 +1,6 @@
 # AGENTS.md — AIOS UI 开发规范
 
-> 本规范基于对 `appica-dev/appica-ui` 的调研，结合 Nothing 设计语言制定。所有贡献者（包括 AI Agent 与人类开发者）在修改本仓库前必须阅读并遵循。
+> 本规范基于对 `appica-dev/appica-ui` 的调研，结合 AIOS 设计语言制定。所有贡献者（包括 AI Agent 与人类开发者）在修改本仓库前必须阅读并遵循。
 >
 > **组件重构请先读 [REFACTOR-SPEC.md](./REFACTOR-SPEC.md)** —— 它是 v2（Tailwind + 统一 API）的完整规范，与本文冲突时以它为准。
 
@@ -8,7 +8,7 @@
 
 ## 1. 项目定位
 
-AIOS UI 是一个基于 **Nothing 设计语言**的 React 组件库：
+AIOS UI 是一个基于 **AIOS 设计语言**的 React 组件库：
 
 - 单色工业美学（monochrome industrial）
 - 零阴影、零 blur、零渐变
@@ -213,7 +213,7 @@ describe('Button', () => {
 ## 9. 参考文档
 
 - [PROJECT_PROGRESS.md](./PROJECT_PROGRESS.md) — 项目进度与里程碑追踪
-- [design.md](../design.md) — Nothing 设计原则
+- [design.md](../design.md) — AIOS 设计原则
 - [SKILL.md](../../SKILL.md) — AIOS UI Skill 使用指南（含 AI OS 扩展）
 - [COMPONENTS.md](./COMPONENTS.md) — 组件目录与 API 参考
 - [src/styles/tokens.css](src/styles/tokens.css) — 设计令牌
@@ -226,4 +226,4 @@ describe('Button', () => {
 | 日期 | 版本 | 说明 |
 |---|---|---|
 | 2026-08-05 | 1.0.0 | 新增 PROJECT_PROGRESS.md；同步 v1.0 完成状态（AI 组件矩阵、Showcase 三路由、v5 合并） |
-| 2026-07-25 | 1.0.0 | 初始版本，基于 appica-ui 调研与 Nothing 设计约束制定 |
+| 2026-07-25 | 1.0.0 | 初始版本，基于 appica-ui 调研与 AIOS 设计约束制定 |

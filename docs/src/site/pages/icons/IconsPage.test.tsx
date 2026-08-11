@@ -55,7 +55,7 @@ function renderPage() {
 }
 
 describe('IconsPage', () => {
-  it('renders the Nothing set with a live count', () => {
+  it('renders the AIOS set with a live count', () => {
     renderPage()
     expect(screen.getByText(`${AIOS_ICONS.length} icons`)).toBeInTheDocument()
   })

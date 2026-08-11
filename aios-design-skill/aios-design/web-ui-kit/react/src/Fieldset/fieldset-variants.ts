@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 /**
  * Fieldset 容器：`--border-visible` 1px 边框 + `rounded-card` 圆角。
  *
- * Nothing 约束卡片圆角不超过 16px，`rounded-card` 即上限。padding 走
+ * AIOS 约束卡片圆角不超过 16px，`rounded-card` 即上限。padding 走
  * `p-md`，内部字段之间用 `gap-md` 拉开层级。
  */
 export const fieldsetVariants = cva([

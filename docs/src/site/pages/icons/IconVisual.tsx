@@ -78,7 +78,7 @@ export interface IconVisualProps {
   entry: IconEntry
   /** 渲染尺寸（px）。 */
   size: number
-  /** 切到 Nothing 点阵栅格化渲染。 */
+  /** 切到 AIOS 点阵栅格化渲染。 */
   dotMatrix: boolean
   className?: string
 }
@@ -119,7 +119,7 @@ export function IconVisual({ entry, size, dotMatrix, className }: IconVisualProp
   } else if (entry.Component) {
     const Component = entry.Component
     // size 属性负责 Tabler 的 width/height；再钉一层 size-full，避免全局 svg
-    // 规则把属性尺寸冲掉。Nothing / Tabler 共用这个出口。
+    // 规则把属性尺寸冲掉。AIOS / Tabler 共用这个出口。
     content = <Component size={size} aria-hidden className="size-full" />
   }
 

@@ -75,8 +75,8 @@ export default function AccessibilityPage() {
       <DocSection title={t('焦点环', 'The focus ring')}>
         <Prose>
           {t(
-            '这里有一个由设计约束逼出来的结论：Nothing 不用阴影，所以焦点态**没有** `box-shadow` 这条退路。焦点必须靠 `outline` 表达，而且它是整个系统里对比度最高的一个信号。',
-            'Here a design constraint forces a technical one: Nothing does not use shadows, so there is **no** `box-shadow` route for focus. Focus has to be expressed with `outline`, and it is the highest-contrast signal in the system.',
+            '这里有一个由设计约束逼出来的结论：AIOS 不用阴影，所以焦点态**没有** `box-shadow` 这条退路。焦点必须靠 `outline` 表达，而且它是整个系统里对比度最高的一个信号。',
+            'Here a design constraint forces a technical one: AIOS does not use shadows, so there is **no** `box-shadow` route for focus. Focus has to be expressed with `outline`, and it is the highest-contrast signal in the system.',
           )}
         </Prose>
         <CodeBlock code={FOCUS_TOKENS} />

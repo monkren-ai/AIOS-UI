@@ -9,7 +9,7 @@ async function validateAIOSUI() {
   const warnings = [];
   const componentStatus = {
     pageLoad: false,
-    nothingWidgets20: false,
+    aiosWidgets20: false,
     activityWidget: false,
     weatherWidget: false,
     compassWidget: false,
@@ -144,7 +144,7 @@ async function validateAIOSUI() {
   console.log('📊 验证报告总结');
   console.log('='.repeat(60));
   console.log(`页面加载: ${componentStatus.pageLoad ? '✅' : '❌'}`);
-  console.log(`Nothing Widgets 2.0 区域: ${componentStatus.nothingWidgets20 ? '✅' : '❌'}`);
+  console.log(`AIOS Widgets 2.0 区域: ${componentStatus.aiosWidgets20 ? '✅' : '❌'}`);
   console.log(`ActivityWidget: ${componentStatus.activityWidget ? '✅' : '⚠️'}`);
   console.log(`WeatherWidget: ${componentStatus.weatherWidget ? '✅' : '⚠️'}`);
   console.log(`CompassWidget: ${componentStatus.compassWidget ? '✅' : '⚠️'}`);
@@ -162,7 +162,7 @@ async function validateAIOSUI() {
   console.log('='.repeat(60));
 
   return {
-    success: componentStatus.pageLoad && componentStatus.nothingWidgets20,
+    success: componentStatus.pageLoad && componentStatus.aiosWidgets20,
     errors,
     warnings,
     componentStatus

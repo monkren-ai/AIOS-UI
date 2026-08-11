@@ -11,7 +11,7 @@ const defaultQuotes = [
 	},
 	{
 		text: "We remove everything that is unnecessary.",
-		author: "Nothing Design Principles"
+		author: "AIOS Design Principles"
 	},
 	{
 		text: "Weniger, aber besser.",

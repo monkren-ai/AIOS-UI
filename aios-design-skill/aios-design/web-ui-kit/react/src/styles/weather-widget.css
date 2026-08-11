@@ -45,7 +45,7 @@
   font-size: 32px;
   font-weight: 300;
   color: var(--widget-dark-4);
-  font-family: var(--font-ndot);
+  font-family: var(--font-dotmatrix);
   line-height: 1;
 }
 
@@ -117,7 +117,7 @@
   font-size: var(--widget-label);
   font-weight: 300;
   color: var(--widget-dark-4);
-  font-family: var(--font-ndot);
+  font-family: var(--font-dotmatrix);
   line-height: 1;
 }
 

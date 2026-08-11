@@ -6,9 +6,9 @@
  * 拆成 `size` 与 `shape` 两个正交维度，variant 只留下强调层级。
  */
 declare const contentCardVariants: (props?: ({
-  variant?: "soft" | "outline" | "secondary" | "ghost" | null | undefined;
+  variant?: "soft" | "outline" | "ghost" | "secondary" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
-  shape?: "rounded" | "technical" | null | undefined;
+  shape?: "technical" | "rounded" | null | undefined;
   interactive?: boolean | null | undefined;
   disabled?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
@@ -30,29 +30,29 @@ type CardShape = 'rounded' | 'technical';
  * 所以额外接受 sm|md|lg 作为 tall|square|wide 的别名。
  *
  * v1 的 hover 用了一层跟随鼠标的 radial-gradient，v2 直接删掉——
- * Nothing 不用渐变表达层级，hover 只换 border 与 background。
+ * AIOS 不用渐变表达层级，hover 只换 border 与 background。
  */
 declare const widgetCardVariants: (props?: ({
   size?: "square" | "wide" | "tall" | "auto" | null | undefined;
-  shape?: "circle" | "pill" | "rounded" | null | undefined;
-  theme?: "light" | "dark" | "accent" | null | undefined;
+  shape?: "circle" | "rounded" | "pill" | null | undefined;
+  theme?: "accent" | "light" | "dark" | null | undefined;
   density?: "default" | "compact" | null | undefined;
-  align?: "left" | "center" | "right" | null | undefined;
+  align?: "left" | "right" | "center" | null | undefined;
   clickable?: boolean | null | undefined;
   hasChildren?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** Widget 标题。 */
 declare const widgetCardTitleVariants: (props?: ({
-  theme?: "light" | "dark" | "accent" | null | undefined;
+  theme?: "accent" | "light" | "dark" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** Widget 主数值。 */
 declare const widgetCardValueVariants: (props?: ({
-  theme?: "light" | "dark" | "accent" | null | undefined;
+  theme?: "accent" | "light" | "dark" | null | undefined;
   density?: "default" | "compact" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** Widget 副标题。 */
 declare const widgetCardSubtitleVariants: (props?: ({
-  theme?: "light" | "dark" | "accent" | null | undefined;
+  theme?: "accent" | "light" | "dark" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** v1 的版型别名。 */
 declare const LEGACY_WIDGET_SIZES: {

@@ -2,8 +2,8 @@ import { cn, dataAttr } from "../lib/utils.mjs";
 import { modalBackdropVariants, modalBodyVariants, modalCancelVariants, modalCloseVariants, modalConfirmVariants, modalDescriptionVariants, modalFooterVariants, modalHeaderVariants, modalTitleVariants, modalVariants } from "./modal-variants.mjs";
 import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { Dialog } from "@base-ui/react/dialog";
 import { AlertDialog } from "@base-ui/react/alert-dialog";
+import { Dialog } from "@base-ui/react/dialog";
 //#region src/Modal/Modal.tsx
 function Modal({ className, open: isOpen, onClose, title, footer, children, variant = "default", description, confirmLabel = "Confirm", cancelLabel = "Cancel", onConfirm, onCancel, destructive = false, ref, ...props }) {
 	const isAlert = variant === "alert";

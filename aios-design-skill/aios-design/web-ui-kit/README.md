@@ -1,6 +1,6 @@
 # AIOS UI Kit Web
 
-**AIOS UI** — 面向 AI OS 的 Web 组件库，视觉基于 Nothing 设计语言。提供时钟、电池、日历、音乐播放器、系统监控、日期、日历事件、名言、任务栏等组件，支持 Vanilla JavaScript 和 React。
+**AIOS UI** — 面向 AI OS 的 Web 组件库，视觉基于 AIOS 设计语言。提供时钟、电池、日历、音乐播放器、系统监控、日期、日历事件、名言、任务栏等组件，支持 Vanilla JavaScript 和 React。
 
 ## 设计理念
 
@@ -1722,9 +1722,9 @@ import Taskbar from './components/Taskbar'
 | showBattery | boolean | true | 显示电池 |
 | fixed | boolean | false | 固定定位 |
 
-## Nothing Widgets 2.0
+## AIOS Widgets 2.0
 
-新一代 Nothing 风格小组件，提供点阵可视化、快捷开关、信息卡片、网格布局及多种功能型 Widget。
+新一代 AIOS 风格小组件，提供点阵可视化、快捷开关、信息卡片、网格布局及多种功能型 Widget。
 
 ### 1. DotMatrix 点阵组件
 

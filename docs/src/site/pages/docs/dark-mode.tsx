@@ -52,7 +52,7 @@ import { getThemeScript } from 'aios-ui-kit'
 export default defineConfig({
   plugins: [
     {
-      name: 'nothing:theme-script',
+      name: 'aios:theme-script',
       transformIndexHtml: {
         order: 'pre',
         handler: (html) =>

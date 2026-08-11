@@ -640,7 +640,7 @@ function DesignSystemSection() {
               <td>Ten principles for good design — philosophical anchor</td>
             </tr>
             <tr>
-              <td>Nothing (Phone)</td>
+              <td>AIOS (Phone)</td>
               <td>Dot-matrix UI, transparent materials, monochrome OS</td>
               <td>Direct namesake — dot-matrix widget patterns, glyph font</td>
             </tr>

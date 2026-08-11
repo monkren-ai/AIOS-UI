@@ -29,7 +29,7 @@ declare const textareaLabelVariants: (props?: ({
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 辅助说明 / 错误文案。 */
 declare const textareaMessageVariants: (props?: ({
-  variant?: "default" | "error" | null | undefined;
+  variant?: "error" | "default" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** v1 的变体名 → 当前变体名。 */
 declare const LEGACY_VARIANTS: {

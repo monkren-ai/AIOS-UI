@@ -3,7 +3,7 @@ import { Button } from 'aios-ui-kit/button'
 import { CodeBlock } from '../../components/CodeBlock'
 import { useT } from '../../i18n'
 import { IconVisual } from './IconVisual'
-import { nothingImportStatement, nothingJsxSnippet } from './aios-icons'
+import { aiosImportStatement, aiosJsxSnippet } from './aios-icons'
 import { tablerImportStatement, tablerJsxSnippet } from './tabler-icons'
 import type { IconEntry } from './types'
 
@@ -84,9 +84,9 @@ export function IconDetailPanel({ entry, size, dotMatrix, onClose }: IconDetailP
     )
   }
 
-  const isNothing = entry.source === 'aios'
-  const jsx = isNothing ? nothingJsxSnippet(entry, dotMatrix) : tablerJsxSnippet(entry, size)
-  const importStatement = isNothing ? nothingImportStatement(entry) : tablerImportStatement(entry)
+  const isAIOS = entry.source === 'aios'
+  const jsx = isAIOS ? aiosJsxSnippet(entry, dotMatrix) : tablerJsxSnippet(entry, size)
+  const importStatement = isAIOS ? aiosImportStatement(entry) : tablerImportStatement(entry)
   const rawSvg = entry.svg ?? tablerMarkup
 
   const TablerComponent = entry.Component
@@ -99,7 +99,7 @@ export function IconDetailPanel({ entry, size, dotMatrix, onClose }: IconDetailP
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 flex-col gap-1">
           <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
-            {isNothing ? t('Nothing 图标', 'Nothing icon') : 'Tabler'}
+            {isAIOS ? t('AIOS 图标', 'AIOS icon') : 'Tabler'}
           </span>
           <span className="truncate text-subheading text-foreground-display">{entry.name}</span>
           {entry.componentName && (
@@ -135,7 +135,7 @@ export function IconDetailPanel({ entry, size, dotMatrix, onClose }: IconDetailP
       <CodeBlock code={`${importStatement}\n\n${jsx}`} collapseAfter={40} />
 
       {/* Tabler 的 SVG 源要靠这次隐藏渲染取回，视觉上不占位。 */}
-      {!isNothing && TablerComponent && !tablerMarkup && (
+      {!isAIOS && TablerComponent && !tablerMarkup && (
         <span className="sr-only" aria-hidden>
           <TablerComponent size={24} ref={captureTablerSvg} />
         </span>

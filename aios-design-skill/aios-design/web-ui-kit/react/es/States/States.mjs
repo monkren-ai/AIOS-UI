@@ -95,7 +95,7 @@ function ErrorState({ className, headline, message, prefix, onRetry, size = "md"
 	});
 }
 ErrorState.displayName = "ErrorState";
-function EmptyState({ className, headline = "Nothing here", description, action, size = "md", ...props }) {
+function EmptyState({ className, headline = "No content here", description, action, size = "md", ...props }) {
 	return /* @__PURE__ */ jsxs("div", {
 		className: cn(stateVariants({
 			variant: "empty",

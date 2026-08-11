@@ -62,9 +62,9 @@ describe('Command', () => {
   })
 
   it('shows the empty message when nothing matches', () => {
-    render(<Command groups={groups} emptyMessage="Nothing here" />)
+    render(<Command groups={groups} emptyMessage="No results" />)
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'zzz' } })
-    expect(screen.getByText('Nothing here')).toHaveAttribute('data-slot', 'command-empty')
+    expect(screen.getByText('No results')).toHaveAttribute('data-slot', 'command-empty')
   })
 
   it('marks the highlighted item through data-selected', () => {
