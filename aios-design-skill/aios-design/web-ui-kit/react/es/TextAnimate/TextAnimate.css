@@ -1,0 +1,17 @@
+/**
+ * TextAnimate 的揭示 keyframes。
+ *
+ * 从透明 + 下移 0.25em 到就位——ease 由 `var(--ease-aios)` 给（AIOS 的标准
+ * 缓动，无弹跳）。fill-mode 走 `both`：动画前的延迟段保持 `from`（不可见），
+ * 动画后停在 `to`。motion-reduce 下动画类被 `motion-safe:` 闸门关掉，段落直接显示。
+ */
+@keyframes aios-text-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.25em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

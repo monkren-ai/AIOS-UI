@@ -15,6 +15,7 @@
 - [10. 点阵加载器](#10-点阵加载器-dotmatrix-loaders)
 - [11. Nullframe 仪表盘](#11-nullframe-仪表盘-nullframe-dashboard)
 - [12. 设计系统](#12-设计系统-design-system)
+- [13. AIcss Agent 组件](#13-aicss-agent-组件)
 
 ---
 
@@ -529,6 +530,40 @@
 - `components.md` — 组件类型映射
 - `platform-mapping.md` — 平台输出约定
 - `component-matching.md` — 组件匹配策略
+
+---
+
+## 13. AIcss Agent 组件
+
+**文件**: `src/agent/AICSS/AICSS.tsx`
+**描述**: 对齐 [AIcss](https://www.aicss.dev/) Beta V1.2 的完整 14 组件目录，并适配 AIOS 令牌、主题和中英双语约束。
+
+| AIcss 组件 | AIOS 导出 |
+|---|---|
+| Thinking State | `AicssThinkingState` |
+| Thinking + Reasoning | `AicssThinkingReasoning` |
+| Orbs | `AicssOrbs` |
+| Web Search | `AicssWebSearch` |
+| File Diff | `AicssFileDiff` |
+| Image Generation | `AicssImageGeneration` |
+| Text Response | `AicssTextResponse` |
+| Streaming Text | `AicssStreamingText` |
+| Inline Citations | `AicssInlineCitations` |
+| Code Block | `AicssCodeBlock` |
+| To-do List | `AicssTaskList` |
+| Data Table | `AicssDataTable` |
+| Comparison Table | `AicssComparisonTable` |
+| AI Agent Input | `AicssAgentInput` |
+
+所有组件使用 `Aicss*` 前缀，避免与现有的 `ThinkingState` 类型、`DataTable` 等公共导出冲突。
+
+```tsx
+import {
+  AicssThinkingReasoning,
+  AicssWebSearch,
+  AicssAgentInput,
+} from 'aios-ui-kit'
+```
 
 ---
 

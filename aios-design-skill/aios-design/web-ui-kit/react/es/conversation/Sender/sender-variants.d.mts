@@ -1,6 +1,6 @@
 //#region src/conversation/Sender/sender-variants.d.ts
 declare const senderVariants: (props?: ({
-  variant?: "filled" | "default" | "bordered" | null | undefined;
+  variant?: "default" | "bordered" | "filled" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion

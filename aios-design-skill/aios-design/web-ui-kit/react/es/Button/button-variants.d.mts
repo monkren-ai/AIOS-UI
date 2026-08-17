@@ -8,7 +8,7 @@
  * 直接把返回的类名贴到 `<a>` 上，就能得到一个「长得像按钮的链接」而不丢链接语义。
  */
 declare const buttonVariants: (props?: ({
-  variant?: "soft" | "outline" | "destructive" | "primary" | "ghost" | "primary-outline" | "secondary" | null | undefined;
+  variant?: "outline" | "soft" | "ghost" | "destructive" | "primary" | "secondary" | "primary-outline" | null | undefined;
   size?: "sm" | "md" | "lg" | "icon-sm" | "icon-md" | "icon-lg" | null | undefined;
   fullWidth?: boolean | null | undefined;
   loading?: boolean | null | undefined;

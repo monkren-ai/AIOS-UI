@@ -1,0 +1,16 @@
+﻿/**
+ * 只剩一条 @keyframes。
+ *
+ * 其余样式已经全部迁到 `states-variants.ts` 的 Tailwind 工具类；
+ * keyframes 无法用工具类表达，所以留在这里，由 `animate-[...]` 引用。
+ */
+
+@keyframes aios-spinner-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}

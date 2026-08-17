@@ -1,0 +1,17 @@
+/**
+ * 只剩一条 @keyframes。
+ *
+ * 其余样式已经全部迁到 `music-player-variants.ts` 的 Tailwind 工具类；
+ * keyframes 无法用工具类表达，所以留在这里，由 BlinkingSeparator 的
+ * `motion-safe:animate-[...]` 引用（`animationDuration` 由 speed prop 覆盖）。
+ */
+
+@keyframes aios-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

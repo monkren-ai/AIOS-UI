@@ -11,7 +11,7 @@
  */
 declare const nextEventVariants: (props?: ({
   theme?: "light" | "dark" | null | undefined;
-  priority?: "normal" | "low" | "high" | null | undefined;
+  priority?: "low" | "normal" | "high" | null | undefined;
   real?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion

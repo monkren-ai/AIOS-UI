@@ -1,0 +1,16 @@
+/**
+ * Skeleton 的呼吸 keyframes。
+ *
+ * 透明度在 0.4↔0.8 之间循环——比 appica 的灰色块更克制，也更 AIOS：
+ * 占位是「在场但未完成」，不是「一块灰色」。motion-reduce 下动画类被 motion-safe:
+ * 闸门关掉，元素停在基础 opacity-60。
+ */
+@keyframes aios-skeleton-breathe {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}

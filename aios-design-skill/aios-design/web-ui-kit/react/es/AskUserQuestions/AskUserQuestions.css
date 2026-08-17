@@ -1,0 +1,29 @@
+/**
+ * 只剩两条 @keyframes。
+ *
+ * 其余样式已经全部迁到 `ask-user-questions-variants.ts` 的 Tailwind 工具类。
+ * keyframes 里的 `translateX` 是物理方向，逻辑属性管不到，所以 RTL 下由变体
+ * 把 forward / back 两条对调，而不是再写两条镜像的。
+ */
+
+@keyframes aios-ask-step-enter {
+  0% {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes aios-ask-step-enter-back {
+  0% {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

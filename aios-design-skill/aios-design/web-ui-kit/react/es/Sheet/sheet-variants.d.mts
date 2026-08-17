@@ -12,7 +12,7 @@ declare const sheetBackdropVariants: (props?: ({
  * 与 v1 一致：收起态是基线，`open:` 把 transform 归零。
  */
 declare const sheetVariants: (props?: ({
-  side?: "top" | "bottom" | "left" | "right" | null | undefined;
+  side?: "top" | "bottom" | "right" | "left" | null | undefined;
   full?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 declare const sheetHeaderVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;

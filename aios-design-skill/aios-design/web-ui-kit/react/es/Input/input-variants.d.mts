@@ -6,14 +6,14 @@
  * 层级靠 background + border 表达，没有阴影、没有 blur、没有渐变。
  */
 declare const inputVariants: (props?: ({
-  variant?: "soft" | "outline" | null | undefined;
+  variant?: "outline" | "soft" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   hasError?: boolean | null | undefined;
   disabled?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 包裹图标 + 原生 input 的一行。边框与背景都长在这里。 */
 declare const inputControlVariants: (props?: ({
-  variant?: "soft" | "outline" | null | undefined;
+  variant?: "outline" | "soft" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   hasError?: boolean | null | undefined;
   disabled?: boolean | null | undefined;
@@ -34,7 +34,7 @@ declare const inputLabelVariants: (props?: ({
  * 命名刻意避开 `inputMessageVariants` —— 那是独立组件 `InputMessage`（聊天输入框）的。
  */
 declare const inputHelperVariants: (props?: ({
-  variant?: "error" | "default" | null | undefined;
+  variant?: "default" | "error" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 前后缀图标槽位。 */
 declare const inputIconVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;
