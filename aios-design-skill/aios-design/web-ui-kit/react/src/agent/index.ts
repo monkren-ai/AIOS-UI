@@ -40,6 +40,7 @@ export {
 } from './ToolCallRow'
 export {
   AicssAgentInput,
+  AicssApprovalCard,
   AicssCodeBlock,
   AicssComparisonTable,
   AicssDataTable,
@@ -54,6 +55,10 @@ export {
   AicssThinkingState,
   AicssWebSearch,
   type AicssAgentInputProps,
+  type AicssApprovalCardProps,
+  type AicssApprovalPlanStep,
+  type AicssApprovalQuestion,
+  type AicssApprovalVariant,
   type AicssCitation,
   type AicssCodeBlockProps,
   type AicssComparisonFeature,
@@ -72,6 +77,7 @@ export {
   type AicssTableColumn,
   type AicssTaskItem,
   type AicssTaskListProps,
+  type AicssTaskStatus,
   type AicssTextResponseProps,
   type AicssThinkingReasoningProps,
   type AicssThinkingStateProps,

@@ -979,6 +979,16 @@ const ENTRIES: ComponentManifestEntry[] = [
       en: 'A toolbar of buttons, separators, and toggles, navigated with the arrow keys.',
     },
   },
+  {
+    slug: 'aicss',
+    name: 'Aicss',
+    category: 'agent',
+    status: 'new',
+    description: {
+      zh: '对齐 AIcss 的 14 件 Agent 对话组件：思考态、工具输出、流式文本与审批卡。',
+      en: 'Fourteen AIcss-aligned pieces for agent threads: thinking states, tool output, streaming text, and approval cards.',
+    },
+  },
 ]
 
 export const COMPONENT_MANIFEST = ENTRIES.sort((a, b) => a.name.localeCompare(b.name))

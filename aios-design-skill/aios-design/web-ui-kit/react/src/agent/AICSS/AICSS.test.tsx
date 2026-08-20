@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import {
   AicssAgentInput,
+  AicssApprovalCard,
   AicssCodeBlock,
   AicssComparisonTable,
   AicssDataTable,
@@ -82,7 +83,9 @@ describe('AICSS 组件集成', () => {
     fireEvent.click(screen.getByRole('button', { name: '复制' }))
     expect(onCopy).toHaveBeenCalledWith('const value = 1')
     fireEvent.click(screen.getByRole('checkbox'))
-    expect(onChange).toHaveBeenCalledWith([{ id: '1', label: '接入组件', completed: true }])
+    expect(onChange).toHaveBeenCalledWith([
+      { id: '1', label: '接入组件', completed: true, status: 'done' },
+    ])
   })
 
   it('渲染数据表与比较表', () => {
@@ -107,5 +110,71 @@ describe('AICSS 组件集成', () => {
     fireEvent.keyDown(input, { key: 'Enter' })
     expect(onSubmit).toHaveBeenCalledWith('运行检查')
     expect(input).toHaveValue('')
+  })
+
+  it('在推理完成时显示耗时摘要', () => {
+    render(
+      <AicssThinkingReasoning status="done" durationSec={5} summary="完成">
+        <p>检查上下文</p>
+      </AicssThinkingReasoning>,
+    )
+    expect(screen.getByRole('button', { name: /已思考 5s/ })).toBeInTheDocument()
+  })
+
+  it('渲染审批卡片的三种形态', () => {
+    const onApprove = vi.fn()
+    const { rerender } = render(
+      <AicssApprovalCard
+        questions={[
+          {
+            id: 'q1',
+            prompt: '使用哪种鉴权？',
+            options: ['Session', 'JWT'],
+          },
+        ]}
+        onApprove={onApprove}
+      />,
+    )
+    expect(screen.getByText('问题').closest('[data-slot="aicss-approval-card"]')).toBeTruthy()
+    fireEvent.click(screen.getByRole('radio', { name: 'Session' }))
+    fireEvent.click(screen.getByRole('button', { name: '继续' }))
+    expect(onApprove).toHaveBeenCalledWith({ answers: { q1: 'Session' } })
+
+    rerender(
+      <AicssApprovalCard
+        variant="command"
+        cwd="~/aios"
+        command="pnpm test"
+        onApprove={onApprove}
+      />,
+    )
+    expect(screen.getByText('pnpm test')).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: '运行' }))
+    expect(onApprove).toHaveBeenCalledTimes(2)
+
+    rerender(
+      <AicssApprovalCard
+        variant="plan"
+        planTitle="迁移会话鉴权"
+        plan={[
+          { id: 'p1', title: '加迁移' },
+          { id: 'p2', title: '接中间件' },
+          { id: 'p3', title: '补测试' },
+          { id: 'p4', title: '发布说明' },
+        ]}
+        planPreviewCount={2}
+      />,
+    )
+    expect(screen.getByText('加迁移')).toBeInTheDocument()
+    expect(screen.queryByText('补测试')).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: '还有 2 步' }))
+    expect(screen.getByText('补测试')).toBeInTheDocument()
+  })
+
+  it('增强 Agent 输入提示词', () => {
+    const onEnhance = vi.fn()
+    render(<AicssAgentInput defaultValue="检查构建" onEnhance={onEnhance} />)
+    fireEvent.click(screen.getByRole('button', { name: '增强提示词' }))
+    expect(onEnhance).toHaveBeenCalled()
   })
 })

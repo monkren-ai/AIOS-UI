@@ -744,6 +744,8 @@ Use these components when building agentic flows:
 - `ToolCallRow` — single tool invocation with status, args, elapsed time.
 - `ProgressTrace` — multi-step execution timeline, collapsible.
 - `ApprovalGate` — high-risk confirmation with impact and reversibility.
+- `AicssApprovalCard` — AIcss-aligned pause for clarifying questions, a shell command, or a short plan. Never auto-approves.
+- `AicssThinkingState` / `AicssThinkingReasoning` / `AicssOrbs` — conversation-thread thinking states (see `COMPONENTS.md` §13 for the full 14-piece AIcss catalog).
 - `AgentStatusBar` — persistent top/bottom bar showing current agent activity.
 - `SearchOrAsk` — evolved `Command`: search files + natural language + plan preview.
 

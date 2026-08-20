@@ -536,31 +536,32 @@
 ## 13. AIcss Agent 组件
 
 **文件**: `src/agent/AICSS/AICSS.tsx`
-**描述**: 对齐 [AIcss](https://www.aicss.dev/) Beta V1.2 的完整 14 组件目录，并适配 AIOS 令牌、主题和中英双语约束。
+**描述**: 对齐 [AIcss](https://www.aicss.dev/) 当前完整 14 组件目录（另保留 Web Search 作为工具态扩展），并适配 AIOS 令牌、主题和中英双语约束。授权组件（File Diff / Image Generation / Inline Citations / Comparison Table）为 AIOS 原创适配，不包含授权源码。
 
-| AIcss 组件 | AIOS 导出 |
-|---|---|
-| Thinking State | `AicssThinkingState` |
-| Thinking + Reasoning | `AicssThinkingReasoning` |
-| Orbs | `AicssOrbs` |
-| Web Search | `AicssWebSearch` |
-| File Diff | `AicssFileDiff` |
-| Image Generation | `AicssImageGeneration` |
-| Text Response | `AicssTextResponse` |
-| Streaming Text | `AicssStreamingText` |
-| Inline Citations | `AicssInlineCitations` |
-| Code Block | `AicssCodeBlock` |
-| To-do List | `AicssTaskList` |
-| Data Table | `AicssDataTable` |
-| Comparison Table | `AicssComparisonTable` |
-| AI Agent Input | `AicssAgentInput` |
+| AIcss 组件 | AIOS 导出 | 状态 |
+|---|---|---|
+| Thinking State | `AicssThinkingState` | 免费 |
+| Thinking + Reasoning | `AicssThinkingReasoning` | 免费 |
+| Orbs | `AicssOrbs` | 免费 |
+| File Diff | `AicssFileDiff` | 授权 · 适配实现 |
+| Image Generation | `AicssImageGeneration` | 授权 · 适配实现 |
+| Text Response | `AicssTextResponse` | 免费 |
+| Streaming Text | `AicssStreamingText` | 免费 |
+| Inline Citations | `AicssInlineCitations` | 授权 · 适配实现 |
+| Code Block | `AicssCodeBlock` | 免费 |
+| To-do List | `AicssTaskList` | 免费 |
+| Data Table | `AicssDataTable` | 免费 |
+| Comparison Table | `AicssComparisonTable` | 授权 · 适配实现 |
+| AI Agent Input | `AicssAgentInput` | 免费 |
+| Approval Card | `AicssApprovalCard` | 免费 |
+| Web Search | `AicssWebSearch` | 扩展（目录外） |
 
 所有组件使用 `Aicss*` 前缀，避免与现有的 `ThinkingState` 类型、`DataTable` 等公共导出冲突。
 
 ```tsx
 import {
   AicssThinkingReasoning,
-  AicssWebSearch,
+  AicssApprovalCard,
   AicssAgentInput,
 } from 'aios-ui-kit'
 ```

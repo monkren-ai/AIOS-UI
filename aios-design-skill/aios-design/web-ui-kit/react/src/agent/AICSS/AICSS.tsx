@@ -37,6 +37,8 @@ AicssThinkingState.displayName = 'AicssThinkingState'
 export interface AicssThinkingReasoningProps extends React.HTMLAttributes<HTMLDivElement> {
   summary?: React.ReactNode
   children: React.ReactNode
+  status?: Extract<AicssStatus, 'running' | 'done'>
+  durationSec?: number
   defaultOpen?: boolean
   open?: boolean
   onOpenChange?: (open: boolean) => void
@@ -48,6 +50,8 @@ export const AicssThinkingReasoning = React.forwardRef<HTMLDivElement, AicssThin
     {
       summary,
       children,
+      status = 'running',
+      durationSec,
       defaultOpen = true,
       open: controlledOpen,
       onOpenChange,
@@ -63,6 +67,11 @@ export const AicssThinkingReasoning = React.forwardRef<HTMLDivElement, AicssThin
       if (controlledOpen === undefined) setInternalOpen(!open)
       onOpenChange?.(!open)
     }
+    const done = status === 'done'
+    const triggerLabel =
+      done && durationSec != null
+        ? t(locale, `已思考 ${durationSec}s`, `Thought for ${durationSec}s`)
+        : t(locale, '思考与推理', 'Thinking + reasoning')
 
     return (
       <div
@@ -70,6 +79,7 @@ export const AicssThinkingReasoning = React.forwardRef<HTMLDivElement, AicssThin
         className={cn('aios-aicss-disclosure', className)}
         data-slot="aicss-thinking-reasoning"
         data-open={dataAttr(open)}
+        data-status={status}
         {...props}
       >
         <button
@@ -78,10 +88,11 @@ export const AicssThinkingReasoning = React.forwardRef<HTMLDivElement, AicssThin
           onClick={toggle}
           aria-expanded={open}
         >
-          <AicssThinkingState
-            label={t(locale, '思考与推理', 'Thinking + reasoning')}
-            locale={locale}
-          />
+          {done ? (
+            <span className="aios-aicss-thinking-state">{triggerLabel}</span>
+          ) : (
+            <AicssThinkingState label={triggerLabel} locale={locale} />
+          )}
           <Chevron open={open} />
         </button>
         {open && (
@@ -453,7 +464,9 @@ export interface AicssTaskItem {
   id: string
   label: string
   completed?: boolean
+  status?: AicssTaskStatus
 }
+export type AicssTaskStatus = 'pending' | 'in-progress' | 'done'
 export interface AicssTaskListProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   title?: string
   tasks: AicssTaskItem[]
@@ -465,16 +478,28 @@ export interface AicssTaskListProps extends Omit<React.HTMLAttributes<HTMLDivEle
 export const AicssTaskList = React.forwardRef<HTMLDivElement, AicssTaskListProps>(
   ({ title, tasks, onChange, defaultOpen = true, locale = 'zh', className, ...props }, ref) => {
     const [open, setOpen] = React.useState(defaultOpen)
-    const done = tasks.filter((task) => task.completed).length
+    const resolved = tasks.map((task) => {
+      const status: AicssTaskStatus = task.status ?? (task.completed ? 'done' : 'pending')
+      return { ...task, status, completed: status === 'done' }
+    })
+    const done = resolved.filter((task) => task.status === 'done').length
+    const inProgress = resolved.some((task) => task.status === 'in-progress')
     const toggle = (id: string) =>
       onChange?.(
-        tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task)),
+        tasks.map((task) => {
+          if (task.id !== id) return task
+          const nextDone = !((task.status ?? (task.completed ? 'done' : 'pending')) === 'done')
+          return { ...task, completed: nextDone, status: nextDone ? 'done' : 'pending' }
+        }),
       )
     return (
       <div
         ref={ref}
         className={cn('aios-aicss-task-list', className)}
         data-slot="aicss-task-list"
+        data-status={
+          inProgress ? 'running' : done === tasks.length && tasks.length > 0 ? 'done' : 'idle'
+        }
         {...props}
       >
         <button
@@ -491,12 +516,12 @@ export const AicssTaskList = React.forwardRef<HTMLDivElement, AicssTaskListProps
         </button>
         {open && (
           <ul>
-            {tasks.map((task) => (
-              <li key={task.id}>
+            {resolved.map((task) => (
+              <li key={task.id} data-status={task.status}>
                 <label>
                   <input
                     type="checkbox"
-                    checked={Boolean(task.completed)}
+                    checked={task.status === 'done'}
                     onChange={() => toggle(task.id)}
                     disabled={!onChange}
                   />
@@ -635,10 +660,12 @@ export interface AicssAgentInputProps extends Omit<
   value?: string
   defaultValue?: string
   loading?: boolean
+  enhancing?: boolean
   model?: string
   onChange?: (value: string) => void
   onSubmit?: (value: string) => void
   onAttach?: () => void
+  onEnhance?: () => void
   onCancel?: () => void
   locale?: AicssLocale
 }
@@ -649,10 +676,12 @@ export const AicssAgentInput = React.forwardRef<HTMLTextAreaElement, AicssAgentI
       value: controlledValue,
       defaultValue = '',
       loading = false,
+      enhancing = false,
       model,
       onChange,
       onSubmit,
       onAttach,
+      onEnhance,
       onCancel,
       locale = 'zh',
       placeholder,
@@ -675,6 +704,8 @@ export const AicssAgentInput = React.forwardRef<HTMLTextAreaElement, AicssAgentI
         className={cn('aios-aicss-agent-input', className)}
         data-slot="aicss-agent-input"
         data-loading={dataAttr(loading)}
+        data-enhancing={dataAttr(enhancing)}
+        data-filled={dataAttr(Boolean(value.trim()))}
       >
         <textarea
           ref={ref}
@@ -704,7 +735,17 @@ export const AicssAgentInput = React.forwardRef<HTMLTextAreaElement, AicssAgentI
             >
               +
             </button>
-          )}{' '}
+          )}
+          {onEnhance && (
+            <button
+              type="button"
+              onClick={onEnhance}
+              disabled={!value.trim() || loading || enhancing || disabled}
+              aria-label={t(locale, '增强提示词', 'Enhance prompt')}
+            >
+              {enhancing ? t(locale, '增强中', 'Enhancing') : t(locale, '增强', 'Enhance')}
+            </button>
+          )}
           {model && <span>{model}</span>}
           <button
             type="button"
@@ -719,3 +760,283 @@ export const AicssAgentInput = React.forwardRef<HTMLTextAreaElement, AicssAgentI
   },
 )
 AicssAgentInput.displayName = 'AicssAgentInput'
+
+export type AicssApprovalVariant = 'questions' | 'command' | 'plan'
+
+export interface AicssApprovalQuestion {
+  id: string
+  prompt: string
+  options: string[]
+}
+
+export interface AicssApprovalPlanStep {
+  id: string
+  title: string
+  detail?: string
+}
+
+export interface AicssApprovalCardProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'title'
+> {
+  variant?: AicssApprovalVariant
+  questions?: AicssApprovalQuestion[]
+  command?: string
+  cwd?: string
+  plan?: AicssApprovalPlanStep[]
+  planTitle?: string
+  planSummary?: string
+  planPreviewCount?: number
+  title?: string
+  approveLabel?: string
+  rejectLabel?: string
+  onApprove?: (payload?: { answers?: Record<string, string> }) => void
+  onReject?: () => void
+  locale?: AicssLocale
+}
+
+export const AicssApprovalCard = React.forwardRef<HTMLDivElement, AicssApprovalCardProps>(
+  (
+    {
+      variant = 'questions',
+      questions = [],
+      command,
+      cwd,
+      plan = [],
+      planTitle,
+      planSummary,
+      planPreviewCount = 3,
+      title,
+      approveLabel,
+      rejectLabel,
+      onApprove,
+      onReject,
+      locale = 'zh',
+      className,
+      ...props
+    },
+    ref,
+  ) => {
+    const [answers, setAnswers] = React.useState<Record<string, string>>({})
+    const [otherSelected, setOtherSelected] = React.useState<Record<string, boolean>>({})
+    const [customDraft, setCustomDraft] = React.useState<Record<string, string>>({})
+    const [step, setStep] = React.useState(0)
+    const [planExpanded, setPlanExpanded] = React.useState(false)
+
+    const safeStep = Math.min(step, Math.max(questions.length - 1, 0))
+    const allAnswered =
+      questions.length > 0 && questions.every((question) => Boolean(answers[question.id]?.trim()))
+    const previewCount = Math.max(0, planPreviewCount)
+    const planPreview = plan.slice(0, previewCount)
+    const planRest = plan.slice(previewCount)
+    const hasPlanMore = planRest.length > 0
+
+    const resolvedTitle =
+      title ??
+      (variant === 'questions'
+        ? t(locale, '问题', 'Questions')
+        : variant === 'command'
+          ? t(locale, '运行这条命令？', 'Run this command?')
+          : t(locale, '计划概览', 'Plan Overview'))
+    const resolvedApprove =
+      approveLabel ??
+      (variant === 'questions'
+        ? t(locale, '继续', 'Continue')
+        : variant === 'command'
+          ? t(locale, '运行', 'Run')
+          : t(locale, '批准', 'Approve'))
+    const resolvedReject = rejectLabel ?? t(locale, '跳过', 'Skip')
+    const canContinue = variant !== 'questions' || allAnswered
+
+    const isOtherChoice = (question: AicssApprovalQuestion) => {
+      if (otherSelected[question.id]) return true
+      const answer = answers[question.id]
+      return Boolean(answer) && !question.options.includes(answer)
+    }
+
+    const handleApprove = (nextAnswers?: Record<string, string>) => {
+      if (variant === 'questions') {
+        const next = nextAnswers ?? answers
+        if (!questions.every((question) => Boolean(next[question.id]?.trim()))) return
+        onApprove?.({ answers: next })
+        return
+      }
+      onApprove?.()
+    }
+
+    const selectOption = (questionId: string, option: string) => {
+      setOtherSelected((prev) => ({ ...prev, [questionId]: false }))
+      setAnswers((prev) => ({ ...prev, [questionId]: option }))
+      if (safeStep < questions.length - 1)
+        setStep((current) => Math.min(current + 1, questions.length - 1))
+    }
+
+    const selectOther = (questionId: string) => {
+      setOtherSelected((prev) => ({ ...prev, [questionId]: true }))
+      const draft = customDraft[questionId]?.trim() ?? ''
+      setAnswers((prev) => {
+        const next = { ...prev }
+        if (draft) next[questionId] = draft
+        else delete next[questionId]
+        return next
+      })
+    }
+
+    const updateCustom = (questionId: string, text: string) => {
+      setCustomDraft((prev) => ({ ...prev, [questionId]: text }))
+      setOtherSelected((prev) => ({ ...prev, [questionId]: true }))
+      setAnswers((prev) => {
+        const next = { ...prev }
+        const trimmed = text.trim()
+        if (trimmed) next[questionId] = trimmed
+        else delete next[questionId]
+        return next
+      })
+    }
+
+    const activeQuestion = questions[safeStep]
+    const visiblePlan = planExpanded || !hasPlanMore ? plan : planPreview
+
+    return (
+      <div
+        ref={ref}
+        className={cn('aios-aicss-approval', className)}
+        data-slot="aicss-approval-card"
+        data-variant={variant}
+        {...props}
+      >
+        <div className="aios-aicss-approval__head">
+          <strong>{resolvedTitle}</strong>
+          {variant === 'questions' && questions.length > 0 && (
+            <span aria-live="polite">
+              {safeStep + 1} / {questions.length}
+            </span>
+          )}
+        </div>
+
+        {variant === 'questions' && activeQuestion && (
+          <div className="aios-aicss-approval__body" aria-live="polite">
+            <p className="aios-aicss-approval__prompt">{activeQuestion.prompt}</p>
+            <div
+              role="radiogroup"
+              aria-label={activeQuestion.prompt}
+              className="aios-aicss-approval__options"
+            >
+              {activeQuestion.options.map((option, index) => {
+                const selected =
+                  answers[activeQuestion.id] === option && !isOtherChoice(activeQuestion)
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    role="radio"
+                    aria-checked={selected}
+                    data-selected={dataAttr(selected)}
+                    onClick={() => selectOption(activeQuestion.id, option)}
+                  >
+                    <span aria-hidden="true">{String.fromCharCode(65 + index)}</span>
+                    {option}
+                  </button>
+                )
+              })}
+              <label
+                className="aios-aicss-approval__other"
+                data-selected={dataAttr(isOtherChoice(activeQuestion))}
+              >
+                <span aria-hidden="true">
+                  {String.fromCharCode(65 + activeQuestion.options.length)}
+                </span>
+                <input
+                  type="text"
+                  value={
+                    customDraft[activeQuestion.id] ??
+                    (isOtherChoice(activeQuestion) &&
+                    answers[activeQuestion.id] &&
+                    !activeQuestion.options.includes(answers[activeQuestion.id])
+                      ? answers[activeQuestion.id]
+                      : '')
+                  }
+                  placeholder={t(locale, '其他…', 'Something else…')}
+                  aria-label={t(
+                    locale,
+                    `自定义回答：${activeQuestion.prompt}`,
+                    `Custom answer for: ${activeQuestion.prompt}`,
+                  )}
+                  onFocus={() => selectOther(activeQuestion.id)}
+                  onChange={(event) => updateCustom(activeQuestion.id, event.target.value)}
+                />
+              </label>
+            </div>
+          </div>
+        )}
+
+        {variant === 'command' && (
+          <div className="aios-aicss-approval__body">
+            {cwd && <div className="aios-aicss-approval__cwd">{cwd}</div>}
+            <pre className="aios-aicss-approval__command">{command}</pre>
+          </div>
+        )}
+
+        {variant === 'plan' && (
+          <div className="aios-aicss-approval__body">
+            {planTitle && <div className="aios-aicss-approval__plan-title">{planTitle}</div>}
+            {planSummary && <p className="aios-aicss-approval__plan-summary">{planSummary}</p>}
+            <ul className="aios-aicss-approval__plan">
+              {visiblePlan.map((stepItem) => (
+                <li key={stepItem.id}>
+                  <span>{stepItem.title}</span>
+                  {stepItem.detail && <small>{stepItem.detail}</small>}
+                </li>
+              ))}
+            </ul>
+            {hasPlanMore && (
+              <button
+                type="button"
+                className="aios-aicss-approval__more"
+                aria-expanded={planExpanded}
+                onClick={() => setPlanExpanded((open) => !open)}
+              >
+                {planExpanded
+                  ? t(locale, '收起', 'Show less')
+                  : t(locale, `还有 ${planRest.length} 步`, `${planRest.length} more`)}
+              </button>
+            )}
+          </div>
+        )}
+
+        <div className="aios-aicss-approval__actions">
+          {variant === 'questions' && (
+            <div
+              className="aios-aicss-approval__nav"
+              aria-label={t(locale, '问题导航', 'Question navigation')}
+            >
+              <button
+                type="button"
+                disabled={safeStep <= 0}
+                aria-label={t(locale, '上一题', 'Previous question')}
+                onClick={() => setStep((current) => Math.max(current - 1, 0))}
+              >
+                ↑
+              </button>
+              <button
+                type="button"
+                disabled={safeStep >= questions.length - 1}
+                aria-label={t(locale, '下一题', 'Next question')}
+                onClick={() => setStep((current) => Math.min(current + 1, questions.length - 1))}
+              >
+                ↓
+              </button>
+            </div>
+          )}
+          <button type="button" onClick={onReject}>
+            {resolvedReject}
+          </button>
+          <button type="button" disabled={!canContinue} onClick={() => handleApprove()}>
+            {resolvedApprove}
+          </button>
+        </div>
+      </div>
+    )
+  },
+)
+AicssApprovalCard.displayName = 'AicssApprovalCard'
