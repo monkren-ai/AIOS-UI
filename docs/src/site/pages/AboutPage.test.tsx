@@ -43,9 +43,9 @@ describe('AboutPage', () => {
       'https://monk.ren/',
     )
     expect(screen.queryByRole('heading', { name: 'Less decoration, more structure' })).not.toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'View live overview' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'View components' })).toHaveAttribute(
       'href',
-      '/components/overview',
+      '/components',
     )
     expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute(
       'href',

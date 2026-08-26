@@ -9,7 +9,6 @@ const AboutPage = lazy(() => import('@/site/pages/AboutPage'))
 const ComponentsLayout = lazy(() => import('@/site/pages/ComponentsLayout'))
 const ComponentsIndexPage = lazy(() => import('@/site/pages/ComponentsIndexPage'))
 const ComponentDetailPage = lazy(() => import('@/site/pages/ComponentDetailPage'))
-const ComponentsOverviewPage = lazy(() => import('@/site/pages/ComponentsOverviewPage'))
 const DocsLayout = lazy(() => import('@/site/pages/DocsLayout'))
 const DocPage = lazy(() => import('@/site/pages/DocPage'))
 const IconsPage = lazy(() => import('@/site/pages/icons/IconsPage'))
@@ -75,13 +74,13 @@ export function App() {
 
               <Route path="/components" element={<ComponentsLayout />}>
                 <Route index element={<ComponentsIndexPage />} />
-                <Route path="overview" element={<ComponentsOverviewPage />} />
+                <Route path="overview" element={<Navigate to="/components" replace />} />
                 <Route path=":slug" element={<ComponentDetailPage />} />
               </Route>
 
               <Route path="/icons" element={<IconsPage />} />
 
-              <Route path="/showcase" element={<Navigate to="/components/overview" replace />} />
+              <Route path="/showcase" element={<Navigate to="/components" replace />} />
               <Route path="/project-intro" element={<Navigate to="/about" replace />} />
               <Route path="/ai-poc" element={<AIPocPage />} />
             </Route>

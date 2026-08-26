@@ -19,7 +19,6 @@ function renderDetail(entry: string) {
       <ShowcaseProvider value={context}>
         <Routes>
           <Route path="/components" element={<ComponentsLayout />}>
-            <Route path="overview" element={<div>交互总览正文</div>} />
             <Route path=":slug" element={<div>组件正文</div>} />
           </Route>
         </Routes>
@@ -50,23 +49,11 @@ describe('ComponentsLayout', () => {
     expect(within(sideNav).queryByText('AI OS 与对话')).not.toBeInTheDocument()
   })
 
-  it('places the live overview entry inside the component side navigation', () => {
+  it('does not keep a separate live overview entry in the side navigation', () => {
     renderDetail('/components/autocomplete')
 
     const sideNav = screen.getByRole('navigation', { name: '组件导航' })
-    expect(within(sideNav).getByText('浏览')).toBeInTheDocument()
-    expect(within(sideNav).getByRole('link', { name: '交互总览' })).toHaveAttribute(
-      'href',
-      '/components/overview',
-    )
-    expect(screen.getAllByRole('link', { name: '交互总览' })).toHaveLength(1)
-  })
-
-  it('gives the live overview the full component content area', () => {
-    renderDetail('/components/overview')
-
-    expect(screen.getByText('交互总览正文')).toBeInTheDocument()
-    expect(screen.queryByRole('navigation', { name: '组件分组分页' })).not.toBeInTheDocument()
-    expect(screen.queryByRole('navigation', { name: '组件导航' })).not.toBeInTheDocument()
+    expect(within(sideNav).queryByText('浏览')).not.toBeInTheDocument()
+    expect(within(sideNav).queryByRole('link', { name: '交互总览' })).not.toBeInTheDocument()
   })
 })

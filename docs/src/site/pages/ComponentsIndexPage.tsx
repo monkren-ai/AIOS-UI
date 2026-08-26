@@ -1,6 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom'
+import { ComponentDirectoryCard } from '../components/ComponentDirectoryCard'
 import { useT } from '../i18n'
-import { getComponentName, groupedComponentManifest } from '../registry'
+import { groupedComponentManifest } from '../registry'
 import {
   COMPONENT_PAGES,
   getComponentPage,
@@ -8,7 +9,7 @@ import {
 } from '../registry/component-pages'
 
 export function ComponentsIndexPage() {
-  const { t, tb, lang } = useT()
+  const { t, tb } = useT()
   const [searchParams] = useSearchParams()
   const allGroups = groupedComponentManifest()
   const page = getComponentPage(searchParams.get('group'))
@@ -23,8 +24,8 @@ export function ComponentsIndexPage() {
         <h1 className="text-display-sm text-foreground-display">{t('组件', 'Components')}</h1>
         <p className="text-subheading text-foreground-muted">
           {t(
-            `${total} 个已收录文档的组件，分为基础、AI Agent 与其他组件三页。当前展示 ${pageTotal} 个组件。`,
-            `${total} documented components across basic, AI Agent, and other pages. This page contains ${pageTotal} components.`,
+            `${total} 个已收录文档的组件，分基础、AI Agent 与其他三组。每个条目里可以直接操作实景。当前展示 ${pageTotal} 个。`,
+            `${total} documented components across basic, AI Agent, and other groups. Each entry includes a live scene you can operate. This page lists ${pageTotal}.`,
           )}
         </p>
       </header>
@@ -44,23 +45,9 @@ export function ComponentsIndexPage() {
             <p className="text-sm text-foreground-muted">{tb(category.description)}</p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             {entries.map((doc) => (
-              <Link
-                key={doc.slug}
-                to={`/components/${doc.slug}`}
-                className="flex flex-col gap-1 rounded-card-compact border border-border p-4 no-underline transition-colors duration-200 hover:border-border-visible motion-reduce:transition-none"
-              >
-                <span className="flex items-baseline justify-between gap-3 text-foreground-display">
-                  <span>{getComponentName(doc, lang)}</span>
-                  {lang === 'zh' && (
-                    <span className="font-mono text-label text-foreground-subtle">{doc.name}</span>
-                  )}
-                </span>
-                <span className="text-sm leading-relaxed text-foreground-muted">
-                  {tb(doc.description)}
-                </span>
-              </Link>
+              <ComponentDirectoryCard key={doc.slug} entry={doc} />
             ))}
           </div>
         </section>

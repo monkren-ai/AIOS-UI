@@ -128,10 +128,10 @@ export function AboutPage() {
           </div>
           <div className="flex flex-wrap gap-3">
             <Link
-              to="/components/overview"
+              to="/components"
               className={buttonVariants({ variant: 'secondary', size: 'lg' })}
             >
-              {t('查看交互总览', 'View live overview')}
+              {t('查看组件', 'View components')}
             </Link>
             <a
               href="https://github.com/monkren-ai/AIOS-UI"
