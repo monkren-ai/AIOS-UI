@@ -13,7 +13,7 @@
     "url": "git+https://github.com/monkren-ai/AIOS-UI.git",
     "directory": "aios-design-skill/aios-design/web-ui-kit/react"
   },
-  "homepage": "https://github.com/monkren-ai/AIOS-UI/tree/main/aios-design-skill/aios-design/web-ui-kit/react",
+  "homepage": "https://monkren-ai.github.io/AIOS-UI/",
   "bugs": {
     "url": "https://github.com/monkren-ai/AIOS-UI/issues"
   },
@@ -114,6 +114,7 @@
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.0.0",
+    "unrun": "^0.3.1",
     "vite": "^8.0.16",
     "vitest": "^4.1.9"
   },
