@@ -403,8 +403,11 @@ export function Battery({
 
     const updateBattery = async () => {
       try {
-        if ('getBattery' in navigator) {
-          const battery = await navigator.getBattery()
+        const batteryNavigator = navigator as Navigator & {
+          getBattery?: () => Promise<{ level: number; charging: boolean }>
+        }
+        if (batteryNavigator.getBattery) {
+          const battery = await batteryNavigator.getBattery()
           setInternalPercent(Math.round(battery.level * 100))
           setInternalIsCharging(battery.charging)
         }

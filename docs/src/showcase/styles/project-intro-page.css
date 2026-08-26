@@ -1,70 +1,57 @@
 .project-intro-page {
-  /* AIOS Design System – dark (default) */
-  --pi-black: #000000;
+  /* Map the legacy page vocabulary onto the shared AIOS tokens. */
+  --pi-black: var(--black);
   --pi-white: #ffffff;
-  --pi-surface: #111111;
-  --pi-surface-raised: #1a1a1a;
-  --pi-surface-sunken: #0a0a0a;
-  --pi-border: rgba(255, 255, 255, 0.08);
-  --pi-border-visible: #333333;
-  --pi-text-display: #ffffff;
-  --pi-text-primary: #e8e8e8;
-  --pi-text-secondary: #999999;
-  --pi-text-tertiary: #666666;
-  --pi-accent: #d71921;
-  --pi-accent-hover: #b51219;
+  --pi-surface: var(--surface);
+  --pi-surface-raised: var(--surface-raised);
+  --pi-surface-sunken: var(--black);
+  --pi-border: var(--border);
+  --pi-border-visible: var(--border-visible);
+  --pi-text-display: var(--text-display);
+  --pi-text-primary: var(--text-primary);
+  --pi-text-secondary: var(--text-secondary);
+  --pi-text-tertiary: var(--text-tertiary);
+  --pi-accent: var(--accent);
+  --pi-accent-hover: color-mix(in srgb, var(--accent) 84%, var(--black));
   --pi-accent-text: #ffffff;
 
-  --pi-font-display: 'Doto', monospace;
-  --pi-font-body: 'Space Grotesk', system-ui, sans-serif;
-  --pi-font-mono: 'Space Mono', monospace;
+  --pi-font-display: var(--font-display);
+  --pi-font-body: var(--font-body);
+  --pi-font-mono: var(--font-mono);
 
-  --pi-space-2xs: 4px;
-  --pi-space-xs: 8px;
-  --pi-space-sm: 12px;
-  --pi-space-md: 16px;
-  --pi-space-lg: 24px;
-  --pi-space-xl: 32px;
-  --pi-space-2xl: 48px;
-  --pi-space-3xl: 64px;
-  --pi-space-4xl: 96px;
+  --pi-space-2xs: var(--space-xs);
+  --pi-space-xs: var(--space-sm);
+  --pi-space-sm: var(--space-sm-plus);
+  --pi-space-md: var(--space-md);
+  --pi-space-lg: var(--space-lg);
+  --pi-space-xl: var(--space-xl);
+  --pi-space-2xl: var(--space-2xl);
+  --pi-space-3xl: var(--space-3xl);
+  --pi-space-4xl: var(--space-4xl);
 
-  --pi-radius-pill: 9999px;
-  --pi-radius-card: 12px;
-  --pi-radius-button: 8px;
+  --pi-radius-pill: var(--radius-pill);
+  --pi-radius-card: var(--radius-card);
+  --pi-radius-button: var(--radius-button-technical);
 
-  --pi-body: 16px;
-  --pi-body-sm: 14px;
-  --pi-caption: 12px;
-  --pi-label: 11px;
-  --pi-subheading: 18px;
-  --pi-display-md: 48px;
-  --pi-display-lg: 72px;
+  --pi-body: var(--body);
+  --pi-body-sm: var(--body-sm);
+  --pi-caption: var(--caption);
+  --pi-label: var(--label);
+  --pi-subheading: var(--subheading);
+  --pi-display-md: var(--display-lg);
+  --pi-display-lg: var(--display-xl);
 
-  --pi-duration-micro: 150ms;
-  --pi-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --pi-duration-micro: var(--duration-micro);
+  --pi-easing: var(--easing);
 
   --pi-card-padding: var(--pi-space-lg);
 
   margin: 0;
   font-family: var(--pi-font-body);
   color: var(--pi-text-primary);
-  background: var(--pi-black);
+  background: var(--black);
   line-height: 1.5;
   min-height: 100vh;
-}
-
-[data-theme='light'] .project-intro-page {
-  --pi-surface: #f5f5f5;
-  --pi-surface-raised: #ffffff;
-  --pi-surface-sunken: #eeeeee;
-  --pi-border: rgba(0, 0, 0, 0.08);
-  --pi-border-visible: #dddddd;
-  --pi-text-display: #000000;
-  --pi-text-primary: #111111;
-  --pi-text-secondary: #666666;
-  --pi-text-tertiary: #999999;
-  background: var(--pi-white);
 }
 
 html {
@@ -82,74 +69,20 @@ html {
 
 .project-intro-page .pi-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--page-max-width-widget);
   margin: 0 auto;
   padding: 0 var(--pi-space-lg);
-}
-
-/* Top nav */
-.project-intro-page .pi-topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--pi-space-md) var(--pi-space-lg);
-  background: color-mix(in srgb, var(--pi-surface) 80%, transparent);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--pi-border);
-}
-
-.project-intro-page .pi-logo {
-  font-family: var(--pi-font-display);
-  font-size: 18px;
-  letter-spacing: -0.02em;
-  color: var(--pi-text-display);
-}
-
-.project-intro-page .pi-topbar__links {
-  display: flex;
-  gap: var(--pi-space-md);
-  align-items: center;
-}
-
-.project-intro-page .pi-topbar__link {
-  font-family: var(--pi-font-mono);
-  font-size: var(--pi-label);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--pi-text-secondary);
-  transition: color var(--pi-duration-micro) var(--pi-easing);
-}
-
-.project-intro-page .pi-topbar__link:hover {
-  color: var(--pi-text-primary);
 }
 
 /* Hero */
 .project-intro-page .pi-hero {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100svh - 3.5rem);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: var(--pi-space-4xl) 0 calc(var(--pi-space-4xl) + 40px);
+  justify-content: center;
+  padding: var(--pi-space-4xl) 0;
   overflow: hidden;
-}
-
-.project-intro-page .pi-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, var(--pi-border-visible) 0.5px, transparent 0.5px);
-  background-size: 24px 24px;
-  opacity: 0.18;
-  mask-image: linear-gradient(to bottom, transparent 0%, black 55%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 55%);
-  pointer-events: none;
 }
 
 .project-intro-page .pi-hero__content {
@@ -169,17 +102,17 @@ html {
 
 .project-intro-page .pi-title {
   font-family: var(--pi-font-display);
-  font-size: clamp(64px, 14vw, 168px);
-  line-height: 0.92;
-  letter-spacing: -0.04em;
+  font-size: clamp(var(--display-lg), 8vw, var(--display-xl));
+  line-height: var(--leading-display-xl);
+  letter-spacing: var(--tracking-display-xl);
   color: var(--pi-text-display);
   margin: 0 0 var(--pi-space-lg) 0;
 }
 
 .project-intro-page .pi-subtitle {
   font-family: var(--pi-font-body);
-  font-size: clamp(20px, 3vw, 28px);
-  line-height: 1.35;
+  font-size: var(--pi-subheading);
+  line-height: var(--leading-subheading);
   color: var(--pi-text-secondary);
   max-width: 680px;
   margin: 0 0 var(--pi-space-xl) 0;
@@ -230,7 +163,9 @@ html {
 
 /* Sections */
 .project-intro-page .pi-section {
-  margin-bottom: var(--pi-space-4xl);
+  margin: 0;
+  padding: var(--pi-space-4xl) 0;
+  border-top: 1px solid var(--pi-border);
 }
 
 .project-intro-page .pi-section__header {
@@ -249,7 +184,7 @@ html {
 
 .project-intro-page .pi-section__title {
   font-family: var(--pi-font-display);
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(var(--display-sm), 5vw, var(--display-lg));
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--pi-text-display);
@@ -430,6 +365,12 @@ html {
     background var(--pi-duration-micro) var(--pi-easing),
     border-color var(--pi-duration-micro) var(--pi-easing);
   border: 1px solid transparent;
+  min-height: var(--touch-target-min);
+}
+
+.project-intro-page .pi-button:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .project-intro-page .pi-button--primary {
@@ -543,12 +484,12 @@ html {
   display: flex;
   flex-direction: column;
   gap: var(--pi-space-xl);
-  margin-bottom: var(--pi-space-4xl);
+  margin-bottom: 0;
 }
 
 .project-intro-page .pi-closing__title {
   font-family: var(--pi-font-display);
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(var(--display-sm), 5vw, var(--display-lg));
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--pi-text-display);
@@ -563,7 +504,7 @@ html {
 
 /* Footer */
 .project-intro-page .pi-footer {
-  padding: var(--pi-space-xl) 0;
+  padding: var(--pi-space-xl) var(--pi-space-lg);
   border-top: 1px solid var(--pi-border-visible);
   display: flex;
   justify-content: space-between;
@@ -575,12 +516,13 @@ html {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .project-intro-page .pi-topbar__links {
-    display: none;
+  .project-intro-page .pi-container {
+    padding-inline: var(--pi-space-md);
   }
 
   .project-intro-page .pi-hero {
-    min-height: 80vh;
+    min-height: auto;
+    padding-block: var(--pi-space-3xl);
   }
 
   .project-intro-page .pi-meta {
@@ -591,5 +533,21 @@ html {
 
   .project-intro-page .pi-agent-demos {
     grid-template-columns: 1fr;
+  }
+
+  .project-intro-page .pi-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--pi-space-xs);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-intro-page *,
+  .project-intro-page *::before,
+  .project-intro-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }

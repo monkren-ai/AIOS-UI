@@ -9,6 +9,7 @@ import "./PlanCard.css";
 const statusLabels = {
 	pending: "[PENDING]",
 	approved: "[APPROVED]",
+	running: "[RUNNING]",
 	rejected: "[REJECTED]",
 	done: "[DONE]"
 };
@@ -72,6 +73,7 @@ const PlanCard = React$1.forwardRef(({ title = "AGENT PLAN", steps, editable = f
 					return /* @__PURE__ */ jsxs("li", {
 						className: cn("aios-plan-card__item", `aios-plan-card__item--${status}`),
 						"data-status": dataAttr(status),
+						"aria-current": status === "running" ? "step" : void 0,
 						children: [
 							/* @__PURE__ */ jsx("span", {
 								className: "aios-plan-card__number",

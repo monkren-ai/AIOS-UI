@@ -13,6 +13,12 @@ interface ToolCallRowProps extends Omit<React$1.HTMLAttributes<HTMLDivElement>, 
   result?: string;
   error?: string;
   showArgs?: boolean;
+  expanded?: boolean;
+  defaultExpanded?: boolean;
+  onExpandedChange?: (expanded: boolean) => void;
+  activeLabel?: React$1.ReactNode;
+  badge?: React$1.ReactNode;
+  children?: React$1.ReactNode;
   expandLabel?: string;
   collapseLabel?: string;
 }

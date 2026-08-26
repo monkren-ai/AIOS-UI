@@ -7,3 +7,117 @@
 @import 'tailwindcss';
 @source '../../aios-design-skill/aios-design/web-ui-kit/react/src';
 @import '../../aios-design-skill/aios-design/web-ui-kit/react/src/styles/index.css';
+
+:root {
+  --landing-panel-max-width: 560px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/*
+ * 文档站统一隐藏原生滚动条，但不禁用滚动。
+ * 滚轮、触控板、触屏拖动与键盘滚动保持原生行为；ScrollArea 的自绘轨道不受影响。
+ */
+html,
+body,
+#root,
+#root * {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar,
+#root *::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.landing-page {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 100%;
+  height: calc(100svh - 3.5rem);
+  max-height: calc(100svh - 3.5rem);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.landing-page__section {
+  flex: 0 0 min(100%, var(--landing-panel-max-width));
+  width: min(100%, var(--landing-panel-max-width));
+  max-width: var(--landing-panel-max-width);
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.landing-page__hero {
+  max-width: var(--landing-panel-max-width);
+  background-image: var(--landing-hero-image);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.landing-page__stats {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 200px;
+  align-items: center;
+}
+
+.landing-page__stats-list {
+  flex-direction: column;
+}
+
+.landing-page__components {
+  flex-basis: min(100%, 560px);
+  width: min(100%, 560px);
+  max-width: 560px;
+}
+
+.landing-page__ecosystem {
+  flex: 0 0 min(100%, 240px);
+  width: min(100%, 240px);
+  max-width: 240px;
+}
+
+.landing-page__ecosystem-list {
+  width: min(100%, 240px);
+  max-width: 240px;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 64rem) {
+  .landing-page__components {
+    flex: 0 0 560px;
+    width: 560px;
+    max-width: 560px;
+  }
+
+  .landing-page__preview-grid {
+    grid-template-columns: minmax(0, 509.62px);
+  }
+
+  .landing-page__workflow-card {
+    width: 509.62px;
+    height: 364.19px;
+    align-items: center;
+    justify-content: space-around;
+  }
+}

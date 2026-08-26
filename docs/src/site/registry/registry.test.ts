@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
 import { CATEGORY_BY_ID } from './categories'
-import { COMPONENT_MANIFEST, COMPONENT_MANIFEST_BY_SLUG } from './manifest'
+import {
+  COMPONENT_MANIFEST,
+  COMPONENT_MANIFEST_BY_SLUG,
+  COMPONENT_NAME_ZH,
+  getComponentName,
+} from './manifest'
 import { hasComponentDoc, loadComponentDoc } from './index'
 
 /**
@@ -35,6 +40,14 @@ describe('component registry', () => {
     for (const entry of COMPONENT_MANIFEST) {
       expect(entry.description.zh.length, `${entry.name} zh`).toBeGreaterThan(0)
       expect(entry.description.en.length, `${entry.name} en`).toBeGreaterThan(0)
+    }
+  })
+
+  it('gives every component a Chinese display name without replacing its export name', () => {
+    for (const entry of COMPONENT_MANIFEST) {
+      expect(COMPONENT_NAME_ZH[entry.name], `${entry.name} Chinese name`).toBeTruthy()
+      expect(getComponentName(entry, 'zh')).not.toBe(entry.name)
+      expect(getComponentName(entry, 'en')).toBe(entry.name)
     }
   })
 

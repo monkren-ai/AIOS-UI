@@ -24,7 +24,7 @@ export function SiteLayout() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <TopNav onOpenSearch={() => setSearchOpen(true)} />
       <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
       <Outlet />

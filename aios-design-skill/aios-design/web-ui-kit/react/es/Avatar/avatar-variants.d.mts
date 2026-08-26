@@ -5,7 +5,7 @@
  * 头像本身不承载语义色，只有形状（圆 / 方角工业风）与尺寸两个维度。
  */
 declare const avatarVariants: (props?: ({
-  variant?: "outline" | "soft" | "ghost" | null | undefined;
+  variant?: "soft" | "outline" | "ghost" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   shape?: "circle" | "technical" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;

@@ -3,7 +3,6 @@ import { Button } from 'aios-ui-kit/button'
 import { CodeBlock } from '../../components/CodeBlock'
 import { useT } from '../../i18n'
 import { IconVisual } from './IconVisual'
-import { aiosImportStatement, aiosJsxSnippet } from './aios-icons'
 import { tablerImportStatement, tablerJsxSnippet } from './tabler-icons'
 import type { IconEntry } from './types'
 
@@ -54,19 +53,23 @@ export interface IconDetailPanelProps {
 
 export function IconDetailPanel({ entry, size, dotMatrix, onClose }: IconDetailPanelProps) {
   const { t } = useT()
-  const [tablerMarkup, setTablerMarkup] = React.useState<string | null>(null)
-
-  React.useEffect(() => {
-    setTablerMarkup(null)
-  }, [entry?.id])
+  const [capturedSvg, setCapturedSvg] = React.useState<{
+    iconId: string
+    markup: string
+  } | null>(null)
+  const tablerMarkup =
+    capturedSvg && capturedSvg.iconId === entry?.id ? capturedSvg.markup : null
 
   // Tabler 包里没有 SVG 字符串，只能把组件渲染一次再从 DOM 序列化回来。
-  const captureTablerSvg = React.useCallback((node: SVGSVGElement | null) => {
-    if (!node) return
-    const clone = node.cloneNode(true) as SVGSVGElement
-    clone.removeAttribute('class')
-    setTablerMarkup(clone.outerHTML)
-  }, [])
+  const captureTablerSvg = React.useCallback(
+    (node: SVGSVGElement | null) => {
+      if (!node || !entry) return
+      const clone = node.cloneNode(true) as SVGSVGElement
+      clone.removeAttribute('class')
+      setCapturedSvg({ iconId: entry.id, markup: clone.outerHTML })
+    },
+    [entry],
+  )
 
   if (!entry) {
     return (
@@ -84,10 +87,9 @@ export function IconDetailPanel({ entry, size, dotMatrix, onClose }: IconDetailP
     )
   }
 
-  const isAIOS = entry.source === 'aios'
-  const jsx = isAIOS ? aiosJsxSnippet(entry, dotMatrix) : tablerJsxSnippet(entry, size)
-  const importStatement = isAIOS ? aiosImportStatement(entry) : tablerImportStatement(entry)
-  const rawSvg = entry.svg ?? tablerMarkup
+  const jsx = tablerJsxSnippet(entry, size)
+  const importStatement = tablerImportStatement(entry)
+  const rawSvg = tablerMarkup
 
   const TablerComponent = entry.Component
 
@@ -99,7 +101,7 @@ export function IconDetailPanel({ entry, size, dotMatrix, onClose }: IconDetailP
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 flex-col gap-1">
           <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
-            {isAIOS ? t('AIOS 图标', 'AIOS icon') : 'Tabler'}
+            Tabler
           </span>
           <span className="truncate text-subheading text-foreground-display">{entry.name}</span>
           {entry.componentName && (
@@ -135,7 +137,7 @@ export function IconDetailPanel({ entry, size, dotMatrix, onClose }: IconDetailP
       <CodeBlock code={`${importStatement}\n\n${jsx}`} collapseAfter={40} />
 
       {/* Tabler 的 SVG 源要靠这次隐藏渲染取回，视觉上不占位。 */}
-      {!isAIOS && TablerComponent && !tablerMarkup && (
+      {TablerComponent && !tablerMarkup && (
         <span className="sr-only" aria-hidden>
           <TablerComponent size={24} ref={captureTablerSvg} />
         </span>

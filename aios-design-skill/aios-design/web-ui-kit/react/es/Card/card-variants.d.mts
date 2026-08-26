@@ -6,7 +6,7 @@
  * 拆成 `size` 与 `shape` 两个正交维度，variant 只留下强调层级。
  */
 declare const contentCardVariants: (props?: ({
-  variant?: "outline" | "soft" | "ghost" | "secondary" | null | undefined;
+  variant?: "soft" | "outline" | "ghost" | "secondary" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   shape?: "rounded" | "technical" | null | undefined;
   interactive?: boolean | null | undefined;
@@ -34,10 +34,10 @@ type CardShape = 'rounded' | 'technical';
  */
 declare const widgetCardVariants: (props?: ({
   size?: "square" | "wide" | "tall" | "auto" | null | undefined;
-  shape?: "rounded" | "circle" | "pill" | null | undefined;
+  shape?: "circle" | "pill" | "rounded" | null | undefined;
   theme?: "accent" | "light" | "dark" | null | undefined;
   density?: "default" | "compact" | null | undefined;
-  align?: "right" | "left" | "center" | null | undefined;
+  align?: "left" | "center" | "right" | null | undefined;
   clickable?: boolean | null | undefined;
   hasChildren?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;

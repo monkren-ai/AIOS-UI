@@ -6,7 +6,7 @@
  * `soft` 是垫一层 surface 的默认形态，`outline` 用于连成一排的分段控制。
  */
 declare const toggleVariants: (props?: ({
-  variant?: "outline" | "soft" | "ghost" | null | undefined;
+  variant?: "soft" | "outline" | "ghost" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /**
@@ -16,7 +16,7 @@ declare const toggleVariants: (props?: ({
  * 逻辑属性保证 RTL 下自动镜像。
  */
 declare const toggleGroupVariants: (props?: ({
-  variant?: "outline" | "soft" | "ghost" | null | undefined;
+  variant?: "soft" | "outline" | "ghost" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** v1 的变体名 → 当前变体名。保留是为了不让既有调用点一次性全炸。 */
 declare const LEGACY_VARIANTS: {

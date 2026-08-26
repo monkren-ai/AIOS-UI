@@ -22,8 +22,9 @@ function getAutoSizeRows(autoSize) {
 function calculateHeight(rows) {
 	return rows * 24 + 24;
 }
-const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", placeholder, loading = false, submitType = "enter", readOnly = false, disabled = false, autoSize = false, prefix, suffix, header, footer, onSubmit, onCancel, onChange, onKeyDown, className, style, classNames: userClassNames, styles: userStyles, variant, size, rows, ...rest }, ref) => {
+const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", placeholder, loading = false, running, submitType = "enter", readOnly = false, disabled = false, autoSize = false, prefix, suffix, header, attachments, tags, modelSelect, footer, onSubmit, onCancel, onStop, onChange, onKeyDown, className, style, classNames: userClassNames, styles: userStyles, variant, size, rows, ...rest }, ref) => {
 	const [internalValue, setInternalValue] = React$1.useState(defaultValue);
+	const isRunning = running ?? loading;
 	const isControlled = controlledValue !== void 0;
 	const value = isControlled ? controlledValue : internalValue;
 	const { classNames, styles } = mergeSemanticProps({
@@ -36,12 +37,13 @@ const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", 
 		onChange?.(newValue, event);
 	};
 	const handleSubmit = () => {
-		if (disabled || readOnly || loading || !value.trim()) return;
+		if (disabled || readOnly || isRunning || !value.trim()) return;
 		onSubmit?.(value);
 		if (!isControlled) setInternalValue("");
 	};
 	const handleCancel = () => {
-		if (!loading) return;
+		if (!isRunning) return;
+		onStop?.();
 		onCancel?.();
 	};
 	const handleKeyDown = (event) => {
@@ -51,7 +53,7 @@ const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", 
 		}
 		if (submitType === "enter" ? !event.shiftKey && !event.altKey && !event.ctrlKey && !event.metaKey : event.shiftKey && !event.altKey && !event.ctrlKey && !event.metaKey) {
 			event.preventDefault();
-			if (loading) handleCancel();
+			if (isRunning) handleCancel();
 			else handleSubmit();
 			return;
 		}
@@ -67,17 +69,17 @@ const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", 
 		SendButton: ({ children, ...props }) => /* @__PURE__ */ jsx(Button, {
 			variant: "primary",
 			size: "sm",
-			disabled: disabled || !loading && !value.trim(),
+			disabled: disabled || !isRunning && !value.trim(),
 			onClick: handleSubmit,
 			...props,
-			children: children ?? "Send"
+			children: children ?? "发送 / Send"
 		}),
 		CancelButton: ({ children, ...props }) => /* @__PURE__ */ jsx(Button, {
 			variant: "destructive",
 			size: "sm",
 			onClick: handleCancel,
 			...props,
-			children: children ?? "Cancel"
+			children: children ?? "停止 / Stop"
 		})
 	};
 	const renderNode = (node) => {
@@ -88,7 +90,7 @@ const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", 
 		className: cn(senderVariants({
 			variant,
 			size
-		}), disabled && "aios-sender--disabled", loading && "aios-sender--loading", readOnly && "aios-sender--readonly", classNames.root, className),
+		}), disabled && "aios-sender--disabled", isRunning && "aios-sender--loading", readOnly && "aios-sender--readonly", classNames.root, className),
 		style: {
 			...styles.root,
 			...style
@@ -96,15 +98,30 @@ const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", 
 		"data-slot": "sender",
 		"data-variant": dataAttr(variant),
 		"data-size": dataAttr(size),
-		"data-loading": dataAttr(loading),
+		"data-loading": dataAttr(isRunning),
+		"data-running": dataAttr(isRunning),
 		"data-readonly": dataAttr(readOnly),
 		"data-disabled": dataAttr(disabled),
 		children: [
-			header && /* @__PURE__ */ jsx("div", {
+			(header || attachments || tags || modelSelect) && /* @__PURE__ */ jsxs("div", {
 				className: cn("aios-sender__header", classNames.header),
 				style: styles.header,
 				"data-slot": "sender-header",
-				children: header
+				children: [
+					header,
+					attachments && /* @__PURE__ */ jsx("div", {
+						"data-slot": "sender-attachments",
+						children: attachments
+					}),
+					(tags || modelSelect) && /* @__PURE__ */ jsxs("div", {
+						className: "flex flex-wrap items-center justify-between gap-2",
+						"data-slot": "sender-context",
+						children: [/* @__PURE__ */ jsx("div", {
+							className: "flex flex-wrap items-center gap-2",
+							children: tags
+						}), modelSelect]
+					})
+				]
 			}),
 			/* @__PURE__ */ jsxs("div", {
 				className: cn("aios-sender__content", classNames.content),
@@ -128,11 +145,11 @@ const Sender = React$1.forwardRef(({ value: controlledValue, defaultValue = "", 
 						value,
 						placeholder,
 						disabled,
-						readOnly: readOnly || loading,
+						readOnly: readOnly || isRunning,
 						onChange: handleChange,
 						onKeyDown: handleKeyDown,
 						rows: autoSize ? 1 : rows,
-						"aria-busy": loading || void 0,
+						"aria-busy": isRunning || void 0,
 						...rest
 					}),
 					suffix && /* @__PURE__ */ jsx("div", {

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import DotMatrixIcon from '@/components/DotMatrixIcon'
 import { cn } from '@/lib/utils'
-import { toCurrentColorSvg } from './aios-icons'
 import type { IconEntry } from './types'
 
 /**
@@ -83,43 +82,15 @@ export interface IconVisualProps {
   className?: string
 }
 
-/** 统一的图标渲染出口：两种来源 × 常规 / 点阵两种模式。 */
+/** Tabler 图标的统一渲染出口：常规 SVG / AIOS 点阵预览。 */
 export function IconVisual({ entry, size, dotMatrix, className }: IconVisualProps) {
-  const inlineSvg = React.useMemo(
-    () => (entry.svg ? toCurrentColorSvg(entry.svg) : null),
-    [entry.svg],
-  )
-
-  const config = dotGridConfig(size)
-
   let content: React.ReactNode = null
 
-  if (dotMatrix && entry.svg) {
-    content = (
-      <DotMatrixIcon
-        svg={entry.svg}
-        rows={config.rows}
-        cols={config.cols}
-        dotSize={config.dotSize}
-        gap={config.gap}
-        baseColor="currentColor"
-        aria-hidden
-      />
-    )
-  } else if (dotMatrix && entry.Component) {
+  if (dotMatrix && entry.Component) {
     content = <TablerDotIcon entry={entry} size={size} />
-  } else if (inlineSvg) {
-    content = (
-      <span
-        className="block h-full w-full [&_svg]:h-full [&_svg]:w-full"
-        // 注册表里的 SVG 是仓库内的常量字符串，不含外部输入。
-        dangerouslySetInnerHTML={{ __html: inlineSvg }}
-      />
-    )
   } else if (entry.Component) {
     const Component = entry.Component
-    // size 属性负责 Tabler 的 width/height；再钉一层 size-full，避免全局 svg
-    // 规则把属性尺寸冲掉。AIOS / Tabler 共用这个出口。
+    // size 属性负责 width/height；再钉一层 size-full，避免全局 svg 规则把属性尺寸冲掉。
     content = <Component size={size} aria-hidden className="size-full" />
   }
 

@@ -378,8 +378,9 @@ function Battery({ updateInterval = 5e3, totalSegments = 10, percent: initialPer
 		if (initialPercent !== void 0 || initialIsCharging !== void 0) return;
 		const updateBattery = async () => {
 			try {
-				if ("getBattery" in navigator) {
-					const battery = await navigator.getBattery();
+				const batteryNavigator = navigator;
+				if (batteryNavigator.getBattery) {
+					const battery = await batteryNavigator.getBattery();
 					setInternalPercent(Math.round(battery.level * 100));
 					setInternalIsCharging(battery.charging);
 				}

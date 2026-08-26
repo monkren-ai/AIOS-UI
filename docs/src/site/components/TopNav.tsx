@@ -10,7 +10,7 @@ const NAV_ITEMS = [
   { to: '/docs', zh: '文档', en: 'Docs' },
   { to: '/components', zh: '组件', en: 'Components' },
   { to: '/icons', zh: '图标', en: 'Icons' },
-  { to: '/showcase', zh: '总览', en: 'Showcase' },
+  { to: '/about', zh: '关于', en: 'About' },
 ]
 
 const THEME_GLYPH: Record<string, string> = {
@@ -34,7 +34,7 @@ export function TopNav({ onOpenSearch }: { onOpenSearch: () => void }) {
   return (
     <header
       data-slot="top-nav"
-      className="sticky top-0 z-50 border-b border-border bg-background/95"
+      className="sticky top-0 z-50 shrink-0 border-b border-border bg-background/95"
     >
       <div className="mx-auto flex h-14 w-full items-center gap-4 px-4 md:px-6">
         <Link to="/" className="flex shrink-0 items-baseline gap-2 no-underline">
@@ -57,7 +57,7 @@ export function TopNav({ onOpenSearch }: { onOpenSearch: () => void }) {
             type="button"
             onClick={onOpenSearch}
             className={cn(
-              'hidden items-center gap-3 rounded-input border border-border bg-surface px-3 py-1.5 sm:flex',
+              'hidden items-center gap-3 rounded-input border border-border bg-surface px-3 py-1.5 lg:flex',
               'cursor-pointer font-mono text-label uppercase tracking-widest text-foreground-subtle',
               'transition-colors duration-200 ease-aios motion-reduce:transition-none',
               'hover:border-border-visible hover:text-foreground',
@@ -93,7 +93,7 @@ export function TopNav({ onOpenSearch }: { onOpenSearch: () => void }) {
             href="https://github.com/monkren-ai/AIOS-UI"
             target="_blank"
             rel="noreferrer"
-            className="hidden px-2 font-mono text-label uppercase tracking-widest text-foreground-subtle transition-colors duration-200 hover:text-foreground motion-reduce:transition-none sm:block"
+            className="hidden px-2 font-mono text-label uppercase tracking-widest text-foreground-subtle transition-colors duration-200 hover:text-foreground motion-reduce:transition-none xl:block"
           >
             GitHub
           </a>

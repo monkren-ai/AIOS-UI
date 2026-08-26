@@ -1,7 +1,7 @@
 import * as React$1 from "react";
 import { VariantProps } from "class-variance-authority";
 //#region src/agent/PlanCard/PlanCard.d.ts
-type PlanStepStatus = 'pending' | 'approved' | 'rejected' | 'done';
+type PlanStepStatus = 'pending' | 'approved' | 'running' | 'rejected' | 'done';
 interface PlanStep {
   id: string;
   description: string;

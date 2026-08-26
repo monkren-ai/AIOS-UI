@@ -109,79 +109,28 @@ Use `get_font_family_info` to verify fonts before writing styles. Direct hex val
 
 ## 4. REACT / TAILWIND
 
-Use the pre-built React components from `web-ui-kit/react/`. Import tokens.css first, then import components individually.
+Use the published `aios-ui-kit` package. Import the shared stylesheet once, then import components through subpaths.
 
 ### React Component Import
 
 ```tsx
-import './styles/tokens.css'  // Always first
-import Clock from './components/Clock'
-import Button from './components/Buttons'
-import Card from './components/Card'
+import 'aios-ui-kit/styles.css'
+import { Button } from 'aios-ui-kit/button'
+import { PlanCard } from 'aios-ui-kit/agent'
+import { Message, Response } from 'aios-ui-kit/conversation'
 ```
 
 ### Tailwind CSS Integration
 
-Map AIOS tokens to `tailwind.config.js` theme extensions:
+Tailwind CSS v4 uses CSS-first configuration:
 
-```js
-theme: {
-  extend: {
-    colors: {
-      'aios': {
-        display: 'var(--text-display)',
-        primary: 'var(--text-primary)',
-        secondary: 'var(--text-secondary)',
-        disabled: 'var(--text-disabled)',
-        accent: 'var(--accent)',
-        surface: 'var(--surface)',
-        'surface-raised': 'var(--surface-raised)',
-        border: 'var(--border)',
-        'border-visible': 'var(--border-visible)',
-      }
-    },
-    fontFamily: {
-      display: ['var(--font-display)'],
-      body: ['var(--font-body)'],
-      mono: ['var(--font-mono)'],
-      dotmatrix: ['var(--font-dotmatrix)'],
-    },
-    borderRadius: {
-      'aios-pill': 'var(--radius-pill)',
-      'aios-lg': 'var(--radius-lg)',
-      'aios-md': 'var(--radius-md)',
-      'aios-xs': 'var(--radius-xs)',
-      'button': 'var(--radius-button)',
-      'card': 'var(--radius-card)',
-      'input': 'var(--radius-input)',
-      'tag': 'var(--radius-tag)',
-    },
-    maxWidth: {
-      'page': 'var(--page-max-width)',
-      'modal': 'var(--modal-max-width)',
-      'content-narrow': 'var(--content-width-narrow)',
-      'content-wide': 'var(--content-width-wide)',
-    },
-    zIndex: {
-      'dropdown': 'var(--z-dropdown)',
-      'sticky': 'var(--z-sticky)',
-      'popover': 'var(--z-popover)',
-      'tooltip': 'var(--z-tooltip)',
-      'modal': 'var(--z-modal)',
-    }
-  }
-}
+```css
+@import 'tailwindcss';
+@import 'aios-ui-kit/styles.css';
+@source '../node_modules/aios-ui-kit/es';
 ```
 
-### BEM-to-Tailwind Class Mapping
-
-| AIOS BEM Class | Tailwind Equivalent |
-|---|---|
-| `.aios-btn--primary` | `bg-aios-display text-black rounded-aios-pill px-6 py-3 font-mono text-xs uppercase tracking-wider min-h-[44px]` |
-| `.aios-btn--secondary` | `bg-transparent border border-aios-border-visible text-aios-primary rounded-aios-pill px-6 py-3 font-mono text-xs uppercase tracking-wider` |
-| `.aios-card` | `bg-aios-surface border border-aios-border rounded-aios-lg p-4 md:p-6` |
-| `.aios-input--underline` | `border-b border-aios-border-visible bg-transparent font-mono` |
-| `.aios-tag--pill` | `border border-aios-border-visible rounded-aios-pill px-3 py-1 font-mono text-[11px] uppercase tracking-wider` |
+AIOS tokens are exposed through the package theme. Compose caller classes with `cn()` and use CVA for reusable variants instead of duplicating the token map in a JavaScript config.
 
 ### Theme Switching
 

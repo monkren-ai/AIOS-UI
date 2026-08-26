@@ -5,11 +5,10 @@ import { cn } from '@/lib/utils'
 import { Prose } from '../../components/Prose'
 import { useT } from '../../i18n'
 import { IconDetailPanel } from './IconDetailPanel'
-import { AIOS_GROUPS, AIOS_GROUP_COUNTS, AIOS_ICONS } from './aios-icons'
 import { TABLER_GROUPS, loadTablerIcons } from './tabler-icons'
 import { useDebouncedValue } from './useDebouncedValue'
 import { VirtualIconGrid } from './VirtualIconGrid'
-import type { IconEntry, IconGroup, IconSource } from './types'
+import type { IconEntry, IconGroup } from './types'
 
 const SIZES = [24, 32, 48, 72] as const
 const ALL_GROUPS = '__all__'
@@ -110,9 +109,8 @@ function GroupFilter({
 }
 
 export function IconsPage() {
-  const { t, tb } = useT()
+  const { t } = useT()
 
-  const [source, setSource] = React.useState<IconSource>('aios')
   const [query, setQuery] = React.useState('')
   const [group, setGroup] = React.useState<string>(ALL_GROUPS)
   const [size, setSize] = React.useState<number>(72)
@@ -125,15 +123,9 @@ export function IconsPage() {
 
   const debouncedQuery = useDebouncedValue(query)
 
-  // Tabler 整包只在真的切到这个标签页时才下载。
-  //
-  // 注意：不要把 `tablerLoading` 放进依赖或前置守卫里。React Strict Mode
-  // 会 mount → cleanup → remount：第一次 setLoading(true) 之后 cleanup
-  // 把这次请求标成 cancelled，第二次如果看到 loading 还是 true 就直接
-  // return，结果永远卡在「正在加载」——图标一个都不出。
+  // Tabler 保持动态加载，避免把整包图标并入文档站首屏。
+  // 不用 loading 作为前置守卫，保证 React Strict Mode 重挂载后仍会发起有效请求。
   React.useEffect(() => {
-    if (source !== 'tabler' || tablerIcons) return
-
     let cancelled = false
     setTablerLoading(true)
     setTablerError(false)
@@ -153,28 +145,16 @@ export function IconsPage() {
     return () => {
       cancelled = true
     }
-  }, [source, tablerIcons])
-
-  // 换来源就重置分组与选中，避免筛出一个空集合。
-  const changeSource = React.useCallback((next: IconSource) => {
-    setSource(next)
-    setGroup(ALL_GROUPS)
-    setSelected(null)
   }, [])
 
-  const pool = React.useMemo(
-    () => (source === 'aios' ? AIOS_ICONS : (tablerIcons ?? [])),
-    [source, tablerIcons],
-  )
+  const pool = tablerIcons ?? []
 
-  const groups = source === 'aios' ? AIOS_GROUPS : TABLER_GROUPS
   const counts = React.useMemo(() => {
-    if (source === 'aios') return AIOS_GROUP_COUNTS
     return pool.reduce<Record<string, number>>((acc, icon) => {
       acc[icon.groupId] = (acc[icon.groupId] ?? 0) + 1
       return acc
     }, {})
-  }, [source, pool])
+  }, [pool])
 
   const filtered = React.useMemo(() => {
     const needle = debouncedQuery.trim().toLowerCase()
@@ -196,24 +176,14 @@ export function IconsPage() {
         <h1 className="text-display-sm text-foreground-display">{t('图标', 'Icons')}</h1>
         <Prose>
           {t(
-            'AIOS 自带的点阵图标集，外加完整的 `@tabler/icons-react`。点阵预览开关会把整个网格切成 AIOS 的栅格化渲染；Tabler 图标先从 DOM 取回 SVG 再栅格化，所以两边都能用。',
-            'The built-in AIOS icon set plus the complete `@tabler/icons-react` library. The dot-matrix toggle rasterises the whole grid into the AIOS look; Tabler icons are serialised from the DOM first, so the toggle works on both tabs.',
+            '完整收录 `@tabler/icons-react`。可按名称和分组筛选、调整预览尺寸，并用点阵预览检查图标在 AIOS 栅格语言中的表现。',
+            'Browse the complete `@tabler/icons-react` library. Filter by name and group, adjust the preview size, and use Dot matrix to inspect each icon in the AIOS raster language.',
           )}
         </Prose>
       </header>
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-wrap items-center gap-3">
-          <SegmentGroup<IconSource>
-            label={t('图标来源', 'Icon source')}
-            value={source}
-            onChange={changeSource}
-            options={[
-              { value: 'aios', label: 'AIOS' },
-              { value: 'tabler', label: 'Tabler' },
-            ]}
-          />
-
           <div className="min-w-56 flex-1">
             <Input
               size="sm"
@@ -258,7 +228,7 @@ export function IconsPage() {
 
       <div className="flex flex-col gap-8 lg:flex-row lg:gap-10">
         <GroupFilter
-          groups={groups}
+          groups={TABLER_GROUPS}
           counts={counts}
           total={pool.length}
           value={group}
@@ -266,13 +236,13 @@ export function IconsPage() {
         />
 
         <main className="flex min-w-0 flex-1 flex-col gap-4">
-          {source === 'tabler' && tablerLoading && (
+          {tablerLoading && (
             <div className="rounded-card-compact border border-border bg-surface p-10 text-center text-sm text-foreground-muted">
               {t('正在加载 Tabler 图标…', 'Loading Tabler icons…')}
             </div>
           )}
 
-          {source === 'tabler' && tablerError && (
+          {tablerError && (
             <div className="rounded-card-compact border border-accent bg-surface p-10 text-center text-sm text-accent">
               {t('Tabler 图标加载失败。', 'Failed to load the Tabler icons.')}
             </div>
@@ -310,15 +280,6 @@ export function IconsPage() {
               selectedId={selected?.id}
               onSelect={setSelected}
             />
-          )}
-
-          {source === 'aios' && (
-            <p className="font-mono text-micro text-foreground-subtle">
-              {t(
-                `分组：${groups.map((entry) => tb(entry.label)).join(' · ')}`,
-                `Groups: ${groups.map((entry) => tb(entry.label)).join(' · ')}`,
-              )}
-            </p>
           )}
         </main>
 

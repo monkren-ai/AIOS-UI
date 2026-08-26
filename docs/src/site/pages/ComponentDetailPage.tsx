@@ -8,19 +8,32 @@ import { useT } from '../i18n'
 import {
   COMPONENT_MANIFEST,
   COMPONENT_MANIFEST_BY_SLUG,
+  getComponentName,
   hasComponentDoc,
   loadComponentDoc,
 } from '../registry'
 import type { ComponentDoc } from '../registry'
 import { CATEGORY_BY_ID } from '../registry/categories'
+import {
+  getComponentPageByCategory,
+  getComponentPageHref,
+} from '../registry/component-pages'
 
-function Notice({ title, body }: { title: string; body: string }) {
+function Notice({
+  title,
+  body,
+  backTo = '/components',
+}: {
+  title: string
+  body: string
+  backTo?: string
+}) {
   const { t } = useT()
   return (
     <div className="flex flex-col items-start gap-4 py-16">
       <h1 className="text-heading text-foreground-display">{title}</h1>
       <p className="text-foreground-muted">{body}</p>
-      <Link to="/components" className="text-accent underline">
+      <Link to={backTo} className="text-accent underline">
         {t('返回组件列表', 'Back to components')}
       </Link>
     </div>
@@ -29,8 +42,9 @@ function Notice({ title, body }: { title: string; body: string }) {
 
 export function ComponentDetailPage() {
   const { slug = '' } = useParams()
-  const { t, tb } = useT()
+  const { t, tb, lang } = useT()
   const entry = COMPONENT_MANIFEST_BY_SLUG.get(slug)
+  const entryPage = getComponentPageByCategory(entry?.category)
   const [doc, setDoc] = useState<ComponentDoc | null>(null)
 
   useEffect(() => {
@@ -59,9 +73,10 @@ export function ComponentDetailPage() {
       <Notice
         title={t('文档撰写中', 'Documentation in progress')}
         body={t(
-          `${entry.name} 已经可以使用，但这一页还没写完。组件本身可以直接从 aios-ui-kit/${slug} import。`,
+          `${getComponentName(entry, 'zh')}（${entry.name}）已经可以使用，但这一页还没写完。组件本身可以直接从 aios-ui-kit/${slug} import。`,
           `${entry.name} already ships, but this page isn't written yet. You can import the component from aios-ui-kit/${slug} today.`,
         )}
+        backTo={getComponentPageHref(entryPage.id)}
       />
     )
   }
@@ -77,9 +92,11 @@ export function ComponentDetailPage() {
   }
 
   const category = CATEGORY_BY_ID.get(doc.category)
-  const position = COMPONENT_MANIFEST.findIndex((item) => item.slug === doc.slug)
-  const previous = COMPONENT_MANIFEST[position - 1]
-  const next = COMPONENT_MANIFEST[position + 1]
+  const page = getComponentPageByCategory(doc.category)
+  const pageManifest = COMPONENT_MANIFEST.filter((item) => page.categoryIds.includes(item.category))
+  const position = pageManifest.findIndex((item) => item.slug === doc.slug)
+  const previous = pageManifest[position - 1]
+  const next = pageManifest[position + 1]
 
   return (
     <article className="flex w-full max-w-none flex-col gap-12 pb-24">
@@ -89,7 +106,14 @@ export function ComponentDetailPage() {
             {tb(category.label)}
           </span>
         )}
-        <h1 className="text-display-sm text-foreground-display">{doc.name}</h1>
+        <h1 className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-display-sm text-foreground-display">
+          <span>{getComponentName(doc, lang)}</span>
+          {lang === 'zh' && (
+            <span className="font-mono text-subheading font-normal text-foreground-subtle">
+              {doc.name}
+            </span>
+          )}
+        </h1>
         <p className="text-subheading text-foreground-muted">{tb(doc.description)}</p>
       </header>
 
@@ -169,7 +193,7 @@ export function ComponentDetailPage() {
             <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
               {t('上一个', 'Previous')}
             </span>
-            <span className="text-foreground-display">{previous.name}</span>
+            <span className="text-foreground-display">{getComponentName(previous, lang)}</span>
           </Link>
         ) : (
           <span />
@@ -182,7 +206,7 @@ export function ComponentDetailPage() {
             <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
               {t('下一个', 'Next')}
             </span>
-            <span className="text-foreground-display">{next.name}</span>
+            <span className="text-foreground-display">{getComponentName(next, lang)}</span>
           </Link>
         )}
       </nav>

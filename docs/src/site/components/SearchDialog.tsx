@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Dialog } from '@base-ui/react/dialog'
 import { cn } from '@/lib/utils'
 import { useT } from '../i18n'
-import { COMPONENT_MANIFEST } from '../registry'
+import { COMPONENT_MANIFEST, getComponentName } from '../registry'
 import { CATEGORY_BY_ID } from '../registry/categories'
 import { DOC_PAGES, DOC_GROUPS } from '../registry/docs'
 
@@ -15,7 +15,7 @@ interface SearchEntry {
 }
 
 function useSearchIndex(): SearchEntry[] {
-  const { tb } = useT()
+  const { tb, lang } = useT()
 
   return React.useMemo(() => {
     const docGroupLabel = new Map(DOC_GROUPS.map((group) => [group.id, tb(group.label)]))
@@ -31,14 +31,14 @@ function useSearchIndex(): SearchEntry[] {
       const category = CATEGORY_BY_ID.get(doc.category)
       return {
         to: `/components/${doc.slug}`,
-        title: doc.name,
+        title: getComponentName(doc, lang),
         group: category ? tb(category.label) : doc.category,
-        keywords: `${doc.slug} ${doc.name} ${tb(doc.description)}`.toLowerCase(),
+        keywords: `${doc.slug} ${doc.name} ${getComponentName(doc, 'zh')} ${tb(doc.description)}`.toLowerCase(),
       }
     })
 
     return [...components, ...docs]
-  }, [tb])
+  }, [lang, tb])
 }
 
 export function SearchDialog({

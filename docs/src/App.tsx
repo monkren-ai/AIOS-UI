@@ -5,17 +5,15 @@ import { SiteLayout } from '@/site/SiteLayout'
 import { ScrollToTop } from '@/site/components/ScrollToTop'
 
 const LandingPage = lazy(() => import('@/site/pages/LandingPage'))
+const AboutPage = lazy(() => import('@/site/pages/AboutPage'))
 const ComponentsLayout = lazy(() => import('@/site/pages/ComponentsLayout'))
 const ComponentsIndexPage = lazy(() => import('@/site/pages/ComponentsIndexPage'))
 const ComponentDetailPage = lazy(() => import('@/site/pages/ComponentDetailPage'))
+const ComponentsOverviewPage = lazy(() => import('@/site/pages/ComponentsOverviewPage'))
 const DocsLayout = lazy(() => import('@/site/pages/DocsLayout'))
 const DocPage = lazy(() => import('@/site/pages/DocPage'))
 const IconsPage = lazy(() => import('@/site/pages/icons/IconsPage'))
 
-const Showcase = lazy(() => import('@/showcase'))
-const ProjectIntroPage = lazy(() =>
-  import('@/showcase/ProjectIntroPage').then((m) => ({ default: m.ProjectIntroPage })),
-)
 const AIPocPage = lazy(() => import('@/showcase/AIPocPage').then((m) => ({ default: m.AIPocPage })))
 
 import type { Lang, T } from '@/i18n/types'
@@ -40,7 +38,7 @@ export function App() {
   }, [])
 
   const preloadProjectIntro = useCallback(() => {
-    void import('@/showcase/ProjectIntroPage')
+    void import('@/site/pages/AboutPage')
   }, [])
 
   const preloadAIPoc = useCallback(() => {
@@ -68,6 +66,7 @@ export function App() {
           <Routes>
             <Route element={<SiteLayout />}>
               <Route path="/" element={<LandingPage />} />
+              <Route path="/about" element={<AboutPage />} />
 
               <Route path="/docs" element={<DocsLayout />}>
                 <Route index element={<Navigate to="/docs/installation" replace />} />
@@ -76,13 +75,14 @@ export function App() {
 
               <Route path="/components" element={<ComponentsLayout />}>
                 <Route index element={<ComponentsIndexPage />} />
+                <Route path="overview" element={<ComponentsOverviewPage />} />
                 <Route path=":slug" element={<ComponentDetailPage />} />
               </Route>
 
               <Route path="/icons" element={<IconsPage />} />
 
-              <Route path="/showcase" element={<Showcase />} />
-              <Route path="/project-intro" element={<ProjectIntroPage />} />
+              <Route path="/showcase" element={<Navigate to="/components/overview" replace />} />
+              <Route path="/project-intro" element={<Navigate to="/about" replace />} />
               <Route path="/ai-poc" element={<AIPocPage />} />
             </Route>
 

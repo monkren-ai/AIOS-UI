@@ -15,10 +15,15 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["vite/client"],
+    "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom"],
     "paths": {
-      "@/*": ["./src/*", "../aios-design-skill/aios-design/web-ui-kit/react/src/*"],
-      "aios-ui-kit/*": ["../aios-design-skill/aios-design/web-ui-kit/react/src/subpath/*"]
+      "@/*": [
+        "./src/*",
+        "../aios-design-skill/aios-design/web-ui-kit/react/src/*"
+      ],
+      "aios-ui-kit/*": [
+        "../aios-design-skill/aios-design/web-ui-kit/react/src/subpath/*"
+      ]
     }
   },
   "include": ["src", "scripts"]

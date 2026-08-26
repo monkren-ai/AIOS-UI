@@ -1,3 +1,5 @@
 import { avatarFallbackVariants, avatarVariants } from "./Avatar/avatar-variants.mjs";
 import Avatar from "./Avatar/Avatar.mjs";
-export { Avatar, avatarFallbackVariants, avatarVariants, Avatar as default };
+import { avatarGroupOverflowVariants, avatarGroupVariants } from "./Avatar/avatar-group-variants.mjs";
+import { AvatarGroup } from "./Avatar/AvatarGroup.mjs";
+export { Avatar, AvatarGroup, avatarFallbackVariants, avatarGroupOverflowVariants, avatarGroupVariants, avatarVariants, Avatar as default };

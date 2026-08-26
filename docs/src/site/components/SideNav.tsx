@@ -16,10 +16,19 @@ export interface SideNavGroup {
   links: SideNavLink[]
 }
 
-export function SideNav({ groups, className }: { groups: SideNavGroup[]; className?: string }) {
+export function SideNav({
+  groups,
+  className,
+  ariaLabel,
+}: {
+  groups: SideNavGroup[]
+  className?: string
+  ariaLabel?: string
+}) {
   return (
     <nav
       data-slot="side-nav"
+      aria-label={ariaLabel}
       className={cn(
         'flex w-full flex-col gap-8 lg:sticky lg:top-14 lg:max-h-[calc(100vh-3.5rem)] lg:w-60 lg:shrink-0 lg:overflow-y-auto lg:py-8 lg:pe-4',
         className,

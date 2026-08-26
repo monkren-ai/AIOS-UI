@@ -116,6 +116,36 @@ This reference enables the AIOS Design Skill to analyze existing project files, 
 
 Base styles for Widget 2.0 subsystem: `widgets.css` (provides `.widget-bg`, `.widget-card`, `.widget-icon-wrapper` — import before individual widget CSS files)
 
+### 1.7 Agent & Conversation Components
+
+| Project Pattern | AIOS Component | Selection Signal |
+|---|---|---|
+| Prompt / message composer | `Sender` | Text intent, attachments and send/stop action |
+| Chat transcript | `ConversationViewport` + `Message` + `Response` | Scroll-managed user/assistant messages and Markdown output |
+| Suggested prompts / empty chat | `Prompts` + `Welcome` | Real starter actions before a conversation exists |
+| Conversation history | `Conversations` | Named sessions with active state and metadata |
+| Agent execution plan | `PlanCard` | Ordered steps with observable statuses |
+| High-risk confirmation | `ApprovalGate` | Explicit scope, risk, reversibility and approve/reject actions |
+| Tool invocation | `ToolCallRow` | Tool name, arguments, status and elapsed time |
+| Shell / command output | `Terminal` | Command lines and streamed execution result |
+| Delegated workers | `Subagent` / `SubagentList` | Worker ownership and per-worker status |
+| Agent activity shell | `AssistantPanel` + `ContextBar` | Persistent context, progress and actions |
+| Floating assistant migration | `AssistantModal` | Oreo-compatible name with shared AssistantPanel behavior |
+| Icon-only action | `IconButton` | Required accessible name and shared Button states |
+| Filter chips | `Chip` + `ChipGroup` | Pressed-state choices with horizontal overflow |
+| Overlapping people | `AvatarGroup` | Consistent avatar size and bounded overflow count |
+| External SVG library | `Icon` | Normalize size, currentColor and accessible semantics |
+| Process / thinking status | `ProgressTrace`, `ThinkingSteps`, `ThinkingIndicator` | Observable progress without fabricated reasoning |
+| Sources / citations | `Sources` / `Source` | Real evidence links and metadata |
+| Alternate responses | `BranchPicker` | Multiple response branches actually exist |
+
+### 1.8 Code Components
+
+| Project Component Type | AIOS Component | Import |
+|---|---|---|
+| Syntax-highlighted output | `CodeBlock` | `aios-ui-kit/code-block` |
+| Added / removed line review | `CodeDiff` | `aios-ui-kit/code-diff` |
+
 ---
 
 ## 2. STYLE FEATURE IDENTIFICATION
@@ -140,6 +170,12 @@ Base styles for Widget 2.0 subsystem: `widgets.css` (provides `.widget-bg`, `.wi
 | `<input type="number">` + OTP pattern | InputOTP |
 | `<img>` + circular crop | Avatar |
 | `<form>` | Form |
+| Message composer with send/stop action | Sender |
+| Conversation transcript / log | ConversationViewport + Message + Response |
+| Ordered execution steps | PlanCard / ProgressTrace |
+| Explicit risk confirmation | ApprovalGate |
+| Tool or command execution row | ToolCallRow / Terminal |
+| Added and removed code lines | CodeDiff |
 
 ### 2.2 Visual Feature Identification (CSS Property Patterns)
 
@@ -174,6 +210,10 @@ Base styles for Widget 2.0 subsystem: `widgets.css` (provides `.widget-bg`, `.wi
 | `onSubmit` + validation | Form |
 | `onDrag` + resize | Resizable |
 | Auto-rotate + prev/next arrows | PhotoCarousel |
+| Submit prompt + attach files + stop generation | Sender |
+| Approve/reject after impact disclosure | ApprovalGate |
+| Stream tool status and elapsed time | ToolCallRow / ProgressTrace |
+| Return to latest message after scroll | ConversationViewport |
 
 ---
 
@@ -189,49 +229,15 @@ Base styles for Widget 2.0 subsystem: `widgets.css` (provides `.widget-bg`, `.wi
 
 ### 3.2 Strategy B: Tailwind CSS Projects
 
-Map AIOS tokens to Tailwind custom theme values in `tailwind.config.js`:
+For Tailwind CSS v4, import the package stylesheet and register its compiled source so utility classes are retained:
 
-```js
-theme: {
-  extend: {
-    colors: {
-      'aios': {
-        display: 'var(--text-display)',
-        primary: 'var(--text-primary)',
-        secondary: 'var(--text-secondary)',
-        disabled: 'var(--text-disabled)',
-        accent: 'var(--accent)',
-        surface: 'var(--surface)',
-        'surface-raised': 'var(--surface-raised)',
-        border: 'var(--border)',
-        'border-visible': 'var(--border-visible)',
-      }
-    },
-    fontFamily: {
-      display: ['var(--font-display)'],
-      body: ['var(--font-body)'],
-      mono: ['var(--font-mono)'],
-      dotmatrix: ['var(--font-dotmatrix)'],
-    },
-    borderRadius: {
-      'aios-pill': 'var(--radius-pill)',
-      'aios-lg': 'var(--radius-lg)',
-      'aios-md': 'var(--radius-md)',
-      'aios-xs': 'var(--radius-xs)',
-    }
-  }
-}
+```css
+@import 'tailwindcss';
+@import 'aios-ui-kit/styles.css';
+@source '../node_modules/aios-ui-kit/es';
 ```
 
-Key BEM-to-Tailwind mappings:
-
-| AIOS BEM Class | Tailwind Equivalent |
-|---|---|
-| `.aios-btn--primary` | `bg-aios-display text-aios-accent rounded-aios-pill px-6 py-3 font-mono text-xs uppercase tracking-wider min-h-[44px]` |
-| `.aios-btn--secondary` | `bg-transparent border border-aios-border-visible text-aios-primary rounded-aios-pill px-6 py-3 font-mono text-xs uppercase tracking-wider` |
-| `.aios-card` | `bg-aios-surface border border-aios-border rounded-aios-lg p-4 md:p-6` |
-| `.aios-input--underline` | `border-b border-aios-border-visible bg-transparent font-mono` |
-| `.aios-tag--pill` | `border border-aios-border-visible rounded-aios-pill px-3 py-1 font-mono text-[11px] uppercase tracking-wider` |
+Use `cn()` for caller overrides and CVA for reusable variants. Prefer package subpath imports (`aios-ui-kit/button`, `aios-ui-kit/agent`, `aios-ui-kit/conversation`) so unrelated components stay out of the bundle.
 
 ### 3.3 Strategy C: CSS-in-JS (Styled Components / Emotion) Projects
 

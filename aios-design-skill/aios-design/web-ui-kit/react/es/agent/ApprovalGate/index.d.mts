@@ -1,1 +1,1 @@
-import { ApprovalGate, ApprovalGateProps, ApprovalRisk, approvalGateVariants } from "./ApprovalGate.mjs";
+import { ApprovalGate, ApprovalGateProps, ApprovalRisk, ApprovalState, approvalGateVariants } from "./ApprovalGate.mjs";

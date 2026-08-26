@@ -6,7 +6,7 @@
  * 层级靠 background + border 表达，没有阴影、没有 blur、没有渐变。
  */
 declare const textareaVariants: (props?: ({
-  variant?: "outline" | "soft" | null | undefined;
+  variant?: "soft" | "outline" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   hasError?: boolean | null | undefined;
   disabled?: boolean | null | undefined;
@@ -14,7 +14,7 @@ declare const textareaVariants: (props?: ({
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 原生 textarea 本体。 */
 declare const textareaFieldVariants: (props?: ({
-  variant?: "outline" | "soft" | null | undefined;
+  variant?: "soft" | "outline" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   hasError?: boolean | null | undefined;
   disabled?: boolean | null | undefined;
@@ -29,7 +29,7 @@ declare const textareaLabelVariants: (props?: ({
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 辅助说明 / 错误文案。 */
 declare const textareaMessageVariants: (props?: ({
-  variant?: "default" | "error" | null | undefined;
+  variant?: "error" | "default" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** v1 的变体名 → 当前变体名。 */
 declare const LEGACY_VARIANTS: {

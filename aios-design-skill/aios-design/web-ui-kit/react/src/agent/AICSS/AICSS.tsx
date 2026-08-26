@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { cn, dataAttr } from '@/lib/utils'
+import { CodeBlock as BaseCodeBlock } from '@/CodeBlock'
+import { CodeDiff as BaseCodeDiff } from '@/CodeDiff'
 import './AICSS.css'
 
 export type AicssLocale = 'zh' | 'en'
@@ -217,44 +219,17 @@ export interface AicssFileDiffProps extends React.HTMLAttributes<HTMLDivElement>
 }
 
 export const AicssFileDiff = React.forwardRef<HTMLDivElement, AicssFileDiffProps>(
-  ({ filename, lines, locale = 'zh', className, ...props }, ref) => {
-    const additions = lines.filter((line) => line.type === 'add').length
-    const removals = lines.filter((line) => line.type === 'remove').length
-    return (
-      <figure
-        ref={ref}
-        className={cn('aios-aicss-code-frame', className)}
-        data-slot="aicss-file-diff"
-        {...props}
-      >
-        <figcaption className="aios-aicss-code-frame__header">
-          <span>{filename}</span>
-          <span
-            aria-label={t(
-              locale,
-              `${additions} 行新增，${removals} 行删除`,
-              `${additions} additions, ${removals} deletions`,
-            )}
-          >
-            +{additions} / −{removals}
-          </span>
-        </figcaption>
-        <code className="aios-aicss-diff">
-          {lines.map((line, index) => (
-            <span
-              key={`${line.oldLine}-${line.newLine}-${index}`}
-              className={`aios-aicss-diff__line aios-aicss-diff__line--${line.type ?? 'context'}`}
-            >
-              <span>{line.oldLine ?? ''}</span>
-              <span>{line.newLine ?? ''}</span>
-              <span>{line.type === 'add' ? '+' : line.type === 'remove' ? '−' : ' '}</span>
-              <span>{line.content}</span>
-            </span>
-          ))}
-        </code>
-      </figure>
-    )
-  },
+  ({ filename, lines, locale = 'zh', className, ...props }, ref) => (
+    <BaseCodeDiff
+      ref={ref as React.Ref<HTMLElement>}
+      filename={filename}
+      lines={lines}
+      summaryLabel={t(locale, '代码差异摘要', 'Code diff summary')}
+      className={className}
+      data-slot="aicss-file-diff"
+      {...props}
+    />
+  ),
 )
 AicssFileDiff.displayName = 'AicssFileDiff'
 
@@ -423,40 +398,21 @@ export const AicssCodeBlock = React.forwardRef<HTMLElement, AicssCodeBlockProps>
       ...props
     },
     ref,
-  ) => {
-    const [copied, setCopied] = React.useState(false)
-    const copy = async () => {
-      if (onCopy) await onCopy(code)
-      else if (typeof navigator !== 'undefined') await navigator.clipboard?.writeText(code)
-      setCopied(true)
-      window.setTimeout(() => setCopied(false), 1500)
-    }
-    return (
-      <figure
-        ref={ref}
-        className={cn('aios-aicss-code-frame', className)}
-        data-slot="aicss-code-block"
-        {...props}
-      >
-        <figcaption className="aios-aicss-code-frame__header">
-          <span>{filename ?? language ?? t(locale, '代码', 'Code')}</span>
-          <button type="button" onClick={copy}>
-            {copied ? t(locale, '已复制', 'Copied') : t(locale, '复制', 'Copy')}
-          </button>
-        </figcaption>
-        <pre>
-          <code>
-            {code.split('\n').map((line, index) => (
-              <span key={index} className="aios-aicss-code-line">
-                {showLineNumbers && <span>{index + 1}</span>}
-                <span>{line || ' '}</span>
-              </span>
-            ))}
-          </code>
-        </pre>
-      </figure>
-    )
-  },
+  ) => (
+    <BaseCodeBlock
+      ref={ref}
+      code={code}
+      filename={filename}
+      language={language}
+      showLineNumbers={showLineNumbers}
+      onCopy={onCopy}
+      copyLabel={t(locale, '复制', 'Copy')}
+      copiedLabel={t(locale, '已复制', 'Copied')}
+      className={className}
+      data-slot="aicss-code-block"
+      {...props}
+    />
+  ),
 )
 AicssCodeBlock.displayName = 'AicssCodeBlock'
 

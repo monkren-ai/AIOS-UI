@@ -29,8 +29,9 @@ function SystemMonitor({ className, variant = "default", size = "md", updateInte
 		};
 		const updateBattery = async () => {
 			try {
-				if ("getBattery" in navigator) {
-					const battery = await navigator.getBattery();
+				const batteryNavigator = navigator;
+				if (batteryNavigator.getBattery) {
+					const battery = await batteryNavigator.getBattery();
 					setInternalBatteryPercent(Math.round(battery.level * 100));
 					setInternalBatteryCharging(battery.charging);
 				}

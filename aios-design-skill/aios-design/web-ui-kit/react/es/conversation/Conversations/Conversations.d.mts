@@ -5,11 +5,13 @@ import { VariantProps } from "class-variance-authority";
 type ConversationsSemanticType = 'root' | 'header' | 'list' | 'item' | 'itemIcon' | 'itemLabel' | 'itemMeta' | 'itemActions' | 'footer';
 interface ConversationItem {
   key: string;
+  section?: React$1.ReactNode;
   icon?: React$1.ReactNode;
   label: React$1.ReactNode;
   meta?: React$1.ReactNode;
   actions?: React$1.ReactNode | ((item: ConversationItem) => React$1.ReactNode);
   disabled?: boolean;
+  unread?: boolean;
 }
 interface ConversationsProps extends Omit<React$1.HTMLAttributes<HTMLDivElement>, 'onSelect'>, VariantProps<typeof conversationsVariants> {
   items: ConversationItem[];
@@ -18,6 +20,8 @@ interface ConversationsProps extends Omit<React$1.HTMLAttributes<HTMLDivElement>
   onActiveChange?: (key: string) => void;
   header?: React$1.ReactNode;
   footer?: React$1.ReactNode;
+  onCreate?: () => void;
+  createLabel?: React$1.ReactNode;
   classNames?: Partial<Record<ConversationsSemanticType, string>>;
   styles?: Partial<Record<ConversationsSemanticType, React$1.CSSProperties>>;
 }

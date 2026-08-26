@@ -1,0 +1,1 @@
+{"version":3,"file":"conversation-viewport-variants.mjs","names":[],"sources":["../../../src/conversation/ConversationViewport/conversation-viewport-variants.ts"],"sourcesContent":["import { cva } from 'class-variance-authority'\nexport const conversationViewportVariants = cva('relative overflow-y-auto overscroll-contain')\n"],"mappings":";;AACA,MAAa,+BAA+B,IAAI,6CAA6C"}

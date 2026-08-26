@@ -2,6 +2,7 @@ import * as React from 'react'
 import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { Avatar } from './Avatar'
+import { AvatarGroup } from './AvatarGroup'
 
 describe('Avatar', () => {
   it('renders with data-slot and the soft/md/circle defaults', () => {
@@ -62,5 +63,31 @@ describe('Avatar', () => {
     const ref = React.createRef<HTMLDivElement>()
     render(<Avatar ref={ref} fallback="ND" />)
     expect(ref.current).toBeInstanceOf(HTMLDivElement)
+  })
+})
+
+describe('AvatarGroup', () => {
+  it('limits visible avatars and reports the remainder', () => {
+    render(
+      <AvatarGroup max={2} aria-label="Project members">
+        <Avatar fallback="AL" />
+        <Avatar fallback="GH" />
+        <Avatar fallback="RS" />
+      </AvatarGroup>,
+    )
+    const group = screen.getByRole('group', { name: 'Project members' })
+    expect(group).toHaveAttribute('data-slot', 'avatar-group')
+    expect(group.querySelectorAll('[data-slot="avatar"]')).toHaveLength(2)
+    expect(group.querySelector('[data-slot="avatar-group-overflow"]')).toHaveTextContent('+1')
+  })
+
+  it('applies one size to every visible avatar', () => {
+    render(
+      <AvatarGroup size="sm" data-testid="group">
+        <Avatar fallback="AL" />
+        <Avatar fallback="GH" />
+      </AvatarGroup>,
+    )
+    expect(screen.getByTestId('group').querySelectorAll('[data-size="sm"]')).toHaveLength(2)
   })
 })

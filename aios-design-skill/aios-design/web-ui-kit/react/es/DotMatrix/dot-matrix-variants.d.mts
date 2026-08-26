@@ -18,7 +18,7 @@
 declare const dotMatrixVariants: (props?: ({
   dotSize?: "sm" | "md" | "lg" | null | undefined;
   theme?: "light" | "dark" | null | undefined;
-  pattern?: "grid" | "glyph" | "pulse" | "custom" | null | undefined;
+  pattern?: "grid" | "custom" | "glyph" | "pulse" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 一行点。行内间距 sm 是 1px，md/lg 是 3px。 */
 declare const dotMatrixRowVariants: (props?: ({
@@ -28,7 +28,7 @@ declare const dotMatrixRowVariants: (props?: ({
 declare const dotVariants: (props?: ({
   dotSize?: "sm" | "md" | "lg" | null | undefined;
   theme?: "light" | "dark" | null | undefined;
-  pattern?: "grid" | "glyph" | "pulse" | "custom" | null | undefined;
+  pattern?: "grid" | "custom" | "glyph" | "pulse" | null | undefined;
   state?: "active" | "idle" | "dim" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 type DotMatrixSize = 'sm' | 'md' | 'lg';

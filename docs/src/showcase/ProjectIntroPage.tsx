@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AgentOrb, ApprovalGate, PlanCard, ProgressTrace, ToolCallRow } from '@/agent'
+import { buttonVariants } from 'aios-ui-kit/button'
 import type { PlanStep, TraceStep } from '@/agent'
 import { useShowcaseContext } from './ShowcaseContext'
 import './styles/project-intro-page.css'
 
 export function ProjectIntroPage() {
-  const { t, lang, preloadShowcase } = useShowcaseContext()
+  const { t } = useShowcaseContext()
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
   const [introPlanSteps, setIntroPlanSteps] = useState<PlanStep[]>([
@@ -73,41 +74,6 @@ export function ProjectIntroPage() {
 
   return (
     <div className="project-intro-page">
-      <header className="pi-topbar">
-        <Link to="/" className="pi-logo">
-          AIOS UI
-        </Link>
-        <nav className="pi-topbar__links" aria-label="Project navigation">
-          <a className="pi-topbar__link" href="#philosophy">
-            Philosophy
-          </a>
-          <a className="pi-topbar__link" href="#typography">
-            Type
-          </a>
-          <a className="pi-topbar__link" href="#color">
-            Color
-          </a>
-          <a className="pi-topbar__link" href="#components">
-            Components
-          </a>
-          <a className="pi-topbar__link" href="#ai-os">
-            AI OS
-          </a>
-          <a className="pi-topbar__link" href="#skill">
-            Skill
-          </a>
-          <Link className="pi-topbar__link" to="/" onMouseEnter={preloadShowcase}>
-            Showcase →
-          </Link>
-          <span className="pi-topbar__link" aria-hidden="true">
-            ·
-          </span>
-          <span className="pi-topbar__link" lang={lang}>
-            {lang === 'zh' ? '中 / EN' : 'EN / 中'}
-          </span>
-        </nav>
-      </header>
-
       <main>
         <section className="pi-hero">
           <div className="pi-container pi-hero__content">
@@ -870,10 +836,17 @@ export function ProjectIntroPage() {
               )}
             </p>
             <div className="pi-closing__actions">
-              <Link className="pi-button pi-button--primary" to="/" onMouseEnter={preloadShowcase}>
+              <Link
+                className={buttonVariants({ variant: 'primary', size: 'lg' })}
+                to="/components"
+              >
                 {t('浏览组件库', 'Browse Components')}
               </Link>
-              <button className="pi-button pi-button--secondary" onClick={scrollToTop}>
+              <button
+                type="button"
+                className={buttonVariants({ variant: 'secondary', size: 'lg' })}
+                onClick={scrollToTop}
+              >
                 {t('回到顶部', 'Back to Top')}
               </button>
             </div>

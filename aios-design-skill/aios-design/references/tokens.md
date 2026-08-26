@@ -585,7 +585,7 @@ Tokens for the **AIOS UI for AI OS** semantic extension. These tokens support ag
 |-------|-------|-----|
 | `--radius-agent-orb` | `999px` | AgentOrb 圆形 |
 | `--radius-agent-chip` | `999px` | 上下文建议胶囊（ContextChip） |
-| `--radius-agent-card` | `var(--radius-card)` | PlanCard / TraceLog 卡片 |
+| `--radius-agent-card` | `var(--radius-card)` | PlanCard / ProgressTrace / Terminal 卡片 |
 | `--radius-agent-card-compact` | `var(--radius-card-compact)` | 紧凑 agent 卡片 |
 
 ### Agent Keyframes

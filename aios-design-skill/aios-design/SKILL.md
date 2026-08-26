@@ -1,7 +1,8 @@
 ---
 name: aios-design
 description: This skill should be used when the user explicitly says "AIOS style", "AIOS design", "/aios-design", or directly asks to use/apply the AIOS design system to new or existing projects. Also triggers when user asks to migrate, convert, restyle, or apply AIOS design to existing project files/components. NEVER trigger automatically for generic UI or design tasks.
-version: 4.0.0
+metadata:
+  version: 4.1.0
 allowed-tools: [Read, Write, Edit, Glob, Grep, SearchCodebase]
 ---
 
@@ -244,22 +245,28 @@ Use the pre-built Web UI Kit for faster implementation when building web applica
 1. **Load fonts** — include required Google Fonts (Doto, Space Grotesk, Space Mono)
 2. **Set theme** — initialize with `data-theme="dark"` or `data-theme="light"` on the `<html>` element
 3. **Import tokens** — always import `tokens.css` first before any other component styles
-4. **Import components** — add React components for the ones you need (each component imports its own CSS internally)
+4. **Import components** — import the shared stylesheet once, then import only the component subpaths you use
 5. **Customize** — modify component properties and styles as needed
 
 #### Quick Start
 
 **React:**
 ```tsx
-import Clock from './components/Clock'
-import './styles/tokens.css'
+import * as motion from 'motion/react'
+import { ConfigProvider } from 'aios-ui-kit'
+import { Button } from 'aios-ui-kit/button'
+import 'aios-ui-kit/styles.css'
 
 function App() {
-  return <Clock type="digital" />
+  return (
+    <ConfigProvider motion={motion} defaultTheme="dark" enableSystem>
+      <Button variant="primary">Continue</Button>
+    </ConfigProvider>
+  )
 }
 ```
 
-> **Note:** Set `data-theme="dark"` or `data-theme="light"` on the `<html>` element to control the theme. Each component imports its own CSS internally, so you only need to manually import `tokens.css`.
+> **Note:** In Tailwind CSS v4 projects, also add `@import 'tailwindcss';` and `@source '../node_modules/aios-ui-kit/es';` before importing `aios-ui-kit/styles.css`. Use `ConfigProvider` / `ThemeProvider` for theme state instead of writing theme attributes ad hoc.
 
 #### Available Components
 
@@ -297,6 +304,7 @@ function App() {
 
 **Data Display**
 - **Avatar** — user profile image or initials fallback
+- **AvatarGroup** — overlapping avatar collection with a bounded `+N` overflow count
 - **Badge** — small status indicator or counter
 - **Battery** — battery level and charging status indicator
 - **Calendar** — compact and full calendar views
@@ -311,6 +319,36 @@ function App() {
 - **Sparkline** — mini trend line, 1.5px stroke, no fill, extremes by opacity
 - **SystemMonitor** — comprehensive system dashboard with CPU, RAM, storage, network speed, and battery level indicators
 - **Thumbnail** — image thumbnail with dot-matrix fallback instead of grey block
+- **CodeBlock** — syntax-highlighted code with language metadata, line numbers and copy-ready output
+- **CodeDiff** — accessible added/removed/context line presentation for reviews and Agent change previews
+- **Icon** — dependency-light SVG adapter for consistent size and accessible semantics
+
+**Compact Actions**
+- **IconButton** — icon-only Button entry that requires an accessible name
+- **Chip / ChipGroup** — pressed-state filters and horizontally scrollable quick choices
+
+**Agent Workflow**
+- **AgentOrb** — compact Agent state signal for idle, thinking, acting, paused and error states
+- **ActivityLabel** — terse status label for current Agent activity
+- **AssistantPanel** — bounded assistant workspace that groups intent, progress and actions
+- **AssistantModal** — Oreo-compatible semantic entry backed by AssistantPanel behavior; do not build a second assistant overlay
+- **ContextBar** — session context and task status summary
+- **Subagent / SubagentList** — delegated worker status and ownership
+- **Terminal / TerminalLine** — command execution output with explicit state
+- **PlanCard** — inspectable execution plan and step status
+- **ApprovalGate** — risk, scope and reversibility checkpoint before execution
+- **ProgressTrace / ThinkingSteps / ThinkingIndicator** — visible execution and reasoning progress
+- **ToolCallRow** — tool name, arguments, status and timing
+
+**Conversation**
+- **Sender** — composer for user intent and attachments
+- **Message / Response** — semantic message shell and Markdown response renderer
+- **ConversationViewport** — scroll-managed conversation content and return-to-latest control
+- **Attachment / AttachmentList** — file context with status and removal actions
+- **BranchPicker** — alternate-response branch navigation
+- **Sources / Source** — expandable source disclosure
+- **KeywordTag** — compact prompt or response metadata
+- **Bubble / ThoughtChain / Prompts / Welcome / Conversations** — higher-level conversation patterns
 
 **Navigation**
 - **Breadcrumb** — hierarchical navigation trail
@@ -467,13 +505,14 @@ Cross-component variant dimensions are centralized to avoid duplication:
 import { themeVariants, sizeVariants } from '@/lib/variants'
 ```
 
-#### 7. BEM + `data-*` Coexistence
+#### 7. Tailwind Utilities + Semantic `data-*`
 
-The legacy BEM classes (`aios-btn--primary`) are NOT removed. They coexist with `data-variant`:
-- **BEM classes** = the visual styling (in `*.css` files)
-- **`data-*` attrs** = semantic hooks for testing, inspection, and future CSS
+Current components compose token-backed Tailwind utilities through CVA and expose stable semantic hooks:
+- **CVA utilities** = visual styling and variants
+- **`data-slot`** = component anatomy
+- **`data-variant` / `data-size` / `data-state`** = inspectable state and test hooks
 
-This is **backward compatible** — every existing call site continues to work without modification.
+Legacy BEM classes may remain in older components, but do not introduce BEM solely for new code.
 
 #### 8. v4 Refactor Summary (2026-06)
 
@@ -484,7 +523,7 @@ All 113 React components were refactored in a single sweep to fully conform to t
 | Class string composition | `[...].filter(Boolean).join(' ')` | `cn(...)` from `@/lib/utils` |
 | Variant enum mapping | Inline ternaries / `if/else` | `cva(...)` factory with `xxxVariants` export |
 | Ref forwarding | `useImperativeHandle` or none | `React.forwardRef` + `displayName` on every leaf component |
-| Semantic hooks | BEM classes only | BEM **plus** `data-variant` / `data-size` / `data-theme` / `data-state` |
+| Semantic hooks | BEM classes only | `data-slot` plus `data-variant` / `data-size` / `data-theme` / `data-state` |
 | Polymorphic `asChild` | Not supported | Components opt-in via a `Slot` primitive (no `@radix-ui/react-slot` dep) |
 | Internal imports | Long relative paths (`../../../lib/...`) | `@/*` path alias |
 | `withWidgetCard` HOC | 5 `any` types, hand-rolled ref cast | Clean overloads, `unknown` instead of `any` |
@@ -519,7 +558,7 @@ This is a deliberate design choice, not an inconsistency.
 For detailed token values, component specs, and platform-specific guidance:
 
 - **`references/tokens.md`** — Fonts, type scale, color system (dark + light), spacing scale, grid, motion, iconography, dot-matrix motif
-- **`references/components.md`** — Cards, buttons, inputs, lists, tables, nav, tags, segmented controls, progress bars, charts, widgets, overlays, state patterns
+- **`references/components.md`** — Cards, inputs, data, code, Agent workflows, conversations, navigation, overlays and state patterns
 - **`references/platform-mapping.md`** — HTML/CSS, SwiftUI, React/Tailwind, Paper output conventions
 - **`references/component-matching.md`** — Component type mapping tables, style feature identification rules (structural/visual/interaction), migration strategies (native CSS/Tailwind/CSS-in-JS/progressive), match report format
 
@@ -584,9 +623,9 @@ Three application strategies, ordered by increasing invasiveness:
 - Best for: unifying colors/spacing/typography without changing component implementation
 
 **b. Style Migration (moderate disruption)**
-- Import `tokens.css` + component-level CSS files
-- Replace project class names with AIOS BEM class names
-- May require JSX/HTML structure adjustments to match BEM Element naming
+- Import the AIOS stylesheet and map existing classes to token-backed Tailwind/CSS rules
+- Add stable `data-slot` anatomy and `data-state` hooks where behavior needs them
+- May require JSX/HTML structure adjustments for accessibility and state semantics
 - Best for: achieving AIOS visual style while keeping own component logic
 
 **c. Component Replacement (highest consistency)**
@@ -596,14 +635,14 @@ Three application strategies, ordered by increasing invasiveness:
 
 **Migration conventions (mandatory):**
 - Zero hardcoded values in component CSS — all via `var(--xxx)` token references
-- BEM naming: `aios-{block}` / `aios-{block}--{modifier}` / `aios-{block}__{element}`
-- Class composition: `[...].filter(Boolean).join(' ')` array pattern
-- No `[data-theme]` selectors in component CSS — theme switching driven 100% by `tokens.css`
+- Class composition through `cn()`; enum variants through CVA
+- Every reusable component root exposes `data-slot`; interactive states expose semantic `data-*`
+- Theme values come from shared tokens; do not duplicate global light/dark values inside components
 - Unified interaction states: `:hover:not(:disabled)` / `:focus-visible` / `:disabled { opacity: 0.4 }`
 
 **Styling strategy specifics** (see `references/component-matching.md` Section 3):
-- Native CSS / CSS Modules → Copy tokens + component CSS, replace class names
-- Tailwind CSS → Map tokens to `tailwind.config.js` theme extensions, use `@apply` hybrid
+- Native CSS / CSS Modules → Import tokens, then map existing classes without changing business logic
+- Tailwind CSS v4 → `@import 'tailwindcss'`, import `aios-ui-kit/styles.css`, and add `@source` for the package `es` directory
 - CSS-in-JS → Extract tokens as JS constants, convert BEM to styled-components templates
 - Progressive → Phase 1 (tokens only) → Phase 2 (styles) → Phase 3 (full components)
 
@@ -641,7 +680,7 @@ Migration Recommendations: priority-ordered steps, decision points, risks
 
 **Don't**
 - Don't hardcode `line-height` or `letter-spacing` — use tokens
-- Don't use serif fonts — AIOS UI is Inter (UI) + JetBrains Mono (data)
+- Don't use serif fonts — AIOS UI is Space Grotesk (UI) + Space Mono (data), with Doto reserved for display moments
 
 ### Layout
 **Do**
@@ -740,22 +779,44 @@ See `references/tokens.md` §12 for full agent token specification and keyframes
 Use these components when building agentic flows:
 
 - `AgentOrb` — monochrome status orb. `state: idle | thinking | acting | paused | error`.
+- `ActivityLabel` — concise, non-anthropomorphic activity label.
+- `AssistantPanel` — groups Agent context, progress and available actions without turning the workflow into chat chrome.
+- `AssistantModal` — use when migrating an Oreo-style floating assistant API; it deliberately shares `AssistantPanel` state, focus and Escape behavior.
+- `ContextBar` — persistent session/task context; use `ContextBarTasks` for compact task state.
+- `Subagent` / `SubagentList` — delegated worker ownership and execution state.
+- `Terminal` / `TerminalLine` — command output with explicit running, success and error states.
 - `PlanCard` — shows the agent's planned steps before execution. Editable, approvable.
 - `ToolCallRow` — single tool invocation with status, args, elapsed time.
 - `ProgressTrace` — multi-step execution timeline, collapsible.
+- `ThinkingIndicator` / `ThinkingSteps` — visible progress when useful status is available; never fabricate chain-of-thought.
 - `ApprovalGate` — high-risk confirmation with impact and reversibility.
 - `AicssApprovalCard` — AIcss-aligned pause for clarifying questions, a shell command, or a short plan. Never auto-approves.
 - `AicssThinkingState` / `AicssThinkingReasoning` / `AicssOrbs` — conversation-thread thinking states (see `COMPONENTS.md` §13 for the full 14-piece AIcss catalog).
-- `AgentStatusBar` — persistent top/bottom bar showing current agent activity.
-- `SearchOrAsk` — evolved `Command`: search files + natural language + plan preview.
+
+### Conversation Components
+
+- `Sender` captures user intent; attach files with `Attachment` / `AttachmentList`.
+- Compose a transcript with `ConversationViewport`, `Message` and `Response`. Use `MessageActions` for explicit actions rather than floating controls.
+- Use `Sources` only when real source metadata exists, and `BranchPicker` only when alternate responses actually exist.
+- Use `ThoughtChain` for disclosed process steps or tool progress, not hidden chain-of-thought.
+- Use `Prompts`, `Welcome` and `Conversations` for prompt suggestions, empty entry states and conversation navigation.
+
+Prefer on-demand imports so Agent and conversation code does not enter unrelated screens:
+
+```tsx
+import { ApprovalGate, PlanCard, ToolCallRow } from 'aios-ui-kit/agent'
+import { Message, Response, Sender, Sources } from 'aios-ui-kit/conversation'
+import { CodeBlock } from 'aios-ui-kit/code-block'
+import { CodeDiff } from 'aios-ui-kit/code-diff'
+```
 
 ### Three-Layer Screen Priority
 
 | Layer | Meaning | Examples |
 |-------|---------|----------|
-| Primary | User intent | `SearchOrAsk`, voice trigger |
+| Primary | User intent | `Sender`, `Prompts`, voice trigger |
 | Secondary | Agent plan | `PlanCard`, `ToolCallRow` |
-| Tertiary | Agent state | `AgentOrb`, `ProgressTrace` |
+| Tertiary | Agent state | `ActivityLabel`, `AgentOrb`, `ProgressTrace`, `ContextBar` |
 
 ### Agent Copy Rules
 

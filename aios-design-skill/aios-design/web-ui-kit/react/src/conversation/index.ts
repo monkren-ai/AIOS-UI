@@ -1,5 +1,31 @@
 export { Sender, senderVariants } from './Sender'
 export type { SenderProps, SenderSemanticType, SenderComponents } from './Sender'
+export { Attachment, AttachmentList, attachmentVariants } from './Attachment'
+export type { AttachmentProps, AttachmentType } from './Attachment'
+export { BranchPicker, branchPickerVariants } from './BranchPicker'
+export type { BranchPickerProps } from './BranchPicker'
+export {
+  ConversationViewport,
+  ConversationContent,
+  ConversationScrollButton,
+  conversationViewportVariants,
+} from './ConversationViewport'
+export type { ConversationViewportProps } from './ConversationViewport'
+export {
+  Message,
+  MessageContent,
+  MessageActions,
+  MessageAction,
+  MessageCopyAction,
+  messageVariants,
+} from './Message'
+export type { MessageProps, MessageCopyActionProps } from './Message'
+export { KeywordTag, keywordTagVariants } from './KeywordTag'
+export type { KeywordTagProps } from './KeywordTag'
+export { Response, responseVariants } from './Response'
+export type { ResponseProps } from './Response'
+export { Sources, Source, sourcesVariants, sourceVariants } from './Sources'
+export type { SourcesProps, SourceProps } from './Sources'
 
 export { Bubble, BubbleList, bubbleVariants } from './Bubble'
 export type {

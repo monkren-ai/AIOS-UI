@@ -13,6 +13,7 @@
   /* 展示页现在嵌在站点顶栏（3.5rem）下面，高度和吸顶偏移都得让出这一段 */
   min-height: calc(100vh - 3.5rem);
   display: flex;
+  overflow-x: clip;
   transition:
     background-color var(--duration-transition) var(--easing),
     color var(--duration-transition) var(--easing);
@@ -104,9 +105,12 @@
 /* ===== 主内容区 ===== */
 .showcase-main {
   flex: 1;
+  min-width: 0;
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   padding: var(--space-xl);
+  box-sizing: border-box;
 }
 
 /* ===== 区段（section）布局变体 ===== */
@@ -132,6 +136,12 @@
 /* 区段末尾元素去除底部间距 */
 .showcase-section--last {
   margin-bottom: 0;
+}
+
+.showcase-section [data-slot='segmented-control'] {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
 }
 
 /* ===== 排版与标题 ===== */
@@ -409,6 +419,39 @@
 }
 
 @media (max-width: 768px) {
+  .showcase-page {
+    display: block;
+  }
+
+  .showcase-aside {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: var(--space-md);
+    border-right: 0;
+    border-bottom: 1px solid var(--border-visible);
+  }
+
+  .showcase-aside-label {
+    margin-bottom: var(--space-sm);
+  }
+
+  .showcase-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+
+  .showcase-nav-link {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  .showcase-main {
+    padding: var(--space-md);
+  }
+
   .showcase-intro-card {
     grid-template-columns: 1fr;
   }

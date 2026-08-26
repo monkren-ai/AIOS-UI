@@ -15,7 +15,7 @@ function useActiveKey(defaultActiveKey, activeKey, onActiveChange) {
 		}, [isControlled, onActiveChange])
 	};
 }
-const Conversations = React$1.forwardRef(({ items, activeKey, defaultActiveKey, onActiveChange, header, footer, className, style, classNames: userClassNames, styles: userStyles, variant, size, ...rest }, ref) => {
+const Conversations = React$1.forwardRef(({ items, activeKey, defaultActiveKey, onActiveChange, header, footer, onCreate, createLabel = "新建会话 / New conversation", className, style, classNames: userClassNames, styles: userStyles, variant, size, ...rest }, ref) => {
 	const { classNames, styles } = mergeSemanticProps({
 		classNames: userClassNames,
 		styles: userStyles
@@ -46,16 +46,32 @@ const Conversations = React$1.forwardRef(({ items, activeKey, defaultActiveKey, 
 				"data-slot": "conversations-header",
 				children: header
 			}),
-			/* @__PURE__ */ jsx("div", {
+			/* @__PURE__ */ jsxs("div", {
 				className: cn("aios-conversations__list", classNames.list),
 				style: styles.list,
 				"data-slot": "conversations-list",
 				role: "tablist",
-				children: items.map((item) => {
+				children: [onCreate && /* @__PURE__ */ jsxs("button", {
+					type: "button",
+					className: "aios-conversations__item",
+					"data-slot": "conversations-create",
+					onClick: onCreate,
+					children: [/* @__PURE__ */ jsx("span", {
+						"aria-hidden": true,
+						children: "+"
+					}), /* @__PURE__ */ jsx("span", {
+						className: "aios-conversations__item-label",
+						children: createLabel
+					})]
+				}), items.map((item, index) => {
 					const isActive = current === item.key;
 					const actions = typeof item.actions === "function" ? item.actions(item) : item.actions;
-					return /* @__PURE__ */ jsxs("button", {
-						type: "button",
+					const showSection = item.section != null && (index === 0 || items[index - 1]?.section !== item.section);
+					return /* @__PURE__ */ jsxs(React$1.Fragment, { children: [showSection && /* @__PURE__ */ jsx("div", {
+						className: "px-3 pt-3 font-mono text-caption uppercase text-foreground-disabled",
+						"data-slot": "conversations-section",
+						children: item.section
+					}), /* @__PURE__ */ jsxs("div", {
 						className: cn(conversationsItemVariants({
 							active: isActive,
 							disabled: item.disabled
@@ -64,40 +80,43 @@ const Conversations = React$1.forwardRef(({ items, activeKey, defaultActiveKey, 
 						"data-slot": "conversations-item",
 						"data-active": isActive || void 0,
 						"data-disabled": dataAttr(item.disabled),
-						disabled: item.disabled,
-						role: "tab",
-						"aria-selected": isActive,
-						onClick: () => handleSelect(item),
-						children: [
-							item.icon && /* @__PURE__ */ jsx("span", {
+						children: [/* @__PURE__ */ jsxs("button", {
+							type: "button",
+							className: "flex min-w-0 flex-1 items-center gap-2 text-start",
+							disabled: item.disabled,
+							role: "tab",
+							"aria-selected": isActive,
+							onClick: () => handleSelect(item),
+							children: [item.icon && /* @__PURE__ */ jsx("span", {
 								className: cn("aios-conversations__item-icon", classNames.itemIcon),
 								style: styles.itemIcon,
 								"data-slot": "conversations-item-icon",
 								children: item.icon
-							}),
-							/* @__PURE__ */ jsxs("span", {
+							}), /* @__PURE__ */ jsxs("span", {
 								className: "aios-conversations__item-main",
 								children: [/* @__PURE__ */ jsx("span", {
 									className: cn("aios-conversations__item-label", classNames.itemLabel),
 									style: styles.itemLabel,
 									"data-slot": "conversations-item-label",
 									children: item.label
-								}), item.meta && /* @__PURE__ */ jsx("span", {
+								}), item.meta && /* @__PURE__ */ jsxs("span", {
 									className: cn("aios-conversations__item-meta", classNames.itemMeta),
 									style: styles.itemMeta,
 									"data-slot": "conversations-item-meta",
-									children: item.meta
+									children: [item.unread && !isActive && /* @__PURE__ */ jsx("span", {
+										className: "me-1 inline-block size-2 rounded-full bg-accent",
+										"aria-label": "未读 / Unread"
+									}), item.meta]
 								})]
-							}),
-							actions && /* @__PURE__ */ jsx("span", {
-								className: cn("aios-conversations__item-actions", classNames.itemActions),
-								style: styles.itemActions,
-								"data-slot": "conversations-item-actions",
-								children: actions
-							})
-						]
-					}, item.key);
-				})
+							})]
+						}), actions && /* @__PURE__ */ jsx("span", {
+							className: cn("aios-conversations__item-actions", classNames.itemActions),
+							style: styles.itemActions,
+							"data-slot": "conversations-item-actions",
+							children: actions
+						})]
+					})] }, item.key);
+				})]
 			}),
 			footer && /* @__PURE__ */ jsx("div", {
 				className: cn("aios-conversations__footer", classNames.footer),

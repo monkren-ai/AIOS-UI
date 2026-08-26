@@ -3,6 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, dataAttr } from '@/lib/utils'
 import { AgentOrb } from '@/agent/AgentOrb'
 import type { AgentState } from '@/agent/AgentOrb'
+import { ActivityLabel } from '@/agent/ActivityLabel'
 import './ToolCallRow.css'
 
 export type ToolCallStatus = 'pending' | 'running' | 'done' | 'error' | 'skipped'
@@ -47,6 +48,12 @@ export interface ToolCallRowProps
   result?: string
   error?: string
   showArgs?: boolean
+  expanded?: boolean
+  defaultExpanded?: boolean
+  onExpandedChange?: (expanded: boolean) => void
+  activeLabel?: React.ReactNode
+  badge?: React.ReactNode
+  children?: React.ReactNode
   expandLabel?: string
   collapseLabel?: string
 }
@@ -67,6 +74,12 @@ export const ToolCallRow = React.forwardRef<HTMLDivElement, ToolCallRowProps>(
       result,
       error,
       showArgs = false,
+      expanded: controlledExpanded,
+      defaultExpanded,
+      onExpandedChange,
+      activeLabel,
+      badge,
+      children,
       expandLabel = 'Show details',
       collapseLabel = 'Hide details',
       className,
@@ -74,8 +87,15 @@ export const ToolCallRow = React.forwardRef<HTMLDivElement, ToolCallRowProps>(
     },
     ref,
   ) => {
-    const [expanded, setExpanded] = React.useState(showArgs)
-    const hasDetails = (args && Object.keys(args).length > 0) || result || error
+    const [internalExpanded, setInternalExpanded] = React.useState(defaultExpanded ?? showArgs)
+    const expanded = controlledExpanded ?? internalExpanded
+    const setExpanded = (next: boolean) => {
+      if (controlledExpanded === undefined) setInternalExpanded(next)
+      onExpandedChange?.(next)
+    }
+    const hasDetails = Boolean(
+      (args && Object.keys(args).length > 0) || result || error || children,
+    )
 
     return (
       <div
@@ -88,7 +108,26 @@ export const ToolCallRow = React.forwardRef<HTMLDivElement, ToolCallRowProps>(
       >
         <div className="aios-tool-call-row__header">
           <AgentOrb state={statusToAgentState[status]} size="sm" />
-          <span className="aios-tool-call-row__tool">{tool}</span>
+          <span className="aios-tool-call-row__tool">
+            {activeLabel ? (
+              <ActivityLabel
+                active={status === 'running'}
+                activeLabel={activeLabel}
+                label={tool}
+                status={status === 'error' ? 'error' : 'default'}
+              />
+            ) : (
+              tool
+            )}
+          </span>
+          {badge && (
+            <span
+              className="rounded-tag border border-border px-2 py-1 font-mono text-caption text-foreground-muted"
+              data-slot="tool-call-row-badge"
+            >
+              {badge}
+            </span>
+          )}
           <span className="aios-tool-call-row__status">{statusLabels[status]}</span>
           {elapsedMs !== undefined && (
             <span className="aios-tool-call-row__elapsed">{formatElapsed(elapsedMs)}</span>
@@ -97,7 +136,7 @@ export const ToolCallRow = React.forwardRef<HTMLDivElement, ToolCallRowProps>(
             <button
               type="button"
               className="aios-tool-call-row__toggle"
-              onClick={() => setExpanded((v) => !v)}
+              onClick={() => setExpanded(!expanded)}
               aria-expanded={expanded}
               aria-label={expanded ? collapseLabel : expandLabel}
             >
@@ -120,6 +159,7 @@ export const ToolCallRow = React.forwardRef<HTMLDivElement, ToolCallRowProps>(
             )}
             {result && <div className="aios-tool-call-row__result">{result}</div>}
             {error && <div className="aios-tool-call-row__error">{error}</div>}
+            {children && <div data-slot="tool-call-row-content">{children}</div>}
           </div>
         )}
       </div>

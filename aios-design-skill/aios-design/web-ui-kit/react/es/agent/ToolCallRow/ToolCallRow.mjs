@@ -1,5 +1,6 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
 import AgentOrb from "../AgentOrb/AgentOrb.mjs";
+import { ActivityLabel } from "../ActivityLabel/ActivityLabel.mjs";
 import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
@@ -34,9 +35,14 @@ function formatElapsed(ms) {
 	if (ms < 1e3) return `${ms}MS`;
 	return `${(ms / 1e3).toFixed(1)}S`;
 }
-const ToolCallRow = React$1.forwardRef(({ tool, args, status = "pending", elapsedMs, result, error, showArgs = false, expandLabel = "Show details", collapseLabel = "Hide details", className, ...props }, ref) => {
-	const [expanded, setExpanded] = React$1.useState(showArgs);
-	const hasDetails = args && Object.keys(args).length > 0 || result || error;
+const ToolCallRow = React$1.forwardRef(({ tool, args, status = "pending", elapsedMs, result, error, showArgs = false, expanded: controlledExpanded, defaultExpanded, onExpandedChange, activeLabel, badge, children, expandLabel = "Show details", collapseLabel = "Hide details", className, ...props }, ref) => {
+	const [internalExpanded, setInternalExpanded] = React$1.useState(defaultExpanded ?? showArgs);
+	const expanded = controlledExpanded ?? internalExpanded;
+	const setExpanded = (next) => {
+		if (controlledExpanded === void 0) setInternalExpanded(next);
+		onExpandedChange?.(next);
+	};
+	const hasDetails = Boolean(args && Object.keys(args).length > 0 || result || error || children);
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(toolCallRowVariants({ status }), className),
@@ -53,7 +59,17 @@ const ToolCallRow = React$1.forwardRef(({ tool, args, status = "pending", elapse
 				}),
 				/* @__PURE__ */ jsx("span", {
 					className: "aios-tool-call-row__tool",
-					children: tool
+					children: activeLabel ? /* @__PURE__ */ jsx(ActivityLabel, {
+						active: status === "running",
+						activeLabel,
+						label: tool,
+						status: status === "error" ? "error" : "default"
+					}) : tool
+				}),
+				badge && /* @__PURE__ */ jsx("span", {
+					className: "rounded-tag border border-border px-2 py-1 font-mono text-caption text-foreground-muted",
+					"data-slot": "tool-call-row-badge",
+					children: badge
 				}),
 				/* @__PURE__ */ jsx("span", {
 					className: "aios-tool-call-row__status",
@@ -66,7 +82,7 @@ const ToolCallRow = React$1.forwardRef(({ tool, args, status = "pending", elapse
 				hasDetails && /* @__PURE__ */ jsx("button", {
 					type: "button",
 					className: "aios-tool-call-row__toggle",
-					onClick: () => setExpanded((v) => !v),
+					onClick: () => setExpanded(!expanded),
 					"aria-expanded": expanded,
 					"aria-label": expanded ? collapseLabel : expandLabel,
 					children: expanded ? "−" : "+"
@@ -89,6 +105,10 @@ const ToolCallRow = React$1.forwardRef(({ tool, args, status = "pending", elapse
 				error && /* @__PURE__ */ jsx("div", {
 					className: "aios-tool-call-row__error",
 					children: error
+				}),
+				children && /* @__PURE__ */ jsx("div", {
+					"data-slot": "tool-call-row-content",
+					children
 				})
 			]
 		})]

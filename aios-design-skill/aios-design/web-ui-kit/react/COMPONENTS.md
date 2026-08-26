@@ -28,6 +28,16 @@
 **尺寸**: sm, lg  
 **Props**: variant, size, disabled
 
+### IconButton
+**文件**: `src/Button/IconButton.tsx`
+**描述**: 纯图标按钮，复用 Button 变体与状态，并强制提供 `aria-label`
+**Props**: icon, aria-label, size, shape
+
+### Chip/ChipGroup
+**文件**: `src/Chip/Chip.tsx`
+**描述**: 用于筛选和快速选择的 pressed-state 标签；组容器支持横向溢出
+**Props**: selected, size, icon
+
 ### Input
 **文件**: [Inputs.tsx](src/components/Inputs.tsx)  
 **描述**: 输入框组件，支持下划线和边框样式  
@@ -114,6 +124,16 @@
 **描述**: 头像组件  
 **尺寸**: sm, md, lg  
 **Props**: size, fallback
+
+### AvatarGroup
+**文件**: `src/Avatar/AvatarGroup.tsx`
+**描述**: 统一头像尺寸与重叠排列，超出 `max` 时显示 `+N`
+**Props**: max, size, children
+
+### Icon
+**文件**: `src/Icon/Icon.tsx`
+**描述**: 为外部 SVG React 图标统一尺寸、currentColor 与无障碍默认值
+**Props**: glyph, size, label
 
 ### Label
 **文件**: [Label.tsx](src/components/Label.tsx)  

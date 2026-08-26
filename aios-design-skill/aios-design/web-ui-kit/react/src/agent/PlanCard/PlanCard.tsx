@@ -5,7 +5,7 @@ import { Button } from '@/Button'
 import { AgentOrb } from '@/agent/AgentOrb'
 import './PlanCard.css'
 
-export type PlanStepStatus = 'pending' | 'approved' | 'rejected' | 'done'
+export type PlanStepStatus = 'pending' | 'approved' | 'running' | 'rejected' | 'done'
 
 export interface PlanStep {
   id: string
@@ -17,6 +17,7 @@ export interface PlanStep {
 const statusLabels: Record<PlanStepStatus, string> = {
   pending: '[PENDING]',
   approved: '[APPROVED]',
+  running: '[RUNNING]',
   rejected: '[REJECTED]',
   done: '[DONE]',
 }
@@ -107,6 +108,7 @@ export const PlanCard = React.forwardRef<HTMLDivElement, PlanCardProps>(
                 key={step.id}
                 className={cn('aios-plan-card__item', `aios-plan-card__item--${status}`)}
                 data-status={dataAttr(status)}
+                aria-current={status === 'running' ? 'step' : undefined}
               >
                 <span className="aios-plan-card__number">{stepNumber}</span>
                 <div className="aios-plan-card__content">

@@ -466,9 +466,9 @@ AIOS UI for AI OS is a **semantic extension**, not a visual rebrand. The monochr
 
 | Layer | Meaning | Component Examples |
 |-------|---------|-------------------|
-| **Primary: Intent** | What the user wants | `SearchOrAsk` input, voice trigger |
+| **Primary: Intent** | What the user wants | `Sender`, `Prompts`, voice trigger |
 | **Secondary: Plan** | What the agent will do | `PlanCard`, `ToolCallRow` |
-| **Tertiary: State** | Where the agent is now | `AgentOrb`, `ProgressTrace`, `TraceLog` |
+| **Tertiary: State** | Where the agent is now | `ActivityLabel`, `AgentOrb`, `ProgressTrace`, `ContextBar` |
 
 ### Agent Copy & Tone
 

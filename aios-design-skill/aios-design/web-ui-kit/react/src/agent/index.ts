@@ -1,9 +1,37 @@
 export { AgentOrb, agentOrbVariants, type AgentOrbProps, type AgentState } from './AgentOrb'
+export { ActivityLabel, activityLabelVariants, type ActivityLabelProps } from './ActivityLabel'
+export {
+  AssistantPanel,
+  AssistantModal,
+  assistantPanelVariants,
+  type AssistantPanelProps,
+  type AssistantModalProps,
+} from './AssistantPanel'
+export {
+  ContextBar,
+  ContextBarLabel,
+  ContextBarTasks,
+  contextBarVariants,
+  contextBarLabelVariants,
+  type ContextBarProps,
+  type ContextBarLabelProps,
+  type ContextBarTasksProps,
+  type ContextBarStatus,
+} from './ContextBar'
+export {
+  Subagent,
+  SubagentList,
+  subagentVariants,
+  type SubagentProps,
+  type SubagentStatus,
+} from './Subagent'
+export { Terminal, TerminalLine, terminalVariants, type TerminalProps } from './Terminal'
 export {
   ApprovalGate,
   approvalGateVariants,
   type ApprovalGateProps,
   type ApprovalRisk,
+  type ApprovalState,
 } from './ApprovalGate'
 export {
   PlanCard,

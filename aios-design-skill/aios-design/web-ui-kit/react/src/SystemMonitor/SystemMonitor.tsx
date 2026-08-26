@@ -103,8 +103,11 @@ export function SystemMonitor({
 
     const updateBattery = async () => {
       try {
-        if ('getBattery' in navigator) {
-          const battery = await navigator.getBattery()
+        const batteryNavigator = navigator as Navigator & {
+          getBattery?: () => Promise<{ level: number; charging: boolean }>
+        }
+        if (batteryNavigator.getBattery) {
+          const battery = await batteryNavigator.getBattery()
           setInternalBatteryPercent(Math.round(battery.level * 100))
           setInternalBatteryCharging(battery.charging)
         }

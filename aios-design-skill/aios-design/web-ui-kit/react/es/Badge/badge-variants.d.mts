@@ -5,7 +5,7 @@
  * 单色 + 单点红，层级只靠 background / border 表达。
  */
 declare const badgeVariants: (props?: ({
-  variant?: "outline" | "soft" | "destructive" | "primary" | null | undefined;
+  variant?: "soft" | "outline" | "destructive" | "primary" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   dot?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;

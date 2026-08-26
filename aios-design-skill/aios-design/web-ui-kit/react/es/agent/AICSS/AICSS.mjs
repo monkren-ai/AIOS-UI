@@ -1,4 +1,6 @@
 import { cn, dataAttr } from "../../lib/utils.mjs";
+import { CodeBlock } from "../../CodeBlock/CodeBlock.mjs";
+import { CodeDiff } from "../../CodeDiff/CodeDiff.mjs";
 import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import "./AICSS.css";
@@ -24,26 +26,32 @@ const AicssThinkingState = React$1.forwardRef(({ label, locale = "zh", className
 	}), label ?? t(locale, "思考中", "Thinking")]
 }));
 AicssThinkingState.displayName = "AicssThinkingState";
-const AicssThinkingReasoning = React$1.forwardRef(({ summary, children, defaultOpen = true, open: controlledOpen, onOpenChange, locale = "zh", className, ...props }, ref) => {
+const AicssThinkingReasoning = React$1.forwardRef(({ summary, children, status = "running", durationSec, defaultOpen = true, open: controlledOpen, onOpenChange, locale = "zh", className, ...props }, ref) => {
 	const [internalOpen, setInternalOpen] = React$1.useState(defaultOpen);
 	const open = controlledOpen ?? internalOpen;
 	const toggle = () => {
 		if (controlledOpen === void 0) setInternalOpen(!open);
 		onOpenChange?.(!open);
 	};
+	const done = status === "done";
+	const triggerLabel = done && durationSec != null ? t(locale, `已思考 ${durationSec}s`, `Thought for ${durationSec}s`) : t(locale, "思考与推理", "Thinking + reasoning");
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn("aios-aicss-disclosure", className),
 		"data-slot": "aicss-thinking-reasoning",
 		"data-open": dataAttr(open),
+		"data-status": status,
 		...props,
 		children: [/* @__PURE__ */ jsxs("button", {
 			type: "button",
 			className: "aios-aicss-disclosure__trigger",
 			onClick: toggle,
 			"aria-expanded": open,
-			children: [/* @__PURE__ */ jsx(AicssThinkingState, {
-				label: t(locale, "思考与推理", "Thinking + reasoning"),
+			children: [done ? /* @__PURE__ */ jsx("span", {
+				className: "aios-aicss-thinking-state",
+				children: triggerLabel
+			}) : /* @__PURE__ */ jsx(AicssThinkingState, {
+				label: triggerLabel,
 				locale
 			}), /* @__PURE__ */ jsx(Chevron, { open })]
 		}), open && /* @__PURE__ */ jsxs("div", {
@@ -118,39 +126,15 @@ const AicssWebSearch = React$1.forwardRef(({ query, results = [], status = "done
 	});
 });
 AicssWebSearch.displayName = "AicssWebSearch";
-const AicssFileDiff = React$1.forwardRef(({ filename, lines, locale = "zh", className, ...props }, ref) => {
-	const additions = lines.filter((line) => line.type === "add").length;
-	const removals = lines.filter((line) => line.type === "remove").length;
-	return /* @__PURE__ */ jsxs("figure", {
-		ref,
-		className: cn("aios-aicss-code-frame", className),
-		"data-slot": "aicss-file-diff",
-		...props,
-		children: [/* @__PURE__ */ jsxs("figcaption", {
-			className: "aios-aicss-code-frame__header",
-			children: [/* @__PURE__ */ jsx("span", { children: filename }), /* @__PURE__ */ jsxs("span", {
-				"aria-label": t(locale, `${additions} 行新增，${removals} 行删除`, `${additions} additions, ${removals} deletions`),
-				children: [
-					"+",
-					additions,
-					" / −",
-					removals
-				]
-			})]
-		}), /* @__PURE__ */ jsx("code", {
-			className: "aios-aicss-diff",
-			children: lines.map((line, index) => /* @__PURE__ */ jsxs("span", {
-				className: `aios-aicss-diff__line aios-aicss-diff__line--${line.type ?? "context"}`,
-				children: [
-					/* @__PURE__ */ jsx("span", { children: line.oldLine ?? "" }),
-					/* @__PURE__ */ jsx("span", { children: line.newLine ?? "" }),
-					/* @__PURE__ */ jsx("span", { children: line.type === "add" ? "+" : line.type === "remove" ? "−" : " " }),
-					/* @__PURE__ */ jsx("span", { children: line.content })
-				]
-			}, `${line.oldLine}-${line.newLine}-${index}`))
-		})]
-	});
-});
+const AicssFileDiff = React$1.forwardRef(({ filename, lines, locale = "zh", className, ...props }, ref) => /* @__PURE__ */ jsx(CodeDiff, {
+	ref,
+	filename,
+	lines,
+	summaryLabel: t(locale, "代码差异摘要", "Code diff summary"),
+	className,
+	"data-slot": "aicss-file-diff",
+	...props
+}));
 AicssFileDiff.displayName = "AicssFileDiff";
 const AicssImageGeneration = React$1.forwardRef(({ src, alt = "", prompt, width, height, progress, status = "running", locale = "zh", className, ...props }, ref) => /* @__PURE__ */ jsxs("figure", {
 	ref,
@@ -232,44 +216,46 @@ const AicssInlineCitations = React$1.forwardRef(({ children, citations, locale =
 	})]
 }));
 AicssInlineCitations.displayName = "AicssInlineCitations";
-const AicssCodeBlock = React$1.forwardRef(({ code, filename, language, showLineNumbers = true, onCopy, locale = "zh", className, ...props }, ref) => {
-	const [copied, setCopied] = React$1.useState(false);
-	const copy = async () => {
-		if (onCopy) await onCopy(code);
-		else if (typeof navigator !== "undefined") await navigator.clipboard?.writeText(code);
-		setCopied(true);
-		window.setTimeout(() => setCopied(false), 1500);
-	};
-	return /* @__PURE__ */ jsxs("figure", {
-		ref,
-		className: cn("aios-aicss-code-frame", className),
-		"data-slot": "aicss-code-block",
-		...props,
-		children: [/* @__PURE__ */ jsxs("figcaption", {
-			className: "aios-aicss-code-frame__header",
-			children: [/* @__PURE__ */ jsx("span", { children: filename ?? language ?? t(locale, "代码", "Code") }), /* @__PURE__ */ jsx("button", {
-				type: "button",
-				onClick: copy,
-				children: copied ? t(locale, "已复制", "Copied") : t(locale, "复制", "Copy")
-			})]
-		}), /* @__PURE__ */ jsx("pre", { children: /* @__PURE__ */ jsx("code", { children: code.split("\n").map((line, index) => /* @__PURE__ */ jsxs("span", {
-			className: "aios-aicss-code-line",
-			children: [showLineNumbers && /* @__PURE__ */ jsx("span", { children: index + 1 }), /* @__PURE__ */ jsx("span", { children: line || " " })]
-		}, index)) }) })]
-	});
-});
+const AicssCodeBlock = React$1.forwardRef(({ code, filename, language, showLineNumbers = true, onCopy, locale = "zh", className, ...props }, ref) => /* @__PURE__ */ jsx(CodeBlock, {
+	ref,
+	code,
+	filename,
+	language,
+	showLineNumbers,
+	onCopy,
+	copyLabel: t(locale, "复制", "Copy"),
+	copiedLabel: t(locale, "已复制", "Copied"),
+	className,
+	"data-slot": "aicss-code-block",
+	...props
+}));
 AicssCodeBlock.displayName = "AicssCodeBlock";
 const AicssTaskList = React$1.forwardRef(({ title, tasks, onChange, defaultOpen = true, locale = "zh", className, ...props }, ref) => {
 	const [open, setOpen] = React$1.useState(defaultOpen);
-	const done = tasks.filter((task) => task.completed).length;
-	const toggle = (id) => onChange?.(tasks.map((task) => task.id === id ? {
-		...task,
-		completed: !task.completed
-	} : task));
+	const resolved = tasks.map((task) => {
+		const status = task.status ?? (task.completed ? "done" : "pending");
+		return {
+			...task,
+			status,
+			completed: status === "done"
+		};
+	});
+	const done = resolved.filter((task) => task.status === "done").length;
+	const inProgress = resolved.some((task) => task.status === "in-progress");
+	const toggle = (id) => onChange?.(tasks.map((task) => {
+		if (task.id !== id) return task;
+		const nextDone = !((task.status ?? (task.completed ? "done" : "pending")) === "done");
+		return {
+			...task,
+			completed: nextDone,
+			status: nextDone ? "done" : "pending"
+		};
+	}));
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn("aios-aicss-task-list", className),
 		"data-slot": "aicss-task-list",
+		"data-status": inProgress ? "running" : done === tasks.length && tasks.length > 0 ? "done" : "idle",
 		...props,
 		children: [/* @__PURE__ */ jsxs("button", {
 			type: "button",
@@ -285,12 +271,15 @@ const AicssTaskList = React$1.forwardRef(({ title, tasks, onChange, defaultOpen 
 				] }),
 				/* @__PURE__ */ jsx(Chevron, { open })
 			]
-		}), open && /* @__PURE__ */ jsx("ul", { children: tasks.map((task) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsxs("label", { children: [/* @__PURE__ */ jsx("input", {
-			type: "checkbox",
-			checked: Boolean(task.completed),
-			onChange: () => toggle(task.id),
-			disabled: !onChange
-		}), /* @__PURE__ */ jsx("span", { children: task.label })] }) }, task.id)) })]
+		}), open && /* @__PURE__ */ jsx("ul", { children: resolved.map((task) => /* @__PURE__ */ jsx("li", {
+			"data-status": task.status,
+			children: /* @__PURE__ */ jsxs("label", { children: [/* @__PURE__ */ jsx("input", {
+				type: "checkbox",
+				checked: task.status === "done",
+				onChange: () => toggle(task.id),
+				disabled: !onChange
+			}), /* @__PURE__ */ jsx("span", { children: task.label })] })
+		}, task.id)) })]
 	});
 });
 AicssTaskList.displayName = "AicssTaskList";
@@ -342,7 +331,7 @@ const AicssComparisonTable = React$1.forwardRef(({ plans, features, caption, loc
 	})
 }));
 AicssComparisonTable.displayName = "AicssComparisonTable";
-const AicssAgentInput = React$1.forwardRef(({ value: controlledValue, defaultValue = "", loading = false, model, onChange, onSubmit, onAttach, onCancel, locale = "zh", placeholder, disabled, className, onKeyDown, ...props }, ref) => {
+const AicssAgentInput = React$1.forwardRef(({ value: controlledValue, defaultValue = "", loading = false, enhancing = false, model, onChange, onSubmit, onAttach, onEnhance, onCancel, locale = "zh", placeholder, disabled, className, onKeyDown, ...props }, ref) => {
 	const [internalValue, setInternalValue] = React$1.useState(defaultValue);
 	const value = controlledValue ?? internalValue;
 	const submit = () => {
@@ -354,6 +343,8 @@ const AicssAgentInput = React$1.forwardRef(({ value: controlledValue, defaultVal
 		className: cn("aios-aicss-agent-input", className),
 		"data-slot": "aicss-agent-input",
 		"data-loading": dataAttr(loading),
+		"data-enhancing": dataAttr(enhancing),
+		"data-filled": dataAttr(Boolean(value.trim())),
 		children: [/* @__PURE__ */ jsx("textarea", {
 			ref,
 			value,
@@ -381,7 +372,13 @@ const AicssAgentInput = React$1.forwardRef(({ value: controlledValue, defaultVal
 					"aria-label": t(locale, "添加附件", "Add attachment"),
 					children: "+"
 				}),
-				" ",
+				onEnhance && /* @__PURE__ */ jsx("button", {
+					type: "button",
+					onClick: onEnhance,
+					disabled: !value.trim() || loading || enhancing || disabled,
+					"aria-label": t(locale, "增强提示词", "Enhance prompt"),
+					children: enhancing ? t(locale, "增强中", "Enhancing") : t(locale, "增强", "Enhance")
+				}),
 				model && /* @__PURE__ */ jsx("span", { children: model }),
 				/* @__PURE__ */ jsx("button", {
 					type: "button",
@@ -394,7 +391,209 @@ const AicssAgentInput = React$1.forwardRef(({ value: controlledValue, defaultVal
 	});
 });
 AicssAgentInput.displayName = "AicssAgentInput";
+const AicssApprovalCard = React$1.forwardRef(({ variant = "questions", questions = [], command, cwd, plan = [], planTitle, planSummary, planPreviewCount = 3, title, approveLabel, rejectLabel, onApprove, onReject, locale = "zh", className, ...props }, ref) => {
+	const [answers, setAnswers] = React$1.useState({});
+	const [otherSelected, setOtherSelected] = React$1.useState({});
+	const [customDraft, setCustomDraft] = React$1.useState({});
+	const [step, setStep] = React$1.useState(0);
+	const [planExpanded, setPlanExpanded] = React$1.useState(false);
+	const safeStep = Math.min(step, Math.max(questions.length - 1, 0));
+	const allAnswered = questions.length > 0 && questions.every((question) => Boolean(answers[question.id]?.trim()));
+	const previewCount = Math.max(0, planPreviewCount);
+	const planPreview = plan.slice(0, previewCount);
+	const planRest = plan.slice(previewCount);
+	const hasPlanMore = planRest.length > 0;
+	const resolvedTitle = title ?? (variant === "questions" ? t(locale, "问题", "Questions") : variant === "command" ? t(locale, "运行这条命令？", "Run this command?") : t(locale, "计划概览", "Plan Overview"));
+	const resolvedApprove = approveLabel ?? (variant === "questions" ? t(locale, "继续", "Continue") : variant === "command" ? t(locale, "运行", "Run") : t(locale, "批准", "Approve"));
+	const resolvedReject = rejectLabel ?? t(locale, "跳过", "Skip");
+	const canContinue = variant !== "questions" || allAnswered;
+	const isOtherChoice = (question) => {
+		if (otherSelected[question.id]) return true;
+		const answer = answers[question.id];
+		return Boolean(answer) && !question.options.includes(answer);
+	};
+	const handleApprove = (nextAnswers) => {
+		if (variant === "questions") {
+			const next = nextAnswers ?? answers;
+			if (!questions.every((question) => Boolean(next[question.id]?.trim()))) return;
+			onApprove?.({ answers: next });
+			return;
+		}
+		onApprove?.();
+	};
+	const selectOption = (questionId, option) => {
+		setOtherSelected((prev) => ({
+			...prev,
+			[questionId]: false
+		}));
+		setAnswers((prev) => ({
+			...prev,
+			[questionId]: option
+		}));
+		if (safeStep < questions.length - 1) setStep((current) => Math.min(current + 1, questions.length - 1));
+	};
+	const selectOther = (questionId) => {
+		setOtherSelected((prev) => ({
+			...prev,
+			[questionId]: true
+		}));
+		const draft = customDraft[questionId]?.trim() ?? "";
+		setAnswers((prev) => {
+			const next = { ...prev };
+			if (draft) next[questionId] = draft;
+			else delete next[questionId];
+			return next;
+		});
+	};
+	const updateCustom = (questionId, text) => {
+		setCustomDraft((prev) => ({
+			...prev,
+			[questionId]: text
+		}));
+		setOtherSelected((prev) => ({
+			...prev,
+			[questionId]: true
+		}));
+		setAnswers((prev) => {
+			const next = { ...prev };
+			const trimmed = text.trim();
+			if (trimmed) next[questionId] = trimmed;
+			else delete next[questionId];
+			return next;
+		});
+	};
+	const activeQuestion = questions[safeStep];
+	const visiblePlan = planExpanded || !hasPlanMore ? plan : planPreview;
+	return /* @__PURE__ */ jsxs("div", {
+		ref,
+		className: cn("aios-aicss-approval", className),
+		"data-slot": "aicss-approval-card",
+		"data-variant": variant,
+		...props,
+		children: [
+			/* @__PURE__ */ jsxs("div", {
+				className: "aios-aicss-approval__head",
+				children: [/* @__PURE__ */ jsx("strong", { children: resolvedTitle }), variant === "questions" && questions.length > 0 && /* @__PURE__ */ jsxs("span", {
+					"aria-live": "polite",
+					children: [
+						safeStep + 1,
+						" / ",
+						questions.length
+					]
+				})]
+			}),
+			variant === "questions" && activeQuestion && /* @__PURE__ */ jsxs("div", {
+				className: "aios-aicss-approval__body",
+				"aria-live": "polite",
+				children: [/* @__PURE__ */ jsx("p", {
+					className: "aios-aicss-approval__prompt",
+					children: activeQuestion.prompt
+				}), /* @__PURE__ */ jsxs("div", {
+					role: "radiogroup",
+					"aria-label": activeQuestion.prompt,
+					className: "aios-aicss-approval__options",
+					children: [activeQuestion.options.map((option, index) => {
+						const selected = answers[activeQuestion.id] === option && !isOtherChoice(activeQuestion);
+						return /* @__PURE__ */ jsxs("button", {
+							type: "button",
+							role: "radio",
+							"aria-checked": selected,
+							"data-selected": dataAttr(selected),
+							onClick: () => selectOption(activeQuestion.id, option),
+							children: [/* @__PURE__ */ jsx("span", {
+								"aria-hidden": "true",
+								children: String.fromCharCode(65 + index)
+							}), option]
+						}, option);
+					}), /* @__PURE__ */ jsxs("label", {
+						className: "aios-aicss-approval__other",
+						"data-selected": dataAttr(isOtherChoice(activeQuestion)),
+						children: [/* @__PURE__ */ jsx("span", {
+							"aria-hidden": "true",
+							children: String.fromCharCode(65 + activeQuestion.options.length)
+						}), /* @__PURE__ */ jsx("input", {
+							type: "text",
+							value: customDraft[activeQuestion.id] ?? (isOtherChoice(activeQuestion) && answers[activeQuestion.id] && !activeQuestion.options.includes(answers[activeQuestion.id]) ? answers[activeQuestion.id] : ""),
+							placeholder: t(locale, "其他…", "Something else…"),
+							"aria-label": t(locale, `自定义回答：${activeQuestion.prompt}`, `Custom answer for: ${activeQuestion.prompt}`),
+							onFocus: () => selectOther(activeQuestion.id),
+							onChange: (event) => updateCustom(activeQuestion.id, event.target.value)
+						})]
+					})]
+				})]
+			}),
+			variant === "command" && /* @__PURE__ */ jsxs("div", {
+				className: "aios-aicss-approval__body",
+				children: [cwd && /* @__PURE__ */ jsx("div", {
+					className: "aios-aicss-approval__cwd",
+					children: cwd
+				}), /* @__PURE__ */ jsx("pre", {
+					className: "aios-aicss-approval__command",
+					children: command
+				})]
+			}),
+			variant === "plan" && /* @__PURE__ */ jsxs("div", {
+				className: "aios-aicss-approval__body",
+				children: [
+					planTitle && /* @__PURE__ */ jsx("div", {
+						className: "aios-aicss-approval__plan-title",
+						children: planTitle
+					}),
+					planSummary && /* @__PURE__ */ jsx("p", {
+						className: "aios-aicss-approval__plan-summary",
+						children: planSummary
+					}),
+					/* @__PURE__ */ jsx("ul", {
+						className: "aios-aicss-approval__plan",
+						children: visiblePlan.map((stepItem) => /* @__PURE__ */ jsxs("li", { children: [/* @__PURE__ */ jsx("span", { children: stepItem.title }), stepItem.detail && /* @__PURE__ */ jsx("small", { children: stepItem.detail })] }, stepItem.id))
+					}),
+					hasPlanMore && /* @__PURE__ */ jsx("button", {
+						type: "button",
+						className: "aios-aicss-approval__more",
+						"aria-expanded": planExpanded,
+						onClick: () => setPlanExpanded((open) => !open),
+						children: planExpanded ? t(locale, "收起", "Show less") : t(locale, `还有 ${planRest.length} 步`, `${planRest.length} more`)
+					})
+				]
+			}),
+			/* @__PURE__ */ jsxs("div", {
+				className: "aios-aicss-approval__actions",
+				children: [
+					variant === "questions" && /* @__PURE__ */ jsxs("div", {
+						className: "aios-aicss-approval__nav",
+						"aria-label": t(locale, "问题导航", "Question navigation"),
+						children: [/* @__PURE__ */ jsx("button", {
+							type: "button",
+							disabled: safeStep <= 0,
+							"aria-label": t(locale, "上一题", "Previous question"),
+							onClick: () => setStep((current) => Math.max(current - 1, 0)),
+							children: "↑"
+						}), /* @__PURE__ */ jsx("button", {
+							type: "button",
+							disabled: safeStep >= questions.length - 1,
+							"aria-label": t(locale, "下一题", "Next question"),
+							onClick: () => setStep((current) => Math.min(current + 1, questions.length - 1)),
+							children: "↓"
+						})]
+					}),
+					/* @__PURE__ */ jsx("button", {
+						type: "button",
+						onClick: onReject,
+						children: resolvedReject
+					}),
+					/* @__PURE__ */ jsx("button", {
+						type: "button",
+						disabled: !canContinue,
+						onClick: () => handleApprove(),
+						children: resolvedApprove
+					})
+				]
+			})
+		]
+	});
+});
+AicssApprovalCard.displayName = "AicssApprovalCard";
 //#endregion
-export { AicssAgentInput, AicssCodeBlock, AicssComparisonTable, AicssDataTable, AicssFileDiff, AicssImageGeneration, AicssInlineCitations, AicssOrbs, AicssStreamingText, AicssTaskList, AicssTextResponse, AicssThinkingReasoning, AicssThinkingState, AicssWebSearch };
+export { AicssAgentInput, AicssApprovalCard, AicssCodeBlock, AicssComparisonTable, AicssDataTable, AicssFileDiff, AicssImageGeneration, AicssInlineCitations, AicssOrbs, AicssStreamingText, AicssTaskList, AicssTextResponse, AicssThinkingReasoning, AicssThinkingState, AicssWebSearch };
 
 //# sourceMappingURL=AICSS.mjs.map

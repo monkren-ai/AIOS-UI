@@ -29,15 +29,21 @@ export interface SenderProps
   value?: string
   defaultValue?: string
   loading?: boolean
+  /** `loading` 的 AI 流式输出语义别名。两者任一为 true 即进入停止态。 */
+  running?: boolean
   submitType?: 'enter' | 'shiftEnter'
   readOnly?: boolean
   autoSize?: boolean | { minRows?: number; maxRows?: number }
   prefix?: React.ReactNode | ((info: { components: SenderComponents }) => React.ReactNode)
   suffix?: React.ReactNode | ((info: { components: SenderComponents }) => React.ReactNode)
   header?: React.ReactNode
+  attachments?: React.ReactNode
+  tags?: React.ReactNode
+  modelSelect?: React.ReactNode
   footer?: React.ReactNode | ((info: { components: SenderComponents }) => React.ReactNode)
   onSubmit?: (value: string) => void
   onCancel?: () => void
+  onStop?: () => void
   onChange?: (value: string, event?: React.ChangeEvent<HTMLTextAreaElement>) => void
   classNames?: Partial<Record<SenderSemanticType, string>>
   styles?: Partial<Record<SenderSemanticType, React.CSSProperties>>
@@ -72,6 +78,7 @@ export const Sender = React.forwardRef<HTMLTextAreaElement, SenderProps>(
       defaultValue = '',
       placeholder,
       loading = false,
+      running,
       submitType = 'enter',
       readOnly = false,
       disabled = false,
@@ -79,9 +86,13 @@ export const Sender = React.forwardRef<HTMLTextAreaElement, SenderProps>(
       prefix,
       suffix,
       header,
+      attachments,
+      tags,
+      modelSelect,
       footer,
       onSubmit,
       onCancel,
+      onStop,
       onChange,
       onKeyDown,
       className,
@@ -96,6 +107,7 @@ export const Sender = React.forwardRef<HTMLTextAreaElement, SenderProps>(
     ref,
   ) => {
     const [internalValue, setInternalValue] = React.useState(defaultValue)
+    const isRunning = running ?? loading
     const isControlled = controlledValue !== undefined
     const value = isControlled ? controlledValue : internalValue
 
@@ -113,7 +125,7 @@ export const Sender = React.forwardRef<HTMLTextAreaElement, SenderProps>(
     }
 
     const handleSubmit = () => {
-      if (disabled || readOnly || loading || !value.trim()) return
+      if (disabled || readOnly || isRunning || !value.trim()) return
       onSubmit?.(value)
       if (!isControlled) {
         setInternalValue('')
@@ -121,7 +133,8 @@ export const Sender = React.forwardRef<HTMLTextAreaElement, SenderProps>(
     }
 
     const handleCancel = () => {
-      if (!loading) return
+      if (!isRunning) return
+      onStop?.()
       onCancel?.()
     }
 
@@ -139,7 +152,7 @@ export const Sender = React.forwardRef<HTMLTextAreaElement, SenderProps>(
 
       if (shouldSubmit) {
         event.preventDefault()
-        if (loading) {
+        if (isRunning) {
           handleCancel()
         } else {
           handleSubmit()
@@ -164,16 +177,16 @@ export const Sender = React.forwardRef<HTMLTextAreaElement, SenderProps>(
         <Button
           variant="primary"
           size="sm"
-          disabled={disabled || (!loading && !value.trim())}
+          disabled={disabled || (!isRunning && !value.trim())}
           onClick={handleSubmit}
           {...props}
         >
-          {children ?? 'Send'}
+          {children ?? '发送 / Send'}
         </Button>
       ),
       CancelButton: ({ children, ...props }) => (
         <Button variant="destructive" size="sm" onClick={handleCancel} {...props}>
-          {children ?? 'Cancel'}
+          {children ?? '停止 / Stop'}
         </Button>
       ),
     }
@@ -192,7 +205,7 @@ export const Sender = React.forwardRef<HTMLTextAreaElement, SenderProps>(
         className={cn(
           senderVariants({ variant, size }),
           disabled && 'aios-sender--disabled',
-          loading && 'aios-sender--loading',
+          isRunning && 'aios-sender--loading',
           readOnly && 'aios-sender--readonly',
           classNames.root,
           className,
@@ -201,17 +214,28 @@ export const Sender = React.forwardRef<HTMLTextAreaElement, SenderProps>(
         data-slot="sender"
         data-variant={dataAttr(variant)}
         data-size={dataAttr(size)}
-        data-loading={dataAttr(loading)}
+        data-loading={dataAttr(isRunning)}
+        data-running={dataAttr(isRunning)}
         data-readonly={dataAttr(readOnly)}
         data-disabled={dataAttr(disabled)}
       >
-        {header && (
+        {(header || attachments || tags || modelSelect) && (
           <div
             className={cn('aios-sender__header', classNames.header)}
             style={styles.header}
             data-slot="sender-header"
           >
             {header}
+            {attachments && <div data-slot="sender-attachments">{attachments}</div>}
+            {(tags || modelSelect) && (
+              <div
+                className="flex flex-wrap items-center justify-between gap-2"
+                data-slot="sender-context"
+              >
+                <div className="flex flex-wrap items-center gap-2">{tags}</div>
+                {modelSelect}
+              </div>
+            )}
           </div>
         )}
 
@@ -238,11 +262,11 @@ export const Sender = React.forwardRef<HTMLTextAreaElement, SenderProps>(
             value={value}
             placeholder={placeholder}
             disabled={disabled}
-            readOnly={readOnly || loading}
+            readOnly={readOnly || isRunning}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             rows={autoSize ? 1 : rows}
-            aria-busy={loading || undefined}
+            aria-busy={isRunning || undefined}
             {...rest}
           />
 

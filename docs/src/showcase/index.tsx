@@ -37,7 +37,7 @@ import './styles/showcase.css'
  * showcase/ 下的模块化结构，并以内联样式提取的 CSS 类替代硬编码。
  */
 export function Showcase() {
-  const { t, preloadProjectIntro } = useShowcaseContext()
+  const { t } = useShowcaseContext()
   const {
     modalOpen,
     setModalOpen,
@@ -194,20 +194,19 @@ export function Showcase() {
               </svg>
             </div>
             <div className="showcase-intro-card__content">
-              <span className="showcase-intro-card__eyebrow">{t('项目介绍', 'Project Intro')}</span>
+              <span className="showcase-intro-card__eyebrow">{t('设计与项目背景', 'Design and project context')}</span>
               <h1 className="showcase-intro-card__title">AIOS UI</h1>
               <p className="showcase-intro-card__text">
                 {t(
-                  '为 AI OS 构建的单色设计系统。查看完整项目介绍、设计哲学、字体与色彩系统、组件矩阵以及 AI OS Agent 扩展。',
-                  'A monochrome design system built for AI OS. Explore the full project intro, philosophy, typography, color system, component matrix, and AI OS Agent extensions.',
+                  '为 AI OS 构建的单色设计系统。组件实景留在目录中；设计哲学、创作者与项目使命统一收录在关于页面。',
+                  'A monochrome design system for AI OS. Live component states stay in the directory; philosophy, creator, and mission live together on About.',
                 )}
               </p>
               <Link
                 className="showcase-intro-card__link"
-                to="/project-intro"
-                onMouseEnter={preloadProjectIntro}
+                to="/about"
               >
-                {t('查看项目介绍', 'View Project Intro')}
+                {t('阅读设计背景', 'Read design context')}
                 <span aria-hidden="true"> →</span>
               </Link>
             </div>

@@ -6,6 +6,7 @@ import { AgentOrb } from '@/agent/AgentOrb'
 import './ApprovalGate.css'
 
 export type ApprovalRisk = 'low' | 'medium' | 'high'
+export type ApprovalState = 'pending' | 'approved' | 'denied'
 
 const riskLabels: Record<ApprovalRisk, string> = {
   low: '[LOW RISK]',
@@ -32,10 +33,14 @@ export interface ApprovalGateProps
   impact?: string
   reversible?: boolean
   risk?: ApprovalRisk
+  state?: ApprovalState
+  children?: React.ReactNode
   allowLabel?: string
   denyLabel?: string
   onAllow?: () => void
   onDeny?: () => void
+  approvedLabel?: string
+  deniedLabel?: string
 }
 
 export const ApprovalGate = React.forwardRef<HTMLDivElement, ApprovalGateProps>(
@@ -45,10 +50,14 @@ export const ApprovalGate = React.forwardRef<HTMLDivElement, ApprovalGateProps>(
       impact,
       reversible = true,
       risk = 'medium',
+      state = 'pending',
+      children,
       allowLabel = 'ALLOW',
       denyLabel = 'DENY',
       onAllow,
       onDeny,
+      approvedLabel = '已批准 / Approved',
+      deniedLabel = '已拒绝 / Denied',
       className,
       ...props
     },
@@ -63,8 +72,9 @@ export const ApprovalGate = React.forwardRef<HTMLDivElement, ApprovalGateProps>(
         className={cn(approvalGateVariants({ risk }), className)}
         data-slot="approval-gate"
         data-risk={dataAttr(risk)}
-        role="alertdialog"
-        aria-modal="true"
+        data-state={state}
+        role={state === 'pending' ? 'alertdialog' : 'status'}
+        aria-modal={state === 'pending' ? 'true' : undefined}
         aria-labelledby={actionId}
         {...props}
       >
@@ -83,16 +93,27 @@ export const ApprovalGate = React.forwardRef<HTMLDivElement, ApprovalGateProps>(
             {action}
           </p>
           {impact && <p className="aios-approval-gate__impact">{impact}</p>}
+          {children && <div data-slot="approval-gate-detail">{children}</div>}
         </div>
 
-        <div className="aios-approval-gate__actions">
-          <Button variant="secondary" size="sm" onClick={onDeny}>
-            {denyLabel}
-          </Button>
-          <Button variant={risk === 'high' ? 'destructive' : 'primary'} size="sm" onClick={onAllow}>
-            {allowLabel}
-          </Button>
-        </div>
+        {state === 'pending' ? (
+          <div className="aios-approval-gate__actions">
+            <Button variant="secondary" size="sm" onClick={onDeny}>
+              {denyLabel}
+            </Button>
+            <Button
+              variant={risk === 'high' ? 'destructive' : 'primary'}
+              size="sm"
+              onClick={onAllow}
+            >
+              {allowLabel}
+            </Button>
+          </div>
+        ) : (
+          <div className="aios-approval-gate__actions" aria-live="polite">
+            {state === 'approved' ? approvedLabel : deniedLabel}
+          </div>
+        )}
       </div>
     )
   },

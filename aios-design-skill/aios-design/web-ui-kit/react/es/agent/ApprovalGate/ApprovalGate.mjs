@@ -19,15 +19,16 @@ const approvalGateVariants = cva("aios-approval-gate", {
 	} },
 	defaultVariants: { risk: "medium" }
 });
-const ApprovalGate = React$1.forwardRef(({ action, impact, reversible = true, risk = "medium", allowLabel = "ALLOW", denyLabel = "DENY", onAllow, onDeny, className, ...props }, ref) => {
+const ApprovalGate = React$1.forwardRef(({ action, impact, reversible = true, risk = "medium", state = "pending", children, allowLabel = "ALLOW", denyLabel = "DENY", onAllow, onDeny, approvedLabel = "已批准 / Approved", deniedLabel = "已拒绝 / Denied", className, ...props }, ref) => {
 	const actionId = `${React$1.useId()}-action`;
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(approvalGateVariants({ risk }), className),
 		"data-slot": "approval-gate",
 		"data-risk": dataAttr(risk),
-		role: "alertdialog",
-		"aria-modal": "true",
+		"data-state": state,
+		role: state === "pending" ? "alertdialog" : "status",
+		"aria-modal": state === "pending" ? "true" : void 0,
 		"aria-labelledby": actionId,
 		...props,
 		children: [
@@ -49,16 +50,23 @@ const ApprovalGate = React$1.forwardRef(({ action, impact, reversible = true, ri
 			}),
 			/* @__PURE__ */ jsxs("div", {
 				className: "aios-approval-gate__body",
-				children: [/* @__PURE__ */ jsx("p", {
-					id: actionId,
-					className: "aios-approval-gate__action",
-					children: action
-				}), impact && /* @__PURE__ */ jsx("p", {
-					className: "aios-approval-gate__impact",
-					children: impact
-				})]
+				children: [
+					/* @__PURE__ */ jsx("p", {
+						id: actionId,
+						className: "aios-approval-gate__action",
+						children: action
+					}),
+					impact && /* @__PURE__ */ jsx("p", {
+						className: "aios-approval-gate__impact",
+						children: impact
+					}),
+					children && /* @__PURE__ */ jsx("div", {
+						"data-slot": "approval-gate-detail",
+						children
+					})
+				]
 			}),
-			/* @__PURE__ */ jsxs("div", {
+			state === "pending" ? /* @__PURE__ */ jsxs("div", {
 				className: "aios-approval-gate__actions",
 				children: [/* @__PURE__ */ jsx(Button, {
 					variant: "secondary",
@@ -71,6 +79,10 @@ const ApprovalGate = React$1.forwardRef(({ action, impact, reversible = true, ri
 					onClick: onAllow,
 					children: allowLabel
 				})]
+			}) : /* @__PURE__ */ jsx("div", {
+				className: "aios-approval-gate__actions",
+				"aria-live": "polite",
+				children: state === "approved" ? approvedLabel : deniedLabel
 			})
 		]
 	});

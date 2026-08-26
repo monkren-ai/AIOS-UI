@@ -6,7 +6,7 @@
  * 不用阴影去伪造按键的立体感。
  */
 declare const kbdVariants: (props?: ({
-  variant?: "outline" | "soft" | "ghost" | null | undefined;
+  variant?: "soft" | "outline" | "ghost" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 type KbdVariant = 'soft' | 'outline' | 'ghost';

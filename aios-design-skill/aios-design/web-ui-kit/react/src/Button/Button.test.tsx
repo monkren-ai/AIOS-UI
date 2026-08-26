@@ -3,6 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Button } from './Button'
+import { IconButton } from './IconButton'
 import { buttonVariants } from './button-variants'
 
 const Icon = () => (
@@ -146,5 +147,29 @@ describe('Button', () => {
     const link = screen.getByRole('link', { name: 'Docs' })
     expect(link).toHaveClass('aios-btn')
     expect(link.tagName).toBe('A')
+  })
+})
+
+describe('IconButton', () => {
+  it('requires an accessible label and keeps the icon decorative', () => {
+    render(<IconButton aria-label="Search" icon={<Icon />} />)
+    const button = screen.getByRole('button', { name: 'Search' })
+    expect(button).toHaveAttribute('data-slot', 'icon-button')
+    expect(button).toHaveAttribute('data-size', 'icon-md')
+    expect(button).toHaveAttribute('data-shape', 'circle')
+    expect(screen.getByTestId('icon').closest('[data-slot="icon-button-icon"]')).toHaveAttribute(
+      'aria-hidden',
+      'true',
+    )
+  })
+
+  it('maps semantic size and shape onto the shared button system', () => {
+    render(
+      <IconButton aria-label="Settings" icon={<Icon />} size="lg" shape="technical" />,
+    )
+    const button = screen.getByRole('button')
+    expect(button).toHaveAttribute('data-size', 'icon-lg')
+    expect(button).toHaveAttribute('data-shape', 'technical')
+    expect(button).toHaveClass('rounded-card-technical')
   })
 })

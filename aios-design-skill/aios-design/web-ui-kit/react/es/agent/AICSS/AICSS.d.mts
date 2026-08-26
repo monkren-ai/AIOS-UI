@@ -10,6 +10,8 @@ declare const AicssThinkingState: React$1.ForwardRefExoticComponent<AicssThinkin
 interface AicssThinkingReasoningProps extends React$1.HTMLAttributes<HTMLDivElement> {
   summary?: React$1.ReactNode;
   children: React$1.ReactNode;
+  status?: Extract<AicssStatus, 'running' | 'done'>;
+  durationSec?: number;
   defaultOpen?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -94,7 +96,9 @@ interface AicssTaskItem {
   id: string;
   label: string;
   completed?: boolean;
+  status?: AicssTaskStatus;
 }
+type AicssTaskStatus = 'pending' | 'in-progress' | 'done';
 interface AicssTaskListProps extends Omit<React$1.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   title?: string;
   tasks: AicssTaskItem[];
@@ -138,14 +142,46 @@ interface AicssAgentInputProps extends Omit<React$1.TextareaHTMLAttributes<HTMLT
   value?: string;
   defaultValue?: string;
   loading?: boolean;
+  enhancing?: boolean;
   model?: string;
   onChange?: (value: string) => void;
   onSubmit?: (value: string) => void;
   onAttach?: () => void;
+  onEnhance?: () => void;
   onCancel?: () => void;
   locale?: AicssLocale;
 }
 declare const AicssAgentInput: React$1.ForwardRefExoticComponent<AicssAgentInputProps & React$1.RefAttributes<HTMLTextAreaElement>>;
+type AicssApprovalVariant = 'questions' | 'command' | 'plan';
+interface AicssApprovalQuestion {
+  id: string;
+  prompt: string;
+  options: string[];
+}
+interface AicssApprovalPlanStep {
+  id: string;
+  title: string;
+  detail?: string;
+}
+interface AicssApprovalCardProps extends Omit<React$1.HTMLAttributes<HTMLDivElement>, 'title'> {
+  variant?: AicssApprovalVariant;
+  questions?: AicssApprovalQuestion[];
+  command?: string;
+  cwd?: string;
+  plan?: AicssApprovalPlanStep[];
+  planTitle?: string;
+  planSummary?: string;
+  planPreviewCount?: number;
+  title?: string;
+  approveLabel?: string;
+  rejectLabel?: string;
+  onApprove?: (payload?: {
+    answers?: Record<string, string>;
+  }) => void;
+  onReject?: () => void;
+  locale?: AicssLocale;
+}
+declare const AicssApprovalCard: React$1.ForwardRefExoticComponent<AicssApprovalCardProps & React$1.RefAttributes<HTMLDivElement>>;
 //#endregion
-export { AicssAgentInput, AicssAgentInputProps, AicssCitation, AicssCodeBlock, AicssCodeBlockProps, AicssComparisonFeature, AicssComparisonTable, AicssComparisonTableProps, AicssDataTable, AicssDataTableProps, AicssDiffLine, AicssDiffLineType, AicssFileDiff, AicssFileDiffProps, AicssImageGeneration, AicssImageGenerationProps, AicssInlineCitations, AicssInlineCitationsProps, AicssLocale, AicssOrbs, AicssOrbsProps, AicssSearchResult, AicssStatus, AicssStreamingText, AicssStreamingTextProps, AicssTableColumn, AicssTaskItem, AicssTaskList, AicssTaskListProps, AicssTextResponse, AicssTextResponseProps, AicssThinkingReasoning, AicssThinkingReasoningProps, AicssThinkingState, AicssThinkingStateProps, AicssWebSearch, AicssWebSearchProps };
+export { AicssAgentInput, AicssAgentInputProps, AicssApprovalCard, AicssApprovalCardProps, AicssApprovalPlanStep, AicssApprovalQuestion, AicssApprovalVariant, AicssCitation, AicssCodeBlock, AicssCodeBlockProps, AicssComparisonFeature, AicssComparisonTable, AicssComparisonTableProps, AicssDataTable, AicssDataTableProps, AicssDiffLine, AicssDiffLineType, AicssFileDiff, AicssFileDiffProps, AicssImageGeneration, AicssImageGenerationProps, AicssInlineCitations, AicssInlineCitationsProps, AicssLocale, AicssOrbs, AicssOrbsProps, AicssSearchResult, AicssStatus, AicssStreamingText, AicssStreamingTextProps, AicssTableColumn, AicssTaskItem, AicssTaskList, AicssTaskListProps, AicssTaskStatus, AicssTextResponse, AicssTextResponseProps, AicssThinkingReasoning, AicssThinkingReasoningProps, AicssThinkingState, AicssThinkingStateProps, AicssWebSearch, AicssWebSearchProps };
 //# sourceMappingURL=AICSS.d.mts.map

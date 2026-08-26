@@ -199,3 +199,43 @@ No shadows. Layering through background contrast and borders.
 - ✅ Do use `[LOADING]` bracket text or segmented spinners — no skeletons
 - ❌ Don't use red backgrounds or alert banners for errors — border + text only
 - ❌ Don't use mascots or sad-face illustrations for empty states — dot-matrix only
+
+---
+
+## 16. CODE OUTPUT / DIFFS
+
+- Use `CodeBlock` for generated or referenced code. Always identify the language when known and keep copy feedback inline.
+- Use `CodeDiff` for proposed or completed changes. Preserve added, removed and context semantics in text/ARIA; color alone is insufficient.
+- Keep filenames, line numbers and execution status in Space Mono. The code itself may use its syntax theme, but the container remains flat: surface contrast plus a 1px border, no shadow.
+- Large output belongs in a bounded scroll region. Do not allow long code lines to widen the page.
+
+---
+
+## 17. AGENT WORKFLOWS / CONVERSATIONS
+
+Choose components by workflow responsibility:
+
+| Need | Component | Rule |
+|---|---|---|
+| Capture intent | `Sender`, `Prompts` | Keep the primary action explicit; attachments remain visible before send. |
+| Show a plan | `PlanCard` | Distinguish pending, running, completed and blocked steps. |
+| Request authority | `ApprovalGate` | State actor, impact scope, risk and reversibility before approval. |
+| Show tool activity | `ToolCallRow`, `Terminal` | Expose tool/command, status and elapsed time; redact secrets. |
+| Show delegated work | `Subagent`, `SubagentList` | Identify ownership and state; do not imply workers that do not exist. |
+| Show progress | `ProgressTrace`, `ThinkingSteps`, `ThinkingIndicator` | Display observable process state, never private chain-of-thought. |
+| Frame the assistant | `AssistantPanel`, `ContextBar` | Use for persistent context and actions, not decorative chrome. |
+| Migrate a floating assistant API | `AssistantModal` | Semantic alias over `AssistantPanel`; never duplicate its focus or open-state logic. |
+| Render conversation | `ConversationViewport`, `Message`, `Response` | Preserve sender semantics, keyboard order and return-to-latest behavior. |
+| Disclose evidence | `Sources`, `Source` | Render only real source metadata and reachable links. |
+| Navigate alternatives | `BranchPicker` | Use only when multiple response branches are available. |
+
+Agent screens still use the same three-layer hierarchy: intent first, plan/action second, state metadata third. Chat bubbles alone are insufficient for workflows involving plans, tools, permissions or recoverable errors.
+
+### 1.9 Oreo compatibility additions
+
+| Need | Component | Rule |
+|---|---|---|
+| Icon-only action | `IconButton` | Always provide `aria-label`; use Button variants and shared icon sizes. |
+| Filter or quick choice | `Chip` + `ChipGroup` | Use pressed state; keep removable metadata in `Tag`, not Chip. |
+| Compact people stack | `AvatarGroup` | Set `max` and label the group; it owns child size and `+N`. |
+| Normalize external SVG icons | `Icon` | Pass a glyph component; add `label` only when the icon conveys meaning alone. |
