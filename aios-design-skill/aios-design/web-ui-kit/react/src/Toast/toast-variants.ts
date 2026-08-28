@@ -15,7 +15,7 @@ export const toastVariants = cva(
     'aios-toast',
     'flex w-full items-center gap-3 rounded-md border border-border-visible border-l-[3px]',
     'bg-surface px-4 py-3 font-body text-sm text-foreground',
-    'transition-[opacity,transform] duration-300 ease-aios motion-reduce:transition-none',
+    'motion-safe:animate-toast-enter motion-reduce:animate-none',
   ],
   {
     variants: {

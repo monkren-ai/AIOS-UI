@@ -21,7 +21,7 @@ export function ComponentsIndexPage() {
   return (
     <div className="flex w-full max-w-none flex-col gap-12 pb-24">
       <header className="flex flex-col gap-3">
-        <h1 className="text-display-sm text-foreground-display">{t('组件', 'Components')}</h1>
+        <h1 className="text-heading text-foreground-display">{t('组件', 'Components')}</h1>
         <p className="text-subheading text-foreground-muted">
           {t(
             `${total} 个已收录文档的组件，分基础、AI Agent 与其他三组。每个条目里可以直接操作实景。当前展示 ${pageTotal} 个。`,
@@ -34,7 +34,7 @@ export function ComponentsIndexPage() {
         <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
           {String(pageIndex + 1).padStart(2, '0')} / {String(COMPONENT_PAGES.length).padStart(2, '0')}
         </span>
-        <h2 className="text-display-sm text-foreground-display">{tb(page.label)}</h2>
+        <h2 className="text-heading text-foreground-display">{tb(page.label)}</h2>
         <p className="text-foreground-muted">{tb(page.description)}</p>
       </div>
 

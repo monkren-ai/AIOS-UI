@@ -39,6 +39,7 @@ export const inputControlVariants = cva(
   [
     'relative flex w-full items-center gap-2',
     'transition-colors duration-200 ease-aios motion-reduce:transition-none',
+    'data-[shaking]:motion-safe:animate-input-shake',
   ],
   {
     variants: {
@@ -151,6 +152,13 @@ export const inputClearVariants = cva([
   'hover:text-foreground',
   'focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2',
   '[&_svg]:size-[1em] [&_svg]:shrink-0',
+])
+
+/** 清除时盖在输入文字上的淡出层。 */
+export const inputClearGhostVariants = cva([
+  'pointer-events-none absolute inset-0 flex items-center',
+  'overflow-hidden font-mono text-foreground',
+  'motion-safe:animate-input-clear-out motion-reduce:hidden',
 ])
 
 /** v1 的变体名 → 当前变体名。保留是为了不让既有调用点一次性全炸。 */

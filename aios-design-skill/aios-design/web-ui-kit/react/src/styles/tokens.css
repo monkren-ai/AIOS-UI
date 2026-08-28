@@ -127,6 +127,15 @@
   --ease-spring-moderate: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring-slow: cubic-bezier(0.33, 1, 0.68, 1);
 
+  /* 位移与缩放 —— 只给 opacity/transform，不引入 blur */
+  --duration-stagger: 40ms;
+  --distance-micro: 4px;
+  --distance-small: 6px;
+  --distance-base: 8px;
+  --scale-overlay-modal: 0.96;
+  --scale-overlay-menu: 0.97;
+  --scale-overlay-tooltip: 0.98;
+
   --easing: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
   --animation-agent-breathe: agent-breathe var(--duration-agent-breathe) ease-in-out infinite;
@@ -414,5 +423,77 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes aios-input-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(calc(var(--distance-small) * -1));
+  }
+  40% {
+    transform: translateX(var(--distance-small));
+  }
+  60% {
+    transform: translateX(calc(var(--distance-small) * -1));
+  }
+  80% {
+    transform: translateX(var(--distance-small));
+  }
+}
+
+@keyframes aios-input-clear-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--distance-micro) * -1));
+  }
+}
+
+@keyframes aios-toast-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--distance-base));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aios-notification-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--distance-base), calc(var(--distance-base) * -1));
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes aios-digit-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--digit-from, 100%));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aios-success-draw {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }

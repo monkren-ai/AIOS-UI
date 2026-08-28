@@ -2,6 +2,7 @@ import * as React from 'react'
 import { cn, dataAttr } from '@/lib/utils'
 import {
   inputClearVariants,
+  inputClearGhostVariants,
   inputControlVariants,
   inputFieldVariants,
   inputIconVariants,
@@ -78,12 +79,22 @@ export function Input({
   ...rest
 }: InputProps) {
   const [internalValue, setInternalValue] = React.useState(defaultValue ?? '')
+  const [shaking, setShaking] = React.useState(false)
+  const [clearingText, setClearingText] = React.useState<string | null>(null)
   const generatedId = React.useId()
   const inputId = id || generatedId
   const errorId = `${inputId}-error`
   const value = controlledValue !== undefined ? controlledValue : internalValue
   const hasError = Boolean(error)
+  const wasError = React.useRef(hasError)
   const inputRef = React.useRef<HTMLInputElement | null>(null)
+
+  React.useEffect(() => {
+    if (hasError && !wasError.current) {
+      setShaking(true)
+    }
+    wasError.current = hasError
+  }, [hasError])
 
   const resolvedVariant = (resolveInputVariant(variant) ?? 'outline') as 'outline' | 'soft'
   const resolvedSize = size ?? 'md'
@@ -114,6 +125,8 @@ export function Input({
   const handleClear = React.useCallback(() => {
     const input = inputRef.current
     if (!input) return
+    const current = input.value
+    if (current) setClearingText(current)
     const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set
     setter?.call(input, '')
     input.dispatchEvent(new Event('input', { bubbles: true }))
@@ -153,6 +166,12 @@ export function Input({
           disabled,
         })}
         data-slot="input-control"
+        data-shaking={dataAttr(shaking)}
+        onAnimationEnd={(event) => {
+          if (event.animationName.includes('aios-input-shake')) {
+            setShaking(false)
+          }
+        }}
       >
         {leadingIcon && (
           <span
@@ -164,21 +183,33 @@ export function Input({
             {leadingIcon}
           </span>
         )}
-        <input
-          ref={setRefs}
-          className={inputFieldVariants({ size: resolvedSize })}
-          data-slot="input-field"
-          type={type}
-          id={inputId}
-          name={name}
-          placeholder={placeholder}
-          value={value}
-          disabled={disabled}
-          onChange={handleChange}
-          aria-invalid={hasError || undefined}
-          aria-describedby={hasError ? errorId : undefined}
-          {...rest}
-        />
+        <span className="relative min-w-0 flex-1 overflow-hidden">
+          <input
+            ref={setRefs}
+            className={inputFieldVariants({ size: resolvedSize })}
+            data-slot="input-field"
+            type={type}
+            id={inputId}
+            name={name}
+            placeholder={placeholder}
+            value={value}
+            disabled={disabled}
+            onChange={handleChange}
+            aria-invalid={hasError || undefined}
+            aria-describedby={hasError ? errorId : undefined}
+            {...rest}
+          />
+          {clearingText && (
+            <span
+              className={inputClearGhostVariants()}
+              data-slot="input-clear-ghost"
+              aria-hidden="true"
+              onAnimationEnd={() => setClearingText(null)}
+            >
+              {clearingText}
+            </span>
+          )}
+        </span>
         {showClear && (
           <button
             type="button"

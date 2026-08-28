@@ -1,4 +1,5 @@
 import { cva } from 'class-variance-authority'
+import { overlayMenuMotion } from '@/lib/overlay-motion'
 
 /* ────────────────────────────────────────────────────────────
    default 变体
@@ -20,9 +21,7 @@ export const dropdownMenuPositionerVariants = cva('z-[var(--z-dropdown)]')
 export const dropdownMenuContentVariants = cva(
   [
     'min-w-[180px] rounded-sm border border-border-visible bg-popover py-1 text-popover-foreground',
-    'transition-[opacity,transform] duration-[var(--duration-spring-moderate)] ease-spring-moderate',
-    'motion-reduce:transition-none',
-    'closed:scale-95 closed:opacity-0 open:scale-100 open:opacity-100',
+    ...overlayMenuMotion,
   ],
   {
     variants: {
@@ -90,9 +89,7 @@ export const menubarTriggerVariants = cva(
 export const menubarDropdownVariants = cva(
   [
     'min-w-[200px] rounded-sm border border-border-visible bg-popover py-1',
-    'transition-[opacity,transform] duration-[var(--duration-spring-moderate)] ease-spring-moderate',
-    'motion-reduce:transition-none',
-    'closed:-translate-y-1 closed:opacity-0 open:translate-y-0 open:opacity-100',
+    ...overlayMenuMotion,
   ],
   {
     variants: {

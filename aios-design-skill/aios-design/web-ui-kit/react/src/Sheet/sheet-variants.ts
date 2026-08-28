@@ -1,10 +1,12 @@
 import { cva } from 'class-variance-authority'
+import { overlaySheetTiming, overlayDuration, OVERLAY_REDUCED_MOTION } from '@/lib/overlay-motion'
 
 export const sheetBackdropVariants = cva(
   [
     'fixed inset-0 z-[var(--z-modal)] bg-overlay-light',
-    'transition-[opacity,visibility] duration-[var(--duration-transition)] ease-aios',
-    'motion-reduce:transition-none',
+    'transition-[opacity,visibility]',
+    ...overlayDuration('slow'),
+    OVERLAY_REDUCED_MOTION,
   ],
   {
     variants: {
@@ -26,8 +28,7 @@ export const sheetBackdropVariants = cva(
 export const sheetVariants = cva(
   [
     'fixed z-[calc(var(--z-modal)+1)] flex max-h-screen flex-col overflow-y-auto bg-surface',
-    'transition-transform duration-[var(--duration-spring-moderate)] ease-spring-moderate',
-    'motion-reduce:transition-none',
+    ...overlaySheetTiming,
   ],
   {
     variants: {

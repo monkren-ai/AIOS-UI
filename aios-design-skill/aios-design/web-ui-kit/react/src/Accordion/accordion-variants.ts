@@ -69,7 +69,7 @@ export const accordionTriggerIconVariants = cva([
  */
 export const accordionPanelVariants = cva([
   'h-0 overflow-hidden',
-  'transition-[height] duration-[160ms] ease-spring-moderate motion-reduce:transition-none',
+  'transition-[height] duration-[var(--duration-spring-moderate)] ease-spring-moderate motion-reduce:transition-none',
   'open:h-[var(--accordion-panel-height,auto)]',
   'data-starting-style:h-0 data-ending-style:h-0',
 ])

@@ -36,6 +36,10 @@ export const COMPONENT_NAME_ZH: Record<string, string> = {
   Carousel: "轮播",
   Menubar: "菜单栏",
   Radio: "单选框",
+  NumberTicker: "数字翻牌",
+  IconSwap: "图标切换",
+  SuccessCheck: "完成勾选",
+  NotificationBadge: "通知徽标",
   Button: "按钮",
   Input: "输入框",
   Textarea: "文本域",
@@ -139,6 +143,46 @@ export function getComponentName(
 }
 
 const ENTRIES: ComponentManifestEntry[] = [
+  {
+    slug: "number-ticker",
+    name: "NumberTicker",
+    category: "data-display",
+    status: "new",
+    description: {
+      zh: "数字变化时按位交错滑入。",
+      en: "Digits restagger with a slide when a number updates.",
+    },
+  },
+  {
+    slug: "icon-swap",
+    name: "IconSwap",
+    category: "data-display",
+    status: "new",
+    description: {
+      zh: "同一槽位交叉切换图标。",
+      en: "Cross-fade two icons in the same slot.",
+    },
+  },
+  {
+    slug: "success-check",
+    name: "SuccessCheck",
+    category: "feedback",
+    status: "new",
+    description: {
+      zh: "完成瞬间的描边勾选。",
+      en: "A stroke-drawn check for a completion moment.",
+    },
+  },
+  {
+    slug: "notification-badge",
+    name: "NotificationBadge",
+    category: "data-display",
+    status: "new",
+    description: {
+      zh: "锚在触发器上的计数或圆点徽标。",
+      en: "A count or dot badge anchored to a trigger.",
+    },
+  },
   {
     slug: "icon-button",
     name: "IconButton",

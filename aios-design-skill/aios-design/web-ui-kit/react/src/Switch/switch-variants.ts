@@ -35,7 +35,7 @@ export const switchVariants = cva(
 export const switchTrackVariants = cva(
   [
     'group/switch-track relative shrink-0 rounded-pill border-0 bg-border-visible p-0',
-    'transition-colors duration-200 ease-aios motion-reduce:transition-none',
+    'transition-colors duration-[var(--duration-spring-moderate)] ease-spring-moderate motion-reduce:transition-none',
     'focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2',
     '[&:not([data-disabled])]:hover:bg-foreground-muted',
     'checked:bg-foreground-display',
@@ -58,7 +58,7 @@ export const switchTrackVariants = cva(
 export const switchThumbVariants = cva(
   [
     'absolute top-1/2 -translate-y-1/2 rounded-full bg-foreground-disabled',
-    'transition-[inset-inline-start,background-color,scale] duration-200 ease-aios motion-reduce:transition-none',
+    'transition-[inset-inline-start,background-color,scale] duration-[var(--duration-spring-moderate)] ease-spring-moderate motion-reduce:transition-none',
     'group-data-[checked]/switch-track:bg-background',
     'group-data-[disabled]/switch-track:bg-foreground-disabled',
   ],

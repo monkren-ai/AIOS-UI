@@ -175,8 +175,8 @@ export const popoverDoc: ComponentDoc = {
       en: 'The trigger’s default classes are just `inline-block cursor-pointer`, with no focus ring of their own — the focus styling comes from the element you pass in, so pass one that already handles `focus-visible`, such as `Button`.',
     },
     {
-      zh: '缩放淡入带 `motion-reduce:transition-none`，减弱动效下直接出现。',
-      en: 'The scale-and-fade entry carries `motion-reduce:transition-none`, so it simply appears under reduced motion.',
+      zh: '浮层走 origin-aware 缩放（`--scale-overlay-menu`）和 `--duration-spring-moderate`。减弱动效时位移和缩放回到 identity。',
+      en: 'The popup uses origin-aware scale (`--scale-overlay-menu`) and `--duration-spring-moderate`. Reduced motion returns translation and scale to identity.',
     },
   ],
 }

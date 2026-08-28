@@ -9,7 +9,16 @@ export const avatarGroupDoc: ComponentDoc = {
   preview: () => <AvatarGroup max={2} aria-label="Team"><Avatar fallback="AI" /><Avatar fallback="UX" /><Avatar fallback="QA" /></AvatarGroup>,
   importStatement: `import { Avatar, AvatarGroup } from 'aios-ui-kit/avatar'`,
   usageSnippet: `<AvatarGroup max={3} aria-label="Project members">{members}</AvatarGroup>`,
-  examples: [{ id: 'basic', title: { zh: '数量折叠', en: 'Overflow count' }, code: basicSource, render: () => <Basic /> }],
+  examples: [{
+    id: 'basic',
+    title: { zh: '数量折叠与悬停落差', en: 'Overflow and hover falloff' },
+    description: {
+      zh: '悬停某一颗头像会把它抬起 4px，左右邻居跟着抬 2px。回落用 spring-moderate，没有 bounce。',
+      en: 'Hovering an avatar lifts it 4px, with neighbours following at 2px. The return uses spring-moderate, with no bounce.',
+    },
+    code: basicSource,
+    render: () => <Basic />,
+  }],
   api: [{ name: 'AvatarGroup', props: [
     { name: 'max', type: 'number', description: { zh: '最多展示的头像数。', en: 'Maximum visible avatars.' } },
     { name: 'size', type: `'sm' | 'md' | 'lg'`, default: `'md'`, description: { zh: '统一应用到子头像。', en: 'Applied consistently to child avatars.' } },

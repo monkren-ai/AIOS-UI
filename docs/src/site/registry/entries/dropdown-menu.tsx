@@ -291,8 +291,8 @@ export const dropdownMenuDoc: ComponentDoc = {
       en: '`shortcut` is plain text and gets announced right after the label, so a glyph string like `⌘⌫` may come out as noise. Spell it out when that matters.',
     },
     {
-      zh: '浮层的缩放淡入带 `motion-reduce:transition-none`。',
-      en: 'The popup’s scale-and-fade entry carries `motion-reduce:transition-none`.',
+      zh: '浮层走 origin-aware 缩放（`--scale-overlay-menu`）和 `--duration-spring-moderate`。减弱动效时位移和缩放回到 identity。',
+      en: 'The popup uses origin-aware scale (`--scale-overlay-menu`) and `--duration-spring-moderate`. Reduced motion returns translation and scale to identity.',
     },
   ],
 }

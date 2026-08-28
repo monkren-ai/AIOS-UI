@@ -260,8 +260,8 @@ export const modalDoc: ComponentDoc = {
       en: 'The panel caps at 90vh and scrolls internally, so long content never overflows the viewport; Base UI handles locking the page behind it.',
     },
     {
-      zh: '遮罩淡入与面板位移都带 `motion-reduce:transition-none`，开了减弱动效就直接就位。',
-      en: 'The backdrop fade and the panel’s travel both carry `motion-reduce:transition-none`, so with reduced motion the dialog simply appears in place.',
+      zh: '面板走 `--duration-spring-slow` 与 `--scale-overlay-modal`，进慢出快。减弱动效时位移和缩放回到 identity。',
+      en: 'The panel uses `--duration-spring-slow` and `--scale-overlay-modal`, slower in than out. Reduced motion returns translation and scale to identity.',
     },
   ],
 }

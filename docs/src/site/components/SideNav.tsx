@@ -16,6 +16,13 @@ export interface SideNavGroup {
   links: SideNavLink[]
 }
 
+function badgeToneClass(badge: string) {
+  const tone = badge.toUpperCase()
+  if (tone === 'NEW') return 'docs-nav-badge--new'
+  if (tone === 'BETA') return 'docs-nav-badge--beta'
+  return 'border-border text-foreground-subtle'
+}
+
 export function SideNav({
   groups,
   className,
@@ -30,7 +37,7 @@ export function SideNav({
       data-slot="side-nav"
       aria-label={ariaLabel}
       className={cn(
-        'flex w-full flex-col gap-8 lg:sticky lg:top-14 lg:max-h-[calc(100vh-3.5rem)] lg:w-60 lg:shrink-0 lg:overflow-y-auto lg:py-8 lg:pe-4',
+        'flex w-full flex-col gap-8 lg:sticky lg:top-14 lg:max-h-[calc(100vh-3.5rem)] lg:w-60 lg:shrink-0 lg:overflow-y-auto lg:pe-4',
         className,
       )}
     >
@@ -62,7 +69,12 @@ export function SideNav({
             >
               <span>{link.label}</span>
               {link.badge && (
-                <span className="ms-2 rounded-2xs border border-border px-1 font-mono text-micro uppercase text-foreground-subtle">
+                <span
+                  className={cn(
+                    'ms-2 rounded-2xs border px-1 font-mono text-micro uppercase',
+                    badgeToneClass(link.badge),
+                  )}
+                >
                   {link.badge}
                 </span>
               )}

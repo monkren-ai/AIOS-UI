@@ -19,7 +19,7 @@ export function ComponentGroupNav({ activePage, groups }: ComponentGroupNavProps
   return (
     <nav
       aria-label={t('组件分组分页', 'Component group pages')}
-      className="grid overflow-hidden rounded-card-compact border border-border sm:grid-cols-3"
+      className="grid overflow-hidden rounded-2xl border border-border sm:grid-cols-3"
     >
       {COMPONENT_PAGES.map((page) => {
         const count = groups
@@ -33,7 +33,7 @@ export function ComponentGroupNav({ activePage, groups }: ComponentGroupNavProps
             to={getComponentPageHref(page.id)}
             aria-current={active ? 'page' : undefined}
             className={cn(
-              'flex min-w-0 flex-col gap-2 border-b border-border p-4 no-underline last:border-b-0 sm:border-b-0 sm:border-e sm:last:border-e-0',
+              'flex min-w-0 flex-col gap-2 p-4 no-underline',
               'transition-colors duration-200 motion-reduce:transition-none',
               active
                 ? 'bg-foreground-display text-background'
@@ -41,7 +41,7 @@ export function ComponentGroupNav({ activePage, groups }: ComponentGroupNavProps
             )}
           >
             <span className="flex items-baseline justify-between gap-3">
-              <span className="text-subheading">{tb(page.label)}</span>
+              <span className="docs-group-nav-title text-subheading">{tb(page.label)}</span>
               <span
                 className={cn(
                   'font-mono text-label',

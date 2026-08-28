@@ -117,6 +117,24 @@ describe('Input', () => {
     expect(screen.getByRole('textbox')).toHaveAttribute('aria-describedby', errorEl.id)
   })
 
+  it('shakes the control when an error appears', () => {
+    const { rerender } = render(<Input />)
+    expect(screen.getByRole('textbox').closest('[data-slot="input-control"]')).not.toHaveAttribute(
+      'data-shaking',
+    )
+    rerender(<Input error="Required" />)
+    expect(screen.getByRole('textbox').closest('[data-slot="input-control"]')).toHaveAttribute(
+      'data-shaking',
+    )
+  })
+
+  it('renders a dissolving ghost when the value is cleared', async () => {
+    const user = userEvent.setup()
+    render(<Input clearable defaultValue="hello" />)
+    await user.click(screen.getByRole('button', { name: 'Clear input' }))
+    expect(document.querySelector('[data-slot="input-clear-ghost"]')).toHaveTextContent('hello')
+  })
+
   it('renders leading and trailing icons with logical icon slots', () => {
     render(<Input leadingIcon={<Icon />} trailingIcon={<Icon />} />)
     const icons = screen.getAllByTestId('input-icon')

@@ -177,8 +177,8 @@ export const hoverCardDoc: ComponentDoc = {
       en: '`delay` only governs opening. The close delay is fixed at 0, so once the pointer genuinely leaves, the card goes at once and you never end up with a pile of stale cards on the page.',
     },
     {
-      zh: '缩放淡入带 `motion-reduce:transition-none`。',
-      en: 'The scale-and-fade entry carries `motion-reduce:transition-none`.',
+      zh: '浮层走 origin-aware 缩放（`--scale-overlay-menu`）和 `--duration-spring-moderate`。减弱动效时位移和缩放回到 identity。',
+      en: 'The popup uses origin-aware scale (`--scale-overlay-menu`) and `--duration-spring-moderate`. Reduced motion returns translation and scale to identity.',
     },
   ],
 }

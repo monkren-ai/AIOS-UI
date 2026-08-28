@@ -1,4 +1,5 @@
 import { cva } from 'class-variance-authority'
+import { overlayModalMotion, overlayDuration, OVERLAY_REDUCED_MOTION } from '@/lib/overlay-motion'
 
 /**
  * Modal 的视觉变体。
@@ -11,8 +12,9 @@ export const modalBackdropVariants = cva(
   [
     'fixed inset-0 z-[var(--z-modal)] bg-overlay',
     'flex items-center justify-center',
-    'transition-[opacity,visibility] duration-[var(--duration-transition)] ease-aios',
-    'motion-reduce:transition-none',
+    'transition-[opacity,visibility]',
+    ...overlayDuration('slow'),
+    OVERLAY_REDUCED_MOTION,
   ],
   {
     variants: {
@@ -28,15 +30,12 @@ export const modalVariants = cva(
     'fixed inset-0 z-[calc(var(--z-modal)+1)] m-auto h-fit',
     'w-[calc(100%-var(--spacing-lg))] max-w-[var(--modal-max-width)] max-h-[90vh] overflow-y-auto',
     'rounded-lg border border-border-visible bg-surface',
-    'transition-[transform,opacity] duration-[var(--duration-spring-moderate)] ease-spring-moderate',
-    'motion-reduce:transition-none',
-    // 收起态是基线，`open:` 负责落到最终位置——与 v1 的 [data-state='open'] 覆写同构
-    'translate-y-4 open:translate-y-0',
+    ...overlayModalMotion,
   ],
   {
     variants: {
       alert: {
-        true: 'max-w-[var(--modal-max-width-sm)] max-h-none overflow-y-visible translate-y-0 scale-95 open:scale-100',
+        true: 'max-w-[var(--modal-max-width-sm)] max-h-none overflow-y-visible',
         false: '',
       },
       destructive: { true: '', false: '' },

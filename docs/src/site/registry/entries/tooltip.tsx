@@ -179,8 +179,8 @@ export const tooltipDoc: ComponentDoc = {
       en: 'The trigger defaults to `cursor-help` plus a `focus-visible` outline; when the element you pass already styles its own focus — `Button`, for instance — `tailwind-merge` lets yours win.',
     },
     {
-      zh: '入场是 0.95→1 的缩放淡入，带 `motion-reduce:transition-none`。',
-      en: 'It scales in from 0.95 with a fade, and carries `motion-reduce:transition-none`.',
+      zh: '入场走 `--scale-overlay-tooltip` 和 `--duration-spring-fast`，origin 跟着 `data-side`。减弱动效时位移和缩放回到 identity。',
+      en: 'Entry uses `--scale-overlay-tooltip` and `--duration-spring-fast`, with origin following `data-side`. Reduced motion returns translation and scale to identity.',
     },
   ],
 }

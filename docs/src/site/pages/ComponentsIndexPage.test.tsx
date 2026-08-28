@@ -46,7 +46,9 @@ describe('ComponentsIndexPage', () => {
     expect(screen.getByRole('link', { name: /基础组件/ })).toHaveAttribute('aria-current', 'page')
     expect(screen.getByRole('heading', { name: '操作与输入' })).toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'AI OS 与对话' })).not.toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /按钮/ })).toHaveAttribute('href', '/components/button')
+    expect(
+      screen.getAllByRole('link', { name: '按钮' }).some((el) => el.getAttribute('href') === '/components/button'),
+    ).toBe(true)
   })
 
   it('shows only the AI Agent category on the agent page', () => {

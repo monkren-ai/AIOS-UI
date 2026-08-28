@@ -184,8 +184,8 @@ export const checkboxDoc: ComponentDoc = {
       en: 'The focus ring uses `focus-visible:outline`, so it appears for keyboard use and does not flash on mouse clicks.',
     },
     {
-      zh: '勾号与横线的出现是 scale + opacity 过渡，且带 `motion-reduce:transition-none` 兜底。',
-      en: 'The check and dash animate in with scale and opacity, and both carry a `motion-reduce:transition-none` fallback.',
+      zh: '勾选是 SVG `stroke-dashoffset` 描边，不是缩放弹入。减弱动效时勾号直接出现。',
+      en: 'The check is an SVG `stroke-dashoffset` draw, not a scale-in. Reduced motion shows the mark immediately.',
     },
   ],
 }

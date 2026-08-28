@@ -10,6 +10,52 @@
 
 :root {
   --landing-panel-max-width: 560px;
+  /*
+   * 文档站 chrome 专用色与字阶。库里没有对应 token：
+   * 品牌蓝 / NEW 蓝不在 monochrome + 单点红里；800 字重与 20px 字号也不在字阶表。
+   */
+  --docs-brand: #2e57b8;
+  --docs-brand-size: 20px;
+  --docs-brand-weight: 800;
+  --docs-badge-new: #2e57b8;
+  --docs-badge-new-border: #d6dff5;
+  --docs-badge-beta: #ff7500;
+  --docs-badge-beta-border: #fff96e;
+}
+
+.docs-brand-mark {
+  font-size: var(--docs-brand-size);
+  font-weight: var(--docs-brand-weight);
+  font-variation-settings: 'wght' 800;
+  color: var(--docs-brand);
+}
+
+.docs-group-nav-title {
+  font-weight: 600;
+  font-variation-settings: 'wght' 600;
+}
+
+.docs-lang-toggle {
+  display: block;
+  width: auto;
+  min-width: 0;
+  height: auto;
+  padding: 0 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  border-radius: 999px;
+  gap: 0;
+  grid-template-columns: 10px 10px;
+}
+
+.docs-nav-badge--new {
+  color: var(--docs-badge-new);
+  border-color: var(--docs-badge-new-border);
+}
+
+.docs-nav-badge--beta {
+  color: var(--docs-badge-beta);
+  border-color: var(--docs-badge-beta-border);
 }
 
 html,

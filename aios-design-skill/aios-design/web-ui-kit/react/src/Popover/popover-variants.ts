@@ -1,4 +1,5 @@
 import { cva } from 'class-variance-authority'
+import { overlayMenuMotion } from '@/lib/overlay-motion'
 
 export const popoverTriggerVariants = cva('inline-block cursor-pointer')
 
@@ -13,9 +14,7 @@ export const popoverPositionerVariants = cva('z-[var(--z-popover)]')
 export const popoverContentVariants = cva(
   [
     'rounded-md border border-border-visible bg-popover p-4 text-popover-foreground',
-    'transition-[opacity,transform] duration-[var(--duration-spring-moderate)] ease-spring-moderate',
-    'motion-reduce:transition-none',
-    'closed:scale-95 closed:opacity-0 open:scale-100 open:opacity-100',
+    ...overlayMenuMotion,
   ],
   {
     variants: {

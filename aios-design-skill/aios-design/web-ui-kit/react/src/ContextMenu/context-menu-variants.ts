@@ -1,4 +1,5 @@
 import { cva } from 'class-variance-authority'
+import { overlayContextMotion } from '@/lib/overlay-motion'
 
 export const contextMenuVariants = cva('inline-block')
 
@@ -14,12 +15,11 @@ export const contextMenuContentVariants = cva(
   [
     'fixed z-[var(--z-dropdown)] min-w-[180px]',
     'rounded-sm border border-border-visible bg-popover py-1 text-popover-foreground',
-    'transition-[opacity,visibility,transform] duration-[var(--duration-micro)] ease-aios',
-    'motion-reduce:transition-none',
+    ...overlayContextMotion,
   ],
   {
     variants: {
-      visible: { true: 'visible scale-100 opacity-100', false: 'invisible scale-95 opacity-0' },
+      visible: { true: 'visible scale-100 opacity-100', false: 'invisible scale-[var(--scale-overlay-menu)] opacity-0' },
     },
     defaultVariants: { visible: false },
   },

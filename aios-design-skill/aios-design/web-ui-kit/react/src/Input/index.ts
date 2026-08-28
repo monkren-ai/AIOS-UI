@@ -7,6 +7,7 @@ export {
   inputHelperVariants,
   inputIconVariants,
   inputClearVariants,
+  inputClearGhostVariants,
   resolveInputVariant,
   type InputVariant,
   type InputSize,

@@ -26,7 +26,7 @@ export function TopNav({ onOpenSearch }: { onOpenSearch: () => void }) {
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      'px-3 py-2 font-mono text-label uppercase tracking-widest',
+      'px-3 py-2 font-mono text-xs uppercase tracking-widest',
       'transition-colors duration-200 ease-aios motion-reduce:transition-none',
       isActive ? 'text-foreground-display' : 'text-foreground-subtle hover:text-foreground',
     )
@@ -34,11 +34,11 @@ export function TopNav({ onOpenSearch }: { onOpenSearch: () => void }) {
   return (
     <header
       data-slot="top-nav"
-      className="sticky top-0 z-50 shrink-0 border-b border-border bg-background/95"
+      className="sticky top-0 z-50 shrink-0 bg-background/95"
     >
       <div className="mx-auto flex h-14 w-full items-center gap-4 px-4 md:px-6">
         <Link to="/" className="flex shrink-0 items-baseline gap-2 no-underline">
-          <span className="font-display text-subheading uppercase tracking-widest text-foreground-display">
+          <span className="docs-brand-mark font-display uppercase tracking-widest">
             AIOS UI
           </span>
           <span className="font-mono text-label text-foreground-subtle">{VERSION}</span>
@@ -71,10 +71,10 @@ export function TopNav({ onOpenSearch }: { onOpenSearch: () => void }) {
 
           <Button
             variant="ghost"
-            size="icon-sm"
+            size="sm"
             onClick={toggleLang}
             aria-label={t('切换语言', 'Toggle language')}
-            className="rounded-card-technical font-mono"
+            className="docs-lang-toggle font-mono"
           >
             {lang === 'zh' ? 'EN' : '中'}
           </Button>

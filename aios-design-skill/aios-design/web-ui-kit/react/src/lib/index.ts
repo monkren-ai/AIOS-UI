@@ -21,4 +21,16 @@ export type {
   ContainerProps,
 } from './component-types'
 export { spring, exitFallbackMs, enterTransition, exitTransition, type SpringToken } from './motion'
+export {
+  overlayDuration,
+  overlayTiming,
+  overlayMenuMotion,
+  overlayContextMotion,
+  overlayTooltipMotion,
+  overlayModalMotion,
+  overlaySheetTiming,
+  OVERLAY_REDUCED_MOTION,
+  OVERLAY_ORIGIN_AWARE,
+  type OverlaySpringStep,
+} from './overlay-motion'
 export { fontVariationWeights, fontWeightValues, FONT_WEIGHT_TRANSITION_CSS } from './fontWeight'

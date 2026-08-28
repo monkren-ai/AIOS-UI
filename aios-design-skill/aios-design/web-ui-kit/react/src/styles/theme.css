@@ -170,6 +170,12 @@
   --animate-agent-breathe: agent-breathe 2000ms ease-in-out infinite;
   --animate-agent-pulse: agent-pulse 800ms ease-in-out infinite;
   --animate-agent-step: agent-step 1200ms var(--ease-aios) forwards;
+  --animate-input-shake: aios-input-shake var(--duration-spring-moderate) ease-in-out;
+  --animate-input-clear-out: aios-input-clear-out var(--duration-spring-moderate) var(--ease-spring-moderate) both;
+  --animate-toast-enter: aios-toast-enter var(--duration-spring-moderate) var(--ease-spring-moderate) both;
+  --animate-notification-in: aios-notification-in var(--duration-spring-moderate) var(--ease-spring-moderate) both;
+  --animate-digit-in: aios-digit-in var(--duration-spring-moderate) var(--ease-spring-moderate) both;
+  --animate-success-draw: aios-success-draw var(--duration-spring-moderate) var(--ease-spring-moderate) forwards;
 
   /* ===== 布局容器 ===== */
   --container-narrow: 640px;

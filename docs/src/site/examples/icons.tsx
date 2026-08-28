@@ -58,6 +58,31 @@ export function BookmarkIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
+export function BellIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Svg {...props}>
+      <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+      <path d="M10 21a2 2 0 0 0 4 0" />
+    </Svg>
+  )
+}
+
+export function HeartIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Svg {...props}>
+      <path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.5-7 10-7 10z" />
+    </Svg>
+  )
+}
+
+export function HeartFilledIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.5-7 10-7 10z" />
+    </svg>
+  )
+}
+
 export function SearchIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <Svg {...props}>

@@ -6,12 +6,14 @@ import InputSizes from '../../examples/input/sizes'
 import InputAddons from '../../examples/input/addons'
 import InputValidation from '../../examples/input/validation'
 import InputControlled from '../../examples/input/controlled'
+import InputMotion from '../../examples/input/motion'
 
 import variantsSource from '../../examples/input/variants.tsx?raw'
 import sizesSource from '../../examples/input/sizes.tsx?raw'
 import addonsSource from '../../examples/input/addons.tsx?raw'
 import validationSource from '../../examples/input/validation.tsx?raw'
 import controlledSource from '../../examples/input/controlled.tsx?raw'
+import motionSource from '../../examples/input/motion.tsx?raw'
 
 export const inputDoc: ComponentDoc = {
   slug: 'input',
@@ -83,6 +85,16 @@ export const inputDoc: ComponentDoc = {
       },
       code: controlledSource,
       render: () => <InputControlled />,
+    },
+    {
+      id: 'motion',
+      title: { zh: '校验抖动与清除淡出', en: 'Error shake and clear fade' },
+      description: {
+        zh: '错误从无到有时控件会短抖一次（`±6px`），然后停在红色边框。点清除会先淡出旧文案。减弱动效时只保留颜色变化。',
+        en: 'When an error appears the control shakes once (`±6px`) and then sits on the red border. Clearing fades the previous text out. Reduced motion keeps the colour change only.',
+      },
+      code: motionSource,
+      render: () => <InputMotion />,
     },
   ],
   api: [
@@ -268,8 +280,8 @@ export const inputDoc: ComponentDoc = {
       en: 'The clear button carries `aria-label="Clear input"` but is `tabIndex={-1}`, so it exists for pointer users without adding a stop to the keyboard tab order.',
     },
     {
-      zh: '所有颜色过渡都带 `motion-reduce:transition-none`，用户开了减弱动效就不动。',
-      en: 'Every colour transition has `motion-reduce:transition-none`, so nothing animates under reduced motion.',
+      zh: '所有颜色过渡都带 `motion-reduce:transition-none`。错误抖动和清除淡出走 `motion-safe:`，减弱动效时只留红色边框、立刻清空。',
+      en: 'Every colour transition has `motion-reduce:transition-none`. The error shake and clear fade run under `motion-safe:`; reduced motion keeps the red border and clears immediately.',
     },
   ],
 }

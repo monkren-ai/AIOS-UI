@@ -1,4 +1,5 @@
 import { cva } from 'class-variance-authority'
+import { overlayMenuMotion } from '@/lib/overlay-motion'
 
 /** 外层包裹：label / trigger / 错误文案的纵向容器。 */
 export const selectVariants = cva(['relative inline-block w-full'], {
@@ -85,9 +86,7 @@ export const selectPositionerVariants = cva(['z-[var(--z-overlay)]'])
  */
 export const selectContentVariants = cva([
   'min-w-40 overflow-hidden rounded-sm border border-border-visible bg-popover',
-  'transition-[opacity,transform] duration-[var(--duration-spring-moderate)] ease-spring-moderate',
-  'motion-reduce:transition-none',
-  'closed:-translate-y-1 closed:opacity-0 open:translate-y-0 open:opacity-100',
+  ...overlayMenuMotion,
 ])
 
 export const selectSearchVariants = cva(['border-b border-border p-2'])

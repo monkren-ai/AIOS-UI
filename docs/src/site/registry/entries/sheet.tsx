@@ -229,8 +229,8 @@ export const sheetDoc: ComponentDoc = {
       en: 'The panel is capped at `max-h-screen` with an independently scrolling body, and the footer adds `env(safe-area-inset-bottom)` padding so buttons stay clear of a home indicator.',
     },
     {
-      zh: '滑入动画带 `motion-reduce:transition-none`，减弱动效下抽屉直接就位。',
-      en: 'The slide-in carries `motion-reduce:transition-none`, so under reduced motion the drawer simply arrives in place.',
+      zh: '滑入用 `--duration-spring-slow` 进慢出快。减弱动效关掉过渡，但**不会**把位移清成 identity——关着的抽屉必须停在屏幕外。',
+      en: 'The slide uses `--duration-spring-slow`, slower in than out. Reduced motion drops the transition but **does not** reset translation to identity — a closed drawer has to stay off-screen.',
     },
   ],
 }

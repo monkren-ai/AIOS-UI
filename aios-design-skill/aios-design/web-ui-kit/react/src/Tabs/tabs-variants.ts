@@ -83,7 +83,7 @@ export const tabTriggerVariants = cva(
 export const tabsIndicatorVariants = cva(
   [
     'pointer-events-none absolute start-0 rounded-pill',
-    'transition-[inset-inline-start,width,opacity] duration-[160ms] ease-spring-moderate',
+    'transition-[inset-inline-start,width,opacity] duration-[var(--duration-spring-moderate)] ease-spring-moderate',
     'motion-reduce:transition-none',
   ],
   {
@@ -101,7 +101,7 @@ export const tabsIndicatorVariants = cva(
 /** proximity hover 的背景垫层，压在 trigger 下面。 */
 export const tabsHoverBackgroundVariants = cva([
   'pointer-events-none absolute top-0 z-0 h-full start-0 rounded-sm bg-muted',
-  'transition-[inset-inline-start,width,opacity] duration-[80ms] ease-spring-fast',
+  'transition-[inset-inline-start,width,opacity] duration-[var(--duration-spring-fast)] ease-spring-fast',
   'motion-reduce:transition-none',
 ])
 

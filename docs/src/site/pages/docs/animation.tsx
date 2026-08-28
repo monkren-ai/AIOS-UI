@@ -179,6 +179,80 @@ export default function AnimationPage() {
         </Prose>
       </DocSection>
 
+      <DocSection title={t('交互配方', 'Interaction recipes')}>
+        <Prose>
+          {t(
+            '对照 transitions.dev 的交互动效，AIOS 只借模式（origin-aware 打开、进慢出快、按位换数字），不借 blur、bounce 和 3D tilt。浮层配方在 `overlayMenuMotion` / `overlayModalMotion` / `overlayTooltipMotion`。',
+            'Mapped from transitions.dev interaction patterns, AIOS borrows the choreography — origin-aware opens, slower in than out, per-digit number swaps — and not the blur, bounce, or 3D tilt. Overlay recipes live in `overlayMenuMotion` / `overlayModalMotion` / `overlayTooltipMotion`.',
+          )}
+        </Prose>
+        <DocTable
+          head={[t('参考', 'Reference'), t('AIOS', 'AIOS'), t('令牌', 'Tokens'), t('砍掉了什么', 'Left out')]}
+          rows={[
+            [
+              'Modal / AlertDialog',
+              'Modal, AlertDialog',
+              '`--duration-spring-slow` · `--scale-overlay-modal`',
+              t('无 blur', 'No blur'),
+            ],
+            [
+              'Menu dropdown',
+              'DropdownMenu, Select, Combobox, Popover',
+              '`--duration-spring-moderate` · `--scale-overlay-menu` · origin-aware',
+              t('无无锚点缩放', 'No unanchored scale'),
+            ],
+            [
+              'Panel reveal',
+              'Sheet',
+              '`--duration-spring-slow` + 方向位移',
+              t('无 cross-blur', 'No cross-blur'),
+            ],
+            [
+              'Tooltip',
+              'Tooltip',
+              '`--duration-spring-fast` · `--scale-overlay-tooltip`',
+              t('无 blur', 'No blur'),
+            ],
+            [
+              'Number pop-in',
+              'NumberTicker',
+              '`--duration-stagger` · translateY',
+              t('无 blur', 'No blur'),
+            ],
+            [
+              'Icon swap',
+              'IconSwap',
+              '`--duration-spring-moderate` · scale + opacity',
+              t('无 blur', 'No blur'),
+            ],
+            [
+              'Success check',
+              'SuccessCheck, Checkbox',
+              'stroke-dashoffset',
+              t('无弹跳 / 无 blur', 'No bounce / no blur'),
+            ],
+            [
+              'Notification badge',
+              'NotificationBadge',
+              '`--distance-base` 对角线滑入',
+              t('无 bounce pop', 'No bounce pop'),
+            ],
+            [
+              'Avatar group hover',
+              'AvatarGroup',
+              '`--distance-micro` 落差抬起',
+              t('无 bounce 回落', 'No bounce on return'),
+            ],
+            [
+              'Error shake',
+              'Input',
+              '`--distance-small` · `--duration-spring-moderate`',
+              t('只抖一次', 'A single shake'),
+            ],
+          ]}
+        />
+      </DocSection>
+
       <DocSection title={t('reduced motion：三道防线', 'Reduced motion: three layers')}>
         <DocSubSection title={t('一、全局 CSS 兜底', '1. The global CSS fallback')}>
           <Prose>

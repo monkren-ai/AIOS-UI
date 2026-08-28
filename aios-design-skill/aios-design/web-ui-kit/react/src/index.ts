@@ -22,7 +22,7 @@ export { ThemeScript, getThemeScript, type ThemeScriptOptions, type ThemeScriptP
 export { useMotionComponent, MotionProvider, type MotionComponentType, type MotionProviderProps } from './MotionProvider'
 
 // ===== Core Libs =====
-export { cn, dataAttr, mergeSemanticProps, mergeRefs, Slot, isSingleReactElement, spring, exitFallbackMs, enterTransition, exitTransition, fontVariationWeights, fontWeightValues, FONT_WEIGHT_TRANSITION_CSS, type SemanticClassNames, type SemanticStyles, type WithSemanticProps, type ComponentConfig, type SlotProps, type AsChildProps, type AsProp, type PolymorphicProps, type DivProps, type SpanProps, type ButtonPropsBase, type AnchorProps, type InputPropsBase, type TextareaPropsBase, type SelectPropsBase, type ContainerProps, type SpringToken } from './lib'
+export { cn, dataAttr, mergeSemanticProps, mergeRefs, Slot, isSingleReactElement, spring, exitFallbackMs, enterTransition, exitTransition, overlayDuration, overlayTiming, overlayMenuMotion, overlayContextMotion, overlayTooltipMotion, overlayModalMotion, overlaySheetTiming, OVERLAY_REDUCED_MOTION, OVERLAY_ORIGIN_AWARE, fontVariationWeights, fontWeightValues, FONT_WEIGHT_TRANSITION_CSS, type SemanticClassNames, type SemanticStyles, type WithSemanticProps, type ComponentConfig, type SlotProps, type AsChildProps, type AsProp, type PolymorphicProps, type DivProps, type SpanProps, type ButtonPropsBase, type AnchorProps, type InputPropsBase, type TextareaPropsBase, type SelectPropsBase, type ContainerProps, type SpringToken, type OverlaySpringStep } from './lib'
 
 // ===== Components =====
 export { Accordion, accordionVariants, accordionItemVariants, accordionHeaderVariants, accordionTriggerVariants, accordionTriggerTextVariants, accordionTriggerIconVariants, accordionLeadingIconVariants, accordionPanelVariants, accordionContentVariants, type AccordionProps, type AccordionItem, type AccordionType, type AccordionVariant } from './Accordion'
@@ -71,7 +71,8 @@ export { Form, formVariants, formGroupVariants, formErrorVariants, type FormProp
 export { GradientGlow, gradientGlowVariants, type GradientGlowProps, type GradientGlowIntensity } from './GradientGlow'
 export { HoverCard, hoverCardContentVariants, hoverCardPositionerVariants, hoverCardTriggerVariants, type HoverCardProps } from './HoverCard'
 export { Icon, iconVariants, type IconProps, type IconGlyph, type IconSize } from './Icon'
-export { Input, inputVariants, inputControlVariants, inputFieldVariants, inputLabelVariants, inputHelperVariants, inputIconVariants, inputClearVariants, resolveInputVariant, type InputProps, type InputHelperProps, type InputVariant, type InputSize } from './Input'
+export { IconSwap, iconSwapVariants, type IconSwapProps, type IconSwapSize } from './IconSwap'
+export { Input, inputVariants, inputControlVariants, inputFieldVariants, inputLabelVariants, inputHelperVariants, inputIconVariants, inputClearVariants, inputClearGhostVariants, resolveInputVariant, type InputProps, type InputHelperProps, type InputVariant, type InputSize } from './Input'
 export { InputCopy, inputCopyVariants, inputCopyLabelVariants, inputCopyControlVariants, inputCopyFieldVariants, inputCopyButtonVariants, inputCopyButtonTextVariants, type InputCopyProps, type InputCopySize } from './InputCopy'
 export { InputMessage, inputMessageVariants, inputMessageControlVariants, inputMessageFieldVariants, inputMessageSendVariants, inputMessageSendIconVariants, inputMessageMetaVariants, inputMessageHintVariants, inputMessageCountVariants, type InputMessageProps, type InputMessageSize } from './InputMessage'
 export { InputOTP, inputOTPVariants, inputOTPSlotVariants, inputOTPInputVariants, type InputOTPProps, type InputOTPSize } from './InputOTP'
@@ -84,7 +85,9 @@ export { MusicPlayer, BlinkingSeparator, musicPlayerVariants, type MusicPlayerPr
 export { Navigation, navigationVariants, navItemVariants, type NavItem, type NavigationProps, type NavigationVariant } from './Navigation'
 export { NavigationMenu, navigationMenuVariants, navigationMenuListVariants, navigationMenuItemVariants, navigationMenuLinkVariants, navigationMenuCaretVariants, navigationMenuSubmenuVariants, navigationMenuSubmenuItemVariants, navigationMenuSubmenuLinkVariants, type NavMenuItem, type NavigationMenuOrientation, type NavigationMenuProps } from './NavigationMenu'
 export { NextEvent, nextEventVariants, type NextEventProps, type EventData } from './NextEvent'
+export { NotificationBadge, notificationBadgeVariants, type NotificationBadgeProps } from './NotificationBadge'
 export { NumberField, numberFieldVariants, numberFieldGroupVariants, numberFieldStepperVariants, numberFieldInputVariants, numberFieldLabelVariants, numberFieldErrorVariants, type NumberFieldProps, type NumberFieldSize } from './NumberField'
+export { NumberTicker, numberTickerVariants, type NumberTickerProps, type NumberTickerSize } from './NumberTicker'
 export { OverlayPortal, useOverlayState, useEscapeKey, useScrollLock, useFocusTrap, useTabCycle, useOverlayClickOutside, useDisclosure, type OverlayPortalProps, type OverlaySide, type OverlayAlign, type DisclosureReturn } from './OverlayPortal'
 export { Pagination, paginationVariants, paginationListVariants, paginationItemVariants, paginationButtonVariants, paginationEllipsisVariants, paginationArrowVariants, type PaginationProps } from './Pagination'
 export { PhotoCarousel, photoCarouselVariants, type PhotoCarouselProps, type PhotoCarouselOrientation } from './PhotoCarousel'
@@ -109,6 +112,7 @@ export { Slider, sliderVariants, sliderHeaderVariants, sliderLabelVariants, slid
 export { Sparkline, type SparklineProps } from './Sparkline'
 export { Spinner, spinnerVariants, spinnerWheelVariants, spinnerPointerVariants, spinnerSvgVariants, spinnerSectorVariants, spinnerTextVariants, type SpinnerProps, type SpinnerVariant, type SpinnerSize } from './Spinner'
 export { LoadingState, ErrorState, EmptyState, DisabledState, stateVariants, loadingSegmentVariants, type LoadingStateProps, type ErrorStateProps, type EmptyStateProps, type DisabledStateProps, type StateSize, type StateVariant } from './States'
+export { SuccessCheck, successCheckVariants, type SuccessCheckProps, type SuccessCheckSize } from './SuccessCheck'
 export { SunDial, sunDialVariants, type SunDialProps, type SunDialTime, type SunDialTheme } from './SunDial'
 export { Surfaces, surfaceVariants, type SurfacesProps, type SurfaceBorder, type SurfaceElevation, type SurfacePadding, type SurfaceRadius } from './Surfaces'
 export { Switch, switchVariants, switchTrackVariants, switchThumbVariants, switchLabelVariants, type SwitchProps, type SwitchSize } from './Switch'
