@@ -2,7 +2,7 @@
 
 A design system skill for [Claude Code](https://claude.ai/code) built around the AIOS visual language: monochrome, typographic, and industrial.
 
-I kept describing the same design rules to Claude over and over — Swiss typography, OLED blacks, segmented progress bars, dot-matrix motifs. So I packaged it into a reusable skill.
+It packages a consistent set of design rules for Claude — Swiss typography, OLED blacks, segmented progress bars, and dot-matrix motifs — into a reusable skill.
 
 ![Preview](preview.gif)
 
@@ -21,7 +21,7 @@ Tell Claude `/aios-design` or say "AIOS style" and it generates UI following the
 Copy the `aios-design` folder into your Claude Code skills directory:
 
 ```sh
-git clone https://github.com/dominikmartn/aios-design-skill.git
+git clone https://github.com/monkren-ai/AIOS-UI.git
 cp -r aios-design-skill/aios-design ~/.claude/skills/
 ```
 
@@ -58,17 +58,17 @@ Fetch individual skill files without cloning (raw from the `main` branch):
 
 | File | URL |
 |------|-----|
-| [`SKILL.md`](https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/SKILL.md) | `https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/SKILL.md` |
-| [`design.md`](https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/design.md) | `https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/design.md` |
-| [`references/tokens.md`](https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/references/tokens.md) | `https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/references/tokens.md` |
-| [`references/components.md`](https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/references/components.md) | `https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/references/components.md` |
-| [`references/platform-mapping.md`](https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/references/platform-mapping.md) | `https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/references/platform-mapping.md` |
-| [`references/component-matching.md`](https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/references/component-matching.md) | `https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/references/component-matching.md` |
+| [`SKILL.md`](https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/SKILL.md) | `https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/SKILL.md` |
+| [`design.md`](https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/design.md) | `https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/design.md` |
+| [`references/tokens.md`](https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/references/tokens.md) | `https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/references/tokens.md` |
+| [`references/components.md`](https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/references/components.md) | `https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/references/components.md` |
+| [`references/platform-mapping.md`](https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/references/platform-mapping.md) | `https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/references/platform-mapping.md` |
+| [`references/component-matching.md`](https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/references/component-matching.md) | `https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/references/component-matching.md` |
 
 Example:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/dominikmartn/aios-design-skill/main/aios-design/SKILL.md -o ~/.claude/skills/aios-design/SKILL.md
+curl -fsSL https://raw.githubusercontent.com/monkren-ai/AIOS-UI/main/aios-design-skill/aios-design/SKILL.md -o ~/.claude/skills/aios-design/SKILL.md
 ```
 
 ## What's inside
