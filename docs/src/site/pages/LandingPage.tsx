@@ -1,8 +1,15 @@
-import * as React from 'react'
+import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { PlanCard, ToolCallRow } from 'aios-ui-kit/agent'
+import {
+  ActivityLabel,
+  ApprovalGate,
+  PlanCard,
+  ProgressTrace,
+  ThinkingIndicator,
+  ToolCallRow,
+} from 'aios-ui-kit/agent'
 import { buttonVariants } from 'aios-ui-kit/button'
-import landingHero from '@/assets/images/landing-hero.jpg'
+import { KeywordTag, Sender } from 'aios-ui-kit/conversation'
 import { VERSION } from '@/version'
 import { useT } from '../i18n'
 import { CATEGORIES } from '../registry/categories'
@@ -11,355 +18,225 @@ import { CodeBlock } from '../components/CodeBlock'
 
 const COMPONENT_COUNT = COMPONENT_MANIFEST.length
 
-const FEATURES = [
-  {
-    number: '01',
-    zh: {
-      title: '为 Agent 流程而生',
-      body: '计划、工具调用、授权与对话状态拥有明确结构，不再用通用卡片勉强拼装。',
-    },
-    en: {
-      title: 'Built for agent workflows',
-      body: 'Plans, tool calls, approvals, and conversational states have explicit structure instead of generic cards.',
-    },
-  },
-  {
-    number: '02',
-    zh: {
-      title: '可访问性是默认值',
-      body: '键盘导航、清晰焦点、语义状态与 44px 触控区域都进入组件的基础约束。',
-    },
-    en: {
-      title: 'Accessibility by default',
-      body: 'Keyboard navigation, visible focus, semantic states, and 44px targets are component-level constraints.',
-    },
-  },
-  {
-    number: '03',
-    zh: {
-      title: '由令牌统一控制',
-      body: '字体、色彩、间距、圆角和动效来自同一套 CSS 变量，并完整覆盖明暗主题。',
-    },
-    en: {
-      title: 'Controlled by tokens',
-      body: 'Type, color, spacing, radius, and motion share one CSS-variable system across light and dark themes.',
-    },
-  },
-  {
-    number: '04',
-    zh: {
-      title: '只加载真正使用的部分',
-      body: '稳定的 subpath 导出让产品按组件引入，避免为了一个控件带上整套组件库。',
-    },
-    en: {
-      title: 'Import only what ships',
-      body: 'Stable subpath exports let products load components individually instead of pulling in the whole kit.',
-    },
-  },
-]
+interface PreviewCardProps {
+  name: string
+  group: string
+  href: string
+  children: ReactNode
+}
+
+function PreviewCard({ name, group, href, children }: PreviewCardProps) {
+  return (
+    <article className="landing-preview-card">
+      <div className="landing-preview-card__stage">{children}</div>
+      <div className="landing-preview-card__meta">
+        <Link to={href} className="font-medium text-foreground-display no-underline hover:text-accent">
+          {name}
+        </Link>
+        <span className="rounded-pill bg-muted px-2 py-1 font-mono text-caption uppercase text-foreground-muted">
+          {group}
+        </span>
+      </div>
+    </article>
+  )
+}
 
 export function LandingPage() {
   const { t, lang } = useT()
-  const landingPageRef = React.useRef<HTMLElement>(null)
-
-  React.useEffect(() => {
-    const landingPage = landingPageRef.current
-    if (!landingPage) return
-
-    const handleWheel = (event: WheelEvent) => {
-      if (event.ctrlKey || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) return
-
-      const section =
-        event.target instanceof Element
-          ? event.target.closest<HTMLElement>('.landing-page__section')
-          : null
-      const canScrollSection =
-        section &&
-        section.scrollHeight > section.clientHeight + 1 &&
-        (event.deltaY > 0
-          ? section.scrollTop + section.clientHeight < section.scrollHeight - 1
-          : section.scrollTop > 1)
-
-      if (canScrollSection) return
-
-      event.preventDefault()
-      landingPage.scrollLeft += event.deltaY
-    }
-
-    landingPage.addEventListener('wheel', handleWheel, { passive: false })
-    return () => landingPage.removeEventListener('wheel', handleWheel)
-  }, [])
-
-  const planSteps = [
-    {
-      id: 'scope',
-      description: t('确认改动范围', 'Confirm change scope'),
-      status: 'done' as const,
-    },
-    {
-      id: 'tokens',
-      description: t('匹配设计令牌', 'Match design tokens'),
-      status: 'done' as const,
-    },
-    {
-      id: 'apply',
-      description: t('应用并验证界面', 'Apply and verify the interface'),
-      tool: 'edit_file',
-      status: 'running' as const,
-    },
-  ]
 
   const stats = [
     {
       value: String(COMPONENT_COUNT),
-      zh: '个已登记组件',
+      zh: '已登记组件',
       en: 'registered components',
     },
     {
       value: String(CATEGORIES.length),
-      zh: '个组件分类',
+      zh: '组件分类',
       en: 'component categories',
     },
     {
       value: '2',
-      zh: '套完整主题',
+      zh: '完整主题',
       en: 'complete themes',
     },
   ]
 
+  const planSteps = [
+    { id: 'scope', description: t('理解意图', 'Understand intent'), status: 'done' as const },
+    { id: 'build', description: t('组合界面', 'Compose interface'), status: 'running' as const },
+    { id: 'verify', description: t('验证状态', 'Verify states'), status: 'pending' as const },
+  ]
+
+  const traceSteps = [
+    { id: 'read', label: t('读取上下文', 'Read context'), status: 'done' as const },
+    { id: 'edit', label: t('更新组件', 'Update components'), status: 'active' as const },
+    { id: 'test', label: t('运行验证', 'Run verification'), status: 'pending' as const },
+  ]
+
   return (
-    <main
-      ref={landingPageRef}
-      className="landing-page flex shrink-0 bg-cover bg-center bg-no-repeat"
-    >
+    <main className="landing-page">
       <section
-        className="landing-page__section landing-page__hero mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-page-wide flex-col items-center justify-center px-4 py-20 text-center md:px-6 md:py-28"
-        style={{ '--landing-hero-image': `url("${landingHero}")` } as React.CSSProperties}
+        aria-labelledby="landing-title"
+        className="landing-page__hero flex min-h-[36rem] flex-col items-center justify-center overflow-hidden px-4 py-24 text-center md:min-h-[40rem] md:px-6"
       >
-        <span className="rounded-pill border border-border px-3 py-1 font-mono text-label uppercase tracking-widest text-foreground-subtle">
+        <span className="relative z-10 rounded-pill border border-border bg-background/80 px-3 py-1 font-mono text-label uppercase tracking-widest text-foreground-subtle">
           AIOS UI · v{VERSION}
         </span>
-        <h1 className="mt-7 max-w-5xl text-balance text-display-md text-foreground-display md:text-display-lg">
-          {t(
-            '把 AI 界面从“能运行”推进到“值得交付”',
-            'Take AI interfaces from working software to work worth shipping',
-          )}
+
+        <h1
+          id="landing-title"
+          className="relative z-10 mt-8 max-w-4xl text-balance text-display-md font-medium text-foreground-display md:text-display-lg"
+        >
+          {t('为 AI Agent 构建界面', 'Build interfaces for AI agents')}
+          <span className="mt-1 block text-accent">
+            {t('更快，也更清晰', 'Faster, with clarity')}
+          </span>
         </h1>
-        <p className="mt-6 max-w-2xl text-pretty text-subheading text-foreground-muted">
+
+        <p className="relative z-10 mt-6 max-w-2xl text-pretty text-subheading text-foreground-muted">
           {t(
-            `${COMPONENT_COUNT} 个面向 AI OS、Agent 工作流与复杂产品界面的 React 组件。单色、精确、可解释。`,
-            `${COMPONENT_COUNT} React components for AI operating systems, agent workflows, and complex product interfaces. Monochrome, precise, and explainable.`,
+            '面向 AI OS、Agent 工作流与复杂产品界面的 React 组件库。每个状态都可见、可解释、可交付。',
+            'A React component library for AI operating systems and agent workflows. Every state is visible, explainable, and ready to ship.',
           )}
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+
+        <div className="relative z-10 mt-9 flex flex-wrap items-center justify-center gap-3">
+          <Link to="/components" className={buttonVariants({ variant: 'primary', size: 'lg' })}>
+            {t('浏览组件', 'Browse components')}
+          </Link>
           <Link
             to="/docs/installation"
-            className={buttonVariants({ variant: 'primary', size: 'lg' })}
-          >
-            {t('阅读安装文档', 'Read installation guide')}
-          </Link>
-          <Link
-            to="/components"
             className={buttonVariants({ variant: 'secondary', size: 'lg' })}
           >
-            {t('浏览全部组件', 'Browse all components')}
+            {t('安装指南', 'Installation guide')}
           </Link>
         </div>
-        <div className="mt-10 w-full max-w-xl text-start">
-          <CodeBlock
-            code={`npm install aios-ui-kit motion\n\nimport { PlanCard } from 'aios-ui-kit/agent'`}
-          />
+
+        <div className="relative z-10 mt-8 w-full max-w-xl text-start">
+          <CodeBlock code="npm install aios-ui-kit motion" />
         </div>
       </section>
 
-      <section
-        aria-label={t('组件库数据', 'Library statistics')}
-        className="landing-page__section landing-page__stats flex border-y border-border"
-      >
-        <div className="landing-page__stats-list mx-auto flex px-4 md:px-6">
+      <section aria-label={t('组件库数据', 'Library statistics')} className="border-y border-border">
+        <dl className="mx-auto grid max-w-page-wide grid-cols-1 px-4 sm:grid-cols-3 md:px-6">
           {stats.map((stat) => (
-            <div key={stat.en} className="flex flex-col items-center gap-2 px-6 py-9 text-center">
-              <strong className="font-mono text-display-sm font-medium text-foreground-display">
+            <div
+              key={stat.en}
+              className="flex items-baseline justify-between gap-4 border-b border-border py-7 last:border-b-0 sm:flex-col sm:items-center sm:justify-center sm:border-b-0 sm:px-6 sm:text-center sm:not-last:border-e"
+            >
+              <dd className="font-mono text-display-sm font-medium text-foreground-display">
                 {stat.value}
-              </strong>
-              <span className="text-sm text-foreground-muted">
+              </dd>
+              <dt className="text-sm text-foreground-muted">
                 {lang === 'zh' ? stat.zh : stat.en}
-              </span>
+              </dt>
             </div>
           ))}
-        </div>
+        </dl>
       </section>
 
-      <section className="landing-page__section landing-page__components mx-auto flex max-w-page-wide flex-col gap-10 px-4 py-24 md:px-6 md:py-32">
-        <header className="flex max-w-3xl flex-col gap-4">
-          <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
-            {t('真实组件 / 真实状态', 'Real components / real states')}
-          </span>
-          <h2 className="text-balance text-display-sm text-foreground-display md:text-display-md">
-            {t(
-              '为人和 Agent 的协作过程提供清晰结构',
-              'Clear structure for collaboration between people and agents',
-            )}
-          </h2>
-          <p className="max-w-2xl text-pretty text-foreground-muted">
-            {t(
-              '下面不是产品截图，而是文档站正在运行的 AIOS UI 组件。输入框、状态和折叠细节都可以直接交互。',
-              'These are not product screenshots. They are live AIOS UI components running inside the documentation site.',
-            )}
-          </p>
-        </header>
-
-        <div className="landing-page__preview-grid grid gap-4">
-          <article className="landing-page__workflow-card flex min-w-0 flex-col gap-5 rounded-card border border-border bg-surface p-5 sm:p-7">
-            <div className="flex items-baseline justify-between gap-4 border-b border-border pb-4">
-              <h3 className="text-heading text-foreground-display">
-                {t('Agent 工作流', 'Agent workflow')}
-              </h3>
-              <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
-                01 / Plan
-              </span>
-            </div>
-            <PlanCard
-              title={t('界面改进计划', 'INTERFACE IMPROVEMENT')}
-              steps={planSteps}
-              compact
-            />
-            <ToolCallRow
-              tool="edit_file"
-              activeLabel={t('正在应用设计令牌', 'Applying design tokens')}
-              status="running"
-              elapsedMs={840}
-            />
-          </article>
-
-        </div>
-      </section>
-
-      <section className="landing-page__section border-y border-border bg-surface">
-        <div className="mx-auto max-w-page-wide px-4 py-24 md:px-6 md:py-32">
-          <header className="mb-10 max-w-3xl">
+      <section aria-labelledby="featured-components" className="px-4 py-24 md:px-6 md:py-32">
+        <header className="mx-auto mb-12 flex max-w-page-wide items-end justify-between gap-6">
+          <div className="max-w-3xl">
             <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
-              {t('交付标准', 'Shipping standards')}
+              {t('精选组件', 'Featured components')}
             </span>
-            <h2 className="mt-4 text-balance text-display-sm text-foreground-display">
-              {t(
-                '少一些装饰，多一些可依赖的行为',
-                'Less decoration. More behaviour you can rely on.',
-              )}
-            </h2>
-          </header>
-          <div className="grid border-t border-border md:grid-cols-2">
-            {FEATURES.map((feature) => {
-              const copy = lang === 'zh' ? feature.zh : feature.en
-              return (
-                <article
-                  key={feature.number}
-                  className="grid grid-cols-[3rem_1fr] gap-4 border-b border-border py-7 md:odd:pe-8 md:even:border-s md:even:ps-8"
-                >
-                  <span className="font-mono text-label text-foreground-subtle">
-                    {feature.number}
-                  </span>
-                  <div>
-                    <h3 className="text-subheading text-foreground-display">{copy.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground-muted">{copy.body}</p>
-                  </div>
-                </article>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="landing-page__section mx-auto flex max-w-page-wide flex-col gap-10 px-4 py-24 md:px-6 md:py-32">
-        <header className="flex items-end justify-between gap-6">
-          <div>
-            <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
-              {t('组件分类', 'Component categories')}
-            </span>
-            <h2 className="mt-4 text-display-sm text-foreground-display">
-              {t('按产品问题开始浏览', 'Browse by product problem')}
+            <h2 id="featured-components" className="mt-4 text-balance text-display-sm text-foreground-display">
+              {t('为 Agent 的每一步提供真实状态', 'Real states for every step an agent takes')}
             </h2>
           </div>
-          <Link to="/components" className={buttonVariants({ variant: 'ghost', size: 'md' })}>
-            {t('查看完整目录', 'Open full index')}
-          </Link>
-        </header>
-        <div className="grid border-t border-border sm:grid-cols-2 lg:grid-cols-4">
-          {CATEGORIES.map((category) => {
-            const count = COMPONENT_MANIFEST.filter((doc) => doc.category === category.id).length
-            return (
-              <Link
-                key={category.id}
-                to="/components"
-                className="group min-w-0 border-b border-border p-5 no-underline transition-colors duration-200 hover:bg-surface motion-reduce:transition-none sm:odd:border-e lg:border-e lg:last:border-e-0"
-              >
-                <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="text-foreground-display transition-colors group-hover:text-accent motion-reduce:transition-none">
-                    {lang === 'zh' ? category.label.zh : category.label.en}
-                  </h3>
-                  <span className="font-mono text-label text-foreground-subtle">{count}</span>
-                </div>
-                <p className="mt-3 text-sm leading-relaxed text-foreground-muted">
-                  {lang === 'zh' ? category.description.zh : category.description.en}
-                </p>
-              </Link>
-            )
-          })}
-        </div>
-      </section>
-
-      <section className="landing-page__section landing-page__ecosystem border-t border-border">
-        <div className="landing-page__ecosystem-list mx-auto flex px-4 md:px-6">
-          <a
-            href="https://github.com/monkren-ai/AIOS-UI/tree/main/aios-design-skill/aios-design"
-            target="_blank"
-            rel="noreferrer"
-            className="group p-7 no-underline md:first:ps-0"
+          <Link
+            to="/components"
+            className="hidden font-mono text-label uppercase tracking-widest text-foreground-muted underline-offset-4 hover:text-foreground-display hover:underline sm:block"
           >
-            <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
-              01 / Skill
-            </span>
-            <h2 className="mt-4 text-heading text-foreground-display group-hover:text-accent">
-              AIOS Design Skill
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
-              {t(
-                '把设计规则带进 AI 编码工作流。',
-                'Bring the design rules into AI coding workflows.',
-              )}
-            </p>
-          </a>
-          <Link to="/components" className="group p-0 no-underline">
-            <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
-              02 / React
-            </span>
-            <h2 className="mt-4 text-heading text-foreground-display group-hover:text-accent">
-              aios-ui-kit
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
-              {t(
-                '将规范落实为可复用、可测试的组件。',
-                'Turn the rules into reusable, tested components.',
-              )}
-            </p>
+            {t('查看全部', 'View all')}
           </Link>
-          <Link to="/docs" className="group p-0 no-underline">
-            <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
-              03 / Docs
-            </span>
-            <h2 className="mt-4 text-heading text-foreground-display group-hover:text-accent">
-              Documentation
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
-              {t(
-                '从安装、主题到可访问性逐步验证实现。',
-                'Verify implementation from installation through accessibility.',
-              )}
-            </p>
-          </Link>
+        </header>
+
+        <div className="landing-preview-shell mx-auto max-w-page-wide">
+          <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
+            <PreviewCard name="PlanCard" group="Agent" href="/components/agent">
+              <PlanCard title={t('执行计划', 'EXECUTION PLAN')} steps={planSteps} compact />
+            </PreviewCard>
+
+            <PreviewCard name="ToolCallRow" group="Agent" href="/components/agent">
+              <div className="flex w-full flex-col gap-3">
+                <ToolCallRow
+                  tool="read_file"
+                  activeLabel={t('正在读取上下文', 'Reading context')}
+                  status="running"
+                  elapsedMs={640}
+                />
+                <ToolCallRow tool="type_check" status="done" elapsedMs={1180} />
+              </div>
+            </PreviewCard>
+
+            <PreviewCard name="Sender" group="Conversation" href="/components/conversation">
+              <Sender
+                size="sm"
+                defaultValue={t('把这个页面调整为 AIOS 风格', 'Restyle this page with AIOS')}
+                tags={<KeywordTag>{t('当前页面', 'Current page')}</KeywordTag>}
+                footer={({ components: { SendButton } }) => (
+                  <div className="flex w-full items-center justify-between gap-3">
+                    <span className="font-mono text-caption text-foreground-subtle">ENTER TO SEND</span>
+                    <SendButton>{t('发送', 'Send')}</SendButton>
+                  </div>
+                )}
+              />
+            </PreviewCard>
+
+            <PreviewCard name="ApprovalGate" group="Agent" href="/components/agent">
+              <ApprovalGate
+                action={t('应用 4 个文件改动', 'Apply changes to 4 files')}
+                impact={t('仅修改当前界面，可随时撤销。', 'Only the current interface changes. Fully reversible.')}
+                risk="low"
+                state="approved"
+              />
+            </PreviewCard>
+
+            <PreviewCard name="ProgressTrace" group="Agent" href="/components/agent">
+              <ProgressTrace title={t('执行轨迹', 'EXECUTION TRACE')} steps={traceSteps} />
+            </PreviewCard>
+
+            <PreviewCard name="Activity states" group="System" href="/components/agent">
+              <div className="flex w-full max-w-xs flex-col gap-5">
+                <ThinkingIndicator state="thinking" label={t('正在推理', 'Thinking')} />
+                <ThinkingIndicator state="acting" label={t('正在执行', 'Acting')} />
+                <ThinkingIndicator state="done" label={t('已完成', 'Done')} />
+                <ActivityLabel
+                  active
+                  activeLabel={t('正在同步组件状态', 'Syncing component state')}
+                />
+              </div>
+            </PreviewCard>
+          </div>
         </div>
       </section>
 
+      <section className="border-t border-border bg-foreground-display text-background">
+        <div className="mx-auto flex max-w-page-wide flex-col items-start justify-between gap-8 px-4 py-16 md:flex-row md:items-end md:px-6 md:py-20">
+          <div className="max-w-3xl">
+            <span className="font-mono text-label uppercase tracking-widest opacity-60">
+              {t('开始构建', 'Start building')}
+            </span>
+            <h2 className="mt-4 text-balance text-display-sm">
+              {t('从一个真实组件开始。', 'Start with a real component.')}
+            </h2>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link to="/components" className={buttonVariants({ variant: 'secondary', size: 'lg' })}>
+              {t('打开组件目录', 'Open component index')}
+            </Link>
+            <Link
+              to="/docs/installation"
+              className={buttonVariants({ variant: 'secondary', size: 'lg' })}
+            >
+              {t('阅读文档', 'Read documentation')}
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }

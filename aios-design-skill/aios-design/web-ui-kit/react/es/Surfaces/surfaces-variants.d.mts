@@ -10,7 +10,7 @@
 declare const surfaceVariants: (props?: ({
   elevation?: 2 | 5 | 1 | 3 | 4 | 6 | 7 | 8 | null | undefined;
   padding?: "sm" | "md" | "lg" | "none" | null | undefined;
-  border?: "default" | "visible" | "none" | null | undefined;
+  border?: "default" | "none" | "visible" | null | undefined;
   radius?: "sm" | "md" | "lg" | "none" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 type SurfaceElevation = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;

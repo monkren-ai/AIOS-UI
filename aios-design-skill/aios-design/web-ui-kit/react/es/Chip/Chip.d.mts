@@ -18,7 +18,7 @@ declare function Chip({
 declare namespace Chip {
   var displayName: string;
 }
-interface ChipGroupProps extends React$1.ComponentPropsWithRef<'div'> {}
+type ChipGroupProps = React$1.ComponentPropsWithRef<'div'>;
 declare function ChipGroup({
   className,
   ...props

@@ -30,6 +30,23 @@ export const COMPONENT_NAME_ZH: Record<string, string> = {
   AvatarGroup: "头像组",
   Icon: "图标适配器",
   AssistantModal: "助手浮层",
+  StreamingText: "流式文本",
+  Reasoning: "推理活动",
+  Message: "消息",
+  Response: "回答",
+  Attachment: "附件",
+  BranchPicker: "分支选择",
+  PromptBox: "提示输入",
+  KeywordTag: "关键词标签",
+  ContextBar: "上下文栏",
+  ToolCall: "工具调用",
+  Plan: "执行计划",
+  Sources: "来源",
+  Confirmation: "操作确认",
+  WebSearch: "网页搜索",
+  Terminal: "终端",
+  Subagents: "子智能体",
+  ThreadList: "会话列表",
   CodeBlock: "代码块",
   CodeDiff: "代码差异",
   AlertDialog: "警示对话框",
@@ -131,7 +148,9 @@ export function getComponentName(
   entry: Pick<ComponentManifestEntry, "name">,
   lang: "zh" | "en",
 ) {
-  return lang === "zh" ? (COMPONENT_NAME_ZH[entry.name] ?? entry.name) : entry.name;
+  return lang === "zh"
+    ? (COMPONENT_NAME_ZH[entry.name] ?? entry.name)
+    : entry.name;
 }
 
 const ENTRIES: ComponentManifestEntry[] = [
@@ -218,7 +237,7 @@ const ENTRIES: ComponentManifestEntry[] = [
   {
     slug: "assistant-modal",
     name: "AssistantModal",
-    category: "agent",
+    category: "shell",
     status: "new",
     description: {
       zh: "复用 AssistantPanel 行为的浮动助手语义入口。",
@@ -226,9 +245,29 @@ const ENTRIES: ComponentManifestEntry[] = [
     },
   },
   {
+    slug: "streaming-text",
+    name: "StreamingText",
+    category: "chat",
+    status: "new",
+    description: {
+      zh: "只为流式追加内容提供渐入反馈，并在稳定后折叠为普通文本。",
+      en: "Animates only appended streaming content, then folds it back into settled text.",
+    },
+  },
+  {
+    slug: "reasoning",
+    name: "Reasoning",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "展示可展开的推理活动、运行状态、耗时与渐进步骤。",
+      en: "Expandable reasoning activity with status, elapsed time, and progressive steps.",
+    },
+  },
+  {
     slug: "code-block",
     name: "CodeBlock",
-    category: "data-display",
+    category: "chat",
     status: "new",
     description: {
       zh: "支持复制、行号、换行与延迟高亮的代码输出。",
@@ -238,11 +277,161 @@ const ENTRIES: ComponentManifestEntry[] = [
   {
     slug: "code-diff",
     name: "CodeDiff",
-    category: "data-display",
+    category: "agent",
     status: "new",
     description: {
       zh: "面向 Agent 文件修改的单色差异视图。",
       en: "A monochrome diff for agent-authored file changes.",
+    },
+  },
+  {
+    slug: "message",
+    name: "Message",
+    category: "chat",
+    status: "new",
+    description: {
+      zh: "可组合的用户、助手与系统消息，并提供消息操作区。",
+      en: "Composable user, assistant, and system messages with an action area.",
+    },
+  },
+  {
+    slug: "response",
+    name: "Response",
+    category: "chat",
+    status: "new",
+    description: {
+      zh: "安全渲染 GFM Markdown、外链、行内代码和代码块。",
+      en: "Safely renders GFM Markdown, external links, inline code, and code blocks.",
+    },
+  },
+  {
+    slug: "attachment",
+    name: "Attachment",
+    category: "chat",
+    status: "new",
+    description: {
+      zh: "文件与媒体附件，覆盖上传、进度和删除状态。",
+      en: "File and media attachments with upload, progress, and removal states.",
+    },
+  },
+  {
+    slug: "branch-picker",
+    name: "BranchPicker",
+    category: "chat",
+    status: "new",
+    description: {
+      zh: "在重新生成的消息分支之间翻页。",
+      en: "Moves between regenerated message branches.",
+    },
+  },
+  {
+    slug: "prompt-box",
+    name: "PromptBox",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "基于 Sender 的 Agent 输入框，支持附件、标签、模型与停止状态。",
+      en: "Agent prompt input backed by Sender with attachments, tags, model, and stop states.",
+    },
+  },
+  {
+    slug: "keyword-tag",
+    name: "KeywordTag",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "标记模型、服务、文件与上下文。",
+      en: "Labels models, services, files, and context.",
+    },
+  },
+  {
+    slug: "context-bar",
+    name: "ContextBar",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "呈现输入上下文、任务队列和当前状态。",
+      en: "Presents prompt context, task queues, and current status.",
+    },
+  },
+  {
+    slug: "tool-call",
+    name: "ToolCall",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "可展开的工具调用行，包含参数、结果、耗时与状态。",
+      en: "Expandable tool calls with arguments, result, elapsed time, and status.",
+    },
+  },
+  {
+    slug: "plan",
+    name: "Plan",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "显示待执行、运行中与已完成的 Agent 计划步骤。",
+      en: "Shows pending, running, and completed agent plan steps.",
+    },
+  },
+  {
+    slug: "sources",
+    name: "Sources",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "可折叠的回答来源和安全引用卡片。",
+      en: "Collapsible response sources and safe citation cards.",
+    },
+  },
+  {
+    slug: "confirmation",
+    name: "Confirmation",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "基于风险与结果状态的 Agent 操作审批。",
+      en: "Agent action approval based on risk and outcome state.",
+    },
+  },
+  {
+    slug: "web-search",
+    name: "WebSearch",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "展示搜索查询、运行状态与结果列表。",
+      en: "Displays a search query, execution status, and result list.",
+    },
+  },
+  {
+    slug: "terminal",
+    name: "Terminal",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "展示命令、流式输出、运行状态和退出码。",
+      en: "Displays commands, streaming output, running state, and exit codes.",
+    },
+  },
+  {
+    slug: "subagents",
+    name: "Subagents",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "并行子 Agent 的状态、进度和错误列表。",
+      en: "Status, progress, and errors for parallel subagents.",
+    },
+  },
+  {
+    slug: "thread-list",
+    name: "ThreadList",
+    category: "shell",
+    status: "new",
+    description: {
+      zh: "基于 Conversations 的分组会话、未读状态与独立操作列表。",
+      en: "Grouped threads, unread state, and independent actions backed by Conversations.",
     },
   },
   {
@@ -898,7 +1087,7 @@ const ENTRIES: ComponentManifestEntry[] = [
   {
     slug: "conversation",
     name: "Conversation",
-    category: "agent",
+    category: "chat",
     status: "stable",
     description: {
       zh: "消息、输入、附件、分支、Markdown 回答、来源与智能滚动。",

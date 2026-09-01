@@ -1,6 +1,6 @@
 //#region src/Card/card-variants.d.ts
 declare const contentCardVariants: (props?: ({
-  variant?: "soft" | "outline" | "secondary" | "ghost" | null | undefined;
+  variant?: "soft" | "secondary" | "outline" | "ghost" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   shape?: "rounded" | "technical" | null | undefined;
   interactive?: boolean | null | undefined;

@@ -28,6 +28,7 @@ interface Message {
   key: string;
   role: "user" | "ai";
   content: string;
+  typing?: boolean | { step?: number; interval?: number };
 }
 
 interface Conversation {
@@ -201,6 +202,7 @@ export function AIPocPage() {
         key: msg.key,
         role: msg.role,
         content: msg.content,
+        typing: msg.typing,
         header: msg.role === "ai" ? "AIOS AI" : "YOU",
       })),
     [activeConversation.messages],
@@ -257,6 +259,7 @@ export function AIPocPage() {
             key: `ai-${Date.now()}`,
             role: "ai",
             content: generateReply(value),
+            typing: { step: 2, interval: 24 },
           };
           updateActiveConversation((conversation) => ({
             ...conversation,

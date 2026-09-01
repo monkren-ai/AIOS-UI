@@ -6,7 +6,7 @@ import source from "../../examples/code-block/basic.tsx?raw";
 export const codeBlockDoc: ComponentDoc = {
   slug: "code-block",
   name: "CodeBlock",
-  category: "data-display",
+  category: "chat",
   status: "new",
   description: {
     zh: "代码输出容器，支持复制、行号、换行和延迟语法高亮。",

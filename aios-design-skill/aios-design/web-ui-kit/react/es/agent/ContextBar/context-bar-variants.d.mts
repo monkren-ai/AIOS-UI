@@ -3,7 +3,7 @@ declare const contextBarVariants: (props?: ({
   position?: "footer" | "header" | "detached" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 declare const contextBarLabelVariants: (props?: ({
-  status?: "default" | "error" | "done" | "loading" | "progress" | "waiting" | "queue" | null | undefined;
+  status?: "default" | "error" | "loading" | "done" | "progress" | "waiting" | "queue" | null | undefined;
   muted?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion

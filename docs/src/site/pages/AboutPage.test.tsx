@@ -24,24 +24,21 @@ function renderPage(lang: 'zh' | 'en' = 'zh') {
 }
 
 describe('AboutPage', () => {
-  it('renders verified creator information without private contact details', () => {
+  it('renders project information without creator details', () => {
     renderPage('zh')
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('张瑞圣 · MONK.REN')
-    expect(screen.getByRole('img', { name: '张瑞圣的个人头像' })).toBeInTheDocument()
-    expect(screen.getByText('张瑞圣 · MONK.REN')).toBeInTheDocument()
-    expect(screen.queryByText('资深用户体验设计师')).not.toBeInTheDocument()
-    expect(screen.queryByText(/185-1048/)).not.toBeInTheDocument()
-    expect(screen.queryByText(/微信/)).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+      '把难以描述的设计判断，变成可以执行的共同语言',
+    )
+    expect(screen.queryByText(/张瑞圣|MONK\.REN|创作者/)).not.toBeInTheDocument()
+    expect(screen.queryByRole('img')).not.toBeInTheDocument()
   })
 
-  it('links to the public profile, component overview, and GitHub', () => {
+  it('links to the component overview and GitHub', () => {
     renderPage('en')
 
-    expect(screen.getByRole('link', { name: 'Visit MONK.REN' })).toHaveAttribute(
-      'href',
-      'https://monk.ren/',
-    )
+    expect(screen.queryByRole('link', { name: 'Visit MONK.REN' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'View public résumé' })).not.toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'Less decoration, more structure' })).not.toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'View components' })).toHaveAttribute(
       'href',

@@ -1,6 +1,6 @@
 //#region src/Button/icon-button-variants.d.ts
 declare const iconButtonVariants: (props?: ({
-  shape?: "circle" | "technical" | null | undefined;
+  shape?: "technical" | "circle" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 type IconButtonShape = 'circle' | 'technical';
 type IconButtonSize = 'sm' | 'md' | 'lg';

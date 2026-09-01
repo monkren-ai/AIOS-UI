@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import { ShowcaseProvider, type ShowcaseContextValue } from '@/showcase/ShowcaseContext'
@@ -30,13 +30,13 @@ describe('LandingPage', () => {
     renderPage('zh')
 
     expect(
-      screen.getByRole('heading', { level: 1, name: /把 AI 界面从“能运行”推进到“值得交付”/ }),
+      screen.getByRole('heading', { level: 1, name: /为 AI Agent 构建界面.*更快，也更清晰/ }),
     ).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: '阅读安装文档' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: '安装指南' })).toHaveAttribute(
       'href',
       '/docs/installation',
     )
-    expect(screen.getByRole('link', { name: '浏览全部组件' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: '浏览组件' })).toHaveAttribute(
       'href',
       '/components',
     )
@@ -45,28 +45,19 @@ describe('LandingPage', () => {
   it('derives its proof numbers from the registries', () => {
     renderPage('en')
 
-    const stats = screen.getByRole('region', { name: 'Library statistics' })
+    const stats = screen.getByLabelText('Library statistics')
     expect(within(stats).getByText(String(COMPONENT_MANIFEST.length))).toBeInTheDocument()
     expect(within(stats).getByText(String(CATEGORIES.length))).toBeInTheDocument()
     expect(within(stats).getByText('complete themes')).toBeInTheDocument()
   })
 
-  it('keeps only the live Agent workflow preview', () => {
-    renderPage('en')
-
-    expect(screen.getByRole('heading', { name: 'Agent workflow' })).toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: 'Human approval' })).not.toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: 'Conversation' })).not.toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: 'System status' })).not.toBeInTheDocument()
-    expect(screen.queryByText('Start with a real interface')).not.toBeInTheDocument()
-  })
-
-  it('maps a vertical mouse wheel gesture to the horizontal landing rail', () => {
+  it('shows a curated component gallery without waitlist capture', () => {
     renderPage('en')
 
     const main = screen.getByRole('main')
-    fireEvent.wheel(main, { deltaY: 120 })
-
-    expect(main.scrollLeft).toBe(120)
+    expect(within(main).getAllByRole('article')).toHaveLength(6)
+    expect(screen.getByRole('heading', { name: 'Real states for every step an agent takes' })).toBeInTheDocument()
+    expect(screen.queryByRole('textbox', { name: /email/i })).not.toBeInTheDocument()
+    expect(screen.queryByText('Get Access')).not.toBeInTheDocument()
   })
 })

@@ -1,76 +1,94 @@
-import type { ComponentCategory } from './types'
+import type { ComponentCategory } from "./types";
 
 /**
  * 组件分类。
  *
  * 前五类沿用 appica-ui 的分法，后三类是 AIOS 独有的：
- * 时间与系统、AI OS 的 Agent 流程组件、以及点阵视觉件。
+ * 时间与系统、AI OS 的 Chat / Agent / Shell 组件，以及点阵视觉件。
  */
 export const CATEGORIES: ComponentCategory[] = [
   {
-    id: 'actions-inputs',
-    label: { zh: '操作与输入', en: 'Actions & Inputs' },
+    id: "actions-inputs",
+    label: { zh: "操作与输入", en: "Actions & Inputs" },
     description: {
-      zh: '按钮、表单控件，以及一切采集用户输入的组件。',
-      en: 'Buttons, form controls, and everything that collects user input.',
+      zh: "按钮、表单控件，以及一切采集用户输入的组件。",
+      en: "Buttons, form controls, and everything that collects user input.",
     },
   },
   {
-    id: 'data-display',
-    label: { zh: '数据展示与布局', en: 'Data Display & Layout' },
+    id: "data-display",
+    label: { zh: "数据展示与布局", en: "Data Display & Layout" },
     description: {
-      zh: '卡片、表格、头像等承载内容的容器与排版件。',
-      en: 'Cards, tables, avatars — the containers and primitives that carry content.',
+      zh: "卡片、表格、头像等承载内容的容器与排版件。",
+      en: "Cards, tables, avatars — the containers and primitives that carry content.",
     },
   },
   {
-    id: 'navigation',
-    label: { zh: '菜单与导航', en: 'Menus & Navigation' },
+    id: "navigation",
+    label: { zh: "菜单与导航", en: "Menus & Navigation" },
     description: {
-      zh: '在页面与层级之间移动所需的组件。',
-      en: 'Everything for moving between pages and levels.',
+      zh: "在页面与层级之间移动所需的组件。",
+      en: "Everything for moving between pages and levels.",
     },
   },
   {
-    id: 'overlays',
-    label: { zh: '浮层', en: 'Overlays' },
+    id: "overlays",
+    label: { zh: "浮层", en: "Overlays" },
     description: {
-      zh: '浮在页面之上的对话框、气泡与抽屉。',
-      en: 'Dialogs, popups, and drawers that float above the page.',
+      zh: "浮在页面之上的对话框、气泡与抽屉。",
+      en: "Dialogs, popups, and drawers that float above the page.",
     },
   },
   {
-    id: 'feedback',
-    label: { zh: '状态与反馈', en: 'Status & Feedback' },
+    id: "feedback",
+    label: { zh: "状态与反馈", en: "Status & Feedback" },
     description: {
-      zh: '告诉用户「发生了什么」以及「进行到哪一步」。',
-      en: 'Tell the user what happened and how far along it is.',
+      zh: "告诉用户「发生了什么」以及「进行到哪一步」。",
+      en: "Tell the user what happened and how far along it is.",
     },
   },
   {
-    id: 'time-system',
-    label: { zh: '时间与系统', en: 'Time & System' },
+    id: "time-system",
+    label: { zh: "时间与系统", en: "Time & System" },
     description: {
-      zh: 'AIOS 特色的时钟、日历与设备状态组件。',
+      zh: "AIOS 特色的时钟、日历与设备状态组件。",
       en: "AIOS's signature clock, calendar, and device-status components.",
     },
   },
   {
-    id: 'agent',
-    label: { zh: 'AI OS 与对话', en: 'AI OS & Conversation' },
+    id: "chat",
+    label: { zh: "Chat", en: "Chat" },
     description: {
-      zh: '面向 Agent 流程与对话式界面的组件矩阵。',
-      en: 'The component matrix for agent workflows and conversational interfaces.',
+      zh: "聊天记录、回答、附件、代码与消息分支。",
+      en: "Chat transcripts, responses, attachments, code, and message branches.",
     },
   },
   {
-    id: 'decoration',
-    label: { zh: '装饰与效果', en: 'Decoration & Effects' },
+    id: "agent",
+    label: { zh: "Agent", en: "Agent" },
     description: {
-      zh: '点阵、字形等构成 AIOS 视觉语言的表现层组件。',
-      en: 'Dot matrix, glyphs, and the other pieces that make the visual language read as AIOS.',
+      zh: "提示输入、上下文、推理、工具、计划、来源与审批。",
+      en: "Prompting, context, reasoning, tools, plans, sources, and approvals.",
     },
   },
-]
+  {
+    id: "shell",
+    label: { zh: "Shell", en: "Shell" },
+    description: {
+      zh: "围绕对话的会话列表与助手浮层。",
+      en: "Thread lists and assistant surfaces around the conversation.",
+    },
+  },
+  {
+    id: "decoration",
+    label: { zh: "装饰与效果", en: "Decoration & Effects" },
+    description: {
+      zh: "点阵、字形等构成 AIOS 视觉语言的表现层组件。",
+      en: "Dot matrix, glyphs, and the other pieces that make the visual language read as AIOS.",
+    },
+  },
+];
 
-export const CATEGORY_BY_ID = new Map(CATEGORIES.map((category) => [category.id, category]))
+export const CATEGORY_BY_ID = new Map(
+  CATEGORIES.map((category) => [category.id, category]),
+);

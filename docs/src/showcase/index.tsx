@@ -188,8 +188,8 @@ export function Showcase() {
               <h1 className="showcase-intro-card__title">AIOS UI</h1>
               <p className="showcase-intro-card__text">
                 {t(
-                  '为 AI OS 构建的单色设计系统。组件实景留在目录中；设计哲学、创作者与项目使命统一收录在关于页面。',
-                  'A monochrome design system for AI OS. Live component states stay in the directory; philosophy, creator, and mission live together on About.',
+                  '为 AI OS 构建的单色设计系统。组件实景留在目录中；设计哲学与项目使命统一收录在关于页面。',
+                  'A monochrome design system for AI OS. Live component states stay in the directory; philosophy and mission live together on About.',
                 )}
               </p>
               <Link

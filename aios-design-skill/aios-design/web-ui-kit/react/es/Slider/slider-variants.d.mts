@@ -7,7 +7,7 @@
  */
 declare const sliderVariants: (props?: ({
   size?: "sm" | "md" | "lg" | null | undefined;
-  variant?: "primary" | "soft" | null | undefined;
+  variant?: "soft" | "primary" | null | undefined;
   disabled?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** label + value 的一行。 */

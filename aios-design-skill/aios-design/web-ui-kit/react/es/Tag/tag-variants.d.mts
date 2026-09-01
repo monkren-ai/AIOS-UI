@@ -9,9 +9,9 @@
  * `data-proximity-active`，这里只负责响应，不含任何阴影或位移之外的效果。
  */
 declare const tagVariants: (props?: ({
-  variant?: "soft" | "outline" | "secondary" | "ghost" | "destructive" | null | undefined;
+  variant?: "soft" | "secondary" | "outline" | "ghost" | "destructive" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
-  shape?: "pill" | "technical" | null | undefined;
+  shape?: "technical" | "pill" | null | undefined;
   active?: boolean | null | undefined;
   disabled?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;

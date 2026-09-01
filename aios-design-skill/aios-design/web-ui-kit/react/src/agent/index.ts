@@ -48,6 +48,42 @@ export {
   type TraceStepStatus,
 } from './ProgressTrace'
 export {
+  Reasoning,
+  ReasoningGroup,
+  ReasoningSubject,
+  reasoningVariants,
+  reasoningGroupVariants,
+  type ReasoningProps,
+  type ReasoningGroupProps,
+  type ReasoningStatus,
+} from './Reasoning'
+export {
+  PromptBox,
+  PromptBoxModelSelect,
+  promptBoxVariants,
+  promptBoxActionVariants,
+  type PromptBoxProps,
+  type PromptBoxModelSelectProps,
+} from './PromptBox'
+export {
+  Plan,
+  PlanItem,
+  planVariants,
+  planStepVariants,
+  type PlanProps,
+  type PlanItemProps,
+  type PlanProgressStatus,
+} from './Plan'
+export { Confirmation, type ConfirmationProps } from './Confirmation'
+export {
+  WebSearch,
+  webSearchVariants,
+  webSearchResultVariants,
+  type WebSearchProps,
+  type WebSearchResult,
+  type WebSearchStatus,
+} from './WebSearch'
+export {
   ThinkingIndicator,
   thinkingIndicatorVariants,
   type ThinkingIndicatorProps,

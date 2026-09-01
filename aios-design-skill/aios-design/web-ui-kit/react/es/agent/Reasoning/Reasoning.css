@@ -1,0 +1,21 @@
+@keyframes aios-reasoning-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.aios-reasoning-row-in {
+  animation: aios-reasoning-row-in var(--duration-transition) ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aios-reasoning-row-in {
+    animation: none;
+  }
+}

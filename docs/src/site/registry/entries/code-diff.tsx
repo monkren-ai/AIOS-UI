@@ -6,7 +6,7 @@ import source from "../../examples/code-diff/basic.tsx?raw";
 export const codeDiffDoc: ComponentDoc = {
   slug: "code-diff",
   name: "CodeDiff",
-  category: "data-display",
+  category: "agent",
   status: "new",
   description: {
     zh: "单色代码差异视图，用结构和红色事件色区分新增与删除。",

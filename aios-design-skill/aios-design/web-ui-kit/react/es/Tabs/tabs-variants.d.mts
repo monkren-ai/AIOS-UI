@@ -10,22 +10,22 @@
  * indicator 与 hover 垫层的位移走 `inset-inline-start`，RTL 下自动镜像。
  */
 declare const tabsVariants: (props?: ({
-  variant?: "default" | "subtle" | "pills" | null | undefined;
-  indicator?: "line" | "none" | "background" | null | undefined;
+  variant?: "default" | "pills" | "subtle" | null | undefined;
+  indicator?: "line" | "background" | "none" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** tablist 容器。变体差异主要落在这里。 */
 declare const tabsListVariants: (props?: ({
-  variant?: "default" | "subtle" | "pills" | null | undefined;
+  variant?: "default" | "pills" | "subtle" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 单个 tab 触发器。 */
 declare const tabTriggerVariants: (props?: ({
-  variant?: "default" | "subtle" | "pills" | null | undefined;
+  variant?: "default" | "pills" | "subtle" | null | undefined;
   active?: boolean | null | undefined;
   disabled?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 线性 indicator。位置由 JS 写进 `inset-inline-start` / `width`。 */
 declare const tabsIndicatorVariants: (props?: ({
-  variant?: "default" | "subtle" | "pills" | null | undefined;
+  variant?: "default" | "pills" | "subtle" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** proximity hover 的背景垫层，压在 trigger 下面。 */
 declare const tabsHoverBackgroundVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;

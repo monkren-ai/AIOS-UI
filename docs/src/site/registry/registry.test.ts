@@ -43,6 +43,45 @@ describe('component registry', () => {
     }
   })
 
+  it('keeps the Chat, Agent, and Shell documentation matrix complete', () => {
+    const slugs = (category: string) =>
+      COMPONENT_MANIFEST.filter((entry) => entry.category === category)
+        .map((entry) => entry.slug)
+        .sort()
+
+    expect(slugs('chat')).toEqual(
+      [
+        'attachment',
+        'branch-picker',
+        'code-block',
+        'conversation',
+        'message',
+        'response',
+        'streaming-text',
+      ].sort(),
+    )
+    expect(slugs('agent')).toEqual(
+      [
+        'agent',
+        'aicss',
+        'ask-user-questions',
+        'code-diff',
+        'confirmation',
+        'context-bar',
+        'keyword-tag',
+        'plan',
+        'prompt-box',
+        'reasoning',
+        'sources',
+        'subagents',
+        'terminal',
+        'tool-call',
+        'web-search',
+      ].sort(),
+    )
+    expect(slugs('shell')).toEqual(['assistant-modal', 'thread-list'])
+  })
+
   it('gives every component a Chinese display name without replacing its export name', () => {
     for (const entry of COMPONENT_MANIFEST) {
       expect(COMPONENT_NAME_ZH[entry.name], `${entry.name} Chinese name`).toBeTruthy()
