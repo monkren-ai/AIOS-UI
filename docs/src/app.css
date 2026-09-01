@@ -1,7 +1,7 @@
 /**
  * 文档站样式入口。
  *
- * 设计令牌与主题来自组件库 `aios-ui-kit`；widget / showcase 专用样式仍从库侧 styles 引入。
+ * 设计令牌与主题来自组件库 `aios-ui-kit`；展示页仅补充文档站布局样式。
  */
 
 @import 'tailwindcss';

@@ -1,9 +1,5 @@
-import { bus } from "./telemetry.mjs";
-import { createContext, useEffect, useState, useSyncExternalStore } from "react";
+import { createContext, useEffect, useState } from "react";
 //#region src/system/hooks.ts
-function useTelemetry() {
-	return useSyncExternalStore(bus.subscribe, bus.get);
-}
 /**
 * 每 N 毫秒触发一次状态更新，返回当前 Date。
 * 文档可见性自动暂停（标签页隐藏时不浪费 tick）。
@@ -30,6 +26,6 @@ function useNow(intervalMs = 1e3) {
 }
 createContext(null);
 //#endregion
-export { useNow, useTelemetry };
+export { useNow };
 
 //# sourceMappingURL=hooks.mjs.map

@@ -1,15 +1,18 @@
+import { OVERLAY_REDUCED_MOTION, overlayDuration, overlayModalMotion } from "../lib/overlay-motion.mjs";
 import { cva } from "class-variance-authority";
 //#region src/AlertDialog/alert-dialog-variants.ts
 const alertDialogBackdropVariants = cva([
 	"fixed inset-0 z-50 bg-background/80",
-	"transition-opacity duration-200 ease-aios motion-reduce:transition-none",
+	"transition-opacity",
+	...overlayDuration("slow"),
+	OVERLAY_REDUCED_MOTION,
 	"open:opacity-100 closed:opacity-0"
 ]);
 const alertDialogViewportVariants = cva(["fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4"]);
 const alertDialogPopupVariants = cva([
 	"relative flex w-full max-w-md flex-col rounded-card border bg-surface-raised p-6 text-foreground",
-	"outline-none transition-[opacity,transform] duration-200 ease-spring-moderate motion-reduce:transition-none",
-	"open:translate-y-0 open:opacity-100 closed:translate-y-2 closed:opacity-0"
+	"outline-none",
+	...overlayModalMotion
 ], {
 	variants: { destructive: {
 		true: "border-accent",

@@ -1,5 +1,4 @@
 import DotMatrix from '@/DotMatrix'
-import Quotes from '@/Quotes'
 import { CategorySection } from '../components/CategorySection'
 import { DemoCard } from '../components/DemoCard'
 import type { T } from '../hooks/useShowcaseState'
@@ -11,7 +10,7 @@ interface VisualDisplaySectionProps {
 export function VisualDisplaySection({ t }: VisualDisplaySectionProps) {
   return (
     <CategorySection id="visual-display" title={t('视觉展示', 'Visual Display')}>
-      <DemoCard title={t('点阵', 'Dot Matrix')}>
+      <DemoCard title={t('点阵', 'Dot Matrix')} last>
         <DotMatrix rows={5} cols={5} dotSize="md" theme="light" />
         <DotMatrix rows={8} cols={8} dotSize="sm" theme="dark" pattern="glyph" />
         <DotMatrix
@@ -44,9 +43,6 @@ export function VisualDisplaySection({ t }: VisualDisplaySectionProps) {
         />
       </DemoCard>
 
-      <DemoCard title={t('引用', 'Quotes')} last>
-        <Quotes />
-      </DemoCard>
     </CategorySection>
   )
 }

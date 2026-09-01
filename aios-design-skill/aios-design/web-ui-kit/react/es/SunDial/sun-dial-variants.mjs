@@ -12,20 +12,11 @@ const sunDialVariants = cva([
 	"rounded-lg border border-border bg-surface p-8",
 	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
-	variants: {
-		time: {
-			day: "",
-			night: ""
-		},
-		theme: {
-			light: "",
-			dark: ""
-		}
-	},
-	defaultVariants: {
-		time: "day",
-		theme: "dark"
-	}
+	variants: { time: {
+		day: "",
+		night: ""
+	} },
+	defaultVariants: { time: "day" }
 });
 /** [DAY] / [NIGHT] 状态标。 */
 const sunDialStatusVariants = cva(["font-mono text-label uppercase tracking-[0.1em]", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"], {

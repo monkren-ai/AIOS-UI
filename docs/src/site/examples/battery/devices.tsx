@@ -15,7 +15,6 @@ export default function BatteryDevices() {
     <div className="flex w-full flex-col items-center gap-3">
       <Battery
         percent={73}
-        widgetMode="card"
         devices={DEVICES}
         onDeviceClick={(device) => setLastClicked(device.name)}
         className="w-full max-w-sm"

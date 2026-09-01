@@ -15,13 +15,13 @@ declare const meterTrackVariants: (props?: ({
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 单个刻度块。首尾两段带外圆角，填充态中性，不参与状态色。 */
 declare const meterSegmentVariants: (props?: ({
-  state?: "filled" | "empty" | null | undefined;
+  state?: "empty" | "filled" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 数值本身按 zone 变色：good 用默认前景色，warning 黄，critical 红。 */
 declare const meterValueVariants: (props?: ({
   size?: "sm" | "md" | "lg" | null | undefined;
-  zone?: "warning" | "good" | "critical" | null | undefined;
+  zone?: "good" | "warning" | "critical" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 临界值竖标：从轨顶到轨底的 1px 细线，标出 low / high 的位置。 */
 declare const meterMarkerVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;

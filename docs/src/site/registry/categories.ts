@@ -3,8 +3,8 @@ import type { ComponentCategory } from './types'
 /**
  * 组件分类。
  *
- * 前五类沿用 appica-ui 的分法，后四类是 AIOS 独有的：
- * 时间与系统 widget、桌面小组件、AI OS 的 Agent 流程组件、以及点阵视觉件。
+ * 前五类沿用 appica-ui 的分法，后三类是 AIOS 独有的：
+ * 时间与系统、AI OS 的 Agent 流程组件、以及点阵视觉件。
  */
 export const CATEGORIES: ComponentCategory[] = [
   {
@@ -53,14 +53,6 @@ export const CATEGORIES: ComponentCategory[] = [
     description: {
       zh: 'AIOS 特色的时钟、日历与设备状态组件。',
       en: "AIOS's signature clock, calendar, and device-status components.",
-    },
-  },
-  {
-    id: 'widgets',
-    label: { zh: '桌面小组件', en: 'Desktop Widgets' },
-    description: {
-      zh: '自成一体的桌面小组件：播放器、剪贴板、对讲机之类，放上去就能用。',
-      en: 'Self-contained desktop widgets — a player, a clipboard, a radio — that work as soon as you drop them in.',
     },
   },
   {

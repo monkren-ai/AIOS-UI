@@ -1,3 +1,3 @@
-import { InputSize, InputVariant, inputClearVariants, inputControlVariants, inputFieldVariants, inputHelperVariants, inputIconVariants, inputLabelVariants, inputVariants, resolveInputVariant } from "../Input/input-variants.mjs";
+import { InputSize, InputVariant, inputClearGhostVariants, inputClearVariants, inputControlVariants, inputFieldVariants, inputHelperVariants, inputIconVariants, inputLabelVariants, inputVariants, resolveInputVariant } from "../Input/input-variants.mjs";
 import { Input, InputHelperProps, InputProps } from "../Input/Input.mjs";
-export { Input, type InputHelperProps, type InputProps, type InputSize, type InputVariant, inputClearVariants, inputControlVariants, inputFieldVariants, inputHelperVariants, inputIconVariants, inputLabelVariants, inputVariants, resolveInputVariant };
+export { Input, type InputHelperProps, type InputProps, type InputSize, type InputVariant, inputClearGhostVariants, inputClearVariants, inputControlVariants, inputFieldVariants, inputHelperVariants, inputIconVariants, inputLabelVariants, inputVariants, resolveInputVariant };

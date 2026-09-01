@@ -1,116 +1,126 @@
 "use client";
+import { AIOS_BUILTIN_THEMES, AIOS_DEFAULT_THEME_ID, DEFAULT_THEME_ID_STORAGE_KEY, DEFAULT_THEME_SNAPSHOT_STORAGE_KEY, applyThemeTokens, resolveThemeTokens } from "./themes.mjs";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { jsx } from "react/jsx-runtime";
 //#region src/ThemeProvider/ThemeProvider.tsx
 const DEFAULT_STORAGE_KEY = "aios-theme";
 const MEDIA = "(prefers-color-scheme: dark)";
+const defaultDefinition = AIOS_BUILTIN_THEMES[0];
 const ThemeContext = createContext({
 	theme: "dark",
 	resolvedTheme: "dark",
 	systemTheme: "dark",
 	mounted: false,
 	setTheme: () => {},
-	toggleTheme: () => {}
+	toggleTheme: () => {},
+	themeId: AIOS_DEFAULT_THEME_ID,
+	activeTheme: defaultDefinition,
+	themes: AIOS_BUILTIN_THEMES,
+	setThemeId: () => {}
 });
-function getInitialTheme(defaultTheme, storageKey) {
+function storedTheme(defaultTheme, storageKey) {
 	if (typeof window === "undefined") return defaultTheme;
-	const stored = window.localStorage.getItem(storageKey);
-	if (stored === "light" || stored === "dark" || stored === "system") return stored;
-	return defaultTheme;
+	const value = window.localStorage.getItem(storageKey);
+	return value === "light" || value === "dark" || value === "system" ? value : defaultTheme;
 }
-function getSystemTheme() {
-	if (typeof window === "undefined") return "dark";
-	return window.matchMedia(MEDIA).matches ? "dark" : "light";
+function storedSnapshot(storageKey) {
+	if (typeof window === "undefined") return null;
+	try {
+		const value = JSON.parse(window.localStorage.getItem(storageKey) || "null");
+		return value?.id && value?.modes ? value : null;
+	} catch {
+		return null;
+	}
 }
-function applyTheme(theme) {
-	if (typeof document === "undefined") return;
-	document.documentElement.setAttribute("data-theme", theme);
+function systemAppearance() {
+	return typeof window !== "undefined" && window.matchMedia(MEDIA).matches ? "dark" : "light";
 }
 function disableAnimation() {
-	const css = document.createElement("style");
-	css.appendChild(document.createTextNode("*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}"));
-	document.head.appendChild(css);
+	const style = document.createElement("style");
+	style.textContent = "*,*::before,*::after{transition:none!important}";
+	document.head.appendChild(style);
 	return () => {
-		(() => window.getComputedStyle(document.body))();
-		setTimeout(() => {
-			document.head.removeChild(css);
-		}, 0);
+		window.getComputedStyle(document.body);
+		setTimeout(() => style.remove(), 0);
 	};
 }
-/**
-* ThemeProvider
-*
-* 管理 AIOS UI 的明暗主题。
-*
-* - 通过 `data-theme` 属性切换主题（与 `tokens.css` 的 `[data-theme="dark"]` 选择器协同）
-* - 持久化到 `localStorage`（key: `aios-theme`）
-* - 支持系统主题跟随（prefers-color-scheme）
-* - 支持 forcedTheme 强制主题
-* - 切换时临时禁用 CSS 过渡，避免颜色渐变闪烁
-*
-* @example
-* ```tsx
-* <ThemeProvider defaultTheme="dark" enableSystem>
-*   <App />
-* </ThemeProvider>
-* ```
-*/
-function ThemeProvider({ children, defaultTheme = "dark", forcedTheme, enableSystem = true, disableTransitionOnChange = true, onThemeChange, storageKey = DEFAULT_STORAGE_KEY }) {
-	const [theme, setThemeState] = useState(() => {
-		if (typeof window === "undefined") return defaultTheme;
-		return getInitialTheme(defaultTheme, storageKey);
-	});
-	const [systemTheme, setSystemTheme] = useState(() => enableSystem ? getSystemTheme() : void 0);
+function ThemeProvider({ children, defaultTheme = "dark", forcedTheme, enableSystem = true, disableTransitionOnChange = true, onThemeChange, storageKey = DEFAULT_STORAGE_KEY, themes: suppliedThemes = [], defaultThemeId = AIOS_DEFAULT_THEME_ID, themeIdStorageKey = DEFAULT_THEME_ID_STORAGE_KEY, themeSnapshotStorageKey = DEFAULT_THEME_SNAPSHOT_STORAGE_KEY, onThemeIdChange }) {
+	const [theme, setThemeState] = useState(() => storedTheme(defaultTheme, storageKey));
+	const [themeId, setThemeIdState] = useState(() => typeof window === "undefined" ? defaultThemeId : window.localStorage.getItem(themeIdStorageKey) || defaultThemeId);
+	const [snapshot] = useState(() => storedSnapshot(themeSnapshotStorageKey));
+	const [systemTheme, setSystemTheme] = useState(() => enableSystem ? systemAppearance() : void 0);
 	const [mounted, setMounted] = useState(false);
-	useEffect(() => {
-		setMounted(true);
-	}, []);
+	const themes = useMemo(() => {
+		const catalog = /* @__PURE__ */ new Map();
+		AIOS_BUILTIN_THEMES.forEach((item) => catalog.set(item.id, item));
+		suppliedThemes.forEach((item) => catalog.set(item.id, item));
+		if (snapshot && !catalog.has(snapshot.id)) catalog.set(snapshot.id, snapshot);
+		return [...catalog.values()];
+	}, [snapshot, suppliedThemes]);
+	const activeTheme = useMemo(() => themes.find((item) => item.id === themeId) ?? themes.find((item) => item.id === defaultThemeId) ?? defaultDefinition, [
+		defaultThemeId,
+		themeId,
+		themes
+	]);
 	const resolvedTheme = useMemo(() => {
 		if (forcedTheme) return forcedTheme;
 		if (theme === "system") return systemTheme ?? (defaultTheme === "system" ? "dark" : defaultTheme);
 		return theme;
 	}, [
+		defaultTheme,
 		forcedTheme,
-		theme,
 		systemTheme,
-		defaultTheme
+		theme
 	]);
+	useEffect(() => setMounted(true), []);
 	useEffect(() => {
-		if (typeof window !== "undefined") window.localStorage.setItem(storageKey, theme);
+		window.localStorage.setItem(storageKey, theme);
 		onThemeChange?.(theme);
 	}, [
-		theme,
 		onThemeChange,
-		storageKey
+		storageKey,
+		theme
 	]);
 	useEffect(() => {
-		const enable = disableTransitionOnChange ? disableAnimation() : null;
-		applyTheme(resolvedTheme);
-		enable?.();
-	}, [resolvedTheme, disableTransitionOnChange]);
+		window.localStorage.setItem(themeIdStorageKey, activeTheme.id);
+		window.localStorage.setItem(themeSnapshotStorageKey, JSON.stringify(activeTheme));
+		onThemeIdChange?.(activeTheme.id);
+	}, [
+		activeTheme,
+		onThemeIdChange,
+		themeIdStorageKey,
+		themeSnapshotStorageKey
+	]);
+	useEffect(() => {
+		const restore = disableTransitionOnChange ? disableAnimation() : null;
+		const root = document.documentElement;
+		root.setAttribute("data-theme", resolvedTheme);
+		root.setAttribute("data-theme-id", activeTheme.id);
+		applyThemeTokens(root, resolveThemeTokens(activeTheme, resolvedTheme));
+		restore?.();
+	}, [
+		activeTheme,
+		disableTransitionOnChange,
+		resolvedTheme
+	]);
 	useEffect(() => {
 		if (!enableSystem) return;
 		const media = window.matchMedia(MEDIA);
-		const handler = (e) => {
-			setSystemTheme(e.matches ? "dark" : "light");
-		};
+		const handler = (event) => setSystemTheme(event.matches ? "dark" : "light");
 		handler(media);
 		media.addEventListener("change", handler);
 		return () => media.removeEventListener("change", handler);
 	}, [enableSystem]);
-	const setTheme = useCallback((next) => {
-		setThemeState(next);
-	}, []);
-	const toggleTheme = useCallback(() => {
-		setThemeState((prev) => {
-			if (enableSystem) {
-				if (prev === "dark") return "light";
-				if (prev === "light") return "system";
-				return "dark";
-			}
-			return prev === "dark" ? "light" : "dark";
-		});
-	}, [enableSystem]);
+	const setTheme = useCallback((next) => setThemeState(next), []);
+	const setThemeId = useCallback((next) => {
+		if (themes.some((item) => item.id === next)) setThemeIdState(next);
+	}, [themes]);
+	const toggleTheme = useCallback(() => setThemeState((previous) => {
+		if (!enableSystem) return previous === "dark" ? "light" : "dark";
+		if (previous === "dark") return "light";
+		if (previous === "light") return "system";
+		return "dark";
+	}), [enableSystem]);
 	return /* @__PURE__ */ jsx(ThemeContext, {
 		value: useMemo(() => ({
 			theme,
@@ -118,13 +128,20 @@ function ThemeProvider({ children, defaultTheme = "dark", forcedTheme, enableSys
 			systemTheme,
 			mounted,
 			setTheme,
-			toggleTheme
+			toggleTheme,
+			themeId: activeTheme.id,
+			activeTheme,
+			themes,
+			setThemeId
 		}), [
-			theme,
-			resolvedTheme,
-			systemTheme,
+			activeTheme,
 			mounted,
+			resolvedTheme,
 			setTheme,
+			setThemeId,
+			systemTheme,
+			theme,
+			themes,
 			toggleTheme
 		]),
 		children

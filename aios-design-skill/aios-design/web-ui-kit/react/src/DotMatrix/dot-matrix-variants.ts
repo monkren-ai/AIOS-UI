@@ -6,7 +6,7 @@ import { cva } from 'class-variance-authority'
  * 点阵是 AIOS 视觉识别的承重墙，所以这里逐条对齐 v1 CSS 的层叠结果，
  * 而不是「差不多就行」：
  *
- * - 点的底色先由 `theme` 给（light 用 `--widget-dark-bg`，dark 用 `--widget-white`），
+ * - 点的底色先由 `theme` 给（light 用 `--surface`，dark 用 `--text-display`），
  *   再由 `pattern` 覆盖——v1 里 pattern 规则写在 theme 之后，同为 (0,2,0) 特异性，
  *   所以 grid / glyph 会赢。这里靠 `cn()` 的 tailwind-merge 复现同样的先后关系。
  * - `dim` 的透明度层层收窄：基础 0.2 → theme 0.3 → grid 0.1 / glyph 0.15。
@@ -63,17 +63,17 @@ export const dotVariants = cva(
   {
     variants: {
       dotSize: {
-        sm: 'size-[var(--widget-dot-sm)]',
-        md: 'size-[var(--widget-dot-md)]',
-        lg: 'size-[var(--widget-dot-lg)]',
+        sm: 'size-[var(--dot-size-sm)]',
+        md: 'size-[var(--dot-size-md)]',
+        lg: 'size-[var(--dot-size-lg)]',
       },
       theme: {
-        light: 'bg-[var(--widget-dark-bg)]',
-        dark: 'bg-[var(--widget-white)]',
+        light: 'bg-[var(--surface)]',
+        dark: 'bg-[var(--text-display)]',
       },
       pattern: {
-        grid: 'bg-[var(--widget-dark-2)] opacity-40',
-        glyph: 'bg-[var(--widget-dark-2)]',
+        grid: 'bg-[var(--border-visible)] opacity-40',
+        glyph: 'bg-[var(--border-visible)]',
         pulse: '',
         custom: '',
       },
@@ -84,9 +84,9 @@ export const dotVariants = cva(
       },
     },
     compoundVariants: [
-      { state: 'active', class: 'bg-[var(--widget-primary)] opacity-100' },
-      { state: 'dim', theme: 'light', class: 'bg-[var(--widget-dark-2)] opacity-30' },
-      { state: 'dim', theme: 'dark', class: 'bg-[var(--widget-dark-2)] opacity-30' },
+      { state: 'active', class: 'bg-[var(--accent)] opacity-100' },
+      { state: 'dim', theme: 'light', class: 'bg-[var(--border-visible)] opacity-30' },
+      { state: 'dim', theme: 'dark', class: 'bg-[var(--border-visible)] opacity-30' },
       { state: 'dim', pattern: 'glyph', class: 'opacity-15' },
       { state: 'dim', pattern: 'grid', class: 'opacity-10' },
       {

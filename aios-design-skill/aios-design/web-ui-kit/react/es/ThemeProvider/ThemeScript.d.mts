@@ -14,6 +14,8 @@ interface ThemeScriptOptions {
    * 是否启用系统主题，默认 true
    */
   enableSystem?: boolean;
+  themeIdStorageKey?: string;
+  themeSnapshotStorageKey?: string;
 }
 /**
  * 生成内联无闪烁主题脚本字符串。

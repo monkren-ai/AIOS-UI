@@ -44,14 +44,14 @@ export default function QuickToggleBasic() {
         icon={<WifiIcon />}
         label="Wi-Fi"
         active={wifi}
-        theme={wifi ? 'accent' : 'light'}
+
         onClick={() => setWifi((value) => !value)}
       />
       <QuickToggle
         icon={<BluetoothIcon />}
         label="Bluetooth"
         active={bluetooth}
-        theme={bluetooth ? 'accent' : 'light'}
+
         onClick={() => setBluetooth((value) => !value)}
       />
     </div>

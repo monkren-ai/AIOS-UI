@@ -1,4 +1,9 @@
 import type { ScriptHTMLAttributes } from 'react'
+import {
+  DEFAULT_THEME_ID_STORAGE_KEY,
+  DEFAULT_THEME_SNAPSHOT_STORAGE_KEY,
+  THEME_TOKEN_CSS_VARIABLES,
+} from './themes'
 
 export interface ThemeScriptOptions {
   /**
@@ -13,6 +18,8 @@ export interface ThemeScriptOptions {
    * 是否启用系统主题，默认 true
    */
   enableSystem?: boolean
+  themeIdStorageKey?: string
+  themeSnapshotStorageKey?: string
 }
 
 /**
@@ -29,9 +36,22 @@ export interface ThemeScriptOptions {
  * ```
  */
 export function getThemeScript(options: ThemeScriptOptions = {}): string {
-  const { storageKey = 'aios-theme', defaultTheme = 'dark', enableSystem = true } = options
+  const {
+    storageKey = 'aios-theme',
+    defaultTheme = 'dark',
+    enableSystem = true,
+    themeIdStorageKey = DEFAULT_THEME_ID_STORAGE_KEY,
+    themeSnapshotStorageKey = DEFAULT_THEME_SNAPSHOT_STORAGE_KEY,
+  } = options
 
-  const script = function (storageKey: string, defaultTheme: string, enableSystem: boolean) {
+  const script = function (
+    storageKey: string,
+    defaultTheme: string,
+    enableSystem: boolean,
+    themeIdStorageKey: string,
+    themeSnapshotStorageKey: string,
+    properties: Record<string, string>,
+  ) {
     const el = document.documentElement
     try {
       const stored = localStorage.getItem(storageKey) || defaultTheme
@@ -41,13 +61,23 @@ export function getThemeScript(options: ThemeScriptOptions = {}): string {
       }
       if (theme === 'light' || theme === 'dark') {
         el.setAttribute('data-theme', theme)
+        const themeId = localStorage.getItem(themeIdStorageKey)
+        const snapshot = JSON.parse(localStorage.getItem(themeSnapshotStorageKey) || 'null')
+        if (themeId) el.setAttribute('data-theme-id', themeId)
+        const selected = snapshot?.modes?.[theme] || snapshot?.modes?.[theme === 'light' ? 'dark' : 'light']
+        if (selected) {
+          for (const [token, value] of Object.entries(selected)) {
+            const property = properties[token]
+            if (property && typeof value === 'string') el.style.setProperty(property, value)
+          }
+        }
       }
     } catch (_e) {
       // storage unavailable — leave the default
     }
   }
 
-  return `(${script.toString()})(${JSON.stringify(storageKey)}, ${JSON.stringify(defaultTheme)}, ${enableSystem})`
+  return `(${script.toString()})(${JSON.stringify(storageKey)}, ${JSON.stringify(defaultTheme)}, ${enableSystem}, ${JSON.stringify(themeIdStorageKey)}, ${JSON.stringify(themeSnapshotStorageKey)}, ${JSON.stringify(THEME_TOKEN_CSS_VARIABLES)})`
 }
 
 export interface ThemeScriptProps extends ThemeScriptOptions {

@@ -310,11 +310,10 @@ function App() {
 - **Calendar** — compact and full calendar views
 - **DataTable** — data tables, sortable grids, and label/value rows
 - **DotMatrix** — dot-matrix display for numeric/text data
-- **NextEvent** — upcoming event preview widget
+- **NextEvent** — upcoming event preview
 - **Pagination** — page navigation for data lists
 - **PreviewCard** — media preview card with thumbnail, title, and metadata
 - **ProgressBar** — segmented progress bars in three sizes
-- **Quotes** — inspirational or informational quote display
 - **Skeleton** — dot-matrix breathing placeholder (AIOS adaptation, not grey blocks)
 - **Sparkline** — mini trend line, 1.5px stroke, no fill, extremes by opacity
 - **SystemMonitor** — comprehensive system dashboard with CPU, RAM, storage, network speed, and battery level indicators
@@ -372,20 +371,13 @@ function App() {
 - **Sheet** — slide-up panel (supports top/bottom/left/right sides)
 - **Tooltip** — hover-triggered informational tooltip
 
-**Widgets**
-- **MusicPlayer** — music playback widget with progress
-- **PhotoCarousel** — image slideshow with autoplay
-- **Caffeinate** — caffeine intake tracker with half-life decay visualization
-- **Clipboard** — clipboard manager with recent entries and copy support
+**Time & Utilities**
 - **Countdown** — countdown in Doto display type that turns red as it nears zero
 - **Pomodoro** — pomodoro timer with work/break cycles and segmented progress
-- **WalkieTalkie** — push-to-talk widget with pulse animation
 - **SunDial** — sunrise/sunset tracker with arc visualization
 - **AgeMotion** — life progress visualization with segmented bars
 - **Chrono** — stopwatch with lap tracking
 - **Spinner** — decision wheel with spin animation
-- **Date** — date display widget
-- **Taskbar** — quick-access task bar widget
 
 **Feedback & Decoration**
 - **GradientGlow** — dot-matrix ambient background (AIOS adaptation, not a gradient glow)
@@ -526,30 +518,20 @@ All 113 React components were refactored in a single sweep to fully conform to t
 | Semantic hooks | BEM classes only | `data-slot` plus `data-variant` / `data-size` / `data-theme` / `data-state` |
 | Polymorphic `asChild` | Not supported | Components opt-in via a `Slot` primitive (no `@radix-ui/react-slot` dep) |
 | Internal imports | Long relative paths (`../../../lib/...`) | `@/*` path alias |
-| `withWidgetCard` HOC | 5 `any` types, hand-rolled ref cast | Clean overloads, `unknown` instead of `any` |
 | App entry | Relative imports | `@/*` path alias throughout |
 
 **Breaking changes** (intentional, approved by the user for this refactor):
 
-- `Caffeinate` prop `status` enum values renamed for consistency — see `MIGRATION.md` for the full table.
 - `Checkbox` prop `checked` no longer accepts a raw boolean for indeterminate state; pass the string `"indeterminate"` (or use `defaultChecked`).
 - `Slider` controlled/uncontrolled detection now reads `value` vs `defaultValue` — supplying both throws at runtime (was previously silently uncontrolled).
 - `RadioGroup` `orientation` is now required to be one of `'horizontal' | 'vertical'`; legacy `'row'` / `'col'` no longer accepted.
 - `Tag` removed deprecated `color` prop; use `variant="accent" | "warning" | "success"`.
-- `withWidgetCard` overload signature tightened; calling with a non-forwardRef FC no longer infers `unknown` — explicit ref type required at call site.
 
 See `MIGRATION.md` for a per-component migration table and the exact diff of the `cn()` signature.
 
-### Widget Subsystem
+### Theme families (3.0)
 
-The Widget components (QuickToggle, WidgetCard, WidgetPill, WidgetGrid, WeatherWidget, StepsWidget, ActivityWidget, CompassWidget, TimeWidget, SvgIcon, Glyph) follow AIOS Phone's home screen widget aesthetic, which differs intentionally from the main UI system:
-
-- **Background**: Uses `--widget-bg` (#e1e5ea) / `--widget-dark-bg` (#1a1d1c) instead of `--surface` / `--black` — mimicking the phone's widget panel
-- **Typography**: Uses `--font-widget` (Space Grotesk, same as `--font-body`) for body text and `--font-dotmatrix` (Doto) for large numeric displays
-- **Sizing**: Fixed widget dimensions (`--widget-size-sm/md/lg`) following AIOS Phone's grid system
-- **Rounding**: Larger border-radius (`--radius-xl/2xl`) for the softer widget aesthetic
-
-This is a deliberate design choice, not an inconsistency.
+AIOS UI 3.0 uses a global theme family plus the existing light/dark/system mode. Components must consume semantic tokens and must not introduce component-local color themes. Theme exchange uses the DTCG 2025.10 JSON format; runtime imports are restricted to the supported visual-token whitelist.
 
 ---
 

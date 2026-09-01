@@ -413,7 +413,7 @@ export function ProjectIntroPage() {
             <p className="pi-body">
               {t(
                 '超过 60 个组件覆盖核心交互、数据展示、系统监控与特色组件。每一个都遵循相同的几何与色彩纪律。',
-                'Over 60 components cover core interactions, data display, system monitoring, and feature widgets. Each follows the same geometry and color discipline.',
+                'The library covers core interactions, data display, system monitoring, and agent workflows. Each follows the same geometry and color discipline.',
               )}
             </p>
             <figure

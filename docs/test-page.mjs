@@ -72,7 +72,6 @@ async function validateAIOSUI() {
       { name: 'CompassWidget', selector: '.compass-widget' },
       { name: 'TimeWidget', selector: '.time-widget' },
       { name: 'StepsWidget', selector: '.steps-widget' },
-      { name: 'WidgetCard', selector: '.widget-card' },
       { name: 'WidgetIcon', selector: '.widget-icon' },
       { name: 'WidgetPill', selector: '.widget-pill' },
       { name: 'DotMatrix', selector: '.dot-matrix' }
@@ -150,7 +149,6 @@ async function validateAIOSUI() {
   console.log(`CompassWidget: ${componentStatus.compassWidget ? '✅' : '⚠️'}`);
   console.log(`TimeWidget: ${componentStatus.timeWidget ? '✅' : '⚠️'}`);
   console.log(`StepsWidget: ${componentStatus.stepsWidget ? '✅' : '⚠️'}`);
-  console.log(`WidgetCard: ${componentStatus.widgetCard ? '✅' : '⚠️'}`);
   console.log(`WidgetIcon: ${componentStatus.widgetIcon ? '✅' : '⚠️'}`);
   console.log(`WidgetPill: ${componentStatus.widgetPill ? '✅' : '⚠️'}`);
   console.log(`DotMatrix: ${componentStatus.dotMatrix ? '✅' : '⚠️'}`);

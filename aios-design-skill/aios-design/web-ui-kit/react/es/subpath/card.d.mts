@@ -1,3 +1,3 @@
-import { CardShape, CardSize, CardVariant, WidgetCardAlign, WidgetCardDensity, WidgetCardIconPosition, WidgetCardShape, WidgetCardSize, WidgetCardTheme, contentCardVariants, widgetCardSubtitleVariants, widgetCardTitleVariants, widgetCardValueVariants, widgetCardVariants } from "../Card/card-variants.mjs";
-import { Card, CardProps, ContentCard, ContentCardProps, WidgetCard, WidgetCardProps } from "../Card/Card.mjs";
-export { Card, type CardProps, type CardShape, type CardSize, type CardVariant, ContentCard, type ContentCardProps, WidgetCard, type WidgetCardAlign, type WidgetCardDensity, type WidgetCardIconPosition, type WidgetCardProps, type WidgetCardShape, type WidgetCardSize, type WidgetCardTheme, contentCardVariants, widgetCardSubtitleVariants, widgetCardTitleVariants, widgetCardValueVariants, widgetCardVariants };
+import { CardShape, CardSize, CardVariant, contentCardVariants } from "../Card/card-variants.mjs";
+import { Card, CardProps, ContentCard, ContentCardProps } from "../Card/Card.mjs";
+export { Card, type CardProps, type CardShape, type CardSize, type CardVariant, ContentCard, type ContentCardProps, contentCardVariants };

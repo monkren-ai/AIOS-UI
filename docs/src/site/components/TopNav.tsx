@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { to: '/docs', zh: '文档', en: 'Docs' },
   { to: '/components', zh: '组件', en: 'Components' },
   { to: '/icons', zh: '图标', en: 'Icons' },
+  { to: '/themes', zh: '主题', en: 'Themes' },
   { to: '/about', zh: '关于', en: 'About' },
 ]
 
@@ -83,7 +84,7 @@ export function TopNav({ onOpenSearch }: { onOpenSearch: () => void }) {
             variant="ghost"
             size="icon-sm"
             onClick={toggleTheme}
-            aria-label={t('切换主题', 'Toggle theme')}
+            aria-label={t('切换明暗模式', 'Toggle color mode')}
             className="rounded-card-technical"
           >
             {THEME_GLYPH[theme] ?? THEME_GLYPH.dark}

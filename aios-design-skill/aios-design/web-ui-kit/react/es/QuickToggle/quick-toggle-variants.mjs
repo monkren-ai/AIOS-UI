@@ -16,13 +16,8 @@ const quickToggleVariants = cva([
 ], {
 	variants: {
 		variant: {
-			circle: "h-[var(--widget-pill-height)] w-[var(--widget-size-sm)] flex-col rounded-full gap-y-2",
-			pill: "h-[var(--widget-pill-height)] w-[var(--widget-size-md)] flex-row rounded-pill gap-x-2 px-6"
-		},
-		theme: {
-			light: "bg-widget-card",
-			dark: "bg-widget-dark",
-			accent: "bg-accent"
+			circle: "size-17 flex-col rounded-full gap-y-2",
+			pill: "min-h-11 min-w-36 flex-row rounded-pill gap-x-2 px-6"
 		},
 		active: {
 			true: "",
@@ -30,59 +25,26 @@ const quickToggleVariants = cva([
 		}
 	},
 	compoundVariants: [{
-		variant: "circle",
-		theme: "accent",
-		class: "gap-y-1"
+		active: true,
+		class: "bg-foreground-display text-background"
+	}, {
+		active: false,
+		class: "border border-border bg-surface text-foreground-muted hover:bg-muted"
 	}],
 	defaultVariants: {
 		variant: "circle",
-		theme: "light",
 		active: false
 	}
 });
 /** 图标槽位。 */
-const quickToggleIconVariants = cva(["flex size-6 shrink-0 items-center justify-center [&_svg]:size-6 [&_svg]:fill-current"], {
-	variants: { theme: {
-		light: "text-[var(--widget-dark-3)]",
-		dark: "text-[var(--widget-dark-4)]",
-		accent: "text-[var(--widget-text-on-accent)]"
-	} },
-	defaultVariants: { theme: "light" }
-});
+const quickToggleIconVariants = cva("flex size-6 shrink-0 items-center justify-center text-inherit [&_svg]:size-6 [&_svg]:fill-current");
 /** 文案槽位。字号跟着「形状 × 配色」的组合走，与 v1 一致。 */
 const quickToggleLabelVariants = cva(["truncate text-center font-body leading-none"], {
-	variants: {
-		variant: {
-			circle: "",
-			pill: "text-caption"
-		},
-		theme: {
-			light: "text-[var(--widget-dark-3)]",
-			dark: "text-[var(--widget-dark-4)]",
-			accent: "text-[var(--widget-text-on-accent)]"
-		}
-	},
-	compoundVariants: [
-		{
-			variant: "circle",
-			theme: "light",
-			class: "text-sm"
-		},
-		{
-			variant: "circle",
-			theme: "dark",
-			class: "text-sm"
-		},
-		{
-			variant: "circle",
-			theme: "accent",
-			class: "text-[8px]"
-		}
-	],
-	defaultVariants: {
-		variant: "circle",
-		theme: "light"
-	}
+	variants: { variant: {
+		circle: "",
+		pill: "text-caption"
+	} },
+	defaultVariants: { variant: "circle" }
 });
 //#endregion
 export { quickToggleIconVariants, quickToggleLabelVariants, quickToggleVariants };

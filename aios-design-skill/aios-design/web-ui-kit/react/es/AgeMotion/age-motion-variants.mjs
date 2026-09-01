@@ -6,29 +6,19 @@ import { cva } from "class-variance-authority";
 * 秒级跳动的是数字本身而不是 CSS 动画，只有进度条的宽度/配色用补间。
 * `motion-reduce` 关掉的是补间,读数仍然每秒刷新到正确值。
 *
-* v1 的 `size`(sm/md/lg) 和 `theme`(light/dark) 只挂了类名、没有任何 CSS,
-* 这里保持为空变体,状态改由 `data-size` / `data-widget-theme` 暴露。
+* `size`(sm/md/lg) 保持结构兼容，配色统一读取全局语义 token。
 */
 const ageMotionVariants = cva([
 	"flex w-full flex-col",
 	"rounded-lg border border-border bg-surface p-8",
 	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
-	variants: {
-		size: {
-			sm: "",
-			md: "",
-			lg: ""
-		},
-		theme: {
-			light: "",
-			dark: ""
-		}
-	},
-	defaultVariants: {
-		size: "md",
-		theme: "dark"
-	}
+	variants: { size: {
+		sm: "",
+		md: "",
+		lg: ""
+	} },
+	defaultVariants: { size: "md" }
 });
 /** 出生日期输入框的标签。 */
 const ageInputLabelVariants = cva(["font-mono text-label uppercase tracking-[0.06em] text-foreground-muted", "transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"]);

@@ -1,3 +1,4 @@
+import { DEFAULT_THEME_ID_STORAGE_KEY, DEFAULT_THEME_SNAPSHOT_STORAGE_KEY, THEME_TOKEN_CSS_VARIABLES } from "./themes.mjs";
 import { jsx } from "react/jsx-runtime";
 //#region src/ThemeProvider/ThemeScript.tsx
 /**
@@ -14,17 +15,27 @@ import { jsx } from "react/jsx-runtime";
 * ```
 */
 function getThemeScript(options = {}) {
-	const { storageKey = "aios-theme", defaultTheme = "dark", enableSystem = true } = options;
-	const script = function(storageKey, defaultTheme, enableSystem) {
+	const { storageKey = "aios-theme", defaultTheme = "dark", enableSystem = true, themeIdStorageKey = DEFAULT_THEME_ID_STORAGE_KEY, themeSnapshotStorageKey = DEFAULT_THEME_SNAPSHOT_STORAGE_KEY } = options;
+	const script = function(storageKey, defaultTheme, enableSystem, themeIdStorageKey, themeSnapshotStorageKey, properties) {
 		const el = document.documentElement;
 		try {
 			const stored = localStorage.getItem(storageKey) || defaultTheme;
 			let theme = stored;
 			if (enableSystem && stored === "system") theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-			if (theme === "light" || theme === "dark") el.setAttribute("data-theme", theme);
+			if (theme === "light" || theme === "dark") {
+				el.setAttribute("data-theme", theme);
+				const themeId = localStorage.getItem(themeIdStorageKey);
+				const snapshot = JSON.parse(localStorage.getItem(themeSnapshotStorageKey) || "null");
+				if (themeId) el.setAttribute("data-theme-id", themeId);
+				const selected = snapshot?.modes?.[theme] || snapshot?.modes?.[theme === "light" ? "dark" : "light"];
+				if (selected) for (const [token, value] of Object.entries(selected)) {
+					const property = properties[token];
+					if (property && typeof value === "string") el.style.setProperty(property, value);
+				}
+			}
 		} catch (_e) {}
 	};
-	return `(${script.toString()})(${JSON.stringify(storageKey)}, ${JSON.stringify(defaultTheme)}, ${enableSystem})`;
+	return `(${script.toString()})(${JSON.stringify(storageKey)}, ${JSON.stringify(defaultTheme)}, ${enableSystem}, ${JSON.stringify(themeIdStorageKey)}, ${JSON.stringify(themeSnapshotStorageKey)}, ${JSON.stringify(THEME_TOKEN_CSS_VARIABLES)})`;
 }
 /**
 * 渲染内联无闪烁主题脚本。

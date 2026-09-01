@@ -17,7 +17,7 @@
 }
 
 .aios-dot-matrix__dot--active {
-  background-color: var(--widget-primary);
+  background-color: var(--accent);
   opacity: 1;
 }
 
@@ -30,8 +30,8 @@
 }
 
 .aios-dot-matrix--sm .aios-dot-matrix__dot {
-  width: var(--widget-dot-sm);
-  height: var(--widget-dot-sm);
+  width: var(--dot-size-sm);
+  height: var(--dot-size-sm);
 }
 
 .aios-dot-matrix--sm {
@@ -43,8 +43,8 @@
 }
 
 .aios-dot-matrix--md .aios-dot-matrix__dot {
-  width: var(--widget-dot-md);
-  height: var(--widget-dot-md);
+  width: var(--dot-size-md);
+  height: var(--dot-size-md);
 }
 
 .aios-dot-matrix--md {
@@ -56,8 +56,8 @@
 }
 
 .aios-dot-matrix--lg .aios-dot-matrix__dot {
-  width: var(--widget-dot-lg);
-  height: var(--widget-dot-lg);
+  width: var(--dot-size-lg);
+  height: var(--dot-size-lg);
 }
 
 .aios-dot-matrix--lg {
@@ -65,37 +65,37 @@
 }
 
 .aios-dot-matrix--light .aios-dot-matrix__dot {
-  background-color: var(--widget-dark-bg);
+  background-color: var(--surface);
 }
 
 .aios-dot-matrix--light .aios-dot-matrix__dot--active {
-  background-color: var(--widget-primary);
+  background-color: var(--accent);
 }
 
 .aios-dot-matrix--light .aios-dot-matrix__dot--dim {
-  background-color: var(--widget-dark-2);
+  background-color: var(--border-visible);
   opacity: 0.3;
 }
 
 .aios-dot-matrix--dark .aios-dot-matrix__dot {
-  background-color: var(--widget-white);
+  background-color: var(--text-display);
 }
 
 .aios-dot-matrix--dark .aios-dot-matrix__dot--active {
-  background-color: var(--widget-primary);
+  background-color: var(--accent);
 }
 
 .aios-dot-matrix--dark .aios-dot-matrix__dot--dim {
-  background-color: var(--widget-dark-2);
+  background-color: var(--border-visible);
   opacity: 0.3;
 }
 
 .aios-dot-matrix--glyph .aios-dot-matrix__dot {
-  background-color: var(--widget-dark-2);
+  background-color: var(--border-visible);
 }
 
 .aios-dot-matrix--glyph .aios-dot-matrix__dot--active {
-  background-color: var(--widget-primary);
+  background-color: var(--accent);
 }
 
 .aios-dot-matrix--glyph .aios-dot-matrix__dot--dim {
@@ -103,12 +103,12 @@
 }
 
 .aios-dot-matrix--grid .aios-dot-matrix__dot {
-  background-color: var(--widget-dark-2);
+  background-color: var(--border-visible);
   opacity: 0.4;
 }
 
 .aios-dot-matrix--grid .aios-dot-matrix__dot--active {
-  background-color: var(--widget-primary);
+  background-color: var(--accent);
   opacity: 1;
 }
 

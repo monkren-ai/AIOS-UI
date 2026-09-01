@@ -23,7 +23,7 @@ export function SystemMonitoringSection({ t }: SystemMonitoringSectionProps) {
       <DemoCard title={t('快速切换', 'Quick Toggle')} last>
         <QuickToggle
           variant="circle"
-          theme="light"
+
           label={t('激活', 'Active')}
           active
           icon={
@@ -41,7 +41,7 @@ export function SystemMonitoringSection({ t }: SystemMonitoringSectionProps) {
         />
         <QuickToggle
           variant="circle"
-          theme="light"
+
           label={t('手电筒', 'Torch')}
           icon={
             <svg viewBox="0 0 24 24" width="20" height="20">
@@ -58,7 +58,7 @@ export function SystemMonitoringSection({ t }: SystemMonitoringSectionProps) {
         />
         <QuickToggle
           variant="circle"
-          theme="accent"
+
           label={t('勿扰', 'DND')}
           active
           icon={
@@ -85,7 +85,7 @@ export function SystemMonitoringSection({ t }: SystemMonitoringSectionProps) {
         />
         <QuickToggle
           variant="circle"
-          theme="light"
+
           label={t('旋转', 'Rotate')}
           icon={
             <svg viewBox="0 0 24 24" width="20" height="20">
@@ -102,7 +102,7 @@ export function SystemMonitoringSection({ t }: SystemMonitoringSectionProps) {
         />
         <QuickToggle
           variant="pill"
-          theme="dark"
+
           label={t('热点', 'Hotspot')}
           icon={
             <svg viewBox="0 0 24 24" width="20" height="20">
@@ -119,7 +119,7 @@ export function SystemMonitoringSection({ t }: SystemMonitoringSectionProps) {
         />
         <QuickToggle
           variant="pill"
-          theme="dark"
+
           label={t('蓝牙', 'Bluetooth')}
           active
           icon={
@@ -143,7 +143,7 @@ export function SystemMonitoringSection({ t }: SystemMonitoringSectionProps) {
         />
         <QuickToggle
           variant="pill"
-          theme="light"
+
           label={t('移动数据', 'Mobile Data')}
           active
           icon={
@@ -161,7 +161,7 @@ export function SystemMonitoringSection({ t }: SystemMonitoringSectionProps) {
         />
         <QuickToggle
           variant="pill"
-          theme="dark"
+
           label={t('NFC', 'NFC')}
           icon={
             <svg viewBox="0 0 24 24" width="20" height="20">

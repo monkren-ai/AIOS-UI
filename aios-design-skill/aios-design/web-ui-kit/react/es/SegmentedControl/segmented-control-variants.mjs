@@ -57,7 +57,7 @@ const segmentVariants = cva([
 /** 选中态 slider 与 proximity hover 垫层的共同底子。 */
 const sliderBase = [
 	"pointer-events-none absolute top-0 start-0 h-full",
-	"transition-[inset-inline-start,width,opacity] duration-[160ms] ease-spring-moderate",
+	"transition-[inset-inline-start,width,opacity] duration-[var(--duration-spring-moderate)] ease-spring-moderate",
 	"motion-reduce:transition-none"
 ];
 /** 选中态 slider。 */

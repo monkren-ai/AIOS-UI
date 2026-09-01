@@ -97,7 +97,7 @@ src/ThemeProvider/
 
 ### 4.4 禁止的目录
 
-- 不要在 `src/components`、`src/widgets` 中新增可复用组件。
+- 不要在 `src/components` 中新增可复用组件。
 - 展示项目代码放在 `src/showcase/`，不参与组件库导出。
 
 ---

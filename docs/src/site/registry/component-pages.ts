@@ -33,10 +33,10 @@ export const COMPONENT_PAGES: readonly ComponentPage[] = [
     id: 'other',
     label: { zh: '其他组件', en: 'Other components' },
     description: {
-      zh: '时间与系统、桌面组件，以及装饰与效果。',
-      en: 'Time and system, desktop widgets, and decoration and effects.',
+      zh: '时间与系统，以及装饰与效果。',
+      en: 'Time and system, plus decoration and effects.',
     },
-    categoryIds: ['time-system', 'widgets', 'decoration'],
+    categoryIds: ['time-system', 'decoration'],
   },
 ]
 

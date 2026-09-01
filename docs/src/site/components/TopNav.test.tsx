@@ -43,6 +43,12 @@ describe('TopNav', () => {
     expect(about).toHaveAttribute('aria-current', 'page')
   })
 
+  it('exposes the theme-family page separately from color mode', () => {
+    renderNav()
+    expect(screen.getByRole('link', { name: '主题' })).toHaveAttribute('href', '/themes')
+    expect(screen.getByRole('button', { name: '切换明暗模式' })).toBeInTheDocument()
+  })
+
   it('closes the mobile menu after selecting About', async () => {
     const user = userEvent.setup()
     renderNav()

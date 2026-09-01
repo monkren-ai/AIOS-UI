@@ -53,7 +53,7 @@ function formatCountdown(ms) {
 function pad2(n) {
 	return String(n).padStart(2, "0");
 }
-function NextEvent({ className, theme = "dark", priority: priorityProp, event, events, ref, ...props }) {
+function NextEvent({ className, priority: priorityProp, event, events, ref, ...props }) {
 	const now = useNow(6e4);
 	const defaultEvents = React$1.useMemo(makeDefaultEvents, []);
 	let displayEvent;
@@ -76,19 +76,17 @@ function NextEvent({ className, theme = "dark", priority: priorityProp, event, e
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
 		className: cn(nextEventVariants({
-			theme,
 			priority,
 			real
 		}), className),
 		"data-slot": "next-event",
-		"data-widget-theme": dataAttr(theme),
 		"data-state": dataAttr(real ? "has-event" : "demo"),
 		"data-priority": dataAttr(priority),
 		"data-real": dataAttr(real),
 		...props,
 		children: [/* @__PURE__ */ jsx("span", {
 			"data-slot": "next-event-label",
-			className: cn(nextEventLabelVariants({ theme })),
+			className: cn(nextEventLabelVariants()),
 			children: "Next Event:"
 		}), /* @__PURE__ */ jsxs("div", {
 			"data-slot": "next-event-content",
@@ -96,7 +94,7 @@ function NextEvent({ className, theme = "dark", priority: priorityProp, event, e
 			children: [
 				/* @__PURE__ */ jsx("span", {
 					"data-slot": "next-event-title",
-					className: cn(nextEventTitleVariants({ theme })),
+					className: cn(nextEventTitleVariants()),
 					children: displayEvent.title
 				}),
 				/* @__PURE__ */ jsx("span", {

@@ -1,3 +1,4 @@
+import { overlayMenuMotion } from "../lib/overlay-motion.mjs";
 import { cva } from "class-variance-authority";
 //#region src/DropdownMenu/dropdown-menu-variants.ts
 const dropdownMenuVariants = cva("relative inline-block");
@@ -10,12 +11,7 @@ const dropdownMenuTriggerVariants = cva([
 	"outline-none focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2"
 ]);
 const dropdownMenuPositionerVariants = cva("z-[var(--z-dropdown)]");
-const dropdownMenuContentVariants = cva([
-	"min-w-[180px] rounded-sm border border-border-visible bg-popover py-1 text-popover-foreground",
-	"transition-[opacity,transform] duration-[var(--duration-spring-moderate)] ease-spring-moderate",
-	"motion-reduce:transition-none",
-	"closed:scale-95 closed:opacity-0 open:scale-100 open:opacity-100"
-], {
+const dropdownMenuContentVariants = cva(["min-w-[180px] rounded-sm border border-border-visible bg-popover py-1 text-popover-foreground", ...overlayMenuMotion], {
 	variants: {
 		visible: {
 			true: "scale-100 opacity-100",
@@ -74,12 +70,7 @@ const menubarTriggerVariants = cva([
 	} },
 	defaultVariants: { active: false }
 });
-const menubarDropdownVariants = cva([
-	"min-w-[200px] rounded-sm border border-border-visible bg-popover py-1",
-	"transition-[opacity,transform] duration-[var(--duration-spring-moderate)] ease-spring-moderate",
-	"motion-reduce:transition-none",
-	"closed:-translate-y-1 closed:opacity-0 open:translate-y-0 open:opacity-100"
-], {
+const menubarDropdownVariants = cva(["min-w-[200px] rounded-sm border border-border-visible bg-popover py-1", ...overlayMenuMotion], {
 	variants: { visible: {
 		true: "translate-y-0 opacity-100",
 		false: ""

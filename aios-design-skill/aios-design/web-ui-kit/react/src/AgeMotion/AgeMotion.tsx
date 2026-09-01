@@ -19,7 +19,6 @@ import {
 } from './age-motion-variants'
 
 export type AgeMotionSize = 'sm' | 'md' | 'lg'
-export type AgeMotionTheme = 'light' | 'dark'
 
 interface AgeData {
   years: number
@@ -78,13 +77,12 @@ function computeAge(birthDate: Date, now: Date): AgeData {
 export interface AgeMotionProps
   extends
     Omit<React.ComponentPropsWithRef<'div'>, 'children'>,
-    Omit<VariantProps<typeof ageMotionVariants>, 'size' | 'theme'> {
+    Omit<VariantProps<typeof ageMotionVariants>, 'size'> {
   birthDate?: string
   lifespan?: number
   updateInterval?: number
   yearSegments?: number
   size?: AgeMotionSize
-  theme?: AgeMotionTheme
 }
 
 export function AgeMotion({
@@ -94,7 +92,6 @@ export function AgeMotion({
   updateInterval = 1000,
   yearSegments = 20,
   size = 'md',
-  theme = 'dark',
   style,
   ref,
   ...props
@@ -125,11 +122,10 @@ export function AgeMotion({
   return (
     <div
       ref={ref}
-      className={cn(ageMotionVariants({ size, theme }), className)}
+      className={cn(ageMotionVariants({ size }), className)}
       style={style}
       data-slot="age-motion"
       data-size={dataAttr(size)}
-      data-widget-theme={dataAttr(theme)}
       data-state={dataAttr(ageData ? 'ready' : 'empty')}
       {...props}
     >

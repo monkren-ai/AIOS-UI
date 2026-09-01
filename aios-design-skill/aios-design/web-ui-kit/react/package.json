@@ -1,6 +1,6 @@
 {
   "name": "aios-ui-kit",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "AIOS UI — React component kit on the AIOS design language (Tailwind CSS v4 + CVA)",
   "license": "MIT",
   "type": "module",

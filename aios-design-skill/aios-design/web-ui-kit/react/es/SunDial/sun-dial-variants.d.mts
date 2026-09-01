@@ -8,7 +8,6 @@
  */
 declare const sunDialVariants: (props?: ({
   time?: "day" | "night" | null | undefined;
-  theme?: "light" | "dark" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion
 export { sunDialVariants };

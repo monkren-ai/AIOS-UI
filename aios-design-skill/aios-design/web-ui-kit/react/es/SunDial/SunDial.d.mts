@@ -4,13 +4,11 @@ import { VariantProps } from "class-variance-authority";
 
 //#region src/SunDial/SunDial.d.ts
 type SunDialTime = 'day' | 'night';
-type SunDialTheme = 'light' | 'dark';
-interface SunDialProps extends Omit<React$1.ComponentPropsWithRef<'div'>, 'children'>, Omit<VariantProps<typeof sunDialVariants>, 'time' | 'theme'> {
+interface SunDialProps extends Omit<React$1.ComponentPropsWithRef<'div'>, 'children'>, Omit<VariantProps<typeof sunDialVariants>, 'time'> {
   latitude?: number;
   longitude?: number;
   updateInterval?: number;
   time?: SunDialTime;
-  theme?: SunDialTheme;
 }
 declare function SunDial({
   className,
@@ -18,7 +16,6 @@ declare function SunDial({
   longitude: propLng,
   updateInterval,
   time: timeProp,
-  theme,
   style,
   ref,
   ...props
@@ -27,5 +24,5 @@ declare namespace SunDial {
   var displayName: string;
 }
 //#endregion
-export { SunDial, SunDialProps, SunDialTheme, SunDialTime };
+export { SunDial, SunDialProps, SunDialTime };
 //# sourceMappingURL=SunDial.d.mts.map

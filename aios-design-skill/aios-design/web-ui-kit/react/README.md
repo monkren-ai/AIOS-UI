@@ -2,7 +2,7 @@
 
 面向 AI OS 场景的 React 组件库，视觉基于 **AIOS 设计语言**：**单色工业美学**、零阴影 / 零 blur / 零渐变，Tailwind CSS v4 + CVA。
 
-当前版本 **2.0.0**。从 1.x / `aios-ui*` 升级请先看站点 `/docs/migrating-v2`。
+当前版本 **3.0.0**。从 2.x 升级请先看 `MIGRATION-v3.md`；从 1.x / `aios-ui*` 升级另见站点 `/docs/migrating-v2`。
 
 ## 安装
 
@@ -54,7 +54,7 @@ npm install
 npm run dev
 ```
 
-路由：`/` · `/docs` · `/components` · `/icons` · `/showcase`。  
+路由：`/` · `/docs` · `/components` · `/icons` · `/themes`。  
 GitHub Pages 使用仓库路径 `base: '/AIOS-UI/'`。
 
 ## 开发脚本

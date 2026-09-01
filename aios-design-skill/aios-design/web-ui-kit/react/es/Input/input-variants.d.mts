@@ -34,12 +34,14 @@ declare const inputLabelVariants: (props?: ({
  * 命名刻意避开 `inputMessageVariants` —— 那是独立组件 `InputMessage`（聊天输入框）的。
  */
 declare const inputHelperVariants: (props?: ({
-  variant?: "error" | "default" | null | undefined;
+  variant?: "default" | "error" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 前后缀图标槽位。 */
 declare const inputIconVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;
 /** 清除按钮。 */
 declare const inputClearVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;
+/** 清除时盖在输入文字上的淡出层。 */
+declare const inputClearGhostVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;
 /** v1 的变体名 → 当前变体名。保留是为了不让既有调用点一次性全炸。 */
 declare const LEGACY_VARIANTS: {
   readonly underline: "outline";
@@ -49,5 +51,5 @@ type InputVariant = 'outline' | 'soft' | keyof typeof LEGACY_VARIANTS;
 type InputSize = 'sm' | 'md' | 'lg';
 declare function resolveInputVariant(variant: InputVariant | null | undefined): string | undefined;
 //#endregion
-export { InputSize, InputVariant, inputClearVariants, inputControlVariants, inputFieldVariants, inputHelperVariants, inputIconVariants, inputLabelVariants, inputVariants, resolveInputVariant };
+export { InputSize, InputVariant, inputClearGhostVariants, inputClearVariants, inputControlVariants, inputFieldVariants, inputHelperVariants, inputIconVariants, inputLabelVariants, inputVariants, resolveInputVariant };
 //# sourceMappingURL=input-variants.d.mts.map

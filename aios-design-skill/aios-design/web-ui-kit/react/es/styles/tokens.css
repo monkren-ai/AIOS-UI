@@ -18,8 +18,6 @@
   --body-xs: 13px;
   --caption: 12px;
   --label: 11px;
-  --widget-label: 10px;
-  --widget-micro: 8px;
 
   /* ===== 字体族 =====
    * 全部使用 monospace fallback 链，避免 Doto/Space Mono 未加载时掉到 sans-serif
@@ -29,7 +27,6 @@
   --font-body: 'Space Grotesk', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
   --font-dotmatrix: 'Doto', 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
-  --font-widget: 'Space Grotesk', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
 
   /* ===== 字重 ===== */
   --weight-light: 300;
@@ -57,7 +54,7 @@
   --space-4xl: 96px;
 
   /* ===== 圆角 =====
-   * 缩小到 2-6px 工业风区间。lg/xl 主要给 widget 容器，组件本体用 xs/sm 保持几何诚实。
+   * 缩小到 2-6px 工业风区间；较大圆角用于内容容器。
    */
   --radius-2xs: 2px;
   --radius-xs: 3px;
@@ -83,31 +80,19 @@
   --overlay-light: rgba(0, 0, 0, 0.5);
   --fill-0: rgba(0, 0, 0, 0);
 
-  /* ===== Widget 专用色板 ===== */
-  --widget-bg: #e1e5ea;
-  --widget-card-bg: #fcfafe;
-  --widget-dark-bg: #1a1d1c;
-  --widget-dark-2: #3b393e;
-  --widget-dark-3: #6c696e;
-  --widget-dark-4: #aeabb1;
-  --widget-primary: var(--accent);
-  --widget-white: #ffffff;
-  --widget-white-70: rgba(255, 255, 255, 0.7);
-  --widget-text-on-accent: rgba(255, 255, 255, 0.7);
-  --widget-error: var(--accent);
-  --widget-gap: 16px;
-  --widget-size-sm: 68px;
-  --widget-size-md: 152px;
-  --widget-size-lg: 320px;
-  --widget-size-icon-md: 68px;
-  --widget-size-icon-lg: 96px;
-  --widget-pill-height: 68px;
-  --widget-dot-sm: 3px;
-  --widget-dot-md: 6px;
-  --widget-dot-lg: 7px;
-  --widget-grey: #aeabb1;
-  --widget-dot-active: var(--accent);
-  --widget-bg-height: 312px;
+  /* ===== 通用组件尺寸 ===== */
+  --layout-gap: 16px;
+  --control-size-lg: 68px;
+  --component-size-md: 152px;
+  --component-size-lg: 320px;
+  --icon-size-md: 68px;
+  --icon-size-lg: 96px;
+  --control-size-xl: 68px;
+  --dot-size-sm: 3px;
+  --dot-size-md: 6px;
+  --dot-size-lg: 7px;
+  --dot-active: var(--accent);
+  --visual-stage-height: 312px;
 
   /* ===== 动画 ===== */
   --duration-micro: 200ms;
@@ -126,6 +111,15 @@
   --ease-spring-fast: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring-moderate: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring-slow: cubic-bezier(0.33, 1, 0.68, 1);
+
+  /* 位移与缩放 —— 只给 opacity/transform，不引入 blur */
+  --duration-stagger: 40ms;
+  --distance-micro: 4px;
+  --distance-small: 6px;
+  --distance-base: 8px;
+  --scale-overlay-modal: 0.96;
+  --scale-overlay-menu: 0.97;
+  --scale-overlay-tooltip: 0.98;
 
   --easing: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -197,7 +191,7 @@
 
   /* === Layout === */
   --page-max-width: 1120px;
-  --page-max-width-widget: 1240px;
+  --page-max-width-wide: 1240px;
   --modal-max-width: 480px;
   --modal-max-width-sm: 400px;
   --section-gap: 80px;
@@ -348,16 +342,6 @@
   --popover-fg: #1a1a1a;
   --muted-bg: rgba(0, 0, 0, 0.04);
 
-  --widget-bg: #ffffff;
-  --widget-card-bg: #ffffff;
-  --widget-dark-bg: #f0f0f0;
-  --widget-dark-2: #d0d0d0;
-  --widget-dark-3: #a0a0a0;
-  --widget-dark-4: #cccccc;
-  --widget-grey: #666666;
-  --widget-white: #000000;
-  --widget-white-70: rgba(0, 0, 0, 0.7);
-
   --nf-ring-bg: #d0d0d0;
   --nf-segbar-off: #e0e0e0;
   --nf-contrib-empty: #e8e8e8;
@@ -414,5 +398,77 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes aios-input-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(calc(var(--distance-small) * -1));
+  }
+  40% {
+    transform: translateX(var(--distance-small));
+  }
+  60% {
+    transform: translateX(calc(var(--distance-small) * -1));
+  }
+  80% {
+    transform: translateX(var(--distance-small));
+  }
+}
+
+@keyframes aios-input-clear-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--distance-micro) * -1));
+  }
+}
+
+@keyframes aios-toast-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--distance-base));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aios-notification-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--distance-base), calc(var(--distance-base) * -1));
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes aios-digit-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--digit-from, 100%));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aios-success-draw {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }

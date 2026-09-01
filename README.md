@@ -29,7 +29,7 @@ Skill 的完整说明见 [`SKILL.md`](./aios-design-skill/aios-design/SKILL.md)�
 
 ## 配套 UI 组件库
 
-仓库同时提供 `aios-ui-kit` React 组件库（React 19、Tailwind CSS v4、CVA）和文档站点，用于将 Skill 中的设计规则落地为可复用代码。组件库当前版本为 `2.0.0`。
+仓库同时提供 `aios-ui-kit` React 组件库（React 19、Tailwind CSS v4、CVA）和文档站点，用于将 Skill 中的设计规则落地为可复用代码。组件库当前版本为 `3.0.0`，新增全局主题家族和浏览器本地 DTCG 主题导入。
 
 ```bash
 npm install aios-ui-kit motion

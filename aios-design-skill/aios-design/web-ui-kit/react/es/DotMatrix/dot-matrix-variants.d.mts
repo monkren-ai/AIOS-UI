@@ -5,7 +5,7 @@
  * 点阵是 AIOS 视觉识别的承重墙，所以这里逐条对齐 v1 CSS 的层叠结果，
  * 而不是「差不多就行」：
  *
- * - 点的底色先由 `theme` 给（light 用 `--widget-dark-bg`，dark 用 `--widget-white`），
+ * - 点的底色先由 `theme` 给（light 用 `--surface`，dark 用 `--text-display`），
  *   再由 `pattern` 覆盖——v1 里 pattern 规则写在 theme 之后，同为 (0,2,0) 特异性，
  *   所以 grid / glyph 会赢。这里靠 `cn()` 的 tailwind-merge 复现同样的先后关系。
  * - `dim` 的透明度层层收窄：基础 0.2 → theme 0.3 → grid 0.1 / glyph 0.15。

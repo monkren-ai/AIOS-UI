@@ -25,7 +25,7 @@ export default function QuickToggleVariantPill() {
       icon={<MoonIcon />}
       label="Do Not Disturb"
       active={dnd}
-      theme={dnd ? 'dark' : 'light'}
+
       onClick={() => setDnd((value) => !value)}
     />
   )

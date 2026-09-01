@@ -1,3 +1,4 @@
+import { overlayMenuMotion } from "../lib/overlay-motion.mjs";
 import { cva } from "class-variance-authority";
 //#region src/Select/select-variants.ts
 /** 外层包裹：label / trigger / 错误文案的纵向容器。 */
@@ -82,12 +83,7 @@ const selectPositionerVariants = cva(["z-[var(--z-overlay)]"]);
 * 旧实现是 `@keyframes aios-select-enter`；这里换成 Base UI 的
 * `data-open` / `data-closed` + transition，不再需要关键帧。
 */
-const selectContentVariants = cva([
-	"min-w-40 overflow-hidden rounded-sm border border-border-visible bg-popover",
-	"transition-[opacity,transform] duration-[var(--duration-spring-moderate)] ease-spring-moderate",
-	"motion-reduce:transition-none",
-	"closed:-translate-y-1 closed:opacity-0 open:translate-y-0 open:opacity-100"
-]);
+const selectContentVariants = cva(["min-w-40 overflow-hidden rounded-sm border border-border-visible bg-popover", ...overlayMenuMotion]);
 const selectSearchVariants = cva(["border-b border-border p-2"]);
 const selectSearchInputVariants = cva([
 	"w-full rounded-xs border border-border-visible bg-transparent px-2 py-1",

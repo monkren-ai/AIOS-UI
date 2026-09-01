@@ -133,7 +133,7 @@ export function LandingPage() {
       className="landing-page flex shrink-0 bg-cover bg-center bg-no-repeat"
     >
       <section
-        className="landing-page__section landing-page__hero mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-page-widget flex-col items-center justify-center px-4 py-20 text-center md:px-6 md:py-28"
+        className="landing-page__section landing-page__hero mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-page-wide flex-col items-center justify-center px-4 py-20 text-center md:px-6 md:py-28"
         style={{ '--landing-hero-image': `url("${landingHero}")` } as React.CSSProperties}
       >
         <span className="rounded-pill border border-border px-3 py-1 font-mono text-label uppercase tracking-widest text-foreground-subtle">
@@ -190,7 +190,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-page__section landing-page__components mx-auto flex max-w-page-widget flex-col gap-10 px-4 py-24 md:px-6 md:py-32">
+      <section className="landing-page__section landing-page__components mx-auto flex max-w-page-wide flex-col gap-10 px-4 py-24 md:px-6 md:py-32">
         <header className="flex max-w-3xl flex-col gap-4">
           <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
             {t('真实组件 / 真实状态', 'Real components / real states')}
@@ -236,7 +236,7 @@ export function LandingPage() {
       </section>
 
       <section className="landing-page__section border-y border-border bg-surface">
-        <div className="mx-auto max-w-page-widget px-4 py-24 md:px-6 md:py-32">
+        <div className="mx-auto max-w-page-wide px-4 py-24 md:px-6 md:py-32">
           <header className="mb-10 max-w-3xl">
             <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
               {t('交付标准', 'Shipping standards')}
@@ -270,7 +270,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-page__section mx-auto flex max-w-page-widget flex-col gap-10 px-4 py-24 md:px-6 md:py-32">
+      <section className="landing-page__section mx-auto flex max-w-page-wide flex-col gap-10 px-4 py-24 md:px-6 md:py-32">
         <header className="flex items-end justify-between gap-6">
           <div>
             <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">

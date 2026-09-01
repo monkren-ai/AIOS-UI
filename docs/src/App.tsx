@@ -12,6 +12,7 @@ const ComponentDetailPage = lazy(() => import('@/site/pages/ComponentDetailPage'
 const DocsLayout = lazy(() => import('@/site/pages/DocsLayout'))
 const DocPage = lazy(() => import('@/site/pages/DocPage'))
 const IconsPage = lazy(() => import('@/site/pages/icons/IconsPage'))
+const ThemesPage = lazy(() => import('@/site/pages/ThemesPage'))
 
 const AIPocPage = lazy(() => import('@/showcase/AIPocPage').then((m) => ({ default: m.AIPocPage })))
 
@@ -79,6 +80,7 @@ export function App() {
               </Route>
 
               <Route path="/icons" element={<IconsPage />} />
+              <Route path="/themes" element={<ThemesPage />} />
 
               <Route path="/showcase" element={<Navigate to="/components" replace />} />
               <Route path="/project-intro" element={<Navigate to="/about" replace />} />

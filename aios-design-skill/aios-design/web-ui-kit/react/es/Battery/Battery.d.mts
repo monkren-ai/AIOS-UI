@@ -9,23 +9,20 @@ interface BatteryDevice {
   percent: number;
   isCharging?: boolean;
 }
-interface BatteryProps extends Omit<React$1.ComponentPropsWithRef<'div'>, 'children' | 'onClick'>, Omit<VariantProps<typeof batteryVariants>, 'level' | 'widgetMode'> {
+interface BatteryProps extends Omit<React$1.ComponentPropsWithRef<'div'>, 'children' | 'onClick'>, Omit<VariantProps<typeof batteryVariants>, 'level'> {
   updateInterval?: number;
   totalSegments?: number;
   percent?: number;
   isCharging?: boolean;
-  widgetMode?: 'none' | 'card' | 'ring';
   devices?: BatteryDevice[];
   onDeviceClick?: (device: BatteryDevice) => void;
 }
 declare function Battery({
   updateInterval,
   totalSegments,
-  percent: initialPercent,
-  isCharging: initialIsCharging,
+  percent: controlledPercent,
+  isCharging: controlledCharging,
   variant,
-  theme,
-  widgetMode,
   devices,
   onDeviceClick,
   className,

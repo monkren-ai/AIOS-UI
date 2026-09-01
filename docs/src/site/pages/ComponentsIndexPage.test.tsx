@@ -62,11 +62,10 @@ describe('ComponentsIndexPage', () => {
     expect(screen.queryByRole('heading', { name: '操作与输入' })).not.toBeInTheDocument()
   })
 
-  it('keeps the three requested subgroups on the other page', () => {
+  it('keeps the remaining subgroups on the other page', () => {
     renderPage('/components?group=other')
 
     expect(screen.getByRole('heading', { name: '时间与系统' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: '桌面小组件' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: '装饰与效果' })).toBeInTheDocument()
   })
 })

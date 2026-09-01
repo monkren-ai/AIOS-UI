@@ -36,7 +36,7 @@ export function Chip({
   )
 }
 
-export interface ChipGroupProps extends React.ComponentPropsWithRef<'div'> {}
+export type ChipGroupProps = React.ComponentPropsWithRef<'div'>
 
 export function ChipGroup({ className, ...props }: ChipGroupProps) {
   return (

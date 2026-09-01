@@ -16,18 +16,18 @@
 
 /* Sizes */
 .aios-svg-icon--sm {
-  width: var(--widget-size-sm, 48px);
-  height: var(--widget-size-sm, 48px);
+  width: var(--control-size-lg, 48px);
+  height: var(--control-size-lg, 48px);
 }
 
 .aios-svg-icon--md {
-  width: var(--widget-size-icon-md, 68px);
-  height: var(--widget-size-icon-md, 68px);
+  width: var(--icon-size-md, 68px);
+  height: var(--icon-size-md, 68px);
 }
 
 .aios-svg-icon--lg {
-  width: var(--widget-size-icon-lg, 96px);
-  height: var(--widget-size-icon-lg, 96px);
+  width: var(--icon-size-lg, 96px);
+  height: var(--icon-size-lg, 96px);
 }
 
 /* Theme: dark */
@@ -59,8 +59,8 @@
 
 .aios-svg-icon__label {
   margin-top: var(--space-xs);
-  font-size: var(--widget-label, 10px);
-  font-family: var(--font-widget, 'Space Grotesk');
+  font-size: var(--label, 10px);
+  font-family: var(--font-body, 'Space Grotesk');
   text-transform: uppercase;
   letter-spacing: 0.06em;
   white-space: nowrap;
@@ -69,14 +69,14 @@
 
 /* Theme label colors */
 .aios-svg-icon--light .aios-svg-icon__label {
-  color: var(--widget-dark-3);
+  color: var(--text-tertiary);
 }
 .aios-svg-icon--dark .aios-svg-icon__label {
-  color: var(--widget-white-70, rgba(255, 255, 255, 0.7));
+  color: var(--text-secondary, rgba(255, 255, 255, 0.7));
 }
 .aios-svg-icon--accent .aios-svg-icon__label {
-  color: var(--widget-text-on-accent);
+  color: var(--text-display);
 }
 .aios-svg-icon--error .aios-svg-icon__label {
-  color: var(--widget-white);
+  color: var(--text-display);
 }

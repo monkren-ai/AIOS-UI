@@ -52,11 +52,13 @@ const checkboxBoxVariants = cva([
 });
 /** 勾 / 横线的共同容器（Base UI Checkbox.Indicator，keepMounted）。 */
 const checkboxIndicatorVariants = cva(["pointer-events-none flex items-center justify-center text-background"]);
-/** 勾选标记。未勾选时缩到 0，靠 group-data 读盒子状态。 */
+/** 勾选标记。未勾选时靠 stroke-dashoffset 藏住，勾选时描边画出。 */
 const checkboxCheckVariants = cva([
-	"absolute scale-0 opacity-0",
-	"transition-[opacity,transform] duration-200 ease-aios motion-reduce:transition-none",
-	"group-data-[checked]/checkbox-box:scale-100 group-data-[checked]/checkbox-box:opacity-100"
+	"absolute",
+	"[&_path]:[stroke-dasharray:16] [&_path]:[stroke-dashoffset:16]",
+	"[&_path]:transition-[stroke-dashoffset] [&_path]:duration-[var(--duration-spring-moderate)] [&_path]:ease-spring-moderate",
+	"motion-reduce:[&_path]:transition-none",
+	"group-data-[checked]/checkbox-box:[&_path]:[stroke-dashoffset:0]"
 ], {
 	variants: { size: {
 		sm: "size-2.5",

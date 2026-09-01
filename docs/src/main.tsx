@@ -3,20 +3,16 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { motion } from 'motion/react'
 import { type MotionComponentType } from '@/MotionProvider'
-import { ConfigProvider } from '@/ConfigProvider'
 import { App } from '@/App'
 import ErrorBoundary from '@/ErrorBoundary'
+import { ThemeCatalogProvider } from '@/site/themes/ThemeCatalogProvider'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
-      <ConfigProvider
-        motion={motion as unknown as MotionComponentType}
-        defaultTheme="dark"
-        enableSystem
-      >
+      <ThemeCatalogProvider motion={motion as unknown as MotionComponentType}>
         <App />
-      </ConfigProvider>
+      </ThemeCatalogProvider>
     </ErrorBoundary>
   </StrictMode>,
 )

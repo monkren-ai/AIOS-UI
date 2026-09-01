@@ -17,7 +17,7 @@ declare const checkboxBoxVariants: (props?: ({
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 勾 / 横线的共同容器（Base UI Checkbox.Indicator，keepMounted）。 */
 declare const checkboxIndicatorVariants: (props?: import("class-variance-authority/types").ClassProp | undefined) => string;
-/** 勾选标记。未勾选时缩到 0，靠 group-data 读盒子状态。 */
+/** 勾选标记。未勾选时靠 stroke-dashoffset 藏住，勾选时描边画出。 */
 declare const checkboxCheckVariants: (props?: ({
   size?: "sm" | "md" | "lg" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;

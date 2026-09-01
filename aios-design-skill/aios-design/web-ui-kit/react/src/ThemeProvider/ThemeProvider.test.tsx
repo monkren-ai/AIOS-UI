@@ -1,15 +1,17 @@
 import { describe, it, expect, afterEach, beforeEach, vi } from 'vitest'
 import { render, screen, cleanup, act } from '@testing-library/react'
-import { ThemeProvider, useTheme, DEFAULT_STORAGE_KEY } from './index'
+import { AIOS_BUILTIN_THEMES, ThemeProvider, useTheme, DEFAULT_STORAGE_KEY } from './index'
 
 function ThemeProbe() {
-  const { theme, resolvedTheme, setTheme, toggleTheme } = useTheme()
+  const { theme, resolvedTheme, setTheme, toggleTheme, themeId, setThemeId } = useTheme()
   return (
     <div>
       <span data-testid="theme">{theme}</span>
       <span data-testid="resolved">{resolvedTheme}</span>
+      <span data-testid="theme-id">{themeId}</span>
       <button onClick={() => setTheme('light')}>light</button>
       <button onClick={toggleTheme}>toggle</button>
+      <button onClick={() => setThemeId('aios-paper')}>paper</button>
     </div>
   )
 }
@@ -37,6 +39,8 @@ afterEach(() => {
   vi.unstubAllGlobals()
   window.localStorage.clear()
   document.documentElement.removeAttribute('data-theme')
+  document.documentElement.removeAttribute('data-theme-id')
+  document.documentElement.removeAttribute('style')
 })
 
 describe('ThemeProvider', () => {
@@ -102,6 +106,18 @@ describe('ThemeProvider', () => {
     )
     expect(screen.getByTestId('resolved')).toHaveTextContent('dark')
     expect(document.documentElement).toHaveAttribute('data-theme', 'dark')
+  })
+
+  it('switches theme families without changing color mode', () => {
+    render(<ThemeProvider><ThemeProbe /></ThemeProvider>)
+    const before = screen.getByTestId('resolved').textContent
+    act(() => screen.getByText('paper').click())
+    expect(screen.getByTestId('theme-id')).toHaveTextContent('aios-paper')
+    expect(screen.getByTestId('resolved')).toHaveTextContent(before ?? 'dark')
+    expect(document.documentElement).toHaveAttribute('data-theme-id', 'aios-paper')
+    expect(document.documentElement.style.getPropertyValue('--surface')).toBe(
+      AIOS_BUILTIN_THEMES[1].modes.dark?.['color.surface.default'],
+    )
   })
 
   // storageKey 曾经只存在于 ThemeScript 上，provider 这边写死 'aios-theme'，

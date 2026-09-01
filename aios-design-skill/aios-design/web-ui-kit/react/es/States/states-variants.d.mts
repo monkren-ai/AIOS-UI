@@ -7,7 +7,7 @@
  * 成空档位只为了不改公开 API。
  */
 declare const stateVariants: (props?: ({
-  variant?: "disabled" | "error" | "loading" | "empty" | null | undefined;
+  variant?: "disabled" | "empty" | "error" | "loading" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 进度条的单个刻度。 */

@@ -1,4 +1,4 @@
-import { Chip, ChipGroup } from 'aios-ui-kit/chip'
+import { Chip } from 'aios-ui-kit/chip'
 import type { ComponentDoc } from '../types'
 import Basic from '../../examples/chip/basic'
 import basicSource from '../../examples/chip/basic.tsx?raw'

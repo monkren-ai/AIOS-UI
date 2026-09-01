@@ -4,7 +4,7 @@ import { VariantProps } from "class-variance-authority";
 type ApprovalRisk = 'low' | 'medium' | 'high';
 type ApprovalState = 'pending' | 'approved' | 'denied';
 declare const approvalGateVariants: (props?: ({
-  risk?: "low" | "medium" | "high" | null | undefined;
+  risk?: "low" | "high" | "medium" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 interface ApprovalGateProps extends Omit<React$1.HTMLAttributes<HTMLDivElement>, 'children'>, VariantProps<typeof approvalGateVariants> {
   action: string;

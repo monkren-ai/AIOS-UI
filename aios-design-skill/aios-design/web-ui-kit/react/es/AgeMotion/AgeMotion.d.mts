@@ -4,14 +4,12 @@ import { VariantProps } from "class-variance-authority";
 
 //#region src/AgeMotion/AgeMotion.d.ts
 type AgeMotionSize = 'sm' | 'md' | 'lg';
-type AgeMotionTheme = 'light' | 'dark';
-interface AgeMotionProps extends Omit<React$1.ComponentPropsWithRef<'div'>, 'children'>, Omit<VariantProps<typeof ageMotionVariants>, 'size' | 'theme'> {
+interface AgeMotionProps extends Omit<React$1.ComponentPropsWithRef<'div'>, 'children'>, Omit<VariantProps<typeof ageMotionVariants>, 'size'> {
   birthDate?: string;
   lifespan?: number;
   updateInterval?: number;
   yearSegments?: number;
   size?: AgeMotionSize;
-  theme?: AgeMotionTheme;
 }
 declare function AgeMotion({
   className,
@@ -20,7 +18,6 @@ declare function AgeMotion({
   updateInterval,
   yearSegments,
   size,
-  theme,
   style,
   ref,
   ...props
@@ -29,5 +26,5 @@ declare namespace AgeMotion {
   var displayName: string;
 }
 //#endregion
-export { AgeMotion, AgeMotionProps, AgeMotionSize, AgeMotionTheme };
+export { AgeMotion, AgeMotionProps, AgeMotionSize };
 //# sourceMappingURL=AgeMotion.d.mts.map

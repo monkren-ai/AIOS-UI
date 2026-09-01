@@ -17,15 +17,7 @@ import { SystemMonitoringSection } from './sections/SystemMonitoringSection'
 import { UtilityToolsSection } from './sections/UtilityToolsSection'
 import { TimeProgressSection } from './sections/TimeProgressSection'
 import { VisualDisplaySection } from './sections/VisualDisplaySection'
-import { FeatureWidgetsSection } from './sections/FeatureWidgetsSection'
-import { WidgetLayoutSection } from './sections/WidgetLayoutSection'
-import { Figma20LibrarySection } from './sections/Figma20LibrarySection'
 import { NullframeSection } from './sections/NullframeSection'
-
-// 组件样式（原 App.tsx 集中导入）
-// 已迁移组件的 CSS 由各组件自行导入，此处仅保留 WidgetShowcase 所需的全局样式
-import '@/styles/widgets.css'
-import '@/styles/widget-showcase.css'
 
 // 展示页样式
 import './styles/showcase.css'
@@ -50,8 +42,6 @@ export function Showcase() {
     handleDateNext,
     spinnerItems,
     setSpinnerItems,
-    worldClockCities,
-    setWorldClockCities,
     alertDialogOpen,
     setAlertDialogOpen,
     radioValue,
@@ -262,18 +252,11 @@ export function Showcase() {
           setAlertDialogOpen={setAlertDialogOpen}
         />
         <UtilitySection t={t} otpValue={otpValue} setOtpValue={setOtpValue} />
-        <ClockCalendarSection
-          t={t}
-          worldClockCities={worldClockCities}
-          setWorldClockCities={setWorldClockCities}
-        />
+        <ClockCalendarSection t={t} />
         <SystemMonitoringSection t={t} />
         <UtilityToolsSection t={t} />
         <TimeProgressSection t={t} spinnerItems={spinnerItems} setSpinnerItems={setSpinnerItems} />
         <VisualDisplaySection t={t} />
-        <FeatureWidgetsSection t={t} />
-        <WidgetLayoutSection t={t} />
-        <Figma20LibrarySection t={t} />
         <NullframeSection t={t} />
       </div>
     </main>

@@ -1,9 +1,11 @@
+import { OVERLAY_REDUCED_MOTION, overlayDuration, overlaySheetTiming } from "../lib/overlay-motion.mjs";
 import { cva } from "class-variance-authority";
 //#region src/Sheet/sheet-variants.ts
 const sheetBackdropVariants = cva([
 	"fixed inset-0 z-[var(--z-modal)] bg-overlay-light",
-	"transition-[opacity,visibility] duration-[var(--duration-transition)] ease-aios",
-	"motion-reduce:transition-none"
+	"transition-[opacity,visibility]",
+	...overlayDuration("slow"),
+	OVERLAY_REDUCED_MOTION
 ], {
 	variants: { visible: {
 		true: "visible opacity-100",
@@ -20,11 +22,7 @@ const sheetBackdropVariants = cva([
 *
 * 与 v1 一致：收起态是基线，`open:` 把 transform 归零。
 */
-const sheetVariants = cva([
-	"fixed z-[calc(var(--z-modal)+1)] flex max-h-screen flex-col overflow-y-auto bg-surface",
-	"transition-transform duration-[var(--duration-spring-moderate)] ease-spring-moderate",
-	"motion-reduce:transition-none"
-], {
+const sheetVariants = cva(["fixed z-[calc(var(--z-modal)+1)] flex max-h-screen flex-col overflow-y-auto bg-surface", ...overlaySheetTiming], {
 	variants: {
 		side: {
 			right: "inset-y-0 end-0 w-80 max-w-[90vw] border-s border-border-visible rounded-s-lg translate-x-full rtl:-translate-x-full open:translate-x-0",

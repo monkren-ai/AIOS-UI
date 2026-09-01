@@ -4,13 +4,13 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { QuickToggle } from './QuickToggle'
 
 describe('QuickToggle', () => {
-  it('renders as an unpressed button with the circle/light defaults', () => {
+  it('renders as an unpressed button with the circle default', () => {
     render(<QuickToggle label="Wi-Fi" />)
     const toggle = screen.getByRole('button')
 
     expect(toggle).toHaveAttribute('data-slot', 'quick-toggle')
     expect(toggle).toHaveAttribute('data-variant', 'circle')
-    expect(toggle).toHaveAttribute('data-widget-theme', 'light')
+    expect(toggle).toHaveClass('bg-surface')
     expect(toggle).toHaveAttribute('data-state', 'off')
     expect(toggle).toHaveAttribute('aria-pressed', 'false')
     expect(toggle).toHaveAttribute('type', 'button')
@@ -45,20 +45,6 @@ describe('QuickToggle', () => {
     render(<QuickToggle label="Wi-Fi" onClick={onClick} />)
     fireEvent.click(screen.getByRole('button'))
     expect(onClick).toHaveBeenCalledTimes(1)
-  })
-
-  it('keeps the widget palette out of the global data-theme attribute', () => {
-    render(<QuickToggle label="Wi-Fi" theme="accent" />)
-    const toggle = screen.getByRole('button')
-    expect(toggle).toHaveAttribute('data-widget-theme', 'accent')
-    expect(toggle).not.toHaveAttribute('data-theme')
-  })
-
-  it('shrinks the label on the accent circle', () => {
-    render(<QuickToggle label="Wi-Fi" variant="circle" theme="accent" />)
-    expect(
-      screen.getByRole('button').querySelector('[data-slot="quick-toggle-label"]'),
-    ).toHaveClass('text-[8px]')
   })
 
   it('lets a caller-supplied utility win over the variant default', () => {

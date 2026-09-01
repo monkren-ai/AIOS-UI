@@ -20,8 +20,6 @@ const categories: Category[] = [
   { id: 'utility-tools', zh: '实用工具', en: 'Utility Tools' },
   { id: 'time-progress', zh: '时间与进度', en: 'Time & Progress' },
   { id: 'visual-display', zh: '视觉展示', en: 'Visual Display' },
-  { id: 'feature-widgets', zh: '特色组件', en: 'Feature Widgets' },
-  { id: 'widget-layout', zh: '组件布局', en: 'Widget Layout' },
   { id: 'figma-20-library', zh: 'Figma 2.0 库', en: 'Figma 2.0 Library' },
   { id: 'nullframe', zh: 'Nullframe 仪表盘', en: 'Nullframe Dashboard' },
 ]

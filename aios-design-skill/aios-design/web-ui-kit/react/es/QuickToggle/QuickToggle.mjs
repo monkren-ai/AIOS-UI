@@ -3,12 +3,11 @@ import { quickToggleIconVariants, quickToggleLabelVariants, quickToggleVariants 
 import "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/QuickToggle/QuickToggle.tsx
-function QuickToggle({ variant = "circle", theme = "light", active, icon, label, className, onClick, ref, ...props }) {
+function QuickToggle({ variant = "circle", active, icon, label, className, onClick, ref, ...props }) {
 	return /* @__PURE__ */ jsxs("button", {
 		ref,
 		className: cn(quickToggleVariants({
 			variant,
-			theme,
 			active
 		}), className),
 		onClick,
@@ -16,19 +15,15 @@ function QuickToggle({ variant = "circle", theme = "light", active, icon, label,
 		type: "button",
 		"data-slot": "quick-toggle",
 		"data-variant": dataAttr(variant),
-		"data-widget-theme": dataAttr(theme),
 		"data-state": active ? "on" : "off",
 		...props,
 		children: [icon && /* @__PURE__ */ jsx("span", {
 			"data-slot": "quick-toggle-icon",
-			className: cn(quickToggleIconVariants({ theme })),
+			className: cn(quickToggleIconVariants()),
 			children: icon
 		}), label && /* @__PURE__ */ jsx("span", {
 			"data-slot": "quick-toggle-label",
-			className: cn(quickToggleLabelVariants({
-				variant,
-				theme
-			})),
+			className: cn(quickToggleLabelVariants({ variant })),
 			children: label
 		})]
 	});

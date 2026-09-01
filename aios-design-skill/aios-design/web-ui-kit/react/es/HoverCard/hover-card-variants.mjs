@@ -1,3 +1,4 @@
+import { overlayMenuMotion } from "../lib/overlay-motion.mjs";
 import { cva } from "class-variance-authority";
 //#region src/HoverCard/hover-card-variants.ts
 const hoverCardTriggerVariants = cva("inline-block");
@@ -9,9 +10,7 @@ const hoverCardPositionerVariants = cva("z-[var(--z-popover)]");
 const hoverCardContentVariants = cva([
 	"pointer-events-auto",
 	"rounded-md border border-border-visible bg-popover p-4 text-popover-foreground",
-	"transition-[opacity,transform] duration-[var(--duration-spring-moderate)] ease-spring-moderate",
-	"motion-reduce:transition-none",
-	"closed:scale-95 closed:opacity-0 open:scale-100 open:opacity-100"
+	...overlayMenuMotion
 ], {
 	variants: {
 		visible: {

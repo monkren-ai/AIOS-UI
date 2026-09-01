@@ -2,7 +2,7 @@
 
 import { createContext, memo, type ReactNode, useContext, useMemo } from 'react'
 import { MotionProvider, type MotionComponentType } from '@/MotionProvider'
-import { ThemeProvider, type Theme } from '@/ThemeProvider'
+import { ThemeProvider, type Theme, type ThemeDefinition } from '@/ThemeProvider'
 import { DirectionProvider, type Direction } from '@/DirectionProvider'
 import { ReducedMotionProvider } from '@/ReducedMotionProvider'
 
@@ -128,6 +128,14 @@ export interface ConfigProviderProps {
    * 主题变化回调
    */
   onThemeChange?: (theme: Theme) => void
+  /** 可用的自定义主题家族；内置主题始终保留。 */
+  themes?: readonly ThemeDefinition[]
+  /** 默认主题家族 ID。 */
+  defaultThemeId?: string
+  /** 主题家族 ID 的 localStorage key。 */
+  themeIdStorageKey?: string
+  /** 主题家族变化回调。 */
+  onThemeIdChange?: (themeId: string) => void
   /**
    * 布局方向，默认 'ltr'。会同步写到 `<html dir>` 上，让 CSS 逻辑属性正确镜像。
    */
@@ -180,6 +188,10 @@ export const ConfigProvider = memo<ConfigProviderProps>(
     defaultTheme,
     enableSystem = true,
     onThemeChange,
+    themes,
+    defaultThemeId,
+    themeIdStorageKey,
+    onThemeIdChange,
     dir = 'ltr',
     reducedMotion,
     motion,
@@ -192,6 +204,10 @@ export const ConfigProvider = memo<ConfigProviderProps>(
           defaultTheme={defaultTheme}
           enableSystem={enableSystem}
           onThemeChange={onThemeChange}
+          themes={themes}
+          defaultThemeId={defaultThemeId}
+          themeIdStorageKey={themeIdStorageKey}
+          onThemeIdChange={onThemeIdChange}
         >
           <DirectionProvider dir={dir}>
             <ReducedMotionProvider force={reducedMotion}>

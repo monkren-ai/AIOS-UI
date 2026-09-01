@@ -61,11 +61,6 @@
   --color-agent-paused: var(--agent-paused);
   --color-agent-error: var(--agent-error);
 
-  /* Widget 色板 */
-  --color-widget-bg: var(--widget-bg);
-  --color-widget-card: var(--widget-card-bg);
-  --color-widget-dark: var(--widget-dark-bg);
-  --color-widget-grey: var(--widget-grey);
 }
 
 @theme {
@@ -131,7 +126,7 @@
   --spacing-3xl: 64px;
   --spacing-4xl: 96px;
 
-  /* ===== 圆角：2-6px 工业风区间；lg/xl 留给 widget 容器 ===== */
+  /* ===== 圆角：2-6px 工业风区间；lg/xl 用于内容容器 ===== */
   --radius-none: 0px;
   --radius-2xs: 2px;
   --radius-xs: 3px;
@@ -170,13 +165,19 @@
   --animate-agent-breathe: agent-breathe 2000ms ease-in-out infinite;
   --animate-agent-pulse: agent-pulse 800ms ease-in-out infinite;
   --animate-agent-step: agent-step 1200ms var(--ease-aios) forwards;
+  --animate-input-shake: aios-input-shake var(--duration-spring-moderate) ease-in-out;
+  --animate-input-clear-out: aios-input-clear-out var(--duration-spring-moderate) var(--ease-spring-moderate) both;
+  --animate-toast-enter: aios-toast-enter var(--duration-spring-moderate) var(--ease-spring-moderate) both;
+  --animate-notification-in: aios-notification-in var(--duration-spring-moderate) var(--ease-spring-moderate) both;
+  --animate-digit-in: aios-digit-in var(--duration-spring-moderate) var(--ease-spring-moderate) both;
+  --animate-success-draw: aios-success-draw var(--duration-spring-moderate) var(--ease-spring-moderate) forwards;
 
   /* ===== 布局容器 ===== */
   --container-narrow: 640px;
   --container-normal: 768px;
   --container-wide: 1024px;
   --container-page: 1120px;
-  --container-page-widget: 1240px;
+  --container-page-wide: 1240px;
 
   /*
    * max-w-* 默认优先读 --spacing-*；本项目 spacing 是 4px 网格（如 --spacing-2xl: 48px），

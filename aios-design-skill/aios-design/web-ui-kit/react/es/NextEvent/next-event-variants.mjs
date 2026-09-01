@@ -12,14 +12,10 @@ import { cva } from "class-variance-authority";
 */
 const nextEventVariants = cva([
 	"box-border flex flex-col justify-center gap-0.5 overflow-hidden",
-	"h-[var(--widget-pill-height)] w-[var(--widget-size-lg)] rounded-pill px-4 py-2",
+	"min-h-11 w-full max-w-md rounded-pill border border-border bg-surface px-4 py-2",
 	"transition-colors duration-[350ms] ease-aios motion-reduce:transition-none"
 ], {
 	variants: {
-		theme: {
-			light: "bg-widget-card",
-			dark: "bg-widget-dark"
-		},
 		priority: {
 			low: "",
 			normal: "",
@@ -27,31 +23,18 @@ const nextEventVariants = cva([
 		},
 		real: {
 			true: "",
-			false: ["after:content-['SIM'] after:self-end after:font-mono after:text-[9px]", "after:tracking-[0.12em] after:text-widget-grey after:opacity-50"]
+			false: ["after:content-['SIM'] after:self-end after:font-mono after:text-[9px]", "after:tracking-[0.12em] after:text-foreground-subtle after:opacity-70"]
 		}
 	},
 	defaultVariants: {
-		theme: "dark",
 		priority: "normal",
 		real: true
 	}
 });
 /** 「NEXT EVENT:」提示行。 */
-const nextEventLabelVariants = cva(["font-dotmatrix text-micro uppercase leading-[1.4] tracking-normal"], {
-	variants: { theme: {
-		light: "text-[var(--widget-dark-2)]",
-		dark: "text-[var(--widget-white)]"
-	} },
-	defaultVariants: { theme: "dark" }
-});
+const nextEventLabelVariants = cva("font-dotmatrix text-micro uppercase leading-[1.4] tracking-normal text-foreground-muted");
 /** 事件标题，过长时省略号。 */
-const nextEventTitleVariants = cva(["min-w-0 flex-1 truncate font-body text-[8px] font-normal leading-[1.4] tracking-normal"], {
-	variants: { theme: {
-		light: "text-[var(--widget-dark-2)]",
-		dark: "text-[var(--widget-white)]"
-	} },
-	defaultVariants: { theme: "dark" }
-});
+const nextEventTitleVariants = cva("min-w-0 flex-1 truncate font-body text-caption font-normal leading-[1.4] tracking-normal text-foreground");
 /** 日期数字。 */
 const nextEventDateVariants = cva(["shrink-0 font-dotmatrix text-micro leading-none tracking-normal tabular-nums text-accent"]);
 /** 月份缩写。 */
@@ -59,8 +42,8 @@ const nextEventMonthVariants = cva(["shrink-0 font-display text-xs leading-none 
 /** 倒计时。24 小时内的事件（high）转成红色并加粗。 */
 const nextEventCountdownVariants = cva(["ms-auto shrink-0 font-mono text-micro uppercase tracking-widest tabular-nums"], {
 	variants: { priority: {
-		low: "text-widget-grey",
-		normal: "text-widget-grey",
+		low: "text-foreground-subtle",
+		normal: "text-foreground-muted",
 		high: "font-semibold text-accent"
 	} },
 	defaultVariants: { priority: "normal" }

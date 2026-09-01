@@ -21,7 +21,7 @@ describe('NextEvent', () => {
     const demo = screen.getByTestId('next-event')
 
     expect(demo).toHaveClass("after:content-['SIM']")
-    expect(demo).toHaveClass('after:text-widget-grey')
+    expect(demo).toHaveClass('after:text-foreground-subtle')
     unmount()
 
     render(
@@ -98,11 +98,10 @@ describe('NextEvent', () => {
     ).toHaveClass('tabular-nums')
   })
 
-  it('keeps the widget palette out of the global data-theme attribute', () => {
-    render(<NextEvent theme="light" data-testid="next-event" />)
+  it('uses the global semantic theme', () => {
+    render(<NextEvent data-testid="next-event" />)
     const widget = screen.getByTestId('next-event')
-    expect(widget).toHaveAttribute('data-widget-theme', 'light')
-    expect(widget).not.toHaveAttribute('data-theme')
+    expect(widget).toHaveClass('bg-surface')
   })
 
   it('lets a caller-supplied utility win over the variant default', () => {

@@ -9,7 +9,7 @@ export function AboutPage() {
   return (
     <main className="overflow-hidden">
       <section className="border-y border-border bg-surface">
-        <div className="mx-auto grid max-w-page-widget gap-10 px-4 py-20 md:grid-cols-[minmax(16rem,0.8fr)_minmax(0,1.2fr)] md:px-6 md:py-24">
+        <div className="mx-auto grid max-w-page-wide gap-10 px-4 py-20 md:grid-cols-[minmax(16rem,0.8fr)_minmax(0,1.2fr)] md:px-6 md:py-24">
           <figure className="m-0 min-w-0">
             <div className="aspect-square overflow-hidden rounded-card border border-border bg-background">
               <img
@@ -69,7 +69,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-page-widget px-4 py-24 md:px-6 md:py-32">
+      <section className="mx-auto max-w-page-wide px-4 py-24 md:px-6 md:py-32">
         <header className="max-w-3xl">
           <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
             AIOS UI
@@ -117,7 +117,7 @@ export function AboutPage() {
       </section>
 
       <section className="bg-foreground-display text-background">
-        <div className="mx-auto flex max-w-page-widget flex-col items-start justify-between gap-8 px-4 py-20 md:flex-row md:items-end md:px-6 md:py-24">
+        <div className="mx-auto flex max-w-page-wide flex-col items-start justify-between gap-8 px-4 py-20 md:flex-row md:items-end md:px-6 md:py-24">
           <div className="max-w-3xl">
             <span className="font-mono text-label uppercase tracking-widest opacity-60">
               {t('继续探索', 'Continue exploring')}

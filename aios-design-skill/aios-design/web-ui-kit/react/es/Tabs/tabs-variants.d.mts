@@ -11,7 +11,7 @@
  */
 declare const tabsVariants: (props?: ({
   variant?: "default" | "subtle" | "pills" | null | undefined;
-  indicator?: "none" | "line" | "background" | null | undefined;
+  indicator?: "line" | "none" | "background" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** tablist 容器。变体差异主要落在这里。 */
 declare const tabsListVariants: (props?: ({

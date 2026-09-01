@@ -1,6 +1,6 @@
 {
   "name": "aios-ui-docs",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "description": "AIOS UI documentation site and component showcase",
   "type": "module",

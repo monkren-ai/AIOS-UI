@@ -78,12 +78,10 @@ describe('AgeMotion', () => {
     ).toHaveClass('motion-reduce:transition-none')
   })
 
-  it('keeps the widget palette out of the global data-theme attribute', () => {
-    render(<AgeMotion theme="light" data-testid="age" />)
+  it('uses the global semantic theme', () => {
+    render(<AgeMotion data-testid="age" />)
     const age = screen.getByTestId('age')
-    expect(age).toHaveAttribute('data-widget-theme', 'light')
     expect(age).toHaveAttribute('data-size', 'md')
-    expect(age).not.toHaveAttribute('data-theme')
   })
 
   it('lets a caller-supplied utility win over the variant default', () => {

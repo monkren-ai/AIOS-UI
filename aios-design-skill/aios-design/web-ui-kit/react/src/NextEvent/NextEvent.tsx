@@ -62,7 +62,6 @@ export interface NextEventProps
 
 export function NextEvent({
   className,
-  theme = 'dark',
   priority: priorityProp,
   event,
   events,
@@ -100,19 +99,18 @@ export function NextEvent({
   return (
     <div
       ref={ref}
-      className={cn(nextEventVariants({ theme, priority, real }), className)}
+      className={cn(nextEventVariants({ priority, real }), className)}
       data-slot="next-event"
-      data-widget-theme={dataAttr(theme)}
       data-state={dataAttr(real ? 'has-event' : 'demo')}
       data-priority={dataAttr(priority)}
       data-real={dataAttr(real)}
       {...props}
     >
-      <span data-slot="next-event-label" className={cn(nextEventLabelVariants({ theme }))}>
+      <span data-slot="next-event-label" className={cn(nextEventLabelVariants())}>
         Next Event:
       </span>
       <div data-slot="next-event-content" className="flex items-baseline gap-1">
-        <span data-slot="next-event-title" className={cn(nextEventTitleVariants({ theme }))}>
+        <span data-slot="next-event-title" className={cn(nextEventTitleVariants())}>
           {displayEvent.title}
         </span>
         <span data-slot="next-event-date" className={cn(nextEventDateVariants())}>

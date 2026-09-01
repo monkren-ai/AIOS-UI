@@ -17,40 +17,40 @@
 }
 
 .aios-glyph--light .aios-dot-matrix--glyph .aios-dot-matrix__dot {
-  background-color: var(--widget-dark-2);
+  background-color: var(--border-visible);
 }
 
 .aios-glyph--light .aios-dot-matrix--glyph .aios-dot-matrix__dot--active {
-  background-color: var(--widget-dark-2);
+  background-color: var(--border-visible);
 }
 
 .aios-glyph--light .aios-dot-matrix--glyph .aios-dot-matrix__dot--dim {
-  background-color: var(--widget-dark-4);
+  background-color: var(--text-secondary);
   opacity: 0.4;
 }
 
 .aios-glyph--dark .aios-dot-matrix--glyph .aios-dot-matrix__dot {
-  background-color: var(--widget-white);
+  background-color: var(--text-display);
 }
 
 .aios-glyph--dark .aios-dot-matrix--glyph .aios-dot-matrix__dot--active {
-  background-color: var(--widget-white);
+  background-color: var(--text-display);
 }
 
 .aios-glyph--dark .aios-dot-matrix--glyph .aios-dot-matrix__dot--dim {
-  background-color: var(--widget-dark-4);
+  background-color: var(--text-secondary);
   opacity: 0.4;
 }
 
 .aios-glyph--accent .aios-dot-matrix--glyph .aios-dot-matrix__dot {
-  background-color: var(--widget-primary);
+  background-color: var(--accent);
 }
 
 .aios-glyph--accent .aios-dot-matrix--glyph .aios-dot-matrix__dot--active {
-  background-color: var(--widget-primary);
+  background-color: var(--accent);
 }
 
 .aios-glyph--accent .aios-dot-matrix--glyph .aios-dot-matrix__dot--dim {
-  background-color: var(--widget-primary);
+  background-color: var(--accent);
   opacity: 0.3;
 }

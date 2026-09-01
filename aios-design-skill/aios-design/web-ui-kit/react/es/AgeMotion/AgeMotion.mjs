@@ -38,7 +38,7 @@ function computeAge(birthDate, now) {
 		yearProgress
 	};
 }
-function AgeMotion({ className, birthDate: initialBirthDate, lifespan = 80, updateInterval = 1e3, yearSegments = 20, size = "md", theme = "dark", style, ref, ...props }) {
+function AgeMotion({ className, birthDate: initialBirthDate, lifespan = 80, updateInterval = 1e3, yearSegments = 20, size = "md", style, ref, ...props }) {
 	const [birthDateStr, setBirthDateStr] = useState(initialBirthDate ?? "");
 	const [now, setNow] = useState(/* @__PURE__ */ new Date());
 	const birthDate = useMemo(() => birthDateStr ? /* @__PURE__ */ new Date(birthDateStr + "T00:00:00") : null, [birthDateStr]);
@@ -55,14 +55,10 @@ function AgeMotion({ className, birthDate: initialBirthDate, lifespan = 80, upda
 	const filledYearSegments = ageData ? Math.round(ageData.yearProgress * yearSegments) : 0;
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
-		className: cn(ageMotionVariants({
-			size,
-			theme
-		}), className),
+		className: cn(ageMotionVariants({ size }), className),
 		style,
 		"data-slot": "age-motion",
 		"data-size": dataAttr(size),
-		"data-widget-theme": dataAttr(theme),
 		"data-state": dataAttr(ageData ? "ready" : "empty"),
 		...props,
 		children: [/* @__PURE__ */ jsx("div", {

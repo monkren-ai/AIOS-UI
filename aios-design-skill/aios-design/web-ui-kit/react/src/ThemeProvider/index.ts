@@ -1,3 +1,5 @@
 export { default } from './ThemeProvider'
 export * from './ThemeProvider'
 export * from './ThemeScript'
+export * from './themes'
+export * from './dtcg'

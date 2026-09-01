@@ -1,3 +1,4 @@
+import { OVERLAY_REDUCED_MOTION, overlayDuration, overlayModalMotion } from "../lib/overlay-motion.mjs";
 import { cva } from "class-variance-authority";
 //#region src/Modal/modal-variants.ts
 /**
@@ -10,8 +11,9 @@ import { cva } from "class-variance-authority";
 const modalBackdropVariants = cva([
 	"fixed inset-0 z-[var(--z-modal)] bg-overlay",
 	"flex items-center justify-center",
-	"transition-[opacity,visibility] duration-[var(--duration-transition)] ease-aios",
-	"motion-reduce:transition-none"
+	"transition-[opacity,visibility]",
+	...overlayDuration("slow"),
+	OVERLAY_REDUCED_MOTION
 ], {
 	variants: {
 		alert: {
@@ -32,13 +34,11 @@ const modalVariants = cva([
 	"fixed inset-0 z-[calc(var(--z-modal)+1)] m-auto h-fit",
 	"w-[calc(100%-var(--spacing-lg))] max-w-[var(--modal-max-width)] max-h-[90vh] overflow-y-auto",
 	"rounded-lg border border-border-visible bg-surface",
-	"transition-[transform,opacity] duration-[var(--duration-spring-moderate)] ease-spring-moderate",
-	"motion-reduce:transition-none",
-	"translate-y-4 open:translate-y-0"
+	...overlayModalMotion
 ], {
 	variants: {
 		alert: {
-			true: "max-w-[var(--modal-max-width-sm)] max-h-none overflow-y-visible translate-y-0 scale-95 open:scale-100",
+			true: "max-w-[var(--modal-max-width-sm)] max-h-none overflow-y-visible",
 			false: ""
 		},
 		destructive: {

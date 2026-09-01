@@ -122,8 +122,8 @@
 }
 
 .aios-clock-dual-ring {
-  width: var(--widget-size-md);
-  height: var(--widget-size-md);
+  width: var(--component-size-md);
+  height: var(--component-size-md);
   border-radius: 50%;
   position: relative;
   display: flex;
@@ -174,32 +174,32 @@
   font-weight: 300;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--widget-primary);
+  color: var(--accent);
   transition: color var(--duration-transition) var(--easing);
 }
 
 .aios-clock-dual-ring--light .dual-ring-outer {
-  fill: var(--widget-white);
+  fill: var(--text-display);
 }
 
 .aios-clock-dual-ring--light .dual-ring-inner {
-  fill: var(--widget-card-bg);
+  fill: var(--surface);
 }
 
 .aios-clock-dual-ring--light .dual-ring-hour {
-  color: var(--widget-dark-2);
+  color: var(--border-visible);
 }
 
 .aios-clock-dual-ring--dark .dual-ring-outer {
-  fill: var(--widget-dark-2);
+  fill: var(--border-visible);
 }
 
 .aios-clock-dual-ring--dark .dual-ring-inner {
-  fill: var(--widget-dark-bg);
+  fill: var(--surface);
 }
 
 .aios-clock-dual-ring--dark .dual-ring-hour {
-  color: var(--widget-white);
+  color: var(--text-display);
 }
 
 .aios-clock-overlay {
@@ -216,7 +216,7 @@
   font-weight: 300;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--widget-primary);
+  color: var(--accent);
   position: relative;
   z-index: 1;
   transition: color var(--duration-transition) var(--easing);
@@ -236,11 +236,11 @@
 }
 
 .aios-clock-overlay--light .overlay-top {
-  color: var(--widget-dark-2);
+  color: var(--border-visible);
 }
 
 .aios-clock-overlay--dark .overlay-top {
-  color: var(--widget-white);
+  color: var(--text-display);
 }
 
 @media (prefers-reduced-motion: reduce) {

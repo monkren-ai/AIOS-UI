@@ -204,7 +204,7 @@ Systematic opacity scale for consistent layering and state expression.
 | `--opacity-40` | 0.4 | Disabled state (per SKILL.md anti-patterns) |
 | `--opacity-50` | 0.5 | Equal blend |
 | `--opacity-60` | 0.6 | Secondary data visualization |
-| `--opacity-70` | 0.7 | Widget secondary text (`--widget-white-70`) |
+| `--opacity-70` | 0.7 | Secondary content |
 | `--opacity-80` | 0.8 | Overlay backdrop (`--overlay-heavy`) |
 | `--opacity-90` | 0.9 | Near-fully visible |
 | `--opacity-100` | 1 | Fully visible |
@@ -325,54 +325,7 @@ Dots 1–2px, uniform 12–16px grid. Opacity 0.1–0.2 for backgrounds, full fo
 
 ---
 
-## 7. WIDGET SUBSYSTEM TOKENS
-
-The Widget subsystem uses a separate set of tokens that intentionally differ from the main UI system, mimicking AIOS Phone's home screen widget aesthetic.
-
-### Widget Background Tokens
-
-| Token | Dark | Light | Role |
-|-------|------|-------|------|
-| `--widget-bg` | `#1a1d1c` | `#E1E5EA` | Widget panel background |
-| `--widget-card-bg` | `#e1e5ea` | `#FFFFFF` | Widget card background |
-| `--widget-dark-bg` | `#1a1d1c` | `#F0F0F0` | Dark widget background |
-| `--widget-dark-2` | `#2a2d2c` | `#D0D0D0` | Secondary dark widget surface |
-| `--widget-dark-3` | `#3a3d3c` | `#A0A0A0` | Tertiary dark widget surface |
-| `--widget-dark-4` | `#4a4d4c` | `#CCCCCC` | Quaternary dark widget surface |
-
-### Widget Text & Accent Tokens
-
-| Token | Value | Role |
-|-------|-------|------|
-| `--widget-primary` | `#D71921` | Widget accent (same as `--accent`) |
-| `--widget-grey` | `#AEABB1` | Widget secondary text/icon color |
-| `--widget-dot-active` | `#D71921` | Active dot indicator |
-| `--widget-white` | `#FCFAFE` | Widget primary text |
-| `--widget-white-70` | `rgba(252, 250, 254, 0.7)` | Widget secondary text |
-| `--widget-text-on-accent` | `rgba(255, 255, 255, 0.7)` | Text on accent backgrounds |
-| `--widget-error` | `#D71921` | Widget error state |
-
-### Widget Typography Tokens
-
-| Token | Font | Role |
-|-------|------|------|
-| `--font-dotmatrix` | `"Doto"` | Large numeric displays in widgets |
-| `--font-widget` | `"Space Grotesk"` | Widget body text (same as `--font-body`) |
-
-### Widget Sizing Tokens
-
-| Token | Value | Role |
-|-------|-------|------|
-| `--widget-size-sm` | `152px` | Small widget size |
-| `--widget-size-md` | `324px` | Medium widget size |
-| `--widget-size-lg` | `324px` | Large widget size |
-| `--widget-bg-height` | `312px` | Widget background height |
-
-**Note:** Widget tokens are intentionally different from main UI tokens. This is a deliberate design choice to match AIOS Phone's widget panel aesthetic, not an inconsistency.
-
----
-
-## 8. PATH ALIASES & UTILITIES (React UI Kit)
+## 7. PATH ALIASES & UTILITIES (React UI Kit)
 
 The React UI Kit configures a set of `@/` path aliases (in `tsconfig.json` + `vite.config.ts`) to avoid deep relative imports like `../../../lib/utils`.
 

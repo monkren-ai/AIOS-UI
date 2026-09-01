@@ -10,11 +10,11 @@
  * 状态色，info 回到中性。左侧 3px 粗边是仪表盘状态条的标识。
  */
 declare const toastVariants: (props?: ({
-  severity?: "error" | "info" | "success" | "warning" | null | undefined;
+  severity?: "warning" | "error" | "info" | "success" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 左侧 `[ LABEL ]` bracket 文案。颜色随 severity。 */
 declare const toastLabelVariants: (props?: ({
-  severity?: "error" | "info" | "success" | "warning" | null | undefined;
+  severity?: "warning" | "error" | "info" | "success" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 type ToastSeverity = 'info' | 'success' | 'error' | 'warning';
 //#endregion

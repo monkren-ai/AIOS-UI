@@ -39,7 +39,7 @@ function describeArc(cx, cy, r, startAngle, endAngle) {
 	const endY = cy - r * Math.sin(endAngle);
 	return `M ${startX} ${startY} A ${r} ${r} 0 0 ${startAngle > endAngle ? 0 : 1} ${endX} ${endY}`;
 }
-function SunDial({ className, latitude: propLat, longitude: propLng, updateInterval = 6e4, time: timeProp, theme = "dark", style, ref, ...props }) {
+function SunDial({ className, latitude: propLat, longitude: propLng, updateInterval = 6e4, time: timeProp, style, ref, ...props }) {
 	const [location, setLocation] = useState(null);
 	const [now, setNow] = useState(/* @__PURE__ */ new Date());
 	useEffect(() => {
@@ -108,14 +108,10 @@ function SunDial({ className, latitude: propLat, longitude: propLng, updateInter
 	const nightArc = describeArc(150, 150, 130, 0, Math.PI);
 	return /* @__PURE__ */ jsxs("div", {
 		ref,
-		className: cn(sunDialVariants({
-			time,
-			theme
-		}), className),
+		className: cn(sunDialVariants({ time }), className),
 		style,
 		"data-slot": "sun-dial",
 		"data-time": dataAttr(time),
-		"data-widget-theme": dataAttr(theme),
 		"data-located": dataAttr(location !== null),
 		...props,
 		children: [

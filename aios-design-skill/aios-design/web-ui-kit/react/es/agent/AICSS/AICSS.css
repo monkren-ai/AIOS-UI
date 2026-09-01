@@ -260,7 +260,7 @@
   padding: var(--space-xs) var(--space-sm);
   background: var(--surface);
   font-family: var(--font-mono);
-  font-size: var(--widget-label);
+  font-size: var(--label);
 }
 .aios-aicss-image__progress {
   position: absolute;
@@ -340,7 +340,7 @@
   border: var(--border-width-sm) solid var(--border-visible);
   border-radius: var(--radius-pill);
   font-family: var(--font-mono);
-  font-size: var(--widget-label);
+  font-size: var(--label);
 }
 .aios-aicss-citations small {
   color: var(--text-tertiary);
@@ -516,7 +516,7 @@
   place-items: center;
   border: var(--border-width-sm) solid var(--border-visible);
   font-family: var(--font-mono);
-  font-size: var(--widget-label);
+  font-size: var(--label);
 }
 
 .aios-aicss-approval__other input {

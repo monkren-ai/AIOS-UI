@@ -78,7 +78,7 @@ This reference enables the AIOS Design Skill to analyze existing project files, 
 | Aspect Ratio | AspectRatio | — | aspect-ratio.css | — |
 | Error Boundary | ErrorBoundary | — | — (no CSS file) | `--accent` |
 
-### 1.6 Widget Components
+### 1.6 Time, status, and utility components
 
 | Project Component Type | AIOS Component | Variants | CSS File | Key Tokens |
 |---|---|---|---|---|
@@ -86,35 +86,15 @@ This reference enables the AIOS Design Skill to analyze existing project files, 
 | Battery Indicator | Battery | — | battery.css | `--text-display`, `--success`, `--accent` |
 | Calendar | Calendar | compact/full | calendar.css | `--text-primary`, `--accent` |
 | System Monitor / Dashboard | SystemMonitor | — | system-monitor.css | `--text-display`, `--success`, `--warning` |
-| Music Player | MusicPlayer | — | music-player.css | `--text-display`, `--text-secondary` |
-| Photo Carousel / Slideshow | PhotoCarousel | autoplay | photo-carousel.css | `--surface` |
-| Caffeine Tracker | Caffeinate | — | caffeinate.css | `--accent`, `--text-display` |
-| Clipboard Manager | Clipboard | — | clipboard.css | `--surface`, `--border` |
 | Pomodoro Timer | Pomodoro | — | pomodoro.css | `--accent`, `--text-display` |
-| Walkie Talkie / PTT | WalkieTalkie | — | walkie-talkie.css | `--accent` |
 | Sunrise/Sunset Tracker | SunDial | — | sun-dial.css | `--text-display`, `--text-secondary` |
 | Life Progress / Age | AgeMotion | — | age-motion.css | `--text-display`, `--success` |
 | Stopwatch / Chrono | Chrono | — | chrono.css | `--font-dotmatrix`, `--text-display` |
 | Spinner / Decision Wheel | Spinner | — | spinner.css | `--text-display`, `--accent` |
 | World Clock | WorldClock | — | world-clock.css | `--text-display`, `--text-secondary` |
 | Dot Matrix Display | DotMatrix | — | dot-matrix.css | `--text-display`, `--text-disabled` |
-| Taskbar | Taskbar | — | taskbar.css | `--surface`, `--border` |
-| Quotes | Quotes | — | quotes.css | `--text-secondary`, `--text-disabled` |
 | Next Event | NextEvent | — | next-event.css | `--text-display`, `--text-secondary` |
-| Date Display | Date | — | date.css | `--text-display`, `--text-primary` |
-| Widget Card | WidgetCard | square/wide/tall × light/dark/accent | card.css (WidgetCard styles included in Card) | `--widget-card-bg`, `--widget-dark-bg`, `--widget-primary` |
-| Widget Grid | WidgetGrid | — | widget-grid.css | `--widget-bg`, `--widget-dark-bg` |
-| Quick Toggle | QuickToggle | circle/pill × light/dark/accent | quick-toggle.css | `--widget-primary`, `--widget-card-bg` |
-| Widget Icon | SvgIcon | sm/md/lg | svg-icon.css | `--widget-primary` |
-| Widget Pill | WidgetPill | — | widget-pill.css | `--widget-card-bg`, `--widget-primary` |
-| Glyph Icon | Glyph | check/heart/play/wifi/sun/moon... | glyph.css | `--text-display` |
-| Weather Widget | WeatherWidget | — | weather-widget.css | `--widget-card-bg`, `--widget-dark-bg` |
-| Steps Widget | StepsWidget | — | steps-widget.css | `--widget-card-bg`, `--widget-primary` |
-| Activity Widget | ActivityWidget | — | activity-widget.css | `--widget-card-bg`, `--widget-primary` |
-| Compass Widget | CompassWidget | — | compass-widget.css | `--widget-dark-bg`, `--text-display` |
-| Time Widget | TimeWidget | — | time-widget.css | `--widget-dark-bg`, `--font-dotmatrix` |
-
-Base styles for Widget 2.0 subsystem: `widgets.css` (provides `.widget-bg`, `.widget-card`, `.widget-icon-wrapper` — import before individual widget CSS files)
+| Quick Toggle | QuickToggle | circle/pill | quick-toggle.css | semantic interactive and surface tokens |
 
 ### 1.7 Agent & Conversation Components
 
@@ -209,7 +189,6 @@ Base styles for Widget 2.0 subsystem: `widgets.css` (provides `.widget-bg`, `.wi
 | `onToggle` / `checked` state | Switch / Toggle / Checkbox |
 | `onSubmit` + validation | Form |
 | `onDrag` + resize | Resizable |
-| Auto-rotate + prev/next arrows | PhotoCarousel |
 | Submit prompt + attach files + stop generation | Sender |
 | Approve/reject after impact disclosure | ApprovalGate |
 | Stream tool status and elapsed time | ToolCallRow / ProgressTrace |

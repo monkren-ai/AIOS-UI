@@ -13,15 +13,11 @@ import { cva } from 'class-variance-authority'
 export const nextEventVariants = cva(
   [
     'box-border flex flex-col justify-center gap-0.5 overflow-hidden',
-    'h-[var(--widget-pill-height)] w-[var(--widget-size-lg)] rounded-pill px-4 py-2',
+    'min-h-11 w-full max-w-md rounded-pill border border-border bg-surface px-4 py-2',
     'transition-colors duration-[350ms] ease-aios motion-reduce:transition-none',
   ],
   {
     variants: {
-      theme: {
-        light: 'bg-widget-card',
-        dark: 'bg-widget-dark',
-      },
       priority: {
         low: '',
         normal: '',
@@ -31,41 +27,19 @@ export const nextEventVariants = cva(
         true: '',
         false: [
           "after:content-['SIM'] after:self-end after:font-mono after:text-[9px]",
-          'after:tracking-[0.12em] after:text-widget-grey after:opacity-50',
+          'after:tracking-[0.12em] after:text-foreground-subtle after:opacity-70',
         ],
       },
     },
-    defaultVariants: { theme: 'dark', priority: 'normal', real: true },
+    defaultVariants: { priority: 'normal', real: true },
   },
 )
 
 /** 「NEXT EVENT:」提示行。 */
-export const nextEventLabelVariants = cva(
-  ['font-dotmatrix text-micro uppercase leading-[1.4] tracking-normal'],
-  {
-    variants: {
-      theme: {
-        light: 'text-[var(--widget-dark-2)]',
-        dark: 'text-[var(--widget-white)]',
-      },
-    },
-    defaultVariants: { theme: 'dark' },
-  },
-)
+export const nextEventLabelVariants = cva('font-dotmatrix text-micro uppercase leading-[1.4] tracking-normal text-foreground-muted')
 
 /** 事件标题，过长时省略号。 */
-export const nextEventTitleVariants = cva(
-  ['min-w-0 flex-1 truncate font-body text-[8px] font-normal leading-[1.4] tracking-normal'],
-  {
-    variants: {
-      theme: {
-        light: 'text-[var(--widget-dark-2)]',
-        dark: 'text-[var(--widget-white)]',
-      },
-    },
-    defaultVariants: { theme: 'dark' },
-  },
-)
+export const nextEventTitleVariants = cva('min-w-0 flex-1 truncate font-body text-caption font-normal leading-[1.4] tracking-normal text-foreground')
 
 /** 日期数字。 */
 export const nextEventDateVariants = cva([
@@ -83,8 +57,8 @@ export const nextEventCountdownVariants = cva(
   {
     variants: {
       priority: {
-        low: 'text-widget-grey',
-        normal: 'text-widget-grey',
+        low: 'text-foreground-subtle',
+        normal: 'text-foreground-muted',
         high: 'font-semibold text-accent',
       },
     },

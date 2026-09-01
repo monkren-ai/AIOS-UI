@@ -55,11 +55,10 @@ describe('SunDial', () => {
     if (sun) expect(sun).toHaveClass('motion-reduce:transition-none')
   })
 
-  it('keeps the widget palette out of the global data-theme attribute', () => {
-    render(<SunDial theme="light" latitude={39.9} longitude={116.4} data-testid="dial" />)
+  it('uses the global semantic theme', () => {
+    render(<SunDial latitude={39.9} longitude={116.4} data-testid="dial" />)
     const dial = screen.getByTestId('dial')
-    expect(dial).toHaveAttribute('data-widget-theme', 'light')
-    expect(dial).not.toHaveAttribute('data-theme')
+    expect(dial).toHaveClass('bg-surface')
   })
 
   it('lets a caller-supplied utility win over the variant default', () => {

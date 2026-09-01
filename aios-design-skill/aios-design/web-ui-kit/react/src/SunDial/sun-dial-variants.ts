@@ -19,12 +19,8 @@ export const sunDialVariants = cva(
         day: '',
         night: '',
       },
-      theme: {
-        light: '',
-        dark: '',
-      },
     },
-    defaultVariants: { time: 'day', theme: 'dark' },
+    defaultVariants: { time: 'day' },
   },
 )
 

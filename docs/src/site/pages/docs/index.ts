@@ -12,6 +12,7 @@ import ThemeProviderPage from './theme-provider'
 import DirectionProviderPage from './direction-provider'
 import ReducedMotionProviderPage from './reduced-motion-provider'
 import MigratingV2Page from './migrating-v2'
+import MigratingV3Page from './migrating-v3'
 
 /**
  * slug → 正文组件。
@@ -23,6 +24,7 @@ export const DOC_PAGE_COMPONENTS: Record<string, ComponentType> = {
   installation: InstallationPage,
   usage: UsagePage,
   'migrating-v2': MigratingV2Page,
+  'migrating-v3': MigratingV3Page,
   'design-principles': DesignPrinciplesPage,
   theming: ThemingPage,
   'dark-mode': DarkModePage,

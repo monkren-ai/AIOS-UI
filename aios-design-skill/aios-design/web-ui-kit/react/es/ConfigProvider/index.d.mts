@@ -1,4 +1,5 @@
 import { Direction } from "../DirectionProvider/DirectionProvider.mjs";
+import { ThemeDefinition } from "../ThemeProvider/themes.mjs";
 import { Theme } from "../ThemeProvider/ThemeProvider.mjs";
 import { MotionComponentType } from "../MotionProvider/index.mjs";
 import { ReactNode } from "react";
@@ -99,6 +100,14 @@ interface ConfigProviderProps {
    * 主题变化回调
    */
   onThemeChange?: (theme: Theme) => void;
+  /** 可用的自定义主题家族；内置主题始终保留。 */
+  themes?: readonly ThemeDefinition[];
+  /** 默认主题家族 ID。 */
+  defaultThemeId?: string;
+  /** 主题家族 ID 的 localStorage key。 */
+  themeIdStorageKey?: string;
+  /** 主题家族变化回调。 */
+  onThemeIdChange?: (themeId: string) => void;
   /**
    * 布局方向，默认 'ltr'。会同步写到 `<html dir>` 上，让 CSS 逻辑属性正确镜像。
    */

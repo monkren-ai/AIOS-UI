@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.0.0
+
+### Added
+
+- 新增独立的主题家族 API：`ThemeDefinition`、`ThemeTokenValues`、`ThemeImportResult`、`AIOS_BUILTIN_THEMES`、`parseDtcgTheme()` 与 `serializeDtcgTheme()`。
+- `ThemeProvider` / `ConfigProvider` 支持 `themes`、`defaultThemeId`、`themeIdStorageKey`、`onThemeIdChange`；Context 新增 `themeId`、`activeTheme`、`themes`、`setThemeId`。
+- 内置 AIOS Default、AIOS Paper、AIOS High Contrast 三套双模式主题；`ThemeScript` 可恢复主题快照，避免首屏闪回。
+- 文档站新增 `/themes`，支持浏览器本地 DTCG 2025.10 文件审查、启用、替换、导出与删除。
+
+### Breaking
+
+- 删除 `Caffeinate`、`Clipboard`、`MusicPlayer`、`PhotoCarousel`、`Quotes`、`WalkieTalkie`、`DateWidget`、`Taskbar`、`WidgetCard` 及其子路径导出。
+- `Card` 删除 `mode="widget"`，只保留普通内容卡片。
+- `Battery` 删除 `widgetMode`；`QuickToggle`、`AgeMotion`、`NextEvent`、`SunDial` 删除独立 `theme`，统一使用全局语义令牌。
+- 删除全部 Widget 专用令牌、注册表、样式与文档展示。
+
 ## 2.0.0
 
 样式层整体重写：纯 CSS + BEM → **Tailwind CSS v4 + CVA**。视觉与绝大多数 API 保持不变；以下为破坏性变更。

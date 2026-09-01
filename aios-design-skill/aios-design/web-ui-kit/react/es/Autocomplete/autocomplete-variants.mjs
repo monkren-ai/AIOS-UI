@@ -1,3 +1,4 @@
+import { overlayMenuMotion } from "../lib/overlay-motion.mjs";
 import { cva } from "class-variance-authority";
 //#region src/Autocomplete/autocomplete-variants.ts
 /**
@@ -95,12 +96,7 @@ const autocompleteInputVariants = cva([
 });
 const autocompletePositionerVariants = cva(["z-[var(--z-overlay)]"]);
 /** 浮层：与 Select 同款，surface-raised 底 + border-visible 框，无阴影。 */
-const autocompleteContentVariants = cva([
-	"min-w-40 overflow-hidden rounded-sm border border-border-visible bg-popover",
-	"transition-[opacity,transform] duration-[var(--duration-spring-moderate)] ease-spring-moderate",
-	"motion-reduce:transition-none",
-	"closed:-translate-y-1 closed:opacity-0 open:translate-y-0 open:opacity-100"
-]);
+const autocompleteContentVariants = cva(["min-w-40 overflow-hidden rounded-sm border border-border-visible bg-popover", ...overlayMenuMotion]);
 const autocompleteListVariants = cva(["max-h-60 overflow-y-auto py-1"]);
 /** 选项。高亮态垫 `accent-subtle`，焦点环走 `interactive`。 */
 const autocompleteItemVariants = cva([

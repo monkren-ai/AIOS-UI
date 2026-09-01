@@ -79,13 +79,17 @@ function useCdnFn() {
 * </ConfigProvider>
 * ```
 */
-const ConfigProvider = memo(({ children, config, defaultTheme, enableSystem = true, onThemeChange, dir = "ltr", reducedMotion, motion }) => {
+const ConfigProvider = memo(({ children, config, defaultTheme, enableSystem = true, onThemeChange, themes, defaultThemeId, themeIdStorageKey, onThemeIdChange, dir = "ltr", reducedMotion, motion }) => {
 	return /* @__PURE__ */ jsx(ConfigContext, {
 		value: useMemo(() => config ?? null, [config]),
 		children: /* @__PURE__ */ jsx(ThemeProvider, {
 			defaultTheme,
 			enableSystem,
 			onThemeChange,
+			themes,
+			defaultThemeId,
+			themeIdStorageKey,
+			onThemeIdChange,
 			children: /* @__PURE__ */ jsx(DirectionProvider, {
 				dir,
 				children: /* @__PURE__ */ jsx(ReducedMotionProvider, {

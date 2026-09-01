@@ -34,7 +34,11 @@ const inputVariants = cva(["relative flex w-full flex-col gap-1"], {
 	}
 });
 /** 包裹图标 + 原生 input 的一行。边框与背景都长在这里。 */
-const inputControlVariants = cva(["relative flex w-full items-center gap-2", "transition-colors duration-200 ease-aios motion-reduce:transition-none"], {
+const inputControlVariants = cva([
+	"relative flex w-full items-center gap-2",
+	"transition-colors duration-200 ease-aios motion-reduce:transition-none",
+	"data-[shaking]:motion-safe:animate-input-shake"
+], {
 	variants: {
 		variant: {
 			outline: "rounded-input border border-border-visible bg-transparent focus-within:border-foreground",
@@ -121,6 +125,12 @@ const inputClearVariants = cva([
 	"focus-visible:outline-2 focus-visible:outline-interactive focus-visible:outline-offset-2",
 	"[&_svg]:size-[1em] [&_svg]:shrink-0"
 ]);
+/** 清除时盖在输入文字上的淡出层。 */
+const inputClearGhostVariants = cva([
+	"pointer-events-none absolute inset-0 flex items-center",
+	"overflow-hidden font-mono text-foreground",
+	"motion-safe:animate-input-clear-out motion-reduce:hidden"
+]);
 /** v1 的变体名 → 当前变体名。保留是为了不让既有调用点一次性全炸。 */
 const LEGACY_VARIANTS = {
 	underline: "outline",
@@ -131,6 +141,6 @@ function resolveInputVariant(variant) {
 	return LEGACY_VARIANTS[variant] ?? variant;
 }
 //#endregion
-export { inputClearVariants, inputControlVariants, inputFieldVariants, inputHelperVariants, inputIconVariants, inputLabelVariants, inputVariants, resolveInputVariant };
+export { inputClearGhostVariants, inputClearVariants, inputControlVariants, inputFieldVariants, inputHelperVariants, inputIconVariants, inputLabelVariants, inputVariants, resolveInputVariant };
 
 //# sourceMappingURL=input-variants.mjs.map

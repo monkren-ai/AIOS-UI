@@ -63,7 +63,7 @@
 }
 
 .aios-thinking-indicator--sm {
-  font-size: var(--widget-label);
+  font-size: var(--label);
 }
 
 .aios-thinking-indicator--sm .aios-thinking-indicator__svg {

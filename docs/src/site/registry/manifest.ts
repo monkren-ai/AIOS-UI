@@ -95,18 +95,10 @@ export const COMPONENT_NAME_ZH: Record<string, string> = {
   Battery: "电量",
   Calendar: "日历",
   Chrono: "秒表",
-  DateWidget: "日期卡片",
   NextEvent: "下一个日程",
   Pomodoro: "番茄钟",
   SunDial: "日晷",
   SystemMonitor: "系统监视器",
-  Taskbar: "任务栏",
-  Caffeinate: "咖啡因记录",
-  Clipboard: "剪贴板",
-  MusicPlayer: "音乐播放器",
-  PhotoCarousel: "图片轮播",
-  Quotes: "引言卡片",
-  WalkieTalkie: "对讲机",
   Agent: "智能体",
   AskUserQuestions: "用户问询",
   Conversation: "对话",
@@ -844,16 +836,6 @@ const ENTRIES: ComponentManifestEntry[] = [
     },
   },
   {
-    slug: "date",
-    name: "DateWidget",
-    category: "time-system",
-    status: "stable",
-    description: {
-      zh: "日期卡片，三种版型：方块配当日进度环、双环、以及衬线撕页。",
-      en: "A date card in three looks: block with a day-progress ring, dual ring, or serif tear-off.",
-    },
-  },
-  {
     slug: "next-event",
     name: "NextEvent",
     category: "time-system",
@@ -891,76 +873,6 @@ const ENTRIES: ComponentManifestEntry[] = [
     description: {
       zh: "CPU、内存、存储、网络与电量的分段读数面板。",
       en: "Segmented readouts for CPU, RAM, storage, network, and battery.",
-    },
-  },
-  {
-    slug: "taskbar",
-    name: "Taskbar",
-    category: "time-system",
-    status: "stable",
-    description: {
-      zh: "桌面任务栏：开始、搜索、应用区，右侧是时钟与电量托盘。",
-      en: "A desktop taskbar — start, search, app slots, and a clock-and-battery tray on the end.",
-    },
-  },
-  {
-    slug: "caffeinate",
-    name: "Caffeinate",
-    category: "widgets",
-    status: "stable",
-    description: {
-      zh: "记录每杯饮品，按半衰期推算此刻体内还剩多少咖啡因。",
-      en: "Log each drink and see how much caffeine is left in you, decaying by half-life.",
-    },
-  },
-  {
-    slug: "clipboard",
-    name: "Clipboard",
-    category: "widgets",
-    status: "stable",
-    description: {
-      zh: "剪贴板历史，点条目即可重新复制，也能逐条删除或清空。",
-      en: "Clipboard history — click an entry to copy it again, or drop entries and clear the list.",
-    },
-  },
-  {
-    slug: "music-player",
-    name: "MusicPlayer",
-    category: "widgets",
-    status: "stable",
-    description: {
-      zh: "播放器，分完整卡片、窄条与迷你磁贴三种版型。",
-      en: "A music player in three layouts: full card, compact strip, and mini tile.",
-    },
-  },
-  {
-    slug: "photo-carousel",
-    name: "PhotoCarousel",
-    category: "widgets",
-    status: "stable",
-    description: {
-      zh: "图片轮播，可自动播放；用户偏好降低动效时只保留手动翻页。",
-      en: "An image carousel that autoplays — unless the user asked for reduced motion.",
-    },
-  },
-  {
-    slug: "quotes",
-    name: "Quotes",
-    category: "widgets",
-    status: "stable",
-    description: {
-      zh: "定时轮换的引言卡片，外圈的环表示走到了第几条。",
-      en: "A quote card that rotates on a timer, ringed by how far through the set it is.",
-    },
-  },
-  {
-    slug: "walkie-talkie",
-    name: "WalkieTalkie",
-    category: "widgets",
-    status: "stable",
-    description: {
-      zh: "对讲机，可切频道，按住发话键期间录制麦克风。",
-      en: "A push-to-talk radio with channel stepping; holding the key records from the mic.",
     },
   },
   {

@@ -15,7 +15,6 @@ export type QuickToggleProps = React.ComponentPropsWithRef<'button'> &
 
 function QuickToggle({
   variant = 'circle',
-  theme = 'light',
   active,
   icon,
   label,
@@ -27,25 +26,24 @@ function QuickToggle({
   return (
     <button
       ref={ref}
-      className={cn(quickToggleVariants({ variant, theme, active }), className)}
+      className={cn(quickToggleVariants({ variant, active }), className)}
       onClick={onClick}
       aria-pressed={active ?? false}
       type="button"
       data-slot="quick-toggle"
       data-variant={dataAttr(variant)}
-      data-widget-theme={dataAttr(theme)}
       data-state={active ? 'on' : 'off'}
       {...props}
     >
       {icon && (
-        <span data-slot="quick-toggle-icon" className={cn(quickToggleIconVariants({ theme }))}>
+        <span data-slot="quick-toggle-icon" className={cn(quickToggleIconVariants())}>
           {icon}
         </span>
       )}
       {label && (
         <span
           data-slot="quick-toggle-label"
-          className={cn(quickToggleLabelVariants({ variant, theme }))}
+          className={cn(quickToggleLabelVariants({ variant }))}
         >
           {label}
         </span>

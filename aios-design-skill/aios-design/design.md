@@ -733,6 +733,6 @@ Asymmetric, not centered. The featured testimonial occupies the left 60% at larg
 
 - **One accent:** Only the featured testimonial carries the red `--accent` marker. The three supporting testimonials are pure monochrome. This is the "one break per screen" rule in action.
 - **No avatars in color:** Photos are grayscale or replaced with Space Mono initials. Color photos would introduce uncontrolled palette drift.
-- **No entrance animation:** Quotes appear via opacity fade only (`--transition-fade`). No slide, no scale, no stagger choreography.
+- **No entrance animation:** Short editorial text appears via opacity fade only (`--transition-fade`). No slide, no scale, no stagger choreography.
 - **Structure is ornament:** The dot-matrix grid background and the asymmetric 3fr/2fr split ARE the visual interest — no decorative illustrations needed.
 - **Labels do the work:** "HEAR FROM THE TEAMS" and "CPO AT INNOVATE AI" in Space Mono ALL CAPS provide the instrument-panel feel without adding visual weight.

@@ -17,9 +17,9 @@ export interface DotMatrixIconProps extends Omit<React.HTMLAttributes<HTMLDivEle
   dotSize?: number
   /** Gap between dots in px. Default 2. */
   gap?: number
-  /** Color of non-pulsing dots. Default 'var(--widget-dark-2)'. */
+  /** Color of non-pulsing dots. Default 'var(--border-visible)'. */
   baseColor?: string
-  /** Color of pulsing dots. Default 'var(--widget-primary)'. */
+  /** Color of pulsing dots. Default 'var(--accent)'. */
   activeColor?: string
   /** Container background. Default 'transparent'. */
   backgroundColor?: string
@@ -48,8 +48,8 @@ export const DotMatrixIcon = React.forwardRef<HTMLDivElement, DotMatrixIconProps
       alphaThreshold = 128,
       dotSize = 6,
       gap = 2,
-      baseColor = 'var(--widget-dark-2)',
-      activeColor = 'var(--widget-primary)',
+      baseColor = 'var(--border-visible)',
+      activeColor = 'var(--accent)',
       backgroundColor = 'transparent',
       radius = 0,
       anim = 'none',

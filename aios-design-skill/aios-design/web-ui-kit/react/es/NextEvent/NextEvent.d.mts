@@ -18,7 +18,6 @@ interface NextEventProps extends Omit<React$1.ComponentPropsWithRef<'div'>, 'chi
 }
 declare function NextEvent({
   className,
-  theme,
   priority: priorityProp,
   event,
   events,

@@ -9,7 +9,7 @@ declare const popoverPositionerVariants: (props?: import("class-variance-authori
  */
 declare const popoverContentVariants: (props?: ({
   visible?: boolean | null | undefined;
-  side?: "left" | "right" | "top" | "bottom" | null | undefined;
+  side?: "right" | "left" | "top" | "bottom" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion
 export { popoverContentVariants, popoverPositionerVariants, popoverTriggerVariants };

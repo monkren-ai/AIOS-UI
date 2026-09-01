@@ -38,6 +38,15 @@ export const DOC_PAGES: DocPageMeta[] = [
     },
   },
   {
+    slug: 'migrating-v3',
+    group: 'getting-started',
+    title: { zh: '从 2.x 升级', en: 'Migrating from 2.x' },
+    description: {
+      zh: '主题家族 API、Widget 子系统移除与替代方式。',
+      en: 'Theme-family APIs, Widget subsystem removal, and replacements.',
+    },
+  },
+  {
     slug: 'migrating-v2',
     group: 'getting-started',
     title: { zh: '从 1.x 升级', en: 'Migrating from 1.x' },

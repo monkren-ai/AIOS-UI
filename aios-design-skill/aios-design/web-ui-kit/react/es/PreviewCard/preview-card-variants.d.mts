@@ -6,7 +6,7 @@
  * 各自的 CVA，这样顶部缩略图可以贴着卡片边缘铺满，而正文与页脚各自留白。
  */
 declare const previewCardVariants: (props?: ({
-  variant?: "default" | "compact" | "raised" | null | undefined;
+  variant?: "default" | "raised" | "compact" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 顶部媒体区。`compact` 把高度压到 80px，与正文的紧凑内边距呼应。 */
 declare const previewCardMediaVariants: (props?: ({

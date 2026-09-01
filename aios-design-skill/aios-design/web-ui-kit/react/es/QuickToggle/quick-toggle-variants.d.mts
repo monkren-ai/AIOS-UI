@@ -7,7 +7,6 @@
  */
 declare const quickToggleVariants: (props?: ({
   variant?: "circle" | "pill" | null | undefined;
-  theme?: "accent" | "light" | "dark" | null | undefined;
   active?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion

@@ -1,5 +1,5 @@
 import { cn, dataAttr } from "../lib/utils.mjs";
-import { inputClearVariants, inputControlVariants, inputFieldVariants, inputHelperVariants, inputIconVariants, inputLabelVariants, inputVariants, resolveInputVariant } from "./input-variants.mjs";
+import { inputClearGhostVariants, inputClearVariants, inputControlVariants, inputFieldVariants, inputHelperVariants, inputIconVariants, inputLabelVariants, inputVariants, resolveInputVariant } from "./input-variants.mjs";
 import * as React$1 from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/Input/Input.tsx
@@ -15,12 +15,19 @@ function InputMessage({ children, variant = "default", className, ...props }) {
 InputMessage.displayName = "Input.Message";
 function Input({ variant, size, label, placeholder, value: controlledValue, defaultValue, error, message, disabled = false, id, onChange, onValueChange, className, style, type = "text", name, leadingIcon, trailingIcon, clearable, ref, ...rest }) {
 	const [internalValue, setInternalValue] = React$1.useState(defaultValue ?? "");
+	const [shaking, setShaking] = React$1.useState(false);
+	const [clearingText, setClearingText] = React$1.useState(null);
 	const generatedId = React$1.useId();
 	const inputId = id || generatedId;
 	const errorId = `${inputId}-error`;
 	const value = controlledValue !== void 0 ? controlledValue : internalValue;
 	const hasError = Boolean(error);
+	const wasError = React$1.useRef(hasError);
 	const inputRef = React$1.useRef(null);
+	React$1.useEffect(() => {
+		if (hasError && !wasError.current) setShaking(true);
+		wasError.current = hasError;
+	}, [hasError]);
 	const resolvedVariant = resolveInputVariant(variant) ?? "outline";
 	const resolvedSize = size ?? "md";
 	const setRefs = React$1.useCallback((node) => {
@@ -42,6 +49,8 @@ function Input({ variant, size, label, placeholder, value: controlledValue, defa
 	const handleClear = React$1.useCallback(() => {
 		const input = inputRef.current;
 		if (!input) return;
+		const current = input.value;
+		if (current) setClearingText(current);
 		(Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")?.set)?.call(input, "");
 		input.dispatchEvent(new Event("input", { bubbles: true }));
 		input.focus();
@@ -80,6 +89,10 @@ function Input({ variant, size, label, placeholder, value: controlledValue, defa
 					disabled
 				}),
 				"data-slot": "input-control",
+				"data-shaking": dataAttr(shaking),
+				onAnimationEnd: (event) => {
+					if (event.animationName.includes("aios-input-shake")) setShaking(false);
+				},
 				children: [
 					leadingIcon && /* @__PURE__ */ jsx("span", {
 						className: inputIconVariants(),
@@ -88,20 +101,29 @@ function Input({ variant, size, label, placeholder, value: controlledValue, defa
 						"aria-hidden": "true",
 						children: leadingIcon
 					}),
-					/* @__PURE__ */ jsx("input", {
-						ref: setRefs,
-						className: inputFieldVariants({ size: resolvedSize }),
-						"data-slot": "input-field",
-						type,
-						id: inputId,
-						name,
-						placeholder,
-						value,
-						disabled,
-						onChange: handleChange,
-						"aria-invalid": hasError || void 0,
-						"aria-describedby": hasError ? errorId : void 0,
-						...rest
+					/* @__PURE__ */ jsxs("span", {
+						className: "relative min-w-0 flex-1 overflow-hidden",
+						children: [/* @__PURE__ */ jsx("input", {
+							ref: setRefs,
+							className: inputFieldVariants({ size: resolvedSize }),
+							"data-slot": "input-field",
+							type,
+							id: inputId,
+							name,
+							placeholder,
+							value,
+							disabled,
+							onChange: handleChange,
+							"aria-invalid": hasError || void 0,
+							"aria-describedby": hasError ? errorId : void 0,
+							...rest
+						}), clearingText && /* @__PURE__ */ jsx("span", {
+							className: inputClearGhostVariants(),
+							"data-slot": "input-clear-ghost",
+							"aria-hidden": "true",
+							onAnimationEnd: () => setClearingText(null),
+							children: clearingText
+						})]
 					}),
 					showClear && /* @__PURE__ */ jsx("button", {
 						type: "button",

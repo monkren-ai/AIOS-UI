@@ -69,7 +69,7 @@ html {
 
 .project-intro-page .pi-container {
   width: 100%;
-  max-width: var(--page-max-width-widget);
+  max-width: var(--page-max-width-wide);
   margin: 0 auto;
   padding: 0 var(--pi-space-lg);
 }

@@ -9,7 +9,6 @@ type QuickToggleProps = React$1.ComponentPropsWithRef<'button'> & VariantProps<t
 };
 declare function QuickToggle({
   variant,
-  theme,
   active,
   icon,
   label,

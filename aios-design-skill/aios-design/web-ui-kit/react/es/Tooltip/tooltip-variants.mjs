@@ -1,3 +1,4 @@
+import { overlayTooltipMotion } from "../lib/overlay-motion.mjs";
 import { cva } from "class-variance-authority";
 //#region src/Tooltip/tooltip-variants.ts
 const tooltipTriggerVariants = cva(["inline-block cursor-help", "focus-visible:outline-2 focus-visible:outline-foreground focus-visible:outline-offset-2"]);
@@ -13,9 +14,7 @@ const tooltipPopupVariants = cva([
 	"font-mono text-caption text-foreground-display",
 	"rounded-sm border border-border-visible bg-surface-raised px-3 py-1",
 	"pointer-events-none whitespace-nowrap",
-	"transition-[opacity,transform] duration-[var(--duration-spring-fast)] ease-spring-fast",
-	"motion-reduce:transition-none",
-	"closed:scale-95 closed:opacity-0 open:scale-100 open:opacity-100",
+	...overlayTooltipMotion,
 	"after:absolute after:size-0 after:content-['']"
 ], {
 	variants: {

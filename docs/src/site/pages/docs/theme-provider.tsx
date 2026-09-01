@@ -12,13 +12,17 @@ const IMPORT = `import {
   getThemeScript,
   type Theme,
   type ThemeAppearance,
+  type ThemeDefinition,
 } from 'aios-ui-kit/theme-provider'`
 
 const USAGE = `<ThemeProvider defaultTheme="dark" enableSystem>
   <App />
 </ThemeProvider>`
 
-const HOOK = `const { theme, resolvedTheme, systemTheme, mounted, setTheme, toggleTheme } = useTheme()`
+const HOOK = `const {
+  theme, resolvedTheme, setTheme,        // 明暗模式
+  themeId, activeTheme, themes, setThemeId, // 主题家族
+} = useTheme()`
 
 const providerSection: ApiSection = {
   name: 'ThemeProvider',
@@ -66,6 +70,23 @@ const providerSection: ApiSection = {
         zh: '切换瞬间注入一条 `transition: none !important` 并在下一帧撤掉，避免整页颜色一起做过渡。',
         en: 'Injects a `transition: none !important` rule for the swap and removes it on the next tick, so the whole page does not cross-fade its colours.',
       },
+    },
+    {
+      name: 'themes',
+      type: 'readonly ThemeDefinition[]',
+      description: { zh: '附加的自定义主题；三个内置主题始终可用。', en: 'Additional custom themes; the three built-ins remain available.' },
+    },
+    {
+      name: 'defaultThemeId',
+      type: 'string',
+      default: `'aios-default'`,
+      description: { zh: '默认主题家族 ID。', en: 'Default theme-family ID.' },
+    },
+    {
+      name: 'themeIdStorageKey',
+      type: 'string',
+      default: `'aios-theme-id'`,
+      description: { zh: '主题家族 ID 的存储 key。', en: 'Storage key for the theme-family ID.' },
     },
     {
       name: 'onThemeChange',
@@ -126,6 +147,16 @@ const hookSection: ApiSection = {
       },
     },
     {
+      name: 'themeId / setThemeId',
+      type: 'string / (id: string) => void',
+      description: { zh: '读取或切换主题家族，不改变明暗模式。', en: 'Reads or changes the theme family without changing color mode.' },
+    },
+    {
+      name: 'activeTheme / themes',
+      type: 'ThemeDefinition / readonly ThemeDefinition[]',
+      description: { zh: '当前规范化主题与可用目录。', en: 'The active normalized theme and available catalog.' },
+    },
+    {
       name: 'toggleTheme',
       type: '() => void',
       description: {
@@ -148,8 +179,8 @@ const scriptSection: ApiSection = {
       type: 'string',
       default: `'aios-theme'`,
       description: {
-        zh: '要读的 localStorage key。改了这里就要同步改 provider 侧——目前 provider 的 key 是写死的。',
-        en: 'The localStorage key to read. If you change it, change the provider side too — the provider’s key is currently hard-coded.',
+        zh: '明暗模式的 localStorage key。改了这里必须同步修改 provider。',
+        en: 'The color-mode localStorage key. Keep it synchronized with the provider.',
       },
     },
     {

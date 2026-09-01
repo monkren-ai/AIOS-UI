@@ -19,17 +19,15 @@ import {
 } from './sun-dial-variants'
 
 export type SunDialTime = 'day' | 'night'
-export type SunDialTheme = 'light' | 'dark'
 
 export interface SunDialProps
   extends
     Omit<React.ComponentPropsWithRef<'div'>, 'children'>,
-    Omit<VariantProps<typeof sunDialVariants>, 'time' | 'theme'> {
+    Omit<VariantProps<typeof sunDialVariants>, 'time'> {
   latitude?: number
   longitude?: number
   updateInterval?: number
   time?: SunDialTime
-  theme?: SunDialTheme
 }
 
 interface SunTimes {
@@ -101,7 +99,6 @@ export function SunDial({
   longitude: propLng,
   updateInterval = 60000,
   time: timeProp,
-  theme = 'dark',
   style,
   ref,
   ...props
@@ -183,11 +180,10 @@ export function SunDial({
   return (
     <div
       ref={ref}
-      className={cn(sunDialVariants({ time, theme }), className)}
+      className={cn(sunDialVariants({ time }), className)}
       style={style}
       data-slot="sun-dial"
       data-time={dataAttr(time)}
-      data-widget-theme={dataAttr(theme)}
       data-located={dataAttr(location !== null)}
       {...props}
     >

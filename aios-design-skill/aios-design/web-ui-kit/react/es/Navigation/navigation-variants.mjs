@@ -74,7 +74,7 @@ const navSeparatorVariants = cva(["mx-1 text-border-visible max-[768px]:hidden"]
 */
 const navIndicatorVariants = cva([
 	"pointer-events-none absolute bottom-0 h-0.5 bg-foreground-display",
-	"transition-[inset-inline-start,width] duration-[160ms] ease-spring-moderate",
+	"transition-[inset-inline-start,width] duration-[var(--duration-spring-moderate)] ease-spring-moderate",
 	"motion-reduce:transition-none",
 	"max-[768px]:bottom-auto max-[768px]:top-0"
 ]);
