@@ -12,6 +12,7 @@
 - 同步根导出、`agent` 与 `conversation` 分组入口。
 - 将原先单一的“AI OS 与对话”文档分组拆为 `Chat / Agent / Shell`。
 - 新增 15 个独立文档入口，补齐 Message、Response、Attachment、BranchPicker、Prompt Box、Keyword Tag、Context Bar、Tool Call、Plan、Sources、Confirmation、Web Search、Terminal、Subagents 与 Thread List。
+- Agent 分类再补 8 个 AIOS 原生公共组件入口：`AgentOrb`、`ActivityLabel`、`AssistantPanel`、`ApprovalGate`、`PlanCard`、`ProgressTrace`、`ThinkingIndicator`、`ThinkingSteps`；Agent 组由 15 项增加到 23 项。
 - 将文档中的 5 个体验别名替换为真实公共组件：`PromptBox`、`Plan / PlanItem`、`Confirmation`、`WebSearch`、`ThreadList`。
 - `PromptBox` 补齐附件、mention、模型选择、语音、运行停止与自适应高度；进一步加入 `contextBefore/contextAfter`、inset 和 `idle/inputting/thinking` 语音生命周期，并将文档预览升级为可操作的完整链路。`WebSearch` 补齐受控折叠和安全外链；`ThreadList` 使用并列操作按钮，避免嵌套交互元素。
 - `StreamingText` 增加 `streaming` 输入态、可见光标和 `aria-busy`；文档自动播放增量文本，AI PoC 的新回复逐字生成。用户输入本身保持稳定，不对 textarea 字符做位移动画。
@@ -26,9 +27,10 @@
 
 ## 文档验证
 
-- AI Agent 页面现包含 Chat 7 项、Agent 15 项、Shell 2 项，共 24 个入口。
+- AI Agent 页面现包含 Chat 7 项、Agent 23 项、Shell 2 项，共 32 个入口。
 - 15 个新增路由均可打开并渲染独立标题、预览、用法、API 和可访问性内容。
 - 文档类型检查、9 个测试文件共 41 项测试、生产构建通过。
 - 浏览器抽测分支翻页从 `2 / 3` 正常切换到 `3 / 3`；桌面与移动视口无横向溢出。
+- 浏览器确认 8 个新增 Agent 入口全部出现在导航中，页面标题与预览正常；AssistantPanel 可关闭，ApprovalGate 可从 pending 进入 approved，390px 视口无横向溢出。
 - 5 个体验对齐组件共 13 项专项测试通过；组件库全量为 119 个测试文件、1028 项测试通过。
 - 根导出、`agent` / `conversation` subpath 一致性检查以及组件库生产构建通过；lint 0 error，保留 3 条既有 `TimeField` warning。

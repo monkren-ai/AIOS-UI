@@ -18,21 +18,168 @@ import {
   ThreadListSection,
 } from "aios-ui-kit/conversation";
 import {
+  ActivityLabel,
+  AgentOrb,
+  ApprovalGate,
+  AssistantPanel,
   Confirmation,
   ContextBar,
   ContextBarLabel,
   ContextBarTasks,
   Plan,
+  PlanCard,
   PlanItem,
+  ProgressTrace,
   PromptBox,
   PromptBoxModelSelect,
   Subagent,
   SubagentList,
   Terminal,
   TerminalLine,
+  ThinkingIndicator,
+  ThinkingSteps,
   ToolCallRow,
   WebSearch,
 } from "aios-ui-kit/agent";
+
+export function AgentOrbDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-5">
+      {(["idle", "thinking", "acting", "paused", "error"] as const).map(
+        (state) => (
+          <AgentOrb key={state} state={state} showLabel />
+        ),
+      )}
+    </div>
+  );
+}
+
+export function ActivityLabelDemo() {
+  return (
+    <div className="flex flex-wrap gap-5">
+      <ActivityLabel active activeLabel="正在执行 / Working" />
+      <ActivityLabel label="执行完成 / Done" />
+      <ActivityLabel status="error" label="执行失败 / Failed" />
+    </div>
+  );
+}
+
+export function AssistantPanelDemo() {
+  return (
+    <div className="relative h-72 w-full max-w-xl border border-border-visible p-4">
+      <p className="text-body-sm text-foreground-muted">
+        页面内容 / Page content
+      </p>
+      <AssistantPanel defaultOpen inline title="任务助手 / Task assistant">
+        <div className="p-4 text-body-sm">
+          面板支持 Escape、焦点恢复和受控状态。 / Escape, focus return, and
+          controlled state are supported.
+        </div>
+      </AssistantPanel>
+    </div>
+  );
+}
+
+export function ApprovalGateDemo() {
+  const [state, setState] = React.useState<"pending" | "approved" | "denied">(
+    "pending",
+  );
+  return (
+    <ApprovalGate
+      className="w-full max-w-xl"
+      action="发布组件文档 / Publish component docs"
+      impact="将更新本地构建产物。 / Local build artifacts will change."
+      risk="high"
+      state={state}
+      onAllow={() => setState("approved")}
+      onDeny={() => setState("denied")}
+    />
+  );
+}
+
+export function PlanCardDemo() {
+  return (
+    <PlanCard
+      className="w-full max-w-xl"
+      title="AGENT DOCUMENTATION"
+      steps={[
+        {
+          id: "scan",
+          description: "扫描公共导出 / Scan exports",
+          status: "done",
+        },
+        {
+          id: "docs",
+          description: "生成独立页面 / Generate pages",
+          tool: "write_file",
+          status: "running",
+        },
+        {
+          id: "verify",
+          description: "验证构建 / Verify build",
+          status: "pending",
+        },
+      ]}
+    />
+  );
+}
+
+export function ProgressTraceDemo() {
+  return (
+    <ProgressTrace
+      className="w-full max-w-xl"
+      title="DOCUMENTATION TRACE"
+      steps={[
+        {
+          id: "read",
+          label: "读取清单 / Read inventory",
+          status: "done",
+          timestamp: "00:01",
+        },
+        {
+          id: "render",
+          label: "生成页面 / Render pages",
+          status: "active",
+          timestamp: "00:04",
+        },
+        { id: "test", label: "运行测试 / Run tests", status: "pending" },
+      ]}
+    />
+  );
+}
+
+export function ThinkingIndicatorDemo() {
+  return (
+    <div className="flex flex-wrap gap-5">
+      <ThinkingIndicator state="thinking" label="思考中 / Thinking" />
+      <ThinkingIndicator state="acting" label="执行中 / Acting" />
+      <ThinkingIndicator state="done" label="已完成 / Done" />
+      <ThinkingIndicator state="error" label="失败 / Error" />
+    </div>
+  );
+}
+
+export function ThinkingStepsDemo() {
+  return (
+    <ThinkingSteps
+      className="w-full max-w-xl"
+      activeIndex={1}
+      steps={[
+        {
+          id: "intent",
+          title: "理解目标 / Understand goal",
+          content: "核对 Agent 公共导出。",
+        },
+        {
+          id: "map",
+          title: "映射组件 / Map components",
+          content: "查找缺少的独立入口。",
+        },
+        { id: "verify", title: "验证结果 / Verify result" },
+      ]}
+    />
+  );
+}
 
 export function MessageDemo() {
   return (

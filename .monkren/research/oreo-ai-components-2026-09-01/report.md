@@ -29,6 +29,7 @@
 - 文档站增加 `/components/streaming-text` 与 `/components/reasoning`，两页均含可运行示例、API 与可访问性说明。
 - 参考 Oreo 的信息架构，将 AI 文档拆为 Chat、Agent、Shell 三组；不复制 Oreo 视觉或 DOM。
 - 补齐 15 个原先只存在于聚合页、没有独立入口的组件页面，同时保留原聚合页链接兼容。
+- 补齐 8 个只在 AIOS Agent 聚合页出现、但已从 `aios-ui-kit/agent` 公共导出的独立页面；至此 Oreo Agent 12 项和 AIOS-native Agent 原语均可独立发现。
 - 上述 5 个文档入口已由旧组件别名升级为真实导出，行为参考 Oreo，DOM、视觉与 API 按 AIOS 规范实现。
 
 ## 验证
@@ -38,4 +39,5 @@
 - 组件库与文档 TypeScript 检查通过，组件库与文档生产构建通过。
 - 文档 registry 清单与懒加载 entry 一致性测试通过。
 - 浏览器验证：两个页面的桌面与 390px 移动视口均无横向溢出；流式追加产生 5 个临时 segment，推理详情可展开。
+- Agent 文档复核：导航显示 23 个独立 Agent 入口；新增 8 页均正常加载，AssistantPanel 与 ApprovalGate 状态交互通过，390px 视口无横向溢出。
 - 文档完整测试：9 个测试文件、41 项测试通过。

@@ -30,6 +30,14 @@ export const COMPONENT_NAME_ZH: Record<string, string> = {
   AvatarGroup: "头像组",
   Icon: "图标适配器",
   AssistantModal: "助手浮层",
+  AgentOrb: "智能体状态",
+  ActivityLabel: "活动标签",
+  AssistantPanel: "助手面板",
+  ApprovalGate: "审批闸门",
+  PlanCard: "计划卡片",
+  ProgressTrace: "执行轨迹",
+  ThinkingIndicator: "思考指示器",
+  ThinkingSteps: "思考步骤",
   StreamingText: "流式文本",
   Reasoning: "推理活动",
   Message: "消息",
@@ -232,6 +240,86 @@ const ENTRIES: ComponentManifestEntry[] = [
     description: {
       zh: "为 Tabler 等 SVG 图标统一尺寸与语义。",
       en: "A size and semantics adapter for SVG icon libraries such as Tabler.",
+    },
+  },
+  {
+    slug: "agent-orb",
+    name: "AgentOrb",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "表达 Agent 的空闲、思考、执行、暂停与错误状态。",
+      en: "Shows idle, thinking, acting, paused, and error agent states.",
+    },
+  },
+  {
+    slug: "activity-label",
+    name: "ActivityLabel",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "在运行与完成文案之间切换的紧凑活动标签。",
+      en: "A compact activity label for working and completed states.",
+    },
+  },
+  {
+    slug: "assistant-panel",
+    name: "AssistantPanel",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "支持焦点恢复、Escape 和内嵌定位的助手面板。",
+      en: "An assistant panel with focus return, Escape, and inline placement.",
+    },
+  },
+  {
+    slug: "approval-gate",
+    name: "ApprovalGate",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "面向风险动作的 Agent 审批闸门。",
+      en: "An agent approval gate for risky actions.",
+    },
+  },
+  {
+    slug: "plan-card",
+    name: "PlanCard",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "支持逐步审批和批量操作的数据驱动计划卡。",
+      en: "A data-driven plan card with step approval and bulk actions.",
+    },
+  },
+  {
+    slug: "progress-trace",
+    name: "ProgressTrace",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "可折叠的 Agent 执行轨迹。",
+      en: "A collapsible trace of agent execution.",
+    },
+  },
+  {
+    slug: "thinking-indicator",
+    name: "ThinkingIndicator",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "表达思考、执行、完成和错误的状态指示器。",
+      en: "A state indicator for thinking, acting, done, and error.",
+    },
+  },
+  {
+    slug: "thinking-steps",
+    name: "ThinkingSteps",
+    category: "agent",
+    status: "new",
+    description: {
+      zh: "支持受控索引与自动推进的思考步骤序列。",
+      en: "A thinking sequence with controlled index and auto advance.",
     },
   },
   {

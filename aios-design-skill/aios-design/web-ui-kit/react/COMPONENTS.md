@@ -460,12 +460,14 @@ import {
 | 分组 | 独立文档组件 | 包入口 |
 |---|---|---|
 | Chat | `Message`、`Conversation`、`Response`、`StreamingText`、`CodeBlock`、`Attachment`、`BranchPicker` | `aios-ui-kit/conversation`、`aios-ui-kit/code-block` |
-| Agent | `PromptBox`、`KeywordTag`、`ContextBar`、`ToolCallRow`、`Reasoning`、`Plan`、`Sources`、`Confirmation`、`WebSearch`、`CodeDiff`、`Terminal`、`SubagentList` | `aios-ui-kit/agent`、`aios-ui-kit/conversation`、`aios-ui-kit/code-diff` |
+| Agent | `PromptBox`、`KeywordTag`、`ContextBar`、`ToolCallRow`、`Reasoning`、`Plan`、`Sources`、`Confirmation`、`WebSearch`、`CodeDiff`、`Terminal`、`SubagentList`、`AgentOrb`、`ActivityLabel`、`AssistantPanel`、`ApprovalGate`、`PlanCard`、`ProgressTrace`、`ThinkingIndicator`、`ThinkingSteps` | `aios-ui-kit/agent`、`aios-ui-kit/conversation`、`aios-ui-kit/code-diff` |
 | Shell | `ThreadList`、`AssistantModal` | `aios-ui-kit/conversation`、`aios-ui-kit/agent` |
 
 文档路由位于 `/components?group=agent`，侧栏进一步按 Chat、Agent、Shell 分组；每项均提供独立预览、导入方式、API 和可访问性说明。
 
 `PromptBox`、`Plan`、`Confirmation`、`WebSearch` 与 `ThreadList` 是独立公共原语，不再是文档别名；`Sender`、`PlanCard`、`ApprovalGate`、`AicssWebSearch` 与 `Conversations` 继续兼容导出。
+
+Agent 分类共 23 个独立文档入口；AIOS 原生的 `AgentOrb`、`ActivityLabel`、`AssistantPanel`、`ApprovalGate`、`PlanCard`、`ProgressTrace`、`ThinkingIndicator` 与 `ThinkingSteps` 不再只藏在聚合页。
 
 ---
 
