@@ -10,7 +10,7 @@
  * 选择器永远选不中，所以走 `real` 这个布尔变体。
  */
 declare const nextEventVariants: (props?: ({
-  priority?: "low" | "normal" | "high" | null | undefined;
+  priority?: "normal" | "low" | "high" | null | undefined;
   real?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion

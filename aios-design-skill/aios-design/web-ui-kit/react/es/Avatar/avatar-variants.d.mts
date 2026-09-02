@@ -7,7 +7,7 @@
 declare const avatarVariants: (props?: ({
   variant?: "soft" | "outline" | "ghost" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
-  shape?: "technical" | "circle" | null | undefined;
+  shape?: "circle" | "technical" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 兜底文字。字号跟着尺寸走。 */
 declare const avatarFallbackVariants: (props?: ({

@@ -7,7 +7,7 @@
  * `intensity` 只控制中心点的最大 opacity，不引入色相。
  */
 declare const gradientGlowVariants: (props?: ({
-  intensity?: "subtle" | "normal" | "strong" | null | undefined;
+  intensity?: "normal" | "subtle" | "strong" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 type GradientGlowIntensity = 'subtle' | 'normal' | 'strong';
 //#endregion

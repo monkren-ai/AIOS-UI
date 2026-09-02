@@ -34,10 +34,9 @@ describe("ComponentsLayout", () => {
   it("infers the AI Agent page and its Chat, Agent, and Shell navigation", () => {
     renderDetail("/components/aicss");
 
-    expect(screen.getByRole("link", { name: /AI Agent 组件/ })).toHaveAttribute(
-      "aria-current",
-      "page",
-    );
+    expect(
+      screen.getByRole("radio", { name: /AI Agent 组件/ }),
+    ).toHaveAttribute("aria-checked", "true");
     const sideNav = screen.getByRole("navigation", { name: "组件导航" });
     expect(within(sideNav).getByText("Chat")).toBeInTheDocument();
     expect(within(sideNav).getByText("Agent")).toBeInTheDocument();
@@ -48,9 +47,9 @@ describe("ComponentsLayout", () => {
   it("keeps basic detail pages inside the basic component navigation", () => {
     renderDetail("/components/autocomplete");
 
-    expect(screen.getByRole("link", { name: /基础组件/ })).toHaveAttribute(
-      "aria-current",
-      "page",
+    expect(screen.getByRole("radio", { name: /基础组件/ })).toHaveAttribute(
+      "aria-checked",
+      "true",
     );
     const sideNav = screen.getByRole("navigation", { name: "组件导航" });
     expect(within(sideNav).getByText("操作与输入")).toBeInTheDocument();

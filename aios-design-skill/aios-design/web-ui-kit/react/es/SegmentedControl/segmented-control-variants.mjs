@@ -11,6 +11,10 @@ const segmentedVariants = cva(["relative inline-flex overflow-hidden border bord
 			pill: "rounded-pill",
 			rounded: "rounded-md"
 		},
+		size: {
+			sm: "",
+			md: ""
+		},
 		disabled: {
 			true: "pointer-events-none opacity-40",
 			false: ""
@@ -22,6 +26,7 @@ const segmentedVariants = cva(["relative inline-flex overflow-hidden border bord
 	},
 	defaultVariants: {
 		variant: "pill",
+		size: "md",
 		disabled: false,
 		proximity: false
 	}
@@ -47,11 +52,16 @@ const segmentVariants = cva([
 		active: {
 			true: "text-background",
 			false: ""
+		},
+		size: {
+			sm: "h-9 min-h-9 px-3 text-caption pointer-coarse:h-11 pointer-coarse:px-4",
+			md: "h-10 min-h-9 px-5 text-label pointer-coarse:h-11 pointer-coarse:px-6"
 		}
 	},
 	defaultVariants: {
 		active: false,
-		hovered: false
+		hovered: false,
+		size: "md"
 	}
 });
 /** 选中态 slider 与 proximity hover 垫层的共同底子。 */

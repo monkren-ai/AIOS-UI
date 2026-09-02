@@ -188,6 +188,15 @@ describe('SegmentedControl', () => {
     )
   })
 
+  it('supports a compact small size', () => {
+    const { container } = render(<SegmentedControl segments={segments} size="sm" />)
+    expect(container.querySelector('[data-slot="segmented-control"]')).toHaveAttribute(
+      'data-size',
+      'sm',
+    )
+    expect(screen.getByRole('radio', { name: 'Day' })).toHaveClass('h-9', 'px-3')
+  })
+
   it('disables all segments when disabled', () => {
     const { container } = render(<SegmentedControl segments={segments} disabled />)
     const options = screen.getAllByRole('radio')

@@ -15,6 +15,7 @@ declare function SegmentedControl({
   segments,
   activeIndex: controlledIndex,
   variant,
+  size,
   disabled,
   proximity,
   onChange,

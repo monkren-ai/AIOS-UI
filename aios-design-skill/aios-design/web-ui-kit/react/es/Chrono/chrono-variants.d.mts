@@ -6,7 +6,7 @@
  * `md` 保持与 v1 完全一致（32px 内边距）。
  */
 declare const chronoVariants: (props?: ({
-  state?: "running" | "idle" | "paused" | null | undefined;
+  state?: "idle" | "running" | "paused" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion

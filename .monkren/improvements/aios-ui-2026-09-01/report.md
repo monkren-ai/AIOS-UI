@@ -17,6 +17,7 @@
 - `PromptBox` 补齐附件、mention、模型选择、语音、运行停止与自适应高度；进一步加入 `contextBefore/contextAfter`、inset 和 `idle/inputting/thinking` 语音生命周期，并将文档预览升级为可操作的完整链路。`WebSearch` 补齐受控折叠和安全外链；`ThreadList` 使用并列操作按钮，避免嵌套交互元素。
 - `StreamingText` 增加 `streaming` 输入态、可见光标和 `aria-busy`；文档自动播放增量文本，AI PoC 的新回复逐字生成。用户输入本身保持稳定，不对 textarea 字符做位移动画。
 - 旧 `Sender`、`PlanCard`、`ApprovalGate`、`AicssWebSearch`、`Conversations` 接口保持不变。
+- 组件目录的三张大型分组卡片改为共享 `SegmentedControl` 小分段导航；设计系统新增向后兼容的 `size="sm"` 变体，基础、Agent 与其他组件页统一复用，URL、选中态与键盘单选组语义保持同步。
 
 ## 约束落实
 
@@ -29,8 +30,9 @@
 
 - AI Agent 页面现包含 Chat 7 项、Agent 23 项、Shell 2 项，共 32 个入口。
 - 15 个新增路由均可打开并渲染独立标题、预览、用法、API 和可访问性内容。
-- 文档类型检查、9 个测试文件共 41 项测试、生产构建通过。
+- 文档类型检查、9 个测试文件共 42 项测试、生产构建通过。
 - 浏览器抽测分支翻页从 `2 / 3` 正常切换到 `3 / 3`；桌面与移动视口无横向溢出。
 - 浏览器确认 8 个新增 Agent 入口全部出现在导航中，页面标题与预览正常；AssistantPanel 可关闭，ApprovalGate 可从 pending 进入 approved，390px 视口无横向溢出。
-- 5 个体验对齐组件共 13 项专项测试通过；组件库全量为 119 个测试文件、1028 项测试通过。
+- 浏览器按 1960×1193 复核组件分组导航为 38px 高、346px 宽的小分段控件并精确居中；滚动后固定在 56px 顶栏下方，切换 Agent 后 URL 与选中态正确更新，390px 视口三段完整可见且页面横向溢出为 0。
+- 5 个体验对齐组件共 13 项专项测试通过；组件库全量为 119 个测试文件、1029 项测试通过。
 - 根导出、`agent` / `conversation` subpath 一致性检查以及组件库生产构建通过；lint 0 error，保留 3 条既有 `TimeField` warning。

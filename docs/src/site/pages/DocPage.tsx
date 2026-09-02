@@ -1,4 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
+import { Badge } from 'aios-ui-kit/badge'
+import { surfaceVariants } from 'aios-ui-kit/surfaces'
 import { useT } from '../i18n'
 import { DOC_GROUPS, DOC_PAGES, DOC_PAGE_BY_SLUG } from '../registry/docs'
 import { DOC_PAGE_COMPONENTS } from './docs'
@@ -42,9 +44,9 @@ export function DocPage() {
     <article className="flex w-full max-w-none flex-col gap-12 pb-24">
       <header className="flex flex-col gap-3">
         {group && (
-          <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
+          <Badge variant="soft" size="sm" className="w-fit">
             {tb(group.label)}
-          </span>
+          </Badge>
         )}
         <h1 className="text-display-sm text-foreground-display">{tb(meta.title)}</h1>
         <p className="text-subheading text-foreground-muted">{tb(meta.description)}</p>
@@ -56,7 +58,7 @@ export function DocPage() {
         {previous ? (
           <Link
             to={`/docs/${previous.slug}`}
-            className="flex flex-col gap-1 rounded-card-compact border border-border px-4 py-3 no-underline transition-colors duration-200 hover:border-border-visible motion-reduce:transition-none"
+            className={`${surfaceVariants({ elevation: 1, padding: 'md', border: 'default', radius: 'sm' })} flex flex-col gap-1 no-underline hover:border-border-visible`}
           >
             <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
               {t('上一页', 'Previous')}
@@ -69,7 +71,7 @@ export function DocPage() {
         {next && (
           <Link
             to={`/docs/${next.slug}`}
-            className="flex flex-col items-end gap-1 rounded-card-compact border border-border px-4 py-3 text-end no-underline transition-colors duration-200 hover:border-border-visible motion-reduce:transition-none"
+            className={`${surfaceVariants({ elevation: 1, padding: 'md', border: 'default', radius: 'sm' })} flex flex-col items-end gap-1 text-end no-underline hover:border-border-visible`}
           >
             <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
               {t('下一页', 'Next')}

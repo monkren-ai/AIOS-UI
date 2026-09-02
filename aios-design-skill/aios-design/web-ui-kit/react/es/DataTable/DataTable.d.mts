@@ -45,7 +45,7 @@ interface DataTableRowsItem {
 }
 type SortDirection = 'asc' | 'desc' | null;
 declare const dataTableVariants: (props?: ({
-  variant?: "grid" | "table" | "rows" | null | undefined;
+  variant?: "table" | "grid" | "rows" | null | undefined;
   striped?: boolean | null | undefined;
   compact?: boolean | null | undefined;
   hoverable?: boolean | null | undefined;

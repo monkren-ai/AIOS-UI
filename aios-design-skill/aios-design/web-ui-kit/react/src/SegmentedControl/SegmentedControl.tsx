@@ -34,6 +34,7 @@ export function SegmentedControl({
   segments,
   activeIndex: controlledIndex,
   variant = 'pill',
+  size = 'md',
   disabled = false,
   proximity = false,
   onChange,
@@ -172,9 +173,10 @@ export function SegmentedControl({
   return (
     <div
       ref={setRootRef}
-      className={cn(segmentedVariants({ variant, disabled, proximity }), className)}
+      className={cn(segmentedVariants({ variant, size, disabled, proximity }), className)}
       data-slot="segmented-control"
       data-variant={dataAttr(variant)}
+      data-size={dataAttr(size)}
       data-disabled={dataAttr(disabled)}
       data-proximity={dataAttr(proximity)}
       role="radiogroup"
@@ -203,7 +205,11 @@ export function SegmentedControl({
             segmentRefs.current[index] = el
           }}
           className={cn(
-            segmentVariants({ active: index === activeIdx, hovered: index === hoverIndex }),
+            segmentVariants({
+              active: index === activeIdx,
+              hovered: index === hoverIndex,
+              size,
+            }),
           )}
           data-slot="segmented-control-segment"
           onClick={() => handleSelect(index)}

@@ -6,7 +6,7 @@
  * 只通过 `aria-pressed` / `data-state` 暴露。这里保持一致。
  */
 declare const quickToggleVariants: (props?: ({
-  variant?: "pill" | "circle" | null | undefined;
+  variant?: "circle" | "pill" | null | undefined;
   active?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion

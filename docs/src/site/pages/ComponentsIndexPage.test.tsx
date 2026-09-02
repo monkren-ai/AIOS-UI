@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import {
@@ -46,9 +46,14 @@ describe("ComponentsIndexPage", () => {
   it("defaults to the basic component page", () => {
     renderPage();
 
-    expect(screen.getByRole("link", { name: /基础组件/ })).toHaveAttribute(
-      "aria-current",
-      "page",
+    expect(screen.getByRole("navigation", { name: "组件分组分页" })).toHaveClass(
+      "sticky",
+      "top-14",
+      "justify-center",
+    );
+    expect(screen.getByRole("radio", { name: /基础组件/ })).toHaveAttribute(
+      "aria-checked",
+      "true",
     );
     expect(
       screen.getByRole("heading", { name: "操作与输入" }),
@@ -66,16 +71,26 @@ describe("ComponentsIndexPage", () => {
   it("shows the Chat, Agent, and Shell categories on the AI Agent page", () => {
     renderPage("/components?group=agent");
 
-    expect(screen.getByRole("link", { name: /AI Agent 组件/ })).toHaveAttribute(
-      "aria-current",
-      "page",
-    );
+    expect(
+      screen.getByRole("radio", { name: /AI Agent 组件/ }),
+    ).toHaveAttribute("aria-checked", "true");
     expect(screen.getByRole("heading", { name: "Chat" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Agent" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Shell" })).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "操作与输入" }),
     ).not.toBeInTheDocument();
+  });
+
+  it("switches component pages through the compact segmented control", () => {
+    renderPage();
+
+    fireEvent.click(screen.getByRole("radio", { name: /AI Agent 组件/ }));
+
+    expect(
+      screen.getByRole("radio", { name: /AI Agent 组件/ }),
+    ).toHaveAttribute("aria-checked", "true");
+    expect(screen.getByRole("heading", { name: "Agent" })).toBeInTheDocument();
   });
 
   it("keeps the remaining subgroups on the other page", () => {

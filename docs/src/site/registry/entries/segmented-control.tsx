@@ -52,8 +52,8 @@ export const segmentedControlDoc: ComponentDoc = {
       id: 'variants',
       title: { zh: '变体', en: 'Variants' },
       description: {
-        zh: '`pill` 是全圆角，`rounded` 是 6px 圆角。区别只在外框与 slider 的圆角上，尺寸完全一致。选哪个取决于邻居：周围是圆角卡片和输入框就用 `rounded`，让它和表单控件对齐；作为独立的浮动切换器时 `pill` 更利落。',
-        en: '`pill` is fully rounded, `rounded` uses the 6px radius. The only difference is the corner treatment on the frame and the slider; the metrics are identical. Pick by context: `rounded` when it sits among rounded cards and inputs so it lines up with the other form controls, `pill` when it floats on its own as a switcher.',
+        zh: '`pill` 是全圆角，`rounded` 是 6px 圆角；`md` 是默认尺寸，`sm` 适合页面分组等紧凑导航。圆角与尺寸可独立组合：周围是圆角卡片和输入框就用 `rounded`，作为独立的浮动切换器时 `pill` 更利落。',
+        en: '`pill` is fully rounded and `rounded` uses the 6px radius; `md` is the default size, while `sm` suits compact navigation such as page groups. Radius and size compose independently: use `rounded` among cards and inputs, and `pill` for a standalone floating switcher.',
       },
       code: variantsSource,
       render: () => <SegmentedControlVariants />,
@@ -108,6 +108,15 @@ export const segmentedControlDoc: ComponentDoc = {
           description: {
             zh: '外框与 slider 的圆角。',
             en: 'Corner radius of the frame and slider.',
+          },
+        },
+        {
+          name: 'size',
+          type: `'sm' | 'md'`,
+          default: `'md'`,
+          description: {
+            zh: '分段高度与水平内边距；紧凑导航使用 `sm`。',
+            en: 'Segment height and horizontal padding; use `sm` for compact navigation.',
           },
         },
         {

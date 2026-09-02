@@ -12,7 +12,7 @@ function toInlineStart(container, offsetLeft, width) {
 	if (getComputedStyle(container).direction !== "rtl") return offsetLeft;
 	return container.clientWidth - offsetLeft - width;
 }
-function SegmentedControl({ className, segments, activeIndex: controlledIndex, variant = "pill", disabled = false, proximity = false, onChange, ref, ...props }) {
+function SegmentedControl({ className, segments, activeIndex: controlledIndex, variant = "pill", size = "md", disabled = false, proximity = false, onChange, ref, ...props }) {
 	const [internalIndex, setInternalIndex] = React$1.useState(0);
 	const [sliderStyle, setSliderStyle] = React$1.useState({});
 	const [hoverIndex, setHoverIndex] = React$1.useState(null);
@@ -120,11 +120,13 @@ function SegmentedControl({ className, segments, activeIndex: controlledIndex, v
 		ref: setRootRef,
 		className: cn(segmentedVariants({
 			variant,
+			size,
 			disabled,
 			proximity
 		}), className),
 		"data-slot": "segmented-control",
 		"data-variant": dataAttr(variant),
+		"data-size": dataAttr(size),
 		"data-disabled": dataAttr(disabled),
 		"data-proximity": dataAttr(proximity),
 		role: "radiogroup",
@@ -150,7 +152,8 @@ function SegmentedControl({ className, segments, activeIndex: controlledIndex, v
 				},
 				className: cn(segmentVariants({
 					active: index === activeIdx,
-					hovered: index === hoverIndex
+					hovered: index === hoverIndex,
+					size
 				})),
 				"data-slot": "segmented-control-segment",
 				onClick: () => handleSelect(index),

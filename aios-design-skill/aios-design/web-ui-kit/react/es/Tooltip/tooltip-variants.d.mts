@@ -10,7 +10,7 @@ declare const tooltipPositionerVariants: (props?: import("class-variance-authori
  */
 declare const tooltipPopupVariants: (props?: ({
   visible?: boolean | null | undefined;
-  side?: "top" | "bottom" | "left" | "right" | null | undefined;
+  side?: "right" | "left" | "top" | "bottom" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion
 export { tooltipPopupVariants, tooltipPositionerVariants, tooltipTriggerVariants };

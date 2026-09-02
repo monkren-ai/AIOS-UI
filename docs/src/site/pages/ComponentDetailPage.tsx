@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { Badge } from 'aios-ui-kit/badge'
+import { surfaceVariants } from 'aios-ui-kit/surfaces'
 import { CodeBlock } from '../components/CodeBlock'
 import { ComponentPreview } from '../components/ComponentPreview'
 import { PropsTable } from '../components/PropsTable'
@@ -102,9 +104,9 @@ export function ComponentDetailPage() {
     <article className="flex w-full max-w-none flex-col gap-12 pb-24">
       <header className="flex flex-col gap-3">
         {category && (
-          <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
+          <Badge variant="soft" size="sm" className="w-fit">
             {tb(category.label)}
-          </span>
+          </Badge>
         )}
         <h1 className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-display-sm text-foreground-display">
           <span>{getComponentName(doc, lang)}</span>
@@ -188,7 +190,7 @@ export function ComponentDetailPage() {
         {previous ? (
           <Link
             to={`/components/${previous.slug}`}
-            className="flex flex-col gap-1 rounded-card-compact border border-border px-4 py-3 no-underline transition-colors duration-200 hover:border-border-visible motion-reduce:transition-none"
+            className={`${surfaceVariants({ elevation: 1, padding: 'md', border: 'default', radius: 'sm' })} flex flex-col gap-1 no-underline hover:border-border-visible`}
           >
             <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
               {t('上一个', 'Previous')}
@@ -201,7 +203,7 @@ export function ComponentDetailPage() {
         {next && (
           <Link
             to={`/components/${next.slug}`}
-            className="flex flex-col items-end gap-1 rounded-card-compact border border-border px-4 py-3 text-end no-underline transition-colors duration-200 hover:border-border-visible motion-reduce:transition-none"
+            className={`${surfaceVariants({ elevation: 1, padding: 'md', border: 'default', radius: 'sm' })} flex flex-col items-end gap-1 text-end no-underline hover:border-border-visible`}
           >
             <span className="font-mono text-label uppercase tracking-widest text-foreground-subtle">
               {t('下一个', 'Next')}

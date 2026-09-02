@@ -9,7 +9,7 @@
  * `data-proximity-active`，这里只负责响应，不含任何阴影或位移之外的效果。
  */
 declare const tagVariants: (props?: ({
-  variant?: "soft" | "secondary" | "outline" | "ghost" | "destructive" | null | undefined;
+  variant?: "soft" | "outline" | "destructive" | "secondary" | "ghost" | null | undefined;
   size?: "sm" | "md" | "lg" | null | undefined;
   shape?: "technical" | "pill" | null | undefined;
   active?: boolean | null | undefined;

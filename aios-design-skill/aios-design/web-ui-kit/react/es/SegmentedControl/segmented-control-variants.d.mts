@@ -6,6 +6,7 @@
  */
 declare const segmentedVariants: (props?: ({
   variant?: "rounded" | "pill" | null | undefined;
+  size?: "sm" | "md" | null | undefined;
   disabled?: boolean | null | undefined;
   proximity?: boolean | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
@@ -17,6 +18,7 @@ declare const segmentedVariants: (props?: ({
 declare const segmentVariants: (props?: ({
   hovered?: boolean | null | undefined;
   active?: boolean | null | undefined;
+  size?: "sm" | "md" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /** 选中态 slider。 */
 declare const segmentedSliderVariants: (props?: ({

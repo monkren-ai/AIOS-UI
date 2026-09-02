@@ -16,7 +16,7 @@ declare const systemMonitorVariants: (props?: ({
  */
 declare const monitorItemVariants: (props?: ({
   type?: "cpu" | "ram" | "storage" | "network" | "battery" | null | undefined;
-  status?: "warning" | "critical" | "none" | "low" | "charging" | "connected" | "disconnected" | null | undefined;
+  status?: "none" | "warning" | "critical" | "low" | "charging" | "connected" | "disconnected" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 /**
  * 进度条的单格。
@@ -27,7 +27,7 @@ declare const monitorItemVariants: (props?: ({
 declare const monitorSegmentVariants: (props?: ({
   filled?: boolean | null | undefined;
   type?: "cpu" | "ram" | "storage" | "network" | "battery" | null | undefined;
-  status?: "warning" | "critical" | "none" | "low" | "charging" | "connected" | "disconnected" | null | undefined;
+  status?: "none" | "warning" | "critical" | "low" | "charging" | "connected" | "disconnected" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 //#endregion
 export { monitorItemVariants, monitorSegmentVariants, systemMonitorVariants };
