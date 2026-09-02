@@ -6,6 +6,9 @@ import { type MotionComponentType } from '@/MotionProvider'
 import { App } from '@/App'
 import ErrorBoundary from '@/ErrorBoundary'
 import { ThemeCatalogProvider } from '@/site/themes/ThemeCatalogProvider'
+import { installPreloadErrorRecovery } from '@/preload-recovery'
+
+installPreloadErrorRecovery()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
